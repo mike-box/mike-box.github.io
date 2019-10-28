@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-28T02:12:22.159Z</updated>
+  <updated>2019-10-28T02:14:05.694Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>【Leetcode】160比赛</title>
+    <title>【Leetcode】一道概率题目</title>
     <link href="http://yoursite.com/2019/10/28/85/"/>
     <id>http://yoursite.com/2019/10/28/85/</id>
     <published>2019-10-28T02:08:50.090Z</published>
-    <updated>2019-10-28T02:12:22.159Z</updated>
+    <updated>2019-10-28T02:14:05.694Z</updated>
     
     <content type="html"><![CDATA[<p>今天遇到一个非常有意思的概率题，非常值得探讨的一道题目</p><h2 id="1227-Airplane-Seat-Assignment-Probability"><a href="#1227-Airplane-Seat-Assignment-Probability" class="headerlink" title="1227. Airplane Seat Assignment Probability"></a>1227. Airplane Seat Assignment Probability</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>n passengers board an airplane with exactly n seats. The first passenger has lost the ticket and picks a seat randomly. But after that, the rest of passengers will:</p><a id="more"></a><p>Take their own seat if it is still available,<br>Pick other seats randomly when they find their seat occupied<br>What is the probability that the n-th person can get his own seat?</p><p>Example 1:<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inpu<span class="variable">t:</span> n = <span class="number">1</span></span><br><span class="line">Outpu<span class="variable">t:</span> <span class="number">1.00000</span></span><br><span class="line">Explanation: The <span class="keyword">first</span> person can <span class="keyword">only</span> <span class="built_in">get</span> the <span class="keyword">first</span> seat.</span><br></pre></td></tr></table></figure><br>Example 2:<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = <span class="number">2</span></span><br><span class="line">Output: <span class="number">0.50000</span></span><br><span class="line">Explanation: The <span class="keyword">second</span> person has <span class="keyword">a</span> probability <span class="keyword">of</span> <span class="number">0.5</span> <span class="built_in">to</span> <span class="built_in">get</span> <span class="keyword">the</span> <span class="keyword">second</span> seat (when <span class="keyword">first</span> person gets <span class="keyword">the</span> <span class="keyword">first</span> seat).</span><br></pre></td></tr></table></figure></p><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode.com/problems/airplane-seat-assignment-probability/" target="_blank" rel="noopener">https://leetcode.com/problems/airplane-seat-assignment-probability/</a><br>&lt;/br&gt;<br>&nbsp;</p><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote><p> 求第n个人能够做到原本座位上的概率。<br>&nbsp;</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol><li>第1个人如果坐在自己的座位上，那么第n个人肯定可以坐到自己的座位上，这时第1个人坐到第1个座位的概率为<code>1/n</code>.</li><li>第1个人未坐到自己的作为上，且第1个人坐到第n个座位上，则这时第n个人坐到第n个座位的概率为<code>0</code>;</li><li>第1个人坐到第<code>2~n-1</code>个座位上，比如坐到第<code>i</code>个座位上，<code>概率为</code>n-2/n<code>,后续的第</code>2~i-1个人都按照正常的座位进行坐，第i个人选的座位这时分为以下几种情况：<br>a) 第<code>i</code>个人坐到第1个座位上，则这时相当于第<code>i</code>个人与第1个人进行交换了座位，则这时第<code>n</code>个人会坐到第<code>n</code>个座位上，概率为1/n-1;<br>b)第<code>i</code>个人坐到第n个座位上，则这时第<code>n</code>个人会坐到第<code>n</code>个座位上，概率为0；<br>c)第<code>i</code>个人在第<code>i+1~n-1</code>选一个座位坐下，第<code>n</code>个人坐到第<code>n</code>个座位上，则这时的概率为((n-1)-2)/(n-1)，继续下一轮的循环；<br>递推公式为<code>f(n) = 1 / n + (n - 2) / n * f(n - 1)</code>;<br>用数学归纳法，即可证明<code>f(n) = 1/2  (n &gt; 1)</code></li></ol></blockquote><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>代码比较简单：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">double</span> nthPersonGetsNthSeat(<span class="built_in">int</span> n) &#123;</span><br><span class="line">       <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1.0</span>d;</span><br><span class="line">       <span class="keyword">return</span> <span class="number">1</span>d / n + (n - <span class="number">2</span>d) / n * nthPersonGetsNthSeat(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
     
@@ -32,7 +32,7 @@
     </summary>
     
     
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="数学" scheme="http://yoursite.com/categories/%E6%95%B0%E5%AD%A6/"/>
     
     
       <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
