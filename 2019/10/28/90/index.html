@@ -64,7 +64,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;28&#x2F;90&#x2F;90-1.jpg">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;28&#x2F;90&#x2F;90-2.jpg">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;28&#x2F;90&#x2F;90-3.jpg">
-<meta property="og:updated_time" content="2019-10-28T07:16:31.046Z">
+<meta property="og:updated_time" content="2019-10-29T01:02:16.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;assets.leetcode-cn.com&#x2F;aliyun-lc-upload&#x2F;uploads&#x2F;2019&#x2F;10&#x2F;25&#x2F;sample_11_1592.png">
 
@@ -223,10 +223,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-10-28 00:08:31 / Modified: 15:16:31" itemprop="dateCreated datePublished" datetime="2019-10-28T00:08:31+08:00">2019-10-28</time>
+              <time title="Created: 2019-10-28 00:08:31" itemprop="dateCreated datePublished" datetime="2019-10-28T00:08:31+08:00">2019-10-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-29 09:02:16" itemprop="dateModified" datetime="2019-10-29T09:02:16+08:00">2019-10-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -285,6 +291,7 @@
 <li>最开始的解法，采用暴力破解，直接递归即可求出每一位的不同；</li>
 <li>后来看了别人更好的解法求<code>gray</code>,步骤如下：<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a. 初始化序列&#123;<span class="number">0</span>,<span class="number">1</span>&#125;;</span><br><span class="line">b, 第i次对序列逆序读取，并在为每个数加上前缀<span class="number">1</span>，即加上pow(<span class="number">2</span>,i);</span><br></pre></td></tr></table></figure></li>
 <li>找到<code>gray</code>序列中等于<code>start</code>的索引，然后对数组进行移位操作即可;<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; circularPermutation(<span class="keyword">int</span> n, <span class="keyword">int</span> start) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = res.size()<span class="number">-1</span>; j &gt;= <span class="number">0</span>; --j)&#123;</span><br><span class="line">                res.push_back(res[j] + (<span class="number">1</span>&lt;&lt;i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; res.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(res[i] == start)&#123;</span><br><span class="line">                l = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        reverse(res.begin(),res.end());</span><br><span class="line">        reverse(res.begin(),res.begin()+res.size()-l);</span><br><span class="line">        reverse(res.begin()+res.size()-l,res.end());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; circularPermutation(<span class="keyword">int</span> n, <span class="keyword">int</span> start) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; (<span class="number">1</span>&lt;&lt;n); ++i)&#123;</span><br><span class="line">            res.push_back(start^i^(i&gt;&gt;<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </blockquote>
