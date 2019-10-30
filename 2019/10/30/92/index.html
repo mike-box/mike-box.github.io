@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="继续刷题昨天完成了89、280、265、294、353这几道题目，一下为其答案89. 格雷编码题目格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。给定一个代表编码总位数的非负整数 n，打印其格雷编码序列。格雷编码序列必须以 0 开头。示例 1:123456789101112131415输入: 2输出: [0,1,3,2]解释:00 - 001 - 111 - 310 -">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】几道经典题目">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;92&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="继续刷题昨天完成了89、280、265、294、353这几道题目，一下为其答案89. 格雷编码题目格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。给定一个代表编码总位数的非负整数 n，打印其格雷编码序列。格雷编码序列必须以 0 开头。示例 1:123456789101112131415输入: 2输出: [0,1,3,2]解释:00 - 001 - 111 - 310 -">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-30T05:22:32.861Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/10/30/92/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】几道经典题目 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">just code for fun</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】几道经典题目
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 13:23:05 / Modified: 13:22:32" itemprop="dateCreated datePublished" datetime="2019-10-30T13:23:05+08:00">2019-10-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="继续刷题"><a href="#继续刷题" class="headerlink" title="继续刷题"></a>继续刷题</h1><p>昨天完成了89、280、265、294、353这几道题目，一下为其答案</p><h2 id="89-格雷编码"><a href="#89-格雷编码" class="headerlink" title="89. 格雷编码"></a>89. 格雷编码</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。</p><p>给定一个代表编码总位数的非负整数 n，打印其格雷编码序列。格雷编码序列必须以 0 开头。</p><p>示例 1:<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">2</span></span><br><span class="line">输出: [<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line">解释:</span><br><span class="line"><span class="number">00</span> - <span class="number">0</span></span><br><span class="line"><span class="number">01</span> - <span class="number">1</span></span><br><span class="line"><span class="number">11</span> - <span class="number">3</span></span><br><span class="line"><span class="number">10</span> - <span class="number">2</span></span><br><span class="line"></span><br><span class="line">对于给定的 n，其格雷编码序列并不唯一。</span><br><span class="line">例如，[<span class="number">0</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>] 也是一个有效的格雷编码序列。</span><br><span class="line"></span><br><span class="line"><span class="number">00</span> - <span class="number">0</span></span><br><span class="line"><span class="number">10</span> - <span class="number">2</span></span><br><span class="line"><span class="number">11</span> - <span class="number">3</span></span><br><span class="line"><span class="number">01</span> - <span class="number">1</span></span><br></pre></td></tr></table></figure><br>示例 2:<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">0</span></span><br><span class="line">输出: [<span class="number">0</span>]</span><br><span class="line">解释: 我们定义格雷编码序列必须以 <span class="number">0</span> 开头。</span><br><span class="line">     给定编码总位数为 n 的格雷编码序列，其长度为 <span class="number">2</span>n。当 n = <span class="number">0</span> 时，长度为 <span class="number">20</span> = <span class="number">1</span>。</span><br><span class="line">     因此，当 n = <span class="number">0</span> 时，其格雷编码序列为 [<span class="number">0</span>]。</span><br></pre></td></tr></table></figure></p><a id="more"></a>
+
+
+
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/gray-code" target="_blank" rel="noopener">https://leetcode-cn.com/problems/gray-code</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 求gray码</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>题目非常简单，我们知道gray码，相邻的数之间有且仅有一位二进制位不同。</li>
+<li>生成gray的方法一般有几种，递归和异或，以下为简要的介绍：<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>位格雷码有两个码字(<span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line">a. (n+<span class="number">1</span>)位格雷码中的前<span class="number">2</span>n个码字等于n位格雷码的码字，按顺序书写，加前缀<span class="number">0</span></span><br><span class="line">b. (n+<span class="number">1</span>)位格雷码中的后<span class="number">2</span>n个码字等于n位格雷码的码字，按逆序书写，加前缀<span class="number">1</span> [<span class="number">4</span>] </span><br><span class="line">c. n+<span class="number">1</span>位格雷码的集合 = n位格雷码集合(顺序)加前缀<span class="number">0</span> + n位格雷码集合(逆序)加前缀<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+<li>异或的方法：<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对n位二进制的码字，从右到左，以<span class="number">0</span>到n<span class="number">-1</span>编号</span><br><span class="line">如果二进制码字的第i位和i+<span class="number">1</span>位相同，则对应的格雷码的第i位为<span class="number">0</span>，否则为<span class="number">1</span>（当i+<span class="number">1</span>=n时，二进制码字的第n位被认为是<span class="number">0</span>，即第n<span class="number">-1</span>位不变）</span><br></pre></td></tr></table></figure>
+公式表示为:<script type="math/tex; mode=display">G_{i} = B_{i}\oplus B_{i+1} \: (n-1 \geqslant i \geqslant 0</script>其中G为第i位gray码，B为第i为二进制数<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">grayCode</span><span class="params">(self, n: int)</span> -&gt; List[int]:</span></span><br><span class="line">        <span class="keyword">return</span> [x^(x&gt;&gt;<span class="number">1</span>) <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>&lt;&lt;n)]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="280-摆动排序"><a href="#280-摆动排序" class="headerlink" title="280. 摆动排序"></a>280. 摆动排序</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>给你一个无序的数组 nums, 将该数字 原地 重排后使得 nums[0] &lt;= nums[1] &gt;= nums[2] &lt;= nums[3]…。</p>
+<p>示例:<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">4</span>]</span><br><span class="line">输出: 一个可能的解答是 [<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/wiggle-sort" target="_blank" rel="noopener">https://leetcode-cn.com/problems/wiggle-sort</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 题目本身不难，但是我觉得比较典型的有推理的题目，适合面试。</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>按照题目中要求的摆动排序，首先，我们很容易想到可以通过排序，找到中位数，然后将数组分为两部分，每隔一个进行交换，即可，将较大的数放在偶数位的索引上。</li>
+<li>仔细分析一下题目，题目并没有要求最优解，只要求能够满足题目要求即可，我们只要求偶数位<code>i</code>的数字在<code>i-1,i,i+1</code>这三个中最大即可满足要求。<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">### 代码</span><br><span class="line">```c++</span><br><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">void</span> wiggleSort(vector&lt;<span class="built_in">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="built_in">int</span> n = nums.size();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">1</span>; i &lt; n; i = i+<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &lt; nums[i<span class="number">-1</span>])&#123;</span><br><span class="line">                swap(nums[i],nums[i<span class="number">-1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i &lt; n<span class="number">-1</span> &amp;&amp; nums[i] &lt; nums[i+<span class="number">1</span>])&#123;</span><br><span class="line">                swap(nums[i],nums[i+<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wiggleSort</span><span class="params">(self, nums: List[int])</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(nums),<span class="number">2</span>):</span><br><span class="line">            <span class="keyword">if</span> nums[i<span class="number">-1</span>] &gt; nums[i]:</span><br><span class="line">                nums[i],nums[i<span class="number">-1</span>] = nums[i<span class="number">-1</span>],nums[i]</span><br><span class="line">            <span class="keyword">if</span> i &lt; len(nums)<span class="number">-1</span> <span class="keyword">and</span> nums[i+<span class="number">1</span>] &gt; nums[i]:</span><br><span class="line">                nums[i+<span class="number">1</span>],nums[i] = nums[i],nums[i+<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="265-粉刷房子-II"><a href="#265-粉刷房子-II" class="headerlink" title="265. 粉刷房子 II"></a>265. 粉刷房子 II</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>假如有一排房子，共 n 个，每个房子可以被粉刷成 k 种颜色中的一种，你需要粉刷所有的房子并且使其相邻的两个房子颜色不能相同。</p>
+<p>当然，因为市场上不同颜色油漆的价格不同，所以房子粉刷成不同颜色的花费成本也是不同的。每个房子粉刷成不同颜色的花费是以一个 n x k 的矩阵来表示的。</p>
+<p>例如，costs[0][0] 表示第 0 号房子粉刷成 0 号颜色的成本花费；costs[1][2] 表示第 1 号房子粉刷成 2 号颜色的成本花费，以此类推。请你计算出粉刷完所有房子最少的花费成本。</p>
+<p>注意：</p>
+<p>所有花费均为正整数。</p>
+<p>示例：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [[<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>],[<span class="number">2</span>,<span class="number">9</span>,<span class="number">4</span>]]</span><br><span class="line">输出: <span class="number">5</span></span><br><span class="line">解释: 将 <span class="number">0</span> 号房子粉刷成 <span class="number">0</span> 号颜色，<span class="number">1</span> 号房子粉刷成 <span class="number">2</span> 号颜色。最少花费: <span class="number">1</span> + <span class="number">4</span> = <span class="number">5</span>; </span><br><span class="line">     或者将 <span class="number">0</span> 号房子粉刷成 <span class="number">2</span> 号颜色，<span class="number">1</span> 号房子粉刷成 <span class="number">0</span> 号颜色。最少花费: <span class="number">3</span> + <span class="number">2</span> = <span class="number">5.</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/paint-house-ii" target="_blank" rel="noopener">https://leetcode-cn.com/problems/paint-house-ii</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 动态规划</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>首先题目中利用dp很容易想到<code>O(nk^2)</code>的解法；</li>
+<li>设递推公式<code>f[n][k]</code>为第<code>n</code>个房间用第<code>k</code>中颜色粉刷的最小代价；</li>
+<li>递推公式为:<script type="math/tex; mode=display">f(n,i) = min(f(n,i),f(n,j)) \: (k \ge j \ge 1 \: and \:i \ne  j)</script></li>
+<li>另外一种办法每次只取<code>n-1</code>个房屋最小的两个花费进行递归,这样就可以将复杂度降低一个数量级o(nk).<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minCostII</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; costs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = costs.size();</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> k = costs[<span class="number">0</span>].size();</span><br><span class="line">        <span class="keyword">int</span> res = INT_MAX;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(n,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(k,INT_MAX));</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*intitial*/</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i)&#123;</span><br><span class="line">            dp[<span class="number">0</span>][i] = costs[<span class="number">0</span>][i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; k; ++j)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">0</span>; m &lt; k; ++m)&#123;</span><br><span class="line">                   <span class="keyword">if</span>(m == j)&#123;<span class="keyword">continue</span>;&#125;</span><br><span class="line">                   dp[i][j] = min(dp[i][j],dp[i<span class="number">-1</span>][m]+costs[i][j]); </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i)&#123;</span><br><span class="line">            res = min(res,dp[n<span class="number">-1</span>][i]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="294-翻转游戏-II"><a href="#294-翻转游戏-II" class="headerlink" title="294. 翻转游戏 II"></a>294. 翻转游戏 II</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3>你和朋友玩一个叫做「翻转游戏」的游戏，游戏规则：给定一个只有 + 和 - 的字符串。你和朋友轮流将 连续 的两个 “++” 反转成 “—“。 当一方无法进行有效的翻转时便意味着游戏结束，则另一方获胜。</li>
+</ol>
+</blockquote>
+<p>请你写出一个函数来判定起始玩家是否存在必胜的方案。</p>
+<p>示例：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="attr">s</span> = <span class="string">"++++"</span></span><br><span class="line">输出: <span class="literal">true</span> </span><br><span class="line">解析: 起始玩家可将中间的 <span class="string">"++"</span> 翻转变为 <span class="string">"+--+"</span> 从而得胜。</span><br><span class="line">延伸：</span><br><span class="line">请推导你算法的时间复杂度。</span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/flip-game-ii" target="_blank" rel="noopener">https://leetcode-cn.com/problems/flip-game-ii</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> DFS,深度遍历</p>
+<h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>采用记忆化的DFS进行递归即可；</li>
+<li>常规的解法；<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">bool</span>&gt; dp;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canWin</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(dp.count(s))&#123;</span><br><span class="line">            <span class="keyword">return</span> dp[s];</span><br><span class="line">        &#125;        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i<span class="number">-1</span>] == <span class="string">'+'</span> &amp;&amp; s[i] == <span class="string">'+'</span>)&#123;</span><br><span class="line">               <span class="keyword">if</span>(!canWin(s.substr(<span class="number">0</span>,i<span class="number">-1</span>)+<span class="string">"--"</span>+s.substr(i+<span class="number">1</span>,s.size()-i<span class="number">-1</span>)))&#123;</span><br><span class="line">                   dp[s] = <span class="literal">true</span>;</span><br><span class="line">                   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">               &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        dp[s] = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line"><span class="meta">    @functools.lru_cache()</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canWin</span><span class="params">(self, s: str)</span> -&gt; bool:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i] == <span class="string">'+'</span> <span class="keyword">and</span> s[i<span class="number">-1</span>] == <span class="string">'+'</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> self.canWin(s[<span class="number">0</span>:i<span class="number">-1</span>]+<span class="string">"--"</span>+s[i+<span class="number">1</span>:]):</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span>  <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h2 id="353-贪吃蛇"><a href="#353-贪吃蛇" class="headerlink" title="353. 贪吃蛇"></a>353. 贪吃蛇</h2><h3 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h3>请你设计一个 贪吃蛇游戏，该游戏将会在一个 屏幕尺寸 = 宽度 x 高度 的屏幕上运行。如果你不熟悉这个游戏，可以 点击这里 在线试玩。</li>
+</ol>
+</blockquote>
+<p>起初时，蛇在左上角的 (0, 0) 位置，身体长度为 1 个单位。</p>
+<p>你将会被给出一个 (行, 列) 形式的食物位置序列。当蛇吃到食物时，身子的长度会增加 1 个单位，得分也会 +1。</p>
+<p>食物不会同时出现，会按列表的顺序逐一显示在屏幕上。比方讲，第一个食物被蛇吃掉后，第二个食物才会出现。</p>
+<p>当一个食物在屏幕上出现时，它被保证不能出现在被蛇身体占据的格子里。</p>
+<p>对于每个 move() 操作，你需要返回当前得分或 -1（表示蛇与自己身体或墙相撞，意味游戏结束）。</p>
+<p>示例：<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">给定 width = 3, height = 2, 食物序列为 food = [[1,2],[0,1]]。</span><br><span class="line"></span><br><span class="line">Snake snake = new Snake(width, height, food);</span><br><span class="line"></span><br><span class="line">初始时，蛇的位置在 (0,0) 且第一个食物在 (1,2)。</span><br><span class="line"></span><br><span class="line">|<span class="string">S</span>|<span class="string"> </span>|<span class="string"> </span>|</span><br><span class="line">|<span class="string"> </span>|<span class="string"> </span>|<span class="string">F</span>|</span><br><span class="line"></span><br><span class="line">snake.move(<span class="string">"R"</span>); -&gt; 函数返回 0</span><br><span class="line"></span><br><span class="line">|<span class="string"> </span>|<span class="string">S</span>|<span class="string"> </span>|</span><br><span class="line">|<span class="string"> </span>|<span class="string"> </span>|<span class="string">F</span>|</span><br><span class="line"></span><br><span class="line">snake.move(<span class="string">"D"</span>); -&gt; 函数返回 0</span><br><span class="line"></span><br><span class="line">|<span class="string"> </span>|<span class="string"> </span>|<span class="string"> </span>|</span><br><span class="line">|<span class="string"> </span>|<span class="string">S</span>|<span class="string">F</span>|</span><br><span class="line"></span><br><span class="line">snake.move(<span class="string">"R"</span>); -&gt; 函数返回 1 (蛇吃掉了第一个食物，同时第二个食物出现在位置 (0,1))</span><br><span class="line"></span><br><span class="line">|<span class="string"> </span>|<span class="string">F</span>|<span class="string"> </span>|</span><br><span class="line">|<span class="string"> </span>|<span class="string">S</span>|<span class="string">S</span>|</span><br><span class="line"></span><br><span class="line">snake.move(<span class="string">"U"</span>); -&gt; 函数返回 1</span><br><span class="line"></span><br><span class="line">|<span class="string"> </span>|<span class="string">F</span>|<span class="string">S</span>|</span><br><span class="line">|<span class="string"> </span>|<span class="string"> </span>|<span class="string">S</span>|</span><br><span class="line"></span><br><span class="line">snake.move(<span class="string">"L"</span>); -&gt; 函数返回 2 (蛇吃掉了第二个食物)</span><br><span class="line"></span><br><span class="line">|<span class="string"> </span>|<span class="string">S</span>|<span class="string">S</span>|</span><br><span class="line">|<span class="string"> </span>|<span class="string"> </span>|<span class="string">S</span>|</span><br><span class="line"></span><br><span class="line">snake.move(<span class="string">"U"</span>); -&gt; 函数返回 -1 (蛇与边界相撞，游戏结束)</span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-4"><a href="#地址-4" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/design-snake-game" target="_blank" rel="noopener">https://leetcode-cn.com/problems/design-snake-game</a></p>
+<h3 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 典型的贪吃蛇问题，准备写一个小游戏</p>
+<h3 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>数据存储部分，记录当前<code>snake</code>头部的位置，上下左右四个方向移动能够得到下一跳的位置；</li>
+<li>用队列保存<code>snake</code>从头部到尾部的位置，每次移动即从头部添加一个新位置，从尾部去掉一个位置；</li>
+<li>用队列记录<code>food</code>的位置，每次如果<code>snake</code>到达食物队列的位置，则进行弹出。直到食物全部从队列退出。</li>
+<li>每次判断时需要判断<code>snake</code>的下一个位置是<code>food,wall,body</code>的一种，可以用集合查询来加快查找速度.<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnakeGame</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, width: int, height: int, food: List[List[int]])</span>:</span></span><br><span class="line">        self.w = width</span><br><span class="line">        self.h = height</span><br><span class="line">        self.x = <span class="number">0</span></span><br><span class="line">        self.y = <span class="number">0</span></span><br><span class="line">        self.snake = [<span class="number">0</span>]</span><br><span class="line">        self.snake_loc = set(self.snake)</span><br><span class="line">        self.foods_loc = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> f <span class="keyword">in</span> food:</span><br><span class="line">            self.foods_loc.append(f[<span class="number">0</span>]*self.w + f[<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">move</span><span class="params">(self, direction: str)</span> -&gt; int:</span></span><br><span class="line">        d = &#123;<span class="string">"L"</span>:(<span class="number">0</span>,<span class="number">-1</span>),<span class="string">"R"</span>:(<span class="number">0</span>,<span class="number">1</span>),<span class="string">"U"</span>:(<span class="number">-1</span>,<span class="number">0</span>),<span class="string">"D"</span>:(<span class="number">1</span>,<span class="number">0</span>)&#125;;</span><br><span class="line">        self.x += d[direction][<span class="number">0</span>]</span><br><span class="line">        self.y += d[direction][<span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> self.x &lt; <span class="number">0</span> <span class="keyword">or</span> self.y &lt; <span class="number">0</span> <span class="keyword">or</span> \</span><br><span class="line">           self.x &gt;= self.h <span class="keyword">or</span> self.y &gt;= self.w:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        </span><br><span class="line">        curr = self.x*self.w + self.y</span><br><span class="line">        self.snake.append(curr)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> len(self.foods_loc) &gt; <span class="number">0</span> <span class="keyword">and</span> self.foods_loc[<span class="number">0</span>] == curr:</span><br><span class="line">            self.foods_loc.pop(<span class="number">0</span>)</span><br><span class="line">            self.snake_loc.add(curr)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.snake_loc.remove(self.snake[<span class="number">0</span>])</span><br><span class="line">            self.snake.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> curr <span class="keyword">in</span> self.snake_loc:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.snake_loc.add(curr)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> len(self.snake)<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnakeGame</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    SnakeGame(<span class="keyword">int</span> width, <span class="keyword">int</span> height, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; food) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;width = width;</span><br><span class="line">        <span class="keyword">this</span>-&gt;height = height;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> d : food)&#123;</span><br><span class="line">            foods_loc.push(d[<span class="number">0</span>]*width+d[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*initial*/</span></span><br><span class="line">        snake.push(<span class="number">0</span>);</span><br><span class="line">        snake_loc.insert(<span class="number">0</span>);</span><br><span class="line">        curr_x = <span class="number">0</span>;</span><br><span class="line">        curr_y = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="built_in">string</span> direction)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> c : direction)&#123;</span><br><span class="line">            <span class="keyword">if</span>(c == <span class="string">'L'</span>)&#123;</span><br><span class="line">                curr_y--;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="string">'R'</span>)&#123;</span><br><span class="line">                curr_y++;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="string">'D'</span>)&#123;</span><br><span class="line">                curr_x++;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="string">'U'</span>)&#123;</span><br><span class="line">                curr_x--;</span><br><span class="line">            &#125;</span><br><span class="line">                        </span><br><span class="line">            <span class="comment">/*check wall*/</span></span><br><span class="line">            <span class="keyword">if</span>(curr_x &lt; <span class="number">0</span> || curr_x &gt;= height ||</span><br><span class="line">               curr_y &lt; <span class="number">0</span> || curr_y &gt;= width)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> curr = curr_x*width+curr_y;</span><br><span class="line">            snake.push(curr);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(!foods_loc.empty()&amp;&amp;foods_loc.front() == curr)&#123;</span><br><span class="line">                snake_loc.insert(curr);</span><br><span class="line">                foods_loc.pop();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">/*check if current location is snake*/</span></span><br><span class="line">                snake_loc.erase(snake.front());</span><br><span class="line">                snake.pop();</span><br><span class="line">                <span class="keyword">if</span>(snake_loc.count(curr))&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    snake_loc.insert(curr);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> snake.size()<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; snake;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; foods_loc;</span><br><span class="line">    <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; snake_loc;</span><br><span class="line">    <span class="keyword">int</span> curr_x;</span><br><span class="line">    <span class="keyword">int</span> curr_y;</span><br><span class="line">    <span class="keyword">int</span> height;</span><br><span class="line">    <span class="keyword">int</span> width;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your SnakeGame object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * SnakeGame* obj = new SnakeGame(width, height, food);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj-&gt;move(direction);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>个人技术成长记录.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/28/85/" rel="next" title="【Leetcode】一道概率题目">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】一道概率题目
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#继续刷题"><span class="nav-number">1.</span> <span class="nav-text">继续刷题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#89-格雷编码"><span class="nav-number">1.1.</span> <span class="nav-text">89. 格雷编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#280-摆动排序"><span class="nav-number">1.2.</span> <span class="nav-text">280. 摆动排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#265-粉刷房子-II"><span class="nav-number">1.3.</span> <span class="nav-text">265. 粉刷房子 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.3.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#294-翻转游戏-II"><span class="nav-number">1.4.</span> <span class="nav-text">294. 翻转游戏 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-3"><span class="nav-number">1.4.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">1.4.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#353-贪吃蛇"><span class="nav-number">1.5.</span> <span class="nav-text">353. 贪吃蛇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-4"><span class="nav-number">1.5.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-4"><span class="nav-number">1.5.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">1.5.5.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '62708782911367e632e3',
+      clientSecret: 'f12d6e86618ff3fd2599b155778cfbe5270fa048',
+      repo: 'blogtalk',
+      owner: 'mike-box',
+      admin: ['mike-box'],
+      id: '08898924b5ca7f55b9c58b78c94ac66e',
+        language: 'en',
+      distractionFreeMode: 'false'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+</body>
+</html>
