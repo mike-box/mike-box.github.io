@@ -61,7 +61,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;assets.leetcode-cn.com&#x2F;aliyun-lc-upload&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;06&#x2F;e1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;assets.leetcode-cn.com&#x2F;aliyun-lc-upload&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;07&#x2F;sample_3_1610.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;assets.leetcode-cn.com&#x2F;aliyun-lc-upload&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;07&#x2F;sample_4_1610.png">
-<meta property="og:updated_time" content="2019-11-10T15:32:40.008Z">
+<meta property="og:updated_time" content="2019-11-14T09:11:41.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;assets.leetcode-cn.com&#x2F;aliyun-lc-upload&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;06&#x2F;e1.png">
 
@@ -220,10 +220,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-11-10 23:32:37 / Modified: 23:32:40" itemprop="dateCreated datePublished" datetime="2019-11-10T23:32:37+08:00">2019-11-10</time>
+              <time title="Created: 2019-11-10 23:32:37" itemprop="dateCreated datePublished" datetime="2019-11-10T23:32:37+08:00">2019-11-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-14 17:11:41" itemprop="dateModified" datetime="2019-11-14T17:11:41+08:00">2019-11-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -352,6 +358,12 @@
 </ol>
 </blockquote>
 <h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BIT_SET(x,n) (x)|(1&lt;&lt;(n))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BIT_CLR(x,n) (x)&amp;(~(1&lt;&lt;(n)))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BIT_TST(x,n) (((x)&amp;(1<span class="meta-string">&lt;&lt;(n)))&gt;&gt;(n))</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; cnt, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; curr)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cnt[i] &lt; curr[i])&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxScoreWords</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words, <span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; letters, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; score)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = words.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cnt(<span class="number">26</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dict(n,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">26</span>,<span class="number">0</span>));</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; dp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> c : letters)&#123;</span><br><span class="line">            cnt[c-<span class="string">'a'</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> &amp; c : words[i])&#123;</span><br><span class="line">                dict[i][c-<span class="string">'a'</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; (<span class="number">1</span>&lt;&lt;n); ++i)&#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; curr(<span class="number">26</span>,<span class="number">0</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(BIT_TST(i,j))&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">26</span>; ++k)&#123;</span><br><span class="line">                        curr[k] += dict[j][k];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(check(cnt,curr))&#123;</span><br><span class="line">                <span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">26</span>; ++j)&#123;</span><br><span class="line">                    now += score[j]*curr[j];</span><br><span class="line">                &#125;</span><br><span class="line">                dp[i] = now;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> it : dp)&#123;</span><br><span class="line">            res = max(res,it.second);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">f(i,j)=\left\{
+\begin{aligned}
+\frac{j-i+1}{k-i+1}[f(i,k)] &  & (if \: s(i,j) == \frac{j-i+1}{k-i+1}*s(i,k)) \\
+min(f(i,j),f(i,k)+f(k+1,j)) &  & (j-1)\geq k  \geq i\\
+\end{aligned}
+\right.</script>
     </div>
 
     
@@ -392,6 +404,9 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/17/97/" rel="prev" title="【Leetcode】13周双周比赛">
+                  【Leetcode】13周双周比赛 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -447,7 +462,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
