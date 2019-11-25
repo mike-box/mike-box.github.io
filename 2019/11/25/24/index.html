@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="1118.一月有多少天题目指定年份 Y 和月份 M，请你帮忙计算出该月一共有多少天。示例 1：123输入：Y = 1992, M = 7输出：31示例 2：123输入：Y = 2000, M = 2输出：29示例 3：12输入：Y = 1900, M = 2输出：28地址https:&#x2F;&#x2F;leetcode-cn.com&#x2F;contest&#x2F;biweekly-contest-4&#x2F;problems&#x2F;numb">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】第4周双周比赛">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;24&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="1118.一月有多少天题目指定年份 Y 和月份 M，请你帮忙计算出该月一共有多少天。示例 1：123输入：Y = 1992, M = 7输出：31示例 2：123输入：Y = 2000, M = 2输出：29示例 3：12输入：Y = 1900, M = 2输出：28地址https:&#x2F;&#x2F;leetcode-cn.com&#x2F;contest&#x2F;biweekly-contest-4&#x2F;problems&#x2F;numb">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-25T02:37:31.630Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/25/24/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】第4周双周比赛 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">just code for fun</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】第4周双周比赛
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-25 09:24:34 / Modified: 10:37:31" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/25/24/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/24/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1118-一月有多少天"><a href="#1118-一月有多少天" class="headerlink" title="1118.一月有多少天"></a>1118.一月有多少天</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>指定年份 Y 和月份 M，请你帮忙计算出该月一共有多少天。</p><p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：Y = <span class="number">1992</span>, M = <span class="number">7</span></span><br><span class="line">输出：<span class="number">31</span></span><br><span class="line">示例 <span class="number">2</span>：</span><br></pre></td></tr></table></figure><br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：Y = <span class="number">2000</span>, M = <span class="number">2</span></span><br><span class="line">输出：<span class="number">29</span></span><br><span class="line">示例 <span class="number">3</span>：</span><br></pre></td></tr></table></figure><br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：Y = <span class="number">1900</span>, M = <span class="number">2</span></span><br><span class="line">输出：<span class="number">28</span></span><br></pre></td></tr></table></figure></p><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/biweekly-contest-4/problems/number-of-days-in-a-month/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/biweekly-contest-4/problems/number-of-days-in-a-month/</a></p><a id="more"></a>
+
+
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>给定年份和月份，求该月的天数</p>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>该题就是送分题，不同的年份的每个月的天数，除了2月有差别外，其余的月份均无任何差别。</li>
+<li>判断给定的月份是否为2月，年份是否为闰年即可。闰年时，2月有29天，其余的年份2月有28天.</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">bool</span> isLeap(<span class="built_in">int</span> Y)&#123;</span><br><span class="line">        <span class="keyword">if</span>(Y%<span class="number">400</span> == <span class="number">0</span> ||(Y%<span class="number">4</span> == <span class="number">0</span> &amp;&amp; Y%<span class="number">100</span> != <span class="number">0</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="built_in">int</span> numberOfDays(<span class="built_in">int</span> Y, <span class="built_in">int</span> M) &#123;</span><br><span class="line">        <span class="built_in">int</span> days[<span class="number">12</span>] = &#123;<span class="number">31</span>,<span class="number">28</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span>(isLeap(Y)&amp;&amp;M == <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">29</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> days[M<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="1119-删去字符串中的元音"><a href="#1119-删去字符串中的元音" class="headerlink" title="1119.删去字符串中的元音"></a>1119.删去字符串中的元音</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>给你一个字符串 S，请你删去其中的所有元音字母（ ‘a’，’e’，’i’，’o’，’u’），并返回这个新字符串。</p>
+<p>示例 1：<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="string">"leetcodeisacommunityforcoders"</span></span><br><span class="line">输出：<span class="string">"ltcdscmmntyfrcdrs"</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="string">"aeiou"</span></span><br><span class="line">输出：<span class="string">""</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/biweekly-contest-4/problems/remove-vowels-from-a-string/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/biweekly-contest-4/problems/remove-vowels-from-a-string/</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 去掉字符串中的元音字母，字符串中剩余的字符按照原有的顺序排列。</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>依次删除元音字母即可。<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">removeVowels</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; vowel(<span class="number">26</span>,<span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">char</span> d[<span class="number">5</span>] = &#123;<span class="string">'a'</span>,<span class="string">'e'</span>,<span class="string">'i'</span>,<span class="string">'o'</span>,<span class="string">'u'</span>&#125;;</span><br><span class="line">        <span class="built_in">string</span> res;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*intial*/</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">5</span>; ++i)&#123;</span><br><span class="line">            vowel[d[i]-<span class="string">'a'</span>] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> c : S)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!vowel[c-<span class="string">'a'</span>])&#123;</span><br><span class="line">                res.push_back(c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="1120-子树的最大平均值"><a href="#1120-子树的最大平均值" class="headerlink" title="1120.子树的最大平均值"></a>1120.子树的最大平均值</h2></li>
+</ol>
+<h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>给你一棵二叉树的根节点 root，找出这棵树的 每一棵 子树的 平均值 中的 最大 值。<br>子树是树中的任意节点和它的所有后代构成的集合。<br>树的平均值是树中节点值的总和除以节点数。<br>示例：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：[<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>]</span><br><span class="line">输出：<span class="number">6.00000</span></span><br><span class="line">解释： </span><br><span class="line">以 value = <span class="number">5</span> 的节点作为子树的根节点，得到的平均值为 (<span class="number">5</span> + <span class="number">6</span> + <span class="number">1</span>) / <span class="number">3</span> = <span class="number">4</span>。</span><br><span class="line">以 value = <span class="number">6</span> 的节点作为子树的根节点，得到的平均值为 <span class="number">6</span> / <span class="number">1</span> = <span class="number">6</span>。</span><br><span class="line">以 value = <span class="number">1</span> 的节点作为子树的根节点，得到的平均值为 <span class="number">1</span> / <span class="number">1</span> = <span class="number">1</span>。</span><br><span class="line">所以答案取最大值 <span class="number">6</span>。</span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/biweekly-contest-4/problems/maximum-average-subtree/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/biweekly-contest-4/problems/maximum-average-subtree/</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 求该二叉树的每个子树的最大平均值</p>
+</blockquote>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>递归求出每个子树的和，以及每个子树中的节点的个数，然后求其平均值即可。</li>
+</ol>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> dfs(TreeNode * root,<span class="keyword">int</span> &amp; <span class="keyword">count</span>,<span class="keyword">double</span> &amp; res)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root)&#123;</span><br><span class="line">            <span class="keyword">count</span> = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> r = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> <span class="keyword">sum</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">sum</span> = dfs(root-&gt;left,l,res) + dfs(root-&gt;right,r,res) + root-&gt;val;</span><br><span class="line">        <span class="keyword">count</span> = l+r+<span class="number">1</span>;</span><br><span class="line">        res = max(res,<span class="keyword">double</span>(<span class="keyword">sum</span>)/<span class="keyword">count</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">sum</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> maximumAverageSubtree(TreeNode* root) &#123;</span><br><span class="line">        <span class="keyword">double</span> ans = <span class="number">0.0</span>;</span><br><span class="line">        <span class="keyword">int</span> <span class="keyword">count</span> = <span class="number">0</span>;</span><br><span class="line">        dfs(root,<span class="keyword">count</span>,ans);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="1121-将数组分成几个递增序列"><a href="#1121-将数组分成几个递增序列" class="headerlink" title="1121.将数组分成几个递增序列"></a>1121.将数组分成几个递增序列</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3><p>给你一个 非递减 的正整数数组 nums 和整数 K，判断该数组是否可以被分成一个或几个 长度至少 为 K 的 不相交的递增子序列。<br>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>], K = <span class="number">3</span></span><br><span class="line">输出：<span class="literal">true</span></span><br><span class="line">解释：</span><br><span class="line">该数组可以分成两个子序列 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>] 和 [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]，每个子序列的长度都至少是 <span class="number">3</span>。</span><br><span class="line">示例 <span class="number">2</span>：</span><br></pre></td></tr></table></figure><br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>], K = <span class="number">3</span></span><br><span class="line">输出：<span class="literal">false</span></span><br><span class="line">解释：</span><br><span class="line">没有办法根据条件来划分数组。</span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/biweekly-contest-4/problems/divide-array-into-increasing-sequences/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/biweekly-contest-4/problems/divide-array-into-increasing-sequences/</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 将数组划分为n个子数组，且保证每个子数组中不含有重复元素，且每个子数组的长度不小于K，(满足n 大于等于1 即可)。</p>
+</blockquote>
+<h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>找出数组中的重复次数最多的元素，并统计其重复的次数mrepeat。</li>
+<li>数组长度n/mrepeat的结果大于等于K,即可满足条件。</li>
+<li>我们可以分析出只要满足最多的重复的元素不重复，即可满足题目中的条件。</li>
+</ol>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canDivideIntoSubsequences</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> K)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; count;</span><br><span class="line">        <span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> e : nums)&#123;</span><br><span class="line">            count[e]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> e : count)&#123;</span><br><span class="line">            maxLen = max(maxLen,e.second);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n/maxLen &gt;= K)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>个人技术成长记录.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/25/19/" rel="next" title="【Math】 数学">
+                  <i class="fa fa-chevron-left"></i> 【Math】 数学
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/25/26/" rel="prev" title="【Leetcode】第145周比赛">
+                  【Leetcode】第145周比赛 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1118-一月有多少天"><span class="nav-number">1.</span> <span class="nav-text">1118.一月有多少天</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1119-删去字符串中的元音"><span class="nav-number">2.</span> <span class="nav-text">1119.删去字符串中的元音</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1120-子树的最大平均值"><span class="nav-number">3.</span> <span class="nav-text">1120.子树的最大平均值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">3.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">3.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">3.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">3.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1121-将数组分成几个递增序列"><span class="nav-number">4.</span> <span class="nav-text">1121.将数组分成几个递增序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-3"><span class="nav-number">4.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">4.5.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

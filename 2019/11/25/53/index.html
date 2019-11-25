@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="本文作为Latex公式学习指南记录 指数和下标可以用^和_后加相应字符来实现 12345a_&amp;#123;1&amp;#125;\\x^&amp;#123;2&amp;#125;\\a^&amp;#123;2&amp;#125;_&amp;#123;ij&amp;#125;\\e^&amp;#123;-\alpha t&amp;#125;\\e^&amp;#123;x^&amp;#123;2&amp;#125;&amp;#125; \neq e^&amp;#123;y^&amp;#123;3&amp;#125;&amp;#125;">
+<meta name="keywords" content="Latex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Latex】latex公式学习">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;53&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="本文作为Latex公式学习指南记录 指数和下标可以用^和_后加相应字符来实现 12345a_&amp;#123;1&amp;#125;\\x^&amp;#123;2&amp;#125;\\a^&amp;#123;2&amp;#125;_&amp;#123;ij&amp;#125;\\e^&amp;#123;-\alpha t&amp;#125;\\e^&amp;#123;x^&amp;#123;2&amp;#125;&amp;#125; \neq e^&amp;#123;y^&amp;#123;3&amp;#125;&amp;#125;">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;35&#x2F;ql_23852e755489d7a107570362a075cb35_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;29&#x2F;ql_64a0e35154d19b81ca78fcae3204ce29_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;90&#x2F;ql_730bfa867f988d3de28758dbcba30090_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;25&#x2F;ql_0138aa7421a52a2c9ca70ac9a6a9a225_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;6d&#x2F;ql_19d508c2f01fd32007822b6b55d9c16d_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;e3&#x2F;ql_3a07f820e8f9c2f1abf65a24eece59e3_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;26&#x2F;ql_be857074b284d2a7ae0adcefd3f50526_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;97&#x2F;ql_d19c312a716607f4d400475055376497_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;79&#x2F;ql_dd1c748961a83f59c07644d5eea4f479_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;eb&#x2F;ql_be2eeaa8ea20f4f428829d7113d999eb_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;4b&#x2F;ql_53ecf5b42fef46c99a640c8be421e64b_l3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;8f&#x2F;ql_aa5373ac035a02f44fe3afce820dd48f_l3.png">
+<meta property="og:updated_time" content="2019-11-25T03:11:37.821Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;quicklatex.com&#x2F;cache3&#x2F;35&#x2F;ql_23852e755489d7a107570362a075cb35_l3.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/25/53/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Latex】latex公式学习 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">just code for fun</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/53/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Latex】latex公式学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-25 09:24:34 / Modified: 11:11:37" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/25/53/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/53/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文作为Latex公式学习指南记录</p><ul>
+<li><p>指数和下标可以用^和_后加相应字符来实现</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">a_</span><span class="template-variable">&#123;1&#125;</span><span class="xml">\\</span></span><br><span class="line"><span class="xml">x^</span><span class="template-variable">&#123;2&#125;</span><span class="xml">\\</span></span><br><span class="line"><span class="xml">a^</span><span class="template-variable">&#123;2&#125;</span><span class="xml">_</span><span class="template-variable">&#123;ij&#125;</span><span class="xml">\\</span></span><br><span class="line"><span class="xml">e^</span><span class="template-variable">&#123;-\alpha t&#125;</span><span class="xml">\\</span></span><br><span class="line"><span class="xml">e^</span><span class="template-variable">&#123;x^&#123;2&#125;</span><span class="xml">&#125; \neq e^</span><span class="template-variable">&#123;y^&#123;3&#125;</span><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>显示如下：</p>
+<p><img src="https://quicklatex.com/cache3/35/ql_23852e755489d7a107570362a075cb35_l3.png" alt="1"></p>
+</li>
+</ul><a id="more"></a>
+
+<ul>
+<li>平方根（square root）的输入命令为：\sqrt，n 次方根相应地为: \sqrt[n]。方根符号的大小由<br>LATEX自动加以调整。也可用\surd 仅给出<br>符号</li>
+</ul>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;align*&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">sqrt</span><span class="string">&#123;x&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">sqrt</span><span class="string">&#123;x+y&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">sqrt</span><span class="string">&#123;x^&#123;2&#125;</span></span>+y&#125; <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">sqrt</span><span class="string">&#123;x + \sqrt&#123;y&#125;</span></span>&#125;<span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">sqrt</span><span class="string">[3]</span><span class="string">&#123;x + y^&#123;2&#125;</span></span>&#125;<span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">surd</span><span class="string">&#123;x^2+y^2&#125;</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;align*&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>显示如下：</p>
+<p> <img src="https://quicklatex.com/cache3/29/ql_64a0e35154d19b81ca78fcae3204ce29_l3.png" alt="1"></p>
+<ul>
+<li><p>命令\overline 和\underline 在表达式的上、下方画出水平线</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;align*&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">overline</span><span class="string">&#123;x+y&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">underline</span><span class="string">&#123;x+y&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;align*&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>显示如下：</p>
+<p><img src="https://quicklatex.com/cache3/90/ql_730bfa867f988d3de28758dbcba30090_l3.png" alt="1"></p>
+</li>
+<li><p>命令\overbrace 和\underbrace 在表达式的上、下方给出一水平的大括号。</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">\underbrace</span><span class="template-variable">&#123; a+b+\cdots+z&#125;</span><span class="xml">_</span><span class="template-variable">&#123;26&#125;</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
+<p>显示如下：</p>
+<p><img src="https://quicklatex.com/cache3/25/ql_0138aa7421a52a2c9ca70ac9a6a9a225_l3.png" alt="1"></p>
+</li>
+<li><p>向量（Vectors）通常用上方有小箭头（arrow symbols）的变量表示。这可由\vec 得到。另两个<br>命令\overrightarrow 和\overleftarrow在定义从A 到B 的向量时非常有用。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;align*&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">vec</span></span> a <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">overrightarrow</span><span class="string">&#123;AB&#125;</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">overleftarrow</span><span class="string">&#123;AB&#125;</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;align*&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="https://quicklatex.com/cache3/6d/ql_19d508c2f01fd32007822b6b55d9c16d_l3.png" alt="1"></p>
+</li>
+<li><p>分数（fraction）使用\frac{…}{…} 排版。一般来说，1/2 这种形式更受欢迎，因为对于少量的分式，它看起来更好些。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;align*&#125;</span></span></span><br><span class="line">1<span class="tag">\<span class="name">frac</span><span class="string">&#123;1&#125;</span><span class="string">&#123;2&#125;</span></span>hours<span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">frac</span><span class="string">&#123;x^&#123;2&#125;</span></span>&#125;&#123;k+1&#125;<span class="tag">\<span class="name">\</span></span></span><br><span class="line">x^&#123;<span class="tag">\<span class="name">frac</span><span class="string">&#123;2&#125;</span><span class="string">&#123;k+1&#125;</span></span>&#125;<span class="tag">\<span class="name">\</span></span></span><br><span class="line">x^&#123;<span class="tag">\<span class="name">frac</span><span class="string">&#123;1&#125;</span><span class="string">&#123;2&#125;</span></span>&#125;<span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;align*&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="https://quicklatex.com/cache3/e3/ql_3a07f820e8f9c2f1abf65a24eece59e3_l3.png" alt="1"></p>
+</li>
+</ul>
+<ul>
+<li>积分运算符（integral operator）用\int 来生成。求和运算符（sum operator）由\sum 生成。<br>乘积运算符（product operator）由\prod 生成。上限和下限用^ 和_来生成，类似于上标和下标</li>
+</ul>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;align*&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">sum</span></span>_&#123;i=1&#125;^&#123;n&#125;<span class="tag">\<span class="name">sum</span></span>_&#123;j=1&#125;^&#123;m&#125;f(x)<span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">int</span></span>_&#123;0&#125;^&#123;<span class="tag">\<span class="name">frac</span><span class="string">&#123;\pi&#125;</span><span class="string">&#123;2&#125;</span></span>&#125;<span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">int</span></span>_&#123;x&#125;^&#123;x+10&#125;<span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">int</span></span>_&#123;x&#125;^&#123;x+y&#125;<span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">int</span></span>_&#123;x+y&#125;^&#123;100&#125;<span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">prod</span></span>_<span class="tag">\<span class="name">epsilon</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;align*&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="https://quicklatex.com/cache3/26/ql_be857074b284d2a7ae0adcefd3f50526_l3.png" alt="1"></p>
+<ul>
+<li>数学符号</li>
+</ul>
+<ol>
+<li><p>数学模式重音字母</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;align*&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">hat</span><span class="string">&#123;a&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">check</span><span class="string">&#123;a&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">tilde</span><span class="string">&#123;a&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">acute</span><span class="string">&#123;a&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">grave</span><span class="string">&#123;a&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">dot</span><span class="string">&#123;a&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">ddot</span><span class="string">&#123;a&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">breve</span><span class="string">&#123;a&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">bar</span><span class="string">&#123;a&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">vec</span><span class="string">&#123;a&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">widehat</span><span class="string">&#123;A&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">widetilde</span><span class="string">&#123;A&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;align*&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="https://quicklatex.com/cache3/97/ql_d19c312a716607f4d400475055376497_l3.png" alt="1"></p>
+</li>
+<li><p>小写希腊字母</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;align*&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">alpha</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">theta</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">upsilon</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">beta</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">vartheta</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">pi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">phi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">gamma</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">iota</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">varpi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">varphi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">delta</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">kappa</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">rho</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">chi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">epsilon</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">lambda</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">varrho</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">psi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">varepsilon</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">mu</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">sigma</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">omega</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">zeta</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">nu</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">varsigma</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">eta</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">xi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">tau</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;align*&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="https://quicklatex.com/cache3/79/ql_dd1c748961a83f59c07644d5eea4f479_l3.png" alt="1"></p>
+</li>
+</ol>
+<ul>
+<li><p>大写希腊字母</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;align*&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">Gamma</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">Lambda</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">Sigma</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">Psi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">Delta</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">Xi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">Upsilon</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">Omega</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">Theta</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">Pi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">Phi</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;align*&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="https://quicklatex.com/cache3/eb/ql_be2eeaa8ea20f4f428829d7113d999eb_l3.png" alt="1"></p>
+</li>
+<li><p>二元关系符</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="string">\begin&#123;align*&#125;</span></span><br><span class="line">&gt; <span class="string">\\</span></span><br><span class="line">&lt; <span class="string">\\</span></span><br><span class="line">= <span class="string">\\</span></span><br><span class="line"><span class="string">\leq</span> <span class="keyword">or</span> <span class="string">\le</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\geq</span> <span class="keyword">or</span> <span class="string">\ge</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\equiv</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\ll</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\gg</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\doteq</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\prec</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\succ</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\sim</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\preceq</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\succeq</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\simeq</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\subset</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\supset</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\approx</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\subseteq</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\supseteq</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\cong</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\sqsubset</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\sqsupset</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\Join</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\sqsubseteq</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\sqsupseteq</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\bowtie</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\in</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\ni</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\owns</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\propto</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\vdash</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\dashv</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\models</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\mid</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\parallel</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\prep</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\smile</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\frown</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\asymp</span> <span class="string">\\</span></span><br><span class="line">: <span class="string">\\</span></span><br><span class="line"><span class="string">\notin</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\neq</span> <span class="keyword">or</span> <span class="string">\ne</span> <span class="string">\\</span></span><br><span class="line"><span class="string">\end&#123;align*&#125;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://quicklatex.com/cache3/4b/ql_53ecf5b42fef46c99a640c8be421e64b_l3.png" alt="1"></p>
+</li>
+<li><p>字体</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;align*&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">mathrm</span><span class="string">&#123;ABCdef&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">mathit</span><span class="string">&#123;ABCdef&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">mathnormal</span><span class="string">&#123;ABCdef&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">mathcal</span><span class="string">&#123;ABCdef&#125;</span></span> <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">mathscr</span><span class="string">&#123;ABCdef&#125;</span></span>  <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">mathfrak</span><span class="string">&#123;ABCdef&#125;</span></span>  <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">mathbb</span><span class="string">&#123;ABCdef&#125;</span></span>   <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;align*&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="https://quicklatex.com/cache3/8f/ql_aa5373ac035a02f44fe3afce820dd48f_l3.png" alt="1"></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>个人技术成长记录.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Latex/" rel="tag"># Latex</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/25/52/" rel="next" title="【今日简史】读后感">
+                  <i class="fa fa-chevron-left"></i> 【今日简史】读后感
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/25/54/" rel="prev" title="【Leetcode】第7周双周比赛">
+                  【Leetcode】第7周双周比赛 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

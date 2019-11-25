@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="1. 等价多米诺骨牌对的数量题目给你一个由一些多米诺骨牌组成的列表 dominoes。如果其中某一张多米诺骨牌可以通过旋转 0 度或 180 度得到另一张多米诺骨牌，我们就认为这两张牌是等价的。形式上，dominoes[i] = [a, b] 和 dominoes[j] = [c, d] 等价的前提是 a==c 且 b==d，或是 a==d 且 b==c。在 0 &amp;lt;= i &amp;lt; j &amp;l">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】第146周比赛">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;32&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="1. 等价多米诺骨牌对的数量题目给你一个由一些多米诺骨牌组成的列表 dominoes。如果其中某一张多米诺骨牌可以通过旋转 0 度或 180 度得到另一张多米诺骨牌，我们就认为这两张牌是等价的。形式上，dominoes[i] = [a, b] 和 dominoes[j] = [c, d] 等价的前提是 a==c 且 b==d，或是 a==d 且 b==c。在 0 &amp;lt;= i &amp;lt; j &amp;l">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-25T03:20:48.810Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/25/32/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】第146周比赛 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">just code for fun</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/32/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】第146周比赛
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-25 09:24:34 / Modified: 11:20:48" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/25/32/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/32/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-等价多米诺骨牌对的数量"><a href="#1-等价多米诺骨牌对的数量" class="headerlink" title="1. 等价多米诺骨牌对的数量"></a>1. 等价多米诺骨牌对的数量</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个由一些多米诺骨牌组成的列表 dominoes。<br>如果其中某一张多米诺骨牌可以通过旋转 0 度或 180 度得到另一张多米诺骨牌，我们就认为这两张牌是等价的。<br>形式上，dominoes[i] = [a, b] 和 dominoes[j] = [c, d] 等价的前提是 a==c 且 b==d，或是 a==d 且 b==c。<br>在 0 &lt;= i &lt; j &lt; dominoes.length 的前提下，找出满足 dominoes[i] 和 dominoes[j] 等价的骨牌对 (i, j) 的数量。</p><a id="more"></a>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line">输入：dominoes = [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">2</span>,<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>]]</span><br><span class="line">输出：<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/weekly-contest-146/problems/number-of-equivalent-domino-pairs/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/weekly-contest-146/problems/number-of-equivalent-domino-pairs/</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>求相等价的多米诺骨牌的对数。</p>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>该题目比较简单，直接看代码。</li>
+<li>如果有n个等价的骨牌，则等价的骨牌对的数目为n*(n-1)/2;</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">int</span> numEquivDominoPairs(vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt;&amp; dominoes) &#123;</span><br><span class="line">        <span class="built_in">int</span> sum[<span class="number">11</span>][<span class="number">11</span>];</span><br><span class="line">        <span class="built_in">int</span> res = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        memset(sum,<span class="number">0</span>,sizeof(sum));</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">auto</span> d : dominoes)&#123;</span><br><span class="line">            sum[d[<span class="number">0</span>]][d[<span class="number">1</span>]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>;i &lt;=<span class="number">10</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">0</span>;j &lt; i; ++j)&#123;</span><br><span class="line">                <span class="built_in">int</span> n = sum[i][j] + sum[j][i];</span><br><span class="line">                res += n*(n<span class="number">-1</span>)/<span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>;i &lt;= <span class="number">10</span>; ++i)&#123;</span><br><span class="line">            res += sum[i][i]*(sum[i][i]<span class="number">-1</span>)/<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="2-颜色交替的最短路径"><a href="#2-颜色交替的最短路径" class="headerlink" title="2.颜色交替的最短路径"></a>2.颜色交替的最短路径</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>在一个有向图中，节点分别标记为 0, 1, …, n-1。这个图中的每条边不是红色就是蓝色，且存在自环或平行边。</p>
+<p>red_edges 中的每一个 [i, j] 对表示从节点 i 到节点 j 的红色有向边。类似地，blue_edges 中的每一个 [i, j] 对表示从节点 i 到节点 j 的蓝色有向边。</p>
+<p>返回长度为 n 的数组 answer，其中 answer[X] 是从节点 0 到节点 X 的最短路径的长度，且路径上红色边和蓝色边交替出现。如果不存在这样的路径，那么 answer[x] = -1。</p>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/weekly-contest-146/problems/shortest-path-with-alternating-colors/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/weekly-contest-146/problems/shortest-path-with-alternating-colors/</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 找出通过交替颜色遍历，从0点到其他点的最短路径。</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>BFS或者DFS均可.</li>
+<li>本题有两个关键点需要注意，一是颜色交替，意味着上一步的路径颜色与下一步的路径颜色一定不相同，二题中明确说明了，图中可能存在环，或者不同颜色的平行边（edge：blue:（0，1）,red(0,1)）为两条不同的边。</li>
+<li>颜色交替的解决办法，我们每次传递时，将上一次遍历的边的颜色信息带上，在下一次遍历时，选择不同的颜色的邻接节点,节点信息为（node,color).</li>
+<li>由于存在环和平行边，我们用数组visit[x][y][color] = true,代表从节点x到节点y的且颜色为color的边被访问过，防止重复访问。<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3>BFS：</li>
+</ol>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="built_in">int</span>&gt; shortestAlternatingPaths(<span class="built_in">int</span> n, vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt;&amp; red_edges, vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt;&amp; blue_edges) &#123;</span><br><span class="line">        unordered_map&lt;<span class="built_in">int</span>,vector&lt;<span class="built_in">int</span>&gt;&gt; graphBlue;</span><br><span class="line">        unordered_map&lt;<span class="built_in">int</span>,vector&lt;<span class="built_in">int</span>&gt;&gt; graphRed;</span><br><span class="line">        <span class="built_in">int</span> visit[<span class="number">100</span>][<span class="number">100</span>][<span class="number">2</span>];</span><br><span class="line">        <span class="built_in">int</span> step = <span class="number">0</span>;</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; res(n,INT_MAX);</span><br><span class="line">        queue&lt;pair&lt;<span class="built_in">int</span>,<span class="built_in">int</span>&gt;&gt; qu;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">auto</span> re : red_edges)&#123;</span><br><span class="line">            graphRed[re[<span class="number">0</span>]].push_back(re[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">auto</span> be : blue_edges)&#123;</span><br><span class="line">            graphBlue[be[<span class="number">0</span>]].push_back(be[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*first blue,second red*/</span></span><br><span class="line">        step = <span class="number">0</span>;</span><br><span class="line">        memset(visit,<span class="number">0</span>,sizeof(visit));</span><br><span class="line">        qu.push(make_pair(<span class="number">0</span>,<span class="number">1</span>));</span><br><span class="line">        qu.push(make_pair(<span class="number">0</span>,<span class="number">0</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(!qu.empty())&#123;</span><br><span class="line">            <span class="built_in">int</span> sz = qu.size();</span><br><span class="line">            step++;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>;i &lt; sz; ++i)&#123;</span><br><span class="line">                <span class="built_in">int</span> curr = qu.front().first;</span><br><span class="line">                <span class="built_in">int</span> color = qu.front().second;</span><br><span class="line">                qu.pop();</span><br><span class="line">                <span class="keyword">if</span>(color)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="built_in">auto</span> next: graphBlue[curr])&#123;</span><br><span class="line">                        <span class="keyword">if</span>(!visit[curr][next][<span class="number">0</span>])&#123;</span><br><span class="line">                            res[next] = min(res[next],step);</span><br><span class="line">                            visit[curr][next][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">                            qu.push(make_pair(next,<span class="number">0</span>));</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="built_in">auto</span> next: graphRed[curr])&#123;</span><br><span class="line">                        <span class="keyword">if</span>(!visit[curr][next][<span class="number">1</span>])&#123;</span><br><span class="line">                            res[next] = min(res[next],step);</span><br><span class="line">                            visit[curr][next][<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">                            qu.push(make_pair(next,<span class="number">1</span>));</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        res[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>;i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(res[i] == INT_MAX)&#123;</span><br><span class="line">                res[i] = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-叶值的最小代价生成树"><a href="#3-叶值的最小代价生成树" class="headerlink" title="3.叶值的最小代价生成树"></a>3.叶值的最小代价生成树</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>给你一个正整数数组 arr，考虑所有满足以下条件的二叉树：<br>每个节点都有 0 个或是 2 个子节点。<br>数组 arr 中的值与树的中序遍历中每个叶节点的值一一对应。（知识回顾：如果一个节点有 0 个子节点，那么该节点为叶节点。）<br>每个非叶节点的值等于其左子树和右子树中叶节点的最大值的乘积。<br>在所有这样的二叉树中，返回每个非叶节点的值的最小可能总和。这个和的值是一个 32 位整数。</p>
+<p>示例：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：arr = [<span class="number">6</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br><span class="line">输出：<span class="number">32</span></span><br><span class="line">解释：</span><br><span class="line">有两种可能的树，第一种的非叶节点的总和为 <span class="number">36</span>，第二种非叶节点的总和为 <span class="number">32</span>。</span><br><span class="line"></span><br><span class="line">    <span class="number">24</span>            <span class="number">24</span></span><br><span class="line">   /  \          /  \</span><br><span class="line">  <span class="number">12</span>   <span class="number">4</span>        <span class="number">6</span>    <span class="number">8</span></span><br><span class="line"> /  \               / \</span><br><span class="line"><span class="number">6</span>    <span class="number">2</span>             <span class="number">2</span>   <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/weekly-contest-146/problems/minimum-cost-tree-from-leaf-values/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/weekly-contest-146/problems/minimum-cost-tree-from-leaf-values/</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 题目写的有点复杂，但题目本身不是特别难,求所有非叶子节点的和的最小值.</p>
+</blockquote>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>刚开始用dfs实现，发现超时了。</li>
+<li>后来用动态规划实现接口，递推公式dp[i][j]代表节点从i到j所能构成的非叶lll的最小和 dp[i][j] = max(dp[i][j],dp[i][k] + dp[k+1][j] + mx[i][k]*mx[k+1][j]);</li>
+<li>动态规划不是很难。</li>
+</ol>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">int</span> mctFromLeafValues(vector&lt;<span class="built_in">int</span>&gt;&amp; arr) &#123;</span><br><span class="line">        <span class="built_in">int</span> n = arr.size();</span><br><span class="line">        vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt; mx(n,vector&lt;<span class="built_in">int</span>&gt;(n,<span class="number">0</span>));</span><br><span class="line">        vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt; dp(n,vector&lt;<span class="built_in">int</span>&gt;(n,INT_MAX));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>;i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="built_in">int</span> m = arr[i];</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j = i;j &lt; n; ++j)&#123;</span><br><span class="line">                m = max(m,arr[j]);</span><br><span class="line">                mx[i][j] = m;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*initial*/</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>;i &lt; n; ++i)&#123;</span><br><span class="line">            dp[i][i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>;i &lt; n<span class="number">-1</span>; ++i)&#123;</span><br><span class="line">            dp[i][i+<span class="number">1</span>] = arr[i]*arr[i+<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*dp*/</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">2</span>;i &lt;= n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">0</span>;i+j &lt; n; ++j)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="built_in">int</span> k = j; k &lt; i+j; ++k)&#123;</span><br><span class="line">                    dp[j][j+i] = min(dp[j][j+i],dp[j][k]+dp[k+<span class="number">1</span>][i+j]+mx[j][k]*mx[k+<span class="number">1</span>][i+j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][n<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="4-绝对值表达式的最大值"><a href="#4-绝对值表达式的最大值" class="headerlink" title="4. 绝对值表达式的最大值"></a>4. 绝对值表达式的最大值</h2><p>给你两个长度相等的整数数组，返回下面表达式的最大值：<br>|arr1[i] - arr1[j]| + |arr2[i] - arr2[j]| + |i - j|<br>其中下标 i，j 满足 0 &lt;= i, j &lt; arr1.length。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], arr2 = [<span class="number">-1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">输出：<span class="number">13</span></span><br></pre></td></tr></table></figure></p>
+<p>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：arr1 = [<span class="number">1</span>,<span class="number">-2</span>,<span class="number">-5</span>,<span class="number">0</span>,<span class="number">10</span>], arr2 = [<span class="number">0</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">-7</span>,<span class="number">-4</span>]</span><br><span class="line">输出：<span class="number">20</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/weekly-contest-145/problems/smallest-sufficient-team/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/weekly-contest-145/problems/smallest-sufficient-team/</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 求表达式的最大值。</p>
+</blockquote>
+<h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>该题目没有做出来，没有太多的思路；</li>
+<li>后来看了解法，用排列组合的合适来求解，实际为数学问题，确实没有解出来;</li>
+<li>|arr1[i] - arr1[j]| + |arr2[i] - arr2[j]| + |i - j|最终在这几个范围中选择最大值即可<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr1[<span class="built_in">i</span>] + arr2[<span class="built_in">i</span>] - <span class="built_in">i</span> - arr1[<span class="built_in">j</span>] - arr2[<span class="built_in">j</span>] + <span class="built_in">j</span>;</span><br><span class="line">arr1[<span class="built_in">i</span>] + arr2[<span class="built_in">i</span>] + <span class="built_in">i</span> - arr1[<span class="built_in">j</span>] - arr2[<span class="built_in">j</span>] - <span class="built_in">j</span>;</span><br><span class="line">arr1[<span class="built_in">i</span>] - arr2[<span class="built_in">i</span>] + <span class="built_in">i</span> - arr1[<span class="built_in">j</span>] + arr2[<span class="built_in">j</span>] - <span class="built_in">j</span>;</span><br><span class="line">arr2[<span class="built_in">i</span>] - arr1[<span class="built_in">i</span>] + <span class="built_in">i</span> - arr2[<span class="built_in">j</span>] + arr1[<span class="built_in">j</span>] - <span class="built_in">j</span>;</span><br></pre></td></tr></table></figure></li>
+<li>求以上4个值的最大值即可;</li>
+<li>转换为自己的算法，及为将数组转换，然后求数组的最大值与最小值之差。<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3>解法1：<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">int</span> maxAbsValExpr(vector&lt;<span class="built_in">int</span>&gt;&amp; arr1, vector&lt;<span class="built_in">int</span>&gt;&amp; arr2) &#123;</span><br><span class="line">        <span class="built_in">int</span> n = arr1.size();</span><br><span class="line">        <span class="built_in">int</span> res = <span class="number">0</span>;</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; dp1(n,<span class="number">0</span>);</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; dp2(n,<span class="number">0</span>);</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; dp3(n,<span class="number">0</span>);</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; dp4(n,<span class="number">0</span>);</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        arr1[i] * arr1[j] + arr2[i] * arr2[j] + i * j;</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>;i &lt; n; ++i)&#123;</span><br><span class="line">            dp1[i] = arr1[i] + arr2[i] - i;</span><br><span class="line">            dp2[i] = arr1[i] + arr2[i] + i;</span><br><span class="line">            dp3[i] = arr1[i] - arr2[i] + i;</span><br><span class="line">            dp4[i] = arr2[i] - arr1[i] + i;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(dp1.begin(),dp1.end());</span><br><span class="line">        sort(dp2.begin(),dp2.end());</span><br><span class="line">        sort(dp3.begin(),dp3.end());</span><br><span class="line">        sort(dp4.begin(),dp4.end());</span><br><span class="line">        res = max(res,dp1[n<span class="number">-1</span>]-dp1[<span class="number">0</span>]);</span><br><span class="line">        res = max(res,dp2[n<span class="number">-1</span>]-dp2[<span class="number">0</span>]);</span><br><span class="line">        res = max(res,dp3[n<span class="number">-1</span>]-dp3[<span class="number">0</span>]);</span><br><span class="line">        res = max(res,dp4[n<span class="number">-1</span>]-dp4[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>个人技术成长记录.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/25/29/" rel="next" title="【Python】python学习笔记六">
+                  <i class="fa fa-chevron-left"></i> 【Python】python学习笔记六
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/25/35/" rel="prev" title="【Python】python学习笔记七">
+                  【Python】python学习笔记七 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-等价多米诺骨牌对的数量"><span class="nav-number">1.</span> <span class="nav-text">1. 等价多米诺骨牌对的数量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-颜色交替的最短路径"><span class="nav-number">2.</span> <span class="nav-text">2.颜色交替的最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-叶值的最小代价生成树"><span class="nav-number">3.</span> <span class="nav-text">3.叶值的最小代价生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">3.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">3.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">3.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">3.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-绝对值表达式的最大值"><span class="nav-number">4.</span> <span class="nav-text">4. 绝对值表达式的最大值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">4.1.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">4.2.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-3"><span class="nav-number">4.3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">4.4.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
