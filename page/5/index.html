@@ -193,6 +193,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/25/28/" class="post-title-link" itemprop="url">【Python】python学习笔记五</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-25 09:24:34 / Modified: 11:20:25" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/25/28/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/28/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="python学习笔记-23"><a href="#python学习笔记-23" class="headerlink" title="python学习笔记(23)"></a>python学习笔记(23)</h2><hr><h4 id="pythonGIL-全局解释锁"><a href="#pythonGIL-全局解释锁" class="headerlink" title="pythonGIL(全局解释锁)"></a><strong>python</strong>GIL(全局解释锁)</h4><ul>
+<li><p>GIL（Global Interpreter Lock，即全局解释锁<br>  python解释器在运行时，会首先锁住GIL，然后运行自己的锁，类似于操作系统的mutex。<br>  GIL一旦锁住就会阻碍别的线程运行。<br>  python解释器会有一些机制，让用户看起来python是可以支持多线程的，多个线程在轮流运转。<br>  python设计时为了规避多线程中内存重入的危险问题，所以采用了GIL保证线程的顺序执行。<br>  Cpython中使用了非常多的C语言库，C语言库中的许多函数都不是线程安全的，许多库中含有全局变量或者静态变量，导致多线程运行时会出现许多意向不到的内存读写错误，内存重入的问题，因此作者设计GIL锁，保证每个线程单独执行。<br>  比如多个线程运行时效果如下：<br>  <img src="http://q15r3bmu8.bkt.clouddn.com/28-1.png" alt="1"></p>
+</li>
+<li><p>python GIL的check机制<br>  我们可以看到在check_interval范围内，</p>
+  <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">for (<span class="comment">;;) &#123;</span></span><br><span class="line">    if (--ticker &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        ticker = check_interval<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">        <span class="comment">/* Give another thread a chance */</span></span><br><span class="line">        PyThread_release_lock(interpreter_lock)<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">        <span class="comment">/* Other threads may run now */</span></span><br><span class="line">    </span><br><span class="line">        PyThread_acquire_lock(interpreter_lock, <span class="number">1</span>)<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bytecode </span>= *next_instr++<span class="comment">;</span></span><br><span class="line">    <span class="keyword">switch </span>(<span class="keyword">bytecode) </span>&#123;</span><br><span class="line">        <span class="comment">/* execute the next instruction ... */</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  在实际运行过程中，python解释器如果检测到当前线程进入I/O操作，则会主动释放GIL锁。</p>
+<p>  <img src="http://q15r3bmu8.bkt.clouddn.com/28-2.png" alt="2"></p>
+</li>
+<li>python 如何摆脱GIL锁<br>  正是因为python有了GIL锁，导致python多线程和并发效率很低，如何才能避免被GIL卡住性能的脖子？<ol>
+<li>使用jython，而不使用Cython.</li>
+<li>关键性代码用C或者C++等高性能</li>
+</ol>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/25/28/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1054,97 +1158,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/25/4/" class="post-title-link" itemprop="url">【Leetcode】 132周比赛</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-11-25 09:24:34 / Modified: 09:47:26" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/11/25/4/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>解题答案如下：</p><h2 id="1-分糖果-II"><a href="#1-分糖果-II" class="headerlink" title="1.分糖果 II"></a>1.分糖果 II</h2><p>&nbsp;</p><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>我们买了一些糖果 candies，打算把它们分给排好队的 n = num_people 个小朋友。<br>给第一个小朋友 1 颗糖果，第二个小朋友 2 颗，依此类推，直到给最后一个小朋友 n 颗糖果。<br>然后，我们再回到队伍的起点，给第一个小朋友 n + 1 颗糖果，第二个小朋友 n + 2 颗，依此类推，直到给最后一个小朋友 2 * n 颗糖果。<br>&nbsp;</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/25/4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1195,7 +1208,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

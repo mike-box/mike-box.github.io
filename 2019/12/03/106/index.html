@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="连连看最近突然闲聊时，突然发现某个thu的本科生用openCV来做练练看外挂，最近刚好在学习pygame，就想着刚好能够利用这个机会，也重新做一个新的练练看外挂出来试试。顺便把练练看的算法也了解了下。思路 连连看小游戏的算法的核心在于检测选择的两个点是否连通，所谓的连通，是指最大只允许有两个转弯。仔细分析一下，因为最大允许两个转弯，因此最多也就只有4条直线构成相连的路径，只要我们确定其中的三个点，">
+<meta name="keywords" content="pygame">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Pygame】连连看">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;03&#x2F;106&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="连连看最近突然闲聊时，突然发现某个thu的本科生用openCV来做练练看外挂，最近刚好在学习pygame，就想着刚好能够利用这个机会，也重新做一个新的练练看外挂出来试试。顺便把练练看的算法也了解了下。思路 连连看小游戏的算法的核心在于检测选择的两个点是否连通，所谓的连通，是指最大只允许有两个转弯。仔细分析一下，因为最大允许两个转弯，因此最多也就只有4条直线构成相连的路径，只要我们确定其中的三个点，">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;q15r3bmu8.bkt.clouddn.com&#x2F;link.gif">
+<meta property="og:updated_time" content="2019-12-04T01:04:23.328Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;q15r3bmu8.bkt.clouddn.com&#x2F;link.gif">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/03/106/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Pygame】连连看 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">just code for fun</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/106/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Pygame】连连看
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-03 23:14:57" itemprop="dateCreated datePublished" datetime="2019-12-03T23:14:57+08:00">2019-12-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-04 09:04:23" itemprop="dateModified" datetime="2019-12-04T09:04:23+08:00">2019-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%B8%E6%88%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">游戏</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/03/106/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/03/106/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="连连看"><a href="#连连看" class="headerlink" title="连连看"></a>连连看</h2><p>最近突然闲聊时，突然发现某个thu的本科生用openCV来做练练看外挂，最近刚好在学习<code>pygame</code>，就想着刚好能够利用这个机会，也重新做一个新的练练看外挂出来试试。顺便把练练看的算法也了解了下。</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ul>
+<li>连连看小游戏的算法的核心在于检测选择的两个点是否连通，所谓的连通，是指最大只允许有两个转弯。仔细分析一下，因为最大允许两个转弯，因此最多也就只有4条直线构成相连的路径，只要我们确定其中的三个点，另外一个点也可以确认,所以我们只需要分别遍历上下左右四个方向上是否存在可能路径即可，算法复杂度为O(mn)。<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">               |</span></span><br><span class="line"><span class="code">               |</span></span><br><span class="line"><span class="code">               | </span></span><br><span class="line">---------------+------------------</span><br><span class="line"><span class="code">               |</span></span><br><span class="line"><span class="code">               |</span></span><br><span class="line"><span class="code">               |</span></span><br></pre></td></tr></table></figure></li>
+<li>实际在处理时，我们肯定是优先找到最短路径，我们由图中可以看到，路径一般只有<code>1,2,4</code>这三种情况，我们在检测两个点能否相连时，只需要分别检测这三种情况即可。</li>
+<li>最后实际上还可以优化许多，但是后面需要完成用<code>openCV</code>来完成练练看游戏的破解，目前就不再继续深入了。同时完成了自动连线的算法，视频如下:<br><img src="http://q15r3bmu8.bkt.clouddn.com/link.gif" alt="1"><br><a href="https://github.com/mike-box/pygame/tree/master/link" target="_blank" rel="noopener">github地址</a><h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"> Name: 连连看游戏</span></span><br><span class="line"><span class="string"> Athor: mike-meng</span></span><br><span class="line"><span class="string"> Email: mml1106@126.com</span></span><br><span class="line"><span class="string"> Description: 连连看</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys, time</span><br><span class="line"><span class="keyword">import</span> math, random</span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">from</span> pygame.locals <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">LIGHT = (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>)     <span class="comment"># free </span></span><br><span class="line">DARK = (<span class="number">200</span>, <span class="number">200</span>, <span class="number">200</span>)      <span class="comment"># obstacle </span></span><br><span class="line">BLACK = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)           <span class="comment"># line</span></span><br><span class="line">RED = (<span class="number">200</span>, <span class="number">30</span>, <span class="number">30</span>)         <span class="comment"># robot</span></span><br><span class="line">BGCOLOR = (<span class="number">40</span>, <span class="number">40</span>, <span class="number">60</span>)      <span class="comment"># back</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grid</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,width = <span class="number">40</span>,height = <span class="number">40</span>,max_key = <span class="number">9</span>)</span>:</span></span><br><span class="line">        self.width = width</span><br><span class="line">        self.height = height</span><br><span class="line">        self.grid = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(width)] <span class="keyword">for</span> j <span class="keyword">in</span> range(height)]</span><br><span class="line">        self.max_key = max_key</span><br><span class="line">        self.init_grid()</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">init_grid</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,self.height<span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,self.width<span class="number">-1</span>):</span><br><span class="line">                self.grid[i][j] = random.randint(<span class="number">1</span>,self.max_key)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_grid</span><span class="params">(self,pos,keys)</span>:</span></span><br><span class="line">        self.grid[pos[<span class="number">0</span>]][pos[<span class="number">1</span>]] = keys</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_grid</span><span class="params">(self,pos)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.grid[pos[<span class="number">0</span>]][pos[<span class="number">1</span>]]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">all_grid</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.grid</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">check_connect</span><span class="params">(self,x,y)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> x[<span class="number">0</span>] &lt; <span class="number">0</span> <span class="keyword">or</span> x[<span class="number">1</span>] &lt; <span class="number">0</span> <span class="keyword">or</span> x[<span class="number">0</span>] &gt;= self.height <span class="keyword">or</span> x[<span class="number">1</span>] &gt;= self.width <span class="keyword">or</span>\</span><br><span class="line">           y[<span class="number">0</span>] &lt; <span class="number">0</span> <span class="keyword">or</span> y[<span class="number">1</span>] &lt; <span class="number">0</span> <span class="keyword">or</span> y[<span class="number">0</span>] &gt;= self.height <span class="keyword">or</span> y[<span class="number">1</span>] &gt;= self.width:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> x[<span class="number">0</span>] != y[<span class="number">0</span>] <span class="keyword">and</span> x[<span class="number">1</span>] != y[<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#check row</span></span><br><span class="line">        <span class="keyword">if</span> x[<span class="number">0</span>] == y[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(min(x[<span class="number">1</span>],y[<span class="number">1</span>])+<span class="number">1</span>,max(x[<span class="number">1</span>],y[<span class="number">1</span>])):</span><br><span class="line">                <span class="keyword">if</span> self.grid[x[<span class="number">0</span>]][i] &gt; <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="comment">#check colum</span></span><br><span class="line">        <span class="keyword">if</span> x[<span class="number">1</span>] == y[<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(min(x[<span class="number">0</span>],y[<span class="number">0</span>])+<span class="number">1</span>,max(x[<span class="number">0</span>],y[<span class="number">0</span>])):</span><br><span class="line">                <span class="keyword">if</span> self.grid[i][x[<span class="number">1</span>]] &gt; <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mini_connect</span><span class="params">(self,x,y)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">if</span> self.grid[x[<span class="number">0</span>]][x[<span class="number">1</span>]] != self.grid[y[<span class="number">0</span>]][y[<span class="number">1</span>]]:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        <span class="comment">#one step check</span></span><br><span class="line">        <span class="keyword">if</span> self.check_connect(x,y):</span><br><span class="line">            res.append((x,y))</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        <span class="comment">#two step check</span></span><br><span class="line">        <span class="keyword">if</span> self.check_connect(x,(x[<span class="number">0</span>],y[<span class="number">1</span>])) <span class="keyword">and</span> self.check_connect((x[<span class="number">0</span>],y[<span class="number">1</span>]),y):</span><br><span class="line">            <span class="keyword">if</span> self.grid[x[<span class="number">0</span>]][y[<span class="number">1</span>]] == <span class="number">0</span>:</span><br><span class="line">                res.append((x,(x[<span class="number">0</span>],y[<span class="number">1</span>])))</span><br><span class="line">                res.append(((x[<span class="number">0</span>],y[<span class="number">1</span>]),y))</span><br><span class="line">                <span class="keyword">return</span>  res</span><br><span class="line">        <span class="keyword">if</span> self.check_connect(x,(y[<span class="number">0</span>],x[<span class="number">1</span>])) <span class="keyword">and</span> self.check_connect((y[<span class="number">0</span>],x[<span class="number">1</span>]),y):</span><br><span class="line">            <span class="keyword">if</span> self.grid[y[<span class="number">0</span>]][x[<span class="number">1</span>]] == <span class="number">0</span>:</span><br><span class="line">                res.append((x,(y[<span class="number">0</span>],x[<span class="number">1</span>])))</span><br><span class="line">                res.append(((y[<span class="number">0</span>],x[<span class="number">1</span>]),y))</span><br><span class="line">                <span class="keyword">return</span>  res</span><br><span class="line"></span><br><span class="line">        <span class="comment">#three step check</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(min(x[<span class="number">1</span>],y[<span class="number">1</span>])+<span class="number">1</span>,max(x[<span class="number">1</span>],y[<span class="number">1</span>])):</span><br><span class="line">            <span class="keyword">if</span> self.check_connect(x,(x[<span class="number">0</span>],i)) <span class="keyword">and</span> self.grid[x[<span class="number">0</span>]][i] == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">if</span> self.check_connect((x[<span class="number">0</span>],i),(y[<span class="number">0</span>],i)) <span class="keyword">and</span> \</span><br><span class="line">                   self.check_connect((y[<span class="number">0</span>],i),y):</span><br><span class="line">                    <span class="keyword">if</span> self.grid[x[<span class="number">0</span>]][i] == <span class="number">0</span> <span class="keyword">and</span> self.grid[y[<span class="number">0</span>]][i] == <span class="number">0</span>:</span><br><span class="line">                        res.append((x,(x[<span class="number">0</span>],i)))</span><br><span class="line">                        res.append(((x[<span class="number">0</span>],i),(y[<span class="number">0</span>],i)))</span><br><span class="line">                        res.append(((y[<span class="number">0</span>],i),y))</span><br><span class="line">                        <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(min(x[<span class="number">0</span>],y[<span class="number">0</span>])+<span class="number">1</span>,max(x[<span class="number">0</span>],y[<span class="number">0</span>])):</span><br><span class="line">            <span class="keyword">if</span> self.check_connect(x,(i,x[<span class="number">1</span>])):</span><br><span class="line">                print(i,x[<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">if</span> self.check_connect((i,x[<span class="number">1</span>]),(i,y[<span class="number">1</span>])) <span class="keyword">and</span> \</span><br><span class="line">                   self.check_connect((i,y[<span class="number">1</span>]),y):</span><br><span class="line">                    <span class="keyword">if</span> self.grid[i][x[<span class="number">1</span>]] == <span class="number">0</span> <span class="keyword">and</span> self.grid[i][y[<span class="number">1</span>]] == <span class="number">0</span>:</span><br><span class="line">                        res.append((x,(i,x[<span class="number">1</span>])));</span><br><span class="line">                        res.append(((i,x[<span class="number">1</span>]),(i,y[<span class="number">1</span>])));</span><br><span class="line">                        res.append(((i,y[<span class="number">1</span>]),y))</span><br><span class="line">                        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#check row</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,self.width):</span><br><span class="line">            <span class="keyword">if</span> self.check_connect(x,(x[<span class="number">0</span>],i)):</span><br><span class="line">                <span class="keyword">if</span> self.check_connect((x[<span class="number">0</span>],i),(y[<span class="number">0</span>],i)) <span class="keyword">and</span> \</span><br><span class="line">                   self.check_connect((y[<span class="number">0</span>],i),y):</span><br><span class="line">                    <span class="keyword">if</span> self.grid[x[<span class="number">0</span>]][i] == <span class="number">0</span> <span class="keyword">and</span> self.grid[y[<span class="number">0</span>]][i] == <span class="number">0</span>:</span><br><span class="line">                        res.append((x,(x[<span class="number">0</span>],i)))</span><br><span class="line">                        res.append(((x[<span class="number">0</span>],i),(y[<span class="number">0</span>],i)))</span><br><span class="line">                        res.append(((y[<span class="number">0</span>],i),y))</span><br><span class="line">                        <span class="keyword">return</span> res</span><br><span class="line">        <span class="comment">#check colum</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,self.height):</span><br><span class="line">            <span class="keyword">if</span> self.check_connect(x,(i,x[<span class="number">1</span>])):</span><br><span class="line">                <span class="keyword">if</span> self.check_connect((i,x[<span class="number">1</span>]),(i,y[<span class="number">1</span>])) <span class="keyword">and</span> \</span><br><span class="line">                   self.check_connect((i,y[<span class="number">1</span>]),y):</span><br><span class="line">                    <span class="keyword">if</span> self.grid[i][x[<span class="number">1</span>]] == <span class="number">0</span> <span class="keyword">and</span> self.grid[i][y[<span class="number">1</span>]] == <span class="number">0</span>:</span><br><span class="line">                        res.append((x,(i,x[<span class="number">1</span>])));</span><br><span class="line">                        res.append(((i,x[<span class="number">1</span>]),(i,y[<span class="number">1</span>])));</span><br><span class="line">                        res.append(((i,y[<span class="number">1</span>]),y))</span><br><span class="line">                        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Game</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,width = <span class="number">30</span>,height = <span class="number">30</span>)</span>:</span></span><br><span class="line">        self.width = width</span><br><span class="line">        self.height = height</span><br><span class="line">        self.element_num = <span class="number">9</span></span><br><span class="line">        self.grid = Grid(width,height,self.element_num)</span><br><span class="line">        self.grid_size = <span class="number">80</span></span><br><span class="line">        self.score = <span class="number">0</span></span><br><span class="line">        self.element = []</span><br><span class="line">        self.selected = (<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">        self.isSelect = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#init game</span></span><br><span class="line">        pygame.init()</span><br><span class="line">        pygame.mixer.init()</span><br><span class="line">        self.load_source()</span><br><span class="line">        self.screen = pygame.display.set_mode((self.width*self.grid_size, self.height*self.grid_size))</span><br><span class="line">        pygame.display.set_caption(<span class="string">'连连看'</span>)</span><br><span class="line">        self.clock = pygame.time.Clock()</span><br><span class="line">        self.game_draw()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">load_source</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,self.element_num+<span class="number">1</span>):</span><br><span class="line">            image_file = <span class="string">"D:\\106\\element"</span>+str(i)+<span class="string">".JPG"</span></span><br><span class="line">            image = pygame.image.load(image_file)</span><br><span class="line">            image = pygame.transform.scale(image,(self.grid_size,self.grid_size))</span><br><span class="line">            self.element.append(image)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">game_draw</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.screen_draw()</span><br><span class="line">        self.picture_draw()</span><br><span class="line">        self.border_draw()</span><br><span class="line">        pygame.display.update()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">screen_draw</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.screen.fill(LIGHT)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">picture_draw</span><span class="params">(self)</span>:</span></span><br><span class="line">        arrays = self.grid.all_grid()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.height):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(self.width):</span><br><span class="line">                <span class="keyword">if</span> arrays[i][j] &gt; <span class="number">0</span>:</span><br><span class="line">                    self.screen.blit(self.element[arrays[i][j]<span class="number">-1</span>],(j*self.grid_size,i*self.grid_size))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">border_draw</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.height):</span><br><span class="line">            p1 = (self.grid_size,i*self.grid_size)</span><br><span class="line">            p2 = ((self.width<span class="number">-1</span>)*self.grid_size,i*self.grid_size)</span><br><span class="line">            self.line_draw(p1,p2,LIGHT)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.width):</span><br><span class="line">            p1 = (i*self.grid_size,self.grid_size)</span><br><span class="line">            p2 = (i*self.grid_size,(self.height<span class="number">-1</span>)*self.grid_size)</span><br><span class="line">            self.line_draw(p1,p2,LIGHT)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># we will set the selected grid</span></span><br><span class="line">        <span class="keyword">if</span> self.isSelect:</span><br><span class="line">            x = self.selected[<span class="number">0</span>]</span><br><span class="line">            y = self.selected[<span class="number">1</span>]</span><br><span class="line">            p1 = (x*self.grid_size,y*self.grid_size)</span><br><span class="line">            p2 = ((x+<span class="number">1</span>)*self.grid_size,y*self.grid_size)</span><br><span class="line">            p3 = (x*self.grid_size,(y+<span class="number">1</span>)*self.grid_size)</span><br><span class="line">            p4 = ((x+<span class="number">1</span>)*self.grid_size,(y+<span class="number">1</span>)*self.grid_size)</span><br><span class="line">            self.line_draw(p1,p2,RED)</span><br><span class="line">            self.line_draw(p1,p3,RED)</span><br><span class="line">            self.line_draw(p2,p4,RED)</span><br><span class="line">            self.line_draw(p3,p4,RED)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">line_draw</span><span class="params">(self,p1,p2,color)</span>:</span></span><br><span class="line">        pygame.draw.line(self.screen,color,p1,p2,<span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connect_draw</span><span class="params">(self,path)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> path:</span><br><span class="line">            p1 = (p[<span class="number">0</span>][<span class="number">1</span>]*self.grid_size + self.grid_size//<span class="number">2</span>,\</span><br><span class="line">                    p[<span class="number">0</span>][<span class="number">0</span>]*self.grid_size + self.grid_size//<span class="number">2</span>)</span><br><span class="line">            p2 = (p[<span class="number">1</span>][<span class="number">1</span>]*self.grid_size + self.grid_size//<span class="number">2</span>,\</span><br><span class="line">                    p[<span class="number">1</span>][<span class="number">0</span>]*self.grid_size + self.grid_size//<span class="number">2</span>)</span><br><span class="line">            self.line_draw(p1,p2,RED)</span><br><span class="line">        pygame.display.update()</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">check_valid</span><span class="params">(self,x)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> x[<span class="number">0</span>] &lt;= <span class="number">0</span> <span class="keyword">or</span> x[<span class="number">0</span>] &gt;= self.height<span class="number">-1</span>  <span class="keyword">or</span> \</span><br><span class="line">           x[<span class="number">1</span>] &lt;= <span class="number">0</span> <span class="keyword">or</span> x[<span class="number">1</span>] &gt;= self.width<span class="number">-1</span>:</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">check_over</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.score == (self.width<span class="number">-1</span>)*(self.height<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">music_play</span><span class="params">(self)</span>:</span></span><br><span class="line">        pygame.mixer.music.load(<span class="string">"D:\\106\\connect.mp3"</span>)</span><br><span class="line">        pygame.mixer.music.play()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">auto_detect</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,(self.height<span class="number">-1</span>)*(self.width<span class="number">-1</span>)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,(self.height<span class="number">-1</span>)*(self.width<span class="number">-1</span>)):</span><br><span class="line">                <span class="keyword">if</span> i != j:</span><br><span class="line">                    p1 = ((i//(self.width<span class="number">-1</span>))+<span class="number">1</span>,(i%(self.width<span class="number">-1</span>))+<span class="number">1</span>)</span><br><span class="line">                    p2 = ((j//(self.width<span class="number">-1</span>))+<span class="number">1</span>,(j%(self.width<span class="number">-1</span>))+<span class="number">1</span>)</span><br><span class="line">                    <span class="keyword">if</span> self.grid.get_grid(p1) == self.grid.get_grid(p2) <span class="keyword">and</span> self.grid.get_grid(p1) &gt; <span class="number">0</span>:</span><br><span class="line">                        pa = self.grid.mini_connect(p1,p2)</span><br><span class="line">                        <span class="keyword">if</span> len(pa) &gt; <span class="number">0</span>:</span><br><span class="line">                            self.connect_draw(pa)</span><br><span class="line">                            self.music_play()</span><br><span class="line">                            self.grid.set_grid(p1,<span class="number">0</span>)</span><br><span class="line">                            self.grid.set_grid(p2,<span class="number">0</span>)</span><br><span class="line">                            self.score += <span class="number">2</span></span><br><span class="line">                            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">for</span> event <span class="keyword">in</span> pygame.event.get():</span><br><span class="line">                    <span class="keyword">if</span> event.type == QUIT:</span><br><span class="line">                        sys.exit()</span><br><span class="line">                    <span class="keyword">if</span> event.type == MOUSEBUTTONDOWN:</span><br><span class="line">                        pos = pygame.mouse.get_pos()</span><br><span class="line">                        x = pos[<span class="number">1</span>]//self.grid_size</span><br><span class="line">                        y = pos[<span class="number">0</span>]//self.grid_size</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> <span class="keyword">not</span> self.check_valid((x,y)) <span class="keyword">or</span> self.grid.get_grid((x,y)) == <span class="number">0</span>:</span><br><span class="line">                            self.isSelect = <span class="literal">False</span></span><br><span class="line">                            self.selected = (<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">                            <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> (y,x) == self.selected:</span><br><span class="line">                            <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> self.isSelect:</span><br><span class="line">                            pa = self.grid.mini_connect((x,y),(self.selected[<span class="number">1</span>],self.selected[<span class="number">0</span>]))</span><br><span class="line">                            <span class="keyword">if</span> len(pa) &gt; <span class="number">0</span>:</span><br><span class="line">                                self.connect_draw(pa)</span><br><span class="line">                                self.music_play()</span><br><span class="line">                                self.grid.set_grid((x,y),<span class="number">0</span>)</span><br><span class="line">                                self.grid.set_grid((self.selected[<span class="number">1</span>],self.selected[<span class="number">0</span>]),<span class="number">0</span>)</span><br><span class="line">                                self.isSelect = <span class="literal">False</span></span><br><span class="line">                                self.score += <span class="number">2</span></span><br><span class="line">                            <span class="keyword">else</span>:</span><br><span class="line">                                self.selected = (y,x)</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            <span class="keyword">if</span> self.grid.get_grid((x,y)) &gt; <span class="number">0</span>:</span><br><span class="line">                                self.selected = (y,x)</span><br><span class="line">                                self.isSelect = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">            self.game_draw()</span><br><span class="line">            time.sleep(<span class="number">0.04</span>)</span><br><span class="line">            self.auto_detect()</span><br><span class="line"></span><br><span class="line">game = Game(<span class="number">15</span>,<span class="number">8</span>)</span><br><span class="line">game.run()</span><br></pre></td></tr></table></figure></li>
+</ul>
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>个人技术成长记录.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pygame/" rel="tag"># pygame</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/01/105/" rel="next" title="【Leetcode】 165周比赛">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】 165周比赛
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#连连看"><span class="nav-number">1.</span> <span class="nav-text">连连看</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码"><span class="nav-number">1.2.</span> <span class="nav-text">源代码</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
