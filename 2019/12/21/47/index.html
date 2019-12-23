@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="149周比赛，最后一道题目没有做出来，目前也没有看到比较完美而简洁的答案。1154. 一年中的第几天题目给你一个按 YYYY-MM-DD 格式表示日期的字符串 date，请你计算并返回该日期是当年的第几天。通常情况下，我们认为 1 月 1 日是每年的第 1 天，1 月 2 日是每年的第 2 天，依此类推。每个月的天数与现行公元纪年法（格里高利历）一致。">
+<meta name="keywords" content="code,python,ml,leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="47">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;21&#x2F;47&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="149周比赛，最后一道题目没有做出来，目前也没有看到比较完美而简洁的答案。1154. 一年中的第几天题目给你一个按 YYYY-MM-DD 格式表示日期的字符串 date，请你计算并返回该日期是当年的第几天。通常情况下，我们认为 1 月 1 日是每年的第 1 天，1 月 2 日是每年的第 2 天，依此类推。每个月的天数与现行公元纪年法（格里高利历）一致。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-25T03:20:39.288Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/21/47/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>47 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">just code for fun</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/47/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          47
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-25 11:20:39" itemprop="dateModified" datetime="2019-11-25T11:20:39+08:00">2019-11-25</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/21/47/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/47/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>149周比赛，最后一道题目没有做出来，目前也没有看到比较完美而简洁的答案。</p><h2 id="1154-一年中的第几天"><a href="#1154-一年中的第几天" class="headerlink" title="1154. 一年中的第几天"></a>1154. 一年中的第几天</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个按 YYYY-MM-DD 格式表示日期的字符串 date，请你计算并返回该日期是当年的第几天。</p><p>通常情况下，我们认为 1 月 1 日是每年的第 1 天，1 月 2 日是每年的第 2 天，依此类推。每个月的天数与现行公元纪年法（格里高利历）一致。</p><a id="more"></a>
+
+
+<p>示例 1：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">date</span> = <span class="string">"2019-01-09"</span></span><br><span class="line">输出：<span class="number">9</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">date</span> = <span class="string">"2019-02-10"</span></span><br><span class="line">输出：<span class="number">41</span></span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">date</span> = <span class="string">"2003-03-01"</span></span><br><span class="line">输出：<span class="number">60</span></span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">date</span> = <span class="string">"2004-03-01"</span></span><br><span class="line">输出：<span class="number">61</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/ordinal-number-of-date" target="_blank" rel="noopener">https://leetcode-cn.com/problems/ordinal-number-of-date</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 给定日期表示的字符串，求该日期是该年中的第几天。</p>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>送分题，非常简单，注意要区分是否为闰年，因为闰年的2月有29天；</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">bool</span> isLeap(<span class="built_in">int</span> year)&#123;</span><br><span class="line">        <span class="keyword">if</span>((year%<span class="number">4</span> == <span class="number">0</span> &amp;&amp; year%<span class="number">100</span> != <span class="number">0</span>)||</span><br><span class="line">           (year%<span class="number">400</span> == <span class="number">0</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">int</span> ordinalOfDate(<span class="built_in">string</span> date) &#123;</span><br><span class="line">        <span class="built_in">int</span> day = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">int</span> month = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">int</span> year = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">int</span> months[<span class="number">12</span>] = &#123;<span class="number">31</span>,<span class="number">28</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">int</span> pos = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(date[pos] !=<span class="string">'-'</span>)&#123;</span><br><span class="line">            year = year*<span class="number">10</span> + date[pos]-<span class="string">'0'</span>;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        pos++;</span><br><span class="line">        <span class="keyword">while</span>(date[pos] !=<span class="string">'-'</span>)&#123;</span><br><span class="line">            month = month*<span class="number">10</span> + date[pos]-<span class="string">'0'</span>;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        pos++;</span><br><span class="line">        <span class="keyword">while</span>(pos &lt; date.size())&#123;</span><br><span class="line">            day = day*<span class="number">10</span> + date[pos]-<span class="string">'0'</span>;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>;i &lt; month<span class="number">-1</span>; ++i)&#123;</span><br><span class="line">            ans += months[i];</span><br><span class="line">        &#125;</span><br><span class="line">        ans += day;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(month &gt; <span class="number">2</span>&amp;&amp; isLeap(year))&#123;</span><br><span class="line">            ans ++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="1154-一年中的第几天-1"><a href="#1154-一年中的第几天-1" class="headerlink" title="1154. 一年中的第几天"></a>1154. 一年中的第几天</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>给你一个按 YYYY-MM-DD 格式表示日期的字符串 date，请你计算并返回该日期是当年的第几天。</p>
+<p>通常情况下，我们认为 1 月 1 日是每年的第 1 天，1 月 2 日是每年的第 2 天，依此类推。每个月的天数与现行公元纪年法（格里高利历）一致。</p>
+<p>示例 1：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">date</span> = <span class="string">"2019-01-09"</span></span><br><span class="line">输出：<span class="number">9</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">date</span> = <span class="string">"2019-02-10"</span></span><br><span class="line">输出：<span class="number">41</span></span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">date</span> = <span class="string">"2003-03-01"</span></span><br><span class="line">输出：<span class="number">60</span></span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">date</span> = <span class="string">"2004-03-01"</span></span><br><span class="line">输出：<span class="number">61</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/ordinal-number-of-date" target="_blank" rel="noopener">https://leetcode-cn.com/problems/ordinal-number-of-date</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 给定日期表示的字符串，求该日期是该年中的第几天。</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>送分题，非常简单，注意要区分是否为闰年，因为闰年的2月有29天；</li>
+</ol>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">bool</span> isLeap(<span class="built_in">int</span> year)&#123;</span><br><span class="line">        <span class="keyword">if</span>((year%<span class="number">4</span> == <span class="number">0</span> &amp;&amp; year%<span class="number">100</span> != <span class="number">0</span>)||</span><br><span class="line">           (year%<span class="number">400</span> == <span class="number">0</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">int</span> ordinalOfDate(<span class="built_in">string</span> date) &#123;</span><br><span class="line">        <span class="built_in">int</span> day = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">int</span> month = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">int</span> year = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">int</span> months[<span class="number">12</span>] = &#123;<span class="number">31</span>,<span class="number">28</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">int</span> pos = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(date[pos] !=<span class="string">'-'</span>)&#123;</span><br><span class="line">            year = year*<span class="number">10</span> + date[pos]-<span class="string">'0'</span>;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        pos++;</span><br><span class="line">        <span class="keyword">while</span>(date[pos] !=<span class="string">'-'</span>)&#123;</span><br><span class="line">            month = month*<span class="number">10</span> + date[pos]-<span class="string">'0'</span>;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        pos++;</span><br><span class="line">        <span class="keyword">while</span>(pos &lt; date.size())&#123;</span><br><span class="line">            day = day*<span class="number">10</span> + date[pos]-<span class="string">'0'</span>;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>;i &lt; month<span class="number">-1</span>; ++i)&#123;</span><br><span class="line">            ans += months[i];</span><br><span class="line">        &#125;</span><br><span class="line">        ans += day;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(month &gt; <span class="number">2</span>&amp;&amp; isLeap(year))&#123;</span><br><span class="line">            ans ++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="1155-掷骰子的N种方法"><a href="#1155-掷骰子的N种方法" class="headerlink" title="1155. 掷骰子的N种方法"></a>1155. 掷骰子的N种方法</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>这里有 d 个一样的骰子，每个骰子上都有 f 个面，分别标号为 1, 2, …, f。</p>
+<p>我们约定：掷骰子的得到总点数为各骰子面朝上的数字的总和。</p>
+<p>如果需要掷出的总点数为 target，请你计算出有多少种不同的组合情况（所有的组合情况总共有 f^d 种），模 10^9 + 7 后返回。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：d = <span class="number">1</span>, f = <span class="number">6</span>, target = <span class="number">3</span></span><br><span class="line">输出：<span class="number">1</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：d = <span class="number">2</span>, f = <span class="number">6</span>, target = <span class="number">7</span></span><br><span class="line">输出：<span class="number">6</span></span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：d = <span class="number">2</span>, f = <span class="number">5</span>, target = <span class="number">10</span></span><br><span class="line">输出：<span class="number">1</span></span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：d = <span class="number">1</span>, f = <span class="number">2</span>, target = <span class="number">3</span></span><br><span class="line">输出：<span class="number">0</span></span><br></pre></td></tr></table></figure><br>示例 5：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：d = <span class="number">30</span>, f = <span class="number">30</span>, target = <span class="number">500</span></span><br><span class="line">输出：<span class="number">222616187</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/weekly-contest-149/problems/number-of-dice-rolls-with-target-sum/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/weekly-contest-149/problems/number-of-dice-rolls-with-target-sum/</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 简单的排列组合问题，非常简单的背包动态规划问题。</p>
+</blockquote>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>基本上是送分题，一看就知道需要用动态规划，典型的背包问题，给定总容量，有d个背包，每个背包的质量从1到f；</li>
+<li>简单的动态规划代码即可实现；</li>
+<li>注意点每个背包最小的质量为1，不能取0；</li>
+</ol>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">int</span> numRollsToTarget(<span class="built_in">int</span> d, <span class="built_in">int</span> f, <span class="built_in">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">int</span> mod = <span class="number">1000000007</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt; dp(d+<span class="number">1</span>,vector&lt;<span class="built_in">int</span>&gt;(target+<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*intial*/</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">1</span>;i &lt;= f &amp;&amp; i &lt;= target; ++i)&#123;</span><br><span class="line">            dp[<span class="number">1</span>][i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">1</span>;i &lt;= d; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j = i; j &lt;= target; ++j)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="built_in">int</span> k = <span class="number">1</span>; k &lt;= f; ++k)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(j &gt;= k+i<span class="number">-1</span>)&#123;</span><br><span class="line">                        dp[i][j] = (dp[i][j] + dp[i<span class="number">-1</span>][j-k])%mod;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[d][target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="1156-单字符重复子串的最大长度"><a href="#1156-单字符重复子串的最大长度" class="headerlink" title="1156. 单字符重复子串的最大长度"></a>1156. 单字符重复子串的最大长度</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3><p>如果字符串中的所有字符都相同，那么这个字符串是单字符重复的字符串。</p>
+<p>给你一个字符串 text，你只能交换其中两个字符一次或者什么都不做，然后得到一些单字符重复的子串。返回其中最长的子串的长度。</p>
+<p>示例 1：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">text</span> = <span class="string">"ababa"</span></span><br><span class="line">输出：<span class="number">3</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">text</span> = <span class="string">"aaabaaa"</span></span><br><span class="line">输出：<span class="number">6</span></span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">text</span> = <span class="string">"aaabbaaa"</span></span><br><span class="line">输出：<span class="number">4</span></span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">text</span> = <span class="string">"aaaaa"</span></span><br><span class="line">输出：<span class="number">5</span></span><br></pre></td></tr></table></figure><br>示例 5：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">text</span> = <span class="string">"abcdef"</span></span><br><span class="line">输出：<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/swap-for-maximum-repeated-substring" target="_blank" rel="noopener">https://leetcode-cn.com/problems/swap-for-maximum-repeated-substring</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 求最长连续相同字符的子序列，或者通过一次交换获得。</p>
+</blockquote>
+<h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>通过滑动窗口，记录索引i的左侧连续重复的字符的个数和右边连续字符的个数,并记录连续的字符的最长长度；</li>
+<li><p>索引i的左侧连续的重复个数为left[i-1],右侧连续重复的个数为right[i+1],主要分为以下三种情况:</p>
+ <figure class="highlight plain"><figcaption><span>```ans </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    ```text[i+1]```的字符总数大于```right[i+1]```, ```ans = max(ans,right[i+1]+1)```，这时从其他位置交换一个字符即可;</span><br><span class="line">    ```text[i-1] == text[i+1]``` 且 ```text[i-1] != text[i]```，这时就需要进行链接前后的字符串，从其他地方找一相同的字符与```text[i]```进行交换，这时需要计算是否其他地方还有剩余的与```text[i]```相同的字符，通过比较```count[text[i-1]-&apos;a&apos;]```与 ```left[i-1] + right[i+1]```是否相等, 即判断```count[text[i-1]-&apos;a&apos;] == (left[i-1] + right[i+1])```;</span><br><span class="line">3. 本题还是一道值得探讨和学习的好题目；</span><br><span class="line"></span><br><span class="line">### 代码</span><br></pre></td></tr></table></figure>
+<p>class Solution {<br>public:<br> int maxRepOpt1(string text) {</p>
+<pre><code> int ans = 1;
+ int n = text.size();
+ int c = 0;
+ vector&lt;int&gt; left(n,1);
+ vector&lt;int&gt; right(n,1);
+ vector&lt;int&gt; count(26,0);
+
+ for(int i = 0;i &lt; n; ++i){
+     count[text[i]-&#39;a&#39;]++;
+ }
+ c = 1;
+ for(int i = 1;i &lt; n; ++i){
+     if(text[i] == text[i-1]){
+         c++;
+     }else{
+         c = 1;
+     }
+     left[i] = c;
+     ans = max(ans,left[i]);
+ }
+ c = 1;
+ for(int i = n-2; i &gt;= 0; --i){
+     if(text[i] == text[i+1]){
+         c++;
+     }else{
+         c = 1;
+     }
+     right[i] = c;
+     ans = max(ans,right[i]);
+ }
+
+ for(int i = 1;i &lt; n-1; ++i){
+     if(count[text[i-1]-&#39;a&#39;] &gt; left[i-1]){
+         ans = max(ans,left[i-1]+1);
+     }
+     if(count[text[i+1]-&#39;a&#39;] &gt; right[i+1]){
+         ans = max(ans,right[i+1]+1);
+     }
+     if(text[i-1] == text[i+1] &amp;&amp; text[i-1] != text[i]){
+         if(count[text[i-1]-&#39;a&#39;] &gt; (left[i-1] + right[i+1])){
+             ans = max(ans,left[i-1]+right[i+1]+1);
+         }else{
+             ans = max(ans,left[i-1]+right[i+1]);
+         }
+     }
+ }
+
+ return ans;
+</code></pre><p> }<br>};</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">## <span class="number">1157</span>. 子数组中占绝大多数的元素</span><br><span class="line">### 题目</span><br><span class="line">实现一个 MajorityChecker 的类，它应该具有下述几个 API：</span><br><span class="line"></span><br><span class="line">+ MajorityChecker(<span class="built_in">int</span>[] arr) 会用给定的数组 arr 来构造一个 MajorityChecker 的实例。</span><br><span class="line">+ <span class="built_in">int</span> query(<span class="built_in">int</span> <span class="built_in">left</span>, <span class="built_in">int</span> <span class="built_in">right</span>, <span class="built_in">int</span> threshold) 有这么几个参数：</span><br><span class="line">- <span class="number">0</span> &lt;= <span class="built_in">left</span> &lt;= <span class="built_in">right</span> &lt; arr.length 表示数组 arr 的子数组的长度。</span><br><span class="line">- <span class="number">2</span> * threshold &gt; <span class="built_in">right</span> - <span class="built_in">left</span> + <span class="number">1</span>，也就是说阀值 threshold 始终比子序列长度的一半还要大。</span><br><span class="line">每次查询 query(...) 会返回在 arr[<span class="built_in">left</span>], arr[<span class="built_in">left</span>+<span class="number">1</span>], ..., arr[<span class="built_in">right</span>] 中至少出现阀值次数 threshold 的元素，如果不存在这样的元素，就返回 -<span class="number">1</span>。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">示例：</span><br></pre></td></tr></table></figure>
+<p>MajorityChecker majorityChecker = new MajorityChecker([1,1,2,2,1,1]);<br>majorityChecker.query(0,5,4); // 返回 1<br>majorityChecker.query(0,3,3); // 返回 -1<br>majorityChecker.query(2,3,2); // 返回 2</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 地址</span><br><span class="line">https:<span class="comment">//leetcode-cn.com/problems/online-majority-element-in-subarray</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 题意</span><br><span class="line">&gt;  给定查询范围，求满足查询范围的众数。</span><br><span class="line"></span><br><span class="line">### 思路</span><br><span class="line">解题思路详见：</span><br><span class="line">https:<span class="comment">//leetcode-cn.com/problems/online-majority-element-in-subarray/solution/golang-344ms-xian-duan-shu-er-fen-cha-zhao-by-resa/</span></span><br><span class="line"></span><br><span class="line">### 代码</span><br></pre></td></tr></table></figure>
+<p>struct SegTreeNode{<br> int l;<br> int r;<br> int val;<br> int count;<br> SegTreeNode <em> left;<br> SegTreeNode </em> right;<br> SegTreeNode(int l,int r){</p>
+<pre><code> this-&gt;l = l;
+ this-&gt;r = r;
+ this-&gt;val = 0;
+ this-&gt;count = 0;
+ this-&gt;left = NULL;
+ this-&gt;right = NULL;
+</code></pre><p> }<br>};</p>
+</li>
+</ol>
+<p>bool pushupTree(SegTreeNode * root){<br>    if(!root){<br>        return false;<br>    }</p>
+<pre><code>if(root-&gt;left){
+    root-&gt;val = root-&gt;left-&gt;val;
+    root-&gt;count = root-&gt;left-&gt;count;
+}
+if(root-&gt;right){
+    if(root-&gt;val == root-&gt;right-&gt;val){
+        root-&gt;count += root-&gt;right-&gt;count;
+    }else if(root-&gt;count &gt;= root-&gt;right-&gt;count){
+        root-&gt;count -= root-&gt;right-&gt;count;
+    }else if(root-&gt;count &lt; root-&gt;right-&gt;count){
+        root-&gt;val = root-&gt;right-&gt;val;
+        root-&gt;count = root-&gt;right-&gt;count - root-&gt;count;
+    }
+}
+
+return root;
+</code></pre><p>}</p>
+<p>SegTreeNode * buildTree(vector<int> &amp; arr,int l,int r){<br>    if(l &gt; r){<br>        return NULL;<br>    }</int></p>
+<pre><code>SegTreeNode * root = new SegTreeNode(l,r);
+if(l == r){
+    root-&gt;val = arr[l];
+    root-&gt;count = 1;
+    return root;
+}
+
+int mid = (l+r)/2;
+root-&gt;left = buildTree(arr,l,mid);
+root-&gt;right = buildTree(arr,mid+1,r);
+pushupTree(root);
+
+return root;
+</code></pre><p>}</p>
+<p>bool searchTree(SegTreeNode * root,int l,int r,int &amp;key,int &amp;count){<br>    if(!root || l &gt; r){<br>        return false;<br>    }</p>
+<pre><code>if(root-&gt;r &lt; l &amp;&amp; root-&gt; l &gt; r){
+    return false;
+}
+
+int mid = (root-&gt;l + root-&gt;r)/2;
+if(root-&gt;l &gt;= l &amp;&amp; root-&gt;r &lt;= r){
+    if(root-&gt;val == key){
+        count += root-&gt;count;
+    }else if(root-&gt;count &gt; count){
+        key = root-&gt;val;
+        count = root-&gt;count - count;
+    }else if(root-&gt;count &lt;= count){
+        count -= root-&gt;count;
+    }
+    return true;
+}
+
+if(mid &gt;= l){
+   searchTree(root-&gt;left,l,r,key,count); 
+}
+if(r &gt;= mid +1){
+    searchTree(root-&gt;right,l,r,key,count);
+}
+
+return true;
+</code></pre><p>}</p>
+<p>class MajorityChecker {<br>public:<br>    MajorityChecker(vector<int>&amp; arr) {<br>        for(int i = 0;i &lt; arr.size(); ++i){<br>            idx[arr[i]].push_back(i);<br>        }<br>        root = buildTree(arr,0,arr.size()-1);<br>    }</int></p>
+<pre><code>int query(int left, int right, int threshold) {
+    int key = 0;
+    int count = 0;
+    searchTree(root,left,right,key,count);
+    if(key == 0){
+        return -1;
+    }
+
+    auto it_l = lower_bound(idx[key].begin(),idx[key].end(),left);
+    auto it_r = upper_bound(idx[key].begin(),idx[key].end(),right);
+    if(it_r - it_l &gt;= threshold){
+        return key;
+    }else{
+        return -1;
+    }
+}
+</code></pre><p>private:<br>    unordered_map<int,vector<int>&gt; idx;<br>    SegTreeNode * root;<br>};</int,vector<int></p>
+<p>/**</p>
+<ul>
+<li>Your MajorityChecker object will be instantiated and called as such:</li>
+<li>MajorityChecker* obj = new MajorityChecker(arr);</li>
+<li>int param_1 = obj-&gt;query(left,right,threshold);<br>*/<br>```</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>个人技术成长记录.</div>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/21/46/" rel="next" title="【liteOS】学习总结">
+                  <i class="fa fa-chevron-left"></i> 【liteOS】学习总结
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/12/21/48/" rel="prev" title="【Leetcode】149周比赛">
+                  【Leetcode】149周比赛 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1154-一年中的第几天"><span class="nav-number">1.</span> <span class="nav-text">1154. 一年中的第几天</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1154-一年中的第几天-1"><span class="nav-number">2.</span> <span class="nav-text">1154. 一年中的第几天</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1155-掷骰子的N种方法"><span class="nav-number">3.</span> <span class="nav-text">1155. 掷骰子的N种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">3.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">3.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">3.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">3.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1156-单字符重复子串的最大长度"><span class="nav-number">4.</span> <span class="nav-text">1156. 单字符重复子串的最大长度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-3"><span class="nav-number">4.4.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

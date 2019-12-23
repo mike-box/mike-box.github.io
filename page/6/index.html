@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/15/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/29/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/pic.jpg">
@@ -207,7 +207,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/25/15/" class="post-title-link" itemprop="url">【Leetcode】 133周比赛</a>
+            <a href="/2019/12/21/29/" class="post-title-link" itemprop="url">【Python】python学习笔记六</a>
         </h1>
 
         <div class="post-meta">
@@ -216,18 +216,24 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-11-25 09:24:34 / Modified: 09:50:02" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-25 10:01:06" itemprop="dateModified" datetime="2019-11-25T10:01:06+08:00">2019-11-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
                   </a>
                 </span>
             </span>
@@ -241,8 +247,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/11/25/15/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/15/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/12/21/29/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/29/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -257,10 +263,134 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>解题答案如下：</p><h2 id="1-IP-地址无效化"><a href="#1-IP-地址无效化" class="headerlink" title="1.IP 地址无效化"></a>1.IP 地址无效化</h2><p>&nbsp;</p><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个有效的 IPv4 地址 address，返回这个 IP 地址的无效化版本。</p><p>所谓无效化 IP 地址，其实就是用 “[.]” 代替了每个 “.”。<br>&nbsp;</p><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/weekly-contest-144/problems/defanging-an-ip-address/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/weekly-contest-144/problems/defanging-an-ip-address/</a><br>&lt;/br&gt;<br>&nbsp;</p>
+          <h2 id="python学习笔记-24"><a href="#python学习笔记-24" class="headerlink" title="python学习笔记(24)"></a>python学习笔记(24)</h2><hr><h4 id="python垃圾回收机制"><a href="#python垃圾回收机制" class="headerlink" title="python垃圾回收机制"></a><strong>python</strong>垃圾回收机制</h4><ul>
+<li><p>内存泄漏的基本概念<br>  按照现代计算机的设计架构，程序必须要使用存储器来存储代码与数据，<br>  内存泄漏即在程序运行过程中不当操作，导致部分内存被占用，且永不会被释放，造成内存的浪费。<br>  内存一般分为堆区和栈区<br>  我们可以通过调用memory_full_info获取当前进程使用的内存信息,主要是查看内存使用的栈空间信息.</p>
+  <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import psutil</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示当前 python 程序占用的内存大小</span></span><br><span class="line">def show_memory_info(hint):</span><br><span class="line">    <span class="keyword">pid</span> = os.getpid()</span><br><span class="line">    p = psutil.Process(<span class="keyword">pid</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">info</span> = p.memory_full_info()</span><br><span class="line">    <span class="keyword">memory</span> = <span class="keyword">info</span>.uss / <span class="number">1024.</span> / <span class="number">1024</span></span><br><span class="line">    print('&#123;&#125; <span class="keyword">memory</span> used: &#123;&#125; MB'.<span class="keyword">format</span>(hint, <span class="keyword">memory</span>))</span><br></pre></td></tr></table></figure>
+<p>  在python内部我们可以通过sys.getrefcount(a)来查看变量a的引用次数，python内部内置的有垃圾回收器，不需要向C语言那样需要主动调用free去回收内存,当然在python也可以强制调用del函数对对象进行强制删除，然后调用gc.collect()来回收内存。变量或者对象的引用次数为0时，则对象就会被垃圾回收器回收。<br>  比如我们按照以下调用:</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import gc</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line"><span class="selector-tag">del</span> a</span><br><span class="line">gc.collect()</span><br><span class="line">print a</span><br></pre></td></tr></table></figure>
+<p>  这时就会报错，提示name ‘a’ is not defined</p>
+<p>  在如下调用过程中</p>
+  <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def func():</span><br><span class="line">    show_memory_info(<span class="string">'initial'</span>)</span><br><span class="line">    a = [i for i <span class="keyword">in</span> range(<span class="number">10000000</span>)]</span><br><span class="line">    b = [i for i <span class="keyword">in</span> range(<span class="number">10000000</span>)]</span><br><span class="line">    show_memory_info(<span class="string">'after a, b created'</span>)</span><br><span class="line">    a.append(b)</span><br><span class="line">    b.append(a)</span><br><span class="line"></span><br><span class="line">func()</span><br><span class="line">show_memory_info(<span class="string">'finished'</span>)</span><br><span class="line"></span><br><span class="line">########## 输出 ##########</span><br><span class="line"></span><br><span class="line">initial memory used: <span class="number">47.984375</span> MB</span><br><span class="line">after a, b created memory used: <span class="number">822.73828125</span> MB</span><br><span class="line">finished memory used: <span class="number">821.73046875</span> MB</span><br></pre></td></tr></table></figure>
+<p>  在func函数中对象a,b互相调用，但是对象的引用均不为0，导致不可处罚垃圾回收器对对象a,b进行垃圾回收，但是我们可以启动gc.collect()进行强制回收。</p>
+<p>  python实际有两种垃圾回收机制，Python 使用标记清除（mark-sweep）算法和分代收集（generational），来启用针对循环引用的自动垃圾回收。</p>
+<p>  先来看标记清除算法。我们先用图论来理解不可达的概念。对于一个有向图，如果从一个节点出发进行遍历，并标记其经过的所有节点；那么，在遍历结束后，所有没有被标记的节点，我们就称之为不可达节点。显而易见，这些节点的存在是没有任何意义的，自然的，我们就需要对它们进行垃圾回收。<br>  当然，每次都遍历全图，对于 Python 而言是一种巨大的性能浪费。所以，在 Python 的垃圾回收实现中，mark-sweep 使用双向链表维护了一个数据结构，并且只考虑容器类的对象（只有容器类对象才有可能产生循环引用）。互相引用即图中产生了环。</p>
+<p>  Python 将所有对象分为三代。刚刚创立的对象是第 0 代；经过一次垃圾回收后，依然存在的对象，便会依次从上一代挪到下一代。而每一代启动自动垃圾回收的阈值，则是可以单独指定的。当垃圾回收器中新增对象减去删除对象达到相应的阈值时，就会对这一代对象启动垃圾回收。也即python不会主动去做垃圾回收，而是当内存使用达到一定阈值时，就会启动垃圾回收器，对某一代的对象进行回收。</p>
+<p>  事实上，分代收集基于的思想是，新生的对象更有可能被垃圾回收，而存活更久的对象也有更高的概率继续存活。因此，通过这种做法，可以节约不少计算量，从而提高 Python 的性能。</p>
+<p>  引用计数是其中最简单的垃圾回收实现，不过切记，引用计数并非充要条件，它只能算作充分非必要条件.</p>
+<p>  垃圾回收器固然好用，但是需要注意，垃圾回收器并不是万能的，垃圾回收器也有如下的缺点：</p>
+<ol>
+<li>对于释放的内存，并不是立即进行回收，而是需要等到垃圾回收器启动垃圾回收任务时，才进行内存回收，这就导致了部分性能的问题，特别在实时系统中，这种办法欠妥当。</li>
+<li>在某些特定情况下的交叉调用可能会导致内存永远不会被释放，毕竟垃圾回收器不是万能的，他并不是能百分之百识别哪些已经需要进行回收的内存，这样在一定情况下，也可能导致内存泄漏，但是我们实际程序运行过程中可以通过调试工具来定位这种问题，并解决ABA互相调用的问题。</li>
+<li>垃圾回收器本身也占用了部分资源，频繁的启动也会占用CPU的时间片。</li>
+<li>垃圾回收器使的程序员不比过分担心内存的使用问题。</li>
+</ol>
+</li>
+</ul>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/21/28/" class="post-title-link" itemprop="url">【Python】python学习笔记五</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-25 11:20:25" itemprop="dateModified" datetime="2019-11-25T11:20:25+08:00">2019-11-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/21/28/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/28/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="python学习笔记-23"><a href="#python学习笔记-23" class="headerlink" title="python学习笔记(23)"></a>python学习笔记(23)</h2><hr><h4 id="pythonGIL-全局解释锁"><a href="#pythonGIL-全局解释锁" class="headerlink" title="pythonGIL(全局解释锁)"></a><strong>python</strong>GIL(全局解释锁)</h4><ul>
+<li><p>GIL（Global Interpreter Lock，即全局解释锁<br>  python解释器在运行时，会首先锁住GIL，然后运行自己的锁，类似于操作系统的mutex。<br>  GIL一旦锁住就会阻碍别的线程运行。<br>  python解释器会有一些机制，让用户看起来python是可以支持多线程的，多个线程在轮流运转。<br>  python设计时为了规避多线程中内存重入的危险问题，所以采用了GIL保证线程的顺序执行。<br>  Cpython中使用了非常多的C语言库，C语言库中的许多函数都不是线程安全的，许多库中含有全局变量或者静态变量，导致多线程运行时会出现许多意向不到的内存读写错误，内存重入的问题，因此作者设计GIL锁，保证每个线程单独执行。<br>  比如多个线程运行时效果如下：<br>  <img src="http://q15r3bmu8.bkt.clouddn.com/28-1.png" alt="1"></p>
+</li>
+<li><p>python GIL的check机制<br>  我们可以看到在check_interval范围内，</p>
+  <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">for (<span class="comment">;;) &#123;</span></span><br><span class="line">    if (--ticker &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        ticker = check_interval<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">        <span class="comment">/* Give another thread a chance */</span></span><br><span class="line">        PyThread_release_lock(interpreter_lock)<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">        <span class="comment">/* Other threads may run now */</span></span><br><span class="line">    </span><br><span class="line">        PyThread_acquire_lock(interpreter_lock, <span class="number">1</span>)<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bytecode </span>= *next_instr++<span class="comment">;</span></span><br><span class="line">    <span class="keyword">switch </span>(<span class="keyword">bytecode) </span>&#123;</span><br><span class="line">        <span class="comment">/* execute the next instruction ... */</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  在实际运行过程中，python解释器如果检测到当前线程进入I/O操作，则会主动释放GIL锁。</p>
+<p>  <img src="http://q15r3bmu8.bkt.clouddn.com/28-2.png" alt="2"></p>
+</li>
+<li>python 如何摆脱GIL锁<br>  正是因为python有了GIL锁，导致python多线程和并发效率很低，如何才能避免被GIL卡住性能的脖子？<ol>
+<li>使用jython，而不使用Cython.</li>
+<li>关键性代码用C或者C++等高性能</li>
+</ol>
+</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/11/25/15/#more" rel="contents">
+              <a class="btn" href="/2019/12/21/28/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -284,7 +414,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/12/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/pic.jpg">
@@ -298,7 +428,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/25/12/" class="post-title-link" itemprop="url">【Python】 Python学习笔记四</a>
+            <a href="/2019/12/21/26/" class="post-title-link" itemprop="url">【Leetcode】第145周比赛</a>
         </h1>
 
         <div class="post-meta">
@@ -307,10 +437,409 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-11-25 09:24:34 / Modified: 09:49:27" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-25 10:37:51" itemprop="dateModified" datetime="2019-11-25T10:37:51+08:00">2019-11-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/21/26/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/26/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-数组的相对排序"><a href="#1-数组的相对排序" class="headerlink" title="1. 数组的相对排序"></a>1. 数组的相对排序</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你两个数组，arr1 和 arr2，<br>arr2 中的元素各不相同<br>arr2 中的每个元素都出现在 arr1 中<br>对 arr1 中的元素进行排序，使 arr1 中项的相对顺序和 arr2 中的相对顺序相同。未在 arr2 中出现过的元素需要按照升序放在 arr1 的末尾。</p><p>示例：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：arr1 = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">19</span>], arr2 = [<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">9</span>,<span class="number">6</span>]</span><br><span class="line">输出：[<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">19</span>]</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/21/26/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/21/24/" class="post-title-link" itemprop="url">【Leetcode】第4周双周比赛</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-25 10:37:31" itemprop="dateModified" datetime="2019-11-25T10:37:31+08:00">2019-11-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/21/24/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/24/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1118-一月有多少天"><a href="#1118-一月有多少天" class="headerlink" title="1118.一月有多少天"></a>1118.一月有多少天</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>指定年份 Y 和月份 M，请你帮忙计算出该月一共有多少天。</p><p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：Y = <span class="number">1992</span>, M = <span class="number">7</span></span><br><span class="line">输出：<span class="number">31</span></span><br><span class="line">示例 <span class="number">2</span>：</span><br></pre></td></tr></table></figure><br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：Y = <span class="number">2000</span>, M = <span class="number">2</span></span><br><span class="line">输出：<span class="number">29</span></span><br><span class="line">示例 <span class="number">3</span>：</span><br></pre></td></tr></table></figure><br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：Y = <span class="number">1900</span>, M = <span class="number">2</span></span><br><span class="line">输出：<span class="number">28</span></span><br></pre></td></tr></table></figure></p><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/biweekly-contest-4/problems/number-of-days-in-a-month/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/biweekly-contest-4/problems/number-of-days-in-a-month/</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/21/24/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/21/2/" class="post-title-link" itemprop="url">【Leetcode】131比赛</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-24 09:18:20" itemprop="dateModified" datetime="2019-10-24T09:18:20+08:00">2019-10-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/21/2/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-大样本统"><a href="#1-大样本统" class="headerlink" title="1.大样本统"></a>1.大样本统</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给出矩阵 matrix 和目标值 target，返回元素总和等于目标值的非空子矩阵的数量。</p><p>子矩阵<code>x1, y1, x2, y2</code>是满足<code>x1 &lt;= x &lt;= x2</code> 且 <code>y1 &lt;= y &lt;= y2</code>的所有单元<code>matrix[x][y]</code>的集合。</p><p>如果 <code>(x1, y1, x2, y2)</code>和 <code>(x1&#39;, y1&#39;, x2&#39;, y2&#39;)</code>两个子矩阵中部分坐标不同<code>（如：x1 != x1&#39;）</code>，那么这两个子矩阵也不同。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/21/2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/21/19/" class="post-title-link" itemprop="url">【Math】 数学</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-25 09:57:58" itemprop="dateModified" datetime="2019-11-25T09:57:58+08:00">2019-11-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6%E9%A2%98%E7%9B%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">数学题目</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/21/19/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/19/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一道高中的数学题目</p><p><strong>题目</strong> </p><ul>
+<li>从 （0， 1）中随机选择两个数，两个数的积小于 1/3的概率是<strong><strong>_</strong></strong></li>
+</ul><p><strong>题意</strong></p><ul>
+<li>假设有两个随机数 x,y,满足条件（x &gt; 0 &amp;&amp; x &lt; 1， y &gt; 0 &amp;&amp; y &lt; 1),求x*y &lt; 1/3的概率，即求p(xy &lt; 1/3).</li>
+<li>主要是求概率</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/21/19/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/21/17/" class="post-title-link" itemprop="url">【Python】 Python学习笔记五</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-25 09:50:26" itemprop="dateModified" datetime="2019-11-25T09:50:26+08:00">2019-11-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -332,8 +861,207 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/11/25/12/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/12/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/12/21/17/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/17/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="python学习笔记-20）"><a href="#python学习笔记-20）" class="headerlink" title="python学习笔记(20）"></a>python学习笔记(20）</h2><hr><h4 id="python携程"><a href="#python携程" class="headerlink" title="python携程"></a><strong>python</strong>携程</h4><ul>
+<li>携程的基本概念<ul>
+<li>我们在日常算法调度中，经常用进程和线程来进行任务调度和任务切换，以前经典的计算机中线程为最小的调度单元，<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def is_iterable(param):</span><br><span class="line"><span class="keyword">try</span>: </span><br><span class="line">    iter(param) </span><br><span class="line">    <span class="keyword">return</span> True</span><br><span class="line">except TypeError:</span><br><span class="line">    <span class="keyword">return</span> False</span><br><span class="line"></span><br><span class="line">params = [</span><br><span class="line">    <span class="number">1234</span>,</span><br><span class="line">    <span class="string">'1234'</span>,</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">    <span class="keyword">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]),</span><br><span class="line">    &#123;<span class="number">1</span>:<span class="number">1</span>, <span class="number">2</span>:<span class="number">2</span>, <span class="number">3</span>:<span class="number">3</span>, <span class="number">4</span>:<span class="number">4</span>&#125;,</span><br><span class="line">    (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">]</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> param <span class="keyword">in</span> params:</span><br><span class="line">    print(<span class="string">'&#123;&#125; is iterable? &#123;&#125;'</span>.format(param, is_iterable(param)))</span><br><span class="line"></span><br><span class="line">########## 输出 ##########</span><br><span class="line"></span><br><span class="line"><span class="number">1234</span> <span class="keyword">is</span> iterable? False</span><br><span class="line"><span class="number">1234</span> <span class="keyword">is</span> iterable? True</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>] <span class="keyword">is</span> iterable? True</span><br><span class="line">&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125; <span class="keyword">is</span> iterable? True</span><br><span class="line">&#123;<span class="number">1</span>: <span class="number">1</span>, <span class="number">2</span>: <span class="number">2</span>, <span class="number">3</span>: <span class="number">3</span>, <span class="number">4</span>: <span class="number">4</span>&#125; <span class="keyword">is</span> iterable? True</span><br><span class="line">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>) <span class="keyword">is</span> iterable? True</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>迭代器的使用范围<br>  迭代器一般用来遍历访问对象的元素，比如常见的容器、hashmap、集合都可以用迭代器来访问。</li>
+<li>生成器的基本概念<br>  生成器是懒人版的迭代器.  <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import psutil</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示当前 python 程序占用的内存大小</span></span><br><span class="line">def show_memory_info(hint):</span><br><span class="line">    <span class="keyword">pid</span> = os.getpid()</span><br><span class="line">    p = psutil.Process(<span class="keyword">pid</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">info</span> = p.memory_full_info()</span><br><span class="line">    <span class="keyword">memory</span> = <span class="keyword">info</span>.uss / <span class="number">1024.</span> / <span class="number">1024</span></span><br><span class="line">    print('&#123;&#125; <span class="keyword">memory</span> used: &#123;&#125; MB'.<span class="keyword">format</span>(hint, <span class="keyword">memory</span>))`</span><br></pre></td></tr></table></figure>
+  生成器用关键字yield定义,使用next函数访问生成器的下一个元素.  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generator</span><span class="params">(k)</span>:</span></span><br><span class="line">i = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">yield</span> i ** k</span><br><span class="line">    i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+  yield后面紧跟的表达式即为生成器的返回值，每次返回后程序就会暂停，下次调用next函数时，生成器就会再次运行到yield关键字处。当然生成器的所有功能全部都可以用迭代器来替代，但是使用生成器能使得程序更加简洁高效。<br>  比如下面这个例子  <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def index_generator(L, target):</span><br><span class="line">for i, num <span class="keyword">in</span> enumerate(L):</span><br><span class="line">    <span class="keyword">if</span> num == target:</span><br><span class="line">        yield i</span><br><span class="line"></span><br><span class="line">print(list(index_generator([<span class="number">1</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">2</span>], <span class="number">2</span>)))</span><br><span class="line"></span><br><span class="line">########## 输出 ##########</span><br><span class="line"></span><br><span class="line">[<span class="number">2</span>, <span class="number">5</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure></li>
+<li><p>生成器的使用范围</p>
+</li>
+<li><p>思考题<br>  容器是可迭代对象，可迭代对象调用 iter() 函数，可以得到一个迭代器.<br>  生成器是一种特殊的迭代器，使用迭代器能够使得代码更加简单。</p>
+</li>
+</ul>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/21/15/" class="post-title-link" itemprop="url">【Leetcode】 133周比赛</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-25 09:50:02" itemprop="dateModified" datetime="2019-11-25T09:50:02+08:00">2019-11-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/21/15/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/15/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>解题答案如下：</p><h2 id="1-IP-地址无效化"><a href="#1-IP-地址无效化" class="headerlink" title="1.IP 地址无效化"></a>1.IP 地址无效化</h2><p>&nbsp;</p><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个有效的 IPv4 地址 address，返回这个 IP 地址的无效化版本。</p><p>所谓无效化 IP 地址，其实就是用 “[.]” 代替了每个 “.”。<br>&nbsp;</p><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/weekly-contest-144/problems/defanging-an-ip-address/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/weekly-contest-144/problems/defanging-an-ip-address/</a><br>&lt;/br&gt;<br>&nbsp;</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/21/15/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/21/12/" class="post-title-link" itemprop="url">【Python】 Python学习笔记四</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-25 09:49:27" itemprop="dateModified" datetime="2019-11-25T09:49:27+08:00">2019-11-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/21/12/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/12/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -380,7 +1108,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/11/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/112/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/pic.jpg">
@@ -394,493 +1122,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/25/11/" class="post-title-link" itemprop="url">【Python】 Python学习笔记三</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-11-25 09:24:34 / Modified: 09:49:12" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/11/25/11/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/11/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="python学习笔记-18）"><a href="#python学习笔记-18）" class="headerlink" title="python学习笔记(18）"></a>python学习笔记(18）</h2><hr><h4 id="python-meteclass"><a href="#python-meteclass" class="headerlink" title="python meteclass"></a><strong>python</strong> meteclass</h4><ul>
-<li><p><strong>metaclass</strong>的基本定义</p>
-<ul>
-<li>所有的类在定义和初始化时基本上都会调用type的<strong>new</strong>函数，<strong>_init</strong>函数，<strong>call_</strong>函数。<br>比如我们定义类如下:<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">MyClass:</span></span><br><span class="line"><span class="symbol">data</span> = <span class="symbol">1</span></span><br></pre></td></tr></table></figure>
-真正执行的代码为<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> = <span class="keyword">type</span>(classname, superclasses, attributedict)</span><br><span class="line"><span class="keyword">type</span>.<span class="constructor">__new__(<span class="params">typeclass</span>, <span class="params">classname</span>, <span class="params">superclasses</span>, <span class="params">attributedict</span>)</span></span><br><span class="line"><span class="keyword">type</span>.<span class="constructor">__init__(<span class="params">class</span>, <span class="params">classname</span>, <span class="params">superclasses</span>, <span class="params">attributedict</span>)</span></span><br></pre></td></tr></table></figure>
-我们可以通过自定义的meteclass类替换原生的type类，比如：<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> = <span class="symbol">type</span>(<span class="symbol">classname, <span class="symbol">superclasses</span>, <span class="symbol">attributedict</span></span>) </span><br><span class="line"># 变为了</span><br><span class="line"><span class="symbol">class</span> = <span class="symbol">MyMeta</span>(<span class="symbol">classname, <span class="symbol">superclasses</span>, <span class="symbol">attributedict</span></span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>思考题<br>  为什么要使用metaclass,比如以下例子：</p>
-  <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="constructor">Mymeta(<span class="params">type</span>)</span>:</span><br><span class="line">def <span class="constructor">__init__(<span class="params">self</span>, <span class="params">name</span>, <span class="params">bases</span>, <span class="params">dic</span>)</span>:</span><br><span class="line">    super<span class="literal">()</span>.<span class="constructor">__init__(<span class="params">name</span>, <span class="params">bases</span>, <span class="params">dic</span>)</span></span><br><span class="line">    print('===&gt;<span class="module-access"><span class="module"><span class="identifier">Mymeta</span>.</span><span class="module"><span class="identifier">__init__</span>'</span></span>)</span><br><span class="line">    print(self.__name__)</span><br><span class="line">    print(dic)</span><br><span class="line">    print(self.yaml_tag)</span><br><span class="line"></span><br><span class="line">def <span class="constructor">__new__(<span class="params">cls</span>, <span class="operator">*</span><span class="params">args</span>, <span class="operator">**</span><span class="params">kwargs</span>)</span>:</span><br><span class="line">    print('===&gt;<span class="module-access"><span class="module"><span class="identifier">Mymeta</span>.</span><span class="module"><span class="identifier">__new__</span>'</span></span>)</span><br><span class="line">    print(cls.__name__)</span><br><span class="line">    return <span class="keyword">type</span>.<span class="constructor">__new__(<span class="params">cls</span>, <span class="operator">*</span><span class="params">args</span>, <span class="operator">**</span><span class="params">kwargs</span>)</span></span><br><span class="line"></span><br><span class="line">def <span class="constructor">__call__(<span class="params">cls</span>, <span class="operator">*</span><span class="params">args</span>, <span class="operator">**</span><span class="params">kwargs</span>)</span>:</span><br><span class="line">    print('===&gt;<span class="module-access"><span class="module"><span class="identifier">Mymeta</span>.</span><span class="module"><span class="identifier">__call__</span>'</span></span>)</span><br><span class="line">    obj = cls.<span class="constructor">__new__(<span class="params">cls</span>)</span></span><br><span class="line">    cls.<span class="constructor">__init__(<span class="params">cls</span>, <span class="operator">*</span><span class="params">args</span>, <span class="operator">**</span><span class="params">kwargs</span>)</span></span><br><span class="line">    return obj</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="constructor">Foo(<span class="params">metaclass</span>=Mymeta)</span>:</span><br><span class="line">    yaml_tag = '!Foo'`</span><br><span class="line"></span><br><span class="line">def <span class="constructor">__init__(<span class="params">self</span>, <span class="params">name</span>)</span>:</span><br><span class="line">    print('<span class="module-access"><span class="module"><span class="identifier">Foo</span>.</span><span class="module"><span class="identifier">__init__</span>'</span></span>)</span><br><span class="line">    self.name = name</span><br><span class="line"></span><br><span class="line">def <span class="constructor">__new__(<span class="params">cls</span>, <span class="operator">*</span><span class="params">args</span>, <span class="operator">**</span><span class="params">kwargs</span>)</span>:</span><br><span class="line">    print('<span class="module-access"><span class="module"><span class="identifier">Foo</span>.</span><span class="module"><span class="identifier">__new__</span>'</span></span>)</span><br><span class="line">    return object.<span class="constructor">__new__(<span class="params">cls</span>)</span></span><br><span class="line"></span><br><span class="line">foo = <span class="constructor">Foo('<span class="params">foo</span>')</span></span><br></pre></td></tr></table></figure>
-<p>  可以看到上述执行的过程依次为</p>
-<ul>
-<li>Mymeta.<strong>new</strong></li>
-<li>Mymeta.<strong>init</strong></li>
-<li>Mymeta.<strong>call</strong></li>
-<li>Foo.<strong>new</strong></li>
-<li>Foo.<strong>init</strong></li>
-</ul>
-</li>
-</ul>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/25/9/" class="post-title-link" itemprop="url">【Python】 Python学习笔记二</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-11-25 09:24:34 / Modified: 10:35:24" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/11/25/9/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/9/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="python学习笔记-17）"><a href="#python学习笔记-17）" class="headerlink" title="python学习笔记(17）"></a>python学习笔记(17）</h2><hr><h4 id="python强大的修饰器"><a href="#python强大的修饰器" class="headerlink" title="python强大的修饰器"></a><strong>python</strong>强大的修饰器</h4><ul>
-<li>修饰器的基本概念<ul>
-<li>函数的基本概念,常见的函数调用如下所示，我们可以将函数赋给某个变量，由某个变量进行调用:<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def <span class="function"><span class="keyword">func</span><span class="params">(message)</span>:</span></span><br><span class="line">    print(<span class="string">'Got a message: &#123;&#125;'</span>.format(message))</span><br><span class="line">    send_message = <span class="function"><span class="keyword">func</span></span></span><br><span class="line">    send_message(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure></li>
-<li>将函数作为参数，在函数中调用，基本调用示例如下：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_message</span><span class="params">(message)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Got a message: '</span> + message</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">root_call</span><span class="params">(func, message)</span>:</span></span><br><span class="line">    print(func(message))</span><br><span class="line">    </span><br><span class="line">root_call(get_message, <span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure></li>
-<li>在函数内部定义函数嵌套，调用函数<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">def</span> <span class="function"><span class="title">func</span>(<span class="variable">message</span>):</span></span><br><span class="line"><span class="function">    <span class="variable">def</span> <span class="title">get_message</span>(<span class="variable">message</span>):</span></span><br><span class="line"><span class="function">        <span class="title">print</span>(<span class="string">'Got a message: &#123;&#125;'</span>.format(<span class="variable">message</span>))</span></span><br><span class="line">    <span class="variable">return</span> <span class="function"><span class="title">get_message</span>(<span class="variable">message</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">func</span>(<span class="string">'hello world'</span>)</span></span><br></pre></td></tr></table></figure></li>
-<li>闭包，函数对象作为返回值<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">def</span> <span class="function"><span class="title">func_closure</span>():</span></span><br><span class="line"><span class="function">    <span class="variable">def</span> <span class="title">get_message</span>(<span class="variable">message</span>):</span></span><br><span class="line"><span class="function">        <span class="title">print</span>(<span class="string">'Got a message: &#123;&#125;'</span>.format(<span class="variable">message</span>))</span></span><br><span class="line">    <span class="variable">return</span> <span class="variable">get_message</span></span><br><span class="line"></span><br><span class="line"><span class="variable">send_message</span> = <span class="function"><span class="title">func_closure</span>()</span></span><br><span class="line"><span class="function"><span class="title">send_message</span>(<span class="string">'hello world'</span>)</span></span><br></pre></td></tr></table></figure></li>
-<li>装饰器的基本定义如下,函数也作为对象返回，同时执行函数，我们把装饰器看做以下即可对装饰器有更加深刻的认识,greet函数指向wrapper函数，且调用了函数自身，类似于函数指针：<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def my_decorator(func):</span><br><span class="line">    def <span class="keyword">wrapper</span>():</span><br><span class="line">        print(<span class="string">'wrapper of decorator'</span>)</span><br><span class="line">        func()</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">wrapper</span></span><br><span class="line"></span><br><span class="line">def greet():</span><br><span class="line">    print(<span class="string">'hello world'</span>)</span><br><span class="line"></span><br><span class="line">greet = my_decorator(greet)</span><br><span class="line">greet()</span><br></pre></td></tr></table></figure></li>
-<li>在上面的描述中，我们可以用更简单的写法来标识，用@关键字来作为修饰器的关键字，@后面接着函数名.<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def my_decorator(func):</span><br><span class="line">def <span class="keyword">wrapper</span>():</span><br><span class="line">    print(<span class="string">'wrapper of decorator'</span>)</span><br><span class="line">    func()</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">wrapper</span></span><br><span class="line"></span><br><span class="line">@my_decorator</span><br><span class="line">def greet():</span><br><span class="line">    print(<span class="string">'hello world'</span>)</span><br><span class="line"></span><br><span class="line">greet()</span><br></pre></td></tr></table></figure></li>
-<li>带参数的装饰器<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def my_decorator(func):</span><br><span class="line">def <span class="keyword">wrapper</span>(*args, **kwargs):</span><br><span class="line">    print(<span class="string">'wrapper of decorator'</span>)</span><br><span class="line">    func(*args, **kwargs)</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">wrapper</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"></span><br><span class="line">def my_decorator(func):</span><br><span class="line">    @functools.wraps(func)</span><br><span class="line">    def <span class="keyword">wrapper</span>(*args, **kwargs):</span><br><span class="line">        print(<span class="string">'wrapper of decorator'</span>)</span><br><span class="line">        func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">wrapper</span></span><br><span class="line">    </span><br><span class="line">@my_decorator</span><br><span class="line">def greet(message):</span><br><span class="line">    print(message)</span><br><span class="line"></span><br><span class="line">greet.__name__</span><br></pre></td></tr></table></figure></li>
-<li>类装饰器<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Count</span>:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, func)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="keyword">self</span>.func = func</span><br><span class="line">    <span class="keyword">self</span>.num_calls = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(<span class="keyword">self</span>, *args, **kwargs)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="keyword">self</span>.num_calls += <span class="number">1</span></span><br><span class="line">    print(<span class="string">'num of calls is: &#123;&#125;'</span>.format(<span class="keyword">self</span>.num_calls))</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.func(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">@Count</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">example</span><span class="params">()</span></span><span class="symbol">:</span></span><br><span class="line">    print(<span class="string">"hello world"</span>)</span><br><span class="line"></span><br><span class="line">example()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line">num of calls <span class="symbol">is:</span> <span class="number">1</span></span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line">example()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line">num of calls <span class="symbol">is:</span> <span class="number">2</span></span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
-以上代码可以看到装饰器的强大，虽然用函数也能实现装饰器的作用，但是如果用装饰器的话，就会让代码看起来清晰许多，很多时候需要用到装饰器的技巧。</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/25/9/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/25/7/" class="post-title-link" itemprop="url">【Python】 Python学习笔记一</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-11-25 09:24:34 / Modified: 10:35:12" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/11/25/7/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="python学习笔记-16"><a href="#python学习笔记-16" class="headerlink" title="python学习笔记(16)"></a>python学习笔记(16)</h2><hr><h4 id="python值的引用与传递"><a href="#python值的引用与传递" class="headerlink" title="python值的引用与传递"></a><strong>python</strong>值的引用与传递</h4><ul>
-<li><p>引用与传递的基本概念</p>
-<p>  在C++的基本概念中引用，只是类似于创建了一个指针指向变量，指向的为同一个地址，如果变量本身变化，则引用也会变化，或者通过引用改变变量本身，则变量本身也会发生改变。类似于下面的代码所示。</p>
-  <figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void swap(int&amp; <span class="symbol">x</span>, int&amp; <span class="symbol">y</span>) &#123;</span><br><span class="line">    int temp;</span><br><span class="line">    temp = <span class="symbol">x</span>; <span class="comment">// 交换 x 和 y 的值</span></span><br><span class="line">    <span class="symbol">x</span> = <span class="symbol">y</span>;</span><br><span class="line">    <span class="symbol">y</span> = temp;</span><br><span class="line">    <span class="keywords">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>python的引用<br>  在python中用 ‘=’进行赋值时，基本上都是采用的引用</p>
-  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> = <span class="number">1</span></span><br><span class="line"><span class="selector-tag">b</span> = a</span><br><span class="line"><span class="selector-tag">a</span> = <span class="selector-tag">a</span> + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>  <img src="http://q15r3bmu8.bkt.clouddn.com/7-1.png" alt="1"><br>  在上述代码中,a指向对象1，b指向对象a,然后a指向对象 a + 1,而b这时仍然指向对象1,因此 a = 2, b = 1,再看下面的例子中，则这时l1与l2指向的对象均为改变，这时改变l1,l2也会跟着改变。</p>
-  <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">l1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">l2 = l1</span><br><span class="line">l1.append(<span class="number">4</span>)</span><br><span class="line">l1</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">l2</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>python的值传递<br>  在python中使用值传递，则需要进行深拷贝创建一个新的对象,或者在原有对象的基础进行添加值，改变原有数据。下图为典型的例子。</p>
-  <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   def my_func3(l2):</span><br><span class="line">l2.append(<span class="number">4</span>)</span><br><span class="line">   l1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">   my_func3(l1)</span><br><span class="line">   l1</span><br><span class="line">   [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure></li>
-<li>思考题<br>  思考题1,l1,l2,l3是否为同一个对象？  <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">l2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">l3 = l2</span><br></pre></td></tr></table></figure>
-  思考题2,打印结果？  <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   def <span class="function"><span class="keyword">func</span><span class="params">(d)</span>:</span></span><br><span class="line">   d[<span class="string">'a'</span>] = <span class="number">10</span></span><br><span class="line">d[<span class="string">'b'</span>] = <span class="number">20</span></span><br><span class="line">   d = &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>&#125;</span><br><span class="line">   <span class="function"><span class="keyword">func</span><span class="params">(d)</span></span></span><br><span class="line">   print(d)</span><br></pre></td></tr></table></figure></li>
-</ul>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/25/4/" class="post-title-link" itemprop="url">【Leetcode】 132周比赛</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-11-25 09:24:34 / Modified: 09:47:26" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/11/25/4/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>解题答案如下：</p><h2 id="1-分糖果-II"><a href="#1-分糖果-II" class="headerlink" title="1.分糖果 II"></a>1.分糖果 II</h2><p>&nbsp;</p><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>我们买了一些糖果 candies，打算把它们分给排好队的 n = num_people 个小朋友。<br>给第一个小朋友 1 颗糖果，第二个小朋友 2 颗，依此类推，直到给最后一个小朋友 n 颗糖果。<br>然后，我们再回到队伍的起点，给第一个小朋友 n + 1 颗糖果，第二个小朋友 n + 2 颗，依此类推，直到给最后一个小朋友 2 * n 颗糖果。<br>&nbsp;</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/25/4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/25/3/" class="post-title-link" itemprop="url">【Leetcode】减少恶意传播</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-11-25 09:24:34 / Modified: 10:01:13" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/11/25/3/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="924-尽量减少恶意软件的传播"><a href="#924-尽量减少恶意软件的传播" class="headerlink" title="924.尽量减少恶意软件的传播"></a>924.尽量减少恶意软件的传播</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>在节点网络中，只有当 graph[i][j] = 1 时，每个节点 i 能够直接连接到另一个节点 j。</p><p>一些节点 initial 最初被恶意软件感染。只要两个节点直接连接，且其中至少一个节点受到恶意软件的感染，那么两个节点都将被恶意软件感染。这种恶意软件的传播将继续，直到没有更多的节点可以被这种方式感染。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/25/3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/25/2/" class="post-title-link" itemprop="url">【Leetcode】131比赛</a>
+            <a href="/2019/12/21/112/" class="post-title-link" itemprop="url">【Leetcode】 167周比赛</a>
         </h1>
 
         <div class="post-meta">
@@ -890,14 +1132,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-11-25 09:24:34" itemprop="dateCreated datePublished" datetime="2019-11-25T09:24:34+08:00">2019-11-25</time>
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-24 09:18:20" itemprop="dateModified" datetime="2019-10-24T09:18:20+08:00">2019-10-24</time>
+                <time title="Modified: 2019-12-16 22:12:06" itemprop="dateModified" datetime="2019-12-16T22:12:06+08:00">2019-12-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -920,8 +1162,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/11/25/2/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/2/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/12/21/112/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/112/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -936,198 +1178,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-大样本统"><a href="#1-大样本统" class="headerlink" title="1.大样本统"></a>1.大样本统</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给出矩阵 matrix 和目标值 target，返回元素总和等于目标值的非空子矩阵的数量。</p><p>子矩阵<code>x1, y1, x2, y2</code>是满足<code>x1 &lt;= x &lt;= x2</code> 且 <code>y1 &lt;= y &lt;= y2</code>的所有单元<code>matrix[x][y]</code>的集合。</p><p>如果 <code>(x1, y1, x2, y2)</code>和 <code>(x1&#39;, y1&#39;, x2&#39;, y2&#39;)</code>两个子矩阵中部分坐标不同<code>（如：x1 != x1&#39;）</code>，那么这两个子矩阵也不同。</p>
+          <h1 id="167周比赛"><a href="#167周比赛" class="headerlink" title="167周比赛"></a>167周比赛</h1><p>题目比双周赛的题目好点，比较有特点的是二分查找法。</p><h2 id="5279-整数的各位积和之差"><a href="#5279-整数的各位积和之差" class="headerlink" title="5279. 整数的各位积和之差"></a>5279. 整数的各位积和之差</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个单链表的引用结点 head。链表中每个结点的值不是 0 就是 1。已知此链表是一个整数数字的二进制表示形式。<br>请你返回该链表所表示数字的 十进制值 。</p><p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">输出：<span class="number">5</span></span><br><span class="line">解释：二进制数 (<span class="number">101</span>) 转化为十进制数 (<span class="number">5</span>)</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [<span class="number">0</span>]</span><br><span class="line">输出：<span class="number">0</span></span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [<span class="number">1</span>]</span><br><span class="line">输出：<span class="number">1</span></span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">输出：<span class="number">18880</span></span><br></pre></td></tr></table></figure><br>示例 5：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">输出：<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/11/25/2/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/24/100/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/24/100/" class="post-title-link" itemprop="url">【Leetcode】 164周比赛</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-11-24 21:41:47 / Modified: 23:23:21" itemprop="dateCreated datePublished" datetime="2019-11-24T21:41:47+08:00">2019-11-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/11/24/100/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/24/100/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="164周比赛"><a href="#164周比赛" class="headerlink" title="164周比赛"></a>164周比赛</h1><p>感觉本周没有多少让人眼前一亮的题目，太过于老套的题目了，上周的几道题目我认为非常的经典。</p><h2 id="5271-访问所有点的最小时间"><a href="#5271-访问所有点的最小时间" class="headerlink" title="5271. 访问所有点的最小时间"></a>5271. 访问所有点的最小时间</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>平面上有 <code>n</code>个点，点的位置用整数坐标表示<code>points[i] = [xi, yi]</code>。请你计算访问所有这些点需要的最小时间（以秒为单位）。</p><p>你可以按照下面的规则在平面上移动：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/24/100/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/18/98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/18/98/" class="post-title-link" itemprop="url">【Leetcode】 163周比赛</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-18 00:39:19" itemprop="dateCreated datePublished" datetime="2019-11-18T00:39:19+08:00">2019-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-25 10:34:00" itemprop="dateModified" datetime="2019-11-25T10:34:00+08:00">2019-11-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/11/18/98/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/18/98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="163周比赛"><a href="#163周比赛" class="headerlink" title="163周比赛"></a>163周比赛</h1><p>比赛的时候正在游乐场带娃，顺便打开电脑，刷过了前三题。。。</p><h2 id="5108-加密数字"><a href="#5108-加密数字" class="headerlink" title="5108. 加密数字"></a>5108. 加密数字</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个 <code>n</code>行<code>m</code> 列的二维网格 <code>grid</code>和一个整数<code>k</code>。你需要将<code>grid</code>迁移 <code>k</code>次。</p><p>每次「迁移」操作将会引发下述活动：</p><p>位于 <code>grid[i][j]</code> 的元素将会移动到 <code>grid[i][j + 1]</code>。<br>位于 <code>grid[i][m - 1]</code>的元素将会移动到 <code>grid[i + 1][0]</code>。<br>位于 <code>grid[n - 1][m - 1]</code>的元素将会移动到 <code>grid[0][0]</code>。<br>请你返回<code>k</code>次迁移操作后最终得到的 二维网格。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/18/98/#more" rel="contents">
+              <a class="btn" href="/2019/12/21/112/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1197,7 +1251,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
