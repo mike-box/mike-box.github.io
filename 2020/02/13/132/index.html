@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="175场双周比赛最后一题，题目比较难，没做出来。5332. 检查整数及其两倍数是否存在题目给你一个整数数组 arr，请你检查是否存在两个整数 N 和 M，满足 N是M的两倍（即，N = 2 * M）。更正式地，检查是否存在两个下标i 和j 满足： i != j 0 &amp;lt;= i, j &amp;lt; arr.length arr[i] == 2 * arr[j]">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 第 175 场周赛">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;13&#x2F;132&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="175场双周比赛最后一题，题目比较难，没做出来。5332. 检查整数及其两倍数是否存在题目给你一个整数数组 arr，请你检查是否存在两个整数 N 和 M，满足 N是M的两倍（即，N = 2 * M）。更正式地，检查是否存在两个下标i 和j 满足： i != j 0 &amp;lt;= i, j &amp;lt; arr.length arr[i] == 2 * arr[j]">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-02-13T00:29:07.238Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/02/13/132/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 第 175 场周赛 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">just code for fun</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/132/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 第 175 场周赛
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-02-13 08:28:43 / Modified: 08:29:07" itemprop="dateCreated datePublished" datetime="2020-02-13T08:28:43+08:00">2020-02-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/02/13/132/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/13/132/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="175场双周比赛"><a href="#175场双周比赛" class="headerlink" title="175场双周比赛"></a>175场双周比赛</h1><p>最后一题，题目比较难，没做出来。</p><h2 id="5332-检查整数及其两倍数是否存在"><a href="#5332-检查整数及其两倍数是否存在" class="headerlink" title="5332. 检查整数及其两倍数是否存在"></a>5332. 检查整数及其两倍数是否存在</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个整数数组 <code>arr</code>，请你检查是否存在两个整数 N 和 M，满足 <code>N</code>是<code>M</code>的两倍（即，<code>N = 2 * M</code>）。</p><p>更正式地，检查是否存在两个下标<code>i</code> 和<code>j</code> 满足：</p><ul>
+<li><code>i != j</code></li>
+<li><code>0 &lt;= i, j &lt; arr.length</code></li>
+<li><code>arr[i] == 2 * arr[j]</code></li>
+</ul><a id="more"></a>
+
+
+
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：arr = [<span class="number">10</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>]</span><br><span class="line">输出：<span class="literal">true</span></span><br><span class="line">解释：N = <span class="number">10</span> 是 M = <span class="number">5</span> 的两倍，即 <span class="number">10</span> = <span class="number">2</span> * <span class="number">5</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：arr = [<span class="number">7</span>,<span class="number">1</span>,<span class="number">14</span>,<span class="number">11</span>]</span><br><span class="line">输出：<span class="literal">true</span></span><br><span class="line">解释：N = <span class="number">14</span> 是 M = <span class="number">7</span> 的两倍，即 <span class="number">14</span> = <span class="number">2</span> * <span class="number">7</span> 。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：arr = [<span class="number">3</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">11</span>]</span><br><span class="line">输出：<span class="literal">false</span></span><br><span class="line">解释：在该情况下不存在 N 和 M 满足 N = <span class="number">2</span> * M 。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>2 &lt;= arr.length &lt;= 500</code></li>
+<li><code>-10^3 &lt;= arr[i] &lt;= 10^3</code></li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/check-if-n-and-its-double-exist" target="_blank" rel="noopener">https://leetcode-cn.com/problems/check-if-n-and-its-double-exist</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 暴力统计即可</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>暴力统计即可，注意元素<code>0</code>的两倍还是自身。</li>
+</ol>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkIfExist</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size(); ++i)&#123;</span><br><span class="line">            cnt[arr[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i] == <span class="number">0</span> &amp;&amp; cnt[<span class="number">0</span>] == <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(cnt.count(arr[i]*<span class="number">2</span>)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="5333-制造字母异位词的最小步骤数"><a href="#5333-制造字母异位词的最小步骤数" class="headerlink" title="5333. 制造字母异位词的最小步骤数"></a>5333. 制造字母异位词的最小步骤数</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>给你两个长度相等的字符串 s 和 t。每一个步骤中，你可以选择将 t 中的 任一字符 替换为 另一个字符。</p>
+<p>返回使 t 成为 s 的字母异位词的最小步骤数。</p>
+<p>字母异位词 指字母相同，但排列不同的字符串。</p>
+<p>示例 1：<br><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输出：s = <span class="string">"bab"</span>, <span class="built_in">t</span> = <span class="string">"aba"</span></span><br><span class="line">输出：<span class="number">1</span></span><br><span class="line">提示：用 'b' 替换 <span class="built_in">t</span> 中的第一个 'a'，<span class="built_in">t</span> = <span class="string">"bba"</span> 是 s 的一个字母异位词。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输出：s = <span class="string">"leetcode"</span>, t = <span class="string">"practice"</span></span><br><span class="line">输出：<span class="number">5</span></span><br><span class="line">提示：用合适的字符替换 t 中的 'p', 'r', 'a', 'i' 和 'c'，使 t 变成 s 的字母异位词。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输出：<span class="attr">s</span> = <span class="string">"anagram"</span>, <span class="attr">t</span> = <span class="string">"mangaar"</span></span><br><span class="line">输出：<span class="number">0</span></span><br><span class="line">提示：<span class="string">"anagram"</span> 和 <span class="string">"mangaar"</span> 本身就是一组字母异位词。</span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输出：<span class="attr">s</span> = <span class="string">"xxyyzz"</span>, <span class="attr">t</span> = <span class="string">"xxyyzz"</span></span><br><span class="line">输出：<span class="number">0</span></span><br></pre></td></tr></table></figure><br>示例 5：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输出：<span class="attr">s</span> = <span class="string">"friend"</span>, <span class="attr">t</span> = <span class="string">"family"</span></span><br><span class="line">输出：<span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 50000</code></li>
+<li><code>s.length == t.length</code></li>
+<li><code>s 和 t 只包含小写英文字母</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/minimum-number-of-steps-to-make-two-strings-anagram" target="_blank" rel="noopener">https://leetcode-cn.com/problems/minimum-number-of-steps-to-make-two-strings-anagram</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 统计差异的字母数目即可。</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>直接统计字符串中字母频次的差异即可，即字符串<code>t</code>中存在多少个字母与字符串<code>s</code>不同；</li>
+<li>题目中文翻译有问题，有个问题没有讲清楚。<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minSteps</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cnt(<span class="number">26</span>,<span class="number">0</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); ++i)&#123;</span><br><span class="line">            cnt[s[i]-<span class="string">'a'</span>]++;</span><br><span class="line">            cnt[t[i]-<span class="string">'a'</span>]--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cnt[i] &gt; <span class="number">0</span>) res += <span class="built_in">abs</span>(cnt[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="1348-推文计数"><a href="#1348-推文计数" class="headerlink" title="1348. 推文计数"></a>1348. 推文计数</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>请你实现一个能够支持以下两种方法的推文计数类 <code>TweetCounts</code>：</p>
+<ol>
+<li><code>recordTweet(string tweetName, int time)</code></li>
+</ol>
+<ul>
+<li>记录推文发布情况：用户 <code>tweetName</code>在 time（以 秒 为单位）时刻发布了一条推文。</li>
+</ul>
+<ol>
+<li><code>getTweetCountsPerFrequency(string freq, string tweetName, int startTime, int endTime)</code></li>
+</ol>
+<ul>
+<li>返回从开始时间<code>startTime</code>（以 秒 为单位）到结束时间 endTime（以 秒 为单位）内，每 分 minute，时 hour 或者 日 day （取决于 freq）内指定用户 tweetName 发布的推文总数。</li>
+<li>freq 的值始终为 分 minute，时 hour 或者 日 day 之一，表示获取指定用户 tweetName 发布推文次数的时间间隔。</li>
+<li>第一个时间间隔始终从 startTime 开始，因此时间间隔为<code>[startTime, startTime + delta*1&gt;,  [startTime + delta*1, startTime + delta*2&gt;, [startTime + delta*2, startTime + delta*3&gt;, ... , [startTime + delta*i, min(startTime + delta*(i+1), endTime + 1)&gt;，</code>其中 i 和 delta（取决于 freq）都是非负整数。</li>
+</ul>
+<p>示例：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">[<span class="string">"TweetCounts"</span>,<span class="string">"recordTweet"</span>,<span class="string">"recordTweet"</span>,<span class="string">"recordTweet"</span>,<span class="string">"getTweetCountsPerFrequency"</span>,<span class="string">"getTweetCountsPerFrequency"</span>,<span class="string">"recordTweet"</span>,<span class="string">"getTweetCountsPerFrequency"</span>]</span><br><span class="line">[[],[<span class="string">"tweet3"</span>,<span class="number">0</span>],[<span class="string">"tweet3"</span>,<span class="number">60</span>],[<span class="string">"tweet3"</span>,<span class="number">10</span>],[<span class="string">"minute"</span>,<span class="string">"tweet3"</span>,<span class="number">0</span>,<span class="number">59</span>],[<span class="string">"minute"</span>,<span class="string">"tweet3"</span>,<span class="number">0</span>,<span class="number">60</span>],[<span class="string">"tweet3"</span>,<span class="number">120</span>],[<span class="string">"hour"</span>,<span class="string">"tweet3"</span>,<span class="number">0</span>,<span class="number">210</span>]]</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">[null,null,null,null,[<span class="number">2</span>],[<span class="number">2</span>,<span class="number">1</span>],null,[<span class="number">4</span>]]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">TweetCounts tweetCounts = new TweetCounts();</span><br><span class="line">tweetCounts.recordTweet(<span class="string">"tweet3"</span>, <span class="number">0</span>);</span><br><span class="line">tweetCounts.recordTweet(<span class="string">"tweet3"</span>, <span class="number">60</span>);</span><br><span class="line">tweetCounts.recordTweet(<span class="string">"tweet3"</span>, <span class="number">10</span>);                             <span class="comment">// "tweet3" 发布推文的时间分别是 0, 10 和 60 。</span></span><br><span class="line">tweetCounts.getTweetCountsPerFrequency(<span class="string">"minute"</span>, <span class="string">"tweet3"</span>, <span class="number">0</span>, <span class="number">59</span>); <span class="comment">// 返回 [2]。统计频率是每分钟（60 秒），因此只有一个有效时间间隔 [0,60&gt; - &gt; 2 条推文。</span></span><br><span class="line">tweetCounts.getTweetCountsPerFrequency(<span class="string">"minute"</span>, <span class="string">"tweet3"</span>, <span class="number">0</span>, <span class="number">60</span>); <span class="comment">// 返回 [2,1]。统计频率是每分钟（60 秒），因此有两个有效时间间隔 1) [0,60&gt; - &gt; 2 条推文，和 2) [60,61&gt; - &gt; 1 条推文。 </span></span><br><span class="line">tweetCounts.recordTweet(<span class="string">"tweet3"</span>, <span class="number">120</span>);                            <span class="comment">// "tweet3" 发布推文的时间分别是 0, 10, 60 和 120 。</span></span><br><span class="line">tweetCounts.getTweetCountsPerFrequency(<span class="string">"hour"</span>, <span class="string">"tweet3"</span>, <span class="number">0</span>, <span class="number">210</span>);  <span class="comment">// 返回 [4]。统计频率是每小时（3600 秒），因此只有一个有效时间间隔 [0,211&gt; - &gt; 4 条推文。</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li>同时考虑<code>recordTweet</code> 和 <code>getTweetCountsPerFrequency</code>，最多有 10000 次操作。</li>
+<li><code>0 &lt;= time, startTime, endTime &lt;= 10^9</code></li>
+<li><code>0 &lt;= endTime - startTime &lt;= 10^4</code></li>
+</ul>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/tweet-counts-per-frequency" target="_blank" rel="noopener">https://leetcode-cn.com/problems/tweet-counts-per-frequency</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 题目讲的太麻烦了</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>统计所有用户的发推文的时间序列即可。由于题目中涉及到时间统计，肯定会用到二分查找，我们用<code>set</code>来保存时间序列，会按照时间的大小进行自动排序。</li>
+<li>按照频率依次统计每个间隔里面发的推文的数目即可。基本的二分查找即可实现，没有太多难度。<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TweetCounts</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TweetCounts() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">recordTweet</span><span class="params">(<span class="built_in">string</span> tweetName, <span class="keyword">int</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;cnt[tweetName].insert(time);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getFreq</span><span class="params">(<span class="built_in">string</span> freq)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(freq == <span class="string">"minute"</span>) <span class="keyword">return</span> <span class="number">60</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(freq == <span class="string">"hour"</span>) <span class="keyword">return</span> <span class="number">3600</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">86400</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; getTweetCountsPerFrequency(<span class="built_in">string</span> freq, <span class="built_in">string</span> tweetName, <span class="keyword">int</span> startTime, <span class="keyword">int</span> endTime) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">int</span> f = getFreq(freq);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = startTime; i &lt;= endTime; i = i + f)&#123;</span><br><span class="line">            <span class="keyword">auto</span> l = cnt[tweetName].lower_bound(i);</span><br><span class="line">            <span class="keyword">auto</span> r = cnt[tweetName].lower_bound(min(i+f,endTime+<span class="number">1</span>));</span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(l != r)&#123;</span><br><span class="line">                count++;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">            res.push_back(count);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>,<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;&gt; cnt;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your TweetCounts object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * TweetCounts* obj = new TweetCounts();</span></span><br><span class="line"><span class="comment"> * obj-&gt;recordTweet(tweetName,time);</span></span><br><span class="line"><span class="comment"> * vector&lt;int&gt; param_2 = obj-&gt;getTweetCountsPerFrequency(freq,tweetName,startTime,endTime);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5335-参加考试的最大学生数"><a href="#5335-参加考试的最大学生数" class="headerlink" title="5335. 参加考试的最大学生数"></a>5335. 参加考试的最大学生数</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3><p>给你一个 m * n 的矩阵 <code>seats</code> 表示教室中的座位分布。如果座位是坏的（不可用），就用 ‘#’ 表示；否则，用 ‘.’ 表示。</p>
+<p>学生可以看到左侧、右侧、左上、右上这四个方向上紧邻他的学生的答卷，但是看不到直接坐在他前面或者后面的学生的答卷。请你计算并返回该考场可以容纳的一起参加考试且无法作弊的最大学生人数。</p>
+<p>学生必须坐在状况良好的座位上。</p>
+<p>示例 1：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：seats = [[<span class="string">"#"</span>,<span class="string">"."</span>,<span class="string">"#"</span>,<span class="string">"#"</span>,<span class="string">"."</span>,<span class="string">"#"</span>],</span><br><span class="line">              [<span class="string">"."</span>,<span class="string">"#"</span>,<span class="string">"#"</span>,<span class="string">"#"</span>,<span class="string">"#"</span>,<span class="string">"."</span>],</span><br><span class="line">              [<span class="string">"#"</span>,<span class="string">"."</span>,<span class="string">"#"</span>,<span class="string">"#"</span>,<span class="string">"."</span>,<span class="string">"#"</span>]]</span><br><span class="line">输出：<span class="number">4</span></span><br><span class="line">解释：教师可以让 <span class="number">4</span> 个学生坐在可用的座位上，这样他们就无法在考试中作弊。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：seats = [[<span class="string">"."</span>,<span class="string">"#"</span>],</span><br><span class="line">              [<span class="string">"#"</span>,<span class="string">"#"</span>],</span><br><span class="line">              [<span class="string">"#"</span>,<span class="string">"."</span>],</span><br><span class="line">              [<span class="string">"#"</span>,<span class="string">"#"</span>],</span><br><span class="line">              [<span class="string">"."</span>,<span class="string">"#"</span>]]</span><br><span class="line">输出：<span class="number">3</span></span><br><span class="line">解释：让所有学生坐在可用的座位上。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：seats = [[<span class="string">"#"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"#"</span>],</span><br><span class="line">              [<span class="string">"."</span>,<span class="string">"#"</span>,<span class="string">"."</span>,<span class="string">"#"</span>,<span class="string">"."</span>],</span><br><span class="line">              [<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"#"</span>,<span class="string">"."</span>,<span class="string">"."</span>],</span><br><span class="line">              [<span class="string">"."</span>,<span class="string">"#"</span>,<span class="string">"."</span>,<span class="string">"#"</span>,<span class="string">"."</span>],</span><br><span class="line">              [<span class="string">"#"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"#"</span>]]</span><br><span class="line">输出：<span class="number">10</span></span><br><span class="line">解释：让学生坐在第 <span class="number">1</span>、<span class="number">3</span> 和 <span class="number">5</span> 列的可用座位上。</span><br></pre></td></tr></table></figure><br>提示：</p>
+<ul>
+<li><code>seats</code> 只包含字符 ‘.’ 和’#’</li>
+<li><code>m == seats.length</code></li>
+<li><code>n == seats[i].length</code></li>
+<li><code>1 &lt;= m &lt;= 8</code></li>
+<li><code>1 &lt;= n &lt;= 8</code><h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><a href="https://leetcode-cn.com/problems/maximum-students-taking-exam/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-students-taking-exam/</a><h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 题目非常有新意，状态压缩dp</p>
+<h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3></blockquote>
+</li>
+</ul>
+<ol>
+<li>题目还是非常有新意的，状态压缩dp。</li>
+<li>仔细分析一下，实际上每一行仅仅与上一行有关系，即本行的座位分布仅仅会影响到下一行的座位分布，我们用位图来代替每一行的座位。</li>
+<li>状态检查，仔细检查每一行的座位分布，有两种情况下该座位不能被分配，一是本身该座位就是坏的，二是本身该座位相邻座位存在学生分配。如果有这两种情况，则该行的状态为非法的。</li>
+<li>仔细还需要检查本行<code>i</code>的状态<code>mask(i)</code>与前一行状态<code>mask(2)</code>的分配问题。即左上方与右上方不能同时存在学生。则需要仔细检查。</li>
+<li>递推公式为：<code>dp[i][mask1] = dp[i-1][mask2] + count[i][mask1]</code>,其中<code>count[i][mask1]</code>代表第<code>i</code>行在座位分布<code>mask1</code>下的学生总数目。<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">bitTst</span><span class="params">(<span class="keyword">int</span> mask,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>((mask&amp;(<span class="number">1</span>&lt;&lt;n))&gt;&gt;n) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">check1</span><span class="params">(<span class="keyword">int</span> mask,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(bitTst(mask,i<span class="number">-1</span>)&amp;&amp;bitTst(mask,i)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">check2</span><span class="params">(<span class="keyword">int</span> mask1,<span class="keyword">int</span> mask2,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i<span class="number">-1</span> &gt;= <span class="number">0</span> &amp;&amp; bitTst(mask1,i) &amp;&amp; bitTst(mask2,i<span class="number">-1</span>)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span>(i+<span class="number">1</span> &lt; n &amp;&amp; bitTst(mask1,i) &amp;&amp; bitTst(mask2,i+<span class="number">1</span>)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxStudents</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; seats)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> row = seats.size();</span><br><span class="line">        <span class="keyword">int</span> col = seats[<span class="number">0</span>].size();</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(row+<span class="number">1</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>&lt;&lt;col,<span class="number">0</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*intial row*/</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= row; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; (<span class="number">1</span>&lt;&lt;col); ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!check1(j,col))&#123;</span><br><span class="line">                    dp[i][j] = <span class="number">-1</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; col; ++k)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(bitTst(j,k)&amp;&amp;seats[i<span class="number">-1</span>][k] == <span class="string">'#'</span>)&#123;</span><br><span class="line">                       count = <span class="number">-1</span>;</span><br><span class="line">                       <span class="keyword">continue</span>; </span><br><span class="line">                    &#125; </span><br><span class="line">                    <span class="keyword">if</span>(bitTst(j,k)) count++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(count == <span class="number">-1</span>)&#123;</span><br><span class="line">                    dp[i][j] = <span class="number">-1</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; (<span class="number">1</span>&lt;&lt;col); ++k)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(dp[i<span class="number">-1</span>][k] == <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">if</span>(check2(j,k,col))&#123;</span><br><span class="line">                        dp[i][j] = max(dp[i][j],dp[i<span class="number">-1</span>][k] + count);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                res = max(res,dp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>个人技术成长记录.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/09/131/" rel="next" title="【Leetcode】 第 175 场周赛">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】 第 175 场周赛
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#175场双周比赛"><span class="nav-number">1.</span> <span class="nav-text">175场双周比赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5332-检查整数及其两倍数是否存在"><span class="nav-number">1.1.</span> <span class="nav-text">5332. 检查整数及其两倍数是否存在</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5333-制造字母异位词的最小步骤数"><span class="nav-number">1.2.</span> <span class="nav-text">5333. 制造字母异位词的最小步骤数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1348-推文计数"><span class="nav-number">1.3.</span> <span class="nav-text">1348. 推文计数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">1.3.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5335-参加考试的最大学生数"><span class="nav-number">1.4.</span> <span class="nav-text">5335. 参加考试的最大学生数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-3"><span class="nav-number">1.4.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">1.4.5.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
