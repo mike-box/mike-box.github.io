@@ -58,7 +58,7 @@
 <meta property="og:site_name" content="blow in the wind">
 <meta property="og:description" content="185周比赛今天的题目质量还是非常高,题目质量都不错，有一定的小技巧。5388. 重新格式化字符串题目给你一个混合了数字和字母的字符串 s，其中的字母均为小写英文字母。请你将该字符串重新格式化，使得任意两个相邻字符的类型都不同。也就是说，字母后面应该跟着数字，而数字后面应该跟着字母。请你返回 重新格式化后 的字符串；如果无法按要求重新格式化，则返回一个 空字符串 。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-20T01:16:03.437Z">
+<meta property="og:updated_time" content="2020-04-20T15:00:07.015Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/04/19/153/">
@@ -224,7 +224,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-20 09:16:03" itemprop="dateModified" datetime="2020-04-20T09:16:03+08:00">2020-04-20</time>
+                <time title="Modified: 2020-04-20 23:00:07" itemprop="dateModified" datetime="2020-04-20T23:00:07+08:00">2020-04-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -343,10 +343,14 @@
 <h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
 <p>  基本上需要取模的都是动态规划。</p>
 <h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><ol>
-<li>本题关键时动态规划，主要是如何确定动态规划的递推公式。</li>
+<li>设<code>dp[i][j][k]</code>代表数组长度为<code>i</code>,且当前的最大值为<code>j</code>且得分为<code>k</code>的数组的方案数目。</li>
+<li>我们假设当前数组长度为<code>i</code>,且当前的最大值为<code>j</code>且得分为<code>k</code>。则当数组长度为<code>i+1</code>时，如果第<code>i+1</code>个数大于前<code>i</code>个数的最大值<code>j</code>，则他的得分应该为为<code>k+1</code>,则这时第<code>i+1</code>个数的取值范围为<code>j+1~m</code>;如果第<code>i+1</code>个数小于等于前<code>i</code>个数的最大值<code>j</code>，则他的得分应该仍然为<code>k</code>,则这时第<code>i+1</code>个数应该取值范围为<code>1~j</code>。因此我们可以得到递推公式如下：<script type="math/tex; mode=display">
+dp[i][j][k] = dp[i-1][j][k]*j + \sum_{x=1}^{j-1}dp[i-1][x][k-1]</script></li>
+<li>最后我们可以得到得分为<code>k</code>的总的方案数目:<script type="math/tex; mode=display">
+total = \sum_{i=1}^{m}dp[n][i][k]</script></li>
 </ol>
 </blockquote>
-<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">51</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">101</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> K = <span class="number">51</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numOfArrays</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> dp[N][M][K];</span><br><span class="line">        <span class="keyword">int</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i)&#123;</span><br><span class="line">            dp[<span class="number">1</span>][i][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> a = <span class="number">2</span>; a &lt;= n; ++a)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">1</span>; b &lt;= m; ++b)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> c = <span class="number">1</span>; c &lt;= k &amp;&amp; c &lt;= b &amp;&amp; c &lt;= a; ++c)&#123;</span><br><span class="line">                    dp[a][b][c] = (b*dp[a<span class="number">-1</span>][b][c])%mod;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> mx = <span class="number">1</span>; mx &lt; b; ++mx)&#123;</span><br><span class="line">                        dp[a][b][c] = (dp[a][b][c] + dp[a<span class="number">-1</span>][mx][c<span class="number">-1</span>])%mod;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> total = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i)&#123;</span><br><span class="line">            total = (total + dp[n][i][k])%mod;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -388,6 +392,9 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2020/04/20/154/" rel="prev" title="【Leetcode】 LCP2020">
+                  【Leetcode】 LCP2020 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -443,7 +450,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">113</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
