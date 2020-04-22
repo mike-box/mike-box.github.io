@@ -58,7 +58,7 @@
 <meta property="og:site_name" content="blow in the wind">
 <meta property="og:description" content="LCP2020还是比赛的题目质量高，可惜只做出来了4道题目，最后一道题目没有思路。LCP 06. 拿硬币题目桌上有 n堆力扣币，每堆的数量保存在数组 coins中。我们每次可以选择任意一堆，拿走其中的一枚或者两枚，求拿完所有力扣币的最少次数。示例 1：12345输入：[4,2,1]输出：4解释：第一堆力扣币最少需要拿 2 次，第二堆最少需要拿 1 次，第三堆最少需要拿 1 次，总共 4 次即可拿完">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-20T16:27:46.333Z">
+<meta property="og:updated_time" content="2020-04-22T09:39:59.842Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/04/20/154/">
@@ -224,7 +224,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-21 00:27:46" itemprop="dateModified" datetime="2020-04-21T00:27:46+08:00">2020-04-21</time>
+                <time title="Modified: 2020-04-22 17:39:59" itemprop="dateModified" datetime="2020-04-22T17:39:59+08:00">2020-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -355,11 +355,38 @@ dp[i][j] = \sum_{v = 1}^{n}dp[i-1][v] \:\:  if(edge[v][j] == true)</script></li>
 </ul>
 <h3 id="地址-4"><a href="#地址-4" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/er-cha-shu-ren-wu-diao-du" target="_blank" rel="noopener">https://leetcode-cn.com/problems/er-cha-shu-ren-wu-diao-du</a></p>
 <h3 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  贪心算法</p>
 <h3 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h3><ol>
-<li>。</li>
+<li>当时比赛的时候没有想明白，解题思路可以参考lee215的微信公众号<a href="https://mp.weixin.qq.com/s/rmwVuDpbQlhoK7DcD715bg" target="_blank" rel="noopener">2020力扣杯</a>。</li>
+<li>后来仔细思考了一下，还是非常有意思的，当时比赛时想到了这点，但是如何进一步优化确实没有深入思考，遇到困难就放弃，确实是自己最大的问题。</li>
+<li>根据题目种的思路，实际上对于节点<code>root</code>,它的左右子树的任务是可以进行并行运行的，我们整个的解题思路也是围绕着，如何能够更好的解决左右子树同时并行的任务的最大值的问题。我们<code>dfs</code>时，每次返回<code>root</code>节点下双核并行任务的运行时间和单核任务运行的时间，分别为<code>s</code>,<code>d</code>,如何围绕左右子树的任务进行合并。</li>
+<li>我们假设当前<code>root</code>节点的左子树返回的双核并行时间和单核运行时间分别为<code>d1</code>,<code>s1</code>.右子树返回的双核并行时间和单核运行时间分别为<code>d2</code>,<code>s2</code>.常规思路是我们讲所有的并行时间加起来，再把单核运行的时间中的部分最小值部分进行并行即<code>min(s1,s2)</code>.<br>所以我们可以得到左右子树的总共的并行时间为：<script type="math/tex; mode=display">
+d = d1 + d2 + min(s1,s2)</script>左右子树的总共的单核运行时间为:<script type="math/tex; mode=display">
+s = abs(s1-s2)</script>所以完成左右子树的任务的总时间应该为：<script type="math/tex; mode=display">
+t = d + s = d1 + d2 + min(s1,s2) + abs(s1-s2)\\</script></li>
+<li>上面这样的结果基本上大部分人都能想到，但是实际上这样真的是最小吗？我们能否再增加d的时间，减少s的时间？但是如何再增加并行的时间，可能讨论就非常的复杂。隐隐约约感觉可以进行优化，因为我们知道假设并行的时间d再增减$\Delta t1$,单核运行的时间就可以减少$2\Delta t1$,总的时间也就减少$\Delta t1$, 也即我们想办法如何减少<code>abs(s1-s2)</code>，减少单核运行的时间。<script type="math/tex; mode=display">
+t = d + \Delta t1 + s - 2\Delta t1 = d + s - \Delta t1\\
+0 \le \Delta t1 \le \frac{s}{2} \\</script>仔细思考一下，这点稍微有点绕弯。如何进行优化呢？比如<code>s1 &gt; s2</code>,我们能否减少<code>d2</code>的并行时间$\Delta t$,然后<code>s2</code>就增加了$2 \Delta t$的时间内然后<code>s1</code>就能增加$2 \Delta t$与<code>s2</code>进行并行，这样我们就能够增加并行时间，那么总的消耗时间也就减少了。<script type="math/tex; mode=display">
+d2 = d2 - \Delta t\\
+s2 = s2 + 2*\Delta t\\
+t = d + s  \\
+t = d1 + d2  - \Delta t + min(s1,s2 + 2*\Delta t) + abs(s1-s2-2*\Delta t)</script>也就是我们要从<code>d2</code>中剥离部分时间尽量延长<code>s2</code>的使得<code>abs(s1-s2)</code>最小。只有这样才能得到最小值，实际也是贪心算法。所以当<code>s1 &gt; s2</code>时我们就要想办法提高<code>s2</code>,当<code>s2 &gt; s1</code>时我们就需要想办法提高<code>s1</code>.只有这样才能保证绝对值之差最小。<br>已知如下条件:<script type="math/tex; mode=display">
+s1 \ge s2 \\
+s1 \ge s2 - 2*\Delta t\\
+d2 \ge \Delta t\\
+d = d1 + d2 + min(s1,s2) = d1 + d2 + s2\\
+s = abs(s1-s2) = s1 - s2 \\
+t = d1 + d2 + s1 \\</script>我们对上述表达式进行展开：<script type="math/tex; mode=display">
+d^{'} = d1 + d2 + s2 + \Delta t \\
+s^{'} = s1 - s2 - 2*\Delta t \\
+t^{'} = d1 + d2  - \Delta t + s2 + 2*\Delta t  + (s1-s2-2*\Delta t)  \\
+t^{'} = d1 + d2 - \Delta t + s1</script>当然最优解的话肯定为：<script type="math/tex; mode=display">
+\Delta t = \frac{s1-s2}{2}</script>但由于还有下面的限制。<script type="math/tex; mode=display">
+d2 \ge \Delta t\\</script>所以总结起来：<script type="math/tex; mode=display">
+\Delta T = min(\frac{s1-s2}{2},d2)</script><h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3></li>
 </ol>
 </blockquote>
-<h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    pair&lt;<span class="keyword">double</span>,<span class="keyword">double</span>&gt; dfs(TreeNode * root)&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span> &#123;<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">        pair&lt;<span class="keyword">double</span>,<span class="keyword">double</span>&gt; l = dfs(root-&gt;left);</span><br><span class="line">        pair&lt;<span class="keyword">double</span>,<span class="keyword">double</span>&gt; r = dfs(root-&gt;right);</span><br><span class="line">        <span class="keyword">double</span> s = <span class="number">0.0</span>;</span><br><span class="line">        <span class="keyword">double</span> d = <span class="number">0.0</span>;</span><br><span class="line">        <span class="keyword">double</span> delta = <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span>(l.first &gt;= r.first)&#123;</span><br><span class="line">            delta = min((l.first-r.first)/<span class="number">2</span>,r.second);</span><br><span class="line">            d = l.second + r.second + r.first + delta;</span><br><span class="line">            s = l.first - r.first - <span class="number">2</span>*delta;</span><br><span class="line">            <span class="keyword">return</span> &#123;s + root-&gt;val,d&#125;;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            delta = min((r.first-l.first)/<span class="number">2</span>,l.second);</span><br><span class="line">            d = l.second + r.second + l.first + delta;</span><br><span class="line">            s = r.first - l.first - <span class="number">2</span>*delta;</span><br><span class="line">            <span class="keyword">return</span> &#123;s + root-&gt;val,d&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">minimalExecTime</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        pair&lt;<span class="keyword">double</span>,<span class="keyword">double</span>&gt; t = dfs(root);</span><br><span class="line">        <span class="keyword">return</span> t.first + t.second;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </div>
 
