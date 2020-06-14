@@ -194,6 +194,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/21/11/" class="post-title-link" itemprop="url">【Python】 Python学习笔记三</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-21 11:54:29" itemprop="dateCreated datePublished" datetime="2019-12-21T11:54:29+08:00">2019-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-25 09:49:12" itemprop="dateModified" datetime="2019-11-25T09:49:12+08:00">2019-11-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/21/11/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/21/11/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="python学习笔记-18）"><a href="#python学习笔记-18）" class="headerlink" title="python学习笔记(18）"></a>python学习笔记(18）</h2><hr><h4 id="python-meteclass"><a href="#python-meteclass" class="headerlink" title="python meteclass"></a><strong>python</strong> meteclass</h4><ul>
+<li><p><strong>metaclass</strong>的基本定义</p>
+<ul>
+<li>所有的类在定义和初始化时基本上都会调用type的<strong>new</strong>函数，<strong>_init</strong>函数，<strong>call_</strong>函数。<br>比如我们定义类如下:<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">MyClass:</span></span><br><span class="line"><span class="symbol">data</span> = <span class="symbol">1</span></span><br></pre></td></tr></table></figure>
+真正执行的代码为<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> = <span class="keyword">type</span>(classname, superclasses, attributedict)</span><br><span class="line"><span class="keyword">type</span>.<span class="constructor">__new__(<span class="params">typeclass</span>, <span class="params">classname</span>, <span class="params">superclasses</span>, <span class="params">attributedict</span>)</span></span><br><span class="line"><span class="keyword">type</span>.<span class="constructor">__init__(<span class="params">class</span>, <span class="params">classname</span>, <span class="params">superclasses</span>, <span class="params">attributedict</span>)</span></span><br></pre></td></tr></table></figure>
+我们可以通过自定义的meteclass类替换原生的type类，比如：<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> = <span class="symbol">type</span>(<span class="symbol">classname, <span class="symbol">superclasses</span>, <span class="symbol">attributedict</span></span>) </span><br><span class="line"># 变为了</span><br><span class="line"><span class="symbol">class</span> = <span class="symbol">MyMeta</span>(<span class="symbol">classname, <span class="symbol">superclasses</span>, <span class="symbol">attributedict</span></span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>思考题<br>  为什么要使用metaclass,比如以下例子：</p>
+  <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="constructor">Mymeta(<span class="params">type</span>)</span>:</span><br><span class="line">def <span class="constructor">__init__(<span class="params">self</span>, <span class="params">name</span>, <span class="params">bases</span>, <span class="params">dic</span>)</span>:</span><br><span class="line">    super<span class="literal">()</span>.<span class="constructor">__init__(<span class="params">name</span>, <span class="params">bases</span>, <span class="params">dic</span>)</span></span><br><span class="line">    print('===&gt;<span class="module-access"><span class="module"><span class="identifier">Mymeta</span>.</span><span class="module"><span class="identifier">__init__</span>'</span></span>)</span><br><span class="line">    print(self.__name__)</span><br><span class="line">    print(dic)</span><br><span class="line">    print(self.yaml_tag)</span><br><span class="line"></span><br><span class="line">def <span class="constructor">__new__(<span class="params">cls</span>, <span class="operator">*</span><span class="params">args</span>, <span class="operator">**</span><span class="params">kwargs</span>)</span>:</span><br><span class="line">    print('===&gt;<span class="module-access"><span class="module"><span class="identifier">Mymeta</span>.</span><span class="module"><span class="identifier">__new__</span>'</span></span>)</span><br><span class="line">    print(cls.__name__)</span><br><span class="line">    return <span class="keyword">type</span>.<span class="constructor">__new__(<span class="params">cls</span>, <span class="operator">*</span><span class="params">args</span>, <span class="operator">**</span><span class="params">kwargs</span>)</span></span><br><span class="line"></span><br><span class="line">def <span class="constructor">__call__(<span class="params">cls</span>, <span class="operator">*</span><span class="params">args</span>, <span class="operator">**</span><span class="params">kwargs</span>)</span>:</span><br><span class="line">    print('===&gt;<span class="module-access"><span class="module"><span class="identifier">Mymeta</span>.</span><span class="module"><span class="identifier">__call__</span>'</span></span>)</span><br><span class="line">    obj = cls.<span class="constructor">__new__(<span class="params">cls</span>)</span></span><br><span class="line">    cls.<span class="constructor">__init__(<span class="params">cls</span>, <span class="operator">*</span><span class="params">args</span>, <span class="operator">**</span><span class="params">kwargs</span>)</span></span><br><span class="line">    return obj</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="constructor">Foo(<span class="params">metaclass</span>=Mymeta)</span>:</span><br><span class="line">    yaml_tag = '!Foo'`</span><br><span class="line"></span><br><span class="line">def <span class="constructor">__init__(<span class="params">self</span>, <span class="params">name</span>)</span>:</span><br><span class="line">    print('<span class="module-access"><span class="module"><span class="identifier">Foo</span>.</span><span class="module"><span class="identifier">__init__</span>'</span></span>)</span><br><span class="line">    self.name = name</span><br><span class="line"></span><br><span class="line">def <span class="constructor">__new__(<span class="params">cls</span>, <span class="operator">*</span><span class="params">args</span>, <span class="operator">**</span><span class="params">kwargs</span>)</span>:</span><br><span class="line">    print('<span class="module-access"><span class="module"><span class="identifier">Foo</span>.</span><span class="module"><span class="identifier">__new__</span>'</span></span>)</span><br><span class="line">    return object.<span class="constructor">__new__(<span class="params">cls</span>)</span></span><br><span class="line"></span><br><span class="line">foo = <span class="constructor">Foo('<span class="params">foo</span>')</span></span><br></pre></td></tr></table></figure>
+<p>  可以看到上述执行的过程依次为</p>
+<ul>
+<li>Mymeta.<strong>new</strong></li>
+<li>Mymeta.<strong>init</strong></li>
+<li>Mymeta.<strong>call</strong></li>
+<li>Foo.<strong>new</strong></li>
+<li>Foo.<strong>init</strong></li>
+</ul>
+</li>
+</ul>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/109/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1114,7 +1223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-count">130</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
