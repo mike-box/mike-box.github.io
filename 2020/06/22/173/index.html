@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="194周比赛本周周赛的题目还还是创出了新难度，题目全部AC的人数还不到100人。前三题确实有点难度，特别是第二题和第三题都比较绕，第四题除了暴力意外没有好思路。1486. 数组异或操作题目给你两个整数，n和 start。数组 nums 定义为：nums[i] = start + 2*i（下标从 0 开始）且 n == nums.length。">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 194周比赛">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;22&#x2F;173&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="194周比赛本周周赛的题目还还是创出了新难度，题目全部AC的人数还不到100人。前三题确实有点难度，特别是第二题和第三题都比较绕，第四题除了暴力意外没有好思路。1486. 数组异或操作题目给你两个整数，n和 start。数组 nums 定义为：nums[i] = start + 2*i（下标从 0 开始）且 n == nums.length。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;mike-box.github.io&#x2F;images&#x2F;175-1.png">
+<meta property="og:updated_time" content="2020-06-22T02:12:45.789Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;mike-box.github.io&#x2F;images&#x2F;175-1.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/22/173/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 194周比赛 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/22/173/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 194周比赛
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-22 10:12:39 / Modified: 10:12:45" itemprop="dateCreated datePublished" datetime="2020-06-22T10:12:39+08:00">2020-06-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/22/173/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/22/173/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="194周比赛"><a href="#194周比赛" class="headerlink" title="194周比赛"></a>194周比赛</h1><p><img src="https://mike-box.github.io/images/175-1.png" alt="1"><br>本周周赛的题目还还是创出了新难度，题目全部AC的人数还不到100人。前三题确实有点难度，特别是第二题和第三题都比较绕，第四题除了暴力意外没有好思路。</p><h2 id="1486-数组异或操作"><a href="#1486-数组异或操作" class="headerlink" title="1486. 数组异或操作"></a>1486. 数组异或操作</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你两个整数，<code>n</code>和 <code>start</code>。</p><p>数组 <code>nums</code> 定义为：<code>nums[i] = start + 2*i</code>（下标从 0 开始）且 <code>n == nums.length</code>。</p><a id="more"></a>
+
+
+<p>请返回 <code>nums</code> 中所有元素按位异或（<code>XOR</code>）后得到的结果。</p>
+<p>示例 1：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">5</span>, start = <span class="number">0</span></span><br><span class="line">输出：<span class="number">8</span></span><br><span class="line">解释：数组 nums 为 [<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]，其中 (<span class="number">0</span> ^ <span class="number">2</span> ^ <span class="number">4</span> ^ <span class="number">6</span> ^ <span class="number">8</span>) = <span class="number">8</span> 。</span><br><span class="line">     <span class="string">"^"</span> 为按位异或 XOR 运算符。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">4</span>, start = <span class="number">3</span></span><br><span class="line">输出：<span class="number">8</span></span><br><span class="line">解释：数组 nums 为 [<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]，其中 (<span class="number">3</span> ^ <span class="number">5</span> ^ <span class="number">7</span> ^ <span class="number">9</span>) = <span class="number">8.</span></span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">1</span>, start = <span class="number">7</span></span><br><span class="line">输出：<span class="number">7</span></span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">10</span>, start = <span class="number">5</span></span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">+ `<span class="number">1</span> &lt;= n &lt;= <span class="number">1000</span>`</span><br><span class="line">+ `<span class="number">0</span> &lt;= start &lt;= <span class="number">1000</span>`</span><br><span class="line">+ `n == nums.length`</span><br><span class="line"></span><br><span class="line">### 地址</span><br><span class="line">https:<span class="comment">//leetcode-cn.com/problems/xor-operation-in-an-array</span></span><br><span class="line">### 题意</span><br><span class="line">&gt;   暴力</span><br><span class="line">### 思路</span><br><span class="line"><span class="number">1.</span> 直接暴力</span><br><span class="line">### 代码</span><br><span class="line">```c++</span><br><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">int</span> xorOperation(<span class="built_in">int</span> n, <span class="built_in">int</span> start) &#123;</span><br><span class="line">        <span class="built_in">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            res = res^(start+(i*<span class="number">2</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="1487-保证文件名唯一"><a href="#1487-保证文件名唯一" class="headerlink" title="1487. 保证文件名唯一"></a>1487. 保证文件名唯一</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>给你一个长度为 <code>n</code> 的字符串数组 <code>names</code>。你将会在文件系统中创建<code>n</code>个文件夹：在第 <code>i</code>分钟，新建名为 <code>names[i]</code> 的文件夹。</p>
+<p>由于两个文件 不能 共享相同的文件名，因此如果新建文件夹使用的文件名已经被占用，系统会以<code>(k)</code> 的形式为新文件夹的文件名添加后缀，其中 k 是能保证文件名唯一的 最小正整数 。</p>
+<p>返回长度为 <code>n</code> 的字符串数组，其中 <code>ans[i]</code>是创建第 <code>i</code> 个文件夹时系统分配给该文件夹的实际名称。</p>
+<p>示例 1：<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：names = [<span class="string">"pes"</span>,<span class="string">"fifa"</span>,<span class="string">"gta"</span>,<span class="string">"pes(2019)"</span>]</span><br><span class="line">输出：[<span class="string">"pes"</span>,<span class="string">"fifa"</span>,<span class="string">"gta"</span>,<span class="string">"pes(2019)"</span>]</span><br><span class="line">解释：文件系统将会这样创建文件名：</span><br><span class="line"><span class="string">"pes"</span> --&gt; 之前未分配，仍为 <span class="string">"pes"</span></span><br><span class="line"><span class="string">"fifa"</span> --&gt; 之前未分配，仍为 <span class="string">"fifa"</span></span><br><span class="line"><span class="string">"gta"</span> --&gt; 之前未分配，仍为 <span class="string">"gta"</span></span><br><span class="line"><span class="string">"pes(2019)"</span> --&gt; 之前未分配，仍为 <span class="string">"pes(2019)"</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：names = [<span class="string">"gta"</span>,<span class="string">"gta(1)"</span>,<span class="string">"gta"</span>,<span class="string">"avalon"</span>]</span><br><span class="line">输出：[<span class="string">"gta"</span>,<span class="string">"gta(1)"</span>,<span class="string">"gta(2)"</span>,<span class="string">"avalon"</span>]</span><br><span class="line">解释：文件系统将会这样创建文件名：</span><br><span class="line"><span class="string">"gta"</span> --&gt; 之前未分配，仍为 <span class="string">"gta"</span></span><br><span class="line"><span class="string">"gta(1)"</span> --&gt; 之前未分配，仍为 <span class="string">"gta(1)"</span></span><br><span class="line"><span class="string">"gta"</span> --&gt; 文件名被占用，系统为该名称添加后缀 (k)，由于 <span class="string">"gta(1)"</span> 也被占用，所以 k = <span class="number">2</span> 。实际创建的文件名为 <span class="string">"gta(2)"</span> 。</span><br><span class="line"><span class="string">"avalon"</span> --&gt; 之前未分配，仍为 <span class="string">"avalon"</span></span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：names = [<span class="string">"onepiece"</span>,<span class="string">"onepiece(1)"</span>,<span class="string">"onepiece(2)"</span>,<span class="string">"onepiece(3)"</span>,<span class="string">"onepiece"</span>]</span><br><span class="line">输出：[<span class="string">"onepiece"</span>,<span class="string">"onepiece(1)"</span>,<span class="string">"onepiece(2)"</span>,<span class="string">"onepiece(3)"</span>,<span class="string">"onepiece(4)"</span>]</span><br><span class="line">解释：当创建最后一个文件夹时，最小的正有效 k 为 <span class="number">4</span> ，文件名变为 <span class="string">"onepiece(4)"</span>。</span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：names = [<span class="string">"wano"</span>,<span class="string">"wano"</span>,<span class="string">"wano"</span>,<span class="string">"wano"</span>]</span><br><span class="line">输出：[<span class="string">"wano"</span>,<span class="string">"wano(1)"</span>,<span class="string">"wano(2)"</span>,<span class="string">"wano(3)"</span>]</span><br><span class="line">解释：每次创建文件夹 <span class="string">"wano"</span> 时，只需增加后缀中 k 的值即可。</span><br></pre></td></tr></table></figure><br>示例 5：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">输入：names = [<span class="string">"kaido"</span>,<span class="string">"kaido(1)"</span>,<span class="string">"kaido"</span>,<span class="string">"kaido(1)"</span>]</span><br><span class="line">输出：[<span class="string">"kaido"</span>,<span class="string">"kaido(1)"</span>,<span class="string">"kaido(2)"</span>,<span class="string">"kaido(1)(1)"</span>]</span><br><span class="line">解释：注意，如果含后缀文件名被占用，那么系统也会按规则在名称后添加新的后缀 (k) 。</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">+ `<span class="number">1</span> &lt;= names.length &lt;= <span class="number">5</span> * <span class="number">10</span>^<span class="number">4</span>`</span><br><span class="line">+ `<span class="number">1</span> &lt;= names[i].length &lt;= <span class="number">20</span>`</span><br><span class="line">+ `names[i] `由小写英文字母、数字和/或圆括号组成。</span><br><span class="line"></span><br><span class="line"><span class="meta">### 地址</span></span><br><span class="line">https:<span class="comment">//leetcode-cn.com/problems/making-file-names-unique</span></span><br><span class="line"><span class="meta">### 题意</span></span><br><span class="line">&gt;  hash</span><br><span class="line"><span class="meta">### 思路</span></span><br><span class="line"><span class="number">1.</span> 题目很无聊啊，用hash保存该文件名当前最大的统计数。</span><br><span class="line"><span class="number">2.</span> 如果该名字没有出现过，则直接返回该文件名；如果该文件名出现，则找到该文件名为开头的最大整数索引，将其加入到文件名中的一部分即可，同时需要将最新的名字也要写入`hash`表中。</span><br><span class="line"><span class="meta">### 代码</span></span><br><span class="line">```c++</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="keyword">string</span>&gt; getFolderNames(vector&lt;<span class="keyword">string</span>&gt;&amp; names) &#123;</span><br><span class="line">        unordered_map&lt;<span class="keyword">string</span>,<span class="keyword">int</span>&gt; cnt;</span><br><span class="line">        vector&lt;<span class="keyword">string</span>&gt; res;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; names.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!cnt.count(names[i]))&#123;</span><br><span class="line">                res.push_back(names[i]);</span><br><span class="line">                cnt[names[i]] = <span class="number">0</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> x = cnt[names[i]] + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span>(cnt.count(names[i] + <span class="string">"("</span> + to_string(x) + <span class="string">")"</span>)) x++;</span><br><span class="line">                <span class="keyword">string</span> newname = names[i] + <span class="string">"("</span> + to_string(x) + <span class="string">")"</span>;</span><br><span class="line">                res.push_back(newname);</span><br><span class="line">                cnt[names[i]] = x;</span><br><span class="line">                cnt[newname] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="1488-避免洪水泛滥"><a href="#1488-避免洪水泛滥" class="headerlink" title="1488. 避免洪水泛滥"></a>1488. 避免洪水泛滥</h2><p>你的国家有无数个湖泊，所有湖泊一开始都是空的。当第 <code>n</code>个湖泊下雨的时候，如果第 <code>n</code> 个湖泊是空的，那么它就会装满水，否则这个湖泊会发生洪水。你的目标是避免任意一个湖泊发生洪水。</p>
+<p>给你一个整数数组 <code>rains</code> ，其中：</p>
+<ul>
+<li><code>rains[i] &gt; 0</code> 表示第 <code>i</code> 天时，第 <code>rains[i]</code> 个湖泊会下雨。</li>
+<li><code>rains[i] == 0</code> 表示第 <code>i</code> 天没有湖泊会下雨，你可以选择 一个 湖泊并 抽干 这个湖泊的水。<br>请返回一个数组<code>ans</code> ，满足：</li>
+<li><code>ans.length == rains.length</code></li>
+<li>如果 <code>rains[i] &gt; 0</code>，那么<code>ans[i] == -1</code> 。</li>
+<li>如果 <code>rains[i] == 0</code>，<code>ans[i]</code>是你第 <code>i</code> 天选择抽干的湖泊。</li>
+<li>如果有多种可行解，请返回它们中的 任意一个 。如果没办法阻止洪水，请返回一个 空的数组 。</li>
+</ul>
+<p>请注意，如果你选择抽干一个装满水的湖泊，它会变成一个空的湖泊。但如果你选择抽干一个空的湖泊，那么将无事发生（详情请看示例 4）。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：rains = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">输出：[<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>]</span><br><span class="line">解释：第一天后，装满水的湖泊包括 [<span class="number">1</span>]</span><br><span class="line">第二天后，装满水的湖泊包括 [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">第三天后，装满水的湖泊包括 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">第四天后，装满水的湖泊包括 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">没有哪一天你可以抽干任何湖泊的水，也没有湖泊会发生洪水。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入：rains = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">输出：[<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-1</span>]</span><br><span class="line">解释：第一天后，装满水的湖泊包括 [<span class="number">1</span>]</span><br><span class="line">第二天后，装满水的湖泊包括 [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">第三天后，我们抽干湖泊 <span class="number">2</span> 。所以剩下装满水的湖泊包括 [<span class="number">1</span>]</span><br><span class="line">第四天后，我们抽干湖泊 <span class="number">1</span> 。所以暂时没有装满水的湖泊了。</span><br><span class="line">第五天后，装满水的湖泊包括 [<span class="number">2</span>]。</span><br><span class="line">第六天后，装满水的湖泊包括 [<span class="number">1</span>,<span class="number">2</span>]。</span><br><span class="line">可以看出，这个方案下不会有洪水发生。同时， [<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">-1</span>,<span class="number">-1</span>] 也是另一个可行的没有洪水的方案。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：rains = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">输出：[]</span><br><span class="line">解释：第二天后，装满水的湖泊包括 [<span class="number">1</span>,<span class="number">2</span>]。我们可以在第三天抽干一个湖泊的水。</span><br><span class="line">但第三天后，湖泊 <span class="number">1</span> 和 <span class="number">2</span> 都会再次下雨，所以不管我们第三天抽干哪个湖泊的水，另一个湖泊都会发生洪水。</span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：rains = [<span class="number">69</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">69</span>]</span><br><span class="line">输出：[<span class="number">-1</span>,<span class="number">69</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>]</span><br><span class="line">解释：任何形如 [<span class="number">-1</span>,<span class="number">69</span>,x,y,<span class="number">-1</span>], [<span class="number">-1</span>,x,<span class="number">69</span>,y,<span class="number">-1</span>] 或者 [<span class="number">-1</span>,x,y,<span class="number">69</span>,<span class="number">-1</span>] 都是可行的解，其中 <span class="number">1</span> &lt;= x,y &lt;= <span class="number">10</span>^<span class="number">9</span></span><br></pre></td></tr></table></figure><br>示例 5：<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">输入：rains = [10,<span class="number">20</span>,<span class="number">20</span>]</span><br><span class="line">输出：[]</span><br><span class="line">解释：由于湖泊 <span class="number">20</span> 会连续下 <span class="number">2</span> 天的雨，所以没有没有办法阻止洪水。</span><br><span class="line"><span class="symbol">``</span><span class="symbol">` </span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">提示：</span></span><br><span class="line"><span class="symbol">+ `</span><span class="number">1</span> &lt;= rains.<span class="built_in">length</span> &lt;= <span class="number">10</span>^<span class="number">5</span><span class="symbol">`</span></span><br><span class="line"><span class="symbol">+ `</span><span class="number">0</span> &lt;= rains[i] &lt;= <span class="number">10</span>^<span class="number">9</span><span class="symbol">`</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">### 地址</span></span><br><span class="line"><span class="symbol">https://leetcode-cn.com/problems/avoid-flood-in-the-city</span></span><br><span class="line"><span class="symbol">### 题意</span></span><br><span class="line"><span class="symbol">&gt;  贪心 + 二分查找</span></span><br><span class="line"><span class="symbol">### 思路</span></span><br><span class="line"><span class="symbol">1. 我们保存未下雨的天数，即可以抽干湖泊的日期`</span>dry<span class="symbol">`。我们同时记录湖泊`</span>i<span class="symbol">`在哪一天下了雨，记录为`</span>rain[i]<span class="symbol">`。</span></span><br><span class="line"><span class="symbol">2. 当我们遇到湖泊`</span>i<span class="symbol">`在第`</span>j<span class="symbol">`天第二次下雨时，因为此时湖泊已经灌满了水，这时会肯定会发生洪水,此时我们应当在`</span>[rain[i]+<span class="number">1</span>,j<span class="number">-1</span>]<span class="symbol">`之间从可以抽干水的日期`</span>dry<span class="symbol">`中选择一天来抽干湖泊`</span>i<span class="symbol">`,即：</span></span><br><span class="line"><span class="symbol">$$</span></span><br><span class="line"><span class="symbol">rain[i]+1 \le select_&#123;i&#125; \le j-1 </span></span><br><span class="line"><span class="symbol">$$</span></span><br><span class="line"><span class="symbol">3. 但是选择日期的时候有一点比较关键，我们需要尽量选择靠前的天数，即在区间`</span>[rain[i]+<span class="number">1</span>,j<span class="number">-1</span>]<span class="symbol">`中的最小日期,我们可以用二分查找在`</span>O(lgn)<span class="symbol">`的时间复杂度内在`</span>dry<span class="symbol">`集合中快速找到第一个大于`</span>rain[i]<span class="symbol">`的数,我们可以利用有序集合的`</span>upper_bound<span class="symbol">`函数。假如我们不选择靠前的天数可能会影响到后面的湖泊，导致后面的湖泊出现洪水。比如：</span></span><br></pre></td></tr></table></figure><br>[1,0,2,3,0,1,2]<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">我们在第`<span class="number">6</span>`天时，湖泊`<span class="number">1</span>`如果不进行抽干，则该湖泊会导致洪水，而我们可以选择第`<span class="number">2</span>`天或者第`<span class="number">5</span>`天进行抽干湖泊`<span class="number">1</span>`，但我们实际选择时选择第`<span class="number">2</span>`天进行抽干湖泊`<span class="number">1</span>`,否则会导致湖泊`<span class="number">2</span>`没法进行抽干而产生洪水。</span><br><span class="line">### 代码</span><br><span class="line">```c++</span><br><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="built_in">int</span>&gt; avoidFlood(vector&lt;<span class="built_in">int</span>&gt;&amp; rains) &#123;</span><br><span class="line">        <span class="built_in">int</span> n = rains.size();</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; ans(n,<span class="number">1</span>);</span><br><span class="line">        unordered_map&lt;<span class="built_in">int</span>,<span class="built_in">int</span>&gt; flood;</span><br><span class="line">        <span class="keyword">set</span>&lt;<span class="built_in">int</span>&gt; dry;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(rains[i] == <span class="number">0</span>)&#123;</span><br><span class="line">                dry.insert(i);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rains[i] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(flood.count(rains[i]))&#123;</span><br><span class="line">                    <span class="keyword">if</span>(dry.empty()) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">                    <span class="built_in">auto</span> it = dry.upper_bound(flood[rains[i]]);</span><br><span class="line">                    <span class="keyword">if</span>(it == dry.end()) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">                    ans[*it] = rains[i];</span><br><span class="line">                    dry.erase(*it);</span><br><span class="line">                &#125;</span><br><span class="line">                flood[rains[i]] = i;</span><br><span class="line">                ans[i] = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="1489-找到最小生成树里的关键边和伪关键边"><a href="#1489-找到最小生成树里的关键边和伪关键边" class="headerlink" title="1489. 找到最小生成树里的关键边和伪关键边"></a>1489. 找到最小生成树里的关键边和伪关键边</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>给你一个 <code>n</code>个点的带权无向连通图，节点编号为 <code>0</code>到 <code>n-1</code> ，同时还有一个数组<code>edges</code>，其中<code>edges[i] = [fromi, toi, weighti]</code> 表示在 <code>fromi</code>和<code>toi</code>节点之间有一条带权无向边。最小生成树 <code>(MST)</code>是给定图中边的一个子集，它连接了所有节点且没有环，而且这些边的权值和最小。</p>
+<p>请你找到给定图中最小生成树的所有关键边和伪关键边。如果最小生成树中删去某条边，会导致最小生成树的权值和增加，那么我们就说它是一条关键边。伪关键边则是可能会出现在某些最小生成树中但不会出现在所有最小生成树中的边。</p>
+<p>请注意，你可以分别以任意顺序返回关键边的下标和伪关键边的下标。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">5</span>, edges = [[<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">3</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">4</span>,<span class="number">3</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>]]</span><br><span class="line">输出：[[<span class="number">0</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]]</span><br><span class="line">解释：上图描述了给定图。</span><br><span class="line">下图是所有的最小生成树。</span><br><span class="line"></span><br><span class="line">注意到第 <span class="number">0</span> 条边和第 <span class="number">1</span> 条边出现在了所有最小生成树中，所以它们是关键边，我们将这两个下标作为输出的第一个列表。</span><br><span class="line">边 <span class="number">2</span>，<span class="number">3</span>，<span class="number">4</span> 和 <span class="number">5</span> 是所有 MST 的剩余边，所以它们是伪关键边。我们将它们作为输出的第二个列表。</span><br></pre></td></tr></table></figure><br>示例 2 ：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">4</span>, edges = [[<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>],[<span class="number">0</span>,<span class="number">3</span>,<span class="number">1</span>]]</span><br><span class="line">输出：[[],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]]</span><br><span class="line">解释：可以观察到 <span class="number">4</span> 条边都有相同的权值，任选它们中的 <span class="number">3</span> 条可以形成一棵 MST 。所以 <span class="number">4</span> 条边都是伪关键边。</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">+ `<span class="number">2</span> &lt;= n &lt;= <span class="number">100</span>`</span><br><span class="line">+ `<span class="number">1</span> &lt;= edges.length &lt;= min(<span class="number">200</span>, n * (n - <span class="number">1</span>) / <span class="number">2</span>)`</span><br><span class="line">+ `edges[i].length == <span class="number">3</span>`</span><br><span class="line">+ `<span class="number">0</span> &lt;= fromi &lt; toi &lt; n`</span><br><span class="line">+ `<span class="number">1</span> &lt;= weighti &lt;= <span class="number">1000</span>`</span><br><span class="line">+ `所有 (fromi, toi) 数对都是互不相同的。`</span><br><span class="line"></span><br><span class="line">### 地址</span><br><span class="line">https:<span class="comment">//leetcode-cn.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree</span></span><br><span class="line">### 题意</span><br><span class="line">最小生成树算法</span><br><span class="line">### 解题思路</span><br><span class="line"><span class="number">1.</span> `contest`时没有做出来，后来看了解答，感觉竟然时暴力`check`每条边。</span><br><span class="line"><span class="number">2.</span> 首先跑一边最小生成树`kruskal`算法，求出最小生成树的`weight`为`best`.</span><br><span class="line"><span class="number">3.</span> 如果去掉某条边`e`,再运行一遍最小生成树算法，如果发现求出的最小生成树的`weight`如果不等于`best`，则我们认为边`e`为`critical egde`.</span><br><span class="line"><span class="number">4.</span> 如果我们在最小生成树中，初始化时每次加入某条边`e`（去掉`critical edge`),再运行一遍最小生成树算法，如果发现求出的最小生成树的`weight`如果等于`best`，则我们认为边`e`为`pseudo critical egde`.</span><br><span class="line"><span class="number">5.</span> 题目非常暴力，不过当时竟然没有想到这种暴力解法，题目中最重要的提示为`<span class="number">1</span> &lt;= edges.length &lt;= min(<span class="number">200</span>, n * (n - <span class="number">1</span>) / <span class="number">2</span>)`,说明`edge`的数量级非常小，完全可以暴力`check`每条边，还是智商不够，没有`<span class="keyword">get</span>`到`point`.</span><br><span class="line">### 代码</span><br><span class="line">```c++</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> find(vector&lt;<span class="built_in">int</span>&gt; &amp; f,<span class="built_in">int</span> x)&#123;</span><br><span class="line">    <span class="keyword">while</span>(x != f[x]) x = f[x];</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">bool</span> uni(vector&lt;<span class="built_in">int</span>&gt; &amp; f,<span class="built_in">int</span> x,<span class="built_in">int</span> y)&#123;</span><br><span class="line">    <span class="built_in">int</span> x1 = find(f,x);</span><br><span class="line">    <span class="built_in">int</span> y1 = find(f,y);</span><br><span class="line">    f[x1] = y1;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt; findCriticalAndPseudoCriticalEdges(<span class="built_in">int</span> n, vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt;&amp; edges) &#123;</span><br><span class="line">        <span class="built_in">int</span> m = edges.size();</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; f(n,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> k = <span class="number">0</span>; k &lt; m; ++k) &#123;</span><br><span class="line">            edges[k].push_back(k);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(edges.begin(), edges.end(),</span><br><span class="line">            [](<span class="keyword">const</span> vector&lt;<span class="built_in">int</span>&gt;&amp; u, <span class="keyword">const</span> vector&lt;<span class="built_in">int</span>&gt;&amp; v) &#123;</span><br><span class="line">                <span class="keyword">return</span> u[<span class="number">2</span>] &lt; v[<span class="number">2</span>];</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; ++i) f[i] = i;</span><br><span class="line">        <span class="built_in">int</span> best = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">auto</span>&amp; e : edges) &#123;</span><br><span class="line">            <span class="built_in">int</span> x = e[<span class="number">0</span>], y = e[<span class="number">1</span>], z = e[<span class="number">2</span>];</span><br><span class="line">            <span class="keyword">if</span> (find(f,x) != find(f,y)) &#123;</span><br><span class="line">                best += z;</span><br><span class="line">                uni(f,x,y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; best &lt;&lt; endl;</span><br><span class="line">        </span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; retA, retB;</span><br><span class="line">        vector&lt;<span class="built_in">bool</span>&gt; A(m);</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> k = <span class="number">0</span>; k &lt; m; ++k) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; ++i) f[i] = i;</span><br><span class="line">            <span class="built_in">int</span> curr = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; m; ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(j == k) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="built_in">int</span> x = edges[j][<span class="number">0</span>];</span><br><span class="line">                <span class="built_in">int</span> y = edges[j][<span class="number">1</span>];</span><br><span class="line">                <span class="built_in">int</span> w = edges[j][<span class="number">2</span>];</span><br><span class="line">                <span class="keyword">if</span>(find(f,x) != find(f,y))&#123;</span><br><span class="line">                    uni(f,x,y);</span><br><span class="line">                    curr += w;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(curr != best)&#123;</span><br><span class="line">                retA.push_back(edges[k][<span class="number">3</span>]);</span><br><span class="line">                A[k] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> k = <span class="number">0</span>; k &lt; m; ++k) &#123;</span><br><span class="line">            <span class="keyword">if</span>(A[k]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; ++i) f[i] = i;</span><br><span class="line">            uni(f,edges[k][<span class="number">0</span>],edges[k][<span class="number">1</span>]);</span><br><span class="line">            <span class="built_in">int</span> curr = edges[k][<span class="number">2</span>];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; m; ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(j == k) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="built_in">int</span> x = edges[j][<span class="number">0</span>];</span><br><span class="line">                <span class="built_in">int</span> y = edges[j][<span class="number">1</span>];</span><br><span class="line">                <span class="built_in">int</span> w = edges[j][<span class="number">2</span>];</span><br><span class="line">                <span class="keyword">if</span>(find(f,x) != find(f,y))&#123;</span><br><span class="line">                    uni(f,x,y);</span><br><span class="line">                    curr += w;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(curr == best)&#123;</span><br><span class="line">                retB.push_back(edges[k][<span class="number">3</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123;retA, retB&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>个人技术成长记录.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/06/14/172/" rel="next" title="【Leetcode】 193周比赛">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】 193周比赛
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#194周比赛"><span class="nav-number">1.</span> <span class="nav-text">194周比赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1486-数组异或操作"><span class="nav-number">1.1.</span> <span class="nav-text">1486. 数组异或操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1487-保证文件名唯一"><span class="nav-number">1.2.</span> <span class="nav-text">1487. 保证文件名唯一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1488-避免洪水泛滥"><span class="nav-number">1.3.</span> <span class="nav-text">1488. 避免洪水泛滥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1489-找到最小生成树里的关键边和伪关键边"><span class="nav-number">1.4.</span> <span class="nav-text">1489. 找到最小生成树里的关键边和伪关键边</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
