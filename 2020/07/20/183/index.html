@@ -58,7 +58,7 @@
 <meta property="og:site_name" content="blow in the wind">
 <meta property="og:description" content="树状数组关于树状数组这个类型的题目已经看到过很多次了，每次非常容易忘记，每次看一遍都感慨发明者这个数学工具的强大，可以利用树状数组在O(lgn)时间复杂度内完成对数组的区间和查询，或者区间更新。先介绍下lowbit的概念.123int lowbit(int x) &amp;#123;  return x &amp;amp; -x;&amp;#125;通过lowbit本质即快速的求出一个数二进制最低位的1.对于原始数组A[">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-07-20T03:39:38.851Z">
+<meta property="og:updated_time" content="2020-07-20T15:00:57.170Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/07/20/183/">
@@ -219,7 +219,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-07-20 11:39:33 / Modified: 11:39:38" itemprop="dateCreated datePublished" datetime="2020-07-20T11:39:33+08:00">2020-07-20</time>
+              <time title="Created: 2020-07-20 11:39:33 / Modified: 23:00:57" itemprop="dateCreated datePublished" datetime="2020-07-20T11:39:33+08:00">2020-07-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -295,7 +295,9 @@ sum[n] = \sum_{i=1}^{n}A[i] = A[1] + A[2] + A[3] + ... + A[n] \\
 = n*(C[1] + C[2] + C[3] + ... + C[n]) - (0*C[1] + 1*C[2] + ...+(n-1)*C[n]) \\
 \qquad \\
 = n\sum_{i=1}^{n}C[i] - \sum_{i=1}^{n}C[i]*(i-1)</script>所以我们需要维护再维护两个树状数组，能够利用树状数组快速的求和，我们知道数组<code>C[i]</code>和<code>C[i]*(i-1)</code>很容易求出来。能够快速的求出<code>C[i]</code>和<code>C[i]*(i-1)</code>的区间和即可。<br>我们维护两个树状数组：<script type="math/tex; mode=display">
-A[i] = C[i], B[i] = C[i]*(i-1)</script>我们进行区间更新时，比如我们需要将原始数组<code>A[n]</code>的区间<code>[l,r]</code>中的元素都增加<code>x</code>,此时我们只需要先将<code>A[1]~A[r]</code>的元素都增加<code>x</code>,然后再将<code>A[1]~A[l]</code>中的元素都减少<code>x</code>即可。</li>
+TA[i] = C[i], TB[i] = C[i]*(i-1)</script>我们进行区间更新时，比如我们需要将原始数组<code>A[n]</code>的区间<code>[l,r]</code>中的元素都增加<code>x</code>,此时我们只需要先将<code>A[1]~A[r]</code>的元素都增加<code>x</code>,然后再将<code>A[1]~A[l]</code>中的元素都减少<code>x</code>即可。</li>
+<li>单点更新：在<code>x</code>处增减<code>val</code>.<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = x; i &lt;= n; i += (i&amp;-i))<span class="comment">//更新后缀的父节点</span></span><br><span class="line">	&#123;</span><br><span class="line">		TA[i] += val;</span><br><span class="line">		TB[i] += val * (x<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <h2 id="典型题目"><a href="#典型题目" class="headerlink" title="典型题目"></a>典型题目</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><h3 id="2-区间求极值"><a href="#2-区间求极值" class="headerlink" title="2. 区间求极值"></a>2. 区间求极值</h3>
     </div>
@@ -338,6 +340,9 @@ A[i] = C[i], B[i] = C[i]*(i-1)</script>我们进行区间更新时，比如我�
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2020/07/26/184/" rel="prev" title="【Leetcode】 31周双周赛">
+                  【Leetcode】 31周双周赛 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -393,7 +398,7 @@ A[i] = C[i], B[i] = C[i]*(i-1)</script>我们进行区间更新时，比如我�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">142</span>
+          <span class="site-state-item-count">143</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
