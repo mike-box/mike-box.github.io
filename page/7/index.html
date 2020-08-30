@@ -194,6 +194,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/136/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/136/" class="post-title-link" itemprop="url">Maxflow</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-05 22:50:55" itemprop="dateCreated datePublished" datetime="2020-03-05T22:50:55+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-07 20:54:14" itemprop="dateModified" datetime="2020-03-07T20:54:14+08:00">2020-03-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/03/05/136/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/05/136/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="maxflow"><a href="#maxflow" class="headerlink" title="maxflow"></a>maxflow</h3><p>最近一直在学习<code>princeton</code>的算法课程，真心觉得质量很高，特别是每次的project，都需要用心和花费大的精力取完成，每次取得100分非常不容。最近把自己之前一直弄不清楚的<code>maxflow</code>算法搞清楚了，并且自己用<code>c++</code>完成了一个简单的<code>maxflow</code>算法，还是非常有成就感的。<br><img src="https://s2.ax1x.com/2020/03/05/3H57jS.png" alt="2"></p><ol>
+<li>定义<code>flownetwork</code>的定义，本身即是一个带权重的右向图，每条边的权重代表这条边的能够达到的最大流量。对于每个顶点的规定流出的流量与流入的流量相等。</li>
+<li>定义<code>flownetwork</code>的起点<code>s</code>与终点<code>t</code>.求出在每条边权重约束下，该有向图从s开始的最大流量。<br>核心问题是<code>minCnut</code>问题和<code>Ford-Fulkerson</code>算法。该问题确实非常经典，值得仔细取阅读和理解，但是算法本身的解法非常简单。</li>
+<li><code>Ford-Fulkerson</code>算法的核心每次查找从起点<code>s</code>到<code>t</code>的路径(augmentpath)，路径上每段的残差（capblity - flow，该条边还能增加多少流）大于0且路径不存在环，找到该条路径上的最小的残差，更新路径上的所有的边<code>flow</code>，都增加路径的最小残存。其实这种办法得本质即为将所有能够从起点<code>s</code>到终点<code>t</code>得路径全部填充满流量，而实际将路径填充满得最大流量是根据路径上得最小流量为基准。<br><img src="https://s2.ax1x.com/2020/03/05/3H5Tc8.png" alt="1"></li>
+<li>重复步骤3，直到在该有权图中无法再找到从<code>s</code>到<code>t</code>的路径即可。</li>
+<li>所有符合条件的路径的最小残存之和即为<code>maxflow</code>。</li>
+<li><code>minCut</code>即将有向图分为两个集合A,B.满足<code>capblity(A-&gt;B)</code> = <code>flow(A-&gt;B)</code>.即为最小分割。<h3 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3></li>
+<li>时间复杂度为O（V^2E).</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/05/136/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/135/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1031,103 +1136,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/26/126/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/26/126/" class="post-title-link" itemprop="url">【Leetcode】 第 173 场周赛</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-01-26 22:38:04" itemprop="dateCreated datePublished" datetime="2020-01-26T22:38:04+08:00">2020-01-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-27 23:37:51" itemprop="dateModified" datetime="2020-01-27T23:37:51+08:00">2020-01-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/01/26/126/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/26/126/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="173场双周比赛"><a href="#173场双周比赛" class="headerlink" title="173场双周比赛"></a>173场双周比赛</h1><p>题目整体比较简单，不如昨天的题目难。</p><h2 id="5319-删除回文子序列"><a href="#5319-删除回文子序列" class="headerlink" title="5319. 删除回文子序列"></a>5319. 删除回文子序列</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个字符串 <code>s</code>，它仅由字母<code>&#39;a&#39;</code> 和<code>&#39;b&#39;</code>组成。每一次删除操作都可以从 <code>s</code>中删除一个回文 子序列。</p><p>返回删除给定字符串中所有字符（字符串为空）的最小删除次数。</p><p>「子序列」定义：如果一个字符串可以通过删除原字符串某些字符而不改变原字符顺序得到，那么这个字符串就是原字符串的一个子序列。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/26/126/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1178,7 +1186,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">154</span>
+          <span class="site-state-item-count">155</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
