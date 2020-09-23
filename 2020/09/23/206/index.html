@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="LCCUP团体赛LCCUP团体赛的题目比个人赛南多了，基本上达到NOI区域赛的水平，难度还是不小，需要仔细分析和解析。每道题目都值得仔细思考和总结，主要是学习相关的思路。LCP 22. 黑白方格画题目小扣注意到秋日市集上有一个创作黑白方格画的摊位。摊主给每个顾客提供一个固定在墙上的白色画板，画板不能转动。画板上有n * n的网格。绘画规则为，小扣可以选择任意多行以及任意多列的格子涂成黑色，所选行数">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 LCCUP团体赛">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;09&#x2F;23&#x2F;206&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="LCCUP团体赛LCCUP团体赛的题目比个人赛南多了，基本上达到NOI区域赛的水平，难度还是不小，需要仔细分析和解析。每道题目都值得仔细思考和总结，主要是学习相关的思路。LCP 22. 黑白方格画题目小扣注意到秋日市集上有一个创作黑白方格画的摊位。摊主给每个顾客提供一个固定在墙上的白色画板，画板不能转动。画板上有n * n的网格。绘画规则为，小扣可以选择任意多行以及任意多列的格子涂成黑色，所选行数">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-09-23T09:27:11.058Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/09/23/206/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 LCCUP团体赛 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/23/206/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 LCCUP团体赛
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-23 17:27:06 / Modified: 17:27:11" itemprop="dateCreated datePublished" datetime="2020-09-23T17:27:06+08:00">2020-09-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/09/23/206/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/23/206/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="LCCUP团体赛"><a href="#LCCUP团体赛" class="headerlink" title="LCCUP团体赛"></a>LCCUP团体赛</h1><p>LCCUP团体赛的题目比个人赛南多了，基本上达到<code>NOI</code>区域赛的水平，难度还是不小，需要仔细分析和解析。每道题目都值得仔细思考和总结，主要是学习相关的思路。</p><h2 id="LCP-22-黑白方格画"><a href="#LCP-22-黑白方格画" class="headerlink" title="LCP 22. 黑白方格画"></a>LCP 22. 黑白方格画</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>小扣注意到秋日市集上有一个创作黑白方格画的摊位。摊主给每个顾客提供一个固定在墙上的白色画板，画板不能转动。画板上有<code>n * n</code>的网格。绘画规则为，小扣可以选择任意多行以及任意多列的格子涂成黑色，所选行数、列数均可为 0。</p><a id="more"></a>
+
+<p>小扣希望最终的成品上需要有 k 个黑色格子，请返回小扣共有多少种涂色方案。</p>
+<p>注意：两个方案中任意一个相同位置的格子颜色不同，就视为不同的方案。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">2</span>, k = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">输出：<span class="number">4</span></span><br><span class="line"></span><br><span class="line">解释：一共有四种不同的方案：</span><br><span class="line">第一种方案：涂第一列；</span><br><span class="line">第二种方案：涂第二列；</span><br><span class="line">第三种方案：涂第一行；</span><br><span class="line">第四种方案：涂第二行。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">2</span>, k = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">输出：<span class="number">0</span></span><br><span class="line"></span><br><span class="line">解释：不可行，因为第一次涂色至少会涂两个黑格。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">2</span>, k = <span class="number">4</span></span><br><span class="line"></span><br><span class="line">输出：<span class="number">1</span></span><br><span class="line"></span><br><span class="line">解释：共有 <span class="number">2</span>*<span class="number">2</span>=<span class="number">4</span> 个格子，仅有一种涂色方案。</span><br></pre></td></tr></table></figure><br>限制：</p>
+<ul>
+<li><code>1 &lt;= n &lt;= 6</code></li>
+<li><code>0 &lt;= k &lt;= n * n</code></li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/ccw6C7" target="_blank" rel="noopener">https://leetcode-cn.com/problems/ccw6C7</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  签到数学题</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>我们知道如果<code>x</code>行和<code>y</code>列，则去掉重复的格子后，总共有$(x+y)<em>n - x</em>y$个格子，其中重复了$x*y$个格子。</li>
+<li>我们直接遍历所有的可能的<code>x,y</code>排列组合即可，有一个情况除外，即所有的格子都被染色，则此时只有一种方案。<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">paintingPlan</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> C[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line">        <span class="built_in">memset</span>(C,<span class="number">0</span>,<span class="keyword">sizeof</span>(C));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">6</span>; j++) &#123;</span><br><span class="line">            C[j][j] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = j+<span class="number">1</span>; i &lt;= <span class="number">6</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(j == <span class="number">0</span>)</span><br><span class="line">                   C[i][j] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                   C[i][j] = (C[i<span class="number">-1</span>][j<span class="number">-1</span>] + C[i<span class="number">-1</span>][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(k == n*n) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= n; ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>((n*(i+j) - i*j) == k)&#123;</span><br><span class="line">                    ans += (C[n][i]*C[n][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="LCP-23-魔术排列"><a href="#LCP-23-魔术排列" class="headerlink" title="LCP 23. 魔术排列"></a>LCP 23. 魔术排列</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>秋日市集上，魔术师邀请小扣与他互动。魔术师的道具为分别写有数字 1~N 的 <code>N</code> 张卡牌，然后请小扣思考一个 <code>N</code> 张卡牌的排列 <code>target</code>。</p>
+<p>魔术师的目标是找到一个数字<code>k（k &gt;= 1）</code>，使得初始排列顺序为 <code>1~N</code>的卡牌经过特殊的洗牌方式最终变成小扣所想的排列 target，特殊的洗牌方式为：</p>
+<ul>
+<li>第一步，魔术师将当前位于 偶数位置 的卡牌（下标自 1 开始），保持 当前排列顺序 放在位于 奇数位置 的卡牌之前。例如：将当前排列<code>[1,2,3,4,5]</code> 位于偶数位置的 <code>[2,4]</code>置于奇数位置的 <code>[1,3,5]</code>前，排列变为 <code>[2,4,1,3,5]</code>；</li>
+<li>第二步，若当前卡牌数量小于等于<code>k</code>，则魔术师按排列顺序取走全部卡牌；若当前卡牌数量大于<code>k</code>，则取走前 <code>k</code>张卡牌，剩余卡牌继续重复这两个步骤，直至所有卡牌全部被取走；<br>卡牌按照魔术师取走顺序构成的新排列为「魔术取数排列」，请返回是否存在这个数字 k 使得「魔术取数排列」恰好就是 <code>target</code>，从而让小扣感到大吃一惊。</li>
+</ul>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入：target = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">解释：排列 target 长度为 <span class="number">5</span>，初始排列为：<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>。我们选择 k = <span class="number">2</span>：</span><br><span class="line">第一次：将当前排列 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>] 位于偶数位置的 [<span class="number">2</span>,<span class="number">4</span>] 置于奇数位置的 [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>] 前，排列变为 [<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>]。取走前 <span class="number">2</span> 张卡牌 <span class="number">2</span>,<span class="number">4</span>，剩余 [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>]；</span><br><span class="line">第二次：将当前排列 [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>] 位于偶数位置的 [<span class="number">3</span>] 置于奇数位置的 [<span class="number">1</span>,<span class="number">5</span>] 前，排列变为 [<span class="number">3</span>,<span class="number">1</span>,<span class="number">5</span>]。取走前 <span class="number">2</span> 张 <span class="number">3</span>,<span class="number">1</span>，剩余 [<span class="number">5</span>]；</span><br><span class="line">第三次：当前排列为 [<span class="number">5</span>]，全部取出。</span><br><span class="line">最后，数字按照取出顺序构成的「魔术取数排列」<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">5</span> 恰好为 target。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：target = [<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="literal">false</span></span><br><span class="line"></span><br><span class="line">解释：无法找到一个数字 k 可以使「魔术取数排列」恰好为 target。</span><br></pre></td></tr></table></figure><br>提示：</p>
+<ul>
+<li><code>1 &lt;= target.length = N &lt;= 5000</code></li>
+<li>题目保证 <code>target</code> 是 <code>1~N</code> 的一个排列。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/er94lq" target="_blank" rel="noopener">https://leetcode-cn.com/problems/er94lq</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 模拟洗牌过程</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>我们第一步进行模拟洗牌过程，找到第一个与第一次模拟洗牌过程不同的数，即为所寻找的目标<code>k</code>.</li>
+<li>我们仔细推理可以发现，第一次的从洗牌中取出的数据顺序由<code>k</code>的大小决定，且一定是唯一的，因为它是唯一的，所以我们第一次模拟即可找到<code>k</code>的值。</li>
+<li>我们后续的依次进行模拟即可，检测能够完成该数目的全部模拟即可。</li>
+</ol>
+</blockquote>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMagic</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = target.size();</span><br><span class="line">        <span class="keyword">int</span> k = n;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; arr;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp(n,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i += <span class="number">2</span>)&#123;</span><br><span class="line">            arr.emplace_back(i+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += <span class="number">2</span>)&#123;</span><br><span class="line">            arr.emplace_back(i+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(target[i] != arr[i])&#123;</span><br><span class="line">                k = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(k &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> l = k;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; n)&#123;</span><br><span class="line">            <span class="keyword">int</span> j = l;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = l+<span class="number">1</span>; i &lt; n; i += <span class="number">2</span>)&#123;</span><br><span class="line">                tmp[j++] = arr[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = l; i &lt; n; i += <span class="number">2</span>)&#123;</span><br><span class="line">                tmp[j++] = arr[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt; n; i++)&#123;</span><br><span class="line">                arr[i] = tmp[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k &amp;&amp; (l+i) &lt; n; ++i)&#123;</span><br><span class="line">                <span class="keyword">if</span>(arr[l+i] != target[l+i]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            l += k;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="LCP-24-数字游戏"><a href="#LCP-24-数字游戏" class="headerlink" title="LCP 24. 数字游戏"></a>LCP 24. 数字游戏</h2><p>小扣在秋日市集入口处发现了一个数字游戏。主办方共有 <code>N</code>个计数器，计数器编号为<code>0 ~ N-1</code>。每个计数器上分别显示了一个数字，小扣按计数器编号升序将所显示的数字记于数组 nums。每个计数器上有两个按钮，分别可以实现将显示数字加一或减一。小扣每一次操作可以选择一个计数器，按下加一或减一按钮。</p>
+<p>主办方请小扣回答出一个长度为<code>N</code>的数组，第 <code>i</code>个元素<code>(0 &lt;= i &lt; N)</code>表示将 <code>0~i</code>号计数器 初始 所示数字操作成满足所有条件 <code>nums[a]+1 == nums[a+1],(0 &lt;= a &lt; i)</code>的最小操作数。回答正确方可进入秋日市集。</p>
+<p>由于答案可能很大，请将每个最小操作数对 <code>1,000,000,007</code> 取余。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">输出：[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">i = <span class="number">0</span>，[<span class="number">3</span>] 无需操作</span><br><span class="line">i = <span class="number">1</span>，[<span class="number">3</span>,<span class="number">4</span>] 无需操作；</span><br><span class="line">i = <span class="number">2</span>，[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>] 无需操作；</span><br><span class="line">i = <span class="number">3</span>，将 [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>] 操作成 [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], 最少 <span class="number">5</span> 次操作；</span><br><span class="line">i = <span class="number">4</span>，将 [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">6</span>] 操作成 [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>], 最少 <span class="number">6</span> 次操作；</span><br><span class="line">i = <span class="number">5</span>，将 [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">7</span>] 操作成 [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]，最少 <span class="number">7</span> 次操作；</span><br><span class="line">返回 [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">输出：[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">解释：对于任意计数器编号 i 都无需操作。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">输出：[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">i = <span class="number">0</span>，无需操作；</span><br><span class="line">i = <span class="number">1</span>，将 [<span class="number">1</span>,<span class="number">1</span>] 操作成 [<span class="number">1</span>,<span class="number">2</span>] 或 [<span class="number">0</span>,<span class="number">1</span>] 最少 <span class="number">1</span> 次操作；</span><br><span class="line">i = <span class="number">2</span>，将 [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>] 操作成 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] 或 [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>]，最少 <span class="number">2</span> 次操作；</span><br><span class="line">i = <span class="number">3</span>，将 [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>] 操作成 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>] 或 [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]，最少 <span class="number">3</span> 次操作；</span><br><span class="line">i = <span class="number">4</span>，将 [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] 操作成 [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]，最少 <span class="number">3</span> 次操作；</span><br><span class="line">i = <span class="number">5</span>，将 [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>] 操作成 [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]，最少 <span class="number">3</span> 次操作；</span><br><span class="line">返回 [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>]。</span><br></pre></td></tr></table></figure><br>提示：</p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 10^3</code></li>
+</ul>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/5TxKeK" target="_blank" rel="noopener">https://leetcode-cn.com/problems/5TxKeK</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 中位数</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>这个题目还是非常有意思的，首先我们设将前<code>i</code>个元素变为目标的递增即可。我们设前<code>i</code>个元素的目标递增等差数列为：<br>$[0+k,1+k,2+k,…,A_{i-1}+k]$,则我们可以求得前<code>i</code>项变为等差数列所需要的操作步数之和为：<script type="math/tex; mode=display">
+sum_{i} = \sum_{j=1}^{i}|A_{j} - j - k|</script></li>
+<li>我们需要求得上述表达式的最小值即可。我们直接求上述的表达式可能不太好求，但是如果我们将数列变为如下：<script type="math/tex; mode=display">
+[A_{0}-0,A_{1} -1 ,A_{2} - 2,...,A_{i} - i] \\
+sum_{i} = \sum_{j=1}^{i}|(A_{j} - j) - k|</script>则我们根据数学定理可以知道，数组的中位数与数组中的各元素的绝对值之差的和最小，所以$k = median_{0..i}$。</li>
+<li>我们知道后，即可根据实际情况将$sum$进行展开：<script type="math/tex; mode=display">
+sum_{i} = \sum_{A_[i] > A_{median}}A_{i} - \sum_{A_[i] < A_{median}}A_{i}</script>我们进行利用前缀和即可很快的完成上述的求合操作。</li>
+<li>题目还是非常经典的题目，值得思考的地方很多，非常喜欢这类题目。</li>
+</ol>
+</blockquote>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; numsGame(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> suml = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> sumr = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans(n,<span class="number">0</span>);</span><br><span class="line">        priority_queue&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;,less&lt;<span class="keyword">int</span>&gt;&gt; pq1;</span><br><span class="line">        priority_queue&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;,greater&lt;<span class="keyword">int</span>&gt;&gt; pq2;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            nums[i] -= i+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        pq1.push(nums[<span class="number">0</span>]);</span><br><span class="line">        suml = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>((i+<span class="number">1</span>)%<span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[i] &gt;= pq1.top())&#123;</span><br><span class="line">                    pq2.push(nums[i]);</span><br><span class="line">                    sumr += nums[i];</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    sumr += pq1.top();</span><br><span class="line">                    pq2.push(pq1.top());</span><br><span class="line">                    suml -= pq1.top();</span><br><span class="line">                    pq1.pop();</span><br><span class="line">                    suml += nums[i];</span><br><span class="line">                    pq1.push(nums[i]);</span><br><span class="line">                &#125;</span><br><span class="line">                ans[i] = (sumr - suml)%mod;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[i] &lt;= pq2.top())&#123;</span><br><span class="line">                    pq1.push(nums[i]);</span><br><span class="line">                    suml += nums[i];</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    sumr += nums[i];</span><br><span class="line">                    pq2.push(nums[i]);</span><br><span class="line">                    suml += pq2.top();</span><br><span class="line">                    pq1.push(pq2.top());</span><br><span class="line">                    sumr -= pq2.top();</span><br><span class="line">                    pq2.pop();</span><br><span class="line">                &#125;</span><br><span class="line">                ans[i] = (sumr - suml + pq1.top())%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="LCP-25-古董键盘"><a href="#LCP-25-古董键盘" class="headerlink" title="LCP 25. 古董键盘"></a>LCP 25. 古董键盘</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>小扣在秋日市集购买了一个古董键盘。由于古董键盘年久失修，键盘上只有 26 个字母 <code>a~z</code> 可以按下，且每个字母最多仅能被按 <code>k</code>次。</p>
+<p>小扣随机按了 <code>n</code> 次按键，请返回小扣总共有可能按出多少种内容。由于数字较大，最终答案需要对 <code>1000000007 (1e9 + 7)</code>取模。</p>
+<p>示例 1：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：k = <span class="number">1</span>, n = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">输出：<span class="number">26</span></span><br><span class="line"></span><br><span class="line">解释：由于只能按一次按键，所有可能的字符串为 <span class="string">"a"</span>, <span class="string">"b"</span>, ... <span class="string">"z"</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：k = <span class="number">1</span>, n = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">输出：<span class="number">650</span></span><br><span class="line"></span><br><span class="line">解释：由于只能按两次按键，且每个键最多只能按一次，所有可能的字符串（按字典序排序）为 <span class="string">"ab"</span>, <span class="string">"ac"</span>, ... <span class="string">"zy"</span></span><br></pre></td></tr></table></figure><br>提示：</p>
+<ul>
+<li><code>1 &lt;= k &lt;= 5</code></li>
+<li><code>1 &lt;= n &lt;= 26*k</code></li>
+</ul>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/Uh984O" target="_blank" rel="noopener">https://leetcode-cn.com/problems/Uh984O</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>DP</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>典型的dp模板，需要找到推理公式即可。</li>
+<li>这个dp不太好想到，<code>dp[i][j]</code>代表选择前<code>i</code>个字符组成长度为<code>j</code>的字符串的数目。如果新增加一个字符，组成长度为<code>j</code>的字符串，则要么从n个字符中选择出$x \le k$个空余位置来放置新的字符即可。所以递推公式如下：<script type="math/tex; mode=display">
+dp[i][j] = \sum_{c=0}^{min(j,k)}dp[i-1][j-c]*C_{j}^{c}</script></li>
+<li>这个递推公式确实不太好想到，智商不够。<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">131</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> C[N][N];</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> dp[<span class="number">27</span>][N];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">keyboard</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">memset</span>(C,<span class="number">0</span>,<span class="keyword">sizeof</span>(C));</span><br><span class="line">        <span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i)&#123;</span><br><span class="line">            C[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">            C[i][i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j)&#123;</span><br><span class="line">                C[i][j] = (C[i<span class="number">-1</span>][j] + C[i<span class="number">-1</span>][j<span class="number">-1</span>])%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">26</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= n; ++j)&#123;</span><br><span class="line">                dp[i][j] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> c = <span class="number">0</span>; c &lt;= min(k,j); ++c)&#123;</span><br><span class="line">                    dp[i][j] = (dp[i][j] + dp[i<span class="number">-1</span>][j-c]*C[j][c])%mod;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">26</span>][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="LCP-26-导航装置"><a href="#LCP-26-导航装置" class="headerlink" title="LCP 26. 导航装置"></a>LCP 26. 导航装置</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3><p>小扣参加的秋日市集景区共有 <code>N</code>个景点，景点编号为 <code>1~N</code>。景点内设有 <code>N-1</code>条双向道路，使所有景点形成了一个二叉树结构，根结点记为 <code>root</code>，景点编号即为节点值。</p>
+<p>由于秋日市集景区的结构特殊，游客很容易迷路，主办方决定在景区的若干个景点设置导航装置，按照所在景点编号升序排列后定义装置编号为 <code>1 ~ M</code>。导航装置向游客发送数据，数据内容为列表 [游客与装置 1 的相对距离,游客与装置 <code>2</code> 的相对距离,…,游客与装置<code>M</code>的相对距离]。由于游客根据导航装置发送的信息来确认位置，因此主办方需保证游客在每个景点接收的数据信息皆不相同。请返回主办方最少需要设置多少个导航装置。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [<span class="number">1</span>,<span class="number">2</span>,<span class="literal">null</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line"></span><br><span class="line">解释：在景点 <span class="number">1</span>、<span class="number">3</span> 或景点 <span class="number">1</span>、<span class="number">4</span> 或景点 <span class="number">3</span>、<span class="number">4</span> 设置导航装置。</span><br></pre></td></tr></table></figure></p>
+<p>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">1</span></span><br><span class="line"></span><br><span class="line">解释：在景点 <span class="number">3</span>、<span class="number">4</span> 设置导航装置皆可。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>2 &lt;= N &lt;= 50000</code></li>
+<li>二叉树的非空节点值为 1~N 的一个排列。</li>
+</ul>
+<h3 id="地址-4"><a href="#地址-4" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/hSRGyL" target="_blank" rel="noopener">https://leetcode-cn.com/problems/hSRGyL</a></p>
+<h3 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>图论</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3></blockquote>
+<h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><h2 id="LCP-27-黑盒光线反射"><a href="#LCP-27-黑盒光线反射" class="headerlink" title="LCP 27. 黑盒光线反射"></a>LCP 27. 黑盒光线反射</h2><h3 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h3><p>秋日市集上有个奇怪的黑盒，黑盒的主视图为 <code>n*m</code>的矩形。从黑盒的主视图来看，黑盒的上面和下面各均匀分布有 m 个小孔，黑盒的左面和右面各均匀分布有<code>n</code> 个小孔。黑盒左上角小孔序号为 <code>0</code>，按顺时针编号，总共有 <code>2*(m+n)</code> 个小孔。每个小孔均可以打开或者关闭，初始时，所有小孔均处于关闭状态。每个小孔上的盖子均为镜面材质。例如一个 <code>2*3</code> 的黑盒主视图与其小孔分布如图所示:</p>
+<p>店长告诉小扣，这里是「几何学的快问快答」，店长可能有两种操作：</p>
+<ul>
+<li><code>open(int index, int direction)</code> - 若小孔处于关闭状态，则打开小孔，照入光线；否则直接照入光线；</li>
+<li><p><code>close(int index)</code>- 关闭处于打开状态小孔，店长保证不会关闭已处于关闭状态的小孔；<br>其中：</p>
+</li>
+<li><p><code>index</code>： 表示小孔序号</p>
+</li>
+<li><code>direction：1</code>表示光线沿 <code>y=x</code>方向，-1 表示光线沿 <code>y=-x</code> 方向。</li>
+</ul>
+<p>当光线照至边界时：若边界上的小孔为开启状态，则光线会射出；否则，光线会在小孔之间进行反射。特别地：</p>
+<p>若光线射向未打开的拐角（黑盒顶点），则光线会原路反射回去；<br>光线自拐角处的小孔照入时，只有一种入射方向（如自序号为<code>0</code>的小孔照入方向只能为 <code>-1</code>）</p>
+<p>请帮助小扣判断并返回店长每次照入的光线从几号小孔射出。</p>
+<p>示例 1：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">[<span class="string">"BlackBox"</span>,<span class="string">"open"</span>,<span class="string">"open"</span>,<span class="string">"open"</span>,<span class="string">"close"</span>,<span class="string">"open"</span>]</span><br><span class="line">[[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">6</span>,<span class="number">-1</span>],[<span class="number">4</span>,<span class="number">-1</span>],[<span class="number">0</span>,<span class="number">-1</span>],[<span class="number">6</span>],[<span class="number">0</span>,<span class="number">-1</span>]]</span><br><span class="line"></span><br><span class="line">输出：[null,<span class="number">6</span>,<span class="number">4</span>,<span class="number">6</span>,null,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">BlackBox b = BlackBox(<span class="number">2</span>,<span class="number">3</span>); <span class="comment">// 新建一个 2x3 的黑盒</span></span><br><span class="line">b.open(<span class="number">6</span>,<span class="number">-1</span>) <span class="comment">// 打开 6 号小孔，并沿 y=-x 方向照入光线，光线至 0 号小孔反射，从 6 号小孔射出</span></span><br><span class="line">b.open(<span class="number">4</span>,<span class="number">-1</span>) <span class="comment">// 打开 4 号小孔，并沿 y=-x 方向照入光线，光线轨迹为 4-2-8-2-4，从 4 号小孔射出</span></span><br><span class="line">b.open(<span class="number">0</span>,<span class="number">-1</span>) <span class="comment">// 打开 0 号小孔，并沿 y=-x 方向照入光线，由于 6 号小孔为开启状态，光线从 6 号小孔射出</span></span><br><span class="line">b.close(<span class="number">6</span>) <span class="comment">// 关闭 6 号小孔</span></span><br><span class="line">b.shoot(<span class="number">0</span>,<span class="number">-1</span>) <span class="comment">// 从 0 号小孔沿 y=-x 方向照入光线，由于 6 号小孔为关闭状态，4 号小孔为开启状态，光线轨迹为 0-6-4，从 4 号小孔射出</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">[<span class="string">"BlackBox"</span>,<span class="string">"open"</span>,<span class="string">"open"</span>,<span class="string">"open"</span>,<span class="string">"open"</span>,<span class="string">"close"</span>,<span class="string">"open"</span>,<span class="string">"close"</span>,<span class="string">"open"</span>]</span><br><span class="line">[[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">-1</span>],[<span class="number">5</span>,<span class="number">1</span>],[<span class="number">11</span>,<span class="number">-1</span>],[<span class="number">11</span>,<span class="number">1</span>],[<span class="number">1</span>],[<span class="number">11</span>,<span class="number">1</span>],[<span class="number">5</span>],[<span class="number">11</span>,<span class="number">-1</span>]]</span><br><span class="line"></span><br><span class="line">输出：[null,<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>,null,<span class="number">5</span>,null,<span class="number">11</span>]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BlackBox b = BlackBox(<span class="number">3</span>,<span class="number">3</span>); <span class="comment">// 新建一个 3x3 的黑盒</span></span><br><span class="line">b.open(<span class="number">1</span>,<span class="number">-1</span>) <span class="comment">// 打开 1 号小孔，并沿 y=-x 方向照入光线，光线轨迹为 1-5-7-11-1，从 1 号小孔射出</span></span><br><span class="line">b.open(<span class="number">5</span>,<span class="number">1</span>) <span class="comment">// 打开 5 号小孔，并沿 y=x 方向照入光线，光线轨迹为 5-7-11-1，从 1 号小孔射出</span></span><br><span class="line">b.open(<span class="number">11</span>,<span class="number">-1</span>) <span class="comment">// 打开 11 号小孔，并沿逆 y=-x 方向照入光线，光线轨迹为 11-7-5，从 5 号小孔射出</span></span><br><span class="line">b.open(<span class="number">11</span>,<span class="number">1</span>) <span class="comment">// 从 11 号小孔沿 y=x 方向照入光线，光线轨迹为 11-1，从 1 号小孔射出</span></span><br><span class="line">b.close(<span class="number">1</span>) <span class="comment">// 关闭 1 号小孔</span></span><br><span class="line">b.open(<span class="number">11</span>,<span class="number">1</span>) <span class="comment">// 从 11 号小孔沿 y=x 方向照入光线，光线轨迹为 11-1-5，从 5 号小孔射出</span></span><br><span class="line">b.close(<span class="number">5</span>) <span class="comment">// 关闭 5 号小孔</span></span><br><span class="line">b.open(<span class="number">11</span>,<span class="number">-1</span>) <span class="comment">// 从 11 号小孔沿 y=-x 方向照入光线，光线轨迹为 11-1-5-7-11，从 11 号小孔射出</span></span><br></pre></td></tr></table></figure><br>提示：</p>
+<ul>
+<li><code>1 &lt;= n, m &lt;= 10000</code></li>
+<li><code>1 &lt;= 操作次数 &lt;= 10000</code></li>
+<li><code>direction</code> 仅为<code>1</code> 或<code>-1</code></li>
+<li><code>0 &lt;= index &lt; 2*(m+n)</code></li>
+</ul>
+<h3 id="地址-5"><a href="#地址-5" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/IQvJ9i" target="_blank" rel="noopener">https://leetcode-cn.com/problems/IQvJ9i</a></p>
+<h3 id="题意-5"><a href="#题意-5" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>图论</p>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3></blockquote>
+<h3 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h3>
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>个人技术成长记录.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/09/21/205/" rel="next" title="【Leetcode】 207周周赛">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】 207周周赛
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LCCUP团体赛"><span class="nav-number">1.</span> <span class="nav-text">LCCUP团体赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-22-黑白方格画"><span class="nav-number">1.1.</span> <span class="nav-text">LCP 22. 黑白方格画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-23-魔术排列"><span class="nav-number">1.2.</span> <span class="nav-text">LCP 23. 魔术排列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-24-数字游戏"><span class="nav-number">1.3.</span> <span class="nav-text">LCP 24. 数字游戏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-25-古董键盘"><span class="nav-number">1.4.</span> <span class="nav-text">LCP 25. 古董键盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.4.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">1.4.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-26-导航装置"><span class="nav-number">1.5.</span> <span class="nav-text">LCP 26. 导航装置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-3"><span class="nav-number">1.5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-4"><span class="nav-number">1.5.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-number">1.5.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-4"><span class="nav-number">1.5.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-27-黑盒光线反射"><span class="nav-number">1.6.</span> <span class="nav-text">LCP 27. 黑盒光线反射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-4"><span class="nav-number">1.6.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-5"><span class="nav-number">1.6.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-5"><span class="nav-number">1.6.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-2"><span class="nav-number">1.6.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-5"><span class="nav-number">1.6.5.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">165</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

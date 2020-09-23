@@ -58,7 +58,7 @@
 <meta property="og:site_name" content="blow in the wind">
 <meta property="og:description" content="207周周赛本周赛因为家庭有事，因此没有时间参加，回来后补解答。前三题常规题目，最后一题真是不错的好题目，题目很少不罗嗦，但是思考程度深入。目测也就是一个小时前三题的节奏，最后一题没有好的思路，知道肯定是状态压缩dp，但是没有想到递推公式。1592. 重新排列单词间的空格题目给你一个字符串text ，该字符串由若干被空格包围的单词组成。每个单词由一个或者多个小写英文字母组成，并且两个单词之间至少存">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-09-21T14:36:55.429Z">
+<meta property="og:updated_time" content="2020-09-21T14:53:56.221Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/09/21/205/">
@@ -219,7 +219,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-09-21 14:16:54 / Modified: 22:36:55" itemprop="dateCreated datePublished" datetime="2020-09-21T14:16:54+08:00">2020-09-21</time>
+              <time title="Created: 2020-09-21 14:16:54 / Modified: 22:53:56" itemprop="dateCreated datePublished" datetime="2020-09-21T14:16:54+08:00">2020-09-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -333,9 +333,9 @@
 <p> 状态压缩DP</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
 <li>首先拿到题目一看估计就是<code>dp</code>,然后再看数据量级基本就可以确定本题是状态压缩<code>dp</code>. 关键在于递推公式的确定。</li>
-<li>我们设$dp[i][state]$表示数组1前<code>i</code>个元素与数组2中的$x$个元素相连的最小代价，其中$state$代表x个元素的分布状态。</li>
-<li>对于第一组中的每个点，第一种做法是直接在第二组数组中找一条边，进行连接，我们直接枚举$n$次即可;</li>
-<li>对于第一组中的每个点，第二种做法是连接若干个第二组中当前还没有连通的点。对于第二种做法，假设当前未连通的点为$mask$，我们需要枚举它的子集，这里可以用位运算枚举子集的方法来进行优化。</li>
+<li>我们设$dp[i][state]$表示数组1前<code>i</code>个元素与数组2中的$x$个元素相连的最小代价，其中$state$代表x个元素的分布状态。我们再计算加入第<code>i+1</code>个元素的转移方程。</li>
+<li>当加入第<code>i+1</code>个元素时，第一种做法是直接在第二个数组中已连接的元素中找一个，进行连接即可，我们直接枚举$2^{n}$次即可;</li>
+<li>当加入第<code>i+1</code>个元素时，第二种做法是从第二个数组中未连接的元素中找出任意的$x$个元素进行连接即可。对于第二种做法，我们可以直接枚举所有的$x$,用$state_{x}$表示，这里可以用位运算枚举子集的方法来进行优化。</li>
 <li>最后的总时间复杂度为$O(NM\cdot3^M)$。</li>
 <li>题目确实很难，这个题目确实不会。<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> dp[<span class="number">13</span>][<span class="number">4097</span>];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">connectTwoGroups</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = cost.size();</span><br><span class="line">        <span class="keyword">int</span> n = cost[<span class="number">0</span>].size();</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;m&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">memset</span>(dp,INF,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; (<span class="number">1</span>&lt;&lt;n); ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dp[i<span class="number">-1</span>][j] == INF) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; n; ++k)&#123;</span><br><span class="line">                    <span class="keyword">int</span> nx = (<span class="number">1</span>&lt;&lt;k)|j;</span><br><span class="line">                    dp[i][nx] = min(dp[i][nx],dp[i<span class="number">-1</span>][j] + cost[i<span class="number">-1</span>][k]);</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">/*取反*/</span></span><br><span class="line">                <span class="keyword">int</span> v = (<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span> - j;</span><br><span class="line">                <span class="keyword">if</span> (v &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="comment">/*每次进行减1操作*/</span></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> x = v; x &gt; <span class="number">0</span>; x = v &amp; (x - <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">int</span> c = <span class="number">0</span>;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; n; ++y)</span><br><span class="line">                            <span class="keyword">if</span> (x &amp; (<span class="number">1</span> &lt;&lt; y))</span><br><span class="line">                                c += cost[i<span class="number">-1</span>][y];</span><br><span class="line">                        <span class="keyword">int</span> nxt = j | x;</span><br><span class="line">                        dp[i][nxt] = min(dp[i][nxt],dp[i<span class="number">-1</span>][j] + c);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[m][(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ol>
@@ -381,6 +381,9 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2020/09/23/206/" rel="prev" title="【Leetcode】 LCCUP团体赛">
+                  【Leetcode】 LCCUP团体赛 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -436,7 +439,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">164</span>
+          <span class="site-state-item-count">165</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
