@@ -194,6 +194,109 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/31/250/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/31/250/" class="post-title-link" itemprop="url">【Atcoder】 Abc  190</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-31 14:22:30" itemprop="dateCreated datePublished" datetime="2021-01-31T14:22:30+08:00">2021-01-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-03 10:10:38" itemprop="dateModified" datetime="2021-02-03T10:10:38+08:00">2021-02-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/01/31/250/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/31/250/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="abc-contest-190"><a href="#abc-contest-190" class="headerlink" title="abc  contest 190"></a>abc  contest 190</h1><h2 id="C-Bowls-and-Dishes"><a href="#C-Bowls-and-Dishes" class="headerlink" title="C - Bowls and Dishes"></a>C - Bowls and Dishes</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><img src="https://i.loli.net/2021/01/31/ehj8xNS1EoHfCT7.png" alt></p><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://atcoder.jp/contests/abc190/tasks/abc190_c" target="_blank" rel="noopener">https://atcoder.jp/contests/abc190/tasks/abc190_c</a></p><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  回溯遍历</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>因为所有的人都有两种选择，我们直接遍历所有的摆放方法，然后求出每种状态下的得分，即可求出最高的得分。我们用<code>mask</code>来标识状态，如果第<code>i</code>为<code>1</code>则表示第<code>i</code>个<code>people</code>选择第<code>1</code>种摆法，否则则表示第<code>i</code>个<code>people</code>选择第<code>2</code>种摆法。<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dsu</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sz;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dsu(<span class="keyword">int</span> n)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;parent = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n);</span><br><span class="line">        <span class="keyword">this</span>-&gt;sz = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;parent[i] = i;</span><br><span class="line">            <span class="keyword">this</span>-&gt;sz[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(x != parent[x])&#123;</span><br><span class="line">            x = parent[x];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;sz[find(x)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">unite</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x1 = find(x);</span><br><span class="line">        <span class="keyword">int</span> y1 = find(y);</span><br><span class="line">        <span class="keyword">if</span>(x1 &gt; y1) swap(x1,y1);</span><br><span class="line">        parent[y1] = x1;</span><br><span class="line">        sz[x1] += sz[y1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">slove</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m,k;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="built_in">vector</span>&lt;pii&gt; conditions(m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)&#123;        </span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;conditions[i].first&gt;&gt;conditions[i].second;</span><br><span class="line">        conditions[i].first--;</span><br><span class="line">        conditions[i].second--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;k;</span><br><span class="line">    <span class="built_in">vector</span>&lt;pii&gt; peoples(k);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;peoples[i].first&gt;&gt;peoples[i].second;</span><br><span class="line">        peoples[i].first--;</span><br><span class="line">        peoples[i].second--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; (<span class="number">1</span>&lt;&lt;k); ++i)&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; test(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; k; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&amp;(<span class="number">1</span>&lt;&lt;j))&#123;</span><br><span class="line">                test[peoples[j].first] = <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                test[peoples[j].second] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> curr = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(test[conditions[j].first]&amp;&amp;test[conditions[j].second])&#123;</span><br><span class="line">                curr++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ans = max(ans,curr);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    slove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/31/250/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/31/249/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1035,111 +1138,6 @@ ax^{2} + (1-a)x + 4 = 0 \qquad (2)</script></li>
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/239/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/03/239/" class="post-title-link" itemprop="url">【2020】总结</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-01-03 10:16:56 / Modified: 18:05:17" itemprop="dateCreated datePublished" datetime="2021-01-03T10:16:56+08:00">2021-01-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%81%8C%E5%9C%BA/" itemprop="url" rel="index">
-                    <span itemprop="name">职场</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2021/01/03/239/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/03/239/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="2020总结"><a href="#2020总结" class="headerlink" title="2020总结"></a>2020总结</h3><ul>
-<li>转眼间2020年已经过去了，时间过的飞快，很快就迎接了2021年，回首2020年收获了许多，也失去了许多，我想这一年应该是觉得人生中最为难忘和艰难的一年，这也是为自己正式踏入中年苦逼人生中最浓重的一笔。这一年经历了人生中第一个最重大疫情，在家休过最长的长假，家中的两个宝贝一天天在长大，变化最大的就是自己的宝贝女儿，可爱的像朵花一样，每天回家最开心的就是看见儿子和女儿。工作中也迎来了最艰难和责任最重大的一年，工作上只能说还凑合。这一年在健身和学习上进步了许多。<br><a href="http://mikemeng.org/2020/01/02/118/" target="_blank" rel="noopener">2019年总结</a><br><a href="http://mikemeng.org/2020/07/05/177/" target="_blank" rel="noopener">2020年下半年计划</a><h4 id="生活流水账"><a href="#生活流水账" class="headerlink" title="生活流水账"></a>生活流水账</h4></li>
-<li>2月至4月期间，经历了人生中遇到过第一次最严重的疫情，后果是基本上快三个月都呆在家里不能出门，不能锻炼身体，真心的感觉生活很压抑。再也不想重新来一遍，这么束缚的生活，每天吃了睡和睡了吃的生活真心也是一种负担。</li>
-<li>5月到8月，基本上每天都是在家里看娃，每天家里两个娃吵吵闹闹，忙的不亦乐乎。七月以后感觉不能再这样昏昏耗耗下去了，重新制定了学习计划，健身计划，坚持按照目标来执行。</li>
-<li>8月又经历了父亲了病重，只能请年家回了趟老家，安顿好父亲，父亲经过两个星期的治疗，身体逐步有所好转，只能暂时将老父亲安顿在姐姐家。这个年纪了，父亲一天天老去，能陪伴他的日子越来越少了，我只能尽自己最大的努力给他尽好孝心。能抽空回家就尽量抽空回家看望老父亲。</li>
-<li>9月到11月基本上时间稍微闲暇一些，按照自己的学习进度和目标，安排了许多学习的计划和锻炼身体的计划，目前基本达成自己的初步目标。</li>
-<li>12月份年底的工作压力特别大，因为要在年底前完成许多的工作，忙的不可开交，终于迎来了稍微轻松的元旦，之道此时才又机会和空闲来总结和整理下不平凡的2020年。<h4 id="家庭"><a href="#家庭" class="headerlink" title="家庭"></a>家庭</h4></li>
-<li>今年变化最快的是小宝，今年已经一岁半了。从一个婴儿终于成长了一个可爱粉嫩的小公主了，刚开始只会漫天爬的婴儿，变成了每天会骑滑板车和捣乱的小天使了。每天都是粉嫩的脸蛋和天真无辜的眼神，让人忍不住怜爱，每天都要亲爸爸，亲妈妈。<br><img src="https://i.loli.net/2021/01/03/zaZPQMxqiILOEmV.jpg" alt><br><img src="https://i.loli.net/2021/01/03/IJwR9pKsDZrlbkN.jpg" alt></li>
-<li>大宝今年已经满4岁了，并且顺利的上了中班，从以前连字都吐不清楚，到现在可以清晰的表达自己的想法，现在也可以正常的更人交流了，变化真的很大。作为父母的感慨时间过的真快，同时也感慨生命的神奇，转眼间小伙子长大了。几年前还是个小男宝，丫丫学语，啥都不会，转眼间技能树已经快速点满。同时也意识到，儿女一天天长大，终有一天他们会离我们远去去追寻他们的梦想，那时作为父母的只能放手让他们去拼搏，无论人生道路上又多么艰难，父母无无怨无悔的支持你们，爸爸妈妈永远都是你们坚强的后盾。<br><img src="https://i.loli.net/2021/01/03/qGClBQbfv7Xs2Tg.jpg" alt="1"></li>
-<li>依稀还记得某日清晨醒来，看见一对儿女熟睡得样子，真心让人怜惜。我总是会幻想，女儿长大以后会是什么样子，儿子长大后会是什么样子，作为父亲得我，才刚步入中年，就已经开始幻想几十年后得光阴，不得不让人感慨，时间是个神奇的武器，丫丫细语的幼儿已经成了葱郁的少年；岁月也是把杀猪刀，青葱的少年转眼间已成了油腻的中年。<br><img src="https://i.loli.net/2021/01/03/49KonJzR3WSmDUQ.jpg" alt></li>
-<li>老父亲今年已经76岁高龄了，父亲年龄越来越大了，目前基本上每年都会生一次重病，需要住院。今年稍微安顿好了一些，把老夫请安顿在姐姐家，所有的开支费用由我来承担，主要担心老人年纪过大，身边又没人照看，万一出现意外，那真心是悔过，顺便也能姐姐照顾一下小外甥。2021年准备换好房子，能把老父亲接到武汉来住几天，真心感觉结婚以后，基本上个人都被家庭和工作缠身，能给老父亲分担的时间和精力越来越少，新的一年也祝愿老父亲身体硬朗。</li>
-<li>姐姐自从离婚后，生活上也出现了许多困难，先是经历了骨折，后又经历了搬家，工作上也是非常的辛苦，大外甥马上也要中考了，姐夫是肯定指望不上了，毕竟他不参与家庭生活，不知道生活的难处，希望她能在未来的生活中照顾好自己，照顾好家庭。</li>
-<li>最后是老婆，岳父，岳母。LD的工作压力真心大，连续两个月基本上周末都在加班中度过，感觉跟着自己太不容易了，体制内的工作，工资待遇福利没多少，加班出差少不了，有时候不免心神怨气，周末还要忙着学车，忙着社区下沉，还要照顾两个孩子的饮食起居，还要忙着干家务，想想都头大，中年最难熬的时光，希望能够坚持下去，也要照顾好身体。对于岳父母，自己感觉也是亏欠很多，岳父每天早出晚归，这么大年龄了还需要经常熬夜上夜班，岳母今年大病了一场，自然而然的不免有些自责，望着岳父母都有些花白的头发，内心不自然而然的自责，没能给他们一个好的经济基础让他们安详晚年。</li>
-<li>对于自身来说，其实内心非常的焦虑。因为在自己最需要金钱的时候，而没有能力提供一个很好的经济基础，能够让自己的家人过上幸福的日子。有时候因为自己的臭脾气也让爱人，岳父母承担了许多不必要的麻烦，真心要给他们说一声道歉。新的一年争取，让岳父母和老婆能够出国游玩一趟，能够每个月定期给他们一部分零花钱，定期组织家里出去聚餐和游玩一次，给老婆办一个健身卡，给岳父母买一个重疾保险，这是自己在这一年的目标。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/03/239/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1190,7 +1188,7 @@ ax^{2} + (1-a)x + 4 = 0 \qquad (2)</script></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">207</span>
+          <span class="site-state-item-count">208</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
