@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="leetcode contest 232本周的周赛题目还是质量非常高的，最后两道题目的解法还是非常有意思的题目，虽然解法很简单，但是非常值得深入思考的题目，特别是第三题，给人印象深刻。5701. 仅执行一次字符串交换能否使两个字符串相等题目给你长度相等的两个字符串 s1 和 s2 。一次 字符串交换 操作的步骤如下：选出某个字符串中的两个下标（不必不同），并交换这两个下标所对应的字符。">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 Leetcode  Contest 232">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;03&#x2F;14&#x2F;261&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="leetcode contest 232本周的周赛题目还是质量非常高的，最后两道题目的解法还是非常有意思的题目，虽然解法很简单，但是非常值得深入思考的题目，特别是第三题，给人印象深刻。5701. 仅执行一次字符串交换能否使两个字符串相等题目给你长度相等的两个字符串 s1 和 s2 。一次 字符串交换 操作的步骤如下：选出某个字符串中的两个下标（不必不同），并交换这两个下标所对应的字符。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+<meta property="og:updated_time" content="2021-03-14T09:18:34.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+
+<link rel="canonical" href="http://yoursite.com/2021/03/14/261/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 Leetcode  Contest 232 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/14/261/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 Leetcode  Contest 232
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-14 16:17:04 / Modified: 17:18:34" itemprop="dateCreated datePublished" datetime="2021-03-14T16:17:04+08:00">2021-03-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/03/14/261/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/14/261/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="leetcode-contest-232"><a href="#leetcode-contest-232" class="headerlink" title="leetcode contest 232"></a>leetcode contest 232</h1><p>本周的周赛题目还是质量非常高的，最后两道题目的解法还是非常有意思的题目，虽然解法很简单，但是非常值得深入思考的题目，特别是第三题，给人印象深刻。</p><h2 id="5701-仅执行一次字符串交换能否使两个字符串相等"><a href="#5701-仅执行一次字符串交换能否使两个字符串相等" class="headerlink" title="5701. 仅执行一次字符串交换能否使两个字符串相等"></a>5701. 仅执行一次字符串交换能否使两个字符串相等</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你长度相等的两个字符串 <code>s1</code> 和 <code>s2</code> 。一次 字符串交换 操作的步骤如下：选出某个字符串中的两个下标（不必不同），并交换这两个下标所对应的字符。</p><a id="more"></a>
+
+<p>如果对 其中一个字符串 执行 最多一次字符串交换 就可以使两个字符串相等，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p>示例 1：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">s1</span> = <span class="string">"bank"</span>, <span class="built_in">s2</span> = <span class="string">"kanb"</span></span><br><span class="line">输出：true</span><br><span class="line">解释：例如，交换 <span class="built_in">s2</span> 中的第一个和最后一个字符可以得到 <span class="string">"bank"</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">s1</span> = <span class="string">"attack"</span>, <span class="attr">s2</span> = <span class="string">"defend"</span></span><br><span class="line">输出：<span class="literal">false</span></span><br><span class="line">解释：一次字符串交换无法使两个字符串相等</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">s1</span> = <span class="string">"kelb"</span>, <span class="attr">s2</span> = <span class="string">"kelb"</span></span><br><span class="line">输出：<span class="literal">true</span></span><br><span class="line">解释：两个字符串已经相等，所以不需要进行字符串交换</span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">s1</span> = <span class="string">"abcd"</span>, <span class="attr">s2</span> = <span class="string">"dcba"</span></span><br><span class="line">输出：<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= s1.length, s2.length &lt;= 100</li>
+<li>s1.length == s2.length</li>
+<li>s1 和 s2 仅由小写英文字母组成</li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/check-if-one-string-swap-can-make-strings-equal" target="_blank" rel="noopener">https://leetcode-cn.com/problems/check-if-one-string-swap-can-make-strings-equal</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  简单问题，直接暴力即可。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>如果仅要求交换一次就可完成两个字符串的相等排列，我们即判断字符串是否只有两个字符不同，然后判断是否相等。<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">areAlmostEqual</span><span class="params">(<span class="built_in">string</span> s1, <span class="built_in">string</span> s2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = s1.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; diff;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s1[i] != s2[i])&#123;</span><br><span class="line">                diff.emplace_back(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(diff.size() == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(diff.size() != <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(s1[diff[<span class="number">0</span>]] == s2[diff[<span class="number">1</span>]] &amp;&amp; s1[diff[<span class="number">1</span>]] == s2[diff[<span class="number">0</span>]])&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5702-找出星型图的中心节点"><a href="#5702-找出星型图的中心节点" class="headerlink" title="5702. 找出星型图的中心节点"></a>5702. 找出星型图的中心节点</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>有一个无向的 星型 图，由 <code>n</code>个编号从 <code>1</code>到 <code>n</code>的节点组成。星型图有一个 中心 节点，并且恰有 <code>n - 1</code>条边将中心节点与其他每个节点连接起来。</p>
+<p>给你一个二维整数数组 <code>edges</code> ，其中 <code>edges[i] = [ui, vi]</code> 表示在节点 <code>ui</code> 和 <code>vi</code> 之间存在一条边。请你找出并返回 <code>edges</code> 所表示星型图的中心节点。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：edges = [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">2</span>]]</span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line">解释：如上图所示，节点 <span class="number">2</span> 与其他每个节点都相连，所以节点 <span class="number">2</span> 是中心节点。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：edges = [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">5</span>,<span class="number">1</span>],[<span class="number">1</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">4</span>]]</span><br><span class="line">输出：<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li>3 &lt;= n &lt;= 105</li>
+<li>edges.length == n - 1</li>
+<li>edges[i].length == 2</li>
+<li>1 &lt;= ui, vi &lt;= n</li>
+<li>ui != vi</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/find-center-of-star-graph" target="_blank" rel="noopener">https://leetcode-cn.com/problems/find-center-of-star-graph</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 图论</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>此题非常简单，我们只需要判断是否存在度为<code>n-1</code>的顶点即可，非常简单的实现即可，简单的有点离谱。<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findCenter</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = edges.size() + <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; degree(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : edges)&#123;</span><br><span class="line">            degree[v[<span class="number">0</span>]<span class="number">-1</span>]++;</span><br><span class="line">            degree[v[<span class="number">1</span>]<span class="number">-1</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(degree[i] == n<span class="number">-1</span>) <span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5703-最大平均通过率"><a href="#5703-最大平均通过率" class="headerlink" title="5703. 最大平均通过率"></a>5703. 最大平均通过率</h2><p>一所学校里有一些班级，每个班级里有一些学生，现在每个班都会进行一场期末考试。给你一个二维数组 <code>classes</code> ，其中 <code>classes[i] = [passi, totali]</code> ，表示你提前知道了第 <code>i</code> 个班级总共有 <code>totali</code>个学生，其中只有 <code>passi</code>个学生可以通过考试。</p>
+<p>给你一个整数 <code>extraStudents</code> ，表示额外有 <code>extraStudents</code>个聪明的学生，他们 一定 能通过任何班级的期末考。你需要给这 <code>extraStudents</code>个学生每人都安排一个班级，使得 所有 班级的 平均 通过率 最大 。</p>
+<p>一个班级的 通过率 等于这个班级通过考试的学生人数除以这个班级的总人数。平均通过率 是所有班级的通过率之和除以班级数目。</p>
+<p>请你返回在安排这 <code>extraStudents</code>个学生去对应班级后的 最大 平均通过率。与标准答案误差范围在 <code>10-5</code>以内的结果都会视为正确结果。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：classes = [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">5</span>],[<span class="number">2</span>,<span class="number">2</span>]], extraStudents = <span class="number">2</span></span><br><span class="line">输出：<span class="number">0.78333</span></span><br><span class="line">解释：你可以将额外的两个学生都安排到第一个班级，平均通过率为 (<span class="number">3</span>/<span class="number">4</span> + <span class="number">3</span>/<span class="number">5</span> + <span class="number">2</span>/<span class="number">2</span>) / <span class="number">3</span> = <span class="number">0.78333</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：classes = [[<span class="number">2</span>,<span class="number">4</span>],[<span class="number">3</span>,<span class="number">9</span>],[<span class="number">4</span>,<span class="number">5</span>],[<span class="number">2</span>,<span class="number">10</span>]], extraStudents = <span class="number">4</span></span><br><span class="line">输出：<span class="number">0.53485</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= classes.length &lt;= 105</code></li>
+<li><code>classes[i].length == 2</code></li>
+<li><code>1 &lt;= passi &lt;= totali &lt;= 105</code></li>
+<li><code>1 &lt;= extraStudents &lt;= 105</code></li>
+</ul>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/maximum-average-pass-ratio" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-average-pass-ratio</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 贪心算法</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>刚开始这个题目，自己想的太复杂了，后来相明白了，就是非常简单的贪心算法。</li>
+<li>我们设总通过班级通过率之和为$tot$,如果我们想增加最大平均通过率，本质就是如何使得总的班级通过率之和最大。此时我们就需要思考如何分配增加人数，我们根据贪心策略则优先将通过的学生分配给增加的通过率最大的班级即可，这样即保证最终得到的通过率之和最大。</li>
+<li>我们可以通过数学计算得出每增加一个学生，该班级的通过率增加的多少，我们设该班级原有的总人数为$n$,通过考试的人数为$m$,如果增加$1$人后，则增加的通过率为：<script type="math/tex; mode=display">
+\frac{m+1}{n+1} - \frac{m}{n}</script>我们按照贪心策略，每次为增加的通过率最大的班级分配一个学生即可,我们用优先级队列，每次弹出最优策略的班级，然后给其增加$1$个学生，然后再将其放入队列。时间复杂度为$O(mlgn)$,其中$m$为增加的学生人数，$n$为班级的数目。空间复杂度为$O(n)$.</li>
+<li>我们同时也可以得到策略可以知道，不断给某个班级增加人数，那么它增加的通过率实际上是递减的。<script type="math/tex; mode=display">
+\frac{m+1}{n+1} - \frac{m}{n} > \frac{m+2}{n+2} - \frac{m+1}{n+1}</script><h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> m;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line">    <span class="keyword">double</span> p;</span><br><span class="line">    Node(<span class="keyword">int</span> m,<span class="keyword">int</span> n,<span class="keyword">double</span> p)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;m = m;</span><br><span class="line">        <span class="keyword">this</span>-&gt;n = n;</span><br><span class="line">        <span class="keyword">this</span>-&gt;p = p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cmp</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(Node &amp; a,Node &amp; b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.p &lt; b.p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">maxAverageRatio</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; classes, <span class="keyword">int</span> extraStudents)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = classes.size();</span><br><span class="line">        priority_queue&lt;Node,<span class="built_in">vector</span>&lt;Node&gt;,cmp&gt; pq;</span><br><span class="line">        <span class="keyword">auto</span> diff = [&amp;](<span class="keyword">int</span> x,<span class="keyword">int</span> y)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">double</span>(x+<span class="number">1</span>)/(y+<span class="number">1</span>) - <span class="keyword">double</span>(x)/y;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : classes)&#123;</span><br><span class="line">            pq.push(Node(v[<span class="number">0</span>],v[<span class="number">1</span>],diff(v[<span class="number">0</span>],v[<span class="number">1</span>])));</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; extraStudents; ++i)&#123;</span><br><span class="line">            Node curr = pq.top();</span><br><span class="line">            pq.pop();</span><br><span class="line">            curr.m++;</span><br><span class="line">            curr.n++;</span><br><span class="line">            curr.p = diff(curr.m,curr.n);</span><br><span class="line">            pq.push(curr);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">double</span> tot = <span class="number">0.0</span>;</span><br><span class="line">        <span class="keyword">while</span>(!pq.empty())&#123;</span><br><span class="line">            Node curr = pq.top();</span><br><span class="line">            pq.pop();</span><br><span class="line">            tot += <span class="keyword">double</span>(curr.m)/curr.n;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> tot/n;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">maxAverageRatio</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; classes, <span class="keyword">int</span> extraStudents)</span> </span>&#123;</span><br><span class="line">        priority_queue&lt;tuple&lt;<span class="keyword">double</span>, <span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; q;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">auto</span> diff = [](<span class="keyword">int</span> x, <span class="keyword">int</span> y) -&gt; <span class="keyword">double</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">double</span>)(x + <span class="number">1</span>) / (y + <span class="number">1</span>) - (<span class="keyword">double</span>)x / y;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">double</span> ans = <span class="number">0.</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; c: classes) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = c[<span class="number">0</span>], y = c[<span class="number">1</span>];</span><br><span class="line">            ans += (<span class="keyword">double</span>)x / y;</span><br><span class="line">            q.emplace(diff(x, y), x, y);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> _ = <span class="number">0</span>; _ &lt; extraStudents; ++_) &#123;</span><br><span class="line">            <span class="keyword">auto</span> [d, x, y] = q.top();</span><br><span class="line">            q.pop();</span><br><span class="line">            ans += d;</span><br><span class="line">            q.emplace(diff(x + <span class="number">1</span>, y + <span class="number">1</span>), x + <span class="number">1</span>, y + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans / classes.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5704-好子数组的最大分数"><a href="#5704-好子数组的最大分数" class="headerlink" title="5704. 好子数组的最大分数"></a>5704. 好子数组的最大分数</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>给你一个整数数组 <code>nums</code> （下标从 0 开始）和一个整数 <code>k</code>。<br>一个子数组 <code>(i, j)</code> 的 分数 定义为 <code>min(nums[i], nums[i+1], ..., nums[j]) * (j - i + 1)</code>。一个 好 子数组的两个端点下标需要满足 <code>i &lt;= k &lt;= j</code> 。<br>请你返回 好 子数组的最大可能 分数 。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">5</span>], k = <span class="number">3</span></span><br><span class="line">输出：<span class="number">15</span></span><br><span class="line">解释：最优子数组的左右端点下标是 (<span class="number">1</span>, <span class="number">5</span>) ，分数为 min(<span class="number">4</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">5</span>) * (<span class="number">5</span><span class="number">-1</span>+<span class="number">1</span>) = <span class="number">3</span> * <span class="number">5</span> = <span class="number">15</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>], k = <span class="number">0</span></span><br><span class="line">输出：<span class="number">20</span></span><br><span class="line">解释：最优子数组的左右端点下标是 (<span class="number">0</span>, <span class="number">4</span>) ，分数为 min(<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>) * (<span class="number">4</span><span class="number">-0</span>+<span class="number">1</span>) = <span class="number">4</span> * <span class="number">5</span> = <span class="number">20</span> 。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 2 * 104</code></li>
+<li><code>0 &lt;= k &lt; nums.length</code></li>
+</ul>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/maximum-score-of-a-good-subarray" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-score-of-a-good-subarray</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>双指针或者二分查找</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>题目还是非常不错的，但是总体来说本题比起之前的题目都偏简单。</li>
+<li>我们可以求出有的以索引$k$为结尾的连续子字符串的最小数的前缀$left$，我们同时也可以求出所有以索引$k$为结尾的连续子字符串的最小数的后缀$right$。我们设$left[i]$表示子数组$[i,k]$的最小值，$right[j]$表示子数组$[k,j]$的最小值,我们可以很明显的看出$left$数组为递减，而$right$数组为递减.</li>
+<li>我们可以固定目标子数组的起始索引为$i$,子数组的结束索引为$k$,满足$0 \le i \le k$，此时很容易求出数组索引$[i,k]$之间的最小元素为$left[i]$,而此时我们则去查找满足以$k$为起始索引的连续子数组，且子数组的最小值大于等于$left[i]$的最大长度,我们依次遍历用双指针所有可能的$i$即可;</li>
+<li>此时我们可以固定目标子数组起始索引为$k$,结束索引为$j$,满足$k \le j \le n-1$，此时很容易求出数组索引$[k,j]$之间的最小元素为$right[j]$,而此时我们则去查找满足以$k$为结尾索引的连续子数组，且子数组的最小值大于等于$right[j]$的最大长度,我们依次遍历用双指针所有可能的$j$即可;</li>
+<li>时间复杂度为$O(n)$,空间复杂度为$O(n)$.<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maximumScore</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">int</span> ans = nums[k];</span><br><span class="line">        <span class="keyword">int</span> curr = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; arr;</span><br><span class="line">        curr = nums[k];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &gt;= <span class="number">0</span>; --i)&#123;</span><br><span class="line">            curr = min(curr,nums[i]);</span><br><span class="line">            arr.push_back(curr);</span><br><span class="line">        &#125;</span><br><span class="line">        reverse(arr.begin(),arr.end());</span><br><span class="line">        curr = nums[k];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = k+<span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            curr = min(curr,nums[i]);</span><br><span class="line">            arr.push_back(curr);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> r = n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">            <span class="keyword">while</span>(l &lt; r &amp;&amp; arr[l] &gt; arr[r]) r--;</span><br><span class="line">            <span class="keyword">if</span>(l &lt; r)&#123;</span><br><span class="line">                ans = max(ans,arr[l]*(r-l+<span class="number">1</span>));</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        l = <span class="number">0</span>;</span><br><span class="line">        r = n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">            <span class="keyword">while</span>(l &lt; r &amp;&amp; arr[l] &lt; arr[r]) l++;</span><br><span class="line">            <span class="keyword">if</span>(l &lt; r) &#123;</span><br><span class="line">                ans = max(ans,arr[r]*(r-l+<span class="number">1</span>));</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://mikemeng.org/" target="_blank" rel="noopener">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>公务程序猿.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2021/03/07/260/" rel="next" title="【Leetcode】 Leetcode  Contest 231">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】 Leetcode  Contest 231
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-contest-232"><span class="nav-number">1.</span> <span class="nav-text">leetcode contest 232</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5701-仅执行一次字符串交换能否使两个字符串相等"><span class="nav-number">1.1.</span> <span class="nav-text">5701. 仅执行一次字符串交换能否使两个字符串相等</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5702-找出星型图的中心节点"><span class="nav-number">1.2.</span> <span class="nav-text">5702. 找出星型图的中心节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5703-最大平均通过率"><span class="nav-number">1.3.</span> <span class="nav-text">5703. 最大平均通过率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5704-好子数组的最大分数"><span class="nav-number">1.4.</span> <span class="nav-text">5704. 好子数组的最大分数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.4.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">1.4.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.5.</span> <span class="nav-text">#</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">219</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
