@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="leetcode  LCCUP 2021总共5道题目，还是依旧三道题，后面两道题思考量确实很大，前三题基本上都是mid难度的题目。1. 采购方案题目小力将 N 个零件的报价存于数组 nums。小力预算为 target，假定小力仅购买两个零件，要求购买零件的花费不超过预算，请问他有多少种采购方案。注意：答案需要以 1e9 + 7 (1000000007)为底取模，如：计算初始结果为：10000000">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 Leetcode  LCCUP 2021">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;04&#x2F;06&#x2F;270&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="leetcode  LCCUP 2021总共5道题目，还是依旧三道题，后面两道题思考量确实很大，前三题基本上都是mid难度的题目。1. 采购方案题目小力将 N 个零件的报价存于数组 nums。小力预算为 target，假定小力仅购买两个零件，要求购买零件的花费不超过预算，请问他有多少种采购方案。注意：答案需要以 1e9 + 7 (1000000007)为底取模，如：计算初始结果为：10000000">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2021&#x2F;04&#x2F;06&#x2F;uoGFLZHMPvskAn7.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+<meta property="og:updated_time" content="2021-04-08T09:58:12.806Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2021&#x2F;04&#x2F;06&#x2F;uoGFLZHMPvskAn7.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2021/04/06/270/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 Leetcode  LCCUP 2021 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/06/270/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 Leetcode  LCCUP 2021
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-06 08:39:47" itemprop="dateCreated datePublished" datetime="2021-04-06T08:39:47+08:00">2021-04-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-08 17:58:12" itemprop="dateModified" datetime="2021-04-08T17:58:12+08:00">2021-04-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/06/270/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/06/270/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="leetcode-LCCUP-2021"><a href="#leetcode-LCCUP-2021" class="headerlink" title="leetcode  LCCUP 2021"></a>leetcode  LCCUP 2021</h1><p>总共5道题目，还是依旧三道题，后面两道题思考量确实很大，前三题基本上都是<code>mid</code>难度的题目。</p><h2 id="1-采购方案"><a href="#1-采购方案" class="headerlink" title="1. 采购方案"></a>1. 采购方案</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>小力将 N 个零件的报价存于数组 <code>nums</code>。小力预算为 <code>target</code>，假定小力仅购买两个零件，要求购买零件的花费不超过预算，请问他有多少种采购方案。</p><p>注意：答案需要以 <code>1e9 + 7 (1000000007)</code>为底取模，如：计算初始结果为：<code>1000000008</code>，请返回 <code>1</code></p><a id="more"></a>
+
+
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>], target = <span class="number">6</span></span><br><span class="line"></span><br><span class="line">输出：<span class="number">1</span></span><br><span class="line"></span><br><span class="line">解释：预算内仅能购买 nums[<span class="number">0</span>] 与 nums[<span class="number">2</span>]。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">9</span>], target = <span class="number">10</span></span><br><span class="line">输出：<span class="number">4</span></span><br><span class="line">解释：符合预算的采购方案如下：</span><br><span class="line">nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">4</span></span><br><span class="line">nums[<span class="number">0</span>] + nums[<span class="number">2</span>] = <span class="number">3</span></span><br><span class="line">nums[<span class="number">1</span>] + nums[<span class="number">2</span>] = <span class="number">3</span></span><br><span class="line">nums[<span class="number">2</span>] + nums[<span class="number">3</span>] = <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 10^5</code></li>
+<li><code>1 &lt;= nums[i], target &lt;= 10^5</code></li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/truncate-sentence" target="_blank" rel="noopener">https://leetcode-cn.com/problems/truncate-sentence</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  两数求和问题，双指针或者二分查找</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>典型的两数求和问题，常见的就是用双指针或者二分查找，在这里比较简单的是用双指针问题，固定一个较大的数<code>x</code>，查找用多少个数满足$x+y &lt; target$.</li>
+<li>算法时间复杂度$O(nlgn)$.<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">purchasePlans</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(l &lt; <span class="number">0</span>) <span class="keyword">return</span> ans;</span><br><span class="line">            <span class="keyword">while</span>(l &lt; i &amp;&amp; nums[i] + nums[l] &lt;= target) l++;</span><br><span class="line">            <span class="keyword">if</span>(l == i) l--;</span><br><span class="line">            <span class="keyword">while</span>(l &gt;= <span class="number">0</span> &amp;&amp; nums[i] + nums[l] &gt; target) l--;</span><br><span class="line">            <span class="keyword">if</span>(l &gt;= <span class="number">0</span>) ans = (ans + l + <span class="number">1</span>)%mod;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="2-乐团站位"><a href="#2-乐团站位" class="headerlink" title="2. 乐团站位"></a>2. 乐团站位</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>某乐团的演出场地可视作 <code>num * num</code> 的二维矩阵 <code>grid</code>（左上角坐标为 <code>[0,0]</code>)，每个位置站有一位成员。乐团共有 <code>9</code> 种乐器，乐器编号为 <code>1~9</code>，每位成员持有 <code>1</code> 个乐器。</p>
+<p>为保证声乐混合效果，成员站位规则为：自 <code>grid</code> 左上角开始顺时针螺旋形向内循环以 <code>1，2，...，9</code>循环重复排列。例如当 <code>num = 5</code>时，站位如图所示</p>
+<p>请返回位于场地坐标<code>[Xpos,Ypos]</code>的成员所持乐器编号。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：num = <span class="number">3</span>, Xpos = <span class="number">0</span>, Ypos = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">输出：<span class="number">3</span></span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">image.png</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：num = <span class="number">4</span>, Xpos = <span class="number">1</span>, Ypos = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">输出：<span class="number">5</span></span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">image.png</span><br></pre></td></tr></table></figure><br>提示：</p>
+<ul>
+<li><code>1 &lt;= num &lt;= 10^9</code></li>
+<li><code>0 &lt;= Xpos, Ypos &lt; num</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/finding-the-users-active-minutes" target="_blank" rel="noopener">https://leetcode-cn.com/problems/finding-the-users-active-minutes</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 小学奥数问题</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>思路很简单，我们首先找到该坐标属于从外往里数第几个正方形，然后属于该正方形中的第几个元素即可。<br><img src="https://i.loli.net/2021/04/06/uoGFLZHMPvskAn7.jpg" alt></li>
+<li>第几圈我们仔细观察一下可以知道$level = min(x,y,num-1-x,num-1-y)$,第$level$个正方形的边长为$ edge = num - 2<em>level$,此时我们知道<code>level</code>以外的所有正方形的周长的综合为$sum = num</em>num - edge<em>edge$,此时我们知道从第<code>level</code>层的正方形的起始点应该为$num</em>num - edge*edge + 1$,此时我们在分别判断$(x,y)$按照顺时针旋转属于该正方形的第几条边即可。<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">orchestraLayout</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> xPos, <span class="keyword">int</span> yPos)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> level = min(min(xPos,yPos),min(num-xPos<span class="number">-1</span>,num<span class="number">-1</span>-yPos));</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> edge  = num - <span class="number">2</span>*level;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> curr = (<span class="keyword">long</span> <span class="keyword">long</span>)(num)*num - (<span class="keyword">long</span> <span class="keyword">long</span>)(edge)*edge;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*move to (0,0)*/</span></span><br><span class="line">        xPos -= level;</span><br><span class="line">        yPos -= level;</span><br><span class="line">        <span class="keyword">if</span>(xPos == <span class="number">0</span>)&#123; <span class="comment">// 1</span></span><br><span class="line">            curr += yPos + <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(yPos == edge - <span class="number">1</span>)&#123; <span class="comment">// 2</span></span><br><span class="line">            curr += (edge <span class="number">-1</span>) + xPos + <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(xPos == edge - <span class="number">1</span>)&#123; <span class="comment">// 3</span></span><br><span class="line">            curr += (edge <span class="number">-1</span>)*<span class="number">2</span> + edge - yPos;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(yPos == <span class="number">0</span>)&#123; <span class="comment">// 4</span></span><br><span class="line">            curr += (edge <span class="number">-1</span>)*<span class="number">3</span> + edge - xPos;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (curr%<span class="number">9</span>) == <span class="number">0</span> ? <span class="number">9</span> : (curr%<span class="number">9</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="LCP-30-魔塔游戏"><a href="#LCP-30-魔塔游戏" class="headerlink" title="LCP 30. 魔塔游戏"></a>LCP 30. 魔塔游戏</h2><p>小扣当前位于魔塔游戏第一层，共有 <code>N</code> 个房间，编号为 <code>0 ~ N-1</code>。每个房间的补血道具/怪物对于血量影响记于数组<code>nums</code>，其中正数表示道具补血数值，即血量增加对应数值；负数表示怪物造成伤害值，即血量减少对应数值；<code>0</code> 表示房间对血量无影响。</p>
+<p>小扣初始血量为<code>1</code>，且无上限。假定小扣原计划按房间编号升序访问所有房间补血/打怪，为保证血量始终为正值，小扣需对房间访问顺序进行调整，每次仅能将一个怪物房间（负数的房间）调整至访问顺序末尾。请返回小扣最少需要调整几次，才能顺利访问所有房间。若调整顺序也无法访问完全部房间，请返回 <code>-1</code>。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">-250</span>,<span class="number">-60</span>,<span class="number">-140</span>,<span class="number">-50</span>,<span class="number">-50</span>,<span class="number">100</span>,<span class="number">150</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">1</span></span><br><span class="line"></span><br><span class="line">解释：初始血量为 <span class="number">1</span>。至少需要将 nums[<span class="number">3</span>] 调整至访问顺序末尾以满足要求。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">-200</span>,<span class="number">-300</span>,<span class="number">400</span>,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">-1</span></span><br><span class="line"></span><br><span class="line">解释：调整访问顺序也无法完成全部房间的访问。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
+<li><code>-10^5 &lt;= nums[i] &lt;= 10^5</code></li>
+</ul>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/p0NxJO" target="_blank" rel="noopener">https://leetcode-cn.com/problems/p0NxJO</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 贪心算法</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>思考一下，如何才能满足能够通过这一层，我们将所有的伤害和血量增加加起来的和满足大于<code>0</code>则表示一定可以通过这一层，否则则表示我们不能通过这一层。</li>
+<li>假如我们当前遇到血量不足时，我们最优策略应该即把伤害值最大的房间往后移，根据这个贪心策略，我们利用优先级的特性，每次将所有的伤害均进入优先级队列，穿越房间时，如果发现当前血量不足，则我们从队列弹出最大的伤害值，并将当前的血量进行恢复，一直回到当前的持有的血量大于<code>0</code>为止。</li>
+<li>算法的时间复杂度为$O(nlgn)$.空间复杂度为$O(n)$.<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">magicTower</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> sum = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        priority_queue&lt;<span class="keyword">int</span>&gt; pq;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) sum += nums[i];</span><br><span class="line">        <span class="keyword">if</span>(sum &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        sum = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : nums)&#123;</span><br><span class="line">            sum += v;</span><br><span class="line">            <span class="keyword">if</span>(v &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                pq.push(-v);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(sum &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">while</span>(!pq.empty() &amp;&amp; sum &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">                    sum += pq.top();</span><br><span class="line">                    pq.pop();</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="LCP-31-变换的迷宫"><a href="#LCP-31-变换的迷宫" class="headerlink" title="LCP 31. 变换的迷宫"></a>LCP 31. 变换的迷宫</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>某解密游戏中，有一个 <code>N*M</code> 的迷宫，迷宫地形会随时间变化而改变，迷宫出口一直位于 <code>(n-1,m-1)</code>位置。迷宫变化规律记录于 <code>maze</code>中，<code>maze[i]</code>表示 <code>i</code>时刻迷宫的地形状态，<code>&quot;.&quot;</code>表示可通行空地，<code>&quot;#&quot;</code> 表示陷阱。</p>
+<p>地形图初始状态记作 <code>maze[0]</code>，此时小力位于起点 <code>(0,0)</code>。此后每一时刻可选择往上、下、左、右其一方向走一步，或者停留在原地。</p>
+<p>小力背包有以下两个魔法卷轴（卷轴使用一次后消失）：</p>
+<ul>
+<li>临时消除术：将指定位置在下一个时刻变为空地；</li>
+<li>永久消除术：将指定位置永久变为空地。<br>请判断在迷宫变化结束前（含最后时刻），小力能否在不经过任意陷阱的情况下到达迷宫出口呢？</li>
+</ul>
+<p>注意： 输入数据保证起点和终点在所有时刻均为空地。</p>
+<p>示例 1：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：maze = [[<span class="string">".#."</span>,<span class="string">"#.."</span>],[<span class="string">"..."</span>,<span class="string">".#."</span>],[<span class="string">".##"</span>,<span class="string">".#."</span>],[<span class="string">"..#"</span>,<span class="string">".#."</span>]]</span><br><span class="line"></span><br><span class="line">输出：true</span><br><span class="line"></span><br><span class="line">解释：</span><br></pre></td></tr></table></figure></p>
+<p>示例 2：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：maze = [[<span class="string">".#."</span>,<span class="string">"..."</span>],[<span class="string">"..."</span>,<span class="string">"..."</span>]]</span><br><span class="line"></span><br><span class="line">输出：false</span><br><span class="line"></span><br><span class="line">解释：由于时间不够，小力无法到达终点逃出迷宫。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：maze = [[<span class="string">"..."</span>,<span class="string">"..."</span>,<span class="string">"..."</span>],[<span class="string">".##"</span>,<span class="string">"###"</span>,<span class="string">"##."</span>],[<span class="string">".##"</span>,<span class="string">"###"</span>,<span class="string">"##."</span>],[<span class="string">".##"</span>,<span class="string">"###"</span>,<span class="string">"##."</span>],[<span class="string">".##"</span>,<span class="string">"###"</span>,<span class="string">"##."</span>],[<span class="string">".##"</span>,<span class="string">"###"</span>,<span class="string">"##."</span>],[<span class="string">".##"</span>,<span class="string">"###"</span>,<span class="string">"##."</span>]]</span><br><span class="line"></span><br><span class="line">输出：false</span><br><span class="line"></span><br><span class="line">解释：由于道路不通，小力无法到达终点逃出迷宫。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= maze.length &lt;= 100</code></li>
+<li><code>1 &lt;= maze[i].length, maze[i][j].length &lt;= 50</code></li>
+<li><code>maze[i][j]</code> 仅包含 <code>&quot;.&quot;、&quot;#&quot;</code></li>
+</ul>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/Db3wC1" target="_blank" rel="noopener">https://leetcode-cn.com/problems/Db3wC1</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p><code>dfs</code>记忆式搜索。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>本题的思考难度还是非常大的，难点在于如何处理永久将某一位置变为空地，假如我们直接设遍历所有的状态，则可能会超时。难点在于如何思考和优化，参考了一下第二名的代码，非常简洁。</li>
+</ol>
+<ul>
+<li>对于临时消除的这个问题，非常好处理，设立一个标志位，表示当前是否可以进行临时消除即可。</li>
+<li>对于永久消除的这个问题，我们最难思考的是，假设我们在某一个时刻$t_{0}$对坐标$(x,y)$进行了消除，则我们经历了$t_{1},t_{2},t_{3}…,t_{i}$跳跃了坐标$(x_{1},y_{1})，(x_{2},y_{2})，(x_{3},y_{3})…(x_{i},y_{i})，$后，我们又回到了坐标$(x,y)$,则此时我们如何判断$(x,y)$已经被永久消除，这个是最难的思考点。题解中给出的假设我们在$t_{0}$时候已经对坐标$(x,y)$进行了消除，我们在$t_{i}$时候刻后经历了其他不同的坐标后又回到原始坐标$(x,y)$,我们完全可以可以在一直$t_{1},t_{2},t_{3}…,t_{i}$一直呆在原始坐标$(x,y)$处，因此我们可以判断，假如它从永久消除的坐标$(x,y)$跳出后，就不会再跳回原始坐标$(x,y)$.</li>
+<li>因此我们需要增设一个状态$usedStay$,如果$usedStay = 1$，表示我们已经用了永久消除当前可以一直停留在原地，如果$usedStay = 0$则表示为未用永久消除术或者用了永久消除但已经跳出释放永久消除的格子。</li>
+</ul>
+<ol>
+<li>我们设$dp[t][x][y][tmpuse][alluse][usedstay]$表示在<code>t</code>时候到达坐标$(x,y)$,且手中持有的临时消除的次数为$tmpuse$,手中持有的永久消除的次数为$alluse$,当前的是否使用永久消除术且可以停留在原地的状态为$usedstay$.</li>
+<li>时间复杂度为$O(n<em>row</em>col<em>2</em>2<em>2</em>4)$,在我们当前的数值的允许范围内可以完成全部搜索。<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> dp[<span class="number">101</span>][<span class="number">51</span>][<span class="number">51</span>][<span class="number">2</span>][<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> n,row,col;</span><br><span class="line">    <span class="keyword">int</span> d[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">-1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">-1</span>&#125;&#125;;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; matrix;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> tmp_use,<span class="keyword">int</span> all_use,<span class="keyword">int</span> used_stay)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t &gt;= n) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(dp[t][x][y][tmp_use][all_use][used_stay]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        dp[t][x][y][tmp_use][all_use][used_stay] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(t == n<span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*check if we can stay at the same positon (x,y) in the next time t+1*/</span></span><br><span class="line">        <span class="keyword">if</span>(used_stay || matrix[t+<span class="number">1</span>][x][y] == <span class="string">'.'</span>) </span><br><span class="line">            dfs(t+<span class="number">1</span>,x,y,tmp_use,all_use,used_stay);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*check if we can move to other position in the next time*/</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> x1 = x + d[i][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> y1 = y + d[i][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(x1 &lt; <span class="number">0</span> || y1 &lt; <span class="number">0</span> || x1 &gt;= row || y1 &gt;= col) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(matrix[t+<span class="number">1</span>][x1][y1] == <span class="string">'.'</span>)&#123;</span><br><span class="line">                <span class="comment">/*we just move to other postion (x1,y1)*/</span></span><br><span class="line">                dfs(t+<span class="number">1</span>,x1,y1,tmp_use,all_use,<span class="number">0</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">/*we use temple erase (x1,y1) at this time,the next time it can move to (x1,y1)*/</span></span><br><span class="line">                <span class="keyword">if</span>(tmp_use &gt; <span class="number">0</span>) dfs(t+<span class="number">1</span>,x1,y1,<span class="number">0</span>,all_use,<span class="number">0</span>);</span><br><span class="line">                <span class="comment">/*we use all erase (x1,y1) at this time, the next time it can move to (x1,y1) and it can stay at (x1,y1) all over the life*/</span></span><br><span class="line">                <span class="keyword">if</span>(all_use &gt; <span class="number">0</span>) dfs(t+<span class="number">1</span>,x1,y1,tmp_use,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">escapeMaze</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; maze)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;n = maze.size();</span><br><span class="line">        <span class="keyword">this</span>-&gt;row = maze[<span class="number">0</span>].size();</span><br><span class="line">        <span class="keyword">this</span>-&gt;col = maze[<span class="number">0</span>][<span class="number">0</span>].size();</span><br><span class="line">        <span class="keyword">this</span>-&gt;matrix = maze;</span><br><span class="line">        <span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">        dfs(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span>; ++j)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">2</span>; ++k)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; <span class="number">2</span>; ++l)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(dp[i][row<span class="number">-1</span>][col<span class="number">-1</span>][j][k][l]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="LCP-32-批量处理任务"><a href="#LCP-32-批量处理任务" class="headerlink" title="LCP 32. 批量处理任务"></a>LCP 32. 批量处理任务</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3><p>某实验室计算机待处理任务以<code>[start,end,period]</code>格式记于二维数组 <code>tasks</code>，表示完成该任务的时间范围为起始时间 <code>start</code> 至结束时间 <code>end</code>之间，需要计算机投入 <code>period</code> 的时长，注意：</p>
+<ul>
+<li><code>period</code> 可为不连续时间</li>
+<li>首尾时间均包含在内</li>
+<li>处于开机状态的计算机可同时处理任意多个任务，请返回电脑最少开机多久，可处理完所有任务。</li>
+</ul>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入：tasks = [[<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>],[<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>],[<span class="number">5</span>,<span class="number">6</span>,<span class="number">2</span>]]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">4</span></span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">tasks[<span class="number">0</span>] 选择时间点 <span class="number">2</span>、<span class="number">3</span>；</span><br><span class="line">tasks[<span class="number">1</span>] 选择时间点 <span class="number">2</span>、<span class="number">3</span>、<span class="number">5</span>；</span><br><span class="line">tasks[<span class="number">2</span>] 选择时间点 <span class="number">5</span>、<span class="number">6</span>；</span><br><span class="line">因此计算机仅需在时间点 <span class="number">2</span>、<span class="number">3</span>、<span class="number">5</span>、<span class="number">6</span> 四个时刻保持开机即可完成任务。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：tasks = [[<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>],[<span class="number">5</span>,<span class="number">5</span>,<span class="number">1</span>],[<span class="number">5</span>,<span class="number">6</span>,<span class="number">2</span>]]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">3</span></span><br><span class="line">解释：</span><br><span class="line">tasks[<span class="number">0</span>] 选择时间点 <span class="number">2</span> 或 <span class="number">3</span>；</span><br><span class="line">tasks[<span class="number">1</span>] 选择时间点 <span class="number">5</span>；</span><br><span class="line">tasks[<span class="number">2</span>] 选择时间点 <span class="number">5</span>、<span class="number">6</span>；</span><br><span class="line">因此计算机仅需在时间点 <span class="number">2</span>、<span class="number">5</span>、<span class="number">6</span> 或 <span class="number">3</span>、<span class="number">5</span>、<span class="number">6</span> 三个时刻保持开机即可完成任务。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>2 &lt;= tasks.length &lt;= 10^5</code></li>
+<li><code>tasks[i].length == 3</code></li>
+<li><code>0 &lt;= tasks[i][0] &lt;= tasks[i][1] &lt;= 10^9</code></li>
+<li><code>1 &lt;= tasks[i][2] &lt;= tasks[i][1]-tasks[i][0] + 1</code></li>
+</ul>
+<h3 id="地址-4"><a href="#地址-4" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/t3fKg1" target="_blank" rel="noopener">https://leetcode-cn.com/problems/t3fKg1</a></p>
+<h3 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>贪心算法，线段树</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>首先我们可以知道每一个任务对应着一个线段，所有的运行时间点我们也可以看作为离散的线段，所谓的开机时间满足要求，只需要在线段范围$[l,r]$内运行的时间点组成的离散的小线段的总长度大于等于$period$即可，仔细分析一下，我们可以利用类似于差分数组的方法，我们按照任务的结束时间的先后顺序进行排序，每遇到一个任务结束的右端点$r_{i}$时，我们首先查询当前任务运行时间范围$[l_{i},r_{i}]$内已经运行的开机时间是否满足$period_{i}$,如果不满足，则我们从右端$r_{i}$向左开始在空闲的时间内依次添加开机时间直到$[l_{i},r_{i}]$范围的开机时间满足$period_{i}$即可。</li>
+<li>我们可以用数组表示当前已经开机时间点离散小线段，比如$arr[i] = {l_{i},r_{i}}$表示当前在$[l_{i},r_{i}]$设备已经在开机运行，则此时该时间段内连续的运行时间即为$r_{i}-l_{i} + 1$，我们用前缀和$pre[i]$表示前<code>i</code>个开机运行线段的运行时间的总和.我们每次固定当前的右端点，然后利用二分查找和前缀和可以快速查找在$[l_{i},r_{i}]$范围内已经开机运行的时间的总和，然后即可求出当前任务中我们还需要再开机运行多长时间，依次进行叠加即可求出所满足要求，这个算法是参考@cuiaoxiang的，不过算法时间复杂度较高，时间复杂度感觉应该是$o(n^{2})$因为其中涉及到线段的合并的问题，但是实际上我们可以进行优化，最终结果是可以过测试用例的。</li>
+<li>线段树，线段树的解法就复杂的多了，可以参考@restant的解法，写的实在太复杂，不过原理应该差不多。<h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">processTasks</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; tasks)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = tasks.size();</span><br><span class="line">        <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp; v : tasks) v[<span class="number">0</span>]--;</span><br><span class="line">        sort(tasks.begin(),tasks.end(),[&amp;](<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; a,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; b)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[<span class="number">1</span>] == b[<span class="number">1</span>]) <span class="keyword">return</span> a[<span class="number">0</span>] &lt; b[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">return</span> a[<span class="number">1</span>] &lt; b[<span class="number">1</span>];</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;pii&gt; used;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pre = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>,j = <span class="number">0</span>; i &lt; n; i = j)&#123;</span><br><span class="line">            <span class="keyword">int</span> mx = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">/*we find the most running time from task[i][1] which we need to add*/</span></span><br><span class="line">            <span class="keyword">for</span>(j = i; j &lt; n &amp;&amp; tasks[j][<span class="number">1</span>] == tasks[i][<span class="number">1</span>]; j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> s = tasks[j][<span class="number">0</span>];</span><br><span class="line">                <span class="keyword">int</span> t = tasks[j][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">int</span> p = tasks[j][<span class="number">2</span>];</span><br><span class="line">                <span class="comment">/*search last segment greater than x*/</span></span><br><span class="line">                <span class="keyword">int</span> k = lower_bound(used.begin(),used.end(),pii&#123;s,<span class="number">0</span>&#125;) - used.begin();</span><br><span class="line">                <span class="keyword">int</span> m = used.size();</span><br><span class="line">                <span class="keyword">int</span> curr = pre[m] - pre[k];</span><br><span class="line">                <span class="keyword">if</span>(k &gt; <span class="number">0</span> &amp;&amp; used[k<span class="number">-1</span>].second &gt;= s) curr += used[k<span class="number">-1</span>].second - s;</span><br><span class="line">                <span class="keyword">if</span>(p &gt; curr)  mx = max(mx,p-curr);</span><br><span class="line">            &#125;</span><br><span class="line">            ret += mx;</span><br><span class="line">            <span class="comment">//cout&lt;&lt;mx&lt;&lt;endl;</span></span><br><span class="line">            <span class="keyword">if</span>(mx &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> x = tasks[i][<span class="number">1</span>]-mx;</span><br><span class="line">                <span class="keyword">int</span> y = tasks[i][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">while</span>(used.size() &amp;&amp; used.back().second &gt;= x)&#123;</span><br><span class="line">                    <span class="keyword">auto</span> [u,v] = used.back();</span><br><span class="line">                    used.pop_back();</span><br><span class="line">                    pre.pop_back();</span><br><span class="line">                    x = u - (v-x);</span><br><span class="line">                &#125;</span><br><span class="line">                used.push_back(&#123;x,y&#125;);</span><br><span class="line">                pre.push_back(pre.back() + y - x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ls (t&lt;&lt;1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rs ((t&lt;&lt;1)|1)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> l, r, p;</span><br><span class="line">&#125;a[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NMB</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> add ,sum, id;</span><br><span class="line">&#125;tree[<span class="number">100005</span>*<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> Node&amp; a, <span class="keyword">const</span> Node&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.l &lt; b.l;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	tree[ls].add += tree[t].add;</span><br><span class="line">	tree[ls].sum += tree[t].add;</span><br><span class="line">	tree[rs].add += tree[t].add;</span><br><span class="line">	tree[rs].sum += tree[t].add;</span><br><span class="line">	tree[t].add = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (tree[ls].sum &lt; tree[rs].sum)</span><br><span class="line">	&#123;</span><br><span class="line">		tree[t].sum = tree[ls].sum;</span><br><span class="line">		tree[t].id = tree[ls].id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		tree[t].sum = tree[rs].sum;</span><br><span class="line">		tree[t].id = tree[rs].id;		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build_tree</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	tree[t].add = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (l == r) </span><br><span class="line">	&#123;</span><br><span class="line">		tree[t].sum = a[l].r - a[l].p + <span class="number">1</span>;</span><br><span class="line">		tree[t].id = l;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		build_tree(l,mid,ls);</span><br><span class="line">		build_tree(mid+<span class="number">1</span>,r,rs);</span><br><span class="line">		up(t);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> ll,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l==r) <span class="keyword">return</span> tree[t].sum;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>; </span><br><span class="line">		down(t);</span><br><span class="line">		<span class="keyword">if</span> (ll&lt;=mid) <span class="keyword">return</span> find(ll,l,mid,ls);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">return</span> find(ll,mid+<span class="number">1</span>,r,rs);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> ll,<span class="keyword">int</span> c,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l == r)</span><br><span class="line">	&#123;</span><br><span class="line">		tree[t].sum = c;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		down(t);</span><br><span class="line">		<span class="keyword">int</span> mid = (l + r) &gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (ll&lt;=mid) modify(ll,c,l,mid,ls);</span><br><span class="line">		<span class="keyword">else</span> modify(ll,c,mid+<span class="number">1</span>,r,rs);</span><br><span class="line">		up(t); </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> ll,<span class="keyword">int</span> rr,<span class="keyword">int</span> c,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (ll &lt;= l &amp;&amp; r &lt;= rr)</span><br><span class="line">	&#123;</span><br><span class="line">		tree[t].add += c;</span><br><span class="line">		tree[t].sum += c;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		down(t);</span><br><span class="line">		<span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (ll &lt;= mid) change(ll,rr,c,l,mid,ls);</span><br><span class="line">		<span class="keyword">if</span> (rr&gt;mid)  change(ll,rr,c,mid+<span class="number">1</span>,r,rs);</span><br><span class="line">		up(t);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Work</span><span class="params">(<span class="keyword">int</span> L,<span class="keyword">int</span> R)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> l = <span class="number">1</span>, r = n + <span class="number">1</span>, mid = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (L &gt; R) <span class="keyword">return</span>;</span><br><span class="line">	ans += R - L + <span class="number">1</span>; </span><br><span class="line">	<span class="keyword">while</span> ((l + r) &gt;&gt; <span class="number">1</span> != mid)</span><br><span class="line">	&#123;</span><br><span class="line">		mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (a[mid].l &gt;= L) r = mid;</span><br><span class="line">		<span class="keyword">else</span> l = mid;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = r; a[i].l &lt;= R &amp;&amp; i &lt;= n; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> p = find(i, <span class="number">1</span>, n, <span class="number">1</span>) + (R - a[i].l + <span class="number">1</span>); </span><br><span class="line">		modify(i, p, <span class="number">1</span>, n, <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (r &gt; <span class="number">1</span>) change(<span class="number">1</span>, r - <span class="number">1</span>, R - L + <span class="number">1</span>, <span class="number">1</span>, n, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">processTasks</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; tasks)</span> </span>&#123;</span><br><span class="line">		n = tasks.size();</span><br><span class="line">		ans = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ;++i)</span><br><span class="line">		&#123;</span><br><span class="line">			a[i].l = tasks[i - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">			a[i].r = tasks[i - <span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">			a[i].p = tasks[i - <span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		sort(a + <span class="number">1</span>, a + n + <span class="number">1</span>, cmp);</span><br><span class="line">		build_tree(<span class="number">1</span>, n, <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> x = tree[<span class="number">1</span>].id;</span><br><span class="line">			<span class="keyword">int</span> L = find(x, <span class="number">1</span>, n ,<span class="number">1</span>), R = a[x].r;</span><br><span class="line">			Work(L,R);</span><br><span class="line">			modify(x,(<span class="keyword">int</span>)<span class="number">1e9</span>,<span class="number">1</span>,n,<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://mikemeng.org/" target="_blank" rel="noopener">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>公务程序猿.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2021/04/04/268/" rel="next" title="【Leetcode】 Leetcode  Biweekly Contest 49">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】 Leetcode  Biweekly Contest 49
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2021/04/06/271/" rel="prev" title="【Google】 Google">
+                  【Google】 Google <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-LCCUP-2021"><span class="nav-number">1.</span> <span class="nav-text">leetcode  LCCUP 2021</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-采购方案"><span class="nav-number">1.1.</span> <span class="nav-text">1. 采购方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-乐团站位"><span class="nav-number">1.2.</span> <span class="nav-text">2. 乐团站位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-30-魔塔游戏"><span class="nav-number">1.3.</span> <span class="nav-text">LCP 30. 魔塔游戏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-31-变换的迷宫"><span class="nav-number">1.4.</span> <span class="nav-text">LCP 31. 变换的迷宫</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.4.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">1.4.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-32-批量处理任务"><span class="nav-number">1.5.</span> <span class="nav-text">LCP 32. 批量处理任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-3"><span class="nav-number">1.5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-4"><span class="nav-number">1.5.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-number">1.5.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-4"><span class="nav-number">1.5.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.6.</span> <span class="nav-text">#</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

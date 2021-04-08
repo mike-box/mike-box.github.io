@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="leetcode weekly contest 235还是依旧三道题，最后一题的思考确实比较难。5722. 截断句子题目句子 是一个单词列表，列表中的单词之间用单个空格隔开，且不存在前导或尾随空格。每个单词仅由大小写英文字母组成（不含标点符号）。例如，&amp;quot;Hello World&amp;quot;、&amp;quot;HELLO&amp;quot; 和 &amp;quot;hello world hello world&amp;">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 Leetcode  Weekly  Contest 235">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;04&#x2F;04&#x2F;269&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="leetcode weekly contest 235还是依旧三道题，最后一题的思考确实比较难。5722. 截断句子题目句子 是一个单词列表，列表中的单词之间用单个空格隔开，且不存在前导或尾随空格。每个单词仅由大小写英文字母组成（不含标点符号）。例如，&amp;quot;Hello World&amp;quot;、&amp;quot;HELLO&amp;quot; 和 &amp;quot;hello world hello world&amp;">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+<meta property="og:updated_time" content="2021-04-04T13:59:32.134Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+
+<link rel="canonical" href="http://yoursite.com/2021/04/04/269/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 Leetcode  Weekly  Contest 235 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/04/269/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 Leetcode  Weekly  Contest 235
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-04 09:30:40 / Modified: 21:59:32" itemprop="dateCreated datePublished" datetime="2021-04-04T09:30:40+08:00">2021-04-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/04/269/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/04/269/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="leetcode-weekly-contest-235"><a href="#leetcode-weekly-contest-235" class="headerlink" title="leetcode weekly contest 235"></a>leetcode weekly contest 235</h1><p>还是依旧三道题，最后一题的思考确实比较难。</p><h2 id="5722-截断句子"><a href="#5722-截断句子" class="headerlink" title="5722. 截断句子"></a>5722. 截断句子</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>句子 是一个单词列表，列表中的单词之间用单个空格隔开，且不存在前导或尾随空格。每个单词仅由大小写英文字母组成（不含标点符号）。</p><p>例如，<code>&quot;Hello World&quot;、&quot;HELLO&quot;</code> 和 <code>&quot;hello world hello world&quot;</code>都是句子。<br>给你一个句子 <code>s​​​​​​</code> 和一个整数<code>k​​​​​​</code> ，请你将 <code>s​​</code> 截断 ​，​​​使截断后的句子仅含 前 <code>k​​​​​​</code> 个单词。返回 截断 <code>s​​​​​​</code> 后得到的句子。</p><a id="more"></a>
+
+
+<p>示例 1：<br><figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="comment">"Hello how are you Contestant"</span>, k = <span class="number">4</span></span><br><span class="line">输出：<span class="comment">"Hello how are you"</span></span><br><span class="line">解释：</span><br><span class="line">s 中的单词为 [<span class="comment">"Hello"</span>, <span class="comment">"how"</span> <span class="comment">"are"</span>, <span class="comment">"you"</span>, <span class="comment">"Contestant"</span>]</span><br><span class="line">前 <span class="number">4</span> 个单词为 [<span class="comment">"Hello"</span>, <span class="comment">"how"</span>, <span class="comment">"are"</span>, <span class="comment">"you"</span>]</span><br><span class="line">因此，应当返回 <span class="comment">"Hello how are you"</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="comment">"What is the solution to this problem"</span>, k = <span class="number">4</span></span><br><span class="line">输出：<span class="comment">"What is the solution"</span></span><br><span class="line">解释：</span><br><span class="line">s 中的单词为 [<span class="comment">"What"</span>, <span class="comment">"is"</span> <span class="comment">"the"</span>, <span class="comment">"solution"</span>, <span class="comment">"to"</span>, <span class="comment">"this"</span>, <span class="comment">"problem"</span>]</span><br><span class="line">前 <span class="number">4</span> 个单词为 [<span class="comment">"What"</span>, <span class="comment">"is"</span>, <span class="comment">"the"</span>, <span class="comment">"solution"</span>]</span><br><span class="line">因此，应当返回 <span class="comment">"What is the solution"</span></span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight mizar"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = "chopper <span class="keyword">is</span> <span class="keyword">not</span> a tanuki", k = 5</span><br><span class="line">输出："chopper <span class="keyword">is</span> <span class="keyword">not</span> a tanuki"</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 500</code></li>
+<li><code>k</code> 的取值范围是 <code>[1,  s 中单词的数目]</code></li>
+<li><code>s</code> 仅由大小写英文字母和空格组成</li>
+<li><code>s</code> 中的单词之间由单个空格隔开</li>
+<li>不存在前导或尾随空格</li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/truncate-sentence" target="_blank" rel="noopener">https://leetcode-cn.com/problems/truncate-sentence</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  简单暴力</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>遇到第<code>k</code>个空格则推出即可。<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">truncateSentence</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">' '</span>) k--;</span><br><span class="line">            <span class="keyword">if</span>(k == <span class="number">0</span>) <span class="keyword">return</span> s.substr(<span class="number">0</span>,i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5723-查找用户活跃分钟数"><a href="#5723-查找用户活跃分钟数" class="headerlink" title="5723. 查找用户活跃分钟数"></a>5723. 查找用户活跃分钟数</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>给你用户在 <code>LeetCode</code>的操作日志，和一个整数 k 。日志用一个二维整数数组 logs 表示，其中每个 <code>logs[i] = [IDi, timei]</code> 表示 ID 为 IDi 的用户在 timei 分钟时执行了某个操作。</p>
+<p>多个用户 可以同时执行操作，单个用户可以在同一分钟内执行 多个操作 。</p>
+<p>指定用户的 用户活跃分钟数<code>（user active minutes，UAM）</code> 定义为用户对 LeetCode 执行操作的 唯一分钟数 。 即使一分钟内执行多个操作，也只能按一分钟计数。</p>
+<p>请你统计用户活跃分钟数的分布情况，统计结果是一个长度为 k 且 下标从 1 开始计数 的数组 <code>answer</code> ，对于每个 <code>j（1 &lt;= j &lt;= k）</code>，<code>answer[j]</code>表示 用户活跃分钟数 等于 <code>j</code> 的用户数。</p>
+<p>返回上面描述的答案数组 <code>answer</code> 。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：logs = [[<span class="number">0</span>,<span class="number">5</span>],[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">5</span>],[<span class="number">1</span>,<span class="number">3</span>]], k = <span class="number">5</span></span><br><span class="line">输出：[<span class="number">0</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">解释：</span><br><span class="line">ID=<span class="number">0</span> 的用户执行操作的分钟分别是：<span class="number">5</span> 、<span class="number">2</span> 和 <span class="number">5</span> 。因此，该用户的用户活跃分钟数为 <span class="number">2</span>（分钟 <span class="number">5</span> 只计数一次）</span><br><span class="line">ID=<span class="number">1</span> 的用户执行操作的分钟分别是：<span class="number">2</span> 和 <span class="number">3</span> 。因此，该用户的用户活跃分钟数为 <span class="number">2</span></span><br><span class="line"><span class="number">2</span> 个用户的用户活跃分钟数都是 <span class="number">2</span> ，answer[<span class="number">2</span>] 为 <span class="number">2</span> ，其余 answer[j] 的值都是 <span class="number">0</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：logs = [[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">2</span>,<span class="number">3</span>]], k = <span class="number">4</span></span><br><span class="line">输出：[<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">解释：</span><br><span class="line">ID=<span class="number">1</span> 的用户仅在分钟 <span class="number">1</span> 执行单个操作。因此，该用户的用户活跃分钟数为 <span class="number">1</span></span><br><span class="line">ID=<span class="number">2</span> 的用户执行操作的分钟分别是：<span class="number">2</span> 和 <span class="number">3</span> 。因此，该用户的用户活跃分钟数为 <span class="number">2</span></span><br><span class="line"><span class="number">1</span> 个用户的用户活跃分钟数是 <span class="number">1</span> ，<span class="number">1</span> 个用户的用户活跃分钟数是 <span class="number">2</span> </span><br><span class="line">因此，answer[<span class="number">1</span>] = <span class="number">1</span> ，answer[<span class="number">2</span>] = <span class="number">1</span> ，其余的值都是 <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= logs.length &lt;= 104</code></li>
+<li><code>0 &lt;= IDi &lt;= 109</code></li>
+<li><code>1 &lt;= timei &lt;= 105</code></li>
+<li><code>k</code> 的取值范围是 <code>[用户的最大用户活跃分钟数, 105]</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/finding-the-users-active-minutes" target="_blank" rel="noopener">https://leetcode-cn.com/problems/finding-the-users-active-minutes</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> hash统计</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>利用<code>hash</code>统计每个用户活跃的分钟的计数，然后将每个用户的活跃分钟的次数返回到最终的统计结果中即可。<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findingUsersActiveMinutes(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; logs, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = logs.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans(k);</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : logs)&#123;</span><br><span class="line">            cnt[v[<span class="number">0</span>]].insert(v[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v: cnt)&#123;</span><br><span class="line">            ans[v.second.size()<span class="number">-1</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5724-绝对差值和"><a href="#5724-绝对差值和" class="headerlink" title="5724. 绝对差值和"></a>5724. 绝对差值和</h2><p>给你两个正整数数组 <code>nums1</code> 和 <code>nums2</code> ，数组的长度都是 <code>n</code>。</p>
+<p>数组 <code>nums1</code> 和 <code>nums2</code> 的 绝对差值和 定义为所有 <code>|nums1[i] - nums2[i]|（0 &lt;= i &lt; n）</code>的 总和（下标从 0 开始）。</p>
+<p>你可以选用 <code>nums1</code> 中的 任意一个 元素来替换 <code>nums1</code> 中的 至多 一个元素，以 最小化 绝对差值和。</p>
+<p>在替换数组 <code>nums1</code> 中最多一个元素 之后 ，返回最小绝对差值和。因为答案可能很大，所以需要对 <code>109 + 7</code>取余 后返回。</p>
+<p><code>|x|</code>定义为：</p>
+<ul>
+<li>如果 <code>x &gt;= 0</code> ，值为 <code>x</code> ，或者</li>
+<li>如果 <code>x &lt;= 0</code> ，值为 <code>-x</code></li>
+</ul>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = [<span class="number">1</span>,<span class="number">7</span>,<span class="number">5</span>], nums2 = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>]</span><br><span class="line">输出：<span class="number">3</span></span><br><span class="line">解释：有两种可能的最优方案：</span><br><span class="line">- 将第二个元素替换为第一个元素：[<span class="number">1</span>,<span class="number">7</span>,<span class="number">5</span>] =&gt; [<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>] ，或者</span><br><span class="line">- 将第二个元素替换为第三个元素：[<span class="number">1</span>,<span class="number">7</span>,<span class="number">5</span>] =&gt; [<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>]</span><br><span class="line">两种方案的绝对差值和都是 |<span class="number">1</span><span class="number">-2</span>| + (|<span class="number">1</span><span class="number">-3</span>| 或者 |<span class="number">5</span><span class="number">-3</span>|) + |<span class="number">5</span><span class="number">-5</span>| = <span class="number">3</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>], nums2 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>]</span><br><span class="line">输出：<span class="number">0</span></span><br><span class="line">解释：nums1 和 nums2 相等，所以不用替换元素。绝对差值和为 <span class="number">0</span></span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = [<span class="number">1</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">7</span>], nums2 = [<span class="number">9</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">4</span>]</span><br><span class="line">输出：<span class="number">20</span></span><br><span class="line">解释：将第一个元素替换为第二个元素：[<span class="number">1</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">7</span>] =&gt; [<span class="number">10</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line">绝对差值和为 |<span class="number">10</span><span class="number">-9</span>| + |<span class="number">10</span><span class="number">-3</span>| + |<span class="number">4</span><span class="number">-5</span>| + |<span class="number">4</span><span class="number">-1</span>| + |<span class="number">2</span><span class="number">-7</span>| + |<span class="number">7</span><span class="number">-4</span>| = <span class="number">20</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>n == nums1.length</code></li>
+<li><code>n == nums2.length</code></li>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>1 &lt;= nums1[i], nums2[i] &lt;= 105</code></li>
+</ul>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/minimum-absolute-sum-difference" target="_blank" rel="noopener">https://leetcode-cn.com/problems/minimum-absolute-sum-difference</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 二分查找</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>根据题目中的意思，我们只能进行一次替换，根据贪心原则则我们肯定将$|nums1[i]-nums2[i]|$最大的数对进行替换，才能使得返回值最小。因此首先我们找到所有的值$|nums1[i]-nums2[i]|$最大的所有数对，然后分别对其中的每一个数对尝试进行替换，是否能否取得最小值。</li>
+<li>对于数对$nums1[i],nums2[i]$,如果要使的$|nums1[i]-nums2[i]|$的值，最小则我们应当尽量将$nums1[i]$替换为最接近$nums2[i]$的值，则此时我们可以利用二分查找，在数组<code>nums1</code>找到最小的大于等于$nums2[i]$的数和最大的小于等于$nums2[i]$的数，最接近的数肯定在这两个数中选一个即可，此时我们非常常见的可以利用二分查找即可。<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minAbsoluteSumDiff</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; arr = nums1;</span><br><span class="line">        <span class="keyword">int</span> n = nums1.size();</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        sort(arr.begin(),arr.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">        <span class="keyword">int</span> diff = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            ans += <span class="built_in">abs</span>(nums1[i]-nums2[i]);</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">abs</span>(nums1[i]-nums2[i]) &gt; <span class="built_in">abs</span>(nums1[diff]-nums2[diff]))&#123;</span><br><span class="line">                diff = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">abs</span>(nums1[i]-nums2[i]) == <span class="built_in">abs</span>(nums1[diff]-nums2[diff]))&#123;</span><br><span class="line">                a.push_back(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> curr = ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">auto</span> it = lower_bound(arr.begin(),arr.end(),nums2[a[i]]);</span><br><span class="line">            <span class="keyword">if</span>(it == arr.end())&#123;</span><br><span class="line">                it--;</span><br><span class="line">                ans = min(ans,curr-<span class="built_in">abs</span>(nums1[diff]-nums2[diff])+<span class="built_in">abs</span>(*it-nums2[a[i]]));</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(it == arr.begin())&#123;</span><br><span class="line">                ans = min(ans,curr-<span class="built_in">abs</span>(nums1[diff]-nums2[diff])+<span class="built_in">abs</span>(*it-nums2[a[i]]));</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                ans = min(ans,curr-<span class="built_in">abs</span>(nums1[diff]-nums2[diff])+<span class="built_in">abs</span>(*it-nums2[a[i]]));</span><br><span class="line">                it--;</span><br><span class="line">                ans = min(ans,curr-<span class="built_in">abs</span>(nums1[diff]-nums2[diff])+<span class="built_in">abs</span>(*it-nums2[a[i]]));</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans%mod;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5725-序列中不同最大公约数的数目"><a href="#5725-序列中不同最大公约数的数目" class="headerlink" title="5725. 序列中不同最大公约数的数目"></a>5725. 序列中不同最大公约数的数目</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>给你一个由正整数组成的数组 <code>nums</code>。</p>
+<p>数字序列的 最大公约数 定义为序列中所有整数的共有约数中的最大整数。<br>例如，序列 <code>[4,6,16]</code> 的最大公约数是 2 。<br>数组的一个 子序列 本质是一个序列，可以通过删除数组中的某些元素（或者不删除）得到。<br>例如，<code>[2,5,10]</code> 是 <code>[1,2,1,2,4,1,5,10]</code> 的一个子序列。<br>计算并返回 <code>nums</code> 的所有 非空 子序列中 不同 最大公约数的 数目 。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">6</span>,<span class="number">10</span>,<span class="number">3</span>]</span><br><span class="line">输出：<span class="number">5</span></span><br><span class="line">解释：上图显示了所有的非空子序列与各自的最大公约数。</span><br><span class="line">不同的最大公约数为 <span class="number">6</span> 、<span class="number">10</span> 、<span class="number">3</span> 、<span class="number">2</span> 和 <span class="number">1</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">5</span>,<span class="number">15</span>,<span class="number">40</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">输出：<span class="number">7</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 2 * 105</code></li>
+</ul>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/number-of-different-subsequences-gcds/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/number-of-different-subsequences-gcds/</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>数学问题，素数筛选法</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>首先对于素数筛选法还是非常熟悉的，如果一个数<code>x</code>为素数，则<code>x</code>的倍数一定不是素数。我们知道可以在$O(n)$的时间复杂度内筛选出所有的从$[1,n]$的素数。</li>
+<li>我们知道如果<code>x</code>为某个数组的最大公约数，则我们可以知道如下结论:</li>
+</ol>
+<ul>
+<li>数组中的每个元素都能被$x$整除；</li>
+<li>数组中的所有元素除以<code>x</code>以后组成的数组的最大公约数为<code>1</code>。</li>
+<li>数组中所有元素都是$x$的倍数；</li>
+</ul>
+<ol>
+<li>此时我们就可以参考素数筛选法，尝试从$[1,200000]$中所有的可能的最大公约数，则此时我们假设<code>x</code>为公约数，则我们测试所有的$x$的倍数是否存在于原数组中，如果存在我们则求最大公约数，最终我们测试所有可能的元素的最大公约数是否为$x$。</li>
+<li>题目的算法时间复杂度计算公式为：<script type="math/tex; mode=display">
+O(n) = \frac{n}{1} + \frac{n}{2} + \frac{n}{3} + ... + \frac{n}{n} \\
+\approx n*lg(n)</script>非常喜欢这种思考类型的题目，但是感觉就是刷题而已。<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="keyword">bool</span> valid[<span class="number">200001</span>];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countDifferentSubsequenceGCDs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : nums) valid[v] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">200000</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> curr = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt;= <span class="number">200000</span>; j = j + i)&#123;</span><br><span class="line">                <span class="keyword">if</span>(valid[j])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(curr == <span class="number">0</span>) curr = j;</span><br><span class="line">                    <span class="keyword">else</span> curr = __gcd(curr,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(curr == i) ans++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="keyword">bool</span> valid[<span class="number">200001</span>];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countDifferentSubsequenceGCDs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : nums) valid[v] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">200000</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> curr = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt;= <span class="number">200000</span>; j = j + i)&#123;</span><br><span class="line">                <span class="keyword">if</span>(valid[j])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(curr == <span class="number">0</span>)&#123;</span><br><span class="line">                        curr = j/i;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        curr = __gcd(curr,j/i);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(curr == <span class="number">1</span>) ans++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://mikemeng.org/" target="_blank" rel="noopener">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>公务程序猿.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2021/03/29/267/" rel="next" title="【Atcoder】">
+                  <i class="fa fa-chevron-left"></i> 【Atcoder】
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2021/04/04/268/" rel="prev" title="【Leetcode】 Leetcode  Biweekly Contest 49">
+                  【Leetcode】 Leetcode  Biweekly Contest 49 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-weekly-contest-235"><span class="nav-number">1.</span> <span class="nav-text">leetcode weekly contest 235</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5722-截断句子"><span class="nav-number">1.1.</span> <span class="nav-text">5722. 截断句子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5723-查找用户活跃分钟数"><span class="nav-number">1.2.</span> <span class="nav-text">5723. 查找用户活跃分钟数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5724-绝对差值和"><span class="nav-number">1.3.</span> <span class="nav-text">5724. 绝对差值和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5725-序列中不同最大公约数的数目"><span class="nav-number">1.4.</span> <span class="nav-text">5725. 序列中不同最大公约数的数目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.4.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">1.4.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.5.</span> <span class="nav-text">#</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

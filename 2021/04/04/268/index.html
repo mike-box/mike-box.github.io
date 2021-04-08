@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="leetcode biweekly contest 49还是依旧三道题，最后一题的状态压缩dp确实非常难以想到。前三题非常简单，最后一题比较难。5705. 判断国际象棋棋盘中一个格子的颜色题目给你一个坐标coordinates，它是一个字符串，表示国际象棋棋盘中一个格子的坐标。下图是国际象棋棋盘示意图。如果所给格子的颜色是白色，请你返回 true，如果是黑色，请返回 false。给定坐标一定代表国">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 Leetcode  Biweekly Contest 49">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;04&#x2F;04&#x2F;268&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="leetcode biweekly contest 49还是依旧三道题，最后一题的状态压缩dp确实非常难以想到。前三题非常简单，最后一题比较难。5705. 判断国际象棋棋盘中一个格子的颜色题目给你一个坐标coordinates，它是一个字符串，表示国际象棋棋盘中一个格子的坐标。下图是国际象棋棋盘示意图。如果所给格子的颜色是白色，请你返回 true，如果是黑色，请返回 false。给定坐标一定代表国">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+<meta property="og:updated_time" content="2021-04-05T15:17:52.888Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+
+<link rel="canonical" href="http://yoursite.com/2021/04/04/268/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 Leetcode  Biweekly Contest 49 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/04/268/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 Leetcode  Biweekly Contest 49
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-04 20:18:32" itemprop="dateCreated datePublished" datetime="2021-04-04T20:18:32+08:00">2021-04-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-05 23:17:52" itemprop="dateModified" datetime="2021-04-05T23:17:52+08:00">2021-04-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/04/268/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/04/268/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="leetcode-biweekly-contest-49"><a href="#leetcode-biweekly-contest-49" class="headerlink" title="leetcode biweekly contest 49"></a>leetcode biweekly contest 49</h1><p>还是依旧三道题，最后一题的状态压缩<code>dp</code>确实非常难以想到。前三题非常简单，最后一题比较难。</p><h2 id="5705-判断国际象棋棋盘中一个格子的颜色"><a href="#5705-判断国际象棋棋盘中一个格子的颜色" class="headerlink" title="5705. 判断国际象棋棋盘中一个格子的颜色"></a>5705. 判断国际象棋棋盘中一个格子的颜色</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个坐标<code>coordinates</code>，它是一个字符串，表示国际象棋棋盘中一个格子的坐标。下图是国际象棋棋盘示意图。<br>如果所给格子的颜色是白色，请你返回 true，如果是黑色，请返回 <code>false</code>。<br>给定坐标一定代表国际象棋棋盘上一个存在的格子。坐标第一个字符是字母，第二个字符是数字。</p><a id="more"></a>
+
+<p>示例 1：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">coordinates</span> = <span class="string">"a1"</span></span><br><span class="line">输出：<span class="literal">false</span></span><br><span class="line">解释：如上图棋盘所示，<span class="string">"a1"</span> 坐标的格子是黑色的，所以返回 <span class="literal">false</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">coordinates</span> = <span class="string">"h3"</span></span><br><span class="line">输出：<span class="literal">true</span></span><br><span class="line">解释：如上图棋盘所示，<span class="string">"h3"</span> 坐标的格子是白色的，所以返回 <span class="literal">true</span> 。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">coordinates</span> = <span class="string">"c7"</span></span><br><span class="line">输出：<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>coordinates.length == 2</code></li>
+<li><code>&#39;a&#39; &lt;= coordinates[0] &lt;= &#39;h&#39;</code></li>
+<li><code>&#39;1&#39; &lt;= coordinates[1] &lt;= &#39;8&#39;</code></li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/determine-color-of-a-chessboard-square" target="_blank" rel="noopener">https://leetcode-cn.com/problems/determine-color-of-a-chessboard-square</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  数学</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>行号与列号的奇偶性相同时，则为黑色，否则则为白色。<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">squareIsWhite</span><span class="params">(<span class="built_in">string</span> coordinates)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x = coordinates[<span class="number">0</span>] - <span class="string">'a'</span>+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> y = coordinates[<span class="number">1</span>] - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span>((x&amp;<span class="number">1</span>)^(y&amp;<span class="number">1</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5706-句子相似性-III"><a href="#5706-句子相似性-III" class="headerlink" title="5706. 句子相似性 III"></a>5706. 句子相似性 III</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>一个句子是由一些单词与它们之间的单个空格组成，且句子的开头和结尾没有多余空格。比方说，<code>&quot;Hello World&quot; ，&quot;HELLO&quot; ，&quot;hello world hello world&quot;</code> 都是句子。每个单词都 只 包含大写和小写英文字母。</p>
+<p>如果两个句子 <code>sentence1</code> 和 <code>sentence2</code> ，可以通过往其中一个句子插入一个任意的句子（可以是空句子）而得到另一个句子，那么我们称这两个句子是 相似的 。比方说，<code>sentence1 = &quot;Hello my name is Jane&quot;</code>且 <code>sentence2 = &quot;Hello Jane&quot;</code> ，我们可以往 sentence2 中 “Hello” 和 “Jane” 之间插入 “my name is” 得到 sentence1 。<br><code>给你两个句子</code>sentence1 <code>和</code>sentence2<code>，如果</code>sentence1<code>和</code>sentence2` 是相似的，请你返回 true ，否则返回 false 。</p>
+<p>示例 1：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：se<span class="symbol">ntence1</span> = <span class="string">"My name is Haley"</span>, se<span class="symbol">ntence2</span> = <span class="string">"My Haley"</span></span><br><span class="line">输出：true</span><br><span class="line">解释：可以往 se<span class="symbol">ntence2</span> 中 <span class="string">"My"</span> 和 <span class="string">"Haley"</span> 之间插入 <span class="string">"name is"</span> ，得到 se<span class="symbol">ntence1</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">sentence1</span> = <span class="string">"of"</span>, <span class="attr">sentence2</span> = <span class="string">"A lot of words"</span></span><br><span class="line">输出：<span class="literal">false</span></span><br><span class="line">解释：没法往这两个句子中的一个句子只插入一个句子就得到另一个句子。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：se<span class="symbol">ntence1</span> = <span class="string">"Eating right now"</span>, se<span class="symbol">ntence2</span> = <span class="string">"Eating"</span></span><br><span class="line">输出：true</span><br><span class="line">解释：可以往 se<span class="symbol">ntence2</span> 的结尾插入 <span class="string">"right now"</span> 得到 se<span class="symbol">ntence1</span> 。</span><br></pre></td></tr></table></figure><br>示例 4：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">sentence1</span> = <span class="string">"Luky"</span>, <span class="attr">sentence2</span> = <span class="string">"Lucccky"</span></span><br><span class="line">输出：<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= sentence1.length, sentence2.length &lt;= 100</code></li>
+<li><code>sentence1</code> 和 <code>sentence2</code> 都只包含大小写英文字母和空格。</li>
+<li><code>sentence1</code> 和 <code>sentence2</code> 中的单词都只由单个空格隔开。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/sentence-similarity-iii" target="_blank" rel="noopener">https://leetcode-cn.com/problems/sentence-similarity-iii</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 暴力</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>这个题目出的不好，没啥好说的，只需要判断两个句子的首尾相等的部分去掉即可。<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">areSentencesSimilar</span><span class="params">(<span class="built_in">string</span> sentence1, <span class="built_in">string</span> sentence2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = sentence1.size();</span><br><span class="line">        <span class="keyword">int</span> n = sentence2.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; arr1;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; arr2;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sentence1.size();)&#123;</span><br><span class="line">            <span class="built_in">string</span> curr;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; m &amp;&amp; sentence1[i] == <span class="string">' '</span>) i++;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; m &amp;&amp; sentence1[i] != <span class="string">' '</span>)&#123;</span><br><span class="line">                curr.push_back(sentence1[i]);</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(curr.size() &gt; <span class="number">0</span>) arr1.push_back(curr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sentence2.size();)&#123;</span><br><span class="line">            <span class="built_in">string</span> curr;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; n &amp;&amp; sentence2[i] == <span class="string">' '</span>) i++;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; n &amp;&amp; sentence2[i] != <span class="string">' '</span>)&#123;</span><br><span class="line">                curr.push_back(sentence2[i]);</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(curr.size() &gt; <span class="number">0</span>) arr2.push_back(curr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/**/</span></span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> r1 = arr1.size();</span><br><span class="line">        <span class="keyword">int</span> r2 = arr2.size();</span><br><span class="line">        <span class="comment">/*left*/</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r1 &amp;&amp; i &lt; r2; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr1[i] == arr2[i]) l = i;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*right*/</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = arr1.size()<span class="number">-1</span>,j = arr2.size()<span class="number">-1</span>; i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span>;)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr1[i] == arr2[j])&#123;</span><br><span class="line">                r1 = i;</span><br><span class="line">                r2 = j;</span><br><span class="line">                i--;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(l == (arr1.size()<span class="number">-1</span>) || l == (arr2.size()<span class="number">-1</span>)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(r1 == <span class="number">0</span> || r2 == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>((r1 - l) == <span class="number">1</span> || (r2-l) == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5708-统计一个数组中好对子的数目"><a href="#5708-统计一个数组中好对子的数目" class="headerlink" title="5708. 统计一个数组中好对子的数目"></a>5708. 统计一个数组中好对子的数目</h2><p>给你一个数组 nums ，数组中只包含非负整数。定义<code>rev(x)</code>的值为将整数 x 各个数字位反转得到的结果。比方说 <code>rev(123) = 321</code> ， <code>rev(120) = 21</code> 。我们称满足下面条件的下标对 <code>(i, j)</code>是 好的 ：</p>
+<ul>
+<li><code>0 &lt;= i &lt; j &lt; nums.length</code></li>
+<li><code>nums[i] + rev(nums[j]) == nums[j] + rev(nums[i])</code><br>请你返回好下标对的数目。由于结果可能会很大，请将结果对 <code>109 + 7</code>取余 后返回。</li>
+</ul>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">42</span>,<span class="number">11</span>,<span class="number">1</span>,<span class="number">97</span>]</span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line">解释：两个坐标对为：</span><br><span class="line"> - (<span class="number">0</span>,<span class="number">3</span>)：<span class="number">42</span> + rev(<span class="number">97</span>) = <span class="number">42</span> + <span class="number">79</span> = <span class="number">121</span>, <span class="number">97</span> + rev(<span class="number">42</span>) = <span class="number">97</span> + <span class="number">24</span> = <span class="number">121</span> 。</span><br><span class="line"> - (<span class="number">1</span>,<span class="number">2</span>)：<span class="number">11</span> + rev(<span class="number">1</span>) = <span class="number">11</span> + <span class="number">1</span> = <span class="number">12</span>, <span class="number">1</span> + rev(<span class="number">11</span>) = <span class="number">1</span> + <span class="number">11</span> = <span class="number">12</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">13</span>,<span class="number">10</span>,<span class="number">35</span>,<span class="number">24</span>,<span class="number">76</span>]</span><br><span class="line">输出：<span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/count-nice-pairs-in-an-array" target="_blank" rel="noopener">https://leetcode-cn.com/problems/count-nice-pairs-in-an-array</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/evaluate-the-bracket-pairs-of-a-string" target="_blank" rel="noopener">https://leetcode-cn.com/problems/evaluate-the-bracket-pairs-of-a-string</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 数学问题</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>题目非常简单，题目中要求给定的公式为：<script type="math/tex; mode=display">
+nums[i] + rev(nums[j]) == nums[j] + rev(nums[i])</script>我们只需要将上述公式变换一下：<script type="math/tex; mode=display">
+nums[i] - rev(nums[i]) == nums[j] - rev(nums[j])</script>因此我们统计数组中所有等式$nums[i] - rev(nums[i])$的值的个数，利用数学组合定理即可求出所有可能的数目。<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countNicePairs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; arr;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">long</span> <span class="keyword">long</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> curr = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> x = nums[i];</span><br><span class="line">            <span class="keyword">while</span>(x &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                curr = curr*<span class="number">10</span> + (x%<span class="number">10</span>);</span><br><span class="line">                x = x/<span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            arr.push_back(curr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            cnt[nums[i]-arr[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : cnt)&#123;</span><br><span class="line">            ans = (ans + v.second*(v.second<span class="number">-1</span>)/<span class="number">2</span>)%mod;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5707-得到新鲜甜甜圈的最多组数"><a href="#5707-得到新鲜甜甜圈的最多组数" class="headerlink" title="5707. 得到新鲜甜甜圈的最多组数"></a>5707. 得到新鲜甜甜圈的最多组数</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>有一个甜甜圈商店，每批次都烤<code>batchSize</code> 个甜甜圈。这个店铺有个规则，就是在烤一批新的甜甜圈时，之前 所有 甜甜圈都必须已经全部销售完毕。给你一个整数 <code>batchSize</code> 和一个整数数组 <code>groups</code> ，数组中的每个整数都代表一批前来购买甜甜圈的顾客，其中 <code>groups[i]</code>表示这一批顾客的人数。每一位顾客都恰好只要一个甜甜圈。<br>当有一批顾客来到商店时，他们所有人都必须在下一批顾客来之前购买完甜甜圈。如果一批顾客中第一位顾客得到的甜甜圈不是上一组剩下的，那么这一组人都会很开心。<br>你可以随意安排每批顾客到来的顺序。请你返回在此前提下，最多 有多少组人会感到开心。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：batchSize = <span class="number">3</span>, groups = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">输出：<span class="number">4</span></span><br><span class="line">解释：你可以将这些批次的顾客顺序安排为 [<span class="number">6</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>] 。那么第 <span class="number">1</span>，<span class="number">2</span>，<span class="number">4</span>，<span class="number">6</span> 组都会感到开心。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：batchSize = <span class="number">4</span>, groups = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">6</span>]</span><br><span class="line">输出：<span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= batchSize &lt;= 9</code></li>
+<li><code>1 &lt;= groups.length &lt;= 30</code></li>
+<li><code>1 &lt;= groups[i] &lt;= 109</code></li>
+</ul>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/maximum-number-of-groups-getting-fresh-donuts" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-number-of-groups-getting-fresh-donuts</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>状态压缩<code>dp</code></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>题目说的还是太复杂了，本质就是求将数组划分为能被<code>k</code>整除的非连续子数组的最大数目，以前见到过连续的子数组划分，遇到类似的题目确实不好想到。</li>
+<li>我们可以看到假设只有<code>20</code>个元素时，则此时非常好解决，我们只需要利用二进制掩码解决所有可能的分组即可或者常规的<code>dfs</code>即可。</li>
+<li>我们如何优化状态，减少所有可能的状态，即可对算法时间复杂度进行优化：</li>
+</ol>
+<ul>
+<li>首先进行剪枝，我们知道如果当前的<code>group</code>刚好能被<code>batchSize</code>整除，或者刚好两个数相加能被<code>batchSize</code>整除的，我们优先将这两类数目去除掉。</li>
+<li>我们对于状态如何定义，因为题目中并没有要求数字有序，数字可以为乱序，此时我们则看到题目中给定的条件为$1 &lt;= batchSize &lt;= 9$,则我们可以将数组按照对<code>batchSize</code>取模的结果进行分类，对其分类作为状态<code>dp</code>，则此时所有可能的最大状态为$3^{10}$，这个数字实际在可以接受的范围内，因此采用这个即可，看了所有的解答，基本上都在用各种方法对状态进行编码压缩，也可以直接用字符串对状态进行编码，也可以用类似于<code>K-R</code>的字符串的搜索方法对其进行编码，然后遍历所有可能的状态，各式各样的状态编码和压缩，当然最直接和最简单的就是直接暴力将用<code>treeMap</code>将数组作为状态，同时求出当前状态下所能够得到的最大可能分组以及剩余的余数，刚刚时间卡住可以过时间复杂度。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, <span class="keyword">int</span>&gt; dp;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; cnt, <span class="keyword">int</span> left)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it = dp.find(cnt);</span><br><span class="line">        <span class="keyword">if</span>(it != end(dp)) <span class="keyword">return</span> it-&gt;second;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; cnt.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cnt[i] == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            cnt[i] -= <span class="number">1</span>;</span><br><span class="line">            res = max(res,(left == <span class="number">0</span>) + dfs(cnt,(left + i)%cnt.size()));</span><br><span class="line">            cnt[i] += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[cnt] = res;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxHappyGroups</span><span class="params">(<span class="keyword">int</span> batchSize, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; groups)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cnt(batchSize);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> group : groups)&#123;</span><br><span class="line">            ++cnt[group % batchSize];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = cnt[<span class="number">0</span>];</span><br><span class="line">        cnt[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= (batchSize<span class="number">-1</span>)/<span class="number">2</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> m = min(cnt[i],cnt[batchSize-i]);</span><br><span class="line">            ans += m;</span><br><span class="line">            cnt[i] -= m;</span><br><span class="line">            cnt[batchSize-i] -= m;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans + dfs(cnt, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://mikemeng.org/" target="_blank" rel="noopener">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>公务程序猿.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2021/04/04/269/" rel="next" title="【Leetcode】 Leetcode  Weekly  Contest 235">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】 Leetcode  Weekly  Contest 235
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2021/04/06/270/" rel="prev" title="【Leetcode】 Leetcode  LCCUP 2021">
+                  【Leetcode】 Leetcode  LCCUP 2021 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-biweekly-contest-49"><span class="nav-number">1.</span> <span class="nav-text">leetcode biweekly contest 49</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5705-判断国际象棋棋盘中一个格子的颜色"><span class="nav-number">1.1.</span> <span class="nav-text">5705. 判断国际象棋棋盘中一个格子的颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5706-句子相似性-III"><span class="nav-number">1.2.</span> <span class="nav-text">5706. 句子相似性 III</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5708-统计一个数组中好对子的数目"><span class="nav-number">1.3.</span> <span class="nav-text">5708. 统计一个数组中好对子的数目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5707-得到新鲜甜甜圈的最多组数"><span class="nav-number">1.4.</span> <span class="nav-text">5707. 得到新鲜甜甜圈的最多组数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.4.4.</span> <span class="nav-text">解题思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.5.</span> <span class="nav-text">#</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
