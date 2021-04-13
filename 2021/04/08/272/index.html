@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="leetcode  LCCUP 2021 团队赛LCP 33. 蓄水题目给定 N个无限容量且初始均空的水缸，每个水缸配有一个水桶用来打水，第 i 个水缸配备的水桶容量记作 bucket[i]。小扣有以下两种操作： 升级水桶：选择任意一个水桶，使其容量增加为 bucket[i]+1 蓄水：将全部水桶接满水，倒入各自对应的水缸每个水缸对应最低蓄水量记作 vat[i]，返回小扣至少需要多少次操作可以完成">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 Leetcode  LCCUP 2021 团队赛">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;04&#x2F;08&#x2F;272&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="leetcode  LCCUP 2021 团队赛LCP 33. 蓄水题目给定 N个无限容量且初始均空的水缸，每个水缸配有一个水桶用来打水，第 i 个水缸配备的水桶容量记作 bucket[i]。小扣有以下两种操作： 升级水桶：选择任意一个水桶，使其容量增加为 bucket[i]+1 蓄水：将全部水桶接满水，倒入各自对应的水缸每个水缸对应最低蓄水量记作 vat[i]，返回小扣至少需要多少次操作可以完成">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+<meta property="og:updated_time" content="2021-04-13T01:42:47.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+
+<link rel="canonical" href="http://yoursite.com/2021/04/08/272/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 Leetcode  LCCUP 2021 团队赛 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/08/272/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 Leetcode  LCCUP 2021 团队赛
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-08 22:22:38" itemprop="dateCreated datePublished" datetime="2021-04-08T22:22:38+08:00">2021-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-13 09:42:47" itemprop="dateModified" datetime="2021-04-13T09:42:47+08:00">2021-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/08/272/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/08/272/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="leetcode-LCCUP-2021-团队赛"><a href="#leetcode-LCCUP-2021-团队赛" class="headerlink" title="leetcode  LCCUP 2021 团队赛"></a>leetcode  LCCUP 2021 团队赛</h1><h2 id="LCP-33-蓄水"><a href="#LCP-33-蓄水" class="headerlink" title="LCP 33. 蓄水"></a>LCP 33. 蓄水</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定 <code>N</code>个无限容量且初始均空的水缸，每个水缸配有一个水桶用来打水，第 i 个水缸配备的水桶容量记作 <code>bucket[i]</code>。小扣有以下两种操作：</p><ul>
+<li>升级水桶：选择任意一个水桶，使其容量增加为 <code>bucket[i]+1</code></li>
+<li>蓄水：将全部水桶接满水，倒入各自对应的水缸<br>每个水缸对应最低蓄水量记作 <code>vat[i]</code>，返回小扣至少需要多少次操作可以完成所有水缸蓄水要求。</li>
+</ul><a id="more"></a>
+
+<p>注意：实际蓄水量 达到或超过 最低蓄水量，即完成蓄水要求。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：bucket = [<span class="number">1</span>,<span class="number">3</span>], vat = [<span class="number">6</span>,<span class="number">8</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">4</span></span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">第 <span class="number">1</span> 次操作升级 bucket[<span class="number">0</span>]；</span><br><span class="line">第 <span class="number">2</span> ~ <span class="number">4</span> 次操作均选择蓄水，即可完成蓄水要求。</span><br></pre></td></tr></table></figure></p>
+<p>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入：bucket = [<span class="number">9</span>,<span class="number">0</span>,<span class="number">1</span>], vat = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure></p>
+<p>输出：3<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">解释：</span><br><span class="line">第 <span class="number">1</span> 次操作均选择升级 bucket[<span class="number">1</span>]</span><br><span class="line">第 <span class="number">2</span>~<span class="number">3</span> 次操作选择蓄水，即可完成蓄水要求。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= bucket.length == vat.length &lt;= 100</code></li>
+<li><code>0 &lt;= bucket[i], vat[i] &lt;= 10^4</code></li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/o8SXZn" target="_blank" rel="noopener">https://leetcode-cn.com/problems/o8SXZn</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  贪心算法</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>最优策略肯定是我们将每个水桶升级到一定的重量，然后一起进行蓄水<code>n</code>次即可。</li>
+<li>难点在于如何求得最终蓄水的次数，好在我们可以进行暴力，遍历所有可能的蓄水次数，在蓄水之前同时要升级水桶，如何求得升级的水桶：设总容量为$v$,蓄水次数为$n$,则我们知道桶的重量肯定最少需要为<script type="math/tex; mode=display">
+b \ge ⌈\frac{v}{n}⌉</script>依次我们需要升级桶的次数为$⌈\frac{v}{n}⌉ - b$，求出所有的升级次数即可再加上升级次数。</li>
+<li>唯一需要注意的一点，需要剔除到容量为$0$的水池。<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">storeWater</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; bucket, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; vat)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = vat.size();</span><br><span class="line">        <span class="keyword">int</span> ans = INT_MAX;</span><br><span class="line">        <span class="keyword">int</span> maxn = *max_element(vat.begin(),vat.end());</span><br><span class="line">        <span class="keyword">if</span>(maxn == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10000</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> curr = i;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j)&#123;</span><br><span class="line">                curr += max(<span class="number">0</span>,(vat[j] + i <span class="number">-1</span>)/i - bucket[j]);</span><br><span class="line">            &#125;</span><br><span class="line">            ans = min(ans,curr);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="LCP-34-二叉树染色"><a href="#LCP-34-二叉树染色" class="headerlink" title="LCP 34. 二叉树染色"></a>LCP 34. 二叉树染色</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>小扣有一个根结点为 <code>root</code> 的二叉树模型，初始所有结点均为白色，可以用蓝色染料给模型结点染色，模型的每个结点有一个 <code>val</code>价值。小扣出于美观考虑，希望最后二叉树上每个蓝色相连部分的结点个数不能超过<code>k</code>个，求所有染成蓝色的结点价值总和最大是多少？</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [<span class="number">5</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], k = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">输出：<span class="number">12</span></span><br><span class="line"></span><br><span class="line">解释：结点 <span class="number">5</span>、<span class="number">3</span>、<span class="number">4</span> 染成蓝色，获得最大的价值 <span class="number">5</span>+<span class="number">3</span>+<span class="number">4</span>=<span class="number">12</span></span><br></pre></td></tr></table></figure></p>
+<p>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">9</span>,<span class="literal">null</span>,<span class="literal">null</span>,<span class="number">2</span>], k = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">输出：<span class="number">16</span></span><br><span class="line"></span><br><span class="line">解释：结点 <span class="number">4</span>、<span class="number">3</span>、<span class="number">9</span> 染成蓝色，获得最大的价值 <span class="number">4</span>+<span class="number">3</span>+<span class="number">9</span>=<span class="number">16</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= k &lt;= 10</li>
+<li>1 &lt;= val &lt;= 10000</li>
+<li>1 &lt;= 结点数量 &lt;= 10000</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/er-cha-shu-ran-se-UGC" target="_blank" rel="noopener">https://leetcode-cn.com/problems/er-cha-shu-ran-se-UGC</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> dfs</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>这个题目出的非常好，非常适合于面试题目，难度刚好始终，非常适合思考，写代码的难度不是很难。</li>
+<li>设<code>dp(root,i)</code>表示以当前<code>root</code>为根节点，且包含根节点在内被染色的节点的个数为<code>i</code>的最大价值，我们即可传递下去：<script type="math/tex; mode=display">
+dp[root][i] = max(dp[root][i],dp[left][j] + 1 + dp[right][i-j])</script></li>
+<li>还是非常有深度思考的<code>dfs</code>方案。<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dfs(TreeNode * root,<span class="keyword">int</span> k)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(k+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vl = dfs(root-&gt;left,k);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vr = dfs(root-&gt;right,k);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans(k+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= k; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j + i &lt; k; ++j)&#123;</span><br><span class="line">                ans[i+j+<span class="number">1</span>] = max(ans[i+j+<span class="number">1</span>],root-&gt;val + vl[i] + vr[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= k; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= k; ++j)&#123;</span><br><span class="line">                ans[<span class="number">0</span>] = max(ans[<span class="number">0</span>],vl[i] + vr[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxValue</span><span class="params">(TreeNode* root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ret = dfs(root,k);</span><br><span class="line">        <span class="keyword">return</span> *max_element(ret.begin(),ret.end());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="LCP-35-电动车游城市"><a href="#LCP-35-电动车游城市" class="headerlink" title="LCP 35. 电动车游城市"></a>LCP 35. 电动车游城市</h2><p>小明的电动车电量充满时可行驶距离为 <code>cnt</code>，每行驶 <code>1</code> 单位距离消耗 <code>1</code> 单位电量，且花费 <code>1</code> 单位时间。小明想选择电动车作为代步工具。地图上共有 <code>N</code> 个景点，景点编号为<code>0 ~ N-1</code>。他将地图信息以 [城市 <code>A</code>编号,城市 <code>B</code> 编号,两城市间距离] 格式整理在在二维数组<code>paths</code>，表示城市<code>A、B</code>间存在双向通路。初始状态，电动车电量为 <code>0</code>。每个城市都设有充电桩，<code>charge[i]</code> 表示第 <code>i</code>个城市每充 <code>1</code> 单位电量需要花费的单位时间。请返回小明最少需要花费多少单位时间从起点城市 <code>start</code> 抵达终点城市 <code>end</code>。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：paths = [[<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>],[<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">4</span>],[<span class="number">3</span>,<span class="number">0</span>,<span class="number">5</span>]], cnt = <span class="number">6</span>, start = <span class="number">1</span>, end = <span class="number">0</span>, charge = [<span class="number">2</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">43</span></span><br><span class="line"></span><br><span class="line">解释：最佳路线为：<span class="number">1</span>-&gt;<span class="number">3</span>-&gt;<span class="number">0</span>。</span><br><span class="line">在城市 <span class="number">1</span> 仅充 <span class="number">3</span> 单位电至城市 <span class="number">3</span>，然后在城市 <span class="number">3</span> 充 <span class="number">5</span> 单位电，行驶至城市 <span class="number">5</span>。</span><br><span class="line">充电用时共 <span class="number">3</span>*<span class="number">10</span> + <span class="number">5</span>*<span class="number">1</span>= <span class="number">35</span></span><br><span class="line">行驶用时 <span class="number">3</span> + <span class="number">5</span> = <span class="number">8</span>，此时总用时最短 <span class="number">43</span>。</span><br></pre></td></tr></table></figure></p>
+<p>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：paths = [[<span class="number">0</span>,<span class="number">4</span>,<span class="number">2</span>],[<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>],[<span class="number">3</span>,<span class="number">0</span>,<span class="number">5</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>],[<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">8</span>]], cnt = <span class="number">8</span>, start = <span class="number">0</span>, end = <span class="number">2</span>, charge = [<span class="number">4</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">38</span></span><br><span class="line"></span><br><span class="line">解释：最佳路线为：<span class="number">0</span>-&gt;<span class="number">4</span>-&gt;<span class="number">3</span>-&gt;<span class="number">2</span>。</span><br><span class="line">城市 <span class="number">0</span> 充电 <span class="number">2</span> 单位，行驶至城市 <span class="number">4</span> 充电 <span class="number">8</span> 单位，行驶至城市 <span class="number">3</span> 充电 <span class="number">1</span> 单位，最终行驶至城市 <span class="number">2</span>。</span><br><span class="line">充电用时 <span class="number">4</span>*<span class="number">2</span>+<span class="number">2</span>*<span class="number">8</span>+<span class="number">3</span>*<span class="number">1</span> = <span class="number">27</span></span><br><span class="line">行驶用时 <span class="number">2</span>+<span class="number">5</span>+<span class="number">4</span> = <span class="number">11</span>，总用时最短 <span class="number">38</span>。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= paths.length &lt;= 200</code></li>
+<li><code>paths[i].length == 3</code></li>
+<li><code>2 &lt;= charge.length == n &lt;= 100</code></li>
+<li><code>0 &lt;= path[i][0],path[i][1],start,end &lt; n</code></li>
+<li><code>1 &lt;= cnt &lt;= 100</code></li>
+<li><code>1 &lt;= path[i][2] &lt;= cnt</code></li>
+<li><code>1 &lt;= charge[i] &lt;= 100</code></li>
+<li>题目保证所有城市相互可以到达</li>
+</ul>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/DFPeFJ" target="_blank" rel="noopener">https://leetcode-cn.com/problems/DFPeFJ</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> dijistra算法</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li><code>dijistra</code>算法，我们设置<code>dp[i][x]</code>表示我们到达第<code>i</code>个城市后，剩余的电量为<code>x</code>时所花费的最小时间。</li>
+<li>状态转移：当我们达到一个城市<code>i</code>且当前剩余电量为<code>x</code>时，次时我们需要计算下一个的状态转移：</li>
+</ol>
+<ul>
+<li>要么我们继续停留在当前城市进行充电,我们可以遍历所有的可能，每充电<code>1</code>单位则记录一个状态；</li>
+<li>要么我们选择开到另一个城市<code>j</code>，则此时存有的电量值应该能够满足开到另一个城市，$x \ge cost[i][j]$；</li>
+</ul>
+<ol>
+<li>根据计算本程序的时间复杂度为$O(n<em>(C+m))$,空间复杂度为$O(n</em>m)$<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> e;</span><br><span class="line">    <span class="keyword">int</span> cost;</span><br><span class="line">    Node(<span class="keyword">int</span> x,<span class="keyword">int</span> e,<span class="keyword">int</span> cost)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;x = x;</span><br><span class="line">        <span class="keyword">this</span>-&gt;e = e;</span><br><span class="line">        <span class="keyword">this</span>-&gt;cost = cost;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cmp</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(Node &amp; a,Node &amp; b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.cost &gt; b.cost;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">electricCarPlan</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; paths, <span class="keyword">int</span> cnt, <span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; charge)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = charge.size();</span><br><span class="line">        <span class="keyword">int</span> ans = INF;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;pii&gt;&gt; graph;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(n,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(cnt+<span class="number">1</span>,INF));</span><br><span class="line">        priority_queue&lt;Node,<span class="built_in">vector</span>&lt;Node&gt;,cmp&gt; pq;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : paths)&#123;</span><br><span class="line">            graph[v[<span class="number">0</span>]].push_back(&#123;v[<span class="number">1</span>],v[<span class="number">2</span>]&#125;);</span><br><span class="line">            graph[v[<span class="number">1</span>]].push_back(&#123;v[<span class="number">0</span>],v[<span class="number">2</span>]&#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        pq.push(Node(start,<span class="number">0</span>,<span class="number">0</span>));</span><br><span class="line">        dp[start][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(!pq.empty())&#123;</span><br><span class="line">            Node curr = pq.top();</span><br><span class="line">            pq.pop();</span><br><span class="line"></span><br><span class="line">            <span class="comment">/*we find it reach to the end*/</span></span><br><span class="line">            <span class="keyword">if</span>(curr.x == end) <span class="keyword">return</span> curr.cost;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> v : graph[curr.x])&#123;</span><br><span class="line">                <span class="keyword">int</span> nx = v.first;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = v.second; i &lt;= cnt; ++i)&#123;</span><br><span class="line">                    <span class="keyword">int</span> add = max(<span class="number">0</span>,i-curr.e);</span><br><span class="line">                    <span class="keyword">int</span> cost = curr.cost + v.second + add*charge[curr.x];</span><br><span class="line">                    <span class="keyword">if</span>(dp[nx][i-v.second] &gt; cost)&#123;</span><br><span class="line">                        pq.push(Node(nx,i-v.second,cost));</span><br><span class="line">                        dp[nx][i-v.second] = cost;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;           </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="LCP-36-最多牌组数"><a href="#LCP-36-最多牌组数" class="headerlink" title="LCP 36. 最多牌组数"></a>LCP 36. 最多牌组数</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>麻将的游戏规则中，共有两种方式凑成「一组牌」：</p>
+<ul>
+<li>顺子：三张牌面数字连续的麻将，例如 [4,5,6]</li>
+<li>刻子：三张牌面数字相同的麻将，例如 [10,10,10]<br>给定若干数字作为麻将牌的数值（记作一维数组 <code>tiles</code>），请返回所给 <code>tiles</code> 最多可组成的牌组数。<br>注意：凑成牌组时，每张牌仅能使用一次。</li>
+</ul>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：tiles = [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">1</span></span><br><span class="line"></span><br><span class="line">解释：最多可以组合出 [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>] 或者 [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>] 其中一组牌。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：tiles = [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line"></span><br><span class="line">解释：最多可以组合出 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] 与 [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>] 两组牌。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= tiles.length &lt;= 10^5</code></li>
+<li><code>1 &lt;= tiles[i] &lt;= 10^9</code></li>
+</ul>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/Up5XYM" target="_blank" rel="noopener">https://leetcode-cn.com/problems/Up5XYM</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>dp</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3></blockquote>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="LCP-37-最小矩形面积"><a href="#LCP-37-最小矩形面积" class="headerlink" title="LCP 37. 最小矩形面积"></a>LCP 37. 最小矩形面积</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3><p>二维平面上有 NN 条直线，形式为 <code>y = kx + b</code>，其中 <code>k、b</code>为整数 且 <code>k &gt; 0</code>。所有直线以 <code>[k,b]</code> 的形式存于二维数组 <code>lines</code> 中，不存在重合的两条直线。两两直线之间可能存在一个交点，最多会有$C^{2}n$个交点。我们用一个平行于坐标轴的矩形覆盖所有的交点，请问这个矩形最小面积是多少。若直线之间无交点、仅有一个交点或所有交点均在同一条平行坐标轴的直线上，则返回0。</p>
+<p>注意：返回结果是浮点数，与标准答案 绝对误差或相对误差 在 10^-4 以内的结果都被视为正确结果</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：lines = [[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">3</span>,<span class="number">0</span>],[<span class="number">4</span>,<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">48.00000</span></span><br><span class="line"></span><br><span class="line">解释：三条直线的三个交点为 (<span class="number">3</span>, <span class="number">9</span>) (<span class="number">1</span>, <span class="number">5</span>) 和 (<span class="number">-1</span>, <span class="number">-3</span>)。最小覆盖矩形左下角为 (<span class="number">-1</span>, <span class="number">-3</span>) 右上角为 (<span class="number">3</span>,<span class="number">9</span>)，面积为 <span class="number">48</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：lines = [[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">3</span>]]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">0.00000</span></span><br><span class="line"></span><br><span class="line">解释：仅有一个交点 (<span class="number">-2</span>，<span class="number">-1</span>）</span><br></pre></td></tr></table></figure></p>
+<p>限制：</p>
+<ul>
+<li><code>1 &lt;= lines.length &lt;= 10^5 且 lines[i].length == 2</code></li>
+<li><code>1 &lt;= lines[0] &lt;= 10000</code></li>
+<li><code>-10000 &lt;= lines[1] &lt;= 10000</code></li>
+<li>与标准答案绝对误差或相对误差在 <code>10^-4</code> 以内的结果都被视为正确结果</li>
+</ul>
+<h3 id="地址-4"><a href="#地址-4" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/zui-xiao-ju-xing-mian-ji" target="_blank" rel="noopener">https://leetcode-cn.com/problems/zui-xiao-ju-xing-mian-ji</a></p>
+<h3 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>二分查找</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3></blockquote>
+<h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="LCP-38-守卫城堡"><a href="#LCP-38-守卫城堡" class="headerlink" title="LCP 38. 守卫城堡"></a>LCP 38. 守卫城堡</h2><h3 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h3><p>城堡守卫游戏的胜利条件为使恶魔无法从出生点到达城堡。游戏地图可视作 <code>2*N</code>的方格图，记作字符串数组 <code>grid</code>，其中：</p>
+<ul>
+<li>“.” 表示恶魔可随意通行的平地；</li>
+<li>“#” 表示恶魔不可通过的障碍物，玩家可通过在 平地 上设置障碍物，即将 “.” 变为 “#” 以阻挡恶魔前进；</li>
+<li>“S” 表示恶魔出生点，将有大量的恶魔该点生成，恶魔可向上/向下/向左/向右移动，且无法移动至地图外；</li>
+<li>“P” 表示瞬移点，移动到 “P” 点的恶魔可被传送至任意一个 “P” 点，也可选择不传送；</li>
+<li>“C” 表示城堡。<br>然而在游戏中用于建造障碍物的金钱是有限的，请返回玩家最少需要放置几个障碍物才能获得胜利。若无论怎样放置障碍物均无法获胜，请返回 -1。</li>
+</ul>
+<p>注意：</p>
+<p>地图上可能有一个或多个出生点<br>地图上有且只有一个城堡<br>示例 1<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [<span class="string">"S.C.P<span class="subst">#P</span>."</span>, <span class="string">".....#.S"</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">3</span></span><br><span class="line"></span><br><span class="line">解释：至少需要放置三个障碍物</span><br></pre></td></tr></table></figure></p>
+<p>示例 2：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [<span class="string">"SP<span class="subst">#P</span>..P<span class="subst">#PC</span>#.S"</span>, <span class="string">"..<span class="subst">#P</span>..P####.#"</span>]</span><br><span class="line"></span><br><span class="line">输出：-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">解释：无论怎样修筑障碍物，均无法阻挡最左侧出生的恶魔到达城堡位置</span><br></pre></td></tr></table></figure></p>
+<p>示例 3：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [<span class="string">"SP#.C.<span class="subst">#PS</span>"</span>, <span class="string">"P.#...#.P"</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">0</span></span><br><span class="line"></span><br><span class="line">解释：无需放置障碍物即可获得胜利</span><br></pre></td></tr></table></figure></p>
+<p>示例 4：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [<span class="string">"CP.#.P."</span>, <span class="string">"...S..S"</span>]</span><br><span class="line"></span><br><span class="line">输出：<span class="number">4</span></span><br><span class="line"></span><br><span class="line">解释：至少需要放置 <span class="number">4</span> 个障碍物，示意图为放置方法之一</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>grid.length == 2</code></li>
+<li><code>2 &lt;= grid[0].length == grid[1].length &lt;= 10^4</code></li>
+<li><code>grid[i][j]</code> 仅包含字符 <code>&quot;.&quot;、&quot;#&quot;、&quot;C&quot;、&quot;P&quot;、&quot;S&quot;</code></li>
+</ul>
+<h3 id="地址-5"><a href="#地址-5" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/7rLGCR" target="_blank" rel="noopener">https://leetcode-cn.com/problems/7rLGCR</a></p>
+<h3 id="题意-5"><a href="#题意-5" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>dp或者最大流</p>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3></blockquote>
+<h3 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://mikemeng.org/" target="_blank" rel="noopener">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>公务程序猿.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2021/04/06/271/" rel="next" title="【Google】 Google">
+                  <i class="fa fa-chevron-left"></i> 【Google】 Google
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2021/04/11/273/" rel="prev" title="【Leetcode】 Leetcode  Weekly  Contest 236">
+                  【Leetcode】 Leetcode  Weekly  Contest 236 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-LCCUP-2021-团队赛"><span class="nav-number">1.</span> <span class="nav-text">leetcode  LCCUP 2021 团队赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-33-蓄水"><span class="nav-number">1.1.</span> <span class="nav-text">LCP 33. 蓄水</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-34-二叉树染色"><span class="nav-number">1.2.</span> <span class="nav-text">LCP 34. 二叉树染色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-35-电动车游城市"><span class="nav-number">1.3.</span> <span class="nav-text">LCP 35. 电动车游城市</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-36-最多牌组数"><span class="nav-number">1.4.</span> <span class="nav-text">LCP 36. 最多牌组数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.4.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">1.4.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-37-最小矩形面积"><span class="nav-number">1.5.</span> <span class="nav-text">LCP 37. 最小矩形面积</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-3"><span class="nav-number">1.5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-4"><span class="nav-number">1.5.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-number">1.5.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-4"><span class="nav-number">1.5.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCP-38-守卫城堡"><span class="nav-number">1.6.</span> <span class="nav-text">LCP 38. 守卫城堡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-4"><span class="nav-number">1.6.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-5"><span class="nav-number">1.6.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-5"><span class="nav-number">1.6.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-2"><span class="nav-number">1.6.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-5"><span class="nav-number">1.6.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.7.</span> <span class="nav-text">#</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">231</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="leetcode weekly contest 236还是三道题的节奏，周赛题目比季度赛的题目简单多了，最后一题实际可以用bst或者set均可。5726. 数组元素积的符号题目已知函数 signFunc(x) 将会根据 x 的正负返回特定值： 如果 x 是正数，返回 1。 如果 x 是负数，返回 -1 。 如果 x 是等于 0 ，返回 0 。给你一个整数数组 nums 。令 product 为数组">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 Leetcode  Weekly  Contest 236">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;04&#x2F;11&#x2F;273&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="leetcode weekly contest 236还是三道题的节奏，周赛题目比季度赛的题目简单多了，最后一题实际可以用bst或者set均可。5726. 数组元素积的符号题目已知函数 signFunc(x) 将会根据 x 的正负返回特定值： 如果 x 是正数，返回 1。 如果 x 是负数，返回 -1 。 如果 x 是等于 0 ，返回 0 。给你一个整数数组 nums 。令 product 为数组">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+<meta property="og:updated_time" content="2021-04-11T14:40:10.024Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+
+<link rel="canonical" href="http://yoursite.com/2021/04/11/273/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 Leetcode  Weekly  Contest 236 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/11/273/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 Leetcode  Weekly  Contest 236
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-11 13:38:01 / Modified: 22:40:10" itemprop="dateCreated datePublished" datetime="2021-04-11T13:38:01+08:00">2021-04-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/11/273/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/11/273/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="leetcode-weekly-contest-236"><a href="#leetcode-weekly-contest-236" class="headerlink" title="leetcode weekly contest 236"></a>leetcode weekly contest 236</h1><p>还是三道题的节奏，周赛题目比季度赛的题目简单多了，最后一题实际可以用<code>bst</code>或者<code>set</code>均可。</p><h2 id="5726-数组元素积的符号"><a href="#5726-数组元素积的符号" class="headerlink" title="5726. 数组元素积的符号"></a>5726. 数组元素积的符号</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>已知函数 <code>signFunc(x)</code> 将会根据 x 的正负返回特定值：</p><ul>
+<li>如果 <code>x</code> 是正数，返回 <code>1</code>。</li>
+<li>如果 <code>x</code> 是负数，返回 <code>-1</code> 。</li>
+<li>如果 <code>x</code> 是等于 <code>0</code> ，返回 <code>0</code> 。<br>给你一个整数数组 <code>nums</code> 。令 <code>product</code> 为数组 <code>nums</code> 中所有元素值的乘积。</li>
+</ul><a id="more"></a>
+
+
+<p>返回 <code>signFunc(product)</code> 。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">输出：<span class="number">1</span></span><br><span class="line">解释：数组中所有值的乘积是 <span class="number">144</span> ，且 signFunc(<span class="number">144</span>) = <span class="number">1</span></span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">1</span>,<span class="number">5</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">-3</span>]</span><br><span class="line">输出：<span class="number">0</span></span><br><span class="line">解释：数组中所有值的乘积是 <span class="number">0</span> ，且 signFunc(<span class="number">0</span>) = <span class="number">0</span></span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>]</span><br><span class="line">输出：<span class="number">-1</span></span><br><span class="line">解释：数组中所有值的乘积是 <span class="number">-1</span> ，且 signFunc(<span class="number">-1</span>) = <span class="number">-1</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">+ `<span class="number">1</span> &lt;= nums.length &lt;= <span class="number">1000</span>`</span><br><span class="line">+ `<span class="number">-100</span> &lt;= nums[i] &lt;= <span class="number">100</span>`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 地址 </span><br><span class="line">https:<span class="comment">//leetcode-cn.com/problems/sign-of-the-product-of-an-array</span></span><br><span class="line">### 题意</span><br><span class="line">&gt;   计算符号的个数即可</span><br><span class="line">### 思路</span><br><span class="line"><span class="number">1.</span> 遇到第`k`个空格则推出即可。</span><br><span class="line">### 代码</span><br><span class="line">```c++</span><br><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">int</span> <span class="built_in">array</span>Sign(vector&lt;<span class="built_in">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        long long curr = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">auto</span> v : nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(v &lt; <span class="number">0</span>) curr = curr*(<span class="number">-1</span>);</span><br><span class="line">            <span class="keyword">if</span>(v == <span class="number">0</span>) curr = curr*<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(curr &gt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(curr &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5727-找出游戏的获胜者"><a href="#5727-找出游戏的获胜者" class="headerlink" title="5727. 找出游戏的获胜者"></a>5727. 找出游戏的获胜者</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>共有 <code>n</code> 名小伙伴一起做游戏。小伙伴们围成一圈，按 顺时针顺序 从 <code>1</code> 到 <code>n</code> 编号。确切地说，从第 i 名小伙伴顺时针移动一位会到达第<code>(i+1)</code> 名小伙伴的位置，其中 <code>1 &lt;= i &lt; n</code>，从第 <code>n</code> 名小伙伴顺时针移动一位会回到第 1 名小伙伴的位置。</p>
+<p>游戏遵循如下规则：</p>
+<ul>
+<li>从第 1 名小伙伴所在位置 开始 。</li>
+<li>沿着顺时针方向数 k 名小伙伴，计数时需要 包含 起始时的那位小伙伴。逐个绕圈进行计数，一些小伙伴可能会被数过不止一次。</li>
+<li>你数到的最后一名小伙伴需要离开圈子，并视作输掉游戏。</li>
+<li>如果圈子中仍然有不止一名小伙伴，从刚刚输掉的小伙伴的 顺时针下一位 小伙伴 开始，回到步骤 2 继续执行。</li>
+<li>否则，圈子中最后一名小伙伴赢得游戏。<br>给你参与游戏的小伙伴总数 <code>n</code> ，和一个整数 <code>k</code> ，返回游戏的获胜者。</li>
+</ul>
+<p>示例 1：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">5</span>, k = <span class="number">2</span></span><br><span class="line">输出：<span class="number">3</span></span><br><span class="line">解释：游戏运行步骤如下：</span><br><span class="line"><span class="number">1</span>) 从小伙伴 <span class="number">1</span> 开始。</span><br><span class="line"><span class="number">2</span>) 顺时针数 <span class="number">2</span> 名小伙伴，也就是小伙伴 <span class="number">1</span> 和 <span class="number">2</span> 。</span><br><span class="line"><span class="number">3</span>) 小伙伴 <span class="number">2</span> 离开圈子。下一次从小伙伴 <span class="number">3</span> 开始。</span><br><span class="line"><span class="number">4</span>) 顺时针数 <span class="number">2</span> 名小伙伴，也就是小伙伴 <span class="number">3</span> 和 <span class="number">4</span> 。</span><br><span class="line"><span class="number">5</span>) 小伙伴 <span class="number">4</span> 离开圈子。下一次从小伙伴 <span class="number">5</span> 开始。</span><br><span class="line"><span class="number">6</span>) 顺时针数 <span class="number">2</span> 名小伙伴，也就是小伙伴 <span class="number">5</span> 和 <span class="number">1</span> 。</span><br><span class="line"><span class="number">7</span>) 小伙伴 <span class="number">1</span> 离开圈子。下一次从小伙伴 <span class="number">3</span> 开始。</span><br><span class="line"><span class="number">8</span>) 顺时针数 <span class="number">2</span> 名小伙伴，也就是小伙伴 <span class="number">3</span> 和 <span class="number">5</span> 。</span><br><span class="line"><span class="number">9</span>) 小伙伴 <span class="number">5</span> 离开圈子。只剩下小伙伴 <span class="number">3</span> 。所以小伙伴 <span class="number">3</span> 是游戏的获胜者。</span><br></pre></td></tr></table></figure>
+<p>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">6</span>, k = <span class="number">5</span></span><br><span class="line">输出：<span class="number">1</span></span><br><span class="line">解释：小伙伴离开圈子的顺序：<span class="number">5</span>、<span class="number">4</span>、<span class="number">6</span>、<span class="number">2</span>、<span class="number">3</span> 。小伙伴 <span class="number">1</span> 是游戏的获胜者。</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">+ `<span class="number">1</span> &lt;= k &lt;= n &lt;= <span class="number">500</span>`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 地址</span><br><span class="line">https:<span class="comment">//leetcode-cn.com/problems/find-the-winner-of-the-circular-game</span></span><br><span class="line">### 题意</span><br><span class="line">&gt;  经典的约瑟夫环问题，可以利用公式或者直接模拟即可，因为本题数据量非常小，直接模拟即可，时间复杂度$O(n^&#123;<span class="number">2</span>&#125;)$即可解决。</span><br><span class="line">### 思路</span><br><span class="line"><span class="number">1.</span> </span><br><span class="line">### 代码</span><br><span class="line">```c++</span><br><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">int</span> findTheWinner(<span class="built_in">int</span> n, <span class="built_in">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">int</span> p=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            p=(p+k)%i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5728-最少侧跳次数"><a href="#5728-最少侧跳次数" class="headerlink" title="5728. 最少侧跳次数"></a>5728. 最少侧跳次数</h2><p>给你一个长度为 <code>n</code> 的 <code>3</code>跑道道路 ，它总共包含<code>n + 1</code>个 点 ，编号为 0 到 n 。一只青蛙从 0 号点第二条跑道 出发 ，它想要跳到点 n 处。然而道路上可能有一些障碍。</p>
+<p>给你一个长度为 <code>n + 1</code> 的数组 <code>obstacles</code>，其中 <code>obstacles[i]</code> （取值范围从 0 到 3）表示在点 i 处的 <code>obstacles[i]</code>跑道上有一个障碍。如果 <code>obstacles[i] == 0</code>，那么点 i 处没有障碍。任何一个点的三条跑道中 最多有一个 障碍。</p>
+<p>比方说，如果 <code>obstacles[2] == 1</code> ，那么说明在点 2 处跑道 1 有障碍。<br>这只青蛙从点 i 跳到点 <code>i + 1</code>且跑道不变的前提是点 i + 1 的同一跑道上没有障碍。为了躲避障碍，这只青蛙也可以在 同一个 点处 侧跳 到 另外一条 跑道（这两条跑道可以不相邻），但前提是跳过去的跑道该点处没有障碍。</p>
+<p>比方说，这只青蛙可以从点 3 处的跑道 3 跳到点 3 处的跑道 1 。<br>这只青蛙从点 0 处跑道 2 出发，并想到达点 n 处的 任一跑道 ，请你返回 最少侧跳次数 。</p>
+<p>注意：点 0 处和点 n 处的任一跑道都不会有障碍。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：obstacles = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>]</span><br><span class="line">输出：<span class="number">2</span> </span><br><span class="line">解释：最优方案如上图箭头所示。总共有 <span class="number">2</span> 次侧跳（红色箭头）。</span><br><span class="line">注意，这只青蛙只有当侧跳时才可以跳过障碍（如上图点 <span class="number">2</span> 处所示）。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：obstacles = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">0</span>]</span><br><span class="line">输出：<span class="number">0</span></span><br><span class="line">解释：跑道 <span class="number">2</span> 没有任何障碍，所以不需要任何侧跳。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：obstacles = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">0</span>]</span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line">解释：最优方案如上图所示。总共有 <span class="number">2</span> 次侧跳。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>obstacles.length == n + 1</code></li>
+<li><code>1 &lt;= n &lt;= 5 * 105</code></li>
+<li><code>0 &lt;= obstacles[i] &lt;= 3</code></li>
+<li><code>obstacles[0] == obstacles[n] == 0</code></li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/minimum-sideway-jumps" target="_blank" rel="noopener">https://leetcode-cn.com/problems/minimum-sideway-jumps</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> dp</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>简单的<code>dp</code>即可解决该问题，<code>dp[i][j]</code>表示到达第<code>i</code>跳第<code>j</code>个赛道时花费的最少跳数。<script type="math/tex; mode=display">
+dp[i][j] = min(dp[i-1][j],dp[i][j+1] + 1,dp[i][j+2] + 1)</script><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minSideJumps</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; obstacles)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = obstacles.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(n,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">4</span>,n+<span class="number">1</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*initial*/</span></span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">           <span class="keyword">if</span>(i &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">3</span>; ++j)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(obstacles[i] != j) dp[i][j] = dp[i<span class="number">-1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">3</span>; ++j)&#123;</span><br><span class="line">               <span class="keyword">if</span>(obstacles[i] != j)&#123;</span><br><span class="line">                   <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= <span class="number">3</span>; ++k)&#123;</span><br><span class="line">                       dp[i][j] = min(dp[i][j],dp[i][k] + <span class="number">1</span>);</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> *min_element(dp[n<span class="number">-1</span>].begin(),dp[n<span class="number">-1</span>].end());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5729-求出-MK-平均值"><a href="#5729-求出-MK-平均值" class="headerlink" title="5729. 求出 MK 平均值"></a>5729. 求出 MK 平均值</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>给你两个整数 <code>m</code> 和 <code>k</code> ，以及数据流形式的若干整数。你需要实现一个数据结构，计算这个数据流的 <code>MK</code> 平均值 。</p>
+<p>MK 平均值 按照如下步骤计算：</p>
+<p>如果数据流中的整数少于 <code>m</code> 个，<code>MK</code> 平均值 为 <code>-1</code> ，否则将数据流中最后 <code>m</code>个元素拷贝到一个独立的容器中。<br>从这个容器中删除最小的 k 个数和最大的 k 个数。<br>计算剩余元素的平均值，并 向下取整到最近的整数 。<br>请你实现 <code>MKAverage</code> 类：</p>
+<ul>
+<li><code>MKAverage(int m, int k)</code> 用一个空的数据流和两个整数 m 和 k 初始化 MKAverage 对象。</li>
+<li><code>void addElement(int num)</code> 往数据流中插入一个新的元素 num 。</li>
+<li><code>int calculateMKAverage()</code> 对当前的数据流计算并返回 MK 平均数 ，结果需 向下取整到最近的整数 。</li>
+</ul>
+<p>示例 1：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">[<span class="string">"MKAverage"</span>, <span class="string">"addElement"</span>, <span class="string">"addElement"</span>, <span class="string">"calculateMKAverage"</span>, <span class="string">"addElement"</span>, <span class="string">"calculateMKAverage"</span>, <span class="string">"addElement"</span>, <span class="string">"addElement"</span>, <span class="string">"addElement"</span>, <span class="string">"calculateMKAverage"</span>]</span><br><span class="line">[[<span class="number">3</span>, <span class="number">1</span>], [<span class="number">3</span>], [<span class="number">1</span>], [], [<span class="number">10</span>], [], [<span class="number">5</span>], [<span class="number">5</span>], [<span class="number">5</span>], []]</span><br><span class="line">输出：</span><br><span class="line">[null, null, null, <span class="number">-1</span>, null, <span class="number">3</span>, null, null, null, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">MKAverage obj = new MKAverage(<span class="number">3</span>, <span class="number">1</span>); </span><br><span class="line">obj.addElement(<span class="number">3</span>);        <span class="comment">// 当前元素为 [3]</span></span><br><span class="line">obj.addElement(<span class="number">1</span>);        <span class="comment">// 当前元素为 [3,1]</span></span><br><span class="line">obj.calculateMKAverage(); <span class="comment">// 返回 -1 ，因为 m = 3 ，但数据流中只有 2 个元素</span></span><br><span class="line">obj.addElement(<span class="number">10</span>);       <span class="comment">// 当前元素为 [3,1,10]</span></span><br><span class="line">obj.calculateMKAverage(); <span class="comment">// 最后 3 个元素为 [3,1,10]</span></span><br><span class="line">                          <span class="comment">// 删除最小以及最大的 1 个元素后，容器为 [3]</span></span><br><span class="line">                          <span class="comment">// [3] 的平均值等于 3/1 = 3 ，故返回 3</span></span><br><span class="line">obj.addElement(<span class="number">5</span>);        <span class="comment">// 当前元素为 [3,1,10,5]</span></span><br><span class="line">obj.addElement(<span class="number">5</span>);        <span class="comment">// 当前元素为 [3,1,10,5,5]</span></span><br><span class="line">obj.addElement(<span class="number">5</span>);        <span class="comment">// 当前元素为 [3,1,10,5,5,5]</span></span><br><span class="line">obj.calculateMKAverage(); <span class="comment">// 最后 3 个元素为 [5,5,5]</span></span><br><span class="line">                          <span class="comment">// 删除最小以及最大的 1 个元素后，容器为 [5]</span></span><br><span class="line">                          <span class="comment">// [5] 的平均值等于 5/1 = 5 ，故返回 5</span></span><br></pre></td></tr></table></figure><br>提示：</p>
+<ul>
+<li><code>3 &lt;= m &lt;= 105</code></li>
+<li><code>1 &lt;= k*2 &lt; m</code></li>
+<li><code>1 &lt;= num &lt;= 105</code></li>
+<li><code>addElement</code> 与 <code>calculateMKAverage</code> 总操作次数不超过 105 次。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/finding-mk-average" target="_blank" rel="noopener">https://leetcode-cn.com/problems/finding-mk-average</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p><code>BST</code></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>最简单直接的方法就是利用三个有序的<code>set</code>，分别存储最小的<code>k</code>个数，中间的<code>m-2*k</code>个数，最大的<code>k</code>个数，比赛时想到了用这种方法，但是没有写对。</li>
+<li>每次更新时将最后一个元素删除，并同时加入新的元素，然后分别调整三个<code>set</code>使得其数量和大小关系达成符合条件要求即可。最大的收获时关于<code>multiset</code>的几种基本操作。</li>
+</ol>
+<ul>
+<li><code>erase</code>的几种基本操作:<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator  <span class="title">erase</span> <span class="params">(const_iterator position)</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">erase</span> <span class="params">(<span class="keyword">const</span> value_type&amp; val)</span></span>;</span><br><span class="line"><span class="function">iterator  <span class="title">erase</span> <span class="params">(const_iterator first, const_iterator last)</span></span>;</span><br></pre></td></tr></table></figure>
+但是关键一点<code>erase</code>不支持<code>reverse_iterator</code>,这个是我第一次知道。<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">position</span><br><span class="line">Iterator pointing <span class="built_in">to</span> <span class="keyword">a</span> single <span class="keyword">element</span> <span class="built_in">to</span> be removed <span class="built_in">from</span> <span class="keyword">the</span> multiset.</span><br><span class="line">Member types iterator <span class="keyword">and</span> const_iterator are bidirectional iterator types that point <span class="built_in">to</span> elements.</span><br><span class="line">erase postion支持对multiset中单个元素的删除</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val</span><br><span class="line">Value <span class="keyword">to</span> be removed <span class="keyword">from</span> the multiset. All elements with a value equivalent <span class="keyword">to</span> this are removed <span class="keyword">from</span> the container.</span><br><span class="line">Member<span class="built_in"> type </span>value_type is the<span class="built_in"> type </span>of the elements <span class="keyword">in</span> the container, defined <span class="keyword">in</span> multiset as an alias of its first template parameter (T).</span><br><span class="line">erase val则会将集合中所有等于val的元素全部删除</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">first</span>, <span class="keyword">last</span></span><br><span class="line">Iterators specifying <span class="keyword">a</span> range <span class="keyword">within</span> <span class="keyword">the</span> multiset container <span class="built_in">to</span> be removed: [<span class="keyword">first</span>,<span class="keyword">last</span>). i.e., <span class="keyword">the</span> range includes all <span class="keyword">the</span> elements between <span class="keyword">first</span> <span class="keyword">and</span> <span class="keyword">last</span>, including <span class="keyword">the</span> <span class="keyword">element</span> pointed <span class="keyword">by</span> <span class="keyword">first</span> but <span class="keyword">not</span> <span class="keyword">the</span> <span class="literal">one</span> pointed <span class="keyword">by</span> <span class="keyword">last</span>.</span><br><span class="line">Member types iterator <span class="keyword">and</span> const_iterator are bidirectional iterator types that point <span class="built_in">to</span> elements.</span><br><span class="line">erase val则会将集合中[<span class="keyword">first</span>, <span class="keyword">last</span>]的元素全部删除，支持范围删除</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol>
+<li>线段树的版本最后花了点时间参考树状数组的解法写了出来，收获不少，可以将数组中的元素离散化，全部转换成对元素的统计，通过二分查找，我们找到从小到大排序中第<code>k</code>个元素$num_{k}$和第<code>m-k</code>个元素$num_{m-k}$，然后利用线段树求所有小于等于$num_{k}$的元素的和与所有小于等于$num_{m-k}$的元素和，然后求差即可得到第<code>k+1</code>个元素到第<code>m-k</code>个元素的和。解法非常巧妙，但是非常值得学习的解法。<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MKAverage</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> m, k, sum = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt; lower, middle, upper;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; nums;</span><br><span class="line">    </span><br><span class="line">    MKAverage(<span class="keyword">int</span> m, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;m = m;</span><br><span class="line">        <span class="keyword">this</span>-&gt;k = k;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">shiftLeft</span><span class="params">(<span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt;&amp; l, <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt;&amp; r)</span> </span>&#123;</span><br><span class="line">        l.insert(*r.begin());</span><br><span class="line">        r.erase(r.begin());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">shiftRight</span><span class="params">(<span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt;&amp; l, <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt;&amp; r)</span> </span>&#123;</span><br><span class="line">        r.insert(*l.rbegin());</span><br><span class="line">        l.erase(--l.end());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addElement</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        nums.push(num);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(lower.size() &amp;&amp; *lower.rbegin() &gt;= num) lower.insert(num);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(upper.size() &amp;&amp; *upper.begin() &lt;= num) upper.insert(num);</span><br><span class="line">        <span class="keyword">else</span> middle.insert(num), sum += num;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(lower.size() &gt; k)&#123;</span><br><span class="line">            sum += *lower.rbegin();</span><br><span class="line">            shiftRight(lower, middle);</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">while</span>(upper.size() &gt; k)&#123;</span><br><span class="line">            sum += *upper.begin();</span><br><span class="line">            shiftLeft(middle, upper);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*erase the first element*/</span></span><br><span class="line">        <span class="keyword">if</span>(nums.size() &gt; m) &#123;</span><br><span class="line">            <span class="keyword">int</span> d = nums.front(); </span><br><span class="line">            nums.pop();</span><br><span class="line">            <span class="keyword">if</span>(lower.find(d) != lower.end()) lower.erase(lower.find(d));</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(middle.find(d) != middle.end()) middle.erase(middle.find(d)), sum -= d;</span><br><span class="line">            <span class="keyword">else</span> upper.erase(upper.find(d));</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(nums.size() &gt;= m) &#123;</span><br><span class="line">            <span class="keyword">while</span>(lower.size() &lt; k)&#123;</span><br><span class="line">                sum -= *middle.begin();</span><br><span class="line">                shiftLeft(lower, middle);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(upper.size() &lt; k)&#123;</span><br><span class="line">                sum -= *middle.rbegin();</span><br><span class="line">                shiftRight(middle, upper);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculateMKAverage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.size() &lt; m) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">return</span> sum / (m - <span class="number">2</span>*k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">segTreeNode</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l;</span><br><span class="line">    <span class="keyword">int</span> r;</span><br><span class="line">    <span class="keyword">int</span> count;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> sum;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHL(x) (x*2)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHR(x) (x*2 + 1)</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e5</span> + <span class="number">1</span>;</span><br><span class="line">segTreeNode tree[MAXN*<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pushUpTree</span><span class="params">(<span class="keyword">int</span> idx)</span></span>&#123;</span><br><span class="line">    tree[idx].count = tree[CHL(idx)].count + tree[CHR(idx)].count;</span><br><span class="line">    tree[idx].sum = tree[CHL(idx)].sum + tree[CHR(idx)].sum;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; arr,<span class="keyword">int</span> idx)</span></span>&#123;</span><br><span class="line">    tree[idx].l = l;</span><br><span class="line">    tree[idx].r = r;</span><br><span class="line">    <span class="keyword">if</span>(l == r)&#123;</span><br><span class="line">        tree[idx].count = arr[l];</span><br><span class="line">        tree[idx].sum = l*arr[l];</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> mid = (l + r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    buildTree(l,mid,arr,CHL(idx));</span><br><span class="line">    buildTree(mid+<span class="number">1</span>,r,arr,CHR(idx));</span><br><span class="line">    pushUpTree(idx);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">queryCount</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> idx,<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt; r) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(tree[idx].l &gt; r) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(tree[idx].r &lt; l) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(tree[idx].r &lt;= x) <span class="keyword">return</span> tree[idx].count;</span><br><span class="line">    <span class="keyword">int</span> mid = (tree[idx].l + tree[idx].r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(x &lt;= mid)&#123;</span><br><span class="line">        <span class="keyword">return</span> queryCount(l,mid,CHL(idx),x);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> queryCount(l,mid,CHL(idx),x) + queryCount(mid+<span class="number">1</span>,r,CHR(idx),x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">queryKth</span><span class="params">(<span class="keyword">int</span> idx,<span class="keyword">int</span> kth)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tree[idx].count &lt; kth) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(tree[idx].l == tree[idx].r) <span class="keyword">return</span> tree[idx].l;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> left = tree[CHL(idx)].count;</span><br><span class="line">    <span class="keyword">if</span>(left &gt;= kth)&#123;</span><br><span class="line">        <span class="keyword">return</span> queryKth(CHL(idx),kth);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> queryKth(CHR(idx),kth -left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">querySum</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> idx,<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt; r) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(tree[idx].l &gt; r) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(tree[idx].r &lt; l) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(tree[idx].r &lt;= x) <span class="keyword">return</span> tree[idx].sum;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> mid = (tree[idx].l + tree[idx].r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(x &lt;= mid)&#123;</span><br><span class="line">        <span class="keyword">return</span> querySum(l,mid,CHL(idx),x);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> querySum(l,mid,CHL(idx),x) + querySum(mid+<span class="number">1</span>,r,CHR(idx),x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">addTree</span><span class="params">(<span class="keyword">int</span> idx,<span class="keyword">int</span> x,<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tree[idx].l &gt; x) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(tree[idx].r &lt; x) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = (tree[idx].l + tree[idx].r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(tree[idx].l == x &amp;&amp; tree[idx].r == x)&#123;</span><br><span class="line">        tree[idx].count += val;</span><br><span class="line">        tree[idx].sum += val*x;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(x &lt;= mid)&#123;</span><br><span class="line">        addTree(CHL(idx),x,val);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        addTree(CHR(idx),x,val);</span><br><span class="line">    &#125;</span><br><span class="line">    pushUpTree(idx);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MKAverage</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MKAverage(<span class="keyword">int</span> m, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;m = m;</span><br><span class="line">        <span class="keyword">this</span>-&gt;k = k;</span><br><span class="line">        arr = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">100001</span>);</span><br><span class="line">        buildTree(<span class="number">0</span>,<span class="number">100000</span>,arr,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addElement</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        qu.push(num);</span><br><span class="line">        addTree(<span class="number">1</span>,num,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(qu.size() &gt; m)&#123;</span><br><span class="line">            <span class="keyword">int</span> x = qu.front();</span><br><span class="line">            qu.pop();</span><br><span class="line">            addTree(<span class="number">1</span>,x,<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculateMKAverage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(qu.size() &lt; m) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> lower = queryKth(<span class="number">1</span>,k);</span><br><span class="line">        <span class="keyword">int</span> upper = queryKth(<span class="number">1</span>,m-k);</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> lsum = querySum(<span class="number">0</span>,<span class="number">100000</span>,<span class="number">1</span>,lower);</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> rsum = querySum(<span class="number">0</span>,<span class="number">100000</span>,<span class="number">1</span>,upper);</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> lcnt = queryCount(<span class="number">0</span>,<span class="number">100000</span>,<span class="number">1</span>,lower);</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> rcnt = queryCount(<span class="number">0</span>,<span class="number">100000</span>,<span class="number">1</span>,upper);</span><br><span class="line">        <span class="keyword">if</span>(lcnt &gt; k) lsum -= (lcnt-k)*lower;</span><br><span class="line">        <span class="keyword">if</span>(rcnt &gt; m-k) rsum -= (rcnt - (m-k))*upper;</span><br><span class="line">        <span class="keyword">return</span> (rsum-lsum)/(m<span class="number">-2</span>*k);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; arr;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; qu;</span><br><span class="line">    <span class="keyword">int</span> m;</span><br><span class="line">    <span class="keyword">int</span> k;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MKAverage object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MKAverage* obj = new MKAverage(m, k);</span></span><br><span class="line"><span class="comment"> * obj-&gt;addElement(num);</span></span><br><span class="line"><span class="comment"> * int param_2 = obj-&gt;calculateMKAverage();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://mikemeng.org/" target="_blank" rel="noopener">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>公务程序猿.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2021/04/08/272/" rel="next" title="【Leetcode】 Leetcode  LCCUP 2021 团队赛">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】 Leetcode  LCCUP 2021 团队赛
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-weekly-contest-236"><span class="nav-number">1.</span> <span class="nav-text">leetcode weekly contest 236</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5726-数组元素积的符号"><span class="nav-number">1.1.</span> <span class="nav-text">5726. 数组元素积的符号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5727-找出游戏的获胜者"><span class="nav-number">1.2.</span> <span class="nav-text">5727. 找出游戏的获胜者</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5728-最少侧跳次数"><span class="nav-number">1.3.</span> <span class="nav-text">5728. 最少侧跳次数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.3.1.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.3.2.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.3.3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.3.4.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5729-求出-MK-平均值"><span class="nav-number">1.4.</span> <span class="nav-text">5729. 求出 MK 平均值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.4.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.4.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.4.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.5.</span> <span class="nav-text">#</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">231</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
