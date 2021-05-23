@@ -60,7 +60,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2021&#x2F;05&#x2F;16&#x2F;f51inxEeqLoQ7TN.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
-<meta property="og:updated_time" content="2021-05-16T07:43:11.151Z">
+<meta property="og:updated_time" content="2021-05-20T12:18:41.995Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2021&#x2F;05&#x2F;16&#x2F;f51inxEeqLoQ7TN.png">
 
@@ -220,10 +220,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-05-16 13:18:56 / Modified: 15:43:11" itemprop="dateCreated datePublished" datetime="2021-05-16T13:18:56+08:00">2021-05-16</time>
+              <time title="Created: 2021-05-16 13:18:56" itemprop="dateCreated datePublished" datetime="2021-05-16T13:18:56+08:00">2021-05-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-20 20:18:41" itemprop="dateModified" datetime="2021-05-20T20:18:41+08:00">2021-05-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -339,7 +345,7 @@
 dp[i][j] = dp[i-1][j-1]</script>如果我们第一个元素不为$n-i$,则我们可以将$n-i$放到后面的<code>i-1</code>个元素中的任意一个元素后面，它都不可见，则此时的方案数应该为:<script type="math/tex; mode=display">
 dp[i][j] = dp[i-1][j]*(i-1)</script>综上我们可以得到如下推论:<script type="math/tex; mode=display">
 dp[i][j] = dp[i-1][j-1] + dp[i-1][j]*(i-1)</script></li>
-<li>仔细查了以下考斯林数的定义，基本上就是等于第一类斯特林数的推论应用，可以直接看到该公式是利用数学归纳法来证明出来的。<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rearrangeSticks</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;ll&gt;&gt; dp(n+<span class="number">1</span>,<span class="built_in">vector</span>&lt;ll&gt;(n+<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line">        dp[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j)&#123;</span><br><span class="line">                dp[i][j] = (dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + dp[i<span class="number">-1</span>][j]*(i<span class="number">-1</span>))%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[n][k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<li>仔细查了以下考斯林数的定义，基本上就是等于第一类斯特林数的推论应用，可以直接看到该公式是利用数学归纳法来证明出来的。<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rearrangeSticks</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;ll&gt;&gt; dp(n+<span class="number">1</span>,<span class="built_in">vector</span>&lt;ll&gt;(n+<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line">        dp[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j)&#123;</span><br><span class="line">                dp[i][j] = (dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + dp[i<span class="number">-1</span>][j]*(i<span class="number">-1</span>))%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n][k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </blockquote>
@@ -390,6 +396,9 @@ dp[i][j] = dp[i-1][j-1] + dp[i-1][j]*(i-1)</script></li>
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2021/05/19/285/" rel="prev" title="【生活】记一次失败的面试总结">
+                  【生活】记一次失败的面试总结 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -445,18 +454,18 @@ dp[i][j] = dp[i-1][j-1] + dp[i-1][j]*(i-1)</script></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">242</span>
+          <span class="site-state-item-count">243</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
