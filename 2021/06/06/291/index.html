@@ -59,7 +59,7 @@
 <meta property="og:description" content="leetcode  contest 244周末忙着迁移网络，真心忙的一比，没有时间刷题，特此上来总结一下，赛后还是没有看参考答案，将四道题目全部独立思考出来了。题目质量还是非常的高的，周赛还是经常参加一下，非常锻炼思考能力。5776. 判断矩阵经轮转后是否一致题目给你两个大小为 n x n 的二进制矩阵mat 和 target 。现 以 90度顺时针轮转 矩阵 mat 中的元素 若干次 ，如果能够">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
-<meta property="og:updated_time" content="2021-06-07T01:38:43.697Z">
+<meta property="og:updated_time" content="2021-06-08T02:24:01.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
 
@@ -227,7 +227,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-06-07 09:38:43" itemprop="dateModified" datetime="2021-06-07T09:38:43+08:00">2021-06-07</time>
+                <time title="Modified: 2021-06-08 10:24:01" itemprop="dateModified" datetime="2021-06-08T10:24:01+08:00">2021-06-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -367,6 +367,8 @@ ans = min(left[1][x] + right[0][x+1],left[1][x] + right[0][x+1]) \\</script></li
 </ol>
 <ul>
 <li>我们<code>cost[i]</code>表示第<code>i</code>个供应商刚好能够满足包装前<code>dp[i]</code>个箱子时最小的浪费空间.</li>
+<li>对于第<code>i</code>个包裹，我们肯定优先选择处在以下范围内的箱子是最优解，及越接近$package[i]$的箱子。<script type="math/tex; mode=display">
+package_{i} \le b_{j} \le b_{j+1} \le ... \le b_{j+k} < package_{i+1}</script></li>
 <li>我们对于所有的供应商的箱子都进行排序，同时标记该箱子属于哪一个供应商，我们每次遍历所有满足大于等于第<code>i</code>个包裹且小于第<code>i+1</code>个包裹的箱子，及满足如下：<script type="math/tex; mode=display">
 package_{i} \le b_{j} \le b_{j+1} \le ... \le b_{j+k} < package_{i+1}</script>我们可以知道此时的待选的匹配序列为:$(b_{j} \le b_{j+1} \le … \le b_{j+k})$<br>则此时我们依次检查这<code>k</code>个箱子，如果$b_{j+m}$属于第<code>x</code>个供应商,且第<code>x</code>个供应商的箱子此时已经匹配了<code>dp[x]</code>个包裹，且最小浪费为<code>cost[x]</code>;如果<code>dp[x] == i</code>则表示此时已经有更小的箱子匹配了第<code>i</code>个包裹，则我们直接忽略；如果<code>dp[x] &lt; i</code>,则意味着此时$b_{j+m}$应该最佳匹配第$(dp[x]+1,dp[x]+2,…,i)$个箱子,此时我们求出用$b_{j+m}$匹配排序为$(dp[x]+1,dp[x]+2,…,i)$这些箱子的最小浪费，我们可以很容易计算出需要浪费的空间为:<script type="math/tex; mode=display">
 waste = b_{j+m}*(i-dp[x]) - \sum_{k=dp[x]+1}^{i}package[k] \\</script>此时表示第<code>x</code>个供应商已经最佳匹配了前<code>i</code>个箱子，我们需要更新<code>cost[x]</code>为：<script type="math/tex; mode=display">
