@@ -59,7 +59,7 @@
 <meta property="og:description" content="C++智能指针因为前段时间需要进行面试时，顺便对C++的部分语言特性学习了一下，虽然感觉C++语言非常强大，但是感觉这种面向对象的语言非常不友好，不够自然理解，总体来说感觉比java要难的多，java中一切皆对象的概念非常深入人心，彻底的object-oriented,C++这种既有面向对象的东西，又要兼容C的特性，对我这种从C转过来的程序猿感觉非常不友好，最大的问题是由于面向对象的封装，语言内部">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
-<meta property="og:updated_time" content="2021-06-01T13:29:21.039Z">
+<meta property="og:updated_time" content="2021-06-07T06:08:21.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
 
@@ -219,10 +219,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-06-01 12:40:00 / Modified: 21:29:21" itemprop="dateCreated datePublished" datetime="2021-06-01T12:40:00+08:00">2021-06-01</time>
+              <time title="Created: 2021-06-01 12:40:00" itemprop="dateCreated datePublished" datetime="2021-06-01T12:40:00+08:00">2021-06-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-07 14:08:21" itemprop="dateModified" datetime="2021-06-07T14:08:21+08:00">2021-06-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -262,8 +268,13 @@
       
         <h1 id="C-智能指针"><a href="#C-智能指针" class="headerlink" title="C++智能指针"></a>C++智能指针</h1><p>因为前段时间需要进行面试时，顺便对C++的部分语言特性学习了一下，虽然感觉C++语言非常强大，但是感觉这种面向对象的语言非常不友好，不够自然理解，总体来说感觉比<code>java</code>要难的多，<code>java</code>中一切皆对象的概念非常深入人心，彻底的<code>object-oriented</code>,<code>C++</code>这种既有面向对象的东西，又要兼容<code>C</code>的特性，对我这种从<code>C</code>转过来的程序猿感觉非常不友好，最大的问题是由于面向对象的封装，语言内部的机制和逻辑对我来说就像一个黑匣子，我完全不太了解函数内部到底实现了什么，所以对<code>C++</code>这种类似于黑匣子的语言有些畏惧，而对于常用的<code>C</code>语言来说，由于是面向过程的，所以写的每一行代码基本上都能猜测出来<code>CPU</code>执行了哪些指令，对于实际的内存到底做了哪些变动，非常的简洁。看到各种模板和各种奇怪的变量命名就感觉头大。<br><code>C++</code>的智能指针主要是解决指针管理的问题，我们知道在<code>C</code>语言中对于一般的动态内存申请，在内存使用完毕时都需要由程序猿主动去<code>free</code>,但是常常在使用过程中许多程序员会忘记主动去释放内存，从而产生各种各样的内存泄露问题，有没有一种简单的办法来管理指针，使得动态内存使用时，当它的生命周期完成时，能不能向对象一样主动去执行析构函数，从而释放内存，从而产生了<code>c++</code>的智能指针的使用。</p><a id="more"></a>
 <h2 id="1-unique-ptr"><a href="#1-unique-ptr" class="headerlink" title="1. unique_ptr"></a>1. unique_ptr</h2><p><code>unique_ptr</code>表示当前的指针只能有一个所有权，既然unique_ptr是独享对象，那么任何可能被共享的操作都是不允许的，但是可以通过移动来转移所有权。以下通过直接赋值，编译器则会提示不支持该操作。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>&gt; up0;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>&gt; up1(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">1111</span>));</span><br><span class="line">up0 = up1 <span class="comment">//错误，不可赋值</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>&gt; up2(up1);<span class="comment">//错误，不支持拷贝</span></span><br></pre></td></tr></table></figure></p>
-<p>也即假设智能指针<code>a</code>有了指针<code>p</code>的所有权，则假设我们此时将<code>a</code>的所有权赋给<code>b</code>之后，则<code>a</code>将不再拥有指针<code>p</code>的所有权，即我们通过<code>a</code>就不能访问<code>p</code>所指向的内存，此时即强调所有权的唯一性。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">smart_ptr&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> smart_ptr&amp; other) &#123;</span><br><span class="line">   <span class="keyword">if</span> (refc_.only()) &#123;</span><br><span class="line">     <span class="keyword">delete</span> value_;</span><br><span class="line">   &#125;</span><br><span class="line">   refc_  = other.refc_;</span><br><span class="line">   value_ = other.value_;</span><br><span class="line">   <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> smart_ptr&amp; <span class="keyword">operator</span>=(smart_ptr&amp;&amp; other) <span class="keyword">noexcept</span> &#123;</span><br><span class="line">   <span class="keyword">if</span> (refc_.only()) &#123;</span><br><span class="line">     <span class="keyword">delete</span> value_;</span><br><span class="line">   &#125;</span><br><span class="line">   refc_  = <span class="built_in">std</span>::move(other.refc_);</span><br><span class="line">   value_ = other.value_;</span><br><span class="line">   other.value_ = <span class="literal">nullptr</span>;</span><br><span class="line">   <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-shared-ptr"><a href="#2-shared-ptr" class="headerlink" title="2. shared_ptr"></a>2. shared_ptr</h2><h2 id="3-weak-ptr"><a href="#3-weak-ptr" class="headerlink" title="3. weak_ptr"></a>3. weak_ptr</h2><h2 id="4-make-shared"><a href="#4-make-shared" class="headerlink" title="4. make_shared"></a>4. make_shared</h2><h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<p>也即假设智能指针<code>a</code>有了指针<code>p</code>的所有权，则假设我们此时将<code>a</code>的所有权赋给<code>b</code>之后，则<code>a</code>将不再拥有指针<code>p</code>的所有权，即我们通过<code>a</code>就不能访问<code>p</code>所指向的内存，此时即强调所有权的唯一性。<br>对于<code>unique_ptr</code>指针需要注意的几点：</p>
+<ul>
+<li><code>release()</code>:</li>
+<li><code>reset()</code>:</li>
+<li><code>move</code>:<h2 id="2-shared-ptr"><a href="#2-shared-ptr" class="headerlink" title="2. shared_ptr"></a>2. shared_ptr</h2><h2 id="3-weak-ptr"><a href="#3-weak-ptr" class="headerlink" title="3. weak_ptr"></a>3. weak_ptr</h2><h2 id="4-make-shared"><a href="#4-make-shared" class="headerlink" title="4. make_shared"></a>4. make_shared</h2></li>
+</ul>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
 <ul>
 <li>关注我的博客: <a href="http://mikemeng.org/" target="_blank" rel="noopener">http://mikemeng.org/</a></li>
 <li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
@@ -368,18 +379,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">249</span>
+          <span class="site-state-item-count">250</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
