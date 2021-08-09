@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="leetcode  biweekly contest 58本次的双周赛题目，前三题感觉都是正常的题目，第四题是manacher算法，这个算法确实很少会遇到。5193. 删除字符使字符串变好题目一个字符串如果没有 三个连续 相同字符，那么它就是一个 好字符串 。给你一个字符串 s ，请你从 s 删除 最少 的字符，使它变成一个 好字符串 。">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 Leetcode  Biweekly Contest 58">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;08&#x2F;08&#x2F;312&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="leetcode  biweekly contest 58本次的双周赛题目，前三题感觉都是正常的题目，第四题是manacher算法，这个算法确实很少会遇到。5193. 删除字符使字符串变好题目一个字符串如果没有 三个连续 相同字符，那么它就是一个 好字符串 。给你一个字符串 s ，请你从 s 删除 最少 的字符，使它变成一个 好字符串 。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2021&#x2F;08&#x2F;08&#x2F;jCEKGQTAiPNSqlJ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+<meta property="og:updated_time" content="2021-08-08T12:56:47.596Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2021&#x2F;08&#x2F;08&#x2F;jCEKGQTAiPNSqlJ.png">
+
+<link rel="canonical" href="http://yoursite.com/2021/08/08/312/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 Leetcode  Biweekly Contest 58 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/08/312/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 Leetcode  Biweekly Contest 58
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-08-08 14:25:48 / Modified: 20:56:47" itemprop="dateCreated datePublished" datetime="2021-08-08T14:25:48+08:00">2021-08-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/08/08/312/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/08/312/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="leetcode-biweekly-contest-58"><a href="#leetcode-biweekly-contest-58" class="headerlink" title="leetcode  biweekly contest 58"></a>leetcode  biweekly contest 58</h1><p>本次的双周赛题目，前三题感觉都是正常的题目，第四题是<code>manacher</code>算法，这个算法确实很少会遇到。<br><img src="https://i.loli.net/2021/08/08/jCEKGQTAiPNSqlJ.png" alt></p><h2 id="5193-删除字符使字符串变好"><a href="#5193-删除字符使字符串变好" class="headerlink" title="5193. 删除字符使字符串变好"></a>5193. 删除字符使字符串变好</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>一个字符串如果没有 三个连续 相同字符，那么它就是一个 好字符串 。</p><p>给你一个字符串 <code>s</code> ，请你从 <code>s</code> 删除 最少 的字符，使它变成一个 好字符串 。</p><a id="more"></a>
+
+
+<p>请你返回删除后的字符串。题目数据保证答案总是 唯一的 。</p>
+<p>示例 1：<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">"leeetcode"</span></span><br><span class="line">输出：<span class="string">"leetcode"</span></span><br><span class="line">解释：</span><br><span class="line">从第一组 'e' 里面删除一个 'e' ，得到 <span class="string">"leetcode"</span> 。</span><br><span class="line">没有连续三个相同字符，所以返回 <span class="string">"leetcode"</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">"aaabaaaa"</span></span><br><span class="line">输出：<span class="string">"aabaa"</span></span><br><span class="line">解释：</span><br><span class="line">从第一组 'a' 里面删除一个 'a' ，得到 <span class="string">"aabaaaa"</span> 。</span><br><span class="line">从第二组 'a' 里面删除两个 'a' ，得到 <span class="string">"aabaa"</span> 。</span><br><span class="line">没有连续三个相同字符，所以返回 <span class="string">"aabaa"</span> 。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">"aab"</span></span><br><span class="line">输出：<span class="string">"aab"</span></span><br><span class="line">解释：没有连续三个相同字符，所以返回 <span class="string">"aab"</span> 。</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">+ `<span class="number">1</span> &lt;= s.length &lt;= <span class="number">105</span>`</span><br><span class="line">+ `s` 只包含小写英文字母。</span><br><span class="line"></span><br><span class="line"><span class="meta">### 地址 </span></span><br><span class="line">https:<span class="comment">//leetcode-cn.com/contest/biweekly-contest-58/problems/delete-characters-to-make-fancy-string/</span></span><br><span class="line"><span class="meta">### 题意</span></span><br><span class="line">&gt;   暴力检测</span><br><span class="line"><span class="meta">### 思路</span></span><br><span class="line"><span class="number">1.</span> 暴力检测其中连续的字符串，去掉多余的字符即可。</span><br><span class="line"><span class="number">2.</span> 算法复杂度为$O(n)$.</span><br><span class="line"><span class="meta">### 代码</span></span><br><span class="line">```c++</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">string</span> makeFancyString(<span class="keyword">string</span> s) &#123;</span><br><span class="line">        <span class="keyword">string</span> ans;</span><br><span class="line">        <span class="keyword">char</span> curr;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        curr = s[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); )&#123;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; s.size() &amp;&amp; s[i] == curr)&#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cnt &amp;&amp; j &lt; <span class="number">2</span>; ++j)&#123;</span><br><span class="line">                ans.push_back(curr);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i &lt; s.size())&#123;</span><br><span class="line">                curr = s[i];</span><br><span class="line">                cnt = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5827-检查操作是否合法"><a href="#5827-检查操作是否合法" class="headerlink" title="5827. 检查操作是否合法"></a>5827. 检查操作是否合法</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>给你一个下标从 0 开始的 <code>8 x 8</code> 网格<code>board</code> ，其中<code>board[r][c]</code>表示游戏棋盘上的格子 <code>(r, c)</code> 。棋盘上空格用 ‘.’ 表示，白色格子用 <code>&#39;W&#39;</code>表示，黑色格子用 <code>&#39;B&#39;</code>表示。</p>
+<p>游戏中每次操作步骤为：选择一个空格子，将它变成你正在执行的颜色（要么白色，要么黑色）。但是，合法 操作必须满足：涂色后这个格子是 好线段的一个端点 （好线段可以是水平的，竖直的或者是对角线）。</p>
+<p>好线段 指的是一个包含 三个或者更多格子（包含端点格子）的线段，线段两个端点格子为 同一种颜色 ，且中间剩余格子的颜色都为 另一种颜色 （线段上不能有任何空格子）。你可以在下图找到好线段的例子：</p>
+<p>给你两个整数 <code>rMove</code> 和 <code>cMove</code> 以及一个字符 <code>color</code> ，表示你正在执行操作的颜色（白或者黑），如果将格子 <code>(rMove, cMove)</code>变成颜色 <code>color</code>后，是一个 合法 操作，那么返回 <code>true</code> ，如果不是合法操作返回 <code>false</code> 。</p>
+<p>示例 1：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：board = [[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"B"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"W"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"W"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"W"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"W"</span>,<span class="string">"B"</span>,<span class="string">"B"</span>,<span class="string">"."</span>,<span class="string">"W"</span>,<span class="string">"W"</span>,<span class="string">"W"</span>,<span class="string">"B"</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"B"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"B"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"W"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>]], rMove = <span class="number">4</span>, cMove = <span class="number">3</span>, color = <span class="string">"B"</span></span><br><span class="line">输出：true</span><br><span class="line">解释：<span class="string">'.'</span>，<span class="string">'W'</span> 和 <span class="string">'B'</span> 分别用颜色蓝色，白色和黑色表示。格子 (rMove, cMove) 用 <span class="string">'X'</span> 标记。</span><br><span class="line">以选中格子为端点的两个好线段在上图中用红色矩形标注出来了。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：board = [[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"B"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"W"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"W"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"W"</span>,<span class="string">"B"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"B"</span>,<span class="string">"W"</span>,<span class="string">"."</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"W"</span>,<span class="string">"."</span>],[<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"B"</span>]], rMove = <span class="number">4</span>, cMove = <span class="number">4</span>, color = <span class="string">"W"</span></span><br><span class="line">输出：false</span><br><span class="line">解释：虽然选中格子涂色后，棋盘上产生了好线段，但选中格子是作为中间格子，没有产生以选中格子为端点的好线段。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>board.length == board[r].length == 8</code></li>
+<li><code>0 &lt;= rMove, cMove &lt; 8</code></li>
+<li><code>board[rMove][cMove] == &#39;.&#39;</code></li>
+<li><code>color</code> 要么是 <code>&#39;B&#39;</code> 要么是 <code>&#39;W&#39;</code> 。</li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/contest/biweekly-contest-58/problems/check-if-move-is-legal/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/biweekly-contest-58/problems/check-if-move-is-legal/</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 暴力检测是否合法即可</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>暴力检测八个方向的线段是否合法即可，感觉题目非常无意义的题目，建议不要出现此类题目。<br>2.算法时间复杂度为$O(n)$.<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkMove</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, <span class="keyword">int</span> rMove, <span class="keyword">int</span> cMove, <span class="keyword">char</span> color)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> row = board.size();</span><br><span class="line">        <span class="keyword">int</span> col = board[<span class="number">0</span>].size();</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*up*/</span></span><br><span class="line">        i = rMove - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; board[i][cMove] != <span class="string">'.'</span> &amp;&amp; board[i][cMove] != color)&#123;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &gt;= <span class="number">0</span> &amp;&amp; i != rMove<span class="number">-1</span> &amp;&amp; board[i][cMove] == color) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*down*/</span></span><br><span class="line">        i = rMove + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; row &amp;&amp; board[i][cMove] != <span class="string">'.'</span> &amp;&amp; board[i][cMove] != color)&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; row &amp;&amp; i != rMove+<span class="number">1</span> &amp;&amp; board[i][cMove] == color) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*left*/</span></span><br><span class="line">        i = cMove - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; board[rMove][i] != <span class="string">'.'</span> &amp;&amp; board[rMove][i] != color)&#123;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &gt;= <span class="number">0</span> &amp;&amp; i != cMove<span class="number">-1</span> &amp;&amp; board[rMove][i] == color) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*right*/</span></span><br><span class="line">        i = cMove + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; col &amp;&amp; board[rMove][i] != <span class="string">'.'</span> &amp;&amp; board[rMove][i] != color)&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; col &amp;&amp; i != cMove+<span class="number">1</span> &amp;&amp; board[rMove][i] == color) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        i = rMove<span class="number">-1</span>;</span><br><span class="line">        j = cMove<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; board[i][j] != <span class="string">'.'</span> &amp;&amp; board[i][j] != color)&#123;</span><br><span class="line">            i--;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; i != rMove<span class="number">-1</span> &amp;&amp; board[i][j] == color) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        i = rMove+<span class="number">1</span>;</span><br><span class="line">        j = cMove+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; row &amp;&amp; j &lt; col &amp;&amp; board[i][j] != <span class="string">'.'</span> &amp;&amp; board[i][j] != color)&#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; row &amp;&amp; j &lt; col &amp;&amp; i != rMove+<span class="number">1</span> &amp;&amp; board[i][j] == color) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        i = rMove<span class="number">-1</span>;</span><br><span class="line">        j = cMove+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; j &lt; col &amp;&amp; board[i][j] != <span class="string">'.'</span> &amp;&amp; board[i][j] != color)&#123;</span><br><span class="line">            i--;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &gt;= <span class="number">0</span> &amp;&amp; j &lt; col &amp;&amp; i != rMove<span class="number">-1</span> &amp;&amp; board[i][j] == color) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        i = rMove+<span class="number">1</span>;</span><br><span class="line">        j = cMove<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; row &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; board[i][j] != <span class="string">'.'</span> &amp;&amp; board[i][j] != color)&#123;</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; row &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; i != rMove+<span class="number">1</span> &amp;&amp; board[i][j] == color) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="5828-K-次调整数组大小浪费的最小总空间"><a href="#5828-K-次调整数组大小浪费的最小总空间" class="headerlink" title="5828. K 次调整数组大小浪费的最小总空间"></a>5828. K 次调整数组大小浪费的最小总空间</h2><p>你正在设计一个动态数组。给你一个下标从 0 开始的整数数组 <code>nums</code>，其中 <code>nums[i]</code> 是<code>i</code> 时刻数组中的元素数目。除此以外，你还有一个整数 k ，表示你可以 调整 数组大小的 最多 次数（每次都可以调整成 任意 大小）。</p>
+<p>t 时刻数组的大小 <code>sizet</code>必须大于等于 <code>nums[t]</code>，因为数组需要有足够的空间容纳所有元素。t 时刻 浪费的空间 为 <code>sizet - nums[t]</code> ，总 浪费空间为满足 <code>0 &lt;= t &lt; nums.length</code>的每一个时刻 <code>t</code> 浪费的空间 之和 。</p>
+<p>在调整数组大小不超过<code>k</code> 次的前提下，请你返回 最小总浪费空间 。</p>
+<p>注意：数组最开始时可以为 任意大小 ，且 不计入 调整大小的操作次数。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">10</span>,<span class="number">20</span>], k = <span class="number">0</span></span><br><span class="line">输出：<span class="number">10</span></span><br><span class="line">解释：size = [<span class="number">20</span>,<span class="number">20</span>].</span><br><span class="line">我们可以让数组初始大小为 <span class="number">20</span> 。</span><br><span class="line">总浪费空间为 (<span class="number">20</span> - <span class="number">10</span>) + (<span class="number">20</span> - <span class="number">20</span>) = <span class="number">10</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>], k = <span class="number">1</span></span><br><span class="line">输出：<span class="number">10</span></span><br><span class="line">解释：size = [<span class="number">20</span>,<span class="number">20</span>,<span class="number">30</span>].</span><br><span class="line">我们可以让数组初始大小为 <span class="number">20</span> ，然后时刻 <span class="number">2</span> 调整大小为 <span class="number">30</span> 。</span><br><span class="line">总浪费空间为 (<span class="number">20</span> - <span class="number">10</span>) + (<span class="number">20</span> - <span class="number">20</span>) + (<span class="number">30</span> - <span class="number">30</span>) = <span class="number">10</span> 。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">10</span>,<span class="number">20</span>,<span class="number">15</span>,<span class="number">30</span>,<span class="number">20</span>], k = <span class="number">2</span></span><br><span class="line">输出：<span class="number">15</span></span><br><span class="line">解释：size = [<span class="number">10</span>,<span class="number">20</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">30</span>].</span><br><span class="line">我们可以让数组初始大小为 <span class="number">10</span> ，时刻 <span class="number">1</span> 调整大小为 <span class="number">20</span> ，时刻 <span class="number">3</span> 调整大小为 <span class="number">30</span> 。</span><br><span class="line">总浪费空间为 (<span class="number">10</span> - <span class="number">10</span>) + (<span class="number">20</span> - <span class="number">20</span>) + (<span class="number">20</span> - <span class="number">15</span>) + (<span class="number">30</span> - <span class="number">30</span>) + (<span class="number">30</span> - <span class="number">20</span>) = <span class="number">15</span> 。</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">+ `<span class="number">1</span> &lt;= nums.length &lt;= <span class="number">200</span>`</span><br><span class="line">+ `<span class="number">1</span> &lt;= nums[i] &lt;= <span class="number">106</span>`</span><br><span class="line">+ `<span class="number">0</span> &lt;= k &lt;= nums.length - <span class="number">1</span>`</span><br><span class="line"></span><br><span class="line">### 地址</span><br><span class="line">https:<span class="comment">//leetcode-cn.com/contest/biweekly-contest-58/problems/minimum-total-space-wasted-with-k-resizing-operations/</span></span><br><span class="line">### 题意</span><br><span class="line">&gt;  DP</span><br><span class="line">### 思路</span><br><span class="line"><span class="number">1.</span> 典型的`dp`，我们设递推公式为`dp[i][j]`表示前`i`个元素经过`j`次调整后，所能得到的最小浪费空间，则我们可以知道递推公式为为</span><br><span class="line">$$</span><br><span class="line">dp[i][j] = min(dp[i][j],dp[k][j<span class="number">-1</span>] + cost[k+<span class="number">1</span>][j])</span><br><span class="line">$$</span><br><span class="line"><span class="number">2.</span> 我们可以提前计算出数组$cost[i][j]$,表示数组从`i`到`j`调整一次后所需要的最小浪费空间，我们利用递推可以知道:</span><br><span class="line">$$</span><br><span class="line">cost[i][j] = max[i][j]*(j-i+<span class="number">1</span>) - (sum[j] - sum[i<span class="number">-1</span>])</span><br><span class="line">$$</span><br><span class="line">我们可以知道从`i`到`j`调整一次满足题目要求的最小元素应该为$max[i][j]$,即数组从索引`i`到`j`之间的最大元素。$sum[i]$表示数组前`i`个元素的前缀和。</span><br><span class="line"><span class="number">3.</span> 算法时间复杂度为$O(n*(k+n))$,算法的空间复杂度为$O(n*n)$.</span><br><span class="line">### 代码</span><br><span class="line">```c++</span><br><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">int</span> minSpaceWastedKResizing(vector&lt;<span class="built_in">int</span>&gt;&amp; nums, <span class="built_in">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">int</span> n = nums.size();</span><br><span class="line">        <span class="built_in">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        vector&lt;vector&lt;long long&gt;&gt; dp(n,vector&lt;long long&gt;(k+<span class="number">1</span>,INT_MAX));</span><br><span class="line">        vector&lt;vector&lt;long long&gt;&gt; cost(n,vector&lt;long long&gt;(n));</span><br><span class="line">        vector&lt;long long&gt; sum(n+<span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            sum[i+<span class="number">1</span>] = sum[i] + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="built_in">int</span> curr = nums[i];</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j = i; j &lt; n; ++j)&#123;</span><br><span class="line">                curr = max(curr,nums[j]);</span><br><span class="line">                cost[i][j] = curr*(j-i+<span class="number">1</span>) - (sum[j+<span class="number">1</span>] - sum[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = cost[<span class="number">0</span>][i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">1</span>; j &lt;= i &amp;&amp; j &lt;= k; ++j)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="built_in">int</span> l = i<span class="number">-1</span>; l &gt;= j<span class="number">-1</span>; --l)&#123;</span><br><span class="line">                    dp[i][j] = min(dp[i][j],dp[l][j<span class="number">-1</span>] + cost[l+<span class="number">1</span>][i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;      </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[n<span class="number">-1</span>][k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5220-两个回文子字符串长度的最大乘积"><a href="#5220-两个回文子字符串长度的最大乘积" class="headerlink" title="5220. 两个回文子字符串长度的最大乘积"></a>5220. 两个回文子字符串长度的最大乘积</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>给你一个下标从 <code>0</code> 开始的字符串<code>s</code> ，你需要找到两个 不重叠的回文 子字符串，它们的长度都必须为 奇数 ，使得它们长度的乘积最大。</p>
+<p>更正式地，你想要选择四个整数 <code>i ，j ，k ，l</code>，使得 <code>0 &lt;= i &lt;= j &lt; k &lt;= l &lt; s.length</code> ，且子字符串 <code>s[i...j]</code>和 <code>s[k...l]</code>都是回文串且长度为奇数。<code>s[i...j]</code> 表示下标从 <code>i</code> 到 <code>j</code> 且 包含 两端下标的子字符串。</p>
+<p>请你返回两个不重叠回文子字符串长度的 最大 乘积。</p>
+<p>回文字符串 指的是一个从前往后读和从后往前读一模一样的字符串。子字符串 指的是一个字符串中一段连续字符。</p>
+<p>示例 1：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">"ababbb"</span></span><br><span class="line">输出：<span class="number">9</span></span><br><span class="line">解释：子字符串 <span class="string">"aba"</span> 和 <span class="string">"bbb"</span> 为奇数长度的回文串。乘积为 <span class="number">3</span> * <span class="number">3</span> = <span class="number">9</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">"zaaaxbbby"</span></span><br><span class="line">输出：<span class="number">9</span></span><br><span class="line">解释：子字符串 <span class="string">"aaa"</span> 和 <span class="string">"bbb"</span> 为奇数长度的回文串。乘积为 <span class="number">3</span> * <span class="number">3</span> = <span class="number">9</span> 。</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">+ `<span class="number">2</span> &lt;= s.length &lt;= <span class="number">105</span>`</span><br><span class="line">+ `s` 只包含小写英文字母。</span><br><span class="line"></span><br><span class="line">### 地址</span><br><span class="line">https:<span class="comment">//leetcode-cn.com/problems/count-number-of-special-subsequences</span></span><br><span class="line">### 题意</span><br><span class="line">&gt;  manacher算法</span><br><span class="line">### 解题思路</span><br><span class="line"><span class="number">1.</span> 求回文字符串的长度，我们先利用`manacher`算法求出每个以索引`i`为中点的最长回文串的半径。这一步的算法时间时间复杂度为$O(n)$.详细解释可以参考[manacher](https:<span class="comment">//oi-wiki.org/string/manacher/),写的非常好，该算法的特点利用回文字符串的对称性，可以快速省去部分检测方法，确实是非常巧妙的算法。主要是如果知道对称性性的基本原理，则还可以将这个算法推导出来。</span></span><br><span class="line"><span class="number">2.</span> 此时我们可以求出每个以前缀`i`的最长回文串的长度$prefix[i]$，我们将字符串翻转，同时求出以`i`为起点的后缀的最长回文串长度$suffix[i]$，此时我们遍历每一个可能的组合:</span><br><span class="line">$$</span><br><span class="line">prod = prefix[i]*suffix[i+<span class="number">1</span>]</span><br><span class="line">$$</span><br><span class="line">求出$prod$的最大值即可。</span><br><span class="line">### 代码</span><br><span class="line">```c++</span><br><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="built_in">int</span>&gt; manacher(<span class="built_in">string</span> &amp; s)&#123;</span><br><span class="line">        <span class="built_in">int</span> n = s.size();</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; d1(n);</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; hi(n,<span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>, l = <span class="number">0</span>, r = <span class="number">-1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="built_in">int</span> k = i &gt; r? <span class="number">1</span> : min(d1[r+l-i],r - i + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span>( i &gt;= k &amp;&amp; i + k &lt; n &amp;&amp; s[i-k] == s[i+k]) k++;</span><br><span class="line">            d1[i] = k--;</span><br><span class="line">            <span class="keyword">if</span>(i+k &gt; r)&#123;</span><br><span class="line">                r = i+k;</span><br><span class="line">                l = i-k;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">int</span> chi = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            hi[i] = max(hi[i],hi[i<span class="number">-1</span>]);</span><br><span class="line">            <span class="keyword">while</span>(chi + d1[chi] &lt;= i) chi++;</span><br><span class="line">            hi[i] = max(hi[i],(i-chi)*<span class="number">2</span> + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> hi;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    long long maxProduct(<span class="built_in">string</span> s) &#123;</span><br><span class="line">        <span class="built_in">int</span> n = s.size();</span><br><span class="line">        long long ans = <span class="number">0</span>;</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; prefix = manacher(s);</span><br><span class="line">        reverse(s.begin(),s.end());</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; suffix = manacher(s);</span><br><span class="line">        reverse(rhi.begin(),rhi.end());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n<span class="number">-1</span>; ++i)&#123;</span><br><span class="line">            ans = max(ans,(long long)prefix[i]*suffix[i+<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://mikemeng.org/" target="_blank" rel="noopener">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>公务程序猿.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2021/08/06/311/" rel="next" title="【MIT6.S081】 Lab3 Pagetable">
+                  <i class="fa fa-chevron-left"></i> 【MIT6.S081】 Lab3 Pagetable
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2021/08/08/313/" rel="prev" title="【Leetcode】 Leetcode  Contest 253">
+                  【Leetcode】 Leetcode  Contest 253 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-biweekly-contest-58"><span class="nav-number">1.</span> <span class="nav-text">leetcode  biweekly contest 58</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5193-删除字符使字符串变好"><span class="nav-number">1.1.</span> <span class="nav-text">5193. 删除字符使字符串变好</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5827-检查操作是否合法"><span class="nav-number">1.2.</span> <span class="nav-text">5827. 检查操作是否合法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5828-K-次调整数组大小浪费的最小总空间"><span class="nav-number">1.3.</span> <span class="nav-text">5828. K 次调整数组大小浪费的最小总空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5220-两个回文子字符串长度的最大乘积"><span class="nav-number">1.4.</span> <span class="nav-text">5220. 两个回文子字符串长度的最大乘积</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.5.</span> <span class="nav-text">#</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">271</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
