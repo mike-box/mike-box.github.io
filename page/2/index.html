@@ -194,6 +194,485 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/08/332/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/08/332/" class="post-title-link" itemprop="url">【MIT6.S081】 Lab7 Thread</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-08 23:30:08" itemprop="dateCreated datePublished" datetime="2021-10-08T23:30:08+08:00">2021-10-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-09 13:25:32" itemprop="dateModified" datetime="2021-10-09T13:25:32+08:00">2021-10-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/10/08/332/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/08/332/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="thread"><a href="#thread" class="headerlink" title="thread"></a>thread</h1><p>感觉<code>thread lab</code>是我做的基本上最简单的<code>lab</code>了，但是感觉这个章节是干货最多的章节，很多操作系统的原理和技术实现细节就一下子全部很清晰．再配合<code>lab</code>完成现程的实现,感觉对操作系统的进程调度有了一个非常清晰的认识,是非常值得仔细学习和思考的章节.</p><ul>
+<li><p>时间片调度的本质: CPU内部有定时器,定时器会定期的发起中断.操作系统内核接收到了定时器中断后，通过<code>context</code>切换,从当前进程的内核线程切换内核的进程调度程序，而在调度程序内部会实现对进程的调度．我们仔细分析一下源代码可以知道,进程调度工作的流程．</p>
+</li>
+<li><p>在所有的进程中顺序查找到下一个处在就绪态的进程,然后通过切换上下文将该进程的内核线程切换到<code>CPU</code>中,而该内核线程又通过<code>trapret</code>，<code>cpu</code>恢复到该进程的用户线程.如果当前进程接受到中断时,就会进入<code>usertrap</code>中,在<code>usertrap</code>中检测如果当前为定时器中断,则进行上下文切换切换到内核中的线程调度程序．实际的进程调度分为两种方式，一种方式是时间片到了，当前的进程被动放弃<code>CPU</code>,另一种方式是当前的进程可能需要等待挂起,主动的放弃<code>CPU</code>.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">usertrap(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> which_dev = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>((r_sstatus() &amp; SSTATUS_SPP) != <span class="number">0</span>)</span><br><span class="line">    panic(<span class="string">"usertrap: not from user mode"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// send interrupts and exceptions to kerneltrap(),</span></span><br><span class="line">  <span class="comment">// since we're now in the kernel.</span></span><br><span class="line">  w_stvec((uint64)kernelvec);</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">p</span> = <span class="title">myproc</span>();</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// save user program counter.</span></span><br><span class="line">  p-&gt;trapframe-&gt;epc = r_sepc();</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(r_scause() == <span class="number">8</span>)&#123;</span><br><span class="line">    <span class="comment">// system call</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(p-&gt;killed)</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// sepc points to the ecall instruction,</span></span><br><span class="line">    <span class="comment">// but we want to return to the next instruction.</span></span><br><span class="line">    p-&gt;trapframe-&gt;epc += <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// an interrupt will change sstatus &amp;c registers,</span></span><br><span class="line">    <span class="comment">// so don't enable until done with those registers.</span></span><br><span class="line">    intr_on();</span><br><span class="line"></span><br><span class="line">    syscall();</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>((which_dev = devintr()) != <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">// ok</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"usertrap(): unexpected scause %p pid=%d\n"</span>, r_scause(), p-&gt;pid);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"            sepc=%p stval=%p\n"</span>, r_sepc(), r_stval());</span><br><span class="line">    p-&gt;killed = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(p-&gt;killed)</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// give up the CPU if this is a timer interrupt.</span></span><br><span class="line">  <span class="keyword">if</span>(which_dev == <span class="number">2</span>)</span><br><span class="line">    yield();</span><br><span class="line"></span><br><span class="line">  usertrapret();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(;;)&#123;</span><br><span class="line">    <span class="comment">// Avoid deadlock by ensuring that devices can interrupt.</span></span><br><span class="line">    intr_on();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> nproc = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(p = proc; p &lt; &amp;proc[NPROC]; p++) &#123;</span><br><span class="line">      acquire(&amp;p-&gt;lock);</span><br><span class="line">      <span class="keyword">if</span>(p-&gt;state != UNUSED) &#123;</span><br><span class="line">        nproc++;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>(p-&gt;state == RUNNABLE) &#123;</span><br><span class="line">        <span class="comment">// Switch to chosen process.  It is the process's job</span></span><br><span class="line">        <span class="comment">// to release its lock and then reacquire it</span></span><br><span class="line">        <span class="comment">// before jumping back to us.</span></span><br><span class="line">        p-&gt;state = RUNNING;</span><br><span class="line">        c-&gt;proc = p;</span><br><span class="line">        swtch(&amp;c-&gt;context, &amp;p-&gt;context);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Process is done running for now.</span></span><br><span class="line">        <span class="comment">// It should have changed its p-&gt;state before coming back.</span></span><br><span class="line">        c-&gt;proc = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      release(&amp;p-&gt;lock);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(nproc &lt;= <span class="number">2</span>) &#123;   <span class="comment">// only init and sh exist</span></span><br><span class="line">      intr_on();</span><br><span class="line">      <span class="function"><span class="keyword">asm</span> <span class="title">volatile</span><span class="params">(<span class="string">"wfi"</span>)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li>进程调度的实现原理: 在<code>xv6</code>系统中,进程调度直接顺序查找即可,当然找到下一个线程需要$O(n)$的时间复杂度,在实际的<code>Linux</code>系统中,线程都带有优先级,在做线程切换时,可以利用堆的特性,在 $O(\lg n)$ 的时间复杂度内即可将优先级最高的线程且处于就绪态的线程找出来.</li>
+<li>上下文切换的本质: 本质即为切换寄存器的值.将程序运行过程中的<code>ra</code>以及<code>sp</code>以及几个常用的由<code>callee</code>保存的寄存器进行保存相关的值即可.<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">.globl swtch</span><br><span class="line">swtch:</span><br><span class="line">        sd ra, <span class="number">0</span>(a0)</span><br><span class="line">        sd sp, <span class="number">8</span>(a0)</span><br><span class="line">        sd s0, <span class="number">16</span>(a0)</span><br><span class="line">        sd s1, <span class="number">24</span>(a0)</span><br><span class="line">        sd s2, <span class="number">32</span>(a0)</span><br><span class="line">        sd s3, <span class="number">40</span>(a0)</span><br><span class="line">        sd s4, <span class="number">48</span>(a0)</span><br><span class="line">        sd s5, <span class="number">56</span>(a0)</span><br><span class="line">        sd s6, <span class="number">64</span>(a0)</span><br><span class="line">        sd s7, <span class="number">72</span>(a0)</span><br><span class="line">        sd s8, <span class="number">80</span>(a0)</span><br><span class="line">        sd s9, <span class="number">88</span>(a0)</span><br><span class="line">        sd s10, <span class="number">96</span>(a0)</span><br><span class="line">        sd s11, <span class="number">104</span>(a0)</span><br><span class="line"></span><br><span class="line">        ld ra, <span class="number">0</span>(a1)</span><br><span class="line">        ld sp, <span class="number">8</span>(a1)</span><br><span class="line">        ld s0, <span class="number">16</span>(a1)</span><br><span class="line">        ld s1, <span class="number">24</span>(a1)</span><br><span class="line">        ld s2, <span class="number">32</span>(a1)</span><br><span class="line">        ld s3, <span class="number">40</span>(a1)</span><br><span class="line">        ld s4, <span class="number">48</span>(a1)</span><br><span class="line">        ld s5, <span class="number">56</span>(a1)</span><br><span class="line">        ld s6, <span class="number">64</span>(a1)</span><br><span class="line">        ld s7, <span class="number">72</span>(a1)</span><br><span class="line">        ld s8, <span class="number">80</span>(a1)</span><br><span class="line">        ld s9, <span class="number">88</span>(a1)</span><br><span class="line">        ld s10, <span class="number">96</span>(a1)</span><br><span class="line">        ld s11, <span class="number">104</span>(a1)</span><br><span class="line">        </span><br><span class="line">        ret</span><br></pre></td></tr></table></figure></li>
+<li>本章还讲述了<code>spin lock</code>的实现原理,感觉非常清晰明了.首先我们需要知道<code>CPU</code>支持的原子操作,一般使用编译器自带的几个通用的原子操作如下，具体可以参考<code>gcc</code>的文档:<a href="https://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Atomic-Builtins.html" target="_blank" rel="noopener">Gcc手册中《Using the GNU Compiler Collection (GCC)》</a>.</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/08/332/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/05/331/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/05/331/" class="post-title-link" itemprop="url">【Leetcode】 Leetcode Contest 261</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-10-05 11:14:03 / Modified: 16:09:41" itemprop="dateCreated datePublished" datetime="2021-10-05T11:14:03+08:00">2021-10-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/10/05/331/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/05/331/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="leetcode-contest-261"><a href="#leetcode-contest-261" class="headerlink" title="leetcode contest 261"></a>leetcode contest 261</h1><p>周赛题目质量非常不错，还是继续三道题的节奏。</p><h2 id="2027-转换字符串的最少操作次数"><a href="#2027-转换字符串的最少操作次数" class="headerlink" title="2027. 转换字符串的最少操作次数"></a>2027. 转换字符串的最少操作次数</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个字符串 <code>s</code>，由 <code>n</code> 个字符组成，每个字符不是 <code>&#39;X&#39;</code> 就是 <code>&#39;O&#39;</code> 。</p><p>一次 操作 定义为从<code>s</code>中选出 三个连续字符 并将选中的每个字符都转换为 <code>&#39;O&#39;</code>。注意，如果字符已经是 <code>&#39;O&#39;</code>，只需要保持 不变 。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/05/331/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/03/330/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/03/330/" class="post-title-link" itemprop="url">【Leetcode】 Leetcode  Biweekly Contest 62</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-10-03 07:49:21 / Modified: 14:32:30" itemprop="dateCreated datePublished" datetime="2021-10-03T07:49:21+08:00">2021-10-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/10/03/330/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/03/330/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="leetcode-biweekly-contest-62"><a href="#leetcode-biweekly-contest-62" class="headerlink" title="leetcode  biweekly contest 62"></a>leetcode  biweekly contest 62</h1><p>双周赛的题目质量还算不错，第三题竟然卡壳了好久，第四题感觉应该只能算一个中等难度题目．模拟比赛做了一下，大概排名<code>200</code>多名.</p><h2 id="5871-将一维数组转变成二维数组"><a href="#5871-将一维数组转变成二维数组" class="headerlink" title="5871. 将一维数组转变成二维数组"></a>5871. 将一维数组转变成二维数组</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个下标从 <code>0</code> 开始的一维整数数组 <code>original</code> 和两个整数 <code>m</code> 和  <code>n</code>。你需要使用 <code>original</code> 中 所有 元素创建一个 <code>m</code> 行 <code>n</code> 列的二维数组。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/03/330/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/26/329/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/26/329/" class="post-title-link" itemprop="url">【Leetcode】 Leetcode  Contest 260</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-09-26 22:36:48 / Modified: 23:22:17" itemprop="dateCreated datePublished" datetime="2021-09-26T22:36:48+08:00">2021-09-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/09/26/329/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/26/329/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="leetcode-contest-260"><a href="#leetcode-contest-260" class="headerlink" title="leetcode  contest 260"></a>leetcode  contest 260</h1><p>还是三道题目的节奏,无奈太菜了. 感觉中间两道题目出的很水,第四题其实出的还算比较有水平的题目,不过感觉不算太难.</p><h2 id="5881-增量元素之间的最大差值"><a href="#5881-增量元素之间的最大差值" class="headerlink" title="5881. 增量元素之间的最大差值"></a>5881. 增量元素之间的最大差值</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个下标从 <code>0</code> 开始的整数数组 <code>nums</code> ，该数组的大小为 <code>n</code> ，请你计算 <code>nums[j] - nums[i]</code> 能求得的 最大差值 ，其中 <code>0 &lt;= i &lt; j &lt; n</code>且 <code>nums[i] &lt; nums[j]</code> 。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/26/329/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/19/328/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/19/328/" class="post-title-link" itemprop="url">【Leetcode】 Leetcode  Contest 259</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-09-19 13:28:32" itemprop="dateCreated datePublished" datetime="2021-09-19T13:28:32+08:00">2021-09-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-09-20 16:14:08" itemprop="dateModified" datetime="2021-09-20T16:14:08+08:00">2021-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/09/19/328/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/19/328/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="leetcode-contest-259"><a href="#leetcode-contest-259" class="headerlink" title="leetcode  contest 259"></a>leetcode  contest 259</h1><p>还是三道题目的节奏,无奈太菜了.</p><h2 id="5875-执行操作后的变量值"><a href="#5875-执行操作后的变量值" class="headerlink" title="5875. 执行操作后的变量值"></a>5875. 执行操作后的变量值</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>存在一种仅支持 4 种操作和 1 个变量 X 的编程语言：</p><ul>
+<li><code>++X</code> 和 <code>X++</code> 使变量 <code>X</code> 的值 加 1</li>
+<li><code>--X</code> 和 <code>X--</code> 使变量 <code>X</code> 的值 减 1<br>最初，X 的值是 0</li>
+</ul><p>给你一个字符串数组 <code>operations</code> ，这是由操作组成的一个列表，返回执行所有操作后， X 的 最终值 。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/19/328/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/19/327/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -653,487 +1132,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/02/322/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/02/322/" class="post-title-link" itemprop="url">【MIT6.S081】 Lab6 Cow Pages</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-09-02 10:55:41 / Modified: 21:33:15" itemprop="dateCreated datePublished" datetime="2021-09-02T10:55:41+08:00">2021-09-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OS/" itemprop="url" rel="index">
-                    <span itemprop="name">OS</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2021/09/02/322/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/02/322/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="cow-pages"><a href="#cow-pages" class="headerlink" title="cow pages"></a>cow pages</h1><p>感觉<code>cow lab</code>是我做的最纠结的<code>lab</code>了，代码量其实非常少，但是就是非常见简单的<code>20</code>~<code>30</code>行代码，就出了许多莫名奇妙的<code>bug</code>。<code>copy on write page</code>实现原理非常简单，父进程在创建子进程时，子进程只需要将父进程的所有的虚拟地址<code>拷贝</code>一份即可,此时子进程与父进程共享同样的物理页，子进程和父进程可以同时读取同样的物理页面；当子进程或者父进程需要将数据写回物理页时，则申请一块新的物理页，并将虚拟地址重新映射到新的物理页上。这样实现的好处有两点：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/02/322/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/23/321/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/23/321/" class="post-title-link" itemprop="url">【Leetcode】 Leetcode  Contest 256</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-08-23 23:22:32" itemprop="dateCreated datePublished" datetime="2021-08-23T23:22:32+08:00">2021-08-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-02 20:32:38" itemprop="dateModified" datetime="2021-09-02T20:32:38+08:00">2021-09-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2021/08/23/321/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/23/321/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="leetcode-contest-256"><a href="#leetcode-contest-256" class="headerlink" title="leetcode contest 256"></a>leetcode contest 256</h1><p>本周的周赛题目难度始终，不过前三题确实比较简单。最后一题是之前某个题目的变形，确实不好想到。</p><h2 id="5854-学生分数的最小差值"><a href="#5854-学生分数的最小差值" class="headerlink" title="5854. 学生分数的最小差值"></a>5854. 学生分数的最小差值</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个 下标从 <code>0</code> 开始 的整数数组 <code>nums</code> ，其中 <code>nums[i]</code> 表示第 <code>i</code>名学生的分数。另给你一个整数 <code>k</code> 。</p><p>从数组中选出任意<code>k</code>名学生的分数，使这<code>k</code>个分数间 最高分 和 最低分 的 差值 达到 最小化 。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/23/321/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/22/320/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/22/320/" class="post-title-link" itemprop="url">【MIT6.S081】 Lab5 Lazy Alloaction</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-08-22 18:33:01" itemprop="dateCreated datePublished" datetime="2021-08-22T18:33:01+08:00">2021-08-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-08-24 20:56:03" itemprop="dateModified" datetime="2021-08-24T20:56:03+08:00">2021-08-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OS/" itemprop="url" rel="index">
-                    <span itemprop="name">OS</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2021/08/22/320/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/22/320/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="lazy-alloaction"><a href="#lazy-alloaction" class="headerlink" title="lazy alloaction"></a>lazy alloaction</h1><p>感觉这个<code>lab</code>是最近感觉最容易的<code>lab</code>了，只花了一天就完成了<code>lab</code>，还是感谢网络资源，感谢各位后浪们的付出，将课件翻译成中文版，翻译的质量很好，通过阅读<code>lecture</code>即可很快的熟悉相关的<code>lazy allocation</code>的原理描述，利用<code>trap</code>来实现。我们再来仔细看一下<code>trap</code>的原理：<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">中断现场-&gt;保存现场-&gt; 处理trap -&gt;恢复现场-&gt;恢复运行</span><br></pre></td></tr></table></figure><br>利用<code>trap</code>我们可以进行相关的指令跳转，来执行我们需要的操作，执行完成之后，我们再恢复指令重新执行。所以我们可以利用<code>trap</code>来进行<code>lazy allocation</code>.按需申请物理内存资源，我们在申请内存时，可以先对只对该虚拟地址<code>va</code>进行标记，如果实际的程序需要进行访问该<code>va</code>时，我们再申请实际的物理内存页进行映射，映射完成后我们再恢复指令运行。<br><a href="https://github.com/mike-box/MIT6.S081/tree/main/lab-lazy-handin" target="_blank" rel="noopener">git repo</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/22/320/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/22/319/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/22/319/" class="post-title-link" itemprop="url">【Leetcode】 Leetcode  Contest 乐鑫科技</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-08-22 18:32:52" itemprop="dateCreated datePublished" datetime="2021-08-22T18:32:52+08:00">2021-08-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-08-23 10:55:54" itemprop="dateModified" datetime="2021-08-23T10:55:54+08:00">2021-08-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2021/08/22/319/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/22/319/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="leetcode-contest-乐鑫科技"><a href="#leetcode-contest-乐鑫科技" class="headerlink" title="leetcode  contest 乐鑫科技"></a>leetcode  contest 乐鑫科技</h1><p>题目还不错，但是难度不算很高。</p><h2 id="乐鑫01-录取分数线"><a href="#乐鑫01-录取分数线" class="headerlink" title="乐鑫01. 录取分数线"></a>乐鑫01. 录取分数线</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个浮点数数组 <code>scores</code>，其中 <code>scores[i]</code> 表示第 <code>i</code> 个考生的高考分数。<br>现在请你求出某大学的录取分数线，该大学的录取分数线恰好为将所有考生按高考分数由高到低排序后第 <code>k</code> 名考生的高考分数。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/22/319/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/22/318/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/pic.jpg">
-      <meta itemprop="name" content="Mike meng">
-      <meta itemprop="description" content="a clever man and a foolish man!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blow in the wind">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/22/318/" class="post-title-link" itemprop="url">【Leetcode】 Leetcode  Biweekly Contest 59</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-08-22 18:31:52" itemprop="dateCreated datePublished" datetime="2021-08-22T18:31:52+08:00">2021-08-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-08-23 11:36:47" itemprop="dateModified" datetime="2021-08-23T11:36:47+08:00">2021-08-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2021/08/22/318/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/22/318/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="leetcode-biweekly-contest-59"><a href="#leetcode-biweekly-contest-59" class="headerlink" title="leetcode biweekly contest 59"></a>leetcode biweekly contest 59</h1><p>双周赛的题目质量很高，出的非常不错的题目</p><h2 id="5850-找出数组的最大公约数"><a href="#5850-找出数组的最大公约数" class="headerlink" title="5850. 找出数组的最大公约数"></a>5850. 找出数组的最大公约数</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><ol>
-<li>使用特殊打字机键入单词的最少时间<br>有一个特殊打字机，它由一个 圆盘 和一个 指针 组成， 圆盘上标有小写英文字母 <code>&#39;a&#39;</code> 到 <code>&#39;z&#39;</code>。只有 当指针指向某个字母时，它才能被键入。指针 初始时 指向字符 <code>&#39;a&#39;</code> 。</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/22/318/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1184,7 +1182,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">294</span>
+          <span class="site-state-item-count">299</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
