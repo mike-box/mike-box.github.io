@@ -59,7 +59,7 @@
 <meta property="og:description" content="leetcode  contest 270最后一题欧拉回路,确实不会，其余的题目都是简单题目．5942. 找出 3 位偶数给你一个整数数组 digits ，其中每个元素是一个数字（0 - 9）。数组中可能存在重复元素。你需要找出 所有 满足下述条件且 互不相同 的整数： 该整数由 digits 中的三个元素按 任意 顺序 依次连接 组成。 该整数不含 前导零 该整数是一个 偶数例如，给定的 dig">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
-<meta property="og:updated_time" content="2021-12-05T10:28:05.202Z">
+<meta property="og:updated_time" content="2021-12-08T16:13:11.314Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
 
@@ -219,10 +219,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-12-05 18:12:06 / Modified: 18:28:05" itemprop="dateCreated datePublished" datetime="2021-12-05T18:12:06+08:00">2021-12-05</time>
+              <time title="Created: 2021-12-05 18:12:06" itemprop="dateCreated datePublished" datetime="2021-12-05T18:12:06+08:00">2021-12-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-09 00:13:11" itemprop="dateModified" datetime="2021-12-09T00:13:11+08:00">2021-12-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -329,12 +335,22 @@
 <h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
 <p>欧拉回路</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
-<li></li>
+<li>欧拉回路的题目确实很少碰到，确实比较超纲的知识，一个有向图满足欧拉回路的条件如下：</li>
+</ol>
+<ul>
+<li>要么所有的节点的入度和出度相等;</li>
+<li>要么只有一个节点的出度比入度大 $1$, 另外存在另一个节点的入度比出度大 $1$为终点, 其余的节点的入度与出度相等.</li>
+</ul>
+<ol>
+<li>求欧拉回路可以用 $\text{Hierholzer}$ 算法,详细可以参考<a href="https://www.geeksforgeeks.org/hierholzers-algorithm-directed-graph/" target="_blank" rel="noopener">欧拉回路</a>上面的讲解,非常详细和简答明了. 在此题中由于题目已经给定说明存在欧拉回路,因此重要的是我们要找到欧拉回路的起点, 我们可以看到实际的有向图以每个数为顶点,以 $pairs$ 中的元素作为边, 我们求出顶点的入度和出度即可.</li>
+<li>$\text{Hierholzer}$ 算法的核心思想大概是利用栈的思想,从一个可能的起点出发，进行深度优先搜索，但是每次沿着辅助边从某个顶点移动到另外一个顶点的时候，都需要删除这个辅助边。如果没有可移动的路径，则将所在结点加入到栈中，并返回。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dfs(node, trace)&#123;</span><br><span class="line">	<span class="keyword">while</span>(!node.adj.isEmpty())&#123;</span><br><span class="line">		Node next = node.adj.removeLast();</span><br><span class="line">		dfs(next, trace);</span><br><span class="line">	&#125;</span><br><span class="line">	trace.addLast(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+最后得到的栈中保存的就是整个欧拉闭迹中的顶点。（要恢复我们需要不断出栈，因此如果你用列表来存欧垃迹的话需要反转一次）。</li>
 <li>复杂度分析:</li>
 </ol>
 <ul>
-<li>时间复杂度：$O(N)$ 其中 $n$ 为二叉树中节点的个数。</li>
-<li>空间复杂度分析: $O(N)$,其中 $n$ 为二叉树中节点的个数.<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><code>c++</code></li>
+<li>时间复杂度：$O(N)$,$\text{Hierholzer}$ 算法的时间复杂度为 $O(V + E)$, 即等于边的个数加上顶点的个数, 本题中边的数目即为 $pairs$ 数组的长度。</li>
+<li>空间复杂度分析: $O(N)$,其中 $N$ 为数组 $pairs$ 中元素的个数.<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp; edges, <span class="keyword">int</span> u,<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp; res)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(!edges[u].empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = edges[u].back();</span><br><span class="line">            edges[u].pop_back();</span><br><span class="line">            dfs(edges, v, res);</span><br><span class="line">            res.push_back(&#123;u, v&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; validArrangement(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; pairs) &#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; edges;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; degree;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span> &amp; v : pairs) &#123;</span><br><span class="line">            edges[v[<span class="number">0</span>]].push_back(v[<span class="number">1</span>]);</span><br><span class="line">            degree[v[<span class="number">0</span>]]--;</span><br><span class="line">            degree[v[<span class="number">1</span>]]++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> start = pairs[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp; v : degree) &#123;</span><br><span class="line">            <span class="keyword">if</span>(v.second == <span class="number">-1</span>) &#123;</span><br><span class="line">                start = v.first;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(edges, start, ans);</span><br><span class="line">        reverse(ans.begin(), ans.end());</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </blockquote>
 <h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
@@ -384,6 +400,9 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2021/12/11/351/" rel="prev" title="【Leetcode】 Leetcode Biweekly Contest 67">
+                  【Leetcode】 Leetcode Biweekly Contest 67 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -439,7 +458,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">307</span>
+          <span class="site-state-item-count">311</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
