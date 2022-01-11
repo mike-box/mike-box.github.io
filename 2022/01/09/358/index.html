@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="leetcode  biweekly contest 69双周赛的题目最后一题,果真难度比较大, 虽然没有参加, 但是感觉还是挺难的题目.5960. 将标题首字母大写给你一个字符串 title ，它由单个空格连接一个或多个单词组成，每个单词都只包含英文字母。请你按以下规则将每个单词的首字母 大写 ：如果单词的长度为 1或者2 ，所有字母变成小写。否则，将单词首字母大写，剩余字母变成小写。请你返回">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Leetcode】 Leetcode Biweekly Contest 69">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2022&#x2F;01&#x2F;09&#x2F;358&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="leetcode  biweekly contest 69双周赛的题目最后一题,果真难度比较大, 虽然没有参加, 但是感觉还是挺难的题目.5960. 将标题首字母大写给你一个字符串 title ，它由单个空格连接一个或多个单词组成，每个单词都只包含英文字母。请你按以下规则将每个单词的首字母 大写 ：如果单词的长度为 1或者2 ，所有字母变成小写。否则，将单词首字母大写，剩余字母变成小写。请你返回">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+<meta property="og:updated_time" content="2022-01-11T12:54:04.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+
+<link rel="canonical" href="http://yoursite.com/2022/01/09/358/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Leetcode】 Leetcode Biweekly Contest 69 | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/09/358/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Leetcode】 Leetcode Biweekly Contest 69
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-09 11:54:45" itemprop="dateCreated datePublished" datetime="2022-01-09T11:54:45+08:00">2022-01-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-01-11 20:54:04" itemprop="dateModified" datetime="2022-01-11T20:54:04+08:00">2022-01-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2022/01/09/358/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/09/358/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="leetcode-biweekly-contest-69"><a href="#leetcode-biweekly-contest-69" class="headerlink" title="leetcode  biweekly contest 69"></a>leetcode  biweekly contest 69</h1><p>双周赛的题目最后一题,果真难度比较大, 虽然没有参加, 但是感觉还是挺难的题目.</p><h3 id="5960-将标题首字母大写"><a href="#5960-将标题首字母大写" class="headerlink" title="5960. 将标题首字母大写"></a>5960. 将标题首字母大写</h3><p>给你一个字符串 <code>title</code> ，它由单个空格连接一个或多个单词组成，每个单词都只包含英文字母。请你按以下规则将每个单词的首字母 大写 ：</p><p>如果单词的长度为 <code>1</code>或者<code>2</code> ，所有字母变成小写。<br>否则，将单词首字母大写，剩余字母变成小写。<br>请你返回 大写后 的 <code>title</code>。</p><a id="more"></a>
+
+
+<p>示例 1：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">title</span> = "capiTalIze tHe <span class="built_in">titLe</span>"</span><br><span class="line">输出："Capitalize The <span class="built_in">Title</span>"</span><br><span class="line">解释：</span><br><span class="line">由于所有单词的长度都至少为 <span class="number">3</span> ，将每个单词首字母大写，剩余字母变为小写。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：title = <span class="string">"First leTTeR of EACH Word"</span></span><br><span class="line">输出：<span class="string">"First Letter of Each Word"</span></span><br><span class="line">解释：</span><br><span class="line">单词 <span class="string">"of"</span> 长度为 <span class="number">2</span> ，所以它保持完全小写。</span><br><span class="line">其他单词长度都至少为 <span class="number">3</span> ，所以其他单词首字母大写，剩余字母小写。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：title = <span class="string">"i lOve leetcode"</span></span><br><span class="line">输出：<span class="string">"i Love Leetcode"</span></span><br><span class="line">解释：</span><br><span class="line">单词 <span class="string">"i"</span> 长度为 <span class="number">1</span> ，所以它保留小写。</span><br><span class="line">其他单词长度都至少为 <span class="number">3</span> ，所以其他单词首字母大写，剩余字母小写。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= title.length &lt;= 100</code></li>
+<li><code>title</code> 由单个空格隔开的单词组成，且不含有任何前导或后缀空格。</li>
+<li>每个单词由大写和小写英文字母组成，且都是 非空 的。</li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/capitalize-the-title" target="_blank" rel="noopener">https://leetcode-cn.com/problems/capitalize-the-title</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 暴力检测与分词</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>我们将句子分成单词,然后检测每个单词即可.</li>
+<li>复杂度分析:</li>
+</ol>
+<ul>
+<li>时间复杂度分析: 时间复杂度为 $O(n)$, 其中 $n$ 为字符串的长度。</li>
+<li>空间复杂度分析: 空间复杂度为 $O(1)$。</li>
+</ul>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">capitalizeTitle</span><span class="params">(self, title: str)</span> -&gt; str:</span></span><br><span class="line">        arr = title.split(<span class="string">' '</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr)):</span><br><span class="line">            arr[i] = arr[i].lower()</span><br><span class="line">            <span class="keyword">if</span> len(arr[i]) &gt; <span class="number">2</span>:</span><br><span class="line">                arr[i] = arr[i].title()</span><br><span class="line">        <span class="keyword">return</span> <span class="string">' '</span>.join(arr)</span><br></pre></td></tr></table></figure>
+<h2 id="5961-链表最大孪生和"><a href="#5961-链表最大孪生和" class="headerlink" title="5961. 链表最大孪生和"></a>5961. 链表最大孪生和</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>在一个大小为 <code>n</code> 且 <code>n</code> 为 偶数 的链表中，对于 <code>0 &lt;= i &lt;= (n / 2) - 1</code> 的<code>i</code>，第 <code>i</code>个节点（下标从 0 开始）的孪生节点为第 <code>(n-1-i)</code> 个节点 。</p>
+<p>比方说，<code>n = 4</code>那么节点 0 是节点 3 的孪生节点，节点 1 是节点 2 的孪生节点。这是长度为 n = 4 的链表中所有的孪生节点。<br>孪生和 定义为一个节点和它孪生节点两者值之和。</p>
+<p>给你一个长度为偶数的链表的头节点 <code>head</code> ，请你返回链表的 最大孪生和 。</p>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [<span class="number">5</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">输出：<span class="number">6</span></span><br><span class="line">解释：</span><br><span class="line">节点 <span class="number">0</span> 和节点 <span class="number">1</span> 分别是节点 <span class="number">3</span> 和 <span class="number">2</span> 的孪生节点。孪生和都为 <span class="number">6</span> 。</span><br><span class="line">链表中没有其他孪生节点。</span><br><span class="line">所以，链表的最大孪生和是 <span class="number">6</span> 。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [<span class="number">4</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">输出：<span class="number">7</span></span><br><span class="line">解释：</span><br><span class="line">链表中的孪生节点为：</span><br><span class="line">- 节点 <span class="number">0</span> 是节点 <span class="number">3</span> 的孪生节点，孪生和为 <span class="number">4</span> + <span class="number">3</span> = <span class="number">7</span> 。</span><br><span class="line">- 节点 <span class="number">1</span> 是节点 <span class="number">2</span> 的孪生节点，孪生和为 <span class="number">2</span> + <span class="number">2</span> = <span class="number">4</span> 。</span><br><span class="line">所以，最大孪生和为 max(<span class="number">7</span>, <span class="number">4</span>) = <span class="number">7</span> 。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [<span class="number">1</span>,<span class="number">100000</span>]</span><br><span class="line">输出：<span class="number">100001</span></span><br><span class="line">解释：</span><br><span class="line">链表中只有一对孪生节点，孪生和为 <span class="number">1</span> + <span class="number">100000</span> = <span class="number">100001</span> 。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li>链表的节点数目是 <code>[2, 105]</code> 中的 偶数 。</li>
+<li><code>1 &lt;= Node.val &lt;= 105</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/maximum-twin-sum-of-a-linked-list" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-twin-sum-of-a-linked-list</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p> 链表</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>将连边转化为数组，然后进行数组遍历即可，当然递归也可以，比较麻烦</li>
+<li>复杂度分析:</li>
+</ol>
+<ul>
+<li>时间复杂度度为 $O(n)$，其中$n$ 为链表的长度.</li>
+<li>空间复杂度为 $O(n)$, 其中$n$ 为链表的长度.<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pairSum</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; arr;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(head)&#123;</span><br><span class="line">            arr.emplace_back(head-&gt;val);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> n = arr.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size()/<span class="number">2</span>; ++i)&#123;</span><br><span class="line">            ans = max(ans, arr[i] + arr[n<span class="number">-1</span>-i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h2 id="5962-连接两字母单词得到的最长回文串"><a href="#5962-连接两字母单词得到的最长回文串" class="headerlink" title="5962. 连接两字母单词得到的最长回文串"></a>5962. 连接两字母单词得到的最长回文串</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>给你一个字符串数组 <code>words</code> 。<code>words</code> 中每个元素都是一个包含 两个 小写英文字母的单词。</p>
+<p>请你从 <code>words</code> 中选择一些元素并按 任意顺序 连接它们，并得到一个 尽可能长的回文串 。每个元素 至多 只能使用一次。</p>
+<p>请你返回你能得到的最长回文串的 长度 。如果没办法得到任何一个回文串，请你返回 <code>0</code>。</p>
+<p>回文串 指的是从前往后和从后往前读一样的字符串。</p>
+<p>示例 1：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：words = [<span class="string">"lc"</span>,<span class="string">"cl"</span>,<span class="string">"gg"</span>]</span><br><span class="line">输出：<span class="number">6</span></span><br><span class="line">解释：一个最长的回文串为 <span class="string">"lc"</span> + <span class="string">"gg"</span> + <span class="string">"cl"</span> = <span class="string">"lcggcl"</span> ，长度为 <span class="number">6</span> 。</span><br><span class="line"><span class="string">"clgglc"</span> 是另一个可以得到的最长回文串。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：words = [<span class="string">"ab"</span>,<span class="string">"ty"</span>,<span class="string">"yt"</span>,<span class="string">"lc"</span>,<span class="string">"cl"</span>,<span class="string">"ab"</span>]</span><br><span class="line">输出：<span class="number">8</span></span><br><span class="line">解释：最长回文串是 <span class="string">"ty"</span> + <span class="string">"lc"</span> + <span class="string">"cl"</span> + <span class="string">"yt"</span> = <span class="string">"tylcclyt"</span> ，长度为 <span class="number">8</span> 。</span><br><span class="line"><span class="string">"lcyttycl"</span> 是另一个可以得到的最长回文串。</span><br></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：words = [<span class="string">"cc"</span>,<span class="string">"ll"</span>,<span class="string">"xx"</span>]</span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line">解释：最长回文串是 <span class="string">"cc"</span> ，长度为 <span class="number">2</span> 。</span><br><span class="line"><span class="string">"ll"</span> 是另一个可以得到的最长回文串。<span class="string">"xx"</span> 也是。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= words.length &lt;= 105</code></li>
+<li><code>words[i].length == 2</code></li>
+<li><code>words[i]</code> 仅包含小写英文字母。</li>
+</ul>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/longest-palindrome-by-concatenating-two-letter-words" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-palindrome-by-concatenating-two-letter-words</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>贪心算法</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>题目比较简单, 但是实际处理稍微麻烦一些, 如理如下:</li>
+</ol>
+<ul>
+<li>首先对所有的字符串进行 $hash$ 统计, 然后找到所有互为回文串的字符串 $s, t$, 即 $ s = reverse(t)$, 此时分为两种情况, 一种情况为 $s == t$ 和 $s \neq t$, 需要分别处理, 我们找到互为回文串对的数目, 必将其从 $hash$ 统计中取出掉, 最终得统计长度为 $length$.</li>
+<li>最后我们在剩余的 $hash$ 统计中查找是否存在 $s == t$ , 如果存在我们将 $length = length + 2$, 返回 $length$ 即可.</li>
+<li>感觉这个题目出的不好, 挺奇怪的题目, 应该加大难度一些.</li>
+</ul>
+<ol>
+<li>复杂度分析:</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(N)$ 其中 $N$ 为字符串的长度。</li>
+<li>空间复杂度分析: $O(N)$ 为字符串的长度。<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = words.size();</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> w : words)&#123;</span><br><span class="line">            cnt[w]++;         </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : cnt) &#123;</span><br><span class="line">            <span class="built_in">string</span> x = v.first;</span><br><span class="line">            <span class="keyword">int</span> val = v.second;</span><br><span class="line">            <span class="built_in">string</span> y = x;</span><br><span class="line">            swap(y[<span class="number">0</span>], y[<span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">if</span>(x == y) &#123;</span><br><span class="line">                <span class="keyword">if</span>(val&amp;<span class="number">1</span>)&#123;</span><br><span class="line">                    ans += (val - <span class="number">1</span>)*<span class="number">2</span>;</span><br><span class="line">                    cnt[x] = <span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    ans += val*<span class="number">2</span>;</span><br><span class="line">                    cnt[x] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                val = min(val, cnt[y]);</span><br><span class="line">                cnt[x] -= val;</span><br><span class="line">                cnt[y] -= val;</span><br><span class="line">                ans += val*<span class="number">4</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : cnt) &#123;</span><br><span class="line">            <span class="built_in">string</span> x = v.first;</span><br><span class="line">            <span class="keyword">int</span> val = v.second;</span><br><span class="line">            <span class="built_in">string</span> y = x;</span><br><span class="line">            swap(y[<span class="number">0</span>], y[<span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">if</span> (x == y &amp;&amp; val &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                ans += <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h2 id="5931-用邮票贴满网格图"><a href="#5931-用邮票贴满网格图" class="headerlink" title="5931. 用邮票贴满网格图"></a>5931. 用邮票贴满网格图</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>给你一个 <code>m x n</code> 的二进制矩阵 <code>grid</code> ，每个格子要么为 <code>0</code> （空）要么为 <code>1</code> （被占据）。</p>
+<p>给你邮票的尺寸为 <code>stampHeight x stampWidth</code> 。我们想将邮票贴进二进制矩阵中，且满足以下 限制 和 要求 ：</p>
+<ul>
+<li>覆盖所有 空 格子。</li>
+<li>不覆盖任何 被占据 的格子。</li>
+<li>我们可以放入任意数目的邮票。</li>
+<li>邮票可以相互有 重叠 部分。</li>
+<li>邮票不允许 旋转 。</li>
+<li>邮票必须完全在矩阵 内 。</li>
+<li>如果在满足上述要求的前提下，可以放入邮票，请返回 <code>true</code> ，否则返回 <code>false</code> 。</li>
+</ul>
+<p>示例 1：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],[<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],[<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],[<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],[<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]], stampHeight = <span class="number">4</span>, stampWidth = <span class="number">3</span></span><br><span class="line">输出：<span class="literal">true</span></span><br><span class="line">解释：我们放入两个有重叠部分的邮票（图中标号为 <span class="number">1</span> 和 <span class="number">2</span>），它们能覆盖所有与空格子。</span><br></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>]], stampHeight = <span class="number">2</span>, stampWidth = <span class="number">2</span> </span><br><span class="line">输出：<span class="literal">false</span> </span><br><span class="line">解释：没办法放入邮票覆盖所有的空格子，且邮票不超出网格图以外。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[r].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 105</code></li>
+<li><code>1 &lt;= m * n &lt;= 2 * 105</code></li>
+<li><code>grid[r][c]</code> 要么是 <code>0</code>，要么是<code>1</code>。</li>
+<li><code>1 &lt;= stampHeight, stampWidth &lt;= 105</code><br>。</li>
+</ul>
+<h3 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h3><p><a href="https://leetcode-cn.com/problems/stamping-the-grid" target="_blank" rel="noopener">https://leetcode-cn.com/problems/stamping-the-grid</a></p>
+<h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>前缀和或者线段树</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>很久没有看到比较新颖的题型和题目了，这个题目感觉出的很好,很少见到这样比较新颖的题目了，最重要的时间复杂度没有降下来.</li>
+</ol>
+<ul>
+<li>首先分析一下题目,对于两点$(x,y),(x+stampHeight, y + stampWidth)$组成的矩形 需要判断邮票是否可以放下, 此时我们只需要检测矩形 $(x,y),(x+stampHeight, y + stampWidth)$ 内是否存在被占据的格子，由于空格子为$0$, 非空格子为$1$,如果该矩形内单元和大于 $0$,则表示矩形内一定存在被占据的格子, 否则不存在被占据的格子, 此时我们自然而然想到利用前缀和，可以直接在 $O(1)$ 的时间复杂度内判断是否该矩形是否可以被覆盖.</li>
+<li>接下来我们自然而然想到找到所有可能被覆盖的矩形,然后判断这些矩形是否包含所有的空格子的点, 当然我们可以利用二分查找或者线段树查找之类的优化算法来判断,但是实现起来非常麻烦, 特别是涉及到二维的线段树判定, 比如我们可以找到所有横坐标区间在 $[x_1,x_2]$ 的节点, 然后在这些节点中再找到纵坐标在 $[y_1,y_2]$的节点,然后更新树.</li>
+<li>对于每个坐标 $(x,y)$,我们只需要判断在矩形范围内 $(x - stampHeight + 1, y - stampWidth + 1)$ 范围内存在可以以该点 $(i,j)$ 为左上方顶点的矩形即可表示坐标 $(x,y)$ 可以被覆盖掉. 因此我们再用一次矩阵的前缀和即可.</li>
+<li>对于每个坐标 $(x,y)$, </li>
+</ul>
+<ol>
+<li>复杂度分析:</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n \times m)$ , 其中 $n$ 表示矩阵的长度, $m$ 表示矩阵的宽度.</li>
+<li>空间复杂度分析: $O(n \times m)$, 其中 $n$ 表示矩阵的长度, $m$ 表示矩阵的宽度.</li>
+</ul>
+</blockquote>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">possibleToStamp</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid, <span class="keyword">int</span> stampHeight, <span class="keyword">int</span> stampWidth)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = grid.size();</span><br><span class="line">        <span class="keyword">int</span> n = grid[<span class="number">0</span>].size();</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; sum(m+<span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n+<span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; paint(m+<span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n+<span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; psum(m+<span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n+<span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                sum[i+<span class="number">1</span>][j+<span class="number">1</span>] = sum[i + <span class="number">1</span>][j] + sum[i][j + <span class="number">1</span>] - sum[i][j] + grid[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">auto</span> query = [](<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp; matrix, <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> x, <span class="keyword">int</span> y)&#123;</span><br><span class="line">            <span class="keyword">return</span> matrix[x][y] - matrix[i][y] - matrix[x][j] + matrix[i][j];</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m - stampHeight; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= n - stampWidth; ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j] == <span class="number">0</span> &amp;&amp; query(sum, i, j, i + stampHeight, j + stampWidth) == <span class="number">0</span>)&#123;</span><br><span class="line">                    paint[i][j] = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                psum[i + <span class="number">1</span>][j + <span class="number">1</span>] = psum[i + <span class="number">1</span>][j] + psum[i][j + <span class="number">1</span>] - psum[i][j] + paint[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">int</span> x = max(<span class="number">0</span>, i - stampHeight + <span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">int</span> y = max(<span class="number">0</span>, j - stampWidth + <span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">if</span>(query(psum, x, y, i + <span class="number">1</span>, j + <span class="number">1</span>) &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://mike-box.github.io/" target="_blank" rel="noopener">http://mike-box.github.io/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>公务程序猿.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2022/01/09/357/" rel="next" title="【Leetcode】 Leetcode Weekly Contest 275">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】 Leetcode Weekly Contest 275
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-biweekly-contest-69"><span class="nav-number">1.</span> <span class="nav-text">leetcode  biweekly contest 69</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5960-将标题首字母大写"><span class="nav-number">1.0.1.</span> <span class="nav-text">5960. 将标题首字母大写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">1.0.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.0.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.0.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.0.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5961-链表最大孪生和"><span class="nav-number">1.1.</span> <span class="nav-text">5961. 链表最大孪生和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-1"><span class="nav-number">1.1.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">1.1.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">1.1.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.1.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5962-连接两字母单词得到的最长回文串"><span class="nav-number">1.2.</span> <span class="nav-text">5962. 连接两字母单词得到的最长回文串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-2"><span class="nav-number">1.2.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-2"><span class="nav-number">1.2.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.2.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">1.2.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5931-用邮票贴满网格图"><span class="nav-number">1.3.</span> <span class="nav-text">5931. 用邮票贴满网格图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址-3"><span class="nav-number">1.3.2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-3"><span class="nav-number">1.3.3.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-number">1.3.4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">1.3.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.4.</span> <span class="nav-text">#</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">314</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
