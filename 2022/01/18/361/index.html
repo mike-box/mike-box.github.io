@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="clickhouse学习记录（一）最近因为工作原因,开始尝试学习clickhouse数据库, 将会逐渐将clickhouse的一些学习总结记录下来, 作为自己的学习历程.clickhouse的简介项目起源clickhouse是由俄罗斯的一家互联网公司 Yandex 开发的,  Yandex 主要从事互联网分析，Yandex 使用 clickhouse 从事海量的互联网的流量分析，clickhous">
+<meta name="keywords" content="clickhouse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Clickhouse】 Clickhouse学习记录(一)">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2022&#x2F;01&#x2F;18&#x2F;361&#x2F;index.html">
+<meta property="og:site_name" content="blow in the wind">
+<meta property="og:description" content="clickhouse学习记录（一）最近因为工作原因,开始尝试学习clickhouse数据库, 将会逐渐将clickhouse的一些学习总结记录下来, 作为自己的学习历程.clickhouse的简介项目起源clickhouse是由俄罗斯的一家互联网公司 Yandex 开发的,  Yandex 主要从事互联网分析，Yandex 使用 clickhouse 从事海量的互联网的流量分析，clickhous">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.loli.net&#x2F;2022&#x2F;01&#x2F;18&#x2F;iqTxDBH9Jw4okfU.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.loli.net&#x2F;2022&#x2F;01&#x2F;18&#x2F;Zq2fsLAWYcuOQiH.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.loli.net&#x2F;2022&#x2F;01&#x2F;18&#x2F;IvoVqjZEpU69GMC.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.loli.net&#x2F;2022&#x2F;01&#x2F;18&#x2F;hjsSX97RMxn6tHK.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;xtyDOgT6Gm1AKdS.png">
+<meta property="og:updated_time" content="2022-01-21T02:59:27.095Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.loli.net&#x2F;2022&#x2F;01&#x2F;18&#x2F;iqTxDBH9Jw4okfU.png">
+
+<link rel="canonical" href="http://yoursite.com/2022/01/18/361/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>【Clickhouse】 Clickhouse学习记录(一) | blow in the wind</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="blow in the wind" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blow in the wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">no one will be your god, your god is just yourself!</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mike-box" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/18/361/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/pic.jpg">
+      <meta itemprop="name" content="Mike meng">
+      <meta itemprop="description" content="a clever man and a foolish man!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blow in the wind">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Clickhouse】 Clickhouse学习记录(一)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-18 09:53:06" itemprop="dateCreated datePublished" datetime="2022-01-18T09:53:06+08:00">2022-01-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-01-21 10:59:27" itemprop="dateModified" datetime="2022-01-21T10:59:27+08:00">2022-01-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2022/01/18/361/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/18/361/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="clickhouse学习记录（一）"><a href="#clickhouse学习记录（一）" class="headerlink" title="clickhouse学习记录（一）"></a>clickhouse学习记录（一）</h1><p>最近因为工作原因,开始尝试学习<code>clickhouse</code>数据库, 将会逐渐将<code>clickhouse</code>的一些学习总结记录下来, 作为自己的学习历程.</p><h2 id="clickhouse的简介"><a href="#clickhouse的简介" class="headerlink" title="clickhouse的简介"></a>clickhouse的简介</h2><p><strong>项目起源</strong><br><code>clickhouse</code>是由俄罗斯的一家互联网公司 <code>Yandex</code> 开发的,  <code>Yandex</code> 主要从事互联网分析，<code>Yandex</code> 使用 <code>clickhouse</code> 从事海量的互联网的流量分析，<code>clickhouse</code> 作为 <code>Yandex</code> 公司内部使用的项目, 后来走向开源． <code>clickhouse</code> 作为 <code>OLAP</code> 领域的流行, 主要得益于其出色的性能.<br>数据库领域有两个概念:</p><a id="more"></a>
+
+<ul>
+<li><p><code>OLTP</code>: on-line transaction processing翻译为联机事务处理, <code>OLTP</code>是主要从事事务处理, 包括数据库常见的增删改.<code>OLTP</code>主要用来记录某类业务事件的发生，如购买行为，当行为产生后，系统会记录是谁在何时何地做了何事，这样的一行（或多行）数据会以增删改的方式在数据库中进行数据的更新处理操作，要求实时性高、稳定性强、确保数据及时更新成功，像公司常见的业务系统如<code>ERP</code>，<code>CRM</code>，<code>OA</code>等系统都属于<code>OLTP</code>.</p>
+</li>
+<li><p><code>OLAP</code>: On-Line Analytical Processing翻译为联机分析处理, <code>OLAP</code>是主要侧重于数据分析和查询, 主要侧重的功能是数据库的查询.当数据积累到一定的程度，我们需要对过去发生的事情做一个总结分析时，就需要把过去一段时间内产生的数据拿出来进行统计分析，从中获取我们想要的信息，为公司做决策提供支持，这时候就是在做<code>OLAP</code>了。</p>
+</li>
+<li><p>数据仓库: 因为<code>OLTP</code>所产生的业务数据分散在不同的业务系统中，而<code>OLAP</code>往往需要将不同的业务数据集中到一起进行统一综合的分析，这时候就需要根据业务分析需求做对应的数据清洗后存储在数据仓库中，然后由数据仓库来统一提供<code>OLAP</code>分析。所以我们常说<code>OLTP</code>是数据库的应用，<code>OLAP</code>是数据仓库的应用。<br>详细可以参考知乎的<a href="https://www.zhihu.com/question/24110442/answer/851671343" target="_blank" rel="noopener">回答</a></p>
+</li>
+</ul>
+<p><strong>clickhouse的特性</strong><br><code>clickhouse</code> 采用列式存储, 所有的数据都是以列为单位进行组织和存储的, <code>clickhouse</code>的最大的特色就是以性能著称, 官方的文档也给出了相关的<a href="https://clickhouse.com/benchmark/dbms/" target="_blank" rel="noopener">性能对比</a>.<code>clickhouse</code>的特性:</p>
+<ul>
+<li>以列为存储, 同一列的数据格式统一, 方便使用数据压缩算法. 目前<code>clickhouse</code> 使用的<code>LZ4</code> 压缩算法. 数据压缩可以带来两个好处, 数据存储的空间较小从而读写磁盘花费时间较短, 网络传输中也会较少缓存时间.</li>
+<li><code>ClickHouse</code>允许在运行时创建表和数据库、加载数据和运行查询，而无需重新配置或重启服务。具有完成的数据库管理系统的功能.</li>
+<li>多核心并行处理, 充分利用<code>CPU</code>的资源, 设计时针对具体的硬件进行充分优化, 从而提升性能. 看到字符串搜索中竟然用到了<code>intel hyperscan</code>, 这个是<code>dpi</code>设备里面常用的字符串搜索算法. 支持<code>CPU</code> 的<code>SIMD</code>指令, 可以向量执行数据的处理和读取.</li>
+<li>支持多服务器分布式处理, 支持分布式查询, 可以进行负载均衡.</li>
+<li>实时的数据更新, 为了使查询能够快速在主键中进行范围查找，数据总是以增量的方式有序的存储在<code>MergeTree</code>中。因此，数据可以持续不断地高效的写入到表中，并且写入的过程中不会存在任何加锁的行为。</li>
+<li><code>click house</code>中的很多优化技巧都值得仔细学习和琢磨. </li>
+</ul>
+<h3 id="clickhouse的不足之处"><a href="#clickhouse的不足之处" class="headerlink" title="clickhouse的不足之处"></a>clickhouse的不足之处</h3><p><code>clickhouse</code> 主要用于数据分析, 也有许多缺点.</p>
+<ul>
+<li>不支持事务<code>ACID</code>。</li>
+<li>缺少高频率，低延迟的修改或删除已存在数据的能力,以行进行更新数据的话性能较差.。</li>
+<li>稀疏索引使得<code>ClickHouse</code>不适合通过其键检索单行的点查询。<h3 id="clickhouse的发展现状"><a href="#clickhouse的发展现状" class="headerlink" title="clickhouse的发展现状"></a>clickhouse的发展现状</h3><code>click</code> 以其出色的性能, 目前在很多很多<code>BI</code>领域得到应用, 还有许多广告流量，<code>web</code>分析, 电子商务等领域. 以下为常见的几个学习的资源库:</li>
+<li><code>clickhouse</code>文档: <a href="https://clickhouse.com/docs/zh/" target="_blank" rel="noopener">https://clickhouse.com/docs/zh/</a></li>
+<li><code>clickhouse</code>repo: <a href="https://github.com/ClickHouse/ClickHouse" target="_blank" rel="noopener">https://github.com/ClickHouse/ClickHouse</a></li>
+<li><code>clickhouse</code>中文社区: <a href="http://www.clickhouse.com.cn/" target="_blank" rel="noopener">http://www.clickhouse.com.cn/</a></li>
+<li><code>clickhouse</code>官方:<a href="https://clickhouse.com/" target="_blank" rel="noopener">https://clickhouse.com/</a></li>
+</ul>
+<h2 id="clickhouse的安装部署"><a href="#clickhouse的安装部署" class="headerlink" title="clickhouse的安装部署"></a>clickhouse的安装部署</h2><ul>
+<li><code>server</code>安装:官方提供的<code>guide</code>有许多种安装方式, 强烈推荐使用<code>apt-get</code>或者<code>yum</code>这种标准安装包的形式来安装,会自动更新和下载各种库, 自己可以下载源码,然后编译到本地进行安装, 机器性能太差, 编译实践太长, 中间容易经历各种坑,新手强烈不推荐. 安装过程踩过的坑是, 直接下载官方提供的编译好的库和程序, <code>windows</code>自带的<code>wsl</code>安装后反正各种莫名奇妙的问题，各种莫名奇妙的<code>abort</code>退出, 也找不到问题原因所在, 反而远程的<code>VPS</code>安装一次就顺利.</li>
+<li><code>config</code> 文件说明: 默认的<code>config</code> 文件会存放在<code>/etc/clickhouse-server/config.xml</code>目录下, 安装完成之后需要进行修改, 当然默认的<code>clickhouse server</code> 只监听在本地<code>127.0.0.1</code>, 需要进行修改使得它可以接受所有外部的主机发起的<code>tcp</code>请求. 高级的配置文件参数定义可以参考官方的文档:<a href="https://clickhouse.com/docs/zh/operations/configuration-files/" target="_blank" rel="noopener">配置文件</a>. <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--允许所有的ipv6的请求--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listen_host</span>&gt;</span>::<span class="tag">&lt;/<span class="name">listen_host</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!--允许所有的ipv4的请求--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listen_host</span>&gt;</span>0.0.0.0<span class="tag">&lt;/<span class="name">listen_host</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><code>server</code>启动与测试: 直接执行<code>clickhouse-server</code>时, 会提示要求创建<code>clickhouse:clickhouse</code>账户, 建议直接使用脚本启动服务，<code>root</code>账户启动即可，需要修改配置文件，默认要求使用<code>clickhouse</code>的用户名.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service clickhouse-server start</span><br></pre></td></tr></table></figure>
+<p>查看进程：<br><img src="https://s2.loli.net/2022/01/18/iqTxDBH9Jw4okfU.png" alt><br>查看端口：<br><img src="https://s2.loli.net/2022/01/18/Zq2fsLAWYcuOQiH.png" alt></p>
+</li>
+<li><p><code>vps firewall</code>设置: 直接将<code>centos</code>的防火墙关掉, 由于是远程<code>VPS</code>需要设置端口号, 允许<code>clickhouse</code>服务通行:<br><img src="https://s2.loli.net/2022/01/18/IvoVqjZEpU69GMC.png" alt></p>
+<h2 id="clickhouse的使用测试"><a href="#clickhouse的使用测试" class="headerlink" title="clickhouse的使用测试"></a>clickhouse的使用测试</h2><p>我们可以通过<code>clickhouse</code>自带的<code>clickhouse-client</code>程序来本地或者远程访问<code>clickhouse server</code>, 尝试以下数据库的基本操作:</p>
+</li>
+<li>连接数据库<code>server</code>: <code>clickhouse-client</code>默认就会连接本地的<code>clickhouse</code>的数据库<code>server</code>, 我们尝试连接远程的<code>vps</code>, <code>clickhouse-client --host=x.x.x.x</code>即可连接指定<code>ip</code>的数据库。<code>clickhouse-client --query=&#39;xx&#39;</code>即可执行<code>query</code>中<code>sql</code>语句.</li>
+<li>创建数据库: 创建<code>test</code>数据库, <code>clickhouse-client --query=&#39;CREATE DATABASE IF NOT EXISTS test&#39;</code>.</li>
+<li>创建表项: 创建<code>numbers</code>表项, <code>clickhouse-client --query=&#39;CREATE TABLE IF NOT EXISTS test.numbers (id UInt64, name String) ENGINE = Memory&#39;</code>.</li>
+<li>插入表项: 插入<code>numbers</code>行, <code>clickhouse-client --query=&#39;INSERT INTO test.numbers VALUES (100, &#39;mengmingliang&#39;)&#39;</code>.</li>
+<li>删除表项: 删除<code>numbers</code>行, <code>clickhouse-client --query=&#39;INSERT INTO test.numbers VALUES (100, &#39;mengmingliang&#39;)&#39;</code>.</li>
+<li>查询表项: 查询基本的表，<code>clickhouse-client --query=&#39;SELECT id, name FROM test.numbers&#39;</code>;</li>
+<li>删除数据表项: 删除<code>numbers</code>表, <code>DROP TABLE test.numbers</code>.</li>
+</ul>
+<h2 id="clickhouse-client的连接接口测试"><a href="#clickhouse-client的连接接口测试" class="headerlink" title="clickhouse client的连接接口测试"></a>clickhouse client的连接接口测试</h2><p><code>clickhouse</code>提供了多种通用的接口用来连接和操作数据, 提供了<code>http</code>和<code>tcp</code>的两种访问接口形式，<code>http</code>的访问端口为<code>8123</code>, <code>tcp</code>的端口为<code>9000</code>, 我们可以在浏览器中输入<code>http://localhost:8123</code>就会打印出<code>ok</code>, 浏览器中输入<code>http://localhost:8123/?query=SELECT%201</code>就会返回查询结果. <code>http</code>的接口主要用于<code>Java</code>的开发,我们可以使用标准的<code>jdbc</code>来访问数据库, HTTP接口比原生接口受到更多的限制，但它具有更好的兼容性.<code>tcp</code>端口主要用于服务器间的通讯查询和管理，同时也支持数据库的查询，比<code>http</code>的接口会更加灵活使用, 官方目前只提供了标准的<code>C++</code>接口, 这种接口目前没有标准, 但是我能想到的是很容易对这些接口来进行扩展, 从而来对<code>clickhouse</code>增加新的功能和特性,这点确实不错, 为程序的灵活性做了更多的扩展.</p>
+<ul>
+<li>通过<code>C++</code>接口测试: 我们可以下载官方提供的标准的<code>C++</code>的接口<a href="https://github.com/ClickHouse/clickhouse-cpp" target="_blank" rel="noopener">CPP</a>, 下载之后进行编译, 需要注意的是由于<code>clickhouse</code>是用<code>C++17</code>的标准编写的, 需要升级本地的<code>gcc</code>程序支持<code>C++ 17</code>.编译完成之后发现支持静态链接库, 手动写个简单<code>makefile</code>, 测试跑了一遍, 还算比较正常. 下一步需要走读和分析一下<code>clinet</code>的代码, 熟悉一下原理, 尝试一下后面是否有扩展的可能性, 示例代码放在<a href="https://github.com/mike-box/datdabasestudy/tree/main/clickhouse/proj" target="_blank" rel="noopener">github</a>.</li>
+<li>通过<code>Python</code>接口测试: <code>python</code>的接口不是官方团队提供是, 是由第三方提供的代码, 目前尝试了一下<code>clickhouse-driver</code>这个第三方的库, 很多功能都没有深入尝试, 后面有时间时需要进行深入的探索.</li>
+<li>通过<code>DBeaver</code>接口测试: 下载尝试了一下通过可户端去连接<code>clickhouse</code>, 用<code>Gui</code>的客户端确实方便很多, 可以通过标准的<code>jdbc</code>接口去连接数据库, 需要下载<code>clickhouse</code>的驱动,我们可以很方便的访问数据库.可以直接执行标准的<code>sql</code>语句. 可以直接通过接口导入和导出数据, 确实比用纯粹的程序实现要方便许多.<br><img src="https://s2.loli.net/2022/01/18/hjsSX97RMxn6tHK.png" alt></li>
+</ul>
+<h2 id="clickhouse-client的高级特性尝试"><a href="#clickhouse-client的高级特性尝试" class="headerlink" title="clickhouse client的高级特性尝试"></a>clickhouse client的高级特性尝试</h2><ol>
+<li>创建数据库: <code>CREATE DATABASE IF NOT EXISTS db_name [ENGINE = engine]</code><ul>
+<li><code>Ordinary</code>：默认引擎，在绝大多数情况下我们都会使用默认引擎，使用时无须刻意声明。在此数据库下可以使用任意类型的表引擎。</li>
+<li><code>Dictionary</code>：字典引擎，此类数据库会自动为所有数据字典创建它们的数据表，关于数据字典的详细介绍会在第5章展开。</li>
+<li><code>Memory</code>：内存引擎，用于存放临时数据。此类数据库下的数据表只会停留在内存中，不会涉及任何磁盘操作，当服务重启后数据会被清除。</li>
+<li><code>Lazy</code>：日志引擎，此类数据库下只能使用<code>Log</code>系列的表引擎，关于<code>Log</code>表引擎的详细介绍会在第8章展开。</li>
+<li><code>MySQL</code>：<code>MySQL</code>引擎，此类数据库下会自动拉取远端<code>MySQL</code>中的数据，并为它们创建<code>MySQL</code>表引擎的数据表</li>
+</ul>
+</li>
+</ol>
+<h2 id="进一步打算"><a href="#进一步打算" class="headerlink" title="进一步打算"></a>进一步打算</h2><ul>
+<li><ol>
+<li>学习<code>SQL</code>的高级语法基础知识以及数据库的高级一些理论知识，进行理论基础知识补充。</li>
+</ol>
+</li>
+<li><ol>
+<li><code>clickhouse</code>中文社区中找一些经典的入门资料进行学习，学习相关书籍<a href="https://read.douban.com/reader/ebook/149635956/" target="_blank" rel="noopener">clickhouse原理解析与应用实践</a>。</li>
+</ol>
+</li>
+<li><ol>
+<li>熟悉和掌握实际业务中常用的<code>clickhouse</code>的高级特性和功能，并掌握背后的相关原理。</li>
+</ol>
+</li>
+<li><ol>
+<li>相关业务知识和语言技能的掌握，熟悉相关的<code>JAVA/C++</code> 关于操作数据库的接口<code>api</code>函数的使用。</li>
+</ol>
+</li>
+</ul>
+<h2 id><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://mike-box.github.io/" target="_blank" rel="noopener">http://mike-box.github.io/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu" target="_blank" rel="noopener">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/2876768308.jpg" alt="Mike meng wechat" style="width: 200px; max-width: 100%;">
+  <div>公务程序猿.</div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/clickhouse/" rel="tag"># clickhouse</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2022/01/16/360/" rel="next" title="【Leetcode】 Leetcode Biweekly Contest 276">
+                  <i class="fa fa-chevron-left"></i> 【Leetcode】 Leetcode Biweekly Contest 276
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2022/01/18/362/" rel="prev" title="【2021】总结">
+                  【2021】总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#clickhouse学习记录（一）"><span class="nav-number">1.</span> <span class="nav-text">clickhouse学习记录（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#clickhouse的简介"><span class="nav-number">1.1.</span> <span class="nav-text">clickhouse的简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#clickhouse的不足之处"><span class="nav-number">1.1.1.</span> <span class="nav-text">clickhouse的不足之处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clickhouse的发展现状"><span class="nav-number">1.1.2.</span> <span class="nav-text">clickhouse的发展现状</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clickhouse的安装部署"><span class="nav-number">1.2.</span> <span class="nav-text">clickhouse的安装部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clickhouse的使用测试"><span class="nav-number">1.3.</span> <span class="nav-text">clickhouse的使用测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clickhouse-client的连接接口测试"><span class="nav-number">1.4.</span> <span class="nav-text">clickhouse client的连接接口测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clickhouse-client的高级特性尝试"><span class="nav-number">1.5.</span> <span class="nav-text">clickhouse client的高级特性尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步打算"><span class="nav-number">1.6.</span> <span class="nav-text">进一步打算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.7.</span> <span class="nav-text">#</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Mike meng"
+    src="/images/pic.jpg">
+  <p class="site-author-name" itemprop="name">Mike meng</p>
+  <div class="site-description" itemprop="description">a clever man and a foolish man!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">318</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mml1106@126.com" title="E-Mail &amp;rarr; mailto:mml1106@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/mike-box/mike-box.github.io/blob/master/atom.xml" title="Feed &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mike-box&#x2F;mike-box.github.io&#x2F;blob&#x2F;master&#x2F;atom.xml" rel="noopener" target="_blank"><i class="fa fa-fw fa-Feed"></i>Feed</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" >| 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+<span id="busuanzi_container_site_uv" >| 总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.2"></script><script src="/js/motion.js?v=7.4.2"></script>
+<script src="/js/schemes/pisces.js?v=7.4.2"></script>
+<script src="/js/next-boot.js?v=7.4.2"></script>
+
+
+
+  
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '8Dt7hB7Fx8exlW88EXinb5mF-gzGzoHsz',
+    appKey: 'aWHmgsVOAHuLla4w3OV0UOqh',
+    placeholder: "Just go go",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
