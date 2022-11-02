@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode biweekly contest 86 | Mike Meng Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Mike Meng Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode biweekly contest 86</h2>
+  <p class="post-date">2022-11-01</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-biweekly-contest-86"><a href="#leetcode-biweekly-contest-86" class="headerlink" title="leetcode biweekly contest 86"></a>leetcode biweekly contest 86</h2><p>最后一题翻译太稀烂，错了好长时间，最后只能看英文。</p>
+<h4 id="6171-和相等的子数组"><a href="#6171-和相等的子数组" class="headerlink" title="6171. 和相等的子数组"></a>6171. 和相等的子数组</h4><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> ，判断是否存在 <strong>两个</strong> 长度为 <code>2</code> 的子数组且它们的 <strong>和</strong> 相等。注意，这两个子数组起始位置的下标必须 <strong>不相同</strong> 。</p>
+<p>如果这样的子数组存在，请返回 <code>true</code>，否则返回 <code>false</code> 。</p>
+<p><strong>子数组</strong> 是一个数组中一段连续非空的元素组成的序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,2,4]</span><br><span class="line">输出：true</span><br><span class="line">解释：元素为 [4,2] 和 [2,4] 的子数组有相同的和 6 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,3,4,5]</span><br><span class="line">输出：false</span><br><span class="line">解释：没有长度为 2 的两个子数组和相等。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [0,0,0]</span><br><span class="line">输出：true</span><br><span class="line">解释：子数组 [nums[0],nums[1]] 和 [nums[1],nums[2]] 的和相等，都为 0 。</span><br><span class="line">注意即使子数组的元素相同，这两个子数组也视为不相同的子数组，因为它们在原数组中的起始位置不同。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<p>`</p>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-86/problems/find-subarrays-with-equal-sum/">https://leetcode.cn/contest/biweekly-contest-86/problems/find-subarrays-with-equal-sum/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>哈希统计
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>简单题目，我们直接统计所有相邻两个元素的和，如果出现相同，则返回 $true$，否则则返回 $false$.</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示数组的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">findSubarrays</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        unordered_set&lt;<span class="type">long</span> <span class="type">long</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> sum = nums[i] + nums[i + <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(sum)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt.<span class="built_in">emplace</span>(sum);</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6172-严格回文的数字"><a href="#6172-严格回文的数字" class="headerlink" title="6172. 严格回文的数字"></a>6172. 严格回文的数字</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>如果一个整数 <code>n</code> 在 <code>b</code> 进制下（<code>b</code> 为 <code>2</code> 到 <code>n - 2</code> 之间的所有整数）对应的字符串 <strong>全部</strong> 都是 <strong>回文的</strong> ，那么我们称这个数 <code>n</code> 是 <strong>严格回文</strong> 的。</p>
+<p>给你一个整数 <code>n</code> ，如果 <code>n</code> 是 <strong>严格回文</strong> 的，请返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+<p>如果一个字符串从前往后读和从后往前读完全相同，那么这个字符串是 <strong>回文的</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 9</span><br><span class="line">输出：false</span><br><span class="line">解释：在 2 进制下：9 = 1001 ，是回文的。</span><br><span class="line">在 3 进制下：9 = 100 ，不是回文的。</span><br><span class="line">所以，9 不是严格回文数字，我们返回 false 。</span><br><span class="line">注意在 4, 5, 6 和 7 进制下，n = 9 都不是回文的。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 4</span><br><span class="line">输出：false</span><br><span class="line">解释：我们只考虑 2 进制：4 = 100 ，不是回文的。</span><br><span class="line">所以我们返回 false 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>4 &lt;= n &lt;= 105</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-86/problems/strictly-palindromic-number/">https://leetcode.cn/contest/biweekly-contest-86/problems/strictly-palindromic-number/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>直接检测
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>这个就非常直接了，直接将 $n$ 分别转换为对应 $[2,n-2]$ 进制数，然后依次检测转换后的数 $x$ 是否时回文即可。 </li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n \log n)$，$n$ 表示给定的元素 $n$。</li>
+<li>空间复杂度：时间复杂度为 $O(\log n)$，$n$ 表示给定的元素 $n$。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isPalindromic</span><span class="params">(string &amp;s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[l] != s[r]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isStrictlyPalindromic</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n - <span class="number">2</span>; i++) &#123;</span><br><span class="line">            string s;</span><br><span class="line">            <span class="type">int</span> x = n;</span><br><span class="line">            <span class="keyword">while</span> (x) &#123;</span><br><span class="line">                <span class="type">char</span> c = <span class="string">&#x27;0&#x27;</span> + (x % i);</span><br><span class="line">                x /= i;</span><br><span class="line">                s.<span class="built_in">push_back</span>(c);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">isPalindromic</span>(s)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6173-被列覆盖的最多行数"><a href="#6173-被列覆盖的最多行数" class="headerlink" title="6173. 被列覆盖的最多行数"></a>6173. 被列覆盖的最多行数</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你一个下标从 <strong>0</strong> 开始的 <code>m x n</code> 二进制矩阵 <code>mat</code> 和一个整数 <code>cols</code> ，表示你需要选出的列数。</p>
+<p>如果一行中，所有的 <code>1</code> 都被你选中的列所覆盖，那么我们称这一行 <strong>被覆盖</strong> 了。</p>
+<p>请你返回在选择 <code>cols</code> 列的情况下，<strong>被覆盖</strong> 的行数 <strong>最大</strong> 为多少。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2022/07/14/rowscovered.png" alt="img"></strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：mat = [[0,0,0],[1,0,1],[0,1,1],[0,0,1]], cols = 2</span><br><span class="line">输出：3</span><br><span class="line">解释：</span><br><span class="line">如上图所示，覆盖 3 行的一种可行办法是选择第 0 和第 2 列。</span><br><span class="line">可以看出，不存在大于 3 行被覆盖的方案，所以我们返回 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2022/07/14/rowscovered2.png" alt="img"></strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：mat = [[1],[0]], cols = 1</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">选择唯一的一列，两行都被覆盖了，原因是整个矩阵都被覆盖了。</span><br><span class="line">所以我们返回 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == mat.length</code></li>
+<li><code>n == mat[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 12</code></li>
+<li><code>mat[i][j]</code> 要么是 <code>0</code> 要么是 <code>1</code> 。</li>
+<li><code>1 &lt;= cols &lt;= n</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-86/problems/maximum-rows-covered-by-columns/">https://leetcode.cn/contest/biweekly-contest-86/problems/maximum-rows-covered-by-columns/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>位图运算
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们可以将矩阵中的第 $i$ 行都转换为二进制位图 $mask[i]$；我们依次检测 $i$ 所代表的列的位图，其中 $i$ 的第 $k$ 为 $1$ 则表示将矩阵的第 $k$ 列进行覆盖，我们依次检测每一行是否在位图 $i$ 所代表的覆盖方案下，该行中的 $1$ 是否全部被覆盖，我们可以用位运算，如果满足:<blockquote>
+<p>$mask[j] \And i = mask[j]$</p>
+</blockquote>
+</li>
+</ol>
+<p>则 $mask[j]$ 一定是 $i$ 的子集，此时 $i$ 一定可以覆盖 $mask[j]$，从而我们即可判断出有多少行可以被覆盖。<br>2. 复杂度分析</p>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(m \times n + m \times 2^n)$，其中 $m,n$ 分别为矩阵的行数与列数。</li>
+<li>空间复杂度：空间复杂度为 $O(m)$，其中 $m$ 为矩阵的行数。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumRows</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; mat, <span class="type">int</span> cols)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; mask;</span><br><span class="line">        <span class="type">int</span> m = mat.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> n = mat[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (mat[i][j]) &#123;</span><br><span class="line">                    x |= (<span class="number">1</span> &lt;&lt; j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            mask.<span class="built_in">push_back</span>(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (__builtin_popcount(i) == cols) &#123;</span><br><span class="line">                <span class="type">int</span> curr = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((mask[j] &amp; i) == mask[j]) &#123;</span><br><span class="line">                        curr++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, curr);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6143-预算内的最多机器人数目"><a href="#6143-预算内的最多机器人数目" class="headerlink" title="6143. 预算内的最多机器人数目"></a>6143. 预算内的最多机器人数目</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>你有 <code>n</code> 个机器人，给你两个下标从 <strong>0</strong> 开始的整数数组 <code>chargeTimes</code> 和 <code>runningCosts</code> ，两者长度都为 <code>n</code> 。第 <code>i</code> 个机器人充电时间为 <code>chargeTimes[i]</code> 单位时间，花费 <code>runningCosts[i]</code> 单位时间运行。再给你一个整数 <code>budget</code> 。</p>
+<p>运行 <code>k</code> 个机器人 <strong>总开销</strong> 是 <code>max(chargeTimes) + k * sum(runningCosts)</code> ，其中 <code>max(chargeTimes)</code> 是这 <code>k</code> 个机器人中最大充电时间，<code>sum(runningCosts)</code> 是这 <code>k</code> 个机器人的运行时间之和。</p>
+<p>请你返回在 <strong>不超过</strong> <code>budget</code> 的前提下，你 <strong>最多</strong> 可以 <strong>连续</strong> 运行的机器人数目为多少。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：chargeTimes = [3,6,1,3,4], runningCosts = [2,1,3,4,5], budget = 25</span><br><span class="line">输出：3</span><br><span class="line">解释：</span><br><span class="line">可以在 budget 以内运行所有单个机器人或者连续运行 2 个机器人。</span><br><span class="line">选择前 3 个机器人，可以得到答案最大值 3 。总开销是 max(3,6,1) + 3 * sum(2,1,3) = 6 + 3 * 6 = 24 ，小于 25 。</span><br><span class="line">可以看出无法在 budget 以内连续运行超过 3 个机器人，所以我们返回 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：chargeTimes = [11,12,19], runningCosts = [10,8,7], budget = 19</span><br><span class="line">输出：0</span><br><span class="line">解释：即使运行任何一个单个机器人，还是会超出 budget，所以我们返回 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>chargeTimes.length == runningCosts.length == n</code></li>
+<li><code>1 &lt;= n &lt;= 5 * 104</code></li>
+<li><code>1 &lt;= chargeTimes[i], runningCosts[i] &lt;= 105</code></li>
+<li><code>1 &lt;= budget &lt;= 1015</code></li>
+</ul>
+<p>`</p>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-86/problems/maximum-number-of-robots-within-budget/">https://leetcode.cn/contest/biweekly-contest-86/problems/maximum-number-of-robots-within-budget/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><pre><code>滑动窗口
+</code></pre>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>二分查找的解法就比较简单了，时间复杂度为 $n \times (\log n)^2$，在题目给定的测试用例下会超时。</li>
+<li>我们还可以采用滑动窗口的解法，设当前窗口为 $[j,i]$, 每次我们向右移动一个位置后，此时窗口变为 $[i, j +1]$，我们检测当前的窗口是否满足题目要求，如果满足则记录，否则则将窗口的左起点进行缩小知道窗口满足题目要求即可。需要使用技巧的是，我们可以用 $treeset$ 保存窗口中的所有数据，可以在 $O(1)$ 的时间复杂度内得到窗口中最大的值即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times \log n)$，其中 $n$ 表示数组的长度。</li>
+<li>空间复杂度：$(n)$，其中 $n$ 表示数组的长度。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumRobots</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; chargeTimes, vector&lt;<span class="type">int</span>&gt;&amp; runningCosts, <span class="type">long</span> <span class="type">long</span> budget)</span> </span>&#123;</span><br><span class="line">        multiset&lt;<span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = chargeTimes.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            cnt.<span class="built_in">emplace</span>(chargeTimes[i]);</span><br><span class="line">            sum += runningCosts[i];</span><br><span class="line">            <span class="keyword">while</span> (j &lt;= i &amp;&amp; sum * cnt.<span class="built_in">size</span>() + *cnt.<span class="built_in">rbegin</span>() &gt; budget) &#123;</span><br><span class="line">                cnt.<span class="built_in">erase</span>(cnt.<span class="built_in">find</span>(chargeTimes[j]));</span><br><span class="line">                sum -= runningCosts[j];</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, (<span class="type">int</span>)cnt.<span class="built_in">size</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#力扣周赛" >
+    <span class="tag-code">力扣周赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/30/">
+        <span class="nav-arrow">← </span>
+        
+          AutoX 安途智行专场竞赛
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/29/">
+        
+          leetcode  weekly contest 308
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-biweekly-contest-86"><span class="toc-nav-text">leetcode biweekly contest 86</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#6171-%E5%92%8C%E7%9B%B8%E7%AD%89%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="toc-nav-text">6171. 和相等的子数组</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6172-%E4%B8%A5%E6%A0%BC%E5%9B%9E%E6%96%87%E7%9A%84%E6%95%B0%E5%AD%97"><span class="toc-nav-text">6172. 严格回文的数字</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6173-%E8%A2%AB%E5%88%97%E8%A6%86%E7%9B%96%E7%9A%84%E6%9C%80%E5%A4%9A%E8%A1%8C%E6%95%B0"><span class="toc-nav-text">6173. 被列覆盖的最多行数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-2"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6143-%E9%A2%84%E7%AE%97%E5%86%85%E7%9A%84%E6%9C%80%E5%A4%9A%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%B0%E7%9B%AE"><span class="toc-nav-text">6143. 预算内的最多机器人数目</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-3"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link"><span class="toc-nav-text"></span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/11/01/力扣周赛题解/31/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2022 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

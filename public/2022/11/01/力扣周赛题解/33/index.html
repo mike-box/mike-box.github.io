@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode biweekly contest 87 | Mike Meng Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Mike Meng Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode biweekly contest 87</h2>
+  <p class="post-date">2022-11-01</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-biweekly-contest-87"><a href="#leetcode-biweekly-contest-87" class="headerlink" title="leetcode biweekly contest 87"></a>leetcode biweekly contest 87</h2><p>今天周赛的题目质量还算蛮高，最后一题很少出线段树的模板题目了</p>
+<h4 id="6176-出现最频繁的偶数元素"><a href="#6176-出现最频繁的偶数元素" class="headerlink" title="6176. 出现最频繁的偶数元素"></a>6176. 出现最频繁的偶数元素</h4><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>给你一个整数数组 <code>nums</code> ，返回出现最频繁的偶数元素。</p>
+<p>如果存在多个满足条件的元素，只需要返回 <strong>最小</strong> 的一个。如果不存在这样的元素，返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [0,1,2,2,4,4,1]</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">数组中的偶数元素为 0、2 和 4 ，在这些元素中，2 和 4 出现次数最多。</span><br><span class="line">返回最小的那个，即返回 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,4,4,9,2,4]</span><br><span class="line">输出：4</span><br><span class="line">解释：4 是出现最频繁的偶数元素。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [29,47,21,41,13,37,25,7]</span><br><span class="line">输出：-1</span><br><span class="line">解释：不存在偶数元素。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 2000</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/most-frequent-even-element/">https://leetcode.cn/problems/most-frequent-even-element/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>哈希统计
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接统计偶数元素的个数，并求出出现次数最多的偶数。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示数组的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">mostFrequentEven</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (v % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt[v]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">-1</span>, freq = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [x, f] : cnt) &#123;</span><br><span class="line">            <span class="keyword">if</span> (f &gt; freq) &#123;</span><br><span class="line">                ans = x;</span><br><span class="line">                freq = f;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6177-子字符串的最优划分"><a href="#6177-子字符串的最优划分" class="headerlink" title="6177. 子字符串的最优划分"></a>6177. 子字符串的最优划分</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一个字符串 <code>s</code> ，请你将该字符串划分成一个或多个 <strong>子字符串</strong> ，并满足每个子字符串中的字符都是 <strong>唯一</strong> 的。也就是说，在单个子字符串中，字母的出现次数都不超过 <strong>一次</strong> 。</p>
+<p>满足题目要求的情况下，返回 <strong>最少</strong> 需要划分多少个子字符串<em>。</em></p>
+<p>注意，划分后，原字符串中的每个字符都应该恰好属于一个子字符串。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;abacaba&quot;</span><br><span class="line">输出：4</span><br><span class="line">解释：</span><br><span class="line">两种可行的划分方法分别是 (&quot;a&quot;,&quot;ba&quot;,&quot;cab&quot;,&quot;a&quot;) 和 (&quot;ab&quot;,&quot;a&quot;,&quot;ca&quot;,&quot;ba&quot;) 。</span><br><span class="line">可以证明最少需要划分 4 个子字符串。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;ssssss&quot;</span><br><span class="line">输出：6</span><br><span class="line">解释：</span><br><span class="line">只存在一种可行的划分方法 (&quot;s&quot;,&quot;s&quot;,&quot;s&quot;,&quot;s&quot;,&quot;s&quot;,&quot;s&quot;) 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 105</code></li>
+<li><code>s</code> 仅由小写英文字母组成</li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/optimal-partition-of-string/">https://leetcode.cn/problems/optimal-partition-of-string/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>贪心 + 直接遍历
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>感觉没啥好说的，直接切分即可，遍历到字符出现多次的情形，则进行切分。根据贪心理论，两个相同的字符一定不能出现在不同的</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n)$，$n$ 表示字符串的长度。</li>
+<li>空间复杂度：空间复杂度为 $O(|\Sigma|)$，$|\Sigma|$ 表示字符集的大小。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">partitionString</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">26</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt[s[i] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt[s[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt = <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">26</span>);</span><br><span class="line">                ans++;</span><br><span class="line">                cnt[s[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6178-将区间分为最少组数"><a href="#6178-将区间分为最少组数" class="headerlink" title="6178. 将区间分为最少组数"></a>6178. 将区间分为最少组数</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你一个二维整数数组 <code>intervals</code> ，其中 <code>intervals[i] = [lefti, righti]</code> 表示 <strong>闭</strong> 区间 <code>[lefti, righti]</code> 。</p>
+<p>你需要将 <code>intervals</code> 划分为一个或者多个区间 <strong>组</strong> ，每个区间 <strong>只</strong> 属于一个组，且同一个组中任意两个区间 <strong>不相交</strong> 。</p>
+<p>请你返回 <strong>最少</strong> 需要划分成多少个组。</p>
+<p>如果两个区间覆盖的范围有重叠（即至少有一个公共数字），那么我们称这两个区间是 <strong>相交</strong> 的。比方说区间 <code>[1, 5]</code> 和 <code>[5, 8]</code> 相交。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：intervals = [[5,10],[6,8],[1,5],[2,3],[1,10]]</span><br><span class="line">输出：3</span><br><span class="line">解释：我们可以将区间划分为如下的区间组：</span><br><span class="line">- 第 1 组：[1, 5] ，[6, 8] 。</span><br><span class="line">- 第 2 组：[2, 3] ，[5, 10] 。</span><br><span class="line">- 第 3 组：[1, 10] 。</span><br><span class="line">可以证明无法将区间划分为少于 3 个组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：intervals = [[1,3],[5,6],[8,10],[11,13]]</span><br><span class="line">输出：1</span><br><span class="line">解释：所有区间互不相交，所以我们可以把它们全部放在一个组内。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= intervals.length &lt;= 105</code></li>
+<li><code>intervals[i].length == 2</code></li>
+<li><code>1 &lt;= lefti &lt;= righti &lt;= 106</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/divide-intervals-into-minimum-number-of-groups/">https://leetcode.cn/problems/divide-intervals-into-minimum-number-of-groups/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>查分数组
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>本体与某个 <code>CPU</code> 调度的题目基本上一模一样的原理，本质上就是求区间中最大的重叠次数即可，只需要求出最大重叠此时一定可以划分为不同的区间。</li>
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n \log n)$，$n$ 为数组的长度。</li>
+<li>空间复杂度：空间复杂度为 $O(n)$，$n$ 为数组的长度。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minGroups</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; intervals)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : intervals) &#123;</span><br><span class="line">            cnt[v[<span class="number">0</span>]]++;</span><br><span class="line">            cnt[v[<span class="number">1</span>] + <span class="number">1</span>]--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> curr = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [_, x] : cnt) &#123;</span><br><span class="line">            curr += x;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, curr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6206-最长递增子序列-II"><a href="#6206-最长递增子序列-II" class="headerlink" title="6206. 最长递增子序列 II"></a>6206. 最长递增子序列 II</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> 。</p>
+<p>找到 <code>nums</code> 中满足以下要求的最长子序列：</p>
+<ul>
+<li>子序列 <strong>严格递增</strong></li>
+<li>子序列中相邻元素的差值 <strong>不超过</strong> <code>k</code> 。</li>
+</ul>
+<p>请你返回满足上述要求的 <strong>最长子序列</strong> 的长度。</p>
+<p><strong>子序列</strong> 是从一个数组中删除部分元素后，剩余元素不改变顺序得到的数组。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,2,1,4,3,4,5,8,15], k = 3</span><br><span class="line">输出：5</span><br><span class="line">解释：</span><br><span class="line">满足要求的最长子序列是 [1,3,4,5,8] 。</span><br><span class="line">子序列长度为 5 ，所以我们返回 5 。</span><br><span class="line">注意子序列 [1,3,4,5,8,15] 不满足要求，因为 15 - 8 = 7 大于 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [7,4,5,1,8,12,4,7], k = 5</span><br><span class="line">输出：4</span><br><span class="line">解释：</span><br><span class="line">满足要求的最长子序列是 [4,5,8,12] 。</span><br><span class="line">子序列长度为 4 ，所以我们返回 4 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,5], k = 1</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">满足要求的最长子序列是 [1] 。</span><br><span class="line">子序列长度为 1 ，所以我们返回 1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i], k &lt;= 105</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-increasing-subsequence-ii/">https://leetcode.cn/problems/longest-increasing-subsequence-ii/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>线段树模板</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>典型的线段树模板，我们设 $dp[i]$ 表示以 $i$ 为结尾的元素所能构成最长子序列，对于当前的元素 $x$，我们需要查询以区间 $[x-k,x -1]$ 中的元素为结尾的最长递增子序列的长度，即我们需要查询 $dp[x-k, \cdots, x -1]$ 这样元素的最大值 $maxVal$，同时将 $dp[x] = maxVal + 1$，可以得到递推公式如下:<br>$$<br>dp[x] = \max_{j = x - k}^{x-1} dp[j]<br>$$<br>所以很容易采用线段树来进行范围查询和范围更新，非常典型的线段树模板题目。方法二维动态开点的线段树模板。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log \max(nums))$，其中 $n$ 表示数组的长度，$\max(nums)$ 表示数组中的最大元素。</li>
+<li>空间复杂度：$O(\max(nums))$，$\max(nums)$ 表示数组中的最大元素。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> CHL(x) (x * 2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CHR(x) (x * 2 + 1)</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN = <span class="number">4e5</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SegTreeNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> l, r;</span><br><span class="line">    <span class="type">int</span> maxVal;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">SegTreeNode tree[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushUpTree</span><span class="params">(<span class="type">int</span> idx)</span> </span>&#123;</span><br><span class="line">    tree[idx].maxVal = <span class="built_in">max</span>(tree[<span class="built_in">CHL</span>(idx)].maxVal, tree[<span class="built_in">CHR</span>(idx)].maxVal);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">buildTree</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; r) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">        tree[idx].l = tree[idx].r = l;</span><br><span class="line">        tree[idx].maxVal = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    tree[idx].l = l;</span><br><span class="line">    tree[idx].r = r;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">buildTree</span>(<span class="built_in">CHL</span>(idx), l, mid);</span><br><span class="line">    <span class="built_in">buildTree</span>(<span class="built_in">CHR</span>(idx), mid + <span class="number">1</span>, r);</span><br><span class="line">    <span class="built_in">pushUpTree</span>(idx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">updateTree</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> val, <span class="type">int</span> idx)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; tree[idx].l || x &gt; tree[idx].r) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x == tree[idx].l &amp;&amp; x == tree[idx].r) &#123;</span><br><span class="line">        tree[idx].maxVal = val;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> mid = (tree[idx].l + tree[idx].r) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (x &lt;= mid) &#123;</span><br><span class="line">        <span class="built_in">updateTree</span>(x, val, <span class="built_in">CHL</span>(idx));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">updateTree</span>(x, val, <span class="built_in">CHR</span>(idx));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">pushUpTree</span>(idx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">queryTree</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> idx)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (r &lt; tree[idx].l || l &gt; tree[idx].r) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (l &lt;= tree[idx].l &amp;&amp; r &gt;= tree[idx].r) &#123;</span><br><span class="line">        <span class="keyword">return</span> tree[idx].maxVal;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> mid = (tree[idx].l + tree[idx].r) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (r &lt;= mid) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">queryTree</span>(l, r, <span class="built_in">CHL</span>(idx));</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (l &gt; mid) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">queryTree</span>(l, r, <span class="built_in">CHR</span>(idx));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">queryTree</span>(l, mid, <span class="built_in">CHL</span>(idx)), <span class="built_in">queryTree</span>(mid + <span class="number">1</span>, r, <span class="built_in">CHR</span>(idx)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">lengthOfLIS</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> maxN = *<span class="built_in">max_element</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">buildTree</span>(<span class="number">1</span>, <span class="number">0</span>, maxN);</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> x : nums) &#123;</span><br><span class="line">            <span class="type">int</span> len = <span class="built_in">queryTree</span>(<span class="built_in">max</span>(<span class="number">0</span>, x - k), x - <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, len + <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">updateTree</span>(x, len + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> val, <span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt; l || x &gt; r) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l == r &amp;&amp; l == x) &#123;</span><br><span class="line">            tree[idx] = val;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= mid) &#123;</span><br><span class="line">            <span class="built_in">update</span>(x, val, idx * <span class="number">2</span>, l, mid);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">update</span>(x, val, idx * <span class="number">2</span> + <span class="number">1</span>, mid + <span class="number">1</span>, r);</span><br><span class="line">        &#125;</span><br><span class="line">        tree[idx] = <span class="built_in">max</span>(tree[idx * <span class="number">2</span>], tree[idx * <span class="number">2</span> + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left &gt; r || right &lt; l) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (left &lt;= l &amp;&amp; r &lt;= right) &#123;</span><br><span class="line">            <span class="keyword">return</span> tree[idx];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (right &lt;= mid) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">query</span>(left, right, idx * <span class="number">2</span>, l, mid);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (left &gt; mid) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">query</span>(left, right, idx * <span class="number">2</span> + <span class="number">1</span>, mid + <span class="number">1</span>, r);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">query</span>(left, mid, idx * <span class="number">2</span>, l, mid), \</span><br><span class="line">                       <span class="built_in">query</span>(mid + <span class="number">1</span>, right, idx * <span class="number">2</span> + <span class="number">1</span>, mid + <span class="number">1</span>, r));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">lengthOfLIS</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> maxNum = *<span class="built_in">max_element</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> x : nums) &#123;</span><br><span class="line">            <span class="type">int</span> len = <span class="built_in">query</span>(<span class="built_in">max</span>(<span class="number">0</span>, x - k), x - <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, maxNum);</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, len + <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">update</span>(x, len + <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, maxNum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; tree;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#力扣周赛" >
+    <span class="tag-code">力扣周赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/34/">
+        <span class="nav-arrow">← </span>
+        
+          中国银联专场竞赛（2023届校园招聘专场）
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/32/">
+        
+          leetcode contest 309
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-biweekly-contest-87"><span class="toc-nav-text">leetcode biweekly contest 87</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#6176-%E5%87%BA%E7%8E%B0%E6%9C%80%E9%A2%91%E7%B9%81%E7%9A%84%E5%81%B6%E6%95%B0%E5%85%83%E7%B4%A0"><span class="toc-nav-text">6176. 出现最频繁的偶数元素</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6177-%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%80%E4%BC%98%E5%88%92%E5%88%86"><span class="toc-nav-text">6177. 子字符串的最优划分</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6178-%E5%B0%86%E5%8C%BA%E9%97%B4%E5%88%86%E4%B8%BA%E6%9C%80%E5%B0%91%E7%BB%84%E6%95%B0"><span class="toc-nav-text">6178. 将区间分为最少组数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-2"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6206-%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97-II"><span class="toc-nav-text">6206. 最长递增子序列 II</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-3"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link"><span class="toc-nav-text"></span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/11/01/力扣周赛题解/33/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2022 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>
