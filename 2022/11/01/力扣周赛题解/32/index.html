@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode contest 309 | Mike Meng Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Mike Meng Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode contest 309</h2>
+  <p class="post-date">2022-11-01</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-contest-309"><a href="#leetcode-contest-309" class="headerlink" title="leetcode contest 309"></a>leetcode contest 309</h2><p>今天周赛的题目质量还算蛮高，都不是特别水的题目，还是非常好的题目</p>
+<h4 id="6167-检查相同字母间的距离"><a href="#6167-检查相同字母间的距离" class="headerlink" title="6167. 检查相同字母间的距离"></a>6167. 检查相同字母间的距离</h4><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>给你一个下标从 <strong>0</strong> 开始的字符串 <code>s</code> ，该字符串仅由小写英文字母组成，<code>s</code> 中的每个字母都 <strong>恰好</strong> 出现 <strong>两次</strong> 。另给你一个下标从 <strong>0</strong> 开始、长度为 <code>26</code> 的的整数数组 <code>distance</code> 。</p>
+<p>字母表中的每个字母按从 <code>0</code> 到 <code>25</code> 依次编号（即，<code>&#39;a&#39; -&gt; 0</code>, <code>&#39;b&#39; -&gt; 1</code>, <code>&#39;c&#39; -&gt; 2</code>, … , <code>&#39;z&#39; -&gt; 25</code>）。</p>
+<p>在一个 <strong>匀整</strong> 字符串中，第 <code>i</code> 个字母的两次出现之间的字母数量是 <code>distance[i]</code> 。如果第 <code>i</code> 个字母没有在 <code>s</code> 中出现，那么 <code>distance[i]</code> 可以 <strong>忽略</strong> 。</p>
+<p>如果 <code>s</code> 是一个 <strong>匀整</strong> 字符串，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;abaccb&quot;, distance = [1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]</span><br><span class="line">输出：true</span><br><span class="line">解释：</span><br><span class="line">- &#x27;a&#x27; 在下标 0 和下标 2 处出现，所以满足 distance[0] = 1 。</span><br><span class="line">- &#x27;b&#x27; 在下标 1 和下标 5 处出现，所以满足 distance[1] = 3 。</span><br><span class="line">- &#x27;c&#x27; 在下标 3 和下标 4 处出现，所以满足 distance[2] = 0 。</span><br><span class="line">注意 distance[3] = 5 ，但是由于 &#x27;d&#x27; 没有在 s 中出现，可以忽略。</span><br><span class="line">因为 s 是一个匀整字符串，返回 true 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;aa&quot;, distance = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]</span><br><span class="line">输出：false</span><br><span class="line">解释：</span><br><span class="line">- &#x27;a&#x27; 在下标 0 和 1 处出现，所以两次出现之间的字母数量为 0 。</span><br><span class="line">但是 distance[0] = 1 ，s 不是一个匀整字符串。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= s.length &lt;= 52</code></li>
+<li><code>s</code> 仅由小写英文字母组成</li>
+<li><code>s</code> 中的每个字母恰好出现两次</li>
+<li><code>distance.length == 26</code></li>
+<li><code>0 &lt;= distance[i] &lt;= 50</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-309/problems/check-distances-between-same-letters/">https://leetcode.cn/contest/weekly-contest-309/problems/check-distances-between-same-letters/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接遍历
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们可以直接遍历该数组即可， 直接找到相同字母之间的距离是否与数组 $distance$ 相同。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n^2)$，其中 $n$ 表示字符串的长度。</li>
+<li>空间复杂度：$O(1)$。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">checkDistances</span><span class="params">(string s, vector&lt;<span class="type">int</span>&gt;&amp; distance)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; s.<span class="built_in">size</span>(); j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j != i &amp;&amp; s[i] == s[j]) &#123;</span><br><span class="line">                    <span class="type">int</span> x = <span class="built_in">abs</span>(i - j) - <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (distance[s[i] - <span class="string">&#x27;a&#x27;</span>] != x) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6168-恰好移动-k-步到达某一位置的方法数目"><a href="#6168-恰好移动-k-步到达某一位置的方法数目" class="headerlink" title="6168. 恰好移动 k 步到达某一位置的方法数目"></a>6168. 恰好移动 k 步到达某一位置的方法数目</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你两个 <strong>正</strong> 整数 <code>startPos</code> 和 <code>endPos</code> 。最初，你站在 <strong>无限</strong> 数轴上位置 <code>startPos</code> 处。在一步移动中，你可以向左或者向右移动一个位置。</p>
+<p>给你一个正整数 <code>k</code> ，返回从 <code>startPos</code> 出发、<strong>恰好</strong> 移动 <code>k</code> 步并到达 <code>endPos</code> 的 <strong>不同</strong> 方法数目。由于答案可能会很大，返回对 <code>109 + 7</code> <strong>取余</strong> 的结果。</p>
+<p>如果所执行移动的顺序不完全相同，则认为两种方法不同。</p>
+<p><strong>注意：</strong>数轴包含负整数<strong>。</strong></p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：startPos = 1, endPos = 2, k = 3</span><br><span class="line">输出：3</span><br><span class="line">解释：存在 3 种从 1 到 2 且恰好移动 3 步的方法：</span><br><span class="line">- 1 -&gt; 2 -&gt; 3 -&gt; 2.</span><br><span class="line">- 1 -&gt; 2 -&gt; 1 -&gt; 2.</span><br><span class="line">- 1 -&gt; 0 -&gt; 1 -&gt; 2.</span><br><span class="line">可以证明不存在其他方法，所以返回 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：startPos = 2, endPos = 5, k = 10</span><br><span class="line">输出：0</span><br><span class="line">解释：不存在从 2 到 5 且恰好移动 10 步的方法。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= startPos, endPos, k &lt;= 1000</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-309/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/">https://leetcode.cn/contest/weekly-contest-309/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>动态规划 + 数学方法
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>典型的动态规划解题思路即可。设 $dp[i][j]$ 表示第 $i$ 步在位置 $j$ 的方法数，则可以知道递推公式为:<br>$$<br>dp[i][j] = dp[i-1][j-1] + dp[i-1][j + 1]。<br>$$<br>最终返回的结果即为 $dp[k][k + abs(endPos - startPos)]$。</li>
+</ol>
+<ul>
+<li>我们可以很容易的分析出来当 $abs(endPos - startPos) &gt; k$ 时则无法达到目的地。 </li>
+</ul>
+<ol start="2">
+<li>数学方法：总共走了 $k$ 步，我们设从 $start \rightarrow end$ 为正方向，反向为负方向 $end \rightarrow start$，假设我们往正方向走了 $x$ 步，往负方向走了 $k - x$ 步，最终到达某个坐标，根据排列组合可以知道可能的方案数位 $C_k^x$，根据题意可以知道 $x - (k - x) = end - start$，此时可以知道 $x = \dfrac{k + end -start}{2}$，此时我们只需要求出 $C_k^x$ 即可，根据排列组合公式可知 $C_k^x = C_{k-1}^{x-1} + C_{k-1}^{x}$，如果需要优化则可以利用乘法逆元进一步进行优化，可以在 $O(k)$ 的时间复杂度内求出结果。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(k^2)$，$k$ 表示给定的元素。</li>
+<li>空间复杂度：空间复杂度为 $O(k)$。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numberOfWays</span><span class="params">(<span class="type">int</span> startPos, <span class="type">int</span> endPos, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="type">int</span> x = <span class="built_in">abs</span>(startPos - endPos);</span><br><span class="line">        vector&lt;vector&lt;<span class="type">long</span> <span class="type">long</span>&gt;&gt; <span class="built_in">dp</span>(k + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">long</span> <span class="type">long</span>&gt;(<span class="number">2</span>*k + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        dp[<span class="number">0</span>][k] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= k; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">2</span> * k; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (dp[i<span class="number">-1</span>][j] != <span class="number">0</span>) &#123;</span><br><span class="line">                    dp[i][j + <span class="number">1</span>] = (dp[i][j + <span class="number">1</span>] + dp[i<span class="number">-1</span>][j]) % mod;</span><br><span class="line">                    dp[i][j - <span class="number">1</span>] = (dp[i][j - <span class="number">1</span>] + dp[i<span class="number">-1</span>][j]) % mod;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (x &gt; k) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[k][k+x];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>数学解法：<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numberOfWays</span><span class="params">(<span class="type">int</span> startPos, <span class="type">int</span> endPos, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> x = <span class="built_in">abs</span>(endPos - startPos) + k;</span><br><span class="line">        <span class="keyword">if</span> (x % <span class="number">2</span> == <span class="number">1</span> || x &gt; <span class="number">2</span> * k) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        x = x / <span class="number">2</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">comb</span>(k + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(x + <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= x; i++) &#123;</span><br><span class="line">            comb[i][i] = <span class="number">1</span>;</span><br><span class="line">            comb[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= k; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= x &amp;&amp; j &lt; i; j++) &#123;</span><br><span class="line">                comb[i][j] = (comb[i<span class="number">-1</span>][j<span class="number">-1</span>] + comb[i<span class="number">-1</span>][j]) % mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> comb[k][x];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6169-最长优雅子数组"><a href="#6169-最长优雅子数组" class="headerlink" title="6169. 最长优雅子数组"></a>6169. 最长优雅子数组</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你一个由 <strong>正</strong> 整数组成的数组 <code>nums</code> 。</p>
+<p>如果 <code>nums</code> 的子数组中位于 <strong>不同</strong> 位置的每对元素按位 <strong>与（AND）</strong>运算的结果等于 <code>0</code> ，则称该子数组为 <strong>优雅</strong> 子数组。</p>
+<p>返回 <strong>最长</strong> 的优雅子数组的长度。</p>
+<p><strong>子数组</strong> 是数组中的一个 <strong>连续</strong> 部分。</p>
+<p><strong>注意：</strong>长度为 <code>1</code> 的子数组始终视作优雅子数组。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,3,8,48,10]</span><br><span class="line">输出：3</span><br><span class="line">解释：最长的优雅子数组是 [3,8,48] 。子数组满足题目条件：</span><br><span class="line">- 3 AND 8 = 0</span><br><span class="line">- 3 AND 48 = 0</span><br><span class="line">- 8 AND 48 = 0</span><br><span class="line">可以证明不存在更长的优雅子数组，所以返回 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,1,5,11,13]</span><br><span class="line">输出：1</span><br><span class="line">解释：最长的优雅子数组长度为 1 ，任何长度为 1 的子数组都满足题目条件。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-309/problems/longest-nice-subarray/">https://leetcode.cn/contest/weekly-contest-309/problems/longest-nice-subarray/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>暴力判断
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>根据题目可以知道由于 <code>int</code> 整形最多只有 $32$ 个数组，因此我们直接检测连续的区间是否满足相与的情况即可，此时我们可以保存当前组中每个元素相或的结果 $x$，如果当前元素与 $x$ 相与的结果为 $0$，则表示 $x$ 与当前组中的任意元素相与都等于 $0$。</li>
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n \times \log(\max(nums)))$，$n$ 为数组的长度。</li>
+<li>空间复杂度：空间复杂度为 $O(1)$。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestNiceSubarray</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> curr = nums[i];</span><br><span class="line">            <span class="type">int</span> now = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; n &amp;&amp; (nums[j] &amp; curr) == <span class="number">0</span>; j++) &#123;</span><br><span class="line">                curr |= nums[j];</span><br><span class="line">                now++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, now);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6170-会议室-III"><a href="#6170-会议室-III" class="headerlink" title="6170. 会议室 III"></a>6170. 会议室 III</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>给你一个整数 <code>n</code> ，共有编号从 <code>0</code> 到 <code>n - 1</code> 的 <code>n</code> 个会议室。</p>
+<p>给你一个二维整数数组 <code>meetings</code> ，其中 <code>meetings[i] = [starti, endi]</code> 表示一场会议将会在 <strong>半闭</strong> 时间区间 <code>[starti, endi)</code> 举办。所有 <code>starti</code> 的值 <strong>互不相同</strong> 。</p>
+<p>会议将会按以下方式分配给会议室：</p>
+<ol>
+<li>每场会议都会在未占用且编号 <strong>最小</strong> 的会议室举办。</li>
+<li>如果没有可用的会议室，会议将会延期，直到存在空闲的会议室。延期会议的持续时间和原会议持续时间 <strong>相同</strong> 。</li>
+<li>当会议室处于未占用状态时，将会优先提供给原 <strong>开始</strong> 时间更早的会议。</li>
+</ol>
+<p>返回举办最多次会议的房间 <strong>编号</strong> 。如果存在多个房间满足此条件，则返回编号 <strong>最小</strong> 的房间。</p>
+<p><strong>半闭区间</strong> <code>[a, b)</code> 是 <code>a</code> 和 <code>b</code> 之间的区间，<strong>包括</strong> <code>a</code> 但 <strong>不包括</strong> <code>b</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 2, meetings = [[0,10],[1,5],[2,7],[3,4]]</span><br><span class="line">输出：0</span><br><span class="line">解释：</span><br><span class="line">- 在时间 0 ，两个会议室都未占用，第一场会议在会议室 0 举办。</span><br><span class="line">- 在时间 1 ，只有会议室 1 未占用，第二场会议在会议室 1 举办。</span><br><span class="line">- 在时间 2 ，两个会议室都被占用，第三场会议延期举办。</span><br><span class="line">- 在时间 3 ，两个会议室都被占用，第四场会议延期举办。</span><br><span class="line">- 在时间 5 ，会议室 1 的会议结束。第三场会议在会议室 1 举办，时间周期为 [5,10) 。</span><br><span class="line">- 在时间 10 ，两个会议室的会议都结束。第四场会议在会议室 0 举办，时间周期为 [10,11) 。</span><br><span class="line">会议室 0 和会议室 1 都举办了 2 场会议，所以返回 0 。 </span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 3, meetings = [[1,20],[2,10],[3,5],[4,9],[6,8]]</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">- 在时间 1 ，所有三个会议室都未占用，第一场会议在会议室 0 举办。</span><br><span class="line">- 在时间 2 ，会议室 1 和 2 未占用，第二场会议在会议室 1 举办。</span><br><span class="line">- 在时间 3 ，只有会议室 2 未占用，第三场会议在会议室 2 举办。</span><br><span class="line">- 在时间 4 ，所有三个会议室都被占用，第四场会议延期举办。 </span><br><span class="line">- 在时间 5 ，会议室 2 的会议结束。第四场会议在会议室 2 举办，时间周期为 [5,10) 。</span><br><span class="line">- 在时间 6 ，所有三个会议室都被占用，第五场会议延期举办。 </span><br><span class="line">- 在时间 10 ，会议室 1 和 2 的会议结束。第五场会议在会议室 1 举办，时间周期为 [10,12) 。 </span><br><span class="line">会议室 1 和会议室 2 都举办了 2 场会议，所以返回 1 。 </span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 100</code></li>
+<li><code>1 &lt;= meetings.length &lt;= 105</code></li>
+<li><code>meetings[i].length == 2</code></li>
+<li><code>0 &lt;= starti &lt; endi &lt;= 5 * 105</code></li>
+<li><code>starti</code> 的所有值 <strong>互不相同</strong></li>
+</ul>
+<p>`</p>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-309/problems/meeting-rooms-iii/">https://leetcode.cn/contest/weekly-contest-309/problems/meeting-rooms-iii/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><pre><code>堆
+</code></pre>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们采用优先队列来讲所有的房间都入队列，且每次队列中优先弹出结束时间最早的房间，相同的结束时间条件下，会弹出编号最小的房间。</li>
+</ol>
+<ul>
+<li>首先按照会议开始时间的先后进行排序，我们每次从起始时间最早的会议开始检测</li>
+<li>设当前队列中弹出的房间的结束时间为 $x$，则我们将所有结束时间小于 $x$ 的房间全部弹出，并以当前会议的起始时间为结束时间，再次将房间压入队列中；</li>
+<li>队列中每次弹出的元素即为满足条件下，结束时间最早且编号最小的房间；</li>
+<li>如果 $x$ 小于等于当前的结束</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(m \times \log n)$，其中 $m$ 表示数组的长度，$n$ 为房间数目。</li>
+<li>空间复杂度：$(n)$，$n$ 为房间数目。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">mostBooked</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; meetings)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = meetings.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(meetings.<span class="built_in">begin</span>(), meetings.<span class="built_in">end</span>());</span><br><span class="line">        priority_queue&lt;pair&lt;<span class="type">long</span> <span class="type">long</span>, <span class="type">int</span>&gt;, vector&lt;pair&lt;<span class="type">long</span> <span class="type">long</span>, <span class="type">int</span>&gt;&gt;, greater&lt;pair&lt;<span class="type">long</span> <span class="type">long</span>, <span class="type">int</span>&gt;&gt;&gt; pq;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            pq.<span class="built_in">emplace</span>(<span class="number">0</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : meetings) &#123;</span><br><span class="line">            <span class="type">int</span> start = v[<span class="number">0</span>], end = v[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">while</span> (pq.<span class="built_in">top</span>().first &lt; start) &#123;</span><br><span class="line">                <span class="type">int</span> x = pq.<span class="built_in">top</span>().second;</span><br><span class="line">                pq.<span class="built_in">pop</span>();</span><br><span class="line">                pq.<span class="built_in">emplace</span>(start, x);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">auto</span> [time, idx] = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            cnt[idx]++;</span><br><span class="line">            <span class="keyword">if</span> (time &lt;= start) &#123;</span><br><span class="line">                pq.<span class="built_in">emplace</span>(end, idx);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                pq.<span class="built_in">emplace</span>(time + end - start, idx);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt[i] &gt; cnt[ans]) &#123;</span><br><span class="line">                ans = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#力扣周赛" >
+    <span class="tag-code">力扣周赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/33/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode biweekly contest 87
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/30/">
+        
+          AutoX 安途智行专场竞赛
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-contest-309"><span class="toc-nav-text">leetcode contest 309</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#6167-%E6%A3%80%E6%9F%A5%E7%9B%B8%E5%90%8C%E5%AD%97%E6%AF%8D%E9%97%B4%E7%9A%84%E8%B7%9D%E7%A6%BB"><span class="toc-nav-text">6167. 检查相同字母间的距离</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6168-%E6%81%B0%E5%A5%BD%E7%A7%BB%E5%8A%A8-k-%E6%AD%A5%E5%88%B0%E8%BE%BE%E6%9F%90%E4%B8%80%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%96%B9%E6%B3%95%E6%95%B0%E7%9B%AE"><span class="toc-nav-text">6168. 恰好移动 k 步到达某一位置的方法数目</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6169-%E6%9C%80%E9%95%BF%E4%BC%98%E9%9B%85%E5%AD%90%E6%95%B0%E7%BB%84"><span class="toc-nav-text">6169. 最长优雅子数组</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-2"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6170-%E4%BC%9A%E8%AE%AE%E5%AE%A4-III"><span class="toc-nav-text">6170. 会议室 III</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-3"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link"><span class="toc-nav-text"></span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/11/01/力扣周赛题解/32/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2022 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

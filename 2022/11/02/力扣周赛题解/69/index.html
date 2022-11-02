@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      【算法】 mono stack | Mike Meng Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Mike Meng Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>【算法】 mono stack</h2>
+  <p class="post-date">2022-11-02</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="mono-stack"><a href="#mono-stack" class="headerlink" title="mono stack"></a>mono stack</h1><p>最近在练习题目的时候经常遇到<code>mono stack</code>的题目，总的来说题目还是非常非常的有意思，单调栈真心是个利器。可以解决非常多的复杂的问题。可以利用单调栈求出以当前值为最大值或者最小值的连续子数组的最大长度。</p>
+<h2 id="单调栈的原理"><a href="#单调栈的原理" class="headerlink" title="单调栈的原理"></a>单调栈的原理</h2><p>单调栈中的数据需要遵循两个原则：</p>
+<ul>
+<li>栈中的数据会是严格递增或者递减，则我们可以知道，假如单调栈中的数据为递减，则可以知道栈顶的数据一定为当前序列中最大的数据;假如单调栈中的数据为递增，则可以知道栈顶的数据一定为当前序列中最小的数据。一般情况下我们都会用<code>dequeue</code>来处理单调栈的数据，则可以知道队列的头部一定为当前序列中所求的最大值或者最小值。</li>
+<li>为了保持单调性，则每当加入一个新的元素时，则会将栈中所有比当前元素小或者大的数据全部进行出栈，则由此我们可以判断如下，假设当前的栈为递减：<br><img src="https://i.loli.net/2021/05/11/xJKB3lbXmrjCZ6q.png" alt="1"><br>从图中可以看出我们可以在$O(1)$的时间复杂度内求出当前序列的极值。栈中任意相邻的两个元素比如$(arr[i],arr[j])$,则表示所有处于$(i,j)$之间的元素均小于$arr[j]$,有了这个重要的推论，则许多问题都可以利用这个特性来求解，比如我们知道假设某个元素<code>x</code>大于$arr[j]$,则表示<code>x</code>一定大于所有位于$[i+1,j]$之间的元素。下面有几个非常有代表性的题目需要讨论下：</li>
+</ul>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.hackerrank.com/challenges/deque-stl/problem">找到子数组长度为k的最大值</a></li>
+<li><a target="_blank" rel="noopener" href="https://binarysearch.com/problems/Longest-Sublist-with-Value-Range-Condition">Longest Sublist with Value Range Condition</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray-min-product/">子数组最小乘积的最大值</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-greater-element-i/">下一个更大元素 I</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-greater-element-ii/">下一个更大元素 II</a></li>
+</ol>
+<h2 id="下一个更大元素-II"><a href="#下一个更大元素-II" class="headerlink" title="下一个更大元素 II"></a>下一个更大元素 II</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个循环数组（最后一个元素的下一个元素是数组的第一个元素），输出每个元素的下一个更大元素。数字 x 的下一个更大的元素是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 -1。</p>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-greater-element-ii">https://leetcode-cn.com/problems/next-greater-element-ii</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  classical problem</p>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>首先题目中要求循环处理，这个很简单我们只需要在数组后面对数组本身再进行重复复制一遍即可，这样我们即可完成循环处理。</li>
+<li>最经典的处理莫过于如何求第一个比其小或者大的数的处理，我们利用单调栈，所有小于当前的数全部从栈中弹出，因为我们知道一个推论为，栈中任意相邻的两个元素比如$(arr[i],arr[j])$,则表示所有处于$(i,j)$之间的元素均小于$arr[j]$,此时我们即可利用单调性很快求出所有的值。<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nextGreaterElements</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            nums.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n,<span class="number">-1</span>)</span></span>;</span><br><span class="line">        deque&lt;<span class="type">int</span>&gt; dq;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!dq.<span class="built_in">empty</span>() &amp;&amp; nums[dq.<span class="built_in">back</span>()] &lt; nums[i])&#123;</span><br><span class="line">                <span class="keyword">if</span>(dq.<span class="built_in">back</span>() &lt; n)&#123;</span><br><span class="line">                    ans[dq.<span class="built_in">back</span>()] = nums[i];</span><br><span class="line">                &#125;</span><br><span class="line">                dq.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            dq.<span class="built_in">push_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Longest-Sublist-with-Value-Range-Condition"><a href="#Longest-Sublist-with-Value-Range-Condition" class="headerlink" title="Longest Sublist with Value Range Condition"></a>Longest Sublist with Value Range Condition</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>Given a list of integers nums, return the length of the longest sublist where 2 * min(sublist) &gt; max(sublist).</p>
+<p>Constraints</p>
+<p>n ≤ 100,000 where n is the length of nums<br>Example 1<br>Input<br>nums = [9, 1, 5, 5, 3, 3]<br>Output<br>4<br>Explanation<br>The sublist [5, 5, 3, 3] is the longest sublist that meet the criteria since 2 * 3 &gt; 5.</p>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://binarysearch.com/problems/Longest-Sublist-with-Value-Range-Condition">https://binarysearch.com/problems/Longest-Sublist-with-Value-Range-Condition</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  双指针加单调栈</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>这个题目更加经典，需要同时利用单调栈和双指针。<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    deque&lt;<span class="type">int</span>&gt; minq;</span><br><span class="line">    deque&lt;<span class="type">int</span>&gt; maxq;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="comment">// we remove all the element is more than nums[i]</span></span><br><span class="line">        <span class="keyword">while</span>(!minq.<span class="built_in">empty</span>() &amp;&amp; nums[minq.<span class="built_in">back</span>()] &gt; nums[i]) minq.<span class="built_in">pop_back</span>();</span><br><span class="line">        minq.<span class="built_in">push_back</span>(i);</span><br><span class="line">        <span class="comment">// we remove all the element is less than nums[i]</span></span><br><span class="line">        <span class="keyword">while</span>(!maxq.<span class="built_in">empty</span>() &amp;&amp; nums[maxq.<span class="built_in">back</span>()] &lt; nums[i]) maxq.<span class="built_in">pop_back</span>();</span><br><span class="line">        maxq.<span class="built_in">push_back</span>(i);</span><br><span class="line">        <span class="keyword">while</span>(!minq.<span class="built_in">empty</span>() &amp;&amp; !maxq.<span class="built_in">empty</span>() &amp;&amp; nums[maxq.<span class="built_in">front</span>()] &gt;= <span class="number">2</span>*nums[minq.<span class="built_in">front</span>()])&#123;</span><br><span class="line">            <span class="keyword">while</span>(!minq.<span class="built_in">empty</span>() &amp;&amp; minq.<span class="built_in">front</span>() &lt;= j) minq.<span class="built_in">pop_front</span>();</span><br><span class="line">            <span class="keyword">while</span>(!maxq.<span class="built_in">empty</span>() &amp;&amp; maxq.<span class="built_in">front</span>() &lt;= j) maxq.<span class="built_in">pop_front</span>();</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans = <span class="built_in">max</span>(ans,i-j+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="qiu"><a href="#qiu" class="headerlink" title="qiu"></a>qiu</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>Given a set of arrays of size  and an integer , you have to find the maximum integer for each and every contiguous subarray of size  for each of the given arrays.<br>nput Format</p>
+<p>First line of input will contain the number of test cases T. For each test case, you will be given the size of array N and the size of subarray to be used K. This will be followed by the elements of the array Ai.</p>
+<p>Constraints, where  is the  element in the array .</p>
+<p>Output Format</p>
+<p>For each of the contiguous subarrays of size  of each array, you have to print the maximum integer.</p>
+<p>Sample Input</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2</span><br><span class="line">5 2</span><br><span class="line">3 4 6 3 4</span><br><span class="line">7 4</span><br><span class="line">3 4 5 8 1 4 10</span><br></pre></td></tr></table></figure>
+<p>Sample Output</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4 6 6 4</span><br><span class="line">8 8 8 10</span><br></pre></td></tr></table></figure>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://www.hackerrank.com/challenges/deque-stl/problem">https://www.hackerrank.com/challenges/deque-stl/problem</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  单调栈 + 滑动窗口</p>
+</blockquote>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>这个题目更加经典，需要同时利用单调栈和双指针。利用单调性，单调栈中的栈头一定保存的是当前序列的最大值。同时利用滑动窗口，一旦窗口超过队头的元素，则将队头的元素进行删除即可。<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span> </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printKMax</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> n, <span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="comment">//Write your code here.</span></span><br><span class="line">    deque&lt;<span class="type">int</span>&gt; dq;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(!dq.<span class="built_in">empty</span>() &amp;&amp; arr[i] &gt; arr[dq.<span class="built_in">back</span>()])&#123;</span><br><span class="line">            dq.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        dq.<span class="built_in">push_back</span>(i);</span><br><span class="line">        <span class="keyword">while</span>((i-j+<span class="number">1</span>) &gt; k)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!dq.<span class="built_in">empty</span>() &amp;&amp; dq.<span class="built_in">front</span>() &lt;= j) dq.<span class="built_in">pop_front</span>();</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i+<span class="number">1</span> &gt;= k)&#123;</span><br><span class="line">            cout&lt;&lt;arr[dq.<span class="built_in">front</span>()]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">	<span class="type">int</span> t;</span><br><span class="line">	cin &gt;&gt; t;</span><br><span class="line">	<span class="keyword">while</span>(t&gt;<span class="number">0</span>) &#123;</span><br><span class="line">		<span class="type">int</span> n,k;</span><br><span class="line">    	cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    	<span class="type">int</span> i;</span><br><span class="line">    	<span class="type">int</span> arr[n];</span><br><span class="line">    	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">      		cin &gt;&gt; arr[i];</span><br><span class="line">    	<span class="built_in">printKMax</span>(arr, n, k);</span><br><span class="line">    	t--;</span><br><span class="line">  	&#125;</span><br><span class="line">  	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/64/">
+        <span class="nav-arrow">← </span>
+        
+          【kickstart】 kickstart 2021 roundD 
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/70/">
+        
+          【kickstart】 kick start 2021 roundB
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#mono-stack"><span class="toc-nav-text">mono stack</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%8D%95%E8%B0%83%E6%A0%88%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-nav-text">单调栈的原理</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0-II"><span class="toc-nav-text">下一个更大元素 II</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Longest-Sublist-with-Value-Range-Condition"><span class="toc-nav-text">Longest Sublist with Value Range Condition</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#qiu"><span class="toc-nav-text">qiu</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-2"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link"><span class="toc-nav-text"></span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/11/02/力扣周赛题解/69/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2022 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode  weekly contest 307 | Mike Meng Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Mike Meng Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode  weekly contest 307</h2>
+  <p class="post-date">2022-11-01</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-weekly-contest-307"><a href="#leetcode-weekly-contest-307" class="headerlink" title="leetcode  weekly contest 307"></a>leetcode  weekly contest 307</h2><p>周赛题目质量确实挺高的，最后一题还是不会。</p>
+<h4 id="2383-赢得比赛需要的最少训练时长"><a href="#2383-赢得比赛需要的最少训练时长" class="headerlink" title="2383. 赢得比赛需要的最少训练时长"></a>2383. 赢得比赛需要的最少训练时长</h4><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>校运动会上，所有参赛同学身上都贴有他的参赛号码。某班参赛同学的号码记于数组 <code>nums</code> 中。假定反转后的号码称为原数字的「镜像号码」。如果 <strong>两位同学</strong> 满足条件：镜像号码 A + 原号码 B = 镜像号码 B + 原号码 A，则这两位同学可以到广播站兑换一次读通讯稿的机会，为同班同学加油助威。请返回所有参赛同学可以组成的可以读通讯稿的组数，并将结果对<code>10^9+7</code>取余。</p>
+<p>注意：</p>
+<ol>
+<li>镜像号码中如存在前置零，则忽略前置零。</li>
+<li>同一位同学可有多次兑换机会。</li>
+</ol>
+<p><strong>示例 1：</strong></p>
+<blockquote>
+<p>输入：<code>nums = [17,28,39,71]</code></p>
+<p>输出：<code>3</code></p>
+<p>解释：<br>共有三对同学，分别为 [17,28]、[17,39]、[28,39]。其中：<br>第一对同学：17 + 82 = 71 + 28；<br>第二对同学：17 + 93 = 71 + 39；<br>第三对同学：28 + 93 = 82 + 39。</p>
+</blockquote>
+<p><strong>示例 2：</strong></p>
+<blockquote>
+<p>输入：<code>nums = [71, 60]</code></p>
+<p>输出：<code>1</code></p>
+<p>解释：<br>共有一对同学，为 [71, 60]。<br>因为 71 + 6 = 17 + 60，此处 60 的镜像号码为 6，前导零被忽略。</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= nums.length &lt;= 10^6</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 10^9</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-hours-of-training-to-win-a-competition/">https://leetcode.cn/problems/minimum-hours-of-training-to-win-a-competition/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>贪心算法
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>简单的贪心算法，每次遇到不足时，则进行增加刚好比当前的元素的能量和经验大 $1$ 即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示数组的长度。</li>
+<li>空间复杂度：$O(1)$。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minNumberOfHours</span><span class="params">(<span class="type">int</span> initialEnergy, <span class="type">int</span> initialExperience, vector&lt;<span class="type">int</span>&gt;&amp; energy, vector&lt;<span class="type">int</span>&gt;&amp; experience)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = energy.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (energy[i] &gt;= initialEnergy) &#123;</span><br><span class="line">                <span class="type">int</span> add = energy[i] - initialEnergy + <span class="number">1</span>;</span><br><span class="line">                initialEnergy += add;</span><br><span class="line">                tot += add;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (experience[i] &gt;= initialExperience) &#123;</span><br><span class="line">                <span class="type">int</span> add = experience[i] - initialExperience + <span class="number">1</span>;</span><br><span class="line">                initialExperience += add;</span><br><span class="line">                tot += add;</span><br><span class="line">            &#125;</span><br><span class="line">            initialEnergy -= energy[i];</span><br><span class="line">            initialExperience += experience[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> tot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2384-最大回文数字"><a href="#2384-最大回文数字" class="headerlink" title="2384. 最大回文数字"></a>2384. 最大回文数字</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一个仅由数字（<code>0 - 9</code>）组成的字符串 <code>num</code> 。</p>
+<p>请你找出能够使用 <code>num</code> 中数字形成的 <strong>最大回文</strong> 整数，并以字符串形式返回。该整数不含 <strong>前导零</strong> 。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>你 <strong>无需</strong> 使用 <code>num</code> 中的所有数字，但你必须使用 <strong>至少</strong> 一个数字。</li>
+<li>数字可以重新排序。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：num = &quot;444947137&quot;</span><br><span class="line">输出：&quot;7449447&quot;</span><br><span class="line">解释：</span><br><span class="line">从 &quot;444947137&quot; 中选用数字 &quot;4449477&quot;，可以形成回文整数 &quot;7449447&quot; 。</span><br><span class="line">可以证明 &quot;7449447&quot; 是能够形成的最大回文整数。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：num = &quot;00009&quot;</span><br><span class="line">输出：&quot;9&quot;</span><br><span class="line">解释：</span><br><span class="line">可以证明 &quot;9&quot; 能够形成的最大回文整数。</span><br><span class="line">注意返回的整数不应含前导零。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= num.length &lt;= 105</code></li>
+<li><code>num</code> 由数字（<code>0 - 9</code>）组成</li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-307/problems/largest-palindromic-number/">https://leetcode.cn/contest/weekly-contest-307/problems/largest-palindromic-number/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>贪心法
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>简单的贪心法即可，回文数分为左右两部分，我们贪心的选择左边的最大部分即可，按照最大的数字尽可能的往左半边放置的原则，优先从 $9$ 开始进行选择直到 $1$ 为止。右边的回文部分则是左边的镜像。此时需要注意的时我们还需要选择回文数的中间那个数字也是按照贪心的原则去选择即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n + |\Sigma|)$，$n$ 表示字符串的长度，$|\Sigma|$ 表示字符集。</li>
+<li>空间复杂度：时间复杂度为 $O(n)$，$n$ 表示字符串的长度。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">largestPalindromic</span><span class="params">(string num)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">        string ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> c : num) &#123;</span><br><span class="line">            cnt[c - <span class="string">&#x27;0&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        string prefix;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">9</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span>(cnt[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="type">int</span> tot = cnt[i] / <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; tot; j++) &#123;</span><br><span class="line">                    prefix.<span class="built_in">push_back</span>(i + <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                cnt[i] = cnt[i] % <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        string suffix = prefix;</span><br><span class="line">        <span class="built_in">reverse</span>(suffix.<span class="built_in">begin</span>(), suffix.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">9</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span>(cnt[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="type">char</span> c = i + <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                <span class="keyword">if</span>(prefix.<span class="built_in">size</span>() &gt; <span class="number">0</span> &amp;&amp; prefix[<span class="number">0</span>] != <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> prefix + <span class="built_in">string</span>(<span class="number">1</span>, c) + suffix;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="built_in">string</span>(<span class="number">1</span>, c);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (prefix.<span class="built_in">size</span>() &gt; <span class="number">0</span> &amp;&amp; prefix[<span class="number">0</span>] != <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> prefix + suffix;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;0&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2385-感染二叉树需要的总时间"><a href="#2385-感染二叉树需要的总时间" class="headerlink" title="2385. 感染二叉树需要的总时间"></a>2385. 感染二叉树需要的总时间</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你一棵二叉树的根节点 <code>root</code> ，二叉树中节点的值 <strong>互不相同</strong> 。另给你一个整数 <code>start</code> 。在第 <code>0</code> 分钟，<strong>感染</strong> 将会从值为 <code>start</code> 的节点开始爆发。</p>
+<p>每分钟，如果节点满足以下全部条件，就会被感染：</p>
+<ul>
+<li>节点此前还没有感染。</li>
+<li>节点与一个已感染节点相邻。</li>
+</ul>
+<p>返回感染整棵树需要的分钟数<em>。</em></p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/06/25/image-20220625231744-1.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [1,5,3,null,4,10,6,9,2], start = 3</span><br><span class="line">输出：4</span><br><span class="line">解释：节点按以下过程被感染：</span><br><span class="line">- 第 0 分钟：节点 3</span><br><span class="line">- 第 1 分钟：节点 1、10、6</span><br><span class="line">- 第 2 分钟：节点5</span><br><span class="line">- 第 3 分钟：节点 4</span><br><span class="line">- 第 4 分钟：节点 9 和 2</span><br><span class="line">感染整棵树需要 4 分钟，所以返回 4 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/06/25/image-20220625231812-2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [1], start = 1</span><br><span class="line">输出：0</span><br><span class="line">解释：第 0 分钟，树中唯一一个节点处于感染状态，返回 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>树中节点的数目在范围 <code>[1, 105]</code> 内</li>
+<li><code>1 &lt;= Node.val &lt;= 105</code></li>
+<li>每个节点的值 <strong>互不相同</strong></li>
+<li>树中必定存在值为 <code>start</code> 的节点</li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/amount-of-time-for-binary-tree-to-be-infected/">https://leetcode.cn/problems/amount-of-time-for-binary-tree-to-be-infected/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>BFS
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目本身比较简单了，最大的问题是我们无法从孩子节点访问父节点，此时我们只需要重新建树，使得孩子节点可以访问父亲节点即可，那么就转换为普通题目了，按照标准的 $BFS$ 模板遍历即可。</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n)$，$n$ 为节点数目。</li>
+<li>空间复杂度：空间复杂度为 $O(n)$，$n$ 为节点数目。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">MyTreeNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    MyTreeNode *left;</span><br><span class="line">    MyTreeNode *right;</span><br><span class="line">    MyTreeNode *parent;</span><br><span class="line">    <span class="built_in">MyTreeNode</span>() : <span class="built_in">val</span>(<span class="number">0</span>), <span class="built_in">left</span>(<span class="literal">nullptr</span>), <span class="built_in">right</span>(<span class="literal">nullptr</span>), <span class="built_in">parent</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">MyTreeNode</span>(<span class="type">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(<span class="literal">nullptr</span>), <span class="built_in">right</span>(<span class="literal">nullptr</span>), <span class="built_in">parent</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">MyTreeNode</span>(<span class="type">int</span> x, MyTreeNode *left, MyTreeNode *right, MyTreeNode *parent) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(left), <span class="built_in">right</span>(right),<span class="built_in">parent</span>(parent) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">amountOfTime</span><span class="params">(TreeNode* root, <span class="type">int</span> start)</span> </span>&#123;</span><br><span class="line">        MyTreeNode *myRoot = <span class="keyword">new</span> <span class="built_in">MyTreeNode</span>();</span><br><span class="line">        MyTreeNode *target = <span class="literal">nullptr</span>;</span><br><span class="line">        queue&lt;pair&lt;TreeNode *, MyTreeNode *&gt;&gt; qu;</span><br><span class="line">        qu.<span class="built_in">emplace</span>(root, myRoot);</span><br><span class="line">        <span class="keyword">while</span>(!qu.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">auto</span> [node, myNode] = qu.<span class="built_in">front</span>();</span><br><span class="line">            qu.<span class="built_in">pop</span>();</span><br><span class="line">            myNode-&gt;val = node-&gt;val;</span><br><span class="line">            <span class="keyword">if</span>(myNode-&gt;val == start) &#123;</span><br><span class="line">                target = myNode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left) &#123;</span><br><span class="line">                myNode-&gt;left = <span class="keyword">new</span> <span class="built_in">MyTreeNode</span>();</span><br><span class="line">                myNode-&gt;left-&gt;val = node-&gt;left-&gt;val;</span><br><span class="line">                myNode-&gt;left-&gt;parent = myNode;</span><br><span class="line">                qu.<span class="built_in">emplace</span>(node-&gt;left, myNode-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right) &#123;</span><br><span class="line">                myNode-&gt;right = <span class="keyword">new</span> <span class="built_in">MyTreeNode</span>();</span><br><span class="line">                myNode-&gt;right-&gt;val = node-&gt;right-&gt;val;</span><br><span class="line">                myNode-&gt;right-&gt;parent = myNode;</span><br><span class="line">                qu.<span class="built_in">emplace</span>(node-&gt;right, myNode-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        queue&lt;MyTreeNode *&gt; Q;</span><br><span class="line">        unordered_set&lt;<span class="type">int</span>&gt; visit;</span><br><span class="line">        Q.<span class="built_in">emplace</span>(target);</span><br><span class="line">        visit.<span class="built_in">emplace</span>(target-&gt;val);</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(!Q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="type">int</span> sz = Q.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">                <span class="keyword">auto</span> curr = Q.<span class="built_in">front</span>();</span><br><span class="line">                Q.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span> (curr-&gt;left &amp;&amp; !visit.<span class="built_in">count</span>(curr-&gt;left-&gt;val)) &#123;</span><br><span class="line">                    visit.<span class="built_in">emplace</span>(curr-&gt;left-&gt;val);</span><br><span class="line">                    Q.<span class="built_in">emplace</span>(curr-&gt;left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (curr-&gt;right &amp;&amp; !visit.<span class="built_in">count</span>(curr-&gt;right-&gt;val)) &#123;</span><br><span class="line">                    visit.<span class="built_in">emplace</span>(curr-&gt;right-&gt;val);</span><br><span class="line">                    Q.<span class="built_in">emplace</span>(curr-&gt;right);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (curr-&gt;parent &amp;&amp; !visit.<span class="built_in">count</span>(curr-&gt;parent-&gt;val)) &#123;</span><br><span class="line">                    visit.<span class="built_in">emplace</span>(curr-&gt;parent-&gt;val);</span><br><span class="line">                    Q.<span class="built_in">emplace</span>(curr-&gt;parent);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2386-找出数组的第-K-大和"><a href="#2386-找出数组的第-K-大和" class="headerlink" title="2386. 找出数组的第 K 大和"></a>2386. 找出数组的第 K 大和</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>给你一个整数数组 <code>nums</code> 和一个 <strong>正</strong> 整数 <code>k</code> 。你可以选择数组的任一 <strong>子序列</strong> 并且对其全部元素求和。</p>
+<p>数组的 <strong>第 k 大和</strong> 定义为：可以获得的第 <code>k</code> 个 <strong>最大</strong> 子序列和（子序列和允许出现重复）</p>
+<p>返回数组的 <strong>第 k 大和</strong> 。</p>
+<p>子序列是一个可以由其他数组删除某些或不删除元素排生而来的数组，且派生过程不改变剩余元素的顺序。</p>
+<p><strong>注意：</strong>空子序列的和视作 <code>0</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,4,-2], k = 5</span><br><span class="line">输出：2</span><br><span class="line">解释：所有可能获得的子序列和列出如下，按递减顺序排列：</span><br><span class="line">- 6、4、4、2、2、0、0、-2</span><br><span class="line">数组的第 5 大和是 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,-2,3,4,-10,12], k = 16</span><br><span class="line">输出：10</span><br><span class="line">解释：数组的第 16 大和是 10 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == nums.length</code></li>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>1 &lt;= k &lt;= min(2000, 2n)</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/ubiquant2022/problems/I3Gm2h/">https://leetcode.cn/contest/ubiquant2022/problems/I3Gm2h/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><pre><code>堆
+</code></pre>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>这个题目确实比较难的题目，但是还是非常好且值得思考的题目。确实不是容易理解的一个题目。需要需要注意的是从数组 $[1,2,3,4,5]$ 中找到前 $k$ 项的子序列最小和来寻找思路：</li>
+</ol>
+<ul>
+<li>我们知道最小的序列肯定是 $[1]$, 此时 $[1]$ 之后我们的待选序列为$[1,2], [2]$，选择下一个元素后要么保留前一个元素，要么不保留前一个元素。这个是解题的关键思路。</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times \log n + k \times \log k)$，其中 $n$ 表示数组的长度。</li>
+<li>空间复杂度：$O(k)$。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><ul>
+<li>堆<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">kSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                sum += num;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                num = -num;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        priority_queue&lt;pair&lt;<span class="type">long</span> <span class="type">long</span>, <span class="type">int</span>&gt;&gt; pq;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        pq.<span class="built_in">emplace</span>(sum, <span class="number">0</span>);</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(k &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">auto</span> [curr, len] = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            ans = curr;</span><br><span class="line">            <span class="keyword">if</span> (len &lt; nums.<span class="built_in">size</span>()) &#123;</span><br><span class="line">                pq.<span class="built_in">emplace</span>(curr - nums[len], len + <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    pq.<span class="built_in">emplace</span>(curr - nums[len] + nums[len - <span class="number">1</span>], len + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            k--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#力扣周赛" >
+    <span class="tag-code">力扣周赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/29/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode  weekly contest 308
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/27/">
+        
+          九坤投资专场竞赛
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-weekly-contest-307"><span class="toc-nav-text">leetcode  weekly contest 307</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2383-%E8%B5%A2%E5%BE%97%E6%AF%94%E8%B5%9B%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%AE%AD%E7%BB%83%E6%97%B6%E9%95%BF"><span class="toc-nav-text">2383. 赢得比赛需要的最少训练时长</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2384-%E6%9C%80%E5%A4%A7%E5%9B%9E%E6%96%87%E6%95%B0%E5%AD%97"><span class="toc-nav-text">2384. 最大回文数字</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2385-%E6%84%9F%E6%9F%93%E4%BA%8C%E5%8F%89%E6%A0%91%E9%9C%80%E8%A6%81%E7%9A%84%E6%80%BB%E6%97%B6%E9%97%B4"><span class="toc-nav-text">2385. 感染二叉树需要的总时间</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-2"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2386-%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C"><span class="toc-nav-text">2386. 找出数组的第 K 大和</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E7%9B%AE-3"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link"><span class="toc-nav-text"></span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/11/01/力扣周赛题解/28/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2022 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

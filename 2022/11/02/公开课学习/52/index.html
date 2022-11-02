@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      【clickhouse】 clickhouse学习记录(一) | Mike Meng Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Mike Meng Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>【clickhouse】 clickhouse学习记录(一)</h2>
+  <p class="post-date">2022-11-02</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="clickhouse学习记录（一）"><a href="#clickhouse学习记录（一）" class="headerlink" title="clickhouse学习记录（一）"></a>clickhouse学习记录（一）</h1><p>最近因为工作原因,开始尝试学习<code>clickhouse</code>数据库, 将会逐渐将<code>clickhouse</code>的一些学习总结记录下来, 作为自己的学习历程.</p>
+<h2 id="clickhouse的简介"><a href="#clickhouse的简介" class="headerlink" title="clickhouse的简介"></a>clickhouse的简介</h2><p><strong>项目起源</strong><br><code>clickhouse</code>是由俄罗斯的一家互联网公司 <code>Yandex</code> 开发的,  <code>Yandex</code> 主要从事互联网分析，<code>Yandex</code> 使用 <code>clickhouse</code> 从事海量的互联网的流量分析，<code>clickhouse</code> 作为 <code>Yandex</code> 公司内部使用的项目, 后来走向开源． <code>clickhouse</code> 作为 <code>OLAP</code> 领域的流行, 主要得益于其出色的性能.<br>数据库领域有两个概念:</p>
+<ul>
+<li><p><code>OLTP</code>: on-line transaction processing翻译为联机事务处理, <code>OLTP</code>是主要从事事务处理, 包括数据库常见的增删改.<code>OLTP</code>主要用来记录某类业务事件的发生，如购买行为，当行为产生后，系统会记录是谁在何时何地做了何事，这样的一行（或多行）数据会以增删改的方式在数据库中进行数据的更新处理操作，要求实时性高、稳定性强、确保数据及时更新成功，像公司常见的业务系统如<code>ERP</code>，<code>CRM</code>，<code>OA</code>等系统都属于<code>OLTP</code>.</p>
+</li>
+<li><p><code>OLAP</code>: On-Line Analytical Processing翻译为联机分析处理, <code>OLAP</code>是主要侧重于数据分析和查询, 主要侧重的功能是数据库的查询.当数据积累到一定的程度，我们需要对过去发生的事情做一个总结分析时，就需要把过去一段时间内产生的数据拿出来进行统计分析，从中获取我们想要的信息，为公司做决策提供支持，这时候就是在做<code>OLAP</code>了。</p>
+</li>
+<li><p>数据仓库: 因为<code>OLTP</code>所产生的业务数据分散在不同的业务系统中，而<code>OLAP</code>往往需要将不同的业务数据集中到一起进行统一综合的分析，这时候就需要根据业务分析需求做对应的数据清洗后存储在数据仓库中，然后由数据仓库来统一提供<code>OLAP</code>分析。所以我们常说<code>OLTP</code>是数据库的应用，<code>OLAP</code>是数据仓库的应用。<br>详细可以参考知乎的<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/24110442/answer/851671343">回答</a></p>
+</li>
+</ul>
+<p><strong>clickhouse的特性</strong><br><code>clickhouse</code> 采用列式存储, 所有的数据都是以列为单位进行组织和存储的, <code>clickhouse</code>的最大的特色就是以性能著称, 官方的文档也给出了相关的<a target="_blank" rel="noopener" href="https://clickhouse.com/benchmark/dbms/">性能对比</a>.<code>clickhouse</code>的特性:</p>
+<ul>
+<li>以列为存储, 同一列的数据格式统一, 方便使用数据压缩算法. 目前<code>clickhouse</code> 使用的<code>LZ4</code> 压缩算法. 数据压缩可以带来两个好处, 数据存储的空间较小从而读写磁盘花费时间较短, 网络传输中也会较少缓存时间.</li>
+<li><code>ClickHouse</code>允许在运行时创建表和数据库、加载数据和运行查询，而无需重新配置或重启服务。具有完成的数据库管理系统的功能.</li>
+<li>多核心并行处理, 充分利用<code>CPU</code>的资源, 设计时针对具体的硬件进行充分优化, 从而提升性能. 看到字符串搜索中竟然用到了<code>intel hyperscan</code>, 这个是<code>dpi</code>设备里面常用的字符串搜索算法. 支持<code>CPU</code> 的<code>SIMD</code>指令, 可以向量执行数据的处理和读取.</li>
+<li>支持多服务器分布式处理, 支持分布式查询, 可以进行负载均衡.</li>
+<li>实时的数据更新, 为了使查询能够快速在主键中进行范围查找，数据总是以增量的方式有序的存储在<code>MergeTree</code>中。因此，数据可以持续不断地高效的写入到表中，并且写入的过程中不会存在任何加锁的行为。</li>
+<li><code>click house</code>中的很多优化技巧都值得仔细学习和琢磨. </li>
+</ul>
+<h3 id="clickhouse的不足之处"><a href="#clickhouse的不足之处" class="headerlink" title="clickhouse的不足之处"></a>clickhouse的不足之处</h3><p><code>clickhouse</code> 主要用于数据分析, 也有许多缺点.</p>
+<ul>
+<li>不支持事务<code>ACID</code>。</li>
+<li>缺少高频率，低延迟的修改或删除已存在数据的能力,以行进行更新数据的话性能较差.。</li>
+<li>稀疏索引使得<code>ClickHouse</code>不适合通过其键检索单行的点查询。<h3 id="clickhouse的发展现状"><a href="#clickhouse的发展现状" class="headerlink" title="clickhouse的发展现状"></a>clickhouse的发展现状</h3><code>click</code> 以其出色的性能, 目前在很多很多<code>BI</code>领域得到应用, 还有许多广告流量，<code>web</code>分析, 电子商务等领域. 以下为常见的几个学习的资源库:</li>
+<li><code>clickhouse</code>文档: <a target="_blank" rel="noopener" href="https://clickhouse.com/docs/zh/">https://clickhouse.com/docs/zh/</a></li>
+<li><code>clickhouse</code>repo: <a target="_blank" rel="noopener" href="https://github.com/ClickHouse/ClickHouse">https://github.com/ClickHouse/ClickHouse</a></li>
+<li><code>clickhouse</code>中文社区: <a target="_blank" rel="noopener" href="http://www.clickhouse.com.cn/">http://www.clickhouse.com.cn/</a></li>
+<li><code>clickhouse</code>官方:<a target="_blank" rel="noopener" href="https://clickhouse.com/">https://clickhouse.com/</a></li>
+</ul>
+<h2 id="clickhouse的安装部署"><a href="#clickhouse的安装部署" class="headerlink" title="clickhouse的安装部署"></a>clickhouse的安装部署</h2><ul>
+<li><p><code>server</code>安装:官方提供的<code>guide</code>有许多种安装方式, 强烈推荐使用<code>apt-get</code>或者<code>yum</code>这种标准安装包的形式来安装,会自动更新和下载各种库, 自己可以下载源码,然后编译到本地进行安装, 机器性能太差, 编译实践太长, 中间容易经历各种坑,新手强烈不推荐. 安装过程踩过的坑是, 直接下载官方提供的编译好的库和程序, <code>windows</code>自带的<code>wsl</code>安装后反正各种莫名奇妙的问题，各种莫名奇妙的<code>abort</code>退出, 也找不到问题原因所在, 反而远程的<code>VPS</code>安装一次就顺利.</p>
+</li>
+<li><p><code>config</code> 文件说明: 默认的<code>config</code> 文件会存放在<code>/etc/clickhouse-server/config.xml</code>目录下, 安装完成之后需要进行修改, 当然默认的<code>clickhouse server</code> 只监听在本地<code>127.0.0.1</code>, 需要进行修改使得它可以接受所有外部的主机发起的<code>tcp</code>请求. 高级的配置文件参数定义可以参考官方的文档:<a target="_blank" rel="noopener" href="https://clickhouse.com/docs/zh/operations/configuration-files/">配置文件</a>. </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--允许所有的ipv6的请求--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listen_host</span>&gt;</span>::<span class="tag">&lt;/<span class="name">listen_host</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!--允许所有的ipv4的请求--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listen_host</span>&gt;</span>0.0.0.0<span class="tag">&lt;/<span class="name">listen_host</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><code>server</code>启动与测试: 直接执行<code>clickhouse-server</code>时, 会提示要求创建<code>clickhouse:clickhouse</code>账户, 建议直接使用脚本启动服务，<code>root</code>账户启动即可，需要修改配置文件，默认要求使用<code>clickhouse</code>的用户名.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service clickhouse-server start</span><br></pre></td></tr></table></figure>
+<p>查看进程：<br><img src="https://s2.loli.net/2022/01/18/iqTxDBH9Jw4okfU.png"><br>查看端口：<br><img src="https://s2.loli.net/2022/01/18/Zq2fsLAWYcuOQiH.png"></p>
+</li>
+<li><p><code>vps firewall</code>设置: 直接将<code>centos</code>的防火墙关掉, 由于是远程<code>VPS</code>需要设置端口号, 允许<code>clickhouse</code>服务通行:<br><img src="https://s2.loli.net/2022/01/18/IvoVqjZEpU69GMC.png"></p>
+</li>
+</ul>
+<h2 id="clickhouse的使用测试"><a href="#clickhouse的使用测试" class="headerlink" title="clickhouse的使用测试"></a>clickhouse的使用测试</h2><p>我们可以通过<code>clickhouse</code>自带的<code>clickhouse-client</code>程序来本地或者远程访问<code>clickhouse server</code>, 尝试以下数据库的基本操作:</p>
+<ul>
+<li>连接数据库<code>server</code>: <code>clickhouse-client</code>默认就会连接本地的<code>clickhouse</code>的数据库<code>server</code>, 我们尝试连接远程的<code>vps</code>, <code>clickhouse-client --host=x.x.x.x</code>即可连接指定<code>ip</code>的数据库。<code>clickhouse-client --query=&#39;xx&#39;</code>即可执行<code>query</code>中<code>sql</code>语句.</li>
+<li>创建数据库: 创建<code>test</code>数据库, <code>clickhouse-client --query=&#39;CREATE DATABASE IF NOT EXISTS test&#39;</code>.</li>
+<li>创建表项: 创建<code>numbers</code>表项, <code>clickhouse-client --query=&#39;CREATE TABLE IF NOT EXISTS test.numbers (id UInt64, name String) ENGINE = Memory&#39;</code>.</li>
+<li>插入表项: 插入<code>numbers</code>行, <code>clickhouse-client --query=&#39;INSERT INTO test.numbers VALUES (100, &#39;mengmingliang&#39;)&#39;</code>.</li>
+<li>删除表项: 删除<code>numbers</code>行, <code>clickhouse-client --query=&#39;INSERT INTO test.numbers VALUES (100, &#39;mengmingliang&#39;)&#39;</code>.</li>
+<li>查询表项: 查询基本的表，<code>clickhouse-client --query=&#39;SELECT id, name FROM test.numbers&#39;</code>;</li>
+<li>删除数据表项: 删除<code>numbers</code>表, <code>DROP TABLE test.numbers</code>.</li>
+</ul>
+<h2 id="clickhouse-client的连接接口测试"><a href="#clickhouse-client的连接接口测试" class="headerlink" title="clickhouse client的连接接口测试"></a>clickhouse client的连接接口测试</h2><p><code>clickhouse</code>提供了多种通用的接口用来连接和操作数据, 提供了<code>http</code>和<code>tcp</code>的两种访问接口形式，<code>http</code>的访问端口为<code>8123</code>, <code>tcp</code>的端口为<code>9000</code>, 我们可以在浏览器中输入<code>http://localhost:8123</code>就会打印出<code>ok</code>, 浏览器中输入<code>http://localhost:8123/?query=SELECT%201</code>就会返回查询结果. <code>http</code>的接口主要用于<code>Java</code>的开发,我们可以使用标准的<code>jdbc</code>来访问数据库, HTTP接口比原生接口受到更多的限制，但它具有更好的兼容性.<code>tcp</code>端口主要用于服务器间的通讯查询和管理，同时也支持数据库的查询，比<code>http</code>的接口会更加灵活使用, 官方目前只提供了标准的<code>C++</code>接口, 这种接口目前没有标准, 但是我能想到的是很容易对这些接口来进行扩展, 从而来对<code>clickhouse</code>增加新的功能和特性,这点确实不错, 为程序的灵活性做了更多的扩展.</p>
+<ul>
+<li>通过<code>C++</code>接口测试: 我们可以下载官方提供的标准的<code>C++</code>的接口<a target="_blank" rel="noopener" href="https://github.com/ClickHouse/clickhouse-cpp">CPP</a>, 下载之后进行编译, 需要注意的是由于<code>clickhouse</code>是用<code>C++17</code>的标准编写的, 需要升级本地的<code>gcc</code>程序支持<code>C++ 17</code>.编译完成之后发现支持静态链接库, 手动写个简单<code>makefile</code>, 测试跑了一遍, 还算比较正常. 下一步需要走读和分析一下<code>clinet</code>的代码, 熟悉一下原理, 尝试一下后面是否有扩展的可能性, 示例代码放在<a target="_blank" rel="noopener" href="https://github.com/mike-box/datdabasestudy/tree/main/clickhouse/proj">github</a>.</li>
+<li>通过<code>Python</code>接口测试: <code>python</code>的接口不是官方团队提供是, 是由第三方提供的代码, 目前尝试了一下<code>clickhouse-driver</code>这个第三方的库, 很多功能都没有深入尝试, 后面有时间时需要进行深入的探索.</li>
+<li>通过<code>DBeaver</code>接口测试: 下载尝试了一下通过可户端去连接<code>clickhouse</code>, 用<code>Gui</code>的客户端确实方便很多, 可以通过标准的<code>jdbc</code>接口去连接数据库, 需要下载<code>clickhouse</code>的驱动,我们可以很方便的访问数据库.可以直接执行标准的<code>sql</code>语句. 可以直接通过接口导入和导出数据, 确实比用纯粹的程序实现要方便许多.<br><img src="https://s2.loli.net/2022/01/18/hjsSX97RMxn6tHK.png"></li>
+</ul>
+<h2 id="clickhouse-client的高级特性尝试"><a href="#clickhouse-client的高级特性尝试" class="headerlink" title="clickhouse client的高级特性尝试"></a>clickhouse client的高级特性尝试</h2><ol>
+<li>创建数据库: <code>CREATE DATABASE IF NOT EXISTS db_name [ENGINE = engine]</code><ul>
+<li><code>Ordinary</code>：默认引擎，在绝大多数情况下我们都会使用默认引擎，使用时无须刻意声明。在此数据库下可以使用任意类型的表引擎。</li>
+<li><code>Dictionary</code>：字典引擎，此类数据库会自动为所有数据字典创建它们的数据表，关于数据字典的详细介绍会在第5章展开。</li>
+<li><code>Memory</code>：内存引擎，用于存放临时数据。此类数据库下的数据表只会停留在内存中，不会涉及任何磁盘操作，当服务重启后数据会被清除。</li>
+<li><code>Lazy</code>：日志引擎，此类数据库下只能使用<code>Log</code>系列的表引擎，关于<code>Log</code>表引擎的详细介绍会在第8章展开。</li>
+<li><code>MySQL</code>：<code>MySQL</code>引擎，此类数据库下会自动拉取远端<code>MySQL</code>中的数据，并为它们创建<code>MySQL</code>表引擎的数据表</li>
+</ul>
+</li>
+</ol>
+<h2 id="进一步打算"><a href="#进一步打算" class="headerlink" title="进一步打算"></a>进一步打算</h2><ul>
+<li><ol>
+<li>学习<code>SQL</code>的高级语法基础知识以及数据库的高级一些理论知识，进行理论基础知识补充。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li><code>clickhouse</code>中文社区中找一些经典的入门资料进行学习，学习相关书籍<a target="_blank" rel="noopener" href="https://read.douban.com/reader/ebook/149635956/">clickhouse原理解析与应用实践</a>。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>熟悉和掌握实际业务中常用的<code>clickhouse</code>的高级特性和功能，并掌握背后的相关原理。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>相关业务知识和语言技能的掌握，熟悉相关的<code>JAVA/C++</code> 关于操作数据库的接口<code>api</code>函数的使用。</li>
+</ol>
+</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mike-box.github.io/">http://mike-box.github.io/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#数据库" >
+    <span class="tag-code">数据库</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/11/02/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/53/">
+        <span class="nav-arrow">← </span>
+        
+          【MIT6.S081】 lab8 lock
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2022/11/02/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/63/">
+        
+          【MIT6.S081】 lab3 pagetable
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#clickhouse%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89"><span class="toc-nav-text">clickhouse学习记录（一）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#clickhouse%E7%9A%84%E7%AE%80%E4%BB%8B"><span class="toc-nav-text">clickhouse的简介</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#clickhouse%E7%9A%84%E4%B8%8D%E8%B6%B3%E4%B9%8B%E5%A4%84"><span class="toc-nav-text">clickhouse的不足之处</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#clickhouse%E7%9A%84%E5%8F%91%E5%B1%95%E7%8E%B0%E7%8A%B6"><span class="toc-nav-text">clickhouse的发展现状</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#clickhouse%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="toc-nav-text">clickhouse的安装部署</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#clickhouse%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B5%8B%E8%AF%95"><span class="toc-nav-text">clickhouse的使用测试</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#clickhouse-client%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95"><span class="toc-nav-text">clickhouse client的连接接口测试</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#clickhouse-client%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%B0%9D%E8%AF%95"><span class="toc-nav-text">clickhouse client的高级特性尝试</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E6%89%93%E7%AE%97"><span class="toc-nav-text">进一步打算</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link"><span class="toc-nav-text"></span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/11/02/公开课学习/52/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2022 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

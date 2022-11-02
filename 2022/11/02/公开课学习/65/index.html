@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      【MIT6.S081】 lab2 systemcalls | Mike Meng Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Mike Meng Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>【MIT6.S081】 lab2 systemcalls</h2>
+  <p class="post-date">2022-11-02</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="systemcalls"><a href="#systemcalls" class="headerlink" title="systemcalls"></a>systemcalls</h1><p>最近工作太忙了，好久没有时间更新学习进度了，本周还是抽时间把<code>lab2</code>的内容作完了，<code>lab2</code>的难度感觉比<code>lab1</code>小多了，主要是为系统添加两个<code>system call</code>，总体来说难度偏低。</p>
+<ul>
+<li>首先我们可以观察到，所有的系统调用函数都存放在<code>usys.S</code>中，用<code>risc-v</code>的指令完成。在用户空间中调用系统调用函数<code>func</code>，实际内核中对应的就是系统调用对应的<code>id</code>写入到寄存器<code>a7</code>，然后调用<code>ecall</code>指令，即在内核中可调用对应的函数。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta"># generated by usys.pl - do not edit</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/syscall.h&quot;</span></span></span><br><span class="line">.global fork</span><br><span class="line">fork:</span><br><span class="line"> li a7, SYS_fork</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global exit</span><br><span class="line">exit:</span><br><span class="line"> li a7, SYS_exit</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global wait</span><br><span class="line">wait:</span><br><span class="line"> li a7, SYS_wait</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global pipe</span><br><span class="line">pipe:</span><br><span class="line"> li a7, SYS_pipe</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global read</span><br><span class="line">read:</span><br><span class="line"> li a7, SYS_read</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global write</span><br><span class="line">write:</span><br><span class="line"> li a7, SYS_write</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global close</span><br><span class="line">close:</span><br><span class="line"> li a7, SYS_close</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global kill</span><br><span class="line">kill:</span><br><span class="line"> li a7, SYS_kill</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global exec</span><br><span class="line">exec:</span><br><span class="line"> li a7, SYS_exec</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global open</span><br><span class="line">open:</span><br><span class="line"> li a7, SYS_open</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global mknod</span><br><span class="line">mknod:</span><br><span class="line"> li a7, SYS_mknod</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global unlink</span><br><span class="line">unlink:</span><br><span class="line"> li a7, SYS_unlink</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global fstat</span><br><span class="line">fstat:</span><br><span class="line"> li a7, SYS_fstat</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global link</span><br><span class="line">link:</span><br><span class="line"> li a7, SYS_link</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global mkdir</span><br><span class="line">mkdir:</span><br><span class="line"> li a7, SYS_mkdir</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global chdir</span><br><span class="line">chdir:</span><br><span class="line"> li a7, SYS_chdir</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global dup</span><br><span class="line">dup:</span><br><span class="line"> li a7, SYS_dup</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global getpid</span><br><span class="line">getpid:</span><br><span class="line"> li a7, SYS_getpid</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global sbrk</span><br><span class="line">sbrk:</span><br><span class="line"> li a7, SYS_sbrk</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global sleep</span><br><span class="line">sleep:</span><br><span class="line"> li a7, SYS_sleep</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global uptime</span><br><span class="line">uptime:</span><br><span class="line"> li a7, SYS_uptime</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global trace</span><br><span class="line">trace:</span><br><span class="line"> li a7, SYS_trace</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br><span class="line">.global sysinfo</span><br><span class="line">sysinfo:</span><br><span class="line"> li a7, SYS_sysinfo</span><br><span class="line"> ecall</span><br><span class="line"> ret</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// System call numbers</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_fork    1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_exit    2</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_wait    3</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_pipe    4</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_read    5</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_kill    6</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_exec    7</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_fstat   8</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_chdir   9</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_dup    10</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_getpid 11</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_sbrk   12</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_sleep  13</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_uptime 14</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_open   15</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_write  16</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_mknod  17</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_unlink 18</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_link   19</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_mkdir  20</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_close  21</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_trace  22</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_sysinfo 23</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>在内核中我们可以看到实际的系统调用内核中执行如下:<br>从<code>a7</code>寄存器中取出系统调用号，然后执行对应的内核中的函数,系统调用函数可能会从用户空间中取出传入的参数，然后将执行的返回结果再写回到用户空间中。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span></span></span><br><span class="line"><span class="function"><span class="title">syscall</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> num;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">proc</span> *p = <span class="built_in">myproc</span>();</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// system call number</span></span><br><span class="line">  num = p-&gt;trapframe-&gt;a7;</span><br><span class="line">  <span class="keyword">if</span>(num &gt; <span class="number">0</span> &amp;&amp; num &lt; <span class="built_in">NELEM</span>(syscalls) &amp;&amp; syscalls[num]) &#123;</span><br><span class="line">    p-&gt;trapframe-&gt;a0 = syscalls[num]();</span><br><span class="line">    <span class="keyword">if</span>(p-&gt;tracemask &amp; (<span class="number">1</span>&lt;&lt;num))&#123;</span><br><span class="line">        <span class="comment">// printf(&quot;sys call num = %d\n&quot;,num);</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d: syscall %s -&gt; %d\n&quot;</span>,p-&gt;pid,syscallname[num],p-&gt;trapframe-&gt;a0);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %s: unknown sys call %d\n&quot;</span>,</span><br><span class="line">            p-&gt;pid, p-&gt;name, num);</span><br><span class="line">    p-&gt;trapframe-&gt;a0 = <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>如果我们需要添加系统调用，则首先添加系统调用的编号，然后在内核中添加系统调用编号对应的回调函数即可。</li>
+<li>测试结果：<br><img src="https://i.loli.net/2021/07/02/WGBDQaPhdVY54Nk.png"></li>
+</ul>
+<h2 id="1-trace"><a href="#1-trace" class="headerlink" title="1. trace"></a>1. trace</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">In this assignment you will add a system call tracing feature that may help you when debugging later labs. You’ll create a new trace system call that will control tracing. It should take one argument, an integer “mask”, whose bits specify which system calls to trace. For example, to trace the fork system call, a program calls trace(1 &lt;&lt; SYS_fork), where SYS_fork is a syscall number from kernel/syscall.h. You have to modify the xv6 kernel to print out a line when each system call is about to return, if the system call’s number is set in the mask. The line should contain the process id, the name of the system call and the return value; you don’t need to print the system call arguments. The trace system call should enable tracing for the process that calls it and any children that it subsequently forks, but should not affect other processes.</span><br></pre></td></tr></table></figure>
+<p>实现系统调用的<code>trace</code>功能，即打印出进程中每一个在<code>mask</code>掩码中的系统调用，并且子进程会继承父进程的<code>mask</code>.</p>
+<ul>
+<li>代码实现本身不是特别难，主要是需要弄清楚系统的调用的过程。我们首先添加系统调用编号<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_close  21</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_trace  22</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_sysinfo 23</span></span><br></pre></td></tr></table></figure>
+在用户程序中添加如下:<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">entry</span>(<span class="string">&quot;sleep&quot;</span>);</span><br><span class="line"><span class="built_in">entry</span>(<span class="string">&quot;uptime&quot;</span>);</span><br><span class="line"><span class="built_in">entry</span>(<span class="string">&quot;trace&quot;</span>);</span><br><span class="line"><span class="built_in">entry</span>(<span class="string">&quot;sysinfo&quot;</span>);</span><br></pre></td></tr></table></figure>
+在进程的结构体中增加<code>tracemask</code>变量，在<code>systemcall</code>函数中需要修改，每次进行系统调用时，则将系统调用号与掩码进行比对，是否存在于掩码的状态中，如果掩码存在，则此时我们打印出系统调用的具体信息。本身不是特别难。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span></span></span><br><span class="line"><span class="function"><span class="title">syscall</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> num;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">proc</span> *p = <span class="built_in">myproc</span>();</span><br><span class="line"></span><br><span class="line">  num = p-&gt;trapframe-&gt;a7;</span><br><span class="line">  <span class="keyword">if</span>(num &gt; <span class="number">0</span> &amp;&amp; num &lt; <span class="built_in">NELEM</span>(syscalls) &amp;&amp; syscalls[num]) &#123;</span><br><span class="line">    p-&gt;trapframe-&gt;a0 = syscalls[num]();</span><br><span class="line">    <span class="keyword">if</span>(p-&gt;tracemask &amp; (<span class="number">1</span>&lt;&lt;num))&#123;</span><br><span class="line">        <span class="comment">// printf(&quot;sys call num = %d\n&quot;,num);</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d: syscall %s -&gt; %d\n&quot;</span>,p-&gt;pid,syscallname[num],p-&gt;trapframe-&gt;a0);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %s: unknown sys call %d\n&quot;</span>,</span><br><span class="line">            p-&gt;pid, p-&gt;name, num);</span><br><span class="line">    p-&gt;trapframe-&gt;a0 = <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// system trace call, using trace mask to print system call information</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">trace</span><span class="params">(<span class="type">int</span> mask)</span></span>&#123;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">proc</span> *p = <span class="built_in">myproc</span>();</span><br><span class="line">  p-&gt;tracemask = mask;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-sysinfo"><a href="#2-sysinfo" class="headerlink" title="2. sysinfo"></a>2. sysinfo</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">In this assignment you will add a system call, sysinfo, that collects information about the running system. The system call takes one argument: a pointer to a struct sysinfo (see kernel/sysinfo.h). The kernel should fill out the fields of this struct: the freemem field should be set to the number of bytes of free memory, and the nproc field should be set to the number of processes whose state is not UNUSED. We provide a test program sysinfotest; you pass this assignment if it prints “sysinfotest: OK”.</span><br></pre></td></tr></table></figure>
+完成<code>sysinfo</code>系统调用，主要时获取当前<code>heap</code>中的<code>free</code>的总空间，同时获取当前系统中存在多少非空闲的进程个数。这个也比较简单，难点在于学会将内核空间的数据拷贝到用户空间。</li>
+<li>系统调用添加的流程跟<code>trace</code>是一样的，稍微复杂点即是需要在<code>kalloc.c</code>中添加对<code>free memory</code>的统计，以及在<code>proc</code>中添加对空闲进程的统计。</li>
+<li><code>kalloc</code>中我们可以看到所有的<code>memory free</code>是用<code>list</code>表示的，每一块空闲的内存大小为<code>4096 byte</code>，我们只需要遍历<code>freelist</code>统计块的数目即可。</li>
+<li><code>proc</code>中我们可以看到每一个<code>process</code>都有一个状态，我们只需要检测<code>process</code>的状态即可，<code>process</code>列表用数组表示，我们只需要遍历数组即可。</li>
+<li>关键的一点，获取参数以后，需要将所有的参数信息从内核空间拷贝到用户空间即可，这时需要用到<code>copyout</code>函数.<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">sysinfo</span><span class="params">(uint64 addr)</span></span>&#123;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">proc</span> *p = <span class="built_in">myproc</span>();</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">sysinfo</span> st;</span><br><span class="line"></span><br><span class="line">  st.freemem = <span class="built_in">totalfree</span>();</span><br><span class="line">  st.nproc   = <span class="built_in">nproc</span>();</span><br><span class="line">  <span class="comment">// printf(&quot;total free: %d\n&quot;,st.freemem);</span></span><br><span class="line">  <span class="comment">// printf(&quot;total proc：%d\n&quot;,st.nproc);</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">copyout</span>(p-&gt;pagetable, addr, (<span class="type">char</span> *)&amp;st, <span class="built_in">sizeof</span>(st)) &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// system information null process number.</span></span><br><span class="line"><span class="function">uint64 <span class="title">nproc</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  uint64 tot = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">proc</span> *p;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(p = proc; p &lt; &amp;proc[NPROC]; p++) &#123;</span><br><span class="line">    <span class="built_in">acquire</span>(&amp;p-&gt;lock);</span><br><span class="line">    <span class="keyword">if</span>(p-&gt;state != UNUSED) &#123;</span><br><span class="line">      tot++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">release</span>(&amp;p-&gt;lock);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> tot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">uint64 <span class="title">totalfree</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">  uint64 tot = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">run</span> *r;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Get totall free memory</span></span><br><span class="line">  <span class="built_in">acquire</span>(&amp;kmem.lock);</span><br><span class="line">  r = kmem.freelist;</span><br><span class="line">  <span class="keyword">while</span>(r)&#123;</span><br><span class="line">    tot += <span class="number">4096</span>;</span><br><span class="line">    r = r-&gt;next;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">release</span>(&amp;kmem.lock);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> tot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#公开课学习" >
+    <span class="tag-code">公开课学习</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/11/02/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/58/">
+        <span class="nav-arrow">← </span>
+        
+          【MIT6.S081】 lab7 thread
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2022/11/02/%E4%B8%AA%E4%BA%BA%E9%97%B2%E8%B0%88/68/">
+        
+          【生活】记一次失败的面试总结
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#systemcalls"><span class="toc-nav-text">systemcalls</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-trace"><span class="toc-nav-text">1. trace</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-sysinfo"><span class="toc-nav-text">2. sysinfo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link"><span class="toc-nav-text"></span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/11/02/公开课学习/65/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2022 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>
