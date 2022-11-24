@@ -224,8 +224,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n)$, 其中 $n$ 为字符串的长度。</li>
-<li>空间复杂度：$O(1)$。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">percentageLetter</span><span class="params">(string s, <span class="type">char</span> letter)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c :s) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c == letter) &#123;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt * <span class="number">100</span> / n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(1)$。</li>
 </ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">percentageLetter</span><span class="params">(string s, <span class="type">char</span> letter)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c :s) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c == letter) &#123;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt * <span class="number">100</span> / n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="2279-装满石头的背包的最大数量"><a href="#2279-装满石头的背包的最大数量" class="headerlink" title="2279. 装满石头的背包的最大数量"></a>2279. 装满石头的背包的最大数量</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>现有编号从 <code>0</code> 到 <code>n - 1</code> 的 <code>n</code> 个背包。给你两个下标从 0 开始的整数数组 <code>capacity</code> 和 <code>rocks</code> 。第 <code>i</code> 个背包最大可以装 <code>capacity[i]</code> 块石头，当前已经装了 <code>rocks[i]</code> 块石头。另给你一个整数 <code>additionalRocks</code> ，表示你可以放置的额外石头数量，石头可以往 任意 背包中放置。</p>
 <p>请你将额外的石头放入一些背包中，并返回放置后装满石头的背包的 最大 数量。</p>
 <p>示例 1：</p>
@@ -250,8 +252,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n \log n)$，其中 $n$ 为数组中的长度。</li>
-<li>空间复杂度：$O(\log n)$, 排序需要的栈空间为 $O(\log n)$.<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumBags</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; capacity, vector&lt;<span class="type">int</span>&gt;&amp; rocks, <span class="type">int</span> additionalRocks)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = rocks.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">arr</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            arr[i] = capacity[i] - rocks[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] &lt;= additionalRocks) &#123;</span><br><span class="line">                additionalRocks -= arr[i];</span><br><span class="line">                ans++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(\log n)$, 排序需要的栈空间为 $O(\log n)$.</li>
 </ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumBags</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; capacity, vector&lt;<span class="type">int</span>&gt;&amp; rocks, <span class="type">int</span> additionalRocks)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = rocks.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">arr</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            arr[i] = capacity[i] - rocks[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] &lt;= additionalRocks) &#123;</span><br><span class="line">                additionalRocks -= arr[i];</span><br><span class="line">                ans++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="2280-表示一个折线图的最少线段数"><a href="#2280-表示一个折线图的最少线段数" class="headerlink" title="2280. 表示一个折线图的最少线段数"></a>2280. 表示一个折线图的最少线段数</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你一个二维整数数组 <code>stockPrices</code> ，其中 <code>stockPrices[i] = [dayi, pricei] </code>表示股票在<code> dayi</code> 的价格为 <code>pricei</code> 。折线图 是一个二维平面上的若干个点组成的图，横坐标表示日期，纵坐标表示价格，折线图由相邻的点连接而成。比方说下图是一个例子：</p>
 <p>请你返回要表示一个折线图所需要的 最少线段数 。</p>
 <p> </p>
@@ -276,8 +280,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n \log n)$, 其中 $n$ 为数组的长度。</li>
-<li>空间复杂度：$O(1)$。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumLines</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; stockPrices)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = stockPrices.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> res = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(stockPrices.<span class="built_in">begin</span>(), stockPrices.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> x1 = stockPrices[i<span class="number">-2</span>][<span class="number">0</span>] - stockPrices[i<span class="number">-1</span>][<span class="number">0</span>];</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> y1 = stockPrices[i<span class="number">-2</span>][<span class="number">1</span>] - stockPrices[i<span class="number">-1</span>][<span class="number">1</span>];</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> x2 = stockPrices[i<span class="number">-1</span>][<span class="number">0</span>] - stockPrices[i][<span class="number">0</span>];</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> y2 = stockPrices[i<span class="number">-1</span>][<span class="number">1</span>] - stockPrices[i][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (x1 * y2 != x2 * y1) &#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(1)$。</li>
 </ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumLines</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; stockPrices)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = stockPrices.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> res = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(stockPrices.<span class="built_in">begin</span>(), stockPrices.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> x1 = stockPrices[i<span class="number">-2</span>][<span class="number">0</span>] - stockPrices[i<span class="number">-1</span>][<span class="number">0</span>];</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> y1 = stockPrices[i<span class="number">-2</span>][<span class="number">1</span>] - stockPrices[i<span class="number">-1</span>][<span class="number">1</span>];</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> x2 = stockPrices[i<span class="number">-1</span>][<span class="number">0</span>] - stockPrices[i][<span class="number">0</span>];</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> y2 = stockPrices[i<span class="number">-1</span>][<span class="number">1</span>] - stockPrices[i][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (x1 * y2 != x2 * y1) &#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="2281-巫师的总力量和"><a href="#2281-巫师的总力量和" class="headerlink" title="2281. 巫师的总力量和"></a>2281. 巫师的总力量和</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>作为国王的统治者，你有一支巫师军队听你指挥。</p>
 <p>给你一个下标从 <code>0</code> 开始的整数数组 <code>strength</code> ，其中 <code>strength[i]</code> 表示第 <code>i </code>位巫师的力量值。对于连续的一组巫师（也就是这些巫师的力量值是 <code>strength</code> 的 子数组），总力量 定义为以下两个值的 乘积 ：</p>
 <p>巫师中 最弱 的能力值。<br>组中所有巫师的个人力量值 之和 。<br>请你返回 所有 巫师组的 总 力量之和。由于答案可能很大，请将答案对 <code>109 + 7 </code>取余 后返回。</p>
@@ -299,17 +305,17 @@
 <li>动态规划解法思路，需要参考「<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-subarray-minimums/">907. 子数组的最小值之和</a>」, 知道这个题目这个题目就非常好做了。</li>
 </ol>
 <ul>
-<li>设数组的长度为 $n$, 数组 $s$ 的前 $i$ 项的前缀和为 $$\textit{sum}[i] = \sum_{j=0}^{i}s[i]$$，前 $i$ 项的前缀和的前缀和为: $$\textit{ssum}[i] = \sum_{j=0}^{i}sum[j] = \sum_{j=0}^{i}\sum_{k=0}^{j}s[k]$$</li>
-<li>设数组中以 $i$ 为起点，以 $j$ 且满足 $(i \le j)$ 的连续子数组的最小值为 $\textit{min}(i,j)$, 设以 $i$ 为起点的子数组的最小值的和为 $\textit{minSum}[i] = \sum_{j=i}^{n-1}\textit{min}(i,j)$。此处可以利用单调栈来求出 $\textit{minSum}[i]$，具体可以参考「<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-subarray-minimums/">907. 子数组的最小值之和</a>」的解法即可。</li>
-<li>设 $dp[i]$ 表示以 $i$ 为起点的子数组构成的魔力值之和，则此时我们可以知道如下公式:<br>$$dp[i] = \sum_{j=i}^{n-1}(sum[j] - sum[i-1]) \times min(i,j)$$</li>
-<li>我们假设数组中 $i$ 的右侧第一个小于 $s[i]$ 的元素为 $s[j]$，且满足 $i &lt; j \le n - 1$，则此时我们知道当 $i \le k &lt; j $ 时，此时区间 $[i,j-1]$ 之间 $s[i]$ 最小，因此 $min(i,k) = s[i]$；当满足 $j \le k &lt; n$ 时，则此时区间 $[i,k]$ 之间可定不是 $s[i]$ 最小，因为此时已知 $s[i] &lt; s[j]$ 最小的值一定在 $j$ 的右侧，因此 $min(i,k) = min(j,k)$。此时我们将上述式子从 $j$ 处拆分可以得到如下:<br>$$<br>dp[i] = \sum_{k=i}^{n-1}(sum[k] - sum[i-1]) \times min(i,k) \<br>= \sum_{k=i}^{j-1}(sum[k] - sum[i-1]) \times min(i,k) + \sum_{k=j}^{n-1}(sum[k] - sum[i-1]) \times min(i,k) \<br>= \sum_{k=i}^{j-1}(sum[k] - sum[i-1]) \times s[i] + \sum_{k=j}^{n-1}(sum[k] - sum[i-1]) \times min(j,k) \<br>= (\sum_{k=i}^{j-1}sum[k] - (j - i)\times sum[i-1]) \times s[i] + \sum_{k=j}^{n-1}(sum[k] - sum[j-1] + sum[j-1] - sum[i-1]) \times min(j,k) \<br>= (\sum_{k=i}^{j-1}sum[k] - (j - i)\times sum[i-1]) \times s[i] + \sum_{k=j}^{n-1}(sum[k] - sum[j-1] ) \times min(j,k) + \sum_{k=j}^{n-1}(sum[j-1] - sum[i-1]) \times min(j,k)\<br>= (ssum[j-1] - ssum[i-1] + (j-i) \times sum[i-1]) + (sum[j-1] - sum[i-1]) \times \sum_{k=j}^{n-1}min(j,k) + \sum_{k=j}^{n-1}(sum[k] - sum[j-1] ) \times min(j,k) \<br>= (ssum[j-1] - ssum[i-1] + (j-i) \times sum[i-1]) + (sum[j-1] - sum[i-1]) \times minSum[j] + dp[j]<br>$$<br>以上即为我们推导出的动态规划递推公式。</li>
+<li>设数组的长度为 $n$, 数组 $s$ 的前 $i$ 项的前缀和为 $$\textit{sum}[i] &#x3D; \sum_{j&#x3D;0}^{i}s[i]$$，前 $i$ 项的前缀和的前缀和为: $$\textit{ssum}[i] &#x3D; \sum_{j&#x3D;0}^{i}sum[j] &#x3D; \sum_{j&#x3D;0}^{i}\sum_{k&#x3D;0}^{j}s[k]$$</li>
+<li>设数组中以 $i$ 为起点，以 $j$ 且满足 $(i \le j)$ 的连续子数组的最小值为 $\textit{min}(i,j)$, 设以 $i$ 为起点的子数组的最小值的和为 $\textit{minSum}[i] &#x3D; \sum_{j&#x3D;i}^{n-1}\textit{min}(i,j)$。此处可以利用单调栈来求出 $\textit{minSum}[i]$，具体可以参考「<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-subarray-minimums/">907. 子数组的最小值之和</a>」的解法即可。</li>
+<li>设 $dp[i]$ 表示以 $i$ 为起点的子数组构成的魔力值之和，则此时我们可以知道如下公式:<br>$$dp[i] &#x3D; \sum_{j&#x3D;i}^{n-1}(sum[j] - sum[i-1]) \times min(i,j)$$</li>
+<li>我们假设数组中 $i$ 的右侧第一个小于 $s[i]$ 的元素为 $s[j]$，且满足 $i &lt; j \le n - 1$，则此时我们知道当 $i \le k &lt; j $ 时，此时区间 $[i,j-1]$ 之间 $s[i]$ 最小，因此 $min(i,k) &#x3D; s[i]$；当满足 $j \le k &lt; n$ 时，则此时区间 $[i,k]$ 之间可定不是 $s[i]$ 最小，因为此时已知 $s[i] &lt; s[j]$ 最小的值一定在 $j$ 的右侧，因此 $min(i,k) &#x3D; min(j,k)$。此时我们将上述式子从 $j$ 处拆分可以得到如下:<br>$$<br>dp[i] &#x3D; \sum_{k&#x3D;i}^{n-1}(sum[k] - sum[i-1]) \times min(i,k) \<br>&#x3D; \sum_{k&#x3D;i}^{j-1}(sum[k] - sum[i-1]) \times min(i,k) + \sum_{k&#x3D;j}^{n-1}(sum[k] - sum[i-1]) \times min(i,k) \<br>&#x3D; \sum_{k&#x3D;i}^{j-1}(sum[k] - sum[i-1]) \times s[i] + \sum_{k&#x3D;j}^{n-1}(sum[k] - sum[i-1]) \times min(j,k) \<br>&#x3D; (\sum_{k&#x3D;i}^{j-1}sum[k] - (j - i)\times sum[i-1]) \times s[i] + \sum_{k&#x3D;j}^{n-1}(sum[k] - sum[j-1] + sum[j-1] - sum[i-1]) \times min(j,k) \<br>&#x3D; (\sum_{k&#x3D;i}^{j-1}sum[k] - (j - i)\times sum[i-1]) \times s[i] + \sum_{k&#x3D;j}^{n-1}(sum[k] - sum[j-1] ) \times min(j,k) + \sum_{k&#x3D;j}^{n-1}(sum[j-1] - sum[i-1]) \times min(j,k)\<br>&#x3D; (ssum[j-1] - ssum[i-1] + (j-i) \times sum[i-1]) + (sum[j-1] - sum[i-1]) \times \sum_{k&#x3D;j}^{n-1}min(j,k) + \sum_{k&#x3D;j}^{n-1}(sum[k] - sum[j-1] ) \times min(j,k) \<br>&#x3D; (ssum[j-1] - ssum[i-1] + (j-i) \times sum[i-1]) + (sum[j-1] - sum[i-1]) \times minSum[j] + dp[j]<br>$$<br>以上即为我们推导出的动态规划递推公式。</li>
 </ul>
 <ol start="2">
-<li>求每个数的贡献值，设以 $s[i]$ 为最小值得区间为 $[l,r]$，此时以 $s[i]$ 为最小值的子数组的魔力值之和为 $s[i] \times \sum_{j=l}^{i}\sum_{k=i}^{r}s[k]$，此时我们只需要求出 $[l,r]$ 即可，可以用用单调栈解决上述问题，可以参考<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-total-strength-of-wizards/solution/ji-suan-mei-ge-shu-zi-zuo-wei-zui-xiao-z-3jvr/">题解</a>,写的很清晰。上述解法难点有两点比较难以处理:</li>
+<li>求每个数的贡献值，设以 $s[i]$ 为最小值得区间为 $[l,r]$，此时以 $s[i]$ 为最小值的子数组的魔力值之和为 $s[i] \times \sum_{j&#x3D;l}^{i}\sum_{k&#x3D;i}^{r}s[k]$，此时我们只需要求出 $[l,r]$ 即可，可以用用单调栈解决上述问题，可以参考<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-total-strength-of-wizards/solution/ji-suan-mei-ge-shu-zi-zuo-wei-zui-xiao-z-3jvr/">题解</a>,写的很清晰。上述解法难点有两点比较难以处理:</li>
 </ol>
 <ul>
 <li>左右区间中遇到相同的元素如何处理，当时也很疑惑这个问题，没有想明白，后来看了题解，可以用一边严格的小于，另一边小于等于即可规避相同元素的问题，确实非常巧妙。</li>
-<li>计算 $s[i] \times \sum_{j=l}^{i}\sum_{k=i}^{r}s[k]$ 需要用到一些数学变换的技巧，不过还是蛮有意思的思考题目。</li>
+<li>计算 $s[i] \times \sum_{j&#x3D;l}^{i}\sum_{k&#x3D;i}^{r}s[k]$ 需要用到一些数学变换的技巧，不过还是蛮有意思的思考题目。</li>
 </ul>
 <ol start="3">
 <li>复杂度分析：</li>
@@ -348,9 +354,9 @@
       </a>
     
     
-      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/49/">
+      <a class="nav-right" href="/2022/01/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/6/">
         
-          leetcode weekly contest 316
+          《为什么精英都是时间控》读后感
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -456,6 +462,15 @@
 
 
 
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
@@ -508,6 +523,15 @@
 
 
 <script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
 
 
   </body>

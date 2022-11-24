@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      【MIT6.S081】 lab4 traps | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>【MIT6.S081】 lab4 traps</h2>
+  <p class="post-date">2022-11-20</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="traps"><a href="#traps" class="headerlink" title="traps"></a>traps</h1><p>最近封闭在家，没事干，只能刷题图开心，感觉MIT的lab刷起来真心是有意思，有挑战，难度很高，非常有思维挑战性，代码量倒是不是特别大。<br>特别<code>alarm</code>这个功能，思维确实比较牛逼，不过最重要的还算要看textbook，而不是忙着刷题，先把textbook看熟之后，再来刷题。<br><a target="_blank" rel="noopener" href="https://github.com/mike-box/MIT6.S081/tree/main/lab-traps-handin">git repo</a></p>
+<h2 id="RISC-V-assembly"><a href="#RISC-V-assembly" class="headerlink" title="RISC-V assembly"></a>RISC-V assembly</h2><p>这个<code>lab</code>主要事熟悉risc-v汇编语言的基本语法，跟x86的语法很不同的是，函数的参数不是压入栈，而是存放在寄存器中，所以我们在调试时需要注意这个问题，典型的X86的栈如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">..............</span><br><span class="line">arg[n-1]</span><br><span class="line">arg[n-2]</span><br><span class="line">arg[n-3]</span><br><span class="line">...</span><br><span class="line">arg[0]</span><br><span class="line">..............</span><br><span class="line">return address-----------&gt;frame pointer</span><br><span class="line">..............   |</span><br><span class="line">prev  frame      |</span><br><span class="line">..............   |</span><br><span class="line">saved register   |</span><br><span class="line">..............   |</span><br><span class="line">Local variable   |</span><br><span class="line">............&lt;----|</span><br><span class="line">..</span><br><span class="line">..</span><br><span class="line">..............</span><br></pre></td></tr></table></figure>
+<p>risc-v的栈帧最大的区别就是函数的参数可能并不在栈上存储，可能在寄存器中存储。所以我觉得还算是非常容易理解的lab，采用risck gdb调试即可。</p>
+<h2 id="Backtrace"><a href="#Backtrace" class="headerlink" title="Backtrace"></a>Backtrace</h2><p><code>backtrace</code>这一个lab可以说是为了能够深刻理解<code>stack machine</code>机制的设计的，每当调用函数时，首先需要将返回地址，之前的栈帧地址入栈，由于risck-v存储是以Little-Endian存储的，而栈空间的地址也是从高地址往低地址增长的，所以当前的栈帧的偏移8个字节即为<code>return address</code>，我们需要每次打印出返回地址，同时偏移16个字节则为前一个栈帧的地址，我们依次往前寻找，直到当前的栈帧的起始地址为<code>PGROUNDUP(fp)</code>，我们直到risc-v中每个栈空间的大小为4096byte，所以我们可以快速计算出栈顶和栈底的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uint64 bottom = PGROUNDUP(fp);</span><br></pre></td></tr></table></figure>
+<p>每次我们可以读寄存器fp即可得到当前栈的栈帧指向的地址，代码实现其实非常简单，但是需要仔细思考其中的原理。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// add by mike meng</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">backtrace</span><span class="params">()</span></span>&#123;</span><br><span class="line">    uint64 fp = <span class="built_in">r_fp</span>();</span><br><span class="line">	uint64 bottom = <span class="built_in">PGROUNDUP</span>(fp);</span><br><span class="line">	uint64 address;</span><br><span class="line">	<span class="type">char</span> path[<span class="number">128</span>];</span><br><span class="line">	<span class="type">int</span> line;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;backtrace:\n&quot;</span>);</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="comment">//printf(&quot;%p\n&quot;,*((uint64 *)(fp-8)));</span></span><br><span class="line">		address = *((uint64 *)(fp<span class="number">-8</span>));</span><br><span class="line">	    <span class="built_in">memset</span>(path,<span class="number">0</span>,<span class="built_in">sizeof</span>(path));</span><br><span class="line">		<span class="built_in">ltaddr2line</span>(address,path,&amp;line);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;pc = %p, %s:%d\n&quot;</span>,address,path,line);</span><br><span class="line">		fp = *((uint64 *)(fp<span class="number">-16</span>));</span><br><span class="line">	    <span class="keyword">if</span>(fp &gt;= bottom) <span class="keyword">break</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Alarm"><a href="#Alarm" class="headerlink" title="Alarm"></a>Alarm</h2><p>这个<code>alarm</code>的lab还真心很难，想了很长时间没有想出来，后来看了好多参考书才有了一点眉目。首先需要了解<code>CPU</code>对于trap的处理原理，刚开始确实没有仔细阅读材料，导致浪费了很多时间。不过这门课程的视频课程讲的真心很好，感觉还是不能单看<code>textbook</code>。首先我们需要仔细理解<code>xv6</code>系统的<code>trap</code>的处理流程：<br><img src="https://i.loli.net/2021/08/20/UdOR1sVEX9xISYg.png"><br>上图为标准的syscall的处理流程。基本处理流程如下，<code>stvec</code>寄存器中设置的<code>trap</code>处理的入口地址处，一旦有<code>trap</code>需要处理时，首先CPU会把<code>PC</code>跳转到<code>stvec</code>寄存器设置的入口地址处,一般我们我们需要处理<code>usertrap</code>和<code>kernel trap</code>.trap的处理流程基本相似：<br><img src="https://i.loli.net/2021/08/20/HBkiRNlXGYn4sbU.png"></p>
+<ul>
+<li><p><code>kernel trap</code>：kernel trap主要处理设备的特殊中断请求。</p>
+</li>
+<li><p><code>usertrap</code>：user trap主要处理用户进程的trap处理。流程稍微复杂一点。最重要的两个函数为<code>usertrap</code>和<code>usertrapret</code>。我们仔细查找一下<code>usertrap</code>的入口函数，发现很难找到。实际上入口都是用汇编来完成，我们首先看一下<code>uservec</code>的具体内容用汇编实现的：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">uservec:    </span><br><span class="line">	#</span><br><span class="line">        <span class="meta"># trap.c sets stvec to point here, so</span></span><br><span class="line">        <span class="meta"># traps from user space start here,</span></span><br><span class="line">        <span class="meta"># in supervisor mode, but with a</span></span><br><span class="line">        <span class="meta"># user page table.</span></span><br><span class="line">        #</span><br><span class="line">        <span class="meta"># sscratch points to where the process<span class="string">&#x27;s p-&gt;trapframe is</span></span></span><br><span class="line"><span class="string"><span class="meta">        # mapped into user space, at TRAPFRAME.</span></span></span><br><span class="line"><span class="string"><span class="meta">        #</span></span></span><br><span class="line"><span class="string"><span class="meta">        </span></span></span><br><span class="line"><span class="string"><span class="meta">	    # swap a0 and sscratch</span></span></span><br><span class="line"><span class="string"><span class="meta">        # so that a0 is TRAPFRAME</span></span></span><br><span class="line"><span class="string"><span class="meta">        csrrw a0, sscratch, a0</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">        # 保存寄存器内容到TRAPFRAME所指向的地址上</span></span></span><br><span class="line"><span class="string"><span class="meta">        # save the user registers in TRAPFRAME</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd ra, 40(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd sp, 48(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd gp, 56(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd tp, 64(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd t0, 72(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd t1, 80(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd t2, 88(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s0, 96(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s1, 104(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd a1, 120(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd a2, 128(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd a3, 136(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd a4, 144(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd a5, 152(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd a6, 160(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd a7, 168(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s2, 176(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s3, 184(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s4, 192(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s5, 200(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s6, 208(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s7, 216(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s8, 224(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s9, 232(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s10, 240(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd s11, 248(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd t3, 256(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd t4, 264(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd t5, 272(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd t6, 280(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">	# save the user a0 in p-&gt;trapframe-&gt;a0</span></span></span><br><span class="line"><span class="string"><span class="meta">        # 将a0用户的寄存器保存到frame上</span></span></span><br><span class="line"><span class="string"><span class="meta">        csrr t0, sscratch</span></span></span><br><span class="line"><span class="string"><span class="meta">        sd t0, 112(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">        # restore kernel stack pointer from p-&gt;trapframe-&gt;kernel_sp</span></span></span><br><span class="line"><span class="string"><span class="meta">        ld sp, 8(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">        # make tp hold the current hartid, from p-&gt;trapframe-&gt;kernel_hartid</span></span></span><br><span class="line"><span class="string"><span class="meta">        ld tp, 32(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">        # 将usertrap的入口地址写给a0</span></span></span><br><span class="line"><span class="string"><span class="meta">        # load the address of usertrap(), p-&gt;trapframe-&gt;kernel_trap</span></span></span><br><span class="line"><span class="string"><span class="meta">        ld t0, 16(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">        # restore kernel page table from p-&gt;trapframe-&gt;kernel_satp</span></span></span><br><span class="line"><span class="string"><span class="meta">        # 将kernel的pagetable写入到satp寄存器，并刷新页表</span></span></span><br><span class="line"><span class="string"><span class="meta">        ld t1, 0(a0)</span></span></span><br><span class="line"><span class="string"><span class="meta">        csrw satp, t1</span></span></span><br><span class="line"><span class="string"><span class="meta">        sfence.vma zero, zero</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">        # a0 is no longer valid, since the kernel page</span></span></span><br><span class="line"><span class="string"><span class="meta">        # table does not specially map p-&gt;tf.</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">        # 跳转到usertrap()</span></span></span><br><span class="line"><span class="string"><span class="meta">        # jump to usertrap(), which does not return</span></span></span><br><span class="line"><span class="string"><span class="meta">        jr t0</span></span></span><br></pre></td></tr></table></figure>
+<p>大致就是保存寄存器到<code>tramfram</code>上,然后<code>kstack</code>的地址写入sp寄存器，将hartid标记位写入到寄存器中，将<code>kernel</code>的页表写入到<code>satp</code>寄存器中，然后跳转到<code>usertrap</code>中，usertrap函数以下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span></span></span><br><span class="line"><span class="function"><span class="title">usertrap</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> which_dev = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 获取当前模式，是否为 user trap</span></span><br><span class="line">  <span class="keyword">if</span>((<span class="built_in">r_sstatus</span>() &amp; SSTATUS_SPP) != <span class="number">0</span>)</span><br><span class="line">    <span class="built_in">panic</span>(<span class="string">&quot;usertrap: not from user mode&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// send interrupts and exceptions to kerneltrap(),</span></span><br><span class="line">  <span class="comment">// since we&#x27;re now in the kernel.</span></span><br><span class="line">  <span class="comment">// interrupts process will be set to kernelvec.</span></span><br><span class="line">  <span class="comment">// 将trap的入口设置为kernel trap</span></span><br><span class="line">  <span class="built_in">w_stvec</span>((uint64)kernelvec);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">proc</span> *p = <span class="built_in">myproc</span>();</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// save user program counter.</span></span><br><span class="line">  <span class="comment">// 保存当前的pc值</span></span><br><span class="line">  p-&gt;trapframe-&gt;epc = <span class="built_in">r_sepc</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//if the interrupts is system call</span></span><br><span class="line">  <span class="comment">// 判断当前的trap类型</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">r_scause</span>() == <span class="number">8</span>)&#123;<span class="comment">// 系统调用</span></span><br><span class="line">    <span class="comment">// system call</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(p-&gt;killed)</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// sepc points to the ecall instruction,</span></span><br><span class="line">    <span class="comment">// but we want to return to the next instruction.</span></span><br><span class="line">    <span class="comment">// 如果为系统调用，则将恢复的PC指向它的下一个指令</span></span><br><span class="line">    p-&gt;trapframe-&gt;epc += <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// an interrupt will change sstatus &amp;c registers,</span></span><br><span class="line">    <span class="comment">// so don&#x27;t enable until done with those registers.</span></span><br><span class="line">    <span class="comment">//open interrrupt</span></span><br><span class="line">    <span class="comment">// 关闭 trap，打开中断处理</span></span><br><span class="line">    <span class="built_in">intr_on</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// system call</span></span><br><span class="line">    <span class="comment">// 处理系统调用</span></span><br><span class="line">    <span class="built_in">syscall</span>();</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>((which_dev = <span class="built_in">devintr</span>()) != <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">// ok</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 异常trap,则直接关闭当前进程</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;usertrap(): unexpected scause %p pid=%d\n&quot;</span>, <span class="built_in">r_scause</span>(), p-&gt;pid);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;            sepc=%p stval=%p\n&quot;</span>, <span class="built_in">r_sepc</span>(), <span class="built_in">r_stval</span>());</span><br><span class="line">    p-&gt;killed = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(p-&gt;killed)</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// give up the CPU if this is a timer interrupt.</span></span><br><span class="line">  <span class="keyword">if</span>(which_dev == <span class="number">2</span>)&#123;</span><br><span class="line">  	<span class="keyword">if</span>(!p-&gt;alarmworking &amp;&amp; p-&gt;alarminterval &gt; <span class="number">0</span>)&#123;</span><br><span class="line">	  p-&gt;alarmtick++;</span><br><span class="line">	  <span class="keyword">if</span>(p-&gt;alarmtick == p-&gt;alarminterval)&#123;</span><br><span class="line">		<span class="comment">//p-&gt;alarmhandler();</span></span><br><span class="line">		<span class="comment">//p-&gt;alarmretaddr = p-&gt;trapframe-&gt;epc;</span></span><br><span class="line">		<span class="comment">// we set the epc point  to the alarm handler</span></span><br><span class="line">		<span class="comment">// when we leave from the trap process,we will get to the alarm handler</span></span><br><span class="line">		<span class="built_in">memmove</span>(&amp;p-&gt;alarmtrap,p-&gt;trapframe,<span class="built_in">sizeof</span>(<span class="keyword">struct</span> trapframe));</span><br><span class="line">		p-&gt;trapframe-&gt;epc = (uint64)p-&gt;alarmhandler;</span><br><span class="line">	    p-&gt;alarmtick = <span class="number">0</span>;</span><br><span class="line">		p-&gt;alarmworking = <span class="number">1</span>;</span><br><span class="line">	  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">yield</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 恢复</span></span><br><span class="line">  <span class="built_in">usertrapret</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>userret</code>：我们从<code>userret</code>的相关代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">userret:</span><br><span class="line">        <span class="meta"># userret(TRAPFRAME, pagetable)</span></span><br><span class="line">        <span class="meta"># switch from kernel to user.</span></span><br><span class="line">        <span class="meta"># usertrapret() calls here.</span></span><br><span class="line">        # a0: TRAPFRAME, in user page table.</span><br><span class="line">        # a1: user page table, <span class="keyword">for</span> satp.</span><br><span class="line"></span><br><span class="line">        <span class="meta"># switch to the user page table.</span></span><br><span class="line">        csrw satp, a1</span><br><span class="line">        sfence.vma zero, zero</span><br><span class="line"></span><br><span class="line">        <span class="meta"># put the saved user a0 in sscratch, so we</span></span><br><span class="line">        <span class="meta"># can swap it with our a0 (TRAPFRAME) in the last step.</span></span><br><span class="line">        ld t0, <span class="number">112</span>(a0)</span><br><span class="line">        csrw sscratch, t0</span><br><span class="line"></span><br><span class="line">        <span class="meta"># restore all but a0 from TRAPFRAME</span></span><br><span class="line">        ld ra, <span class="number">40</span>(a0)</span><br><span class="line">        ld sp, <span class="number">48</span>(a0)</span><br><span class="line">        ld gp, <span class="number">56</span>(a0)</span><br><span class="line">        ld tp, <span class="number">64</span>(a0)</span><br><span class="line">        ld t0, <span class="number">72</span>(a0)</span><br><span class="line">        ld t1, <span class="number">80</span>(a0)</span><br><span class="line">        ld t2, <span class="number">88</span>(a0)</span><br><span class="line">        ld s0, <span class="number">96</span>(a0)</span><br><span class="line">        ld s1, <span class="number">104</span>(a0)</span><br><span class="line">        ld a1, <span class="number">120</span>(a0)</span><br><span class="line">        ld a2, <span class="number">128</span>(a0)</span><br><span class="line">        ld a3, <span class="number">136</span>(a0)</span><br><span class="line">        ld a4, <span class="number">144</span>(a0)</span><br><span class="line">        ld a5, <span class="number">152</span>(a0)</span><br><span class="line">        ld a6, <span class="number">160</span>(a0)</span><br><span class="line">        ld a7, <span class="number">168</span>(a0)</span><br><span class="line">        ld s2, <span class="number">176</span>(a0)</span><br><span class="line">        ld s3, <span class="number">184</span>(a0)</span><br><span class="line">        ld s4, <span class="number">192</span>(a0)</span><br><span class="line">        ld s5, <span class="number">200</span>(a0)</span><br><span class="line">        ld s6, <span class="number">208</span>(a0)</span><br><span class="line">        ld s7, <span class="number">216</span>(a0)</span><br><span class="line">        ld s8, <span class="number">224</span>(a0)</span><br><span class="line">        ld s9, <span class="number">232</span>(a0)</span><br><span class="line">        ld s10, <span class="number">240</span>(a0)</span><br><span class="line">        ld s11, <span class="number">248</span>(a0)</span><br><span class="line">        ld t3, <span class="number">256</span>(a0)</span><br><span class="line">        ld t4, <span class="number">264</span>(a0)</span><br><span class="line">        ld t5, <span class="number">272</span>(a0)</span><br><span class="line">        ld t6, <span class="number">280</span>(a0)</span><br><span class="line"></span><br><span class="line">	<span class="meta"># restore user a0, and save TRAPFRAME in sscratch</span></span><br><span class="line">        csrrw a0, sscratch, a0</span><br><span class="line">        </span><br><span class="line">        <span class="meta"># return to user mode and user pc.</span></span><br><span class="line">        <span class="meta"># usertrapret() set up sstatus and sepc.</span></span><br><span class="line">        sret</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>处理流程为首先将用户的页表切换到寄存器中，然后从<code>trapframe</code>中取出已经保存的值，将其恢复到寄存器中，然后将<code>trapframe</code>进行恢复到默认值，将PC的值恢复到之前的值，指令将会继续之前的PC的值进行执行。</p>
+</li>
+<li><p>我们实际在处理sigalarm时，首先需要将<code>sigalarm</code>和<code>sigalarmret</code>函数处理加入到<code>system call</code>中，然后在处理<code>usertrap</code>时，首先我们需要处理来自<code>timer</code>的trap,此时我们可以将<code>trap</code>恢复后的<code>pc</code>指向<code>alarmhandler</code>函数，我们运行时，即可发现可以运行<code>handler</code>函数，但是运行完成后，发现出了不少问题。我们仔细思考就可以发现，因为<code>PC</code>指向的指令地址改变后，我们可以仔细分析一下，函数执行时，我们看到当前栈帧返回时会返回正确的地址，因为此时<code>RA</code>寄存器存放的为正确的return address.但是periodic函数在执行过程中可能会将其中的寄存器污染，所以会出现<code>alarm</code>打印逻辑出错。所以我们在执行<code>handler</code>时，必须要将相关的寄存器进行保存，保存完成后再执行<code>handler</code>，执行完成<code>handler</code>后，我们再恢复寄存器，同时恢复<code>pc</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">periodic()</span><br><span class="line">&#123;</span><br><span class="line">   0:	1141                	addi	sp,sp,-16</span><br><span class="line">   2:	e406                	sd	ra,8(sp)</span><br><span class="line">   4:	e022                	sd	s0,0(sp)</span><br><span class="line">   6:	0800                	addi	s0,sp,16</span><br><span class="line">  count = count + 1;</span><br><span class="line">   8:	00001797          	auipc	a5,0x1</span><br><span class="line">   c:	d407a783          	lw	a5,-704(a5) # d48 &lt;count&gt;</span><br><span class="line">  10:	2785                	addiw	a5,a5,1</span><br><span class="line">  12:	00001717          	auipc	a4,0x1</span><br><span class="line">  16:	d2f72b23          	sw	a5,-714(a4) # d48 &lt;count&gt;</span><br><span class="line">  printf(&quot;alarm!\n&quot;);</span><br><span class="line">  1a:	00001517          	auipc	a0,0x1</span><br><span class="line">  1e:	b6650513          	addi	a0,a0,-1178 # b80 &lt;malloc+0xea&gt;</span><br><span class="line">  22:	00001097          	auipc	ra,0x1</span><br><span class="line">  26:	9b6080e7          	jalr	-1610(ra) # 9d8 &lt;printf&gt;</span><br><span class="line">  sigreturn();</span><br><span class="line">  2a:	00000097          	auipc	ra,0x0</span><br><span class="line">  2e:	6c6080e7          	jalr	1734(ra) # 6f0 &lt;sigreturn&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>刚开始我的想法是再申请一个物理页，然后用汇编将所有的寄存器的值，都保存到这个新申请的物理页中，待到函数执行完成后，我们再利用系统调用，将该物理页中保存的值再重新加载到寄存器中，刚开始想着是模仿<code>userret</code>和<code>uservec</code>的汇编代码来模仿实现。后来感觉太复杂了，看了提示之后，在进入<code>alarm handler</code>之前所有的寄存器其实都已经全部保存在tramp fram中，我们可以申请新的tramp fram结构，在<code>usertrapret</code>恢复寄存器时，暂时不恢复寄存器的值，只是将<code>PC</code>的值进行跳转。在<code>alarmreturn</code>时，此时我们再将已经保存的tramp fram中的寄存器和<code>PC</code>的值全部切换回去即可。</p>
+</li>
+</ul>
+<ol>
+<li><code>alarm</code>时，我们将handler和interval进行指定保存。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">uint64 <span class="title">sys_sigalarm</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ticks;</span><br><span class="line">    uint64 ptr;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">proc</span> * p = <span class="built_in">myproc</span>();	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">argint</span>(<span class="number">0</span>, &amp;ticks) &lt; <span class="number">0</span>)</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">argaddr</span>(<span class="number">1</span>,&amp;ptr) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	</span><br><span class="line">  </span><br><span class="line">	<span class="built_in">acquire</span>(&amp;p-&gt;lock);</span><br><span class="line">	p-&gt;alarmworking = <span class="number">0</span>;</span><br><span class="line">	p-&gt;alarminterval = ticks;</span><br><span class="line">	p-&gt;alarmhandler = (func)ptr;</span><br><span class="line">	<span class="built_in">release</span>(&amp;p-&gt;lock);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>执行trap时，如果当前的ticks达到<code>alarminterval</code>时，则我们首先将<code>PC</code>的返回值替换为<code>handler</code>的入口地址，同时将当前<code>trap frame</code>的值进行保存。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// give up the CPU if this is a timer interrupt.</span></span><br><span class="line">  <span class="keyword">if</span>(which_dev == <span class="number">2</span>)&#123;</span><br><span class="line">  	<span class="keyword">if</span>(!p-&gt;alarmworking &amp;&amp; p-&gt;alarminterval &gt; <span class="number">0</span>)&#123;</span><br><span class="line">	  p-&gt;alarmtick++;</span><br><span class="line">	  <span class="keyword">if</span>(p-&gt;alarmtick == p-&gt;alarminterval)&#123;</span><br><span class="line">		<span class="comment">//p-&gt;alarmhandler();</span></span><br><span class="line">		<span class="comment">//p-&gt;alarmretaddr = p-&gt;trapframe-&gt;epc;</span></span><br><span class="line">		<span class="comment">// we set the epc point  to the alarm handler</span></span><br><span class="line">		<span class="comment">// when we leave from the trap process,we will get to the alarm handler</span></span><br><span class="line">		<span class="built_in">memmove</span>(&amp;p-&gt;alarmtrap,p-&gt;trapframe,<span class="built_in">sizeof</span>(<span class="keyword">struct</span> trapframe));</span><br><span class="line">		p-&gt;trapframe-&gt;epc = (uint64)p-&gt;alarmhandler;</span><br><span class="line">	    p-&gt;alarmtick = <span class="number">0</span>;</span><br><span class="line">		p-&gt;alarmworking = <span class="number">1</span>;</span><br><span class="line">	  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="built_in">yield</span>();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li>执行<code>sigreturn</code>时，则我们将保存的<code>tramfram</code>切换回去即可。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">uint64 <span class="title">sys_sigreturn</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">proc</span> * p = <span class="built_in">myproc</span>();</span><br><span class="line">	<span class="keyword">if</span>(p-&gt;alarmworking)&#123;</span><br><span class="line">		<span class="built_in">memmove</span>(p-&gt;trapframe,&amp;p-&gt;alarmtrap,<span class="built_in">sizeof</span>(<span class="keyword">struct</span> trapframe));</span><br><span class="line">	    p-&gt;alarmworking = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Optional-challenge"><a href="#Optional-challenge" class="headerlink" title="Optional challenge"></a>Optional challenge</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Print the names of the functions and line numbers in backtrace() instead of numerical addresses</span><br></pre></td></tr></table></figure>
+<p>按照要求对<code>backtrace</code>进行扩展，使得其能够打印出相应的文件和行号，刚开始拿到这个以为很简单，但是实际上实现起来还是挺复杂。主要查找的信息来源于<code>addr2line</code>的实现，在github上找了一堆实现<code>addr2line</code>的代码，后来发现一个<code>c++</code>还凑合，就拿过来读了一下，然后通过查找<code>debug_line</code>的具体参数定义，然后找到dwarf 3.0的标准，对战标准和代码把相关的功能全部重新移植到xv6上，虽然代码写的很烂，但是凑合还能用吧，其中<code>debug</code>的时间还挺长。具体实现原理如下：</p>
+<ol>
+<li>改写makefile,把生成kernel的elf文件做到文件系统中，然后系统运行后，通过用户进程调用函数读取和解析elf文件，这里最大的坑是用户进程未初始化时，我直接用内核读取文件，发现会<code>panic</code>,后来仔细检查了很多遍，发现因为在内核文件的读取都会加载进程的文件锁，而这时用户进行还未初始化，这时如果去调用mypoc函数就会出现指针跑飞的问题。解决办法只有等待用户进行调度起来后，可以单独起一个用户进程读取和解析elf文件。</li>
+<li>系统起来后，在内核空间中从文件系统读取elf文件，找到.debug_line这个section，然后按照dwarf 3.0的标准来解析header和opcode，具体可以Google相关的标准，标准本身还是挺复杂的，具体实现时参考这个github的代码：<a target="_blank" rel="noopener" href="https://github.com/evmar/maddr">https://github.com/evmar/maddr</a> ，里面解析opcode时有不少小bug，关键时刻还算看标准靠谱。</li>
+<li>解析完成后，将解析生成的matrix放入到数组中，然后我们对line table按照地址从小到大进行排序，我们解析的line table中也可以看到每行代码可能会对应多个<code>instruction</code>，我们直到<code>pc</code>每次递增的。每次进行查询时，我们在line table表中查找小于等于等于给定地址p的第一个元素，然后返回查询结果即可，查询结果包含了文件名和行号，返回给trace即可。</li>
+<li>熬了几天夜，终于把功能基本实现了，总体来说还算非常蛋疼的功能。<br><img src="https://i.loli.net/2021/08/20/hlpDCfavUjYydiR.png"></li>
+</ol>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#公开课学习" >
+    <span class="tag-code">公开课学习</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/11/20/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/61/">
+        <span class="nav-arrow">← </span>
+        
+          【MIT6.S081】 lab5 lazy alloaction
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2022/11/20/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/65/">
+        
+          【MIT6.S081】 lab2 systemcalls
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#traps"><span class="toc-nav-text">traps</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#RISC-V-assembly"><span class="toc-nav-text">RISC-V assembly</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Backtrace"><span class="toc-nav-text">Backtrace</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Alarm"><span class="toc-nav-text">Alarm</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Optional-challenge"><span class="toc-nav-text">Optional challenge</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link"><span class="toc-nav-text"></span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/11/20/公开课学习/62/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2022 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>
