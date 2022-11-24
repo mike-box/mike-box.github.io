@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      【MIT6.S081】 lab3 pagetable | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>【MIT6.S081】 lab3 pagetable</h2>
+  <p class="post-date">2022-11-20</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="page-tables"><a href="#page-tables" class="headerlink" title="page tables"></a>page tables</h1><p>最近工作太忙了，好久没有时间更新学习进度了，本周还是抽时间把<code>lab3</code>的内容作完了，<code>lab3</code>的难度感觉还是非常大的，不过最终把<code>lab3</code>完成后，就对虚拟内存管理有了深刻的认识。对于<code>vm</code>的那几个函数看了很多遍。调试了很多遍,终于发现问题,然后解决该问题了.<br><img src="https://i.loli.net/2021/08/10/FdEK8BPfDReA5kX.png"></p>
+<h2 id="page"><a href="#page" class="headerlink" title="page"></a>page</h2><p>在<code>xv6</code>系统中，物理内存都被分成了<code>4096</code>byte的页，比如物理地址也分为两部分即物理页码(44bit)和页内偏移地址(12bit)<code>offset</code>。由下图我们可以看到虚拟地址到物理地址的映射。<br><img src="https://i.loli.net/2021/08/07/BxHCM9VbyEvnrqz.png"><br>但在<code>xv6</code>系统中虚拟地址实际只用到64位中的低39位，高位的25位并没有用到，因此我们可以知道虚拟页总共有$2^{27}$页，我们假如直接进行地址的话，则可以发现每个页表的大小可能都为$2^{27}$,这对内存来说不可取，实际上我们采用分段式的页表映射。页表中的每一项每一项实际存储的虚拟地址印刷的物理页的索引号。在<code>xv6</code>系统中页表采用三级页表的形式的存储，每一级页表的大小实际刚好为一页物理页的大小，因此每一级页表刚好可以存储存储$2^{9}$项。<br><img src="https://i.loli.net/2021/08/09/PCe5ldv2pAUYZoa.png"></p>
+<ul>
+<li>我们通过下图可以看到一个虚拟地址实际包含5部分，保留位为25位，紧接着为9位的一级页表内的的<code>offset</code>，紧接着为9位的二级页表内的的<code>offset</code>，紧接着为9位的三级页表内的的<code>offset</code>，三级页表中则存储的为该虚拟地址对应的实际物理页编号，我们取出物理页编号，再加上<code>offset</code>即可得到实际的物理地址。<br><img src="https://i.loli.net/2021/08/07/O6GLjEMNrFSfb9w.png"><br>我们可以看到代码中几个比较重要的宏定义<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 每一个物理页的大小</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PGSIZE 4096 <span class="comment">// bytes per page</span></span></span><br><span class="line"><span class="comment">// 物理页的offset</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PGSHIFT 12  <span class="comment">// bits of offset within a page</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PGROUNDUP(sz)  (((sz)+PGSIZE-1) &amp; ~(PGSIZE-1))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PGROUNDDOWN(a) (((a)) &amp; ~(PGSIZE-1))</span></span><br><span class="line"><span class="comment">// shift a physical address to the right place for a PTE.</span></span><br><span class="line"><span class="comment">//取出物理地址转换为对应的页表项</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PA2PTE(pa) ((((uint64)pa) &gt;&gt; 12) &lt;&lt; 10)</span></span><br><span class="line"><span class="comment">//通过页表得到对应的物理页对应的编号</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PTE2PA(pte) (((pte) &gt;&gt; 10) &lt;&lt; 12)</span></span><br><span class="line"><span class="comment">// 取出页表项中对应的标志位</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PTE_FLAGS(pte) ((pte) &amp; 0x3FF)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// extract the three 9-bit page table indices from a virtual address.</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PXMASK          0x1FF <span class="comment">// 9 bits</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PXSHIFT(level)  (PGSHIFT+(9*(level)))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PX(level, va) ((((uint64) (va)) &gt;&gt; PXSHIFT(level)) &amp; PXMASK)</span></span><br></pre></td></tr></table></figure></li>
+<li>三级页表中同时存储的有<code>flags</code>,<code>flags</code>代表该页表是否有效,我们需要判断每一页的访问权，只需要判断标志位即可。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PTE_V (1L &lt;&lt; 0) <span class="comment">// valid</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PTE_R (1L &lt;&lt; 1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PTE_W (1L &lt;&lt; 2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PTE_X (1L &lt;&lt; 3)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PTE_U (1L <span class="string">&lt;&lt; 4) // 1 -&gt;</span> user can access</span></span><br></pre></td></tr></table></figure>
+我们通过虚拟地址的12~39位，实际为该虚拟地址的三级页表的偏移地址，通过三级页表的偏移地址，最终可以得到该虚拟地址对应的物理页号。</li>
+</ul>
+<h3 id="1-Print-a-page-table"><a href="#1-Print-a-page-table" class="headerlink" title="1. Print a page table"></a>1. Print a page table</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">To help you learn about RISC-V page tables, and perhaps to aid future debugging, your first task is to write a function that prints the contents of a page table.</span><br><span class="line"></span><br><span class="line">Define a function called vmprint(). It should take a pagetable_t argument, and print that pagetable in the format described below. Insert if(p-&gt;pid==1) vmprint(p-&gt;pagetable) in exec.c just before the return argc, to print the first process&#x27;s page table. You receive full credit for this assignment if you pass the pte printout test of make grade.</span><br></pre></td></tr></table></figure>
+<p>这部分比较简单，打印出页表的内容，我们知道三级页表的原理，这个即为简单的<code>dfs</code>遍历即可，遍历三级页表中的内容，每一级页表有<code>512</code>项，每一级页表有标志位，判断标志位是否有效，即是否包含PTE_V，则表示该页表有效。如果有效则向下遍历即可。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">pteprint</span><span class="params">(<span class="type">pagetable_t</span> pagetable,<span class="type">int</span> level)</span></span>&#123;  </span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">512</span>; ++i)&#123;</span><br><span class="line">    <span class="type">pte_t</span> *pte = &amp;pagetable[i];</span><br><span class="line">    <span class="comment">// level page table entry</span></span><br><span class="line">    <span class="keyword">if</span>(*pte &amp; PTE_V) &#123;</span><br><span class="line">      <span class="comment">// page table is valid</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">2</span>; j &gt; level; --j)&#123;</span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">&quot;.. &quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;..%d: pte %p pa %p\n\r&quot;</span>,i,*pte,(<span class="type">pagetable_t</span>)<span class="built_in">PTE2PA</span>(*pte));</span><br><span class="line">      <span class="keyword">if</span>(level &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">         <span class="built_in">pteprint</span>((<span class="type">pagetable_t</span>)<span class="built_in">PTE2PA</span>(*pte),level<span class="number">-1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-A-kernel-page-table-per-process"><a href="#2-A-kernel-page-table-per-process" class="headerlink" title="2.A kernel page table per process"></a>2.A kernel page table per process</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Xv6 has a single kernel page table that&#x27;s used whenever it executes in the kernel. The kernel page table is a direct mapping to physical addresses, so that kernel virtual address x maps to physical address x. Xv6 also has a separate page table for each process&#x27;s user address space, containing only mappings for that process&#x27;s user memory, starting at virtual address zero. Because the kernel page table doesn&#x27;t contain these mappings, user addresses are not valid in the kernel. Thus, when the kernel needs to use a user pointer passed in a system call (e.g., the buffer pointer passed to write()), the kernel must first translate the pointer to a physical address. The goal of this section and the next is to allow the kernel to directly dereference user pointers.</span><br><span class="line"></span><br><span class="line">Your first job is to modify the kernel so that every process uses its own copy of the kernel page table when executing in the kernel. Modify struct proc to maintain a kernel page table for each process, and modify the scheduler to switch kernel page tables when switching processes. For this step, each per-process kernel page table should be identical to the existing global kernel page table. You pass this part of the lab if usertests runs correctly.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>题目本质是说进行内核空间的虚拟地址和用户空间的虚拟地址因为不在同一个页表里，所以内核的地址空间和用户的地址无法正常进行访问，必须要通过转换，特别在内核态访问用户态传过来的地址时，无法直接访问，需要通过转换才可以，因此我们需要在内核态将用户态的虚拟地址空间也需要做映射，这样我们就可以在内核态直接访问用户态的地址。</li>
+<li>在此时，我们需要重新为进行申请一个内核态的页表，每个进程则有一个独立的内核页表，并将访问系统的所有的特殊的接口地址全部映射到该页表中，同时将该进程的内核栈也映射到该页表。每个进程都有一个独立的内核栈，由于内核栈空间与用户空间的地址映射在同一个地址表中，因此可以直接访问。</li>
+</ul>
+<ol>
+<li>为进程建立一个内核页表，并做好地址映射。新建页表，并做好内核地址的映射。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">pagetable_t</span></span></span><br><span class="line"><span class="function"><span class="title">prockvminit</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">pagetable_t</span> pagetable = (<span class="type">pagetable_t</span>) <span class="built_in">kalloc</span>();</span><br><span class="line">	<span class="keyword">if</span>(pagetable == <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">panic</span>(<span class="string">&quot;kalloc&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// each page size is 4096 byte = 4KB</span></span><br><span class="line">	<span class="comment">// kernel page table</span></span><br><span class="line">	<span class="built_in">memset</span>(pagetable, <span class="number">0</span>, PGSIZE);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// uart registers</span></span><br><span class="line">	<span class="comment">// uart mmmap</span></span><br><span class="line">	<span class="built_in">prockvmmap</span>(pagetable,UART0, UART0, PGSIZE, PTE_R | PTE_W);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// virtio mmio disk interface</span></span><br><span class="line">	<span class="built_in">prockvmmap</span>(pagetable,VIRTIO0, VIRTIO0, PGSIZE, PTE_R | PTE_W);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// CLINT</span></span><br><span class="line">	<span class="comment">//prockvmmap(pagetable,CLINT, CLINT, 0x10000, PTE_R | PTE_W);</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// PLIC</span></span><br><span class="line">	<span class="built_in">prockvmmap</span>(pagetable,PLIC, PLIC, <span class="number">0x400000</span>, PTE_R | PTE_W);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// map kernel text executable and read-only.</span></span><br><span class="line">	<span class="built_in">prockvmmap</span>(pagetable,KERNBASE, KERNBASE, (uint64)etext-KERNBASE, PTE_R | PTE_X);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// map kernel data and the physical RAM we&#x27;ll make use of.</span></span><br><span class="line">	<span class="built_in">prockvmmap</span>(pagetable,(uint64)etext, (uint64)etext, PHYSTOP-(uint64)etext, PTE_R | PTE_W);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// map the trampoline for trap entry/exit to</span></span><br><span class="line">	<span class="comment">// the highest virtual address in the kernel.</span></span><br><span class="line">	<span class="built_in">prockvmmap</span>(pagetable,TRAMPOLINE, (uint64)trampoline, PGSIZE, PTE_R | PTE_X);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pagetable;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span></span></span><br><span class="line"><span class="function"><span class="title">prockvmmap</span><span class="params">(<span class="type">pagetable_t</span> pagetable,uint64 va, uint64 pa, uint64 sz, <span class="type">int</span> perm)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">mappages</span>(pagetable, va, sz, pa, perm) != <span class="number">0</span>)&#123;</span><br><span class="line">  	<span class="built_in">printf</span>(<span class="string">&quot;total free = %d \n\r&quot;</span>,<span class="built_in">totalfree</span>());</span><br><span class="line">  	<span class="built_in">printf</span>(<span class="string">&quot;va = %p sz = %p \n\r&quot;</span>,va,sz);</span><br><span class="line">    <span class="built_in">panic</span>(<span class="string">&quot;prockvmmap&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在进程初始化时，我们可以保持不变，初始化时即为每个进程分配内核栈，映射到全局的<code>kernel_table</code>中,我们在进行进程<code>alloc</code>时，可以将该内核栈物理页再做一遍映射，映射到进程的内核表中。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">procinit</span>(<span class="type">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">proc</span> *p;</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">initlock</span>(&amp;pid_lock, <span class="string">&quot;nextpid&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span>(p = proc; p &lt; &amp;proc[NPROC]; p++) &#123;</span><br><span class="line">      <span class="built_in">initlock</span>(&amp;p-&gt;lock, <span class="string">&quot;proc&quot;</span>);</span><br><span class="line">	  p-&gt;kallocstats = <span class="number">0</span>;</span><br><span class="line">  	  p-&gt;kfreestats = <span class="number">0</span>;</span><br><span class="line">	  <span class="comment">// map kernel stack to the kernel page table</span></span><br><span class="line">	  <span class="type">char</span> *pa = <span class="built_in">kalloc</span>();</span><br><span class="line">	  <span class="keyword">if</span>(pa == <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">panic</span>(<span class="string">&quot;kalloc&quot;</span>);</span><br><span class="line">	  uint64 va = <span class="built_in">KSTACK</span>((<span class="type">int</span>) (p - proc));</span><br><span class="line">	  <span class="built_in">kvmmap</span>(va, (uint64)pa, PGSIZE, PTE_R | PTE_W);</span><br><span class="line">	  p-&gt;kstack = va;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">kvminithart</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map kernel stack to the kernel page table</span></span><br><span class="line"> p-&gt;kpagetable = <span class="built_in">prockvminit</span>();</span><br><span class="line"> <span class="built_in">prockvmmap</span>(p-&gt;kpagetable,p-&gt;kstack,<span class="built_in">kvmpa</span>(p-&gt;kstack),PGSIZE, PTE_R | PTE_W);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// Allocate a trapframe page.</span></span><br><span class="line"> <span class="keyword">if</span>((p-&gt;trapframe = (<span class="keyword">struct</span> trapframe *)<span class="built_in">kalloc</span>()) == <span class="number">0</span>)&#123;</span><br><span class="line">   <span class="built_in">release</span>(&amp;p-&gt;lock);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// An empty user page table.</span></span><br><span class="line"> p-&gt;pagetable = <span class="built_in">proc_pagetable</span>(p);</span><br><span class="line"> <span class="keyword">if</span>(p-&gt;pagetable == <span class="number">0</span>)&#123;</span><br><span class="line">   <span class="built_in">freeproc</span>(p);</span><br><span class="line">   <span class="built_in">release</span>(&amp;p-&gt;lock);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>进程释放时，也需要对该进程的内核页表进行释放,但是释放时由于内核空间只是做了物理页的映射，因此我们只需要释放页表的空间即可，不需要释放物理页的空间。但在代码中加入了对每个进程执行<code>kalloc</code>和<code>kfree</code>的次数统计,发现实际确实存在内存泄漏,申请的物理页没有被释放的问题.<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// release trap frame</span></span><br><span class="line">  <span class="keyword">if</span>(p-&gt;trapframe)</span><br><span class="line">    <span class="built_in">kfree</span>((<span class="type">void</span>*)p-&gt;trapframe);</span><br><span class="line">  p-&gt;trapframe = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//release user page table</span></span><br><span class="line">  <span class="keyword">if</span>(p-&gt;pagetable)</span><br><span class="line">    <span class="built_in">proc_freepagetable</span>(p-&gt;pagetable, p-&gt;sz);</span><br><span class="line">  p-&gt;pagetable = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//release kernel page table and kernel stack</span></span><br><span class="line">  <span class="keyword">if</span>(p-&gt;kpagetable) &#123; </span><br><span class="line">  	<span class="built_in">procfreekpt</span>(p-&gt;kpagetable);</span><br><span class="line">  &#125;</span><br><span class="line">  p-&gt;kpagetable = <span class="number">0</span>;</span><br></pre></td></tr></table></figure></li>
+<li>我们用一个遍历即可，但是总感觉这个函数写的有点问题，没有释放所有的物理页，存在内存泄漏的问题，这个问题查找了很长时间没有解决。从github上下载了几个代码运行了一下，发现也都有问题。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Recursively free page-table pages except leaf</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">procfreekpt</span><span class="params">(<span class="type">pagetable_t</span> pagetable)</span></span>&#123;</span><br><span class="line">  <span class="comment">// there are 2^9 = 512 PTEs in a page table.</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">512</span>; i++)&#123;</span><br><span class="line">    <span class="type">pte_t</span> pte = pagetable[i];</span><br><span class="line">    <span class="keyword">if</span>(pte &amp; (PTE_R|PTE_W|PTE_X)) &#123;</span><br><span class="line">	  uint64 child = <span class="built_in">PTE2PA</span>(pte);</span><br><span class="line">	  <span class="built_in">procfreekpt</span>((<span class="type">pagetable_t</span>)child);</span><br><span class="line">	  pagetable[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">kfree</span>((<span class="type">void</span>*)pagetable);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>进程调度时,当前进程如果被调度时,则此时我们需要将该进行的内核页表的地址加载到页表的寄存器中,此时我们访问地址进行转换时,则通过该页表查找物理页的地址.我们可以看到在完成上下文切换前,将页表加载完成即可.当前如果所有的进程都空闲时,则我们将全局的<code>kernel pagetable</code>进行加载.<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">       p-&gt;state = RUNNING;</span><br><span class="line">       c-&gt;proc = p;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// load kernel pagetable address into page table</span></span><br><span class="line">    <span class="built_in">prockvminithart</span>(p-&gt;kpagetable);</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// load process kernel page table</span></span><br><span class="line">       <span class="built_in">swtch</span>(&amp;c-&gt;context, &amp;p-&gt;context);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// Process is done running for now.</span></span><br><span class="line">       <span class="comment">// It should have changed its p-&gt;state before coming back.</span></span><br><span class="line">       c-&gt;proc = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// found</span></span><br><span class="line">       found = <span class="number">1</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">release</span>(&amp;p-&gt;lock);</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">// the current has no process runing</span></span><br><span class="line">   <span class="keyword">if</span>(found == <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="comment">// use kernel pagetable when no process runing</span></span><br><span class="line">  <span class="built_in">kvminithart</span>();</span><br><span class="line">  </span><br><span class="line">     <span class="built_in">intr_on</span>();</span><br><span class="line">  <span class="comment">// load kernel page table</span></span><br><span class="line">     <span class="function"><span class="keyword">asm</span> <span class="title">volatile</span><span class="params">(<span class="string">&quot;wfi&quot;</span>)</span></span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-copyin-x2F-copyinstr"><a href="#3-copyin-x2F-copyinstr" class="headerlink" title="3.copyin&#x2F;copyinstr"></a>3.copyin&#x2F;copyinstr</h3><ul>
+<li>需要自己重新写<code>copyin</code>和<code>copyinstr</code>的代码，这个其实比较简单，在上一个练习中我们将内核中的所有的地址全部挂接到内核表中，在这个练习中我们需要将所有的用户空间的地址要全部映射到内核的页表中，这样在进程运行时，内核即可进行对用户空间的虚拟地址进行访问.我们可以重写一个函数对页表的物理页进行映射.下面函数的作用即是将一个页表中的虚地址全部映射到一个页表中.实际只做了物理页的映射,而并有实际的物理页的申请.<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">procuvmcopy</span><span class="params">(<span class="type">pagetable_t</span> uvm,<span class="type">pagetable_t</span> kvm,uint64 old_sz, uint64 new_sz)</span></span>&#123;</span><br><span class="line">	<span class="type">pte_t</span> *pte;</span><br><span class="line">	uint64 pa, i;</span><br><span class="line">	uint flags;</span><br><span class="line">	</span><br><span class="line">	old_sz = <span class="built_in">PGROUNDUP</span>(old_sz);</span><br><span class="line">	<span class="keyword">if</span> (new_sz &lt;= old_sz) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i = old_sz; i &lt; new_sz; i += PGSIZE)&#123;</span><br><span class="line">		<span class="keyword">if</span>((pte = <span class="built_in">walk</span>(uvm, i, <span class="number">0</span>)) == <span class="number">0</span>)</span><br><span class="line">			<span class="built_in">panic</span>(<span class="string">&quot;procuvmcopy: pte should exist&quot;</span>);</span><br><span class="line">		<span class="keyword">if</span>((*pte &amp; PTE_V) == <span class="number">0</span>)</span><br><span class="line">			<span class="built_in">panic</span>(<span class="string">&quot;procuvmcopy: page not present&quot;</span>);</span><br><span class="line">		pa = <span class="built_in">PTE2PA</span>(*pte);</span><br><span class="line">		flags = <span class="built_in">PTE_FLAGS</span>(*pte);</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">mappages</span>(kvm, i, PGSIZE, pa, flags&amp;(~PTE_U)) != <span class="number">0</span>)&#123;</span><br><span class="line">			<span class="built_in">panic</span>(<span class="string">&quot;procuvmcopy: remap&quot;</span>);</span><br><span class="line">			<span class="keyword">goto</span> err;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">err:</span><br><span class="line">	<span class="built_in">uvmunmap</span>(kvm, <span class="number">0</span>, i / PGSIZE, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>我们仔细阅读提示,发现有几个函数需要进行此类操作和映射.<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">Replace <span class="title">copyin</span><span class="params">()</span> with a call to copyin_new first, <span class="keyword">and</span> make it work, before moving on to copyinstr.</span></span><br><span class="line"><span class="function">At each point where the kernel changes a process&#x27;s user mappings, change the process&#x27;s kernel page table in the same way. Such points include <span class="title">fork</span><span class="params">()</span>, <span class="title">exec</span><span class="params">()</span>, <span class="keyword">and</span> <span class="title">sbrk</span><span class="params">()</span>.</span></span><br><span class="line"><span class="function">Don&#x27;t forget that to include the first process&#x27;s user page table in its kernel page table in userinit.</span></span><br><span class="line"><span class="function">What permissions <span class="keyword">do</span> the PTEs <span class="keyword">for</span> user addresses need in a process&#x27;s kernel page table? <span class="params">(A page with PTE_U set cannot be accessed in kernel mode.)</span></span></span><br><span class="line"><span class="function">Don&#x27;t forget about the above-mentioned PLIC limit.</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol>
+<li><code>userinit</code>函数的修改,我们需要将<code>initcode</code>中加载的一个物理页进行<code>copy</code>映射.<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">proc</span> *p;</span><br><span class="line">  p = <span class="built_in">allocproc</span>();</span><br><span class="line">  initproc = p;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// allocate one user page and copy init&#x27;s instructions</span></span><br><span class="line">  <span class="comment">// and data into it.</span></span><br><span class="line">  <span class="built_in">uvminit</span>(p-&gt;pagetable, initcode, <span class="built_in">sizeof</span>(initcode));</span><br><span class="line">  p-&gt;sz = PGSIZE;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// copy one page of the </span></span><br><span class="line">  <span class="built_in">procuvmcopy</span>(p-&gt;pagetable, p-&gt;kpagetable,<span class="number">0</span>,PGSIZE) ;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// prepare for the very first &quot;return&quot; from kernel to user.</span></span><br><span class="line">  p-&gt;trapframe-&gt;epc = <span class="number">0</span>;      <span class="comment">// user program counter</span></span><br><span class="line">  p-&gt;trapframe-&gt;sp = PGSIZE;  <span class="comment">// user stack pointer</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">safestrcpy</span>(p-&gt;name, <span class="string">&quot;initcode&quot;</span>, <span class="built_in">sizeof</span>(p-&gt;name));</span><br><span class="line">  p-&gt;cwd = <span class="built_in">namei</span>(<span class="string">&quot;/&quot;</span>);</span><br><span class="line"></span><br><span class="line">  p-&gt;state = RUNNABLE;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">release</span>(&amp;p-&gt;lock);</span><br></pre></td></tr></table></figure></li>
+<li><code>fork()</code>函数的修改, 我们发现<code>uvmcopy</code>时需要将父进程的用户空间页表全部拷贝到子进程,我们在完成拷贝时,则需要将该进程的用户空间的页表也全部拷贝一遍.将所有的页全部拷贝映射一遍即可.<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Allocate process.</span></span><br><span class="line">  <span class="keyword">if</span>((np = <span class="built_in">allocproc</span>()) == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Copy user memory from parent to child.</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">uvmcopy</span>(p-&gt;pagetable, np-&gt;pagetable, p-&gt;sz) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">freeproc</span>(np);</span><br><span class="line">    <span class="built_in">release</span>(&amp;np-&gt;lock);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  np-&gt;sz = p-&gt;sz;</span><br><span class="line">  np-&gt;parent = p;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// Copy user memory mapper the kernel page table to child</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">procuvmcopy</span>(np-&gt;pagetable, np-&gt;kpagetable,<span class="number">0</span>,np-&gt;sz) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">freeproc</span>(np);</span><br><span class="line">    <span class="built_in">release</span>(&amp;np-&gt;lock);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// copy saved user registers.</span></span><br><span class="line">  *(np-&gt;trapframe) = *(p-&gt;trapframe);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Cause fork to return 0 in the child.</span></span><br><span class="line">  np-&gt;trapframe-&gt;a0 = <span class="number">0</span>;</span><br></pre></td></tr></table></figure></li>
+<li><code>exec()</code>函数,我们可以看到<code>exec</code>函数函数执行时,首先会将<code>elf</code>文件里面的所有的段加载到内存中,并将其全部映射到进程的用户态页表中.首先我们需要将该进程的所有的内核的页表中所有的物理页映射全部去掉,然后就重新将用户空间的页表全部重新映射到内核的页表中.<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Save program name for debugging.</span></span><br><span class="line">  <span class="keyword">for</span>(last=s=path; *s; s++)</span><br><span class="line">    <span class="keyword">if</span>(*s == <span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">      last = s+<span class="number">1</span>;</span><br><span class="line">  <span class="built_in">safestrcpy</span>(p-&gt;name, last, <span class="built_in">sizeof</span>(p-&gt;name));</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// Commit to the user image.</span></span><br><span class="line">  oldpagetable = p-&gt;pagetable;</span><br><span class="line">  p-&gt;pagetable = pagetable;</span><br><span class="line">  p-&gt;sz = sz;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// we remove the old mapper and We mapper new pages to the kernel page table</span></span><br><span class="line">  <span class="built_in">uvmunmap</span>(p-&gt;kpagetable, <span class="number">0</span>, <span class="built_in">PGROUNDUP</span>(oldsz)/PGSIZE, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">procuvmcopy</span>(p-&gt;pagetable,p-&gt;kpagetable,<span class="number">0</span>,p-&gt;sz) &lt; <span class="number">0</span>)</span><br><span class="line">  	<span class="keyword">goto</span> bad;</span><br><span class="line">  </span><br><span class="line">  p-&gt;trapframe-&gt;epc = elf.entry;  <span class="comment">// initial program counter = main</span></span><br><span class="line">  p-&gt;trapframe-&gt;sp = sp;          <span class="comment">// initial stack pointer</span></span><br><span class="line">  <span class="built_in">proc_freepagetable</span>(oldpagetable, oldsz);</span><br></pre></td></tr></table></figure></li>
+<li><code>sbrk</code>函数,我们实际需要修改<code>sys_sbrk</code>函数,当用户空间的物理内存增长时,此时我们需要将新增的地址空间页全部映射到内核的页表中,如果用户的物理内存缩小时,则此时我们需要将已经去掉的地址空间的映射全部取消掉.我们判断地址增长的时候会判断该地址是否增长超过了系统的限制.<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span></span></span><br><span class="line"><span class="function"><span class="title">growproc</span><span class="params">(<span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  uint sz;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">proc</span> *p = <span class="built_in">myproc</span>();</span><br><span class="line"></span><br><span class="line">  sz = p-&gt;sz;</span><br><span class="line">  <span class="keyword">if</span>(n &gt; <span class="number">0</span>)&#123;</span><br><span class="line">  	<span class="comment">// check the virtual address is no more than 0x0c000000L</span></span><br><span class="line">  	<span class="keyword">if</span>((sz + n) &gt;= PLIC)&#123;</span><br><span class="line">	  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// malloc </span></span><br><span class="line">    <span class="keyword">if</span>((sz = <span class="built_in">uvmalloc</span>(p-&gt;pagetable, sz, sz + n)) == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// mapper user page to kernel page table</span></span><br><span class="line">	<span class="keyword">if</span>((<span class="built_in">procuvmcopy</span>(p-&gt;pagetable, p-&gt;kpagetable, p-&gt;sz, sz)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">	   <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    sz = <span class="built_in">uvmdealloc</span>(p-&gt;pagetable, sz, sz + n);</span><br><span class="line">	<span class="comment">// remove all the pages from the kernel table</span></span><br><span class="line">	<span class="built_in">uvmunmap</span>(p-&gt;kpagetable,<span class="built_in">PGROUNDUP</span>(sz),(<span class="built_in">PGROUNDUP</span>(p-&gt;sz)-<span class="built_in">PGROUNDUP</span>(sz))/PGSIZE,<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  p-&gt;sz = sz;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>总的来说这一章的<code>lab</code>还是非常有难度的,特别时调试的部分,花了很长时间都没有非常好的结果,感觉是目前遇到的难度最大的<code>lab</code>.</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#公开课学习" >
+    <span class="tag-code">公开课学习</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/11/20/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/65/">
+        <span class="nav-arrow">← </span>
+        
+          【MIT6.S081】 lab2 systemcalls
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2022/11/20/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/66/">
+        
+          【MIT6.S081】lab1 utils
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#page-tables"><span class="toc-nav-text">page tables</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#page"><span class="toc-nav-text">page</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-Print-a-page-table"><span class="toc-nav-text">1. Print a page table</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-A-kernel-page-table-per-process"><span class="toc-nav-text">2.A kernel page table per process</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-copyin-x2F-copyinstr"><span class="toc-nav-text">3.copyin&#x2F;copyinstr</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link"><span class="toc-nav-text"></span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/11/20/公开课学习/63/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2022 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>

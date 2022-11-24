@@ -227,8 +227,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n)$，其中 $n$ 表示数组的长度。</li>
-<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">mostFrequentEven</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (v % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt[v]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">-1</span>, freq = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [x, f] : cnt) &#123;</span><br><span class="line">            <span class="keyword">if</span> (f &gt; freq) &#123;</span><br><span class="line">                ans = x;</span><br><span class="line">                freq = f;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度。</li>
 </ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">mostFrequentEven</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (v % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt[v]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">-1</span>, freq = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [x, f] : cnt) &#123;</span><br><span class="line">            <span class="keyword">if</span> (f &gt; freq) &#123;</span><br><span class="line">                ans = x;</span><br><span class="line">                freq = f;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6177-子字符串的最优划分"><a href="#6177-子字符串的最优划分" class="headerlink" title="6177. 子字符串的最优划分"></a>6177. 子字符串的最优划分</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一个字符串 <code>s</code> ，请你将该字符串划分成一个或多个 <strong>子字符串</strong> ，并满足每个子字符串中的字符都是 <strong>唯一</strong> 的。也就是说，在单个子字符串中，字母的出现次数都不超过 <strong>一次</strong> 。</p>
 <p>满足题目要求的情况下，返回 <strong>最少</strong> 需要划分多少个子字符串<em>。</em></p>
 <p>注意，划分后，原字符串中的每个字符都应该恰好属于一个子字符串。</p>
@@ -252,8 +254,10 @@
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(n)$，$n$ 表示字符串的长度。</li>
-<li>空间复杂度：空间复杂度为 $O(|\Sigma|)$，$|\Sigma|$ 表示字符集的大小。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">partitionString</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">26</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt[s[i] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt[s[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt = <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">26</span>);</span><br><span class="line">                ans++;</span><br><span class="line">                cnt[s[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：空间复杂度为 $O(|\Sigma|)$，$|\Sigma|$ 表示字符集的大小。</li>
 </ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">partitionString</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">26</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt[s[i] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt[s[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt = <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">26</span>);</span><br><span class="line">                ans++;</span><br><span class="line">                cnt[s[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6178-将区间分为最少组数"><a href="#6178-将区间分为最少组数" class="headerlink" title="6178. 将区间分为最少组数"></a>6178. 将区间分为最少组数</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你一个二维整数数组 <code>intervals</code> ，其中 <code>intervals[i] = [lefti, righti]</code> 表示 <strong>闭</strong> 区间 <code>[lefti, righti]</code> 。</p>
 <p>你需要将 <code>intervals</code> 划分为一个或者多个区间 <strong>组</strong> ，每个区间 <strong>只</strong> 属于一个组，且同一个组中任意两个区间 <strong>不相交</strong> 。</p>
 <p>请你返回 <strong>最少</strong> 需要划分成多少个组。</p>
@@ -279,8 +283,10 @@
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(n \log n)$，$n$ 为数组的长度。</li>
-<li>空间复杂度：空间复杂度为 $O(n)$，$n$ 为数组的长度。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minGroups</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; intervals)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : intervals) &#123;</span><br><span class="line">            cnt[v[<span class="number">0</span>]]++;</span><br><span class="line">            cnt[v[<span class="number">1</span>] + <span class="number">1</span>]--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> curr = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [_, x] : cnt) &#123;</span><br><span class="line">            curr += x;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, curr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：空间复杂度为 $O(n)$，$n$ 为数组的长度。</li>
 </ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minGroups</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; intervals)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : intervals) &#123;</span><br><span class="line">            cnt[v[<span class="number">0</span>]]++;</span><br><span class="line">            cnt[v[<span class="number">1</span>] + <span class="number">1</span>]--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> curr = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [_, x] : cnt) &#123;</span><br><span class="line">            curr += x;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, curr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6206-最长递增子序列-II"><a href="#6206-最长递增子序列-II" class="headerlink" title="6206. 最长递增子序列 II"></a>6206. 最长递增子序列 II</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> 。</p>
 <p>找到 <code>nums</code> 中满足以下要求的最长子序列：</p>
 <ul>
@@ -308,7 +314,7 @@
 <p>线段树模板</p>
 </blockquote>
 <h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
-<li>典型的线段树模板，我们设 $dp[i]$ 表示以 $i$ 为结尾的元素所能构成最长子序列，对于当前的元素 $x$，我们需要查询以区间 $[x-k,x -1]$ 中的元素为结尾的最长递增子序列的长度，即我们需要查询 $dp[x-k, \cdots, x -1]$ 这样元素的最大值 $maxVal$，同时将 $dp[x] = maxVal + 1$，可以得到递推公式如下:<br>$$<br>dp[x] = \max_{j = x - k}^{x-1} dp[j]<br>$$<br>所以很容易采用线段树来进行范围查询和范围更新，非常典型的线段树模板题目。方法二维动态开点的线段树模板。</li>
+<li>典型的线段树模板，我们设 $dp[i]$ 表示以 $i$ 为结尾的元素所能构成最长子序列，对于当前的元素 $x$，我们需要查询以区间 $[x-k,x -1]$ 中的元素为结尾的最长递增子序列的长度，即我们需要查询 $dp[x-k, \cdots, x -1]$ 这样元素的最大值 $maxVal$，同时将 $dp[x] &#x3D; maxVal + 1$，可以得到递推公式如下:<br>$$<br>dp[x] &#x3D; \max_{j &#x3D; x - k}^{x-1} dp[j]<br>$$<br>所以很容易采用线段树来进行范围查询和范围更新，非常典型的线段树模板题目。方法二维动态开点的线段树模板。</li>
 <li>复杂度分析：</li>
 </ol>
 <ul>
@@ -343,17 +349,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/35/">
+      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/34/">
         <span class="nav-arrow">← </span>
         
-          leetcode contest 311
+          中国银联专场竞赛（2023届校园招聘专场）
         
       </a>
     
     
-      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/31/">
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/32/">
         
-          leetcode biweekly contest 86
+          leetcode contest 309
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -459,6 +465,15 @@
 
 
 
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
@@ -511,6 +526,15 @@
 
 
 <script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
 
 
   </body>

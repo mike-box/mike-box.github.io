@@ -229,8 +229,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n)$。</li>
-<li>空间复杂度：$O(n)$。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">numberOfPairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> x = *<span class="built_in">max_element</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(x + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : nums) &#123;</span><br><span class="line">            cnt[v]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= x; i++) &#123;</span><br><span class="line">            ans[<span class="number">0</span>] += cnt[i] / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ans[<span class="number">1</span>] = nums.<span class="built_in">size</span>() - ans[<span class="number">0</span>] * <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$。</li>
 </ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">numberOfPairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> x = *<span class="built_in">max_element</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(x + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : nums) &#123;</span><br><span class="line">            cnt[v]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= x; i++) &#123;</span><br><span class="line">            ans[<span class="number">0</span>] += cnt[i] / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ans[<span class="number">1</span>] = nums.<span class="built_in">size</span>() - ans[<span class="number">0</span>] * <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6164-数位和相等数对的最大和"><a href="#6164-数位和相等数对的最大和" class="headerlink" title="6164. 数位和相等数对的最大和"></a>6164. 数位和相等数对的最大和</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一个下标从 <code>0</code> 开始的数组<code>nums</code>，数组中的元素都是 正 整数。请你选出两个下标 <code>i</code> 和 <code>j（i != j）</code>，且 <code>nums[i]</code> 的数位和 与  <code>nums[j]</code> 的数位和相等。</p>
 <p>请你找出所有满足条件的下标 <code>i</code> 和 <code>j</code> ，找出并返回 <code>nums[i] + nums[j]</code> 可以得到的 最大值 。</p>
 <p> </p>
@@ -248,22 +250,24 @@
 <h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>动态规划
 </code></pre>
 <h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
-<li>设 $dp[x]$ 表示数位和为 $x$ 值最大的数，我们依次遍历每个数 $x$，并计算 $x$ 的数位和为 $sum[x]$，此时我们计算 $sum[x]$，对于 $x$ 则以 $x$ 为其中一个数的最大的和为 $x + dp[sum[x]]$，同时我们更新 $dp[x] = \max(dp[x],x)$。</li>
+<li>设 $dp[x]$ 表示数位和为 $x$ 值最大的数，我们依次遍历每个数 $x$，并计算 $x$ 的数位和为 $sum[x]$，此时我们计算 $sum[x]$，对于 $x$ 则以 $x$ 为其中一个数的最大的和为 $x + dp[sum[x]]$，同时我们更新 $dp[x] &#x3D; \max(dp[x],x)$。</li>
 <li>复杂度分析：</li>
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(n)$，$n$ 表示数组的长度。</li>
-<li>空间复杂度：$O(n)$。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> x : nums) &#123;</span><br><span class="line">            <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> val = x;</span><br><span class="line">            <span class="keyword">while</span> (x != <span class="number">0</span>) &#123;</span><br><span class="line">                sum += (x % <span class="number">10</span>);</span><br><span class="line">                x /= <span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(sum)) &#123;</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, val + cnt[sum]); </span><br><span class="line">                cnt[sum] = <span class="built_in">max</span>(cnt[sum], val);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt[sum] = val;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$。</li>
 </ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> x : nums) &#123;</span><br><span class="line">            <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> val = x;</span><br><span class="line">            <span class="keyword">while</span> (x != <span class="number">0</span>) &#123;</span><br><span class="line">                sum += (x % <span class="number">10</span>);</span><br><span class="line">                x /= <span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(sum)) &#123;</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, val + cnt[sum]); </span><br><span class="line">                cnt[sum] = <span class="built_in">max</span>(cnt[sum], val);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt[sum] = val;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6121-裁剪数字后查询第-K-小的数字"><a href="#6121-裁剪数字后查询第-K-小的数字" class="headerlink" title="6121. 裁剪数字后查询第 K 小的数字"></a>6121. 裁剪数字后查询第 K 小的数字</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你一个下标从 <code>0 </code>开始的字符串数组 <code>nums</code> ，其中每个字符串 长度相等 且只包含数字。</p>
 <p>再给你一个下标从 <code>0</code> 开始的二维整数数组 <code>queries</code> ，其中 <code>queries[i] = [ki, trimi]</code> 。对于每个 <code>queries[i]</code> ，你需要：</p>
 <p>将 <code>nums</code> 中每个数字 裁剪 到剩下 最右边 <code>trimi</code> 个数位。<br>在裁剪过后的数字中，找到 <code>nums</code> 中第 <code>ki</code> 小数字对应的 下标 。如果两个裁剪后数字一样大，那么下标 更小 的数字视为更小的数字。<br>将 <code>nums</code> 中每个数字恢复到原本字符串。<br>请你返回一个长度与 <code>queries</code> 相等的数组 <code>answer</code>，其中 <code>answer[i]</code> 是第 <code>i</code> 次查询的结果。</p>
 <p>提示：</p>
 <ul>
 <li>裁剪到剩下 <code>x</code> 个数位的意思是不断删除最左边的数位，直到剩下 <code>x</code> 个数位。</li>
-<li><code>nums</code> 中的字符串可能会有前导 <code>0</code> 。
- </li>
+<li><code>nums</code> 中的字符串可能会有前导 <code>0</code> 。</li>
 </ul>
+<p> </p>
 <p>示例 1：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [&quot;102&quot;,&quot;473&quot;,&quot;251&quot;,&quot;814&quot;], queries = [[1,1],[2,3],[4,2],[1,2]]</span><br><span class="line">输出：[2,2,1,0]</span><br><span class="line">解释：</span><br><span class="line">1. 裁剪到只剩 1 个数位后，nums = [&quot;2&quot;,&quot;3&quot;,&quot;1&quot;,&quot;4&quot;] 。最小的数字是 1 ，下标为 2 。</span><br><span class="line">2. 裁剪到剩 3 个数位后，nums 没有变化。第 2 小的数字是 251 ，下标为 2 。</span><br><span class="line">3. 裁剪到剩 2 个数位后，nums = [&quot;02&quot;,&quot;73&quot;,&quot;51&quot;,&quot;14&quot;] 。第 4 小的数字是 73 ，下标为 1 。</span><br><span class="line">4. 裁剪到剩 2 个数位后，最小数字是 2 ，下标为 0 。</span><br><span class="line">   注意，裁剪后数字 &quot;02&quot; 值为 2 。</span><br></pre></td></tr></table></figure>
 <p>示例 2：</p>
@@ -290,9 +294,9 @@
 </ol>
 <ul>
 <li>时间复杂度：暴力模拟的时间复杂度为 $O(qnm\log m)$, $q$ 表示给定的字符串的长度, $n$ 表示查询的次数，$m$ 表示字符串数组的长度。</li>
-<li>空间复杂度：$O(qm)$，$q$ 表示给定的字符串的长度, $m$ 表示字符串数组的长度。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4></li>
+<li>空间复杂度：$O(qm)$，$q$ 表示给定的字符串的长度, $m$ 表示字符串数组的长度。</li>
 </ul>
-<ol>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><ol>
 <li>直接排序<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">smallestTrimmedNumbers</span><span class="params">(vector&lt;string&gt;&amp; nums, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> n = queries.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> len = nums[<span class="number">0</span>].<span class="built_in">size</span>();        </span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> k = queries[i][<span class="number">0</span>], trim = queries[i][<span class="number">1</span>];</span><br><span class="line">            vector&lt;pair&lt;string, <span class="type">int</span>&gt;&gt; suffix;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                suffix.<span class="built_in">emplace_back</span>(nums[j].<span class="built_in">substr</span>(len - trim), j);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">sort</span>(suffix.<span class="built_in">begin</span>(), suffix.<span class="built_in">end</span>());</span><br><span class="line">            ans[i] = suffix[k - <span class="number">1</span>].second;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 <li>基数排序<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">smallestTrimmedNumbers</span><span class="params">(vector&lt;string&gt;&amp; nums, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> n = queries.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> len = nums[<span class="number">0</span>].<span class="built_in">size</span>();      </span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">suffix</span>(len + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            suffix[<span class="number">0</span>].<span class="built_in">emplace_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= len; i++) &#123;</span><br><span class="line">            vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">cnt</span>(<span class="number">10</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                <span class="type">int</span> index = suffix[i<span class="number">-1</span>][j];</span><br><span class="line">                <span class="type">char</span> c = nums[index][len - i];</span><br><span class="line">                cnt[c - <span class="string">&#x27;0&#x27;</span>].<span class="built_in">emplace_back</span>(index);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> x : cnt[j]) &#123;</span><br><span class="line">                    suffix[i].<span class="built_in">emplace_back</span>(x);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> k = queries[i][<span class="number">0</span>], trim = queries[i][<span class="number">1</span>];</span><br><span class="line">            ans[i] = suffix[trim][k - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ol>
@@ -353,17 +357,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/20/">
+      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/16/">
         <span class="nav-arrow">← </span>
         
-          leetcode  conttest 303
+          leetcode conttest 301
         
       </a>
     
     
-      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/19/">
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/15/">
         
-          leetcode biweekly conttest 83
+          leetcode biweekly contest 82
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -469,6 +473,15 @@
 
 
 
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
@@ -521,6 +534,15 @@
 
 
 <script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
 
 
   </body>

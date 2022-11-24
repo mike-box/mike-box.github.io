@@ -234,8 +234,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n \log n)$。</li>
-<li>空间复杂度：$O(1)$。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">bestHand</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; ranks, vector&lt;<span class="type">char</span>&gt;&amp; suits)</span> </span>&#123;</span><br><span class="line">        <span class="type">bool</span> isFlush = <span class="literal">true</span>; </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; suits.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (suits[i] != suits[i<span class="number">-1</span>]) &#123;</span><br><span class="line">                isFlush = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isFlush) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Flush&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">sort</span>(ranks.<span class="built_in">begin</span>(), ranks.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; ranks.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ranks[i] == ranks[i<span class="number">-1</span>] &amp;&amp; ranks[i] == ranks[i<span class="number">-2</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;Three of a Kind&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; ranks.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ranks[i] == ranks[i<span class="number">-1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;Pair&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;High Card&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(1)$。</li>
 </ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">bestHand</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; ranks, vector&lt;<span class="type">char</span>&gt;&amp; suits)</span> </span>&#123;</span><br><span class="line">        <span class="type">bool</span> isFlush = <span class="literal">true</span>; </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; suits.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (suits[i] != suits[i<span class="number">-1</span>]) &#123;</span><br><span class="line">                isFlush = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isFlush) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Flush&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">sort</span>(ranks.<span class="built_in">begin</span>(), ranks.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; ranks.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ranks[i] == ranks[i<span class="number">-1</span>] &amp;&amp; ranks[i] == ranks[i<span class="number">-2</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;Three of a Kind&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; ranks.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ranks[i] == ranks[i<span class="number">-1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;Pair&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;High Card&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6129-全-0-子数组的数目"><a href="#6129-全-0-子数组的数目" class="headerlink" title="6129. 全 0 子数组的数目"></a>6129. 全 0 子数组的数目</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一个整数数组 <code>nums</code> ，返回全部为 <code>0</code> 的 子数组 数目。</p>
 <p>子数组 是一个数组中一段连续非空元素组成的序列。</p>
 <p>示例 1：</p>
@@ -259,8 +261,10 @@
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(n)$，$n$ 表示数组的长度。</li>
-<li>空间复杂度：$O(1)$。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">zeroFilledSubarray</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">                cnt = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ans += cnt;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(1)$。</li>
 </ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">zeroFilledSubarray</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">                cnt = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ans += cnt;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6130-设计数字容器系统"><a href="#6130-设计数字容器系统" class="headerlink" title="6130. 设计数字容器系统"></a>6130. 设计数字容器系统</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>设计一个数字容器系统，可以实现以下功能：</p>
 <p>在系统中给定下标处 插入 或者 替换 一个数字。<br>返回 系统中给定数字的最小下标。<br>请你实现一个 <code>NumberContainers</code> 类：</p>
 <ul>
@@ -285,8 +289,10 @@
 </ol>
 <ul>
 <li>时间复杂度：暴力模拟的时间复杂度为 $O(n \log n)$。</li>
-<li>空间复杂度：$O(n)$。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NumberContainers</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">NumberContainers</span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">change</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">count</span>(index)) &#123;</span><br><span class="line">            <span class="type">int</span> val = nums[index];</span><br><span class="line">            cnt[val].<span class="built_in">erase</span>(index);</span><br><span class="line">            <span class="keyword">if</span> (cnt[val].<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt.<span class="built_in">erase</span>(val);</span><br><span class="line">            &#125;</span><br><span class="line">            nums.<span class="built_in">erase</span>(index);</span><br><span class="line">        &#125; </span><br><span class="line">        nums[index] = number;</span><br><span class="line">        cnt[number].<span class="built_in">emplace</span>(index);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!cnt.<span class="built_in">count</span>(number)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> *(cnt[number].<span class="built_in">begin</span>());</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; nums;</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, set&lt;<span class="type">int</span>&gt;&gt; cnt;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your NumberContainers object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * NumberContainers* obj = new NumberContainers();</span></span><br><span class="line"><span class="comment"> * obj-&gt;change(index,number);</span></span><br><span class="line"><span class="comment"> * int param_2 = obj-&gt;find(number);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$。</li>
 </ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NumberContainers</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">NumberContainers</span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">change</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">count</span>(index)) &#123;</span><br><span class="line">            <span class="type">int</span> val = nums[index];</span><br><span class="line">            cnt[val].<span class="built_in">erase</span>(index);</span><br><span class="line">            <span class="keyword">if</span> (cnt[val].<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt.<span class="built_in">erase</span>(val);</span><br><span class="line">            &#125;</span><br><span class="line">            nums.<span class="built_in">erase</span>(index);</span><br><span class="line">        &#125; </span><br><span class="line">        nums[index] = number;</span><br><span class="line">        cnt[number].<span class="built_in">emplace</span>(index);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!cnt.<span class="built_in">count</span>(number)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> *(cnt[number].<span class="built_in">begin</span>());</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; nums;</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, set&lt;<span class="type">int</span>&gt;&gt; cnt;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your NumberContainers object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * NumberContainers* obj = new NumberContainers();</span></span><br><span class="line"><span class="comment"> * obj-&gt;change(index,number);</span></span><br><span class="line"><span class="comment"> * int param_2 = obj-&gt;find(number);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="6131-不可能得到的最短骰子序列"><a href="#6131-不可能得到的最短骰子序列" class="headerlink" title="6131. 不可能得到的最短骰子序列"></a>6131. 不可能得到的最短骰子序列</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>给你一个长度为 <code>n</code> 的整数数组 <code>rolls</code> 和一个整数 <code>k </code>。你扔一个 <code>k</code> 面的骰子 <code>n</code> 次，骰子的每个面分别是 <code>1</code> 到 <code>k</code> ，其中第 <code>i</code> 次扔得到的数字是 <code>rolls[i]</code> 。</p>
 <p>请你返回 无法 从 <code>rolls</code> 中得到的 最短 骰子子序列的长度。</p>
 <p>扔一个 k 面的骰子 <code>len</code> 次得到的是一个长度为 <code>len</code> 的 骰子子序列 。</p>
@@ -311,10 +317,10 @@
 <li>感觉是比较简单的排列组合理论即可，我们仔细观察一下：</li>
 </ol>
 <ul>
-<li>如果满足长度为 $1$ 的子序列全部出现，则此时数组中一定满足出现 $s = [1,\cdots, k]$，当然可以是 $s$ 的任意顺序；</li>
-<li> 如果满足长度为 $2$ 的子序列全部出现，则此时数组中一定满足对于任意的 $i \in [1,k]$ 的索引后面一定会出现 $s = [1,\cdots, k]$ 的任意排列，综上可以知道此时数组中一定出现两个 $s$ 序列 $s_1 = [1,\cdots, k], s_0 = [1,s\cdots, k]$ 且 $s_1$ 中的全部元素一定在 $ s_0$ 的前面。只有这样才能保证所有长度为$2$ 的子序列全部出现。</li>
-<li> 综上我们可以观察出，我们只需要计算数组中连续出现序列 $s = [1, \cdots, k] $ 的最大次数即可。</li>
-<li> 连续出现的最大次数加 $1$ 即为无法得到的最短序列。我们可以用 <code>hash</code> 表来统计当前序列中已经出现的不同元素是否达到 $k$ 个。</li>
+<li>如果满足长度为 $1$ 的子序列全部出现，则此时数组中一定满足出现 $s &#x3D; [1,\cdots, k]$，当然可以是 $s$ 的任意顺序；</li>
+<li>如果满足长度为 $2$ 的子序列全部出现，则此时数组中一定满足对于任意的 $i \in [1,k]$ 的索引后面一定会出现 $s &#x3D; [1,\cdots, k]$ 的任意排列，综上可以知道此时数组中一定出现两个 $s$ 序列 $s_1 &#x3D; [1,\cdots, k], s_0 &#x3D; [1,s\cdots, k]$ 且 $s_1$ 中的全部元素一定在 $ s_0$ 的前面。只有这样才能保证所有长度为$2$ 的子序列全部出现。</li>
+<li>综上我们可以观察出，我们只需要计算数组中连续出现序列 $s &#x3D; [1, \cdots, k] $ 的最大次数即可。</li>
+<li>连续出现的最大次数加 $1$ 即为无法得到的最短序列。我们可以用 <code>hash</code> 表来统计当前序列中已经出现的不同元素是否达到 $k$ 个。</li>
 </ul>
 <ol start="2">
 <li>复杂度分析：</li>
@@ -349,17 +355,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/17/">
+      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/20/">
         <span class="nav-arrow">← </span>
         
-          leetcode conttest 302
+          leetcode  conttest 303
         
       </a>
     
     
-      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/15/">
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/16/">
         
-          leetcode biweekly contest 82
+          leetcode conttest 301
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -465,6 +471,15 @@
 
 
 
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
@@ -517,6 +532,15 @@
 
 
 <script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
 
 
   </body>

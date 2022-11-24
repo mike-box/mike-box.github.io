@@ -228,8 +228,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n \log n)$，其中 $n$ 表示数组的长度。</li>
-<li>空间复杂度：$O(n)$。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">lastMaterial</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; material)</span> </span>&#123;</span><br><span class="line">        priority_queue&lt;<span class="type">int</span>, vector&lt;<span class="type">int</span>&gt;, less&lt;<span class="type">int</span>&gt;&gt; pq;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : material) &#123;</span><br><span class="line">            pq.<span class="built_in">emplace</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (pq.<span class="built_in">size</span>() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> x = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="type">int</span> y = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span> (x &gt; y) &#123;</span><br><span class="line">                pq.<span class="built_in">emplace</span>(x - y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (pq.<span class="built_in">size</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> pq.<span class="built_in">top</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$。</li>
 </ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">lastMaterial</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; material)</span> </span>&#123;</span><br><span class="line">        priority_queue&lt;<span class="type">int</span>, vector&lt;<span class="type">int</span>&gt;, less&lt;<span class="type">int</span>&gt;&gt; pq;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : material) &#123;</span><br><span class="line">            pq.<span class="built_in">emplace</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (pq.<span class="built_in">size</span>() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> x = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="type">int</span> y = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span> (x &gt; y) &#123;</span><br><span class="line">                pq.<span class="built_in">emplace</span>(x - y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (pq.<span class="built_in">size</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> pq.<span class="built_in">top</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="题目-02-销售出色区间"><a href="#题目-02-销售出色区间" class="headerlink" title="题目-02. 销售出色区间"></a>题目-02. 销售出色区间</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一份销售数量表 <code>sales</code>，上面记录着某一位销售员每天成功推销的产品数目。</p>
 <p>我们认为当销售员同一天推销的产品数目大于 <code>8</code> 个的时候，那么这一天就是「成功销售的一天」。</p>
 <p>所谓「销售出色区间」，意味在这段时间内，「成功销售的天数」是严格 大于「未成功销售的天数」。</p>
@@ -259,9 +261,9 @@
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(n)$，其中 $n$ 表示节点的数目。</li>
-<li>空间复杂度：空间复杂度为 $O(n)$，其中 $n$ 表示节点的数目。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4></li>
+<li>空间复杂度：空间复杂度为 $O(n)$，其中 $n$ 表示节点的数目。</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestESR</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; sales)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = sales.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="type">int</span> prevSum = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            prevSum += (sales[i] &gt; <span class="number">8</span> ? <span class="number">1</span> : <span class="number">-1</span>); </span><br><span class="line">            <span class="keyword">if</span> (prevSum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                res = <span class="built_in">max</span>(res, i + <span class="number">1</span>);</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(prevSum - <span class="number">1</span>)) &#123;</span><br><span class="line">                res = <span class="built_in">max</span>(res, i - cnt[prevSum - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!cnt.<span class="built_in">count</span>(prevSum)) &#123;</span><br><span class="line">                cnt[prevSum] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestESR</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; sales)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = sales.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="type">int</span> prevSum = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            prevSum += (sales[i] &gt; <span class="number">8</span> ? <span class="number">1</span> : <span class="number">-1</span>); </span><br><span class="line">            <span class="keyword">if</span> (prevSum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                res = <span class="built_in">max</span>(res, i + <span class="number">1</span>);</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(prevSum - <span class="number">1</span>)) &#123;</span><br><span class="line">                res = <span class="built_in">max</span>(res, i - cnt[prevSum - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!cnt.<span class="built_in">count</span>(prevSum)) &#123;</span><br><span class="line">                cnt[prevSum] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h3 id="题目-03-重复的彩灯树"><a href="#题目-03-重复的彩灯树" class="headerlink" title="题目-03. 重复的彩灯树"></a>题目-03. 重复的彩灯树</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>有一棵结构为二叉树的圣诞树 <code>root</code> 挂满了彩灯，各节点值表示彩灯的颜色。</p>
 <p>如果两棵子树具有 相同的结构 和 相同的彩灯颜色分布，则它们是 重复 的。</p>
@@ -289,8 +291,10 @@
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(n^2)$，$n$ 为节点的数目。</li>
-<li>空间复杂度：时间复杂度为 $O(n^2)$，$n$ 为节点的数目。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">dfs</span><span class="params">(TreeNode* root, unordered_map&lt;string, vector&lt;TreeNode *&gt;&gt; &amp;cnt)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;null&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        string left = <span class="built_in">dfs</span>(root-&gt;left, cnt);</span><br><span class="line">        string right = <span class="built_in">dfs</span>(root-&gt;right, cnt);</span><br><span class="line">        string str =  <span class="string">&quot;(&quot;</span> + left + <span class="string">&quot;)&quot;</span> + <span class="built_in">to_string</span>(root-&gt;val) + <span class="string">&quot;(&quot;</span> + right + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">        cnt[str].<span class="built_in">emplace_back</span>(root);</span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;TreeNode*&gt; <span class="title">lightDistribution</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;string, vector&lt;TreeNode *&gt;&gt; cnt;</span><br><span class="line">        <span class="built_in">dfs</span>(root, cnt);</span><br><span class="line">        vector&lt;TreeNode *&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [_, vec] : cnt) &#123;</span><br><span class="line">            <span class="keyword">if</span> (vec.<span class="built_in">size</span>() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                res.<span class="built_in">emplace_back</span>(vec[<span class="number">0</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：时间复杂度为 $O(n^2)$，$n$ 为节点的数目。</li>
 </ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">dfs</span><span class="params">(TreeNode* root, unordered_map&lt;string, vector&lt;TreeNode *&gt;&gt; &amp;cnt)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;null&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        string left = <span class="built_in">dfs</span>(root-&gt;left, cnt);</span><br><span class="line">        string right = <span class="built_in">dfs</span>(root-&gt;right, cnt);</span><br><span class="line">        string str =  <span class="string">&quot;(&quot;</span> + left + <span class="string">&quot;)&quot;</span> + <span class="built_in">to_string</span>(root-&gt;val) + <span class="string">&quot;(&quot;</span> + right + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">        cnt[str].<span class="built_in">emplace_back</span>(root);</span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;TreeNode*&gt; <span class="title">lightDistribution</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;string, vector&lt;TreeNode *&gt;&gt; cnt;</span><br><span class="line">        <span class="built_in">dfs</span>(root, cnt);</span><br><span class="line">        vector&lt;TreeNode *&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [_, vec] : cnt) &#123;</span><br><span class="line">            <span class="keyword">if</span> (vec.<span class="built_in">size</span>() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                res.<span class="built_in">emplace_back</span>(vec[<span class="number">0</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="题目-04-补给覆盖"><a href="#题目-04-补给覆盖" class="headerlink" title="题目-04. 补给覆盖"></a>题目-04. 补给覆盖</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>已知有一片呈二叉树的道路，我们要在道路上的一些节点设置补给站支援。</p>
 <p>补给站可以设置在任意节点上，每个补给站可以使距离自身小于等于 <code>1</code> 个单位的节点获得补给。</p>
 <p>若要使道路的所有节点均能获得补给，请返回所需设置的补给站最少数量。</p>
@@ -317,11 +321,11 @@
 </ul>
 <p>则我们可以知道有以下推论：</p>
 <ul>
-<li><p>如果 $node$ 会被父节点补给，则此时 $node$ 的子节点此时要么被自身补给，要么被 $node$ 的子节点的子节点补给，且此时 $node$ 子节点不能被 $node$ 补给；所以可以得到以下推论:<br>$$<br>dp[node][0] = \min(dp[node.left][1],dp[node.left][2]) + \min(dp[node.right][1],dp[node.right][2])<br>$$<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210071606141.png"></p>
+<li><p>如果 $node$ 会被父节点补给，则此时 $node$ 的子节点此时要么被自身补给，要么被 $node$ 的子节点的子节点补给，且此时 $node$ 子节点不能被 $node$ 补给；所以可以得到以下推论:<br>$$<br>dp[node][0] &#x3D; \min(dp[node.left][1],dp[node.left][2]) + \min(dp[node.right][1],dp[node.right][2])<br>$$<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210071606141.png"></p>
 </li>
-<li><p>如果 $node$ 会被孩子节点补给，则此时 $node$ 的子节点中一定有一个子节点被自身补给，$node$ 的左孩子要么为补给站要么右孩子为补给站，即两个孩子节点中至少有一个为补给站，所以可以得到以下推论:<br>$$<br>dp[node][1] = \min((dp[node.left][1] + \min(dp[node.right][1], dp[node.right][2]), (dp[node.right][1] + \min(dp[node.left][1], dp[node.left][2]))<br>$$<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210072345234.png"></p>
+<li><p>如果 $node$ 会被孩子节点补给，则此时 $node$ 的子节点中一定有一个子节点被自身补给，$node$ 的左孩子要么为补给站要么右孩子为补给站，即两个孩子节点中至少有一个为补给站，所以可以得到以下推论:<br>$$<br>dp[node][1] &#x3D; \min((dp[node.left][1] + \min(dp[node.right][1], dp[node.right][2]), (dp[node.right][1] + \min(dp[node.left][1], dp[node.left][2]))<br>$$<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210072345234.png"></p>
 </li>
-<li><p>如果 $node$ 会被自身补给，则此时 $node$ 的子节点可以被 $node$ 补给或者被自身、孩子节点补给，此时需要在 $node$ 处放置一个补给站，所以可以得到以下推论:<br>$$<br>dp[node][2] = 1 + \min(dp[node.left][0],dp[node.left][1], dp[node.left][2]) + \min(dp[node.left][0],dp[node.left][1], dp[node.left][2])<br>$$<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210072346579.png"></p>
+<li><p>如果 $node$ 会被自身补给，则此时 $node$ 的子节点可以被 $node$ 补给或者被自身、孩子节点补给，此时需要在 $node$ 处放置一个补给站，所以可以得到以下推论:<br>$$<br>dp[node][2] &#x3D; 1 + \min(dp[node.left][0],dp[node.left][1], dp[node.left][2]) + \min(dp[node.left][0],dp[node.left][1], dp[node.left][2])<br>$$<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210072346579.png"></p>
 </li>
 </ul>
 <ol start="2">
@@ -357,17 +361,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/38/">
+      <a class="nav-left" href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/40/">
         <span class="nav-arrow">← </span>
         
-          leetcode LCCUP 2022
+          leetcode biweekly contest 88
         
       </a>
     
     
-      <a class="nav-right" href="/2022/11/02/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/46/">
+      <a class="nav-right" href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/38/">
         
-          【MIT 6.S081】 lab10 network
+          leetcode LCCUP 2022
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -473,6 +477,15 @@
 
 
 
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
@@ -525,6 +538,15 @@
 
 
 <script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
 
 
   </body>

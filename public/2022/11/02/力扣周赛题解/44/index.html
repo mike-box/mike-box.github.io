@@ -228,8 +228,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(10^n)$。</li>
-<li>空间复杂度：$O(n)$。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(string &amp;s, <span class="type">int</span> pos, <span class="type">int</span> &amp;res)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pos == s.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="type">int</span> h = (s[<span class="number">0</span>] - <span class="string">&#x27;0&#x27;</span>)*<span class="number">10</span> + s[<span class="number">1</span>] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            <span class="type">int</span> m = (s[<span class="number">3</span>] - <span class="string">&#x27;0&#x27;</span>)*<span class="number">10</span> + s[<span class="number">4</span>] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (h &lt; <span class="number">24</span> &amp;&amp; m &lt; <span class="number">60</span>) &#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (s[pos] == <span class="string">&#x27;?&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">                s[pos] = <span class="string">&#x27;0&#x27;</span> + i;</span><br><span class="line">                <span class="built_in">dfs</span>(s, pos + <span class="number">1</span>, res);</span><br><span class="line">                s[pos] = <span class="string">&#x27;?&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">dfs</span>(s, pos + <span class="number">1</span>, res);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countTime</span><span class="params">(string time)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(time, <span class="number">0</span>, ans);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$。</li>
 </ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(string &amp;s, <span class="type">int</span> pos, <span class="type">int</span> &amp;res)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pos == s.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="type">int</span> h = (s[<span class="number">0</span>] - <span class="string">&#x27;0&#x27;</span>)*<span class="number">10</span> + s[<span class="number">1</span>] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            <span class="type">int</span> m = (s[<span class="number">3</span>] - <span class="string">&#x27;0&#x27;</span>)*<span class="number">10</span> + s[<span class="number">4</span>] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (h &lt; <span class="number">24</span> &amp;&amp; m &lt; <span class="number">60</span>) &#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (s[pos] == <span class="string">&#x27;?&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">                s[pos] = <span class="string">&#x27;0&#x27;</span> + i;</span><br><span class="line">                <span class="built_in">dfs</span>(s, pos + <span class="number">1</span>, res);</span><br><span class="line">                s[pos] = <span class="string">&#x27;?&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">dfs</span>(s, pos + <span class="number">1</span>, res);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countTime</span><span class="params">(string time)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(time, <span class="number">0</span>, ans);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6209-二的幂数组中查询范围内的乘积"><a href="#6209-二的幂数组中查询范围内的乘积" class="headerlink" title="6209. 二的幂数组中查询范围内的乘积"></a>6209. 二的幂数组中查询范围内的乘积</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一个正整数 <code>n</code> ，你需要找到一个下标从 <code>0</code> 开始的数组 <code>powers</code> ，它包含 最少 数目的 <code>2</code> 的幂，且它们的和为 <code>n</code> 。<code>powers</code> 数组是 非递减 顺序的。根据前面描述，构造 <code>powers</code> 数组的方法是唯一的。</p>
 <p>同时给你一个下标从 <code>0</code> 开始的二维整数数组 <code>queries</code> ，其中 <code>queries[i] = [lefti, righti]</code> ，其中 <code>queries[i]</code> 表示请你求出满足 <code>lefti &lt;= j &lt;= righti</code> 的所有 <code>powers[j]</code> 的乘积。</p>
 <p>请你返回一个数组 <code>answers</code> ，长度与 <code>queries</code> 的长度相同，其中 <code>answers[i]</code>是第 <code>i</code> 个查询的答案。由于查询的结果可能非常大，请你将每个 <code>answers[i]</code> 都对 <code>109 + 7</code> 取余 。</p>
@@ -252,9 +254,9 @@
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(log n + m \log n)$，其中 $m$ 表示数组的长度，$n$ 表示给定的数。</li>
-<li>空间复杂度：空间复杂度为 $O(\log n)$。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4></li>
+<li>空间复杂度：空间复杂度为 $O(\log n)$。</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">productQueries</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; arr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (n &amp; (<span class="number">1</span> &lt;&lt; i)) &#123;</span><br><span class="line">                arr.<span class="built_in">emplace_back</span>(<span class="number">1</span> &lt;&lt; i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; queries.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = queries[i][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> y = queries[i][<span class="number">1</span>];</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> curr = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = x; j &lt;= y; j++) &#123;</span><br><span class="line">                curr = (curr * arr[j]) % mod;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">emplace_back</span>(curr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">productQueries</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; arr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (n &amp; (<span class="number">1</span> &lt;&lt; i)) &#123;</span><br><span class="line">                arr.<span class="built_in">emplace_back</span>(<span class="number">1</span> &lt;&lt; i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; queries.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = queries[i][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> y = queries[i][<span class="number">1</span>];</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> curr = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = x; j &lt;= y; j++) &#123;</span><br><span class="line">                curr = (curr * arr[j]) % mod;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">emplace_back</span>(curr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h3 id="6210-最小化数组中的最大值"><a href="#6210-最小化数组中的最大值" class="headerlink" title="6210. 最小化数组中的最大值"></a>6210. 最小化数组中的最大值</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你一个下标从 <code>0</code> 开始的数组 <code>nums</code> ，它含有 <code>n</code> 个非负整数。</p>
 <p>每一步操作中，你需要：</p>
@@ -283,8 +285,10 @@
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(n)$，$n$ 为数组的长度。</li>
-<li>空间复杂度：时间复杂度为 $O(1)$。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimizeArrayValue</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, (sum + i) / (i + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：时间复杂度为 $O(1)$。</li>
 </ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimizeArrayValue</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, (sum + i) / (i + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6211-创建价值相同的连通块"><a href="#6211-创建价值相同的连通块" class="headerlink" title="6211. 创建价值相同的连通块"></a>6211. 创建价值相同的连通块</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>有一棵 <code>n</code> 个节点的无向树，节点编号为 <code>0</code> 到 <code>n - 1</code> 。</p>
 <p>给你一个长度为 <code>n</code> 下标从 <code>0</code> 开始的整数数组 <code>nums</code> ，其中 <code>nums[i]</code> 表示第 <code>i</code> 个节点的值。同时给你一个长度为 <code>n - 1</code> 的二维整数数组 <code>edges</code> ，其中 <code>edges[i] = [ai, bi]</code> 表示节点<code>ai</code>与 <code>bi</code> 之间有一条边。</p>
 <p>你可以 删除 一些边，将这棵树分成几个连通块。一个连通块的 价值 定义为这个连通块中 所有 节点 <code>i</code> 对应的 <code>nums[i]</code> 之和。</p>
@@ -309,7 +313,7 @@
 <p> 深度优先搜索</p>
 </blockquote>
 <h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
-<li>我们知道一个数 $x$ 的最多可能有 $d(x)$ 个不同的因子，因此我们直接尝试所有可能的因子即可。我们尝试将树分为 $k$ 部分，则每部分的和为 $\dfrac{\sum \limits _{i=0}^{n-1}nums[i]}{k}$，所以我们可以尝试的次数最多约为 $d(\sum \limits _{i=0}^{n-1}nums[i])$。</li>
+<li>我们知道一个数 $x$ 的最多可能有 $d(x)$ 个不同的因子，因此我们直接尝试所有可能的因子即可。我们尝试将树分为 $k$ 部分，则每部分的和为 $\dfrac{\sum \limits _{i&#x3D;0}^{n-1}nums[i]}{k}$，所以我们可以尝试的次数最多约为 $d(\sum \limits _{i&#x3D;0}^{n-1}nums[i])$。</li>
 <li>当然最重要的是要检测树是否可以被分为 $k$ 个子模块，此时我们需要用深度优先搜索来检测。感觉比较难写的倒是这个 <code>DFS</code> 检测算法不是很好写。非常经典的一个树的遍历的算法。</li>
 <li>复杂度分析：</li>
 </ol>
@@ -343,17 +347,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/48/">
+      <a class="nav-left" href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/47/">
         <span class="nav-arrow">← </span>
         
-          leetcode 阿里天池专场
+          树状数组
         
       </a>
     
     
-      <a class="nav-right" href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/47/">
+      <a class="nav-right" href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/43/">
         
-          树状数组
+          leetcode contest 315
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -459,6 +463,15 @@
 
 
 
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
@@ -511,6 +524,15 @@
 
 
 <script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
 
 
   </body>

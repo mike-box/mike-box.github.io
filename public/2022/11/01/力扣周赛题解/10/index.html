@@ -227,8 +227,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n + \Sigma)$, 其中 $n$ 为字符串的长度。</li>
-<li>空间复杂度：$O(\Sigma)$。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">greatestLetter</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">bool</span>&gt;&gt; <span class="built_in">cnt</span>(<span class="number">26</span>, <span class="built_in">vector</span>&lt;<span class="type">bool</span>&gt;(<span class="number">2</span>));</span><br><span class="line">        string res = <span class="string">&quot; &quot;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp; c : s) &#123;</span><br><span class="line">            <span class="type">int</span> x = <span class="built_in">tolower</span>(c) - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">islower</span>(c)) &#123;</span><br><span class="line">                cnt[x][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt[x][<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt[i][<span class="number">0</span>] &amp;&amp; cnt[i][<span class="number">1</span>]) &#123;</span><br><span class="line">                res[<span class="number">0</span>] = <span class="string">&#x27;A&#x27;</span> + i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res[<span class="number">0</span>] == <span class="string">&#x27; &#x27;</span> ? <span class="string">&quot;&quot;</span> : res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(\Sigma)$。</li>
 </ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">greatestLetter</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">bool</span>&gt;&gt; <span class="built_in">cnt</span>(<span class="number">26</span>, <span class="built_in">vector</span>&lt;<span class="type">bool</span>&gt;(<span class="number">2</span>));</span><br><span class="line">        string res = <span class="string">&quot; &quot;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp; c : s) &#123;</span><br><span class="line">            <span class="type">int</span> x = <span class="built_in">tolower</span>(c) - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">islower</span>(c)) &#123;</span><br><span class="line">                cnt[x][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt[x][<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt[i][<span class="number">0</span>] &amp;&amp; cnt[i][<span class="number">1</span>]) &#123;</span><br><span class="line">                res[<span class="number">0</span>] = <span class="string">&#x27;A&#x27;</span> + i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res[<span class="number">0</span>] == <span class="string">&#x27; &#x27;</span> ? <span class="string">&quot;&quot;</span> : res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="5218-个位数字为-K-的整数之和"><a href="#5218-个位数字为-K-的整数之和" class="headerlink" title="5218. 个位数字为 K 的整数之和"></a>5218. 个位数字为 K 的整数之和</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你两个整数 <code>num</code> 和 <code>k </code>，考虑具有以下属性的正整数多重集：</p>
 <ul>
 <li>每个整数个位数字都是 <code>k</code> 。</li>
@@ -256,26 +258,28 @@
 <li>简单的数学问题，分析如下:</li>
 </ol>
 <ul>
-<li>如果 $num = 0$ 此时我们应该直接返回 $0$.</li>
+<li>如果 $num &#x3D; 0$ 此时我们应该直接返回 $0$.</li>
 <li>假设最小长度为 $n$，则可以知道 $n \times k$ 的个位数一定与 $num$ 的个位数相等，且必须满足 $ n \times k \le num$.</li>
-<li>由于题目中允许重复的元素，且满足长度最小，则假设我们已经找到最小的 $n$ 满足上述条件，则可以知道 $num$ 一定可以被拆解成 $n$ 个个位数字为 $k$ 的正整数，已知 $num = (n-1) * k + (num - n*k) + k$，则可以拆分如下 :<br>$[k,k,k,\cdots, (num - (n-1)*k)]$，且满足 $num - (n-1) \times k$ 的个位数字一定为 $k$。</li>
+<li>由于题目中允许重复的元素，且满足长度最小，则假设我们已经找到最小的 $n$ 满足上述条件，则可以知道 $num$ 一定可以被拆解成 $n$ 个个位数字为 $k$ 的正整数，已知 $num &#x3D; (n-1) * k + (num - n*k) + k$，则可以拆分如下 :<br>$[k,k,k,\cdots, (num - (n-1)*k)]$，且满足 $num - (n-1) \times k$ 的个位数字一定为 $k$。</li>
 </ul>
 <ol start="2">
 <li>复杂度分析：</li>
 </ol>
 <ul>
-<li>时间复杂度：$O(C)$，其中 $C = 10$。</li>
-<li>空间复杂度：$O(1)$。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumNumbers</span><span class="params">(<span class="type">int</span> num, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> x = num % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (((k * i) % <span class="number">10</span>) == x &amp;&amp; (k * i &lt;= num)) &#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>时间复杂度：$O(C)$，其中 $C &#x3D; 10$。</li>
+<li>空间复杂度：$O(1)$。</li>
 </ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumNumbers</span><span class="params">(<span class="type">int</span> num, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> x = num % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (((k * i) % <span class="number">10</span>) == x &amp;&amp; (k * i &lt;= num)) &#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6099-小于等于-K-的最长二进制子序列"><a href="#6099-小于等于-K-的最长二进制子序列" class="headerlink" title="6099. 小于等于 K 的最长二进制子序列"></a>6099. 小于等于 K 的最长二进制子序列</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你一个二进制字符串 <code>s</code> 和一个正整数 <code>k</code> 。</p>
 <p>请你返回 <code>s</code> 的 最长 子序列，且该子序列对应的 二进制 数字小于等于 <code>k</code> 。</p>
 <p>注意：</p>
 <ul>
 <li>子序列可以有 前导 <code>0</code> 。</li>
 <li>空字符串视为 <code>0</code> 。</li>
-<li>子序列 是指从一个字符串中删除零个或者多个字符后，不改变顺序得到的剩余字符序列。
- </li>
+<li>子序列 是指从一个字符串中删除零个或者多个字符后，不改变顺序得到的剩余字符序列。</li>
 </ul>
+<p> </p>
 <p>示例 1：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;1001010&quot;, k = 5</span><br><span class="line">输出：5</span><br><span class="line">解释：s 中小于等于 5 的最长子序列是 &quot;00010&quot; ，对应的十进制数字是 2 。</span><br><span class="line">注意 &quot;00100&quot; 和 &quot;00101&quot; 也是可行的最长子序列，十进制分别对应 4 和 5 。</span><br><span class="line">最长子序列的长度为 5 ，所以返回 5 。</span><br></pre></td></tr></table></figure>
 <p>示例 2：</p>
@@ -294,9 +298,9 @@
 <li>典型的动态规划思路，为了方便计算，我们首先将字符串进行逆序处理。设 $dp[i]$ 表示字符串前 $i$ 个字符中所构成的小于等于 $k$ 的最长子串的长度，$val[i]$ 则表示当前最长长度时的值。当遍历到第 $i$ 个字符时，此时我们依次尝试是否添加 $s[i]$。</li>
 </ol>
 <ul>
-<li>如果此时不添加第 $i$ 个字符到最终的字符串中，则满足 $dp[i] = dp[i-1],val[i] = val[i-1]$。</li>
-<li>如果满足 $s[i] = ‘0’$, 此时肯定可以添加 $s[i]$, 则此时 $dp[i] = dp[i-1] + 1,val[i] = val[i-1]$。</li>
-<li>如果满足 $s[i] = ‘1’$, 此时判段 $s[i]$ 加入到哪个子串后面, 假设 $s[i]$ 加在 第 $j$ 个字符后，则此时一定需要满足 $val[j] + 2^{dp[j]} \le k$ 才能合法加入，如果加入的后满足 $dp[j] + 1 &gt; dp[i-1] $ 或者 $dp[j] + 1 = dp[i-1]，val[j] + 2^{dp[j]} &lt; val[i-1]$ 时，此时更新 $dp[i]$ 与 $val[i]$。</li>
+<li>如果此时不添加第 $i$ 个字符到最终的字符串中，则满足 $dp[i] &#x3D; dp[i-1],val[i] &#x3D; val[i-1]$。</li>
+<li>如果满足 $s[i] &#x3D; ‘0’$, 此时肯定可以添加 $s[i]$, 则此时 $dp[i] &#x3D; dp[i-1] + 1,val[i] &#x3D; val[i-1]$。</li>
+<li>如果满足 $s[i] &#x3D; ‘1’$, 此时判段 $s[i]$ 加入到哪个子串后面, 假设 $s[i]$ 加在 第 $j$ 个字符后，则此时一定需要满足 $val[j] + 2^{dp[j]} \le k$ 才能合法加入，如果加入的后满足 $dp[j] + 1 &gt; dp[i-1] $ 或者 $dp[j] + 1 &#x3D; dp[i-1]，val[j] + 2^{dp[j]} &lt; val[i-1]$ 时，此时更新 $dp[i]$ 与 $val[i]$。</li>
 <li>当然上述解法还可以进一步优化，优化到 $O(n)$，仔细思考一下，加入了 $s[i]$ 后实际上我们只增加了一位，此时我们应该只需要检测长度为 $dp[i-1] - 1$ 时的最小值即可，不需要遍历所有的前 $i-1$ 个可能的字符串长度，优化后可以将时间复杂度优化到 $O(n)$。</li>
 </ul>
 <ol start="2">
@@ -305,8 +309,8 @@
 </ol>
 <ul>
 <li>设 $dp[i]$ 表示子字符串长度为 $i$ 时的最小值，设当前已经知道的最大长度为 $m$，此时当我们遍历第 $j$ 个字符时，可以得到以下结论:<ul>
-<li>如果 $s[i] =  <code>0</code>$，此时我们肯定可以将 <code>0</code> 直接加入到最长长度为 $m$ 的字符串的末尾，此时最大长度变为 $m + 1$, 且最大长度为 $k + 1$ 的最小值为 $dp[m + 1] = dp[m]$;</li>
-<li>如果 $s[i] =  <code>1</code>$，此时我们先检测是否可以将 <code>1</code> 直接加入到最长长度为 $m$ 的字符串的末尾，如果满足加入后的值仍然小于等于 $k$，此时最大长度变为 $k + 1$，且最大长度为 $m + 1$ 的最小值为 $dp[m + 1] = dp[m] | (1&lt;&lt;m)$;如果不能满足加入后的值小于等于 $k$, 则此时我们尝试将其加入到长度为 $m-1$ 的字符串末尾，如果满足加入后的值小于 $dp[m]$，则此时我们应当加入到 $m-1$ 的字符串末尾，此时需要更新 $dp[m]$。</li>
+<li>如果 $s[i] &#x3D;  <code>0</code>$，此时我们肯定可以将 <code>0</code> 直接加入到最长长度为 $m$ 的字符串的末尾，此时最大长度变为 $m + 1$, 且最大长度为 $k + 1$ 的最小值为 $dp[m + 1] &#x3D; dp[m]$;</li>
+<li>如果 $s[i] &#x3D;  <code>1</code>$，此时我们先检测是否可以将 <code>1</code> 直接加入到最长长度为 $m$ 的字符串的末尾，如果满足加入后的值仍然小于等于 $k$，此时最大长度变为 $k + 1$，且最大长度为 $m + 1$ 的最小值为 $dp[m + 1] &#x3D; dp[m] | (1&lt;&lt;m)$;如果不能满足加入后的值小于等于 $k$, 则此时我们尝试将其加入到长度为 $m-1$ 的字符串末尾，如果满足加入后的值小于 $dp[m]$，则此时我们应当加入到 $m-1$ 的字符串末尾，此时需要更新 $dp[m]$。</li>
 </ul>
 </li>
 </ul>
@@ -315,7 +319,9 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(k \times 3 ^ n)$, 其中 $k$ 人数，$n$ 表示饼干的数目。</li>
-<li>空间复杂度：$O(k \times 2 ^ n)$，其中 $k$ 人数，$n$ 表示饼干的数目, 可以进行滚动数组优化空间为 $2^n$。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4></li>
+<li>空间复杂度：$O(k \times 2 ^ n)$，其中 $k$ 人数，$n$ 表示饼干的数目, 可以进行滚动数组优化空间为 $2^n$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><ul>
 <li><code>dp</code>:<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestSubsequence</span><span class="params">(string s, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(n + <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">reverse</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>());</span><br><span class="line">        dp[<span class="number">0</span>].first = <span class="number">0</span>;</span><br><span class="line">        dp[<span class="number">0</span>].second = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp[i].first = dp[i<span class="number">-1</span>].first;</span><br><span class="line">            dp[i].second = dp[i<span class="number">-1</span>].second;</span><br><span class="line">            <span class="keyword">if</span> (s[i - <span class="number">1</span>] == <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">                dp[i].first = dp[i<span class="number">-1</span>].first + <span class="number">1</span>;</span><br><span class="line">                dp[i].second = dp[i<span class="number">-1</span>].second;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (dp[j].first &lt; <span class="number">30</span>) &#123;</span><br><span class="line">                        <span class="type">long</span> <span class="type">long</span> curr = (<span class="number">1LL</span> &lt;&lt; dp[j].first)|dp[j].second;</span><br><span class="line">                        <span class="keyword">if</span> (curr &lt;= k) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (dp[j].first + <span class="number">1</span> &gt; dp[i].first || </span><br><span class="line">                                (dp[j].first + <span class="number">1</span> == dp[i].first &amp;&amp; </span><br><span class="line">                                 dp[i].second &gt; curr)) &#123;</span><br><span class="line">                                dp[i].first = dp[j].first + <span class="number">1</span>;</span><br><span class="line">                                dp[i].second = curr;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n].first;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 <li><code>dp</code>:<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestSubsequence</span><span class="params">(string s, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(n + <span class="number">1</span>, <span class="number">-1</span>)</span></span>;</span><br><span class="line">        <span class="built_in">reverse</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>());</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i - <span class="number">1</span>] == <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">                dp[res + <span class="number">1</span>] = dp[res];</span><br><span class="line">                res++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (res &lt; <span class="number">31</span>) &#123;</span><br><span class="line">                    <span class="type">long</span> <span class="type">long</span> curr = dp[res] | (<span class="number">1</span> &lt;&lt; res);</span><br><span class="line">                    <span class="keyword">if</span> (curr &lt;= k) &#123;</span><br><span class="line">                        dp[res + <span class="number">1</span>] = curr;</span><br><span class="line">                        res++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">if</span> (res &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                            curr = dp[res - <span class="number">1</span>] | (<span class="number">1</span> &lt;&lt; (res - <span class="number">1</span>));</span><br><span class="line">                            <span class="keyword">if</span> (curr &lt;= dp[res]) &#123;</span><br><span class="line">                                dp[res] = curr;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -351,8 +357,8 @@
 </ol>
 <ul>
 <li>一共有 $m + n - 2$ 种不同的切法:</li>
-<li>假设沿着水平方向切，则有 $m - 1$ 种不同的切法，假设从第 $k$ 行切开，则可以得到 $k \times n, (m - k) \times n $ 两块不同的木块，则可以知道此时 $dp[m][n] = \max(dp[k][n] + dp[m-k][n]) \quad k \in [1,m-1]$。</li>
-<li>假设沿着垂直方向切，则有 $n - 1$ 种不同的切法，假设从第 $k$ 列切开，则可以得到 $ m \times k, m \times (n - k) $ 两块不同的木块，则可以知道此时 $dp[m][n] = \max(dp[m][k] + dp[m][n-k]) \quad k \in [1,n-1]$。</li>
+<li>假设沿着水平方向切，则有 $m - 1$ 种不同的切法，假设从第 $k$ 行切开，则可以得到 $k \times n, (m - k) \times n $ 两块不同的木块，则可以知道此时 $dp[m][n] &#x3D; \max(dp[k][n] + dp[m-k][n]) \quad k \in [1,m-1]$。</li>
+<li>假设沿着垂直方向切，则有 $n - 1$ 种不同的切法，假设从第 $k$ 列切开，则可以得到 $ m \times k, m \times (n - k) $ 两块不同的木块，则可以知道此时 $dp[m][n] &#x3D; \max(dp[m][k] + dp[m][n-k]) \quad k \in [1,n-1]$。</li>
 </ul>
 <ol start="2">
 <li>复杂度分析：</li>
@@ -395,9 +401,9 @@
       </a>
     
     
-      <a class="nav-right" href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/51/">
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/12/">
         
-          leetcode contest 317
+          leetcode  contest 299
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -503,6 +509,15 @@
 
 
 
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
@@ -555,6 +570,15 @@
 
 
 <script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
 
 
   </body>

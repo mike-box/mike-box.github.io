@@ -233,7 +233,9 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n)$，其中  $n$ 表示字符串的长度。</li>
-<li>空间复杂度：$O(1)$。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4></li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><ul>
 <li>滑动窗口<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumRecolors</span><span class="params">(string blocks, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = blocks.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> ans = n;</span><br><span class="line">        <span class="type">int</span> whiteCnt = <span class="number">0</span>, blackCnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (blocks[i] == <span class="string">&#x27;W&#x27;</span>) &#123;</span><br><span class="line">                whiteCnt++;</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>) &#123;</span><br><span class="line">                ans = <span class="built_in">min</span>(ans, whiteCnt);</span><br><span class="line">                <span class="keyword">if</span> (blocks[i - k + <span class="number">1</span>] == <span class="string">&#x27;W&#x27;</span>) &#123;</span><br><span class="line">                    whiteCnt--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="6157-二进制字符串重新安排顺序需要的时间"><a href="#6157-二进制字符串重新安排顺序需要的时间" class="headerlink" title="6157. 二进制字符串重新安排顺序需要的时间"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/time-needed-to-rearrange-a-binary-string/">6157. 二进制字符串重新安排顺序需要的时间</a></h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一个二进制字符串 <code>s</code> 。在一秒之中，所有 子字符串 <code>&quot;01&quot;</code> 同时 被替换成 <code>&quot;10&quot;</code> 。这个过程持续进行到没有 <code>&quot;01&quot; </code>存在。</p>
@@ -255,16 +257,15 @@
 </code></pre>
 <h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>直接模拟就非常简单，我们可以观察到直接模拟的时间复杂度不超过 $n^2$，因此我们可以直接模拟即可，知道字符串中没有字符串 <code>01</code> 出现即可。</li>
-<li> 动态规划，本质上讲右侧的 $1$ 往左侧移动，如果 $1$  前面有连续的 $0$ ,则可以讲其一直向左移动直到左侧为  $1$  为止，此时需要等待。</li>
+<li>动态规划，本质上讲右侧的 $1$ 往左侧移动，如果 $1$  前面有连续的 $0$ ,则可以讲其一直向左移动直到左侧为  $1$  为止，此时需要等待。</li>
 <li>复杂度分析：</li>
 </ol>
 <ul>
-<li><p>时间复杂度：时间复杂度为 $O(n)$，$n$ 表示节点的数目。</p>
-</li>
-<li><p>空间复杂度：$O(n)$，$n$ 表示节点的数目。</p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4></li>
-<li><p>直接模拟：</p>
-</li>
+<li>时间复杂度：时间复杂度为 $O(n)$，$n$ 表示节点的数目。</li>
+<li>空间复杂度：$O(n)$，$n$ 表示节点的数目。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><ul>
+<li>直接模拟：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">secondsToRemoveOccurrences</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="type">bool</span> valid = <span class="literal">false</span>;</span><br><span class="line">            <span class="type">int</span> pos = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(pos &lt; n - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(s[pos] == <span class="string">&#x27;0&#x27;</span> &amp;&amp; s[pos + <span class="number">1</span>] == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                    s[pos] = <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">                    s[pos + <span class="number">1</span>] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                    pos += <span class="number">2</span>;</span><br><span class="line">                    valid = <span class="literal">true</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    pos++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(valid)&#123;</span><br><span class="line">                ans++;</span><br><span class="line">            &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -297,8 +298,11 @@
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(m + n)$，其中  $m$ 为 $shift$ 数组的长度，$n$ 为字符串的长度。</li>
-<li>空间复杂度：空间复杂度为 $O(n)$，其中 $n$ 表示字符串的长度。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">shiftingLetters</span><span class="params">(string s, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; shifts)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> m = shifts.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (shifts[i][<span class="number">2</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt[shifts[i][<span class="number">0</span>]]--;</span><br><span class="line">                cnt[shifts[i][<span class="number">1</span>] + <span class="number">1</span>]++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt[shifts[i][<span class="number">0</span>]]++;</span><br><span class="line">                cnt[shifts[i][<span class="number">1</span>] + <span class="number">1</span>]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> curr = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            curr += cnt[i];</span><br><span class="line">            s[i] = <span class="string">&#x27;a&#x27;</span> + (s[i] - <span class="string">&#x27;a&#x27;</span> + curr%<span class="number">26</span> + <span class="number">26</span>)%<span class="number">26</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：空间复杂度为 $O(n)$，其中 $n$ 表示字符串的长度。</li>
 </ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">shiftingLetters</span><span class="params">(string s, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; shifts)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> m = shifts.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (shifts[i][<span class="number">2</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt[shifts[i][<span class="number">0</span>]]--;</span><br><span class="line">                cnt[shifts[i][<span class="number">1</span>] + <span class="number">1</span>]++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt[shifts[i][<span class="number">0</span>]]++;</span><br><span class="line">                cnt[shifts[i][<span class="number">1</span>] + <span class="number">1</span>]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> curr = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            curr += cnt[i];</span><br><span class="line">            s[i] = <span class="string">&#x27;a&#x27;</span> + (s[i] - <span class="string">&#x27;a&#x27;</span> + curr%<span class="number">26</span> + <span class="number">26</span>)%<span class="number">26</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
 <h3 id="6159-删除操作后的最大子段和"><a href="#6159-删除操作后的最大子段和" class="headerlink" title="6159. 删除操作后的最大子段和"></a>6159. 删除操作后的最大子段和</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>给你两个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 和 <code>removeQueries</code> ，两者长度都为 <code>n</code> 。对于第 <code>i</code> 个查询，<code>nums</code> 中位于下标 <code>removeQueries[i]</code> 处的元素被删除，将 <code>nums</code> 分割成更小的子段。</p>
 <p>一个 <strong>子段</strong> 是 <code>nums</code> 中连续 <strong>正</strong> 整数形成的序列。<strong>子段和</strong> 是子段中所有元素的和。</p>
 <p>请你返回一个长度为 <code>n</code> 的整数数组 <code>answer</code> ，其中 <code>answer[i]</code>是第 <code>i</code> 次删除操作以后的 <strong>最大</strong> 子段和。</p>
@@ -378,9 +382,9 @@
       </a>
     
     
-      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/22/">
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/25/">
         
-          leetcode  biweekly conttest 84
+          leetcode  biweekly contest 85
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -486,6 +490,15 @@
 
 
 
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
@@ -538,6 +551,15 @@
 
 
 <script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
 
 
   </body>

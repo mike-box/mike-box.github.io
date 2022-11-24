@@ -233,8 +233,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n \log n)$，其中 $n$ 为数组的长度。</li>
-<li>空间复杂度：$O(n)$，其中 $n$ 为数组的长度。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">mergeSimilarItems</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; items1, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; items2) &#123;</span><br><span class="line">        map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : items1) &#123;</span><br><span class="line">            cnt[v[<span class="number">0</span>]] += v[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : items2) &#123;</span><br><span class="line">            cnt[v[<span class="number">0</span>]] += v[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [w, v] : cnt) &#123;</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; item = &#123;w, v&#125;;</span><br><span class="line">            ans.<span class="built_in">emplace_back</span>(item);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$，其中 $n$ 为数组的长度。</li>
 </ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">mergeSimilarItems</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; items1, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; items2) &#123;</span><br><span class="line">        map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : items1) &#123;</span><br><span class="line">            cnt[v[<span class="number">0</span>]] += v[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : items2) &#123;</span><br><span class="line">            cnt[v[<span class="number">0</span>]] += v[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [w, v] : cnt) &#123;</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; item = &#123;w, v&#125;;</span><br><span class="line">            ans.<span class="built_in">emplace_back</span>(item);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6142-统计坏数对的数目"><a href="#6142-统计坏数对的数目" class="headerlink" title="6142. 统计坏数对的数目"></a>6142. 统计坏数对的数目</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一个下标从 <code>0</code> 开始的整数数组<code> nums</code> 。如果 <code>i &lt; j</code> 且 <code>j - i != nums[j] - nums[i]</code> ，那么我们称 <code>(i, j)</code> 是一个 坏数对 。</p>
 <p>请你返回 <code>nums</code> 中 坏数对 的总数目。</p>
 <p>示例 1：</p>
@@ -251,14 +253,16 @@
 <h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>数学
 </code></pre>
 <h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
-<li>题目要求 $j - i \neq nums[j] - nums[i]$， 该不等式可以转换为 $nums[i] - i \neq nums[j] - j$，我们因此可以找到不是坏的数对的数目 $tot$，总的数对数目为 $\dfrac{n \times (n - 1)}{2}$，则可以知道坏的数对的数目为 $\dfrac{n \times (n - 1)}{2} - tot$。我们可以用哈希表统计每个元素 $x = nums[i] - i$ 的出现次数。</li>
+<li>题目要求 $j - i \neq nums[j] - nums[i]$， 该不等式可以转换为 $nums[i] - i \neq nums[j] - j$，我们因此可以找到不是坏的数对的数目 $tot$，总的数对数目为 $\dfrac{n \times (n - 1)}{2}$，则可以知道坏的数对的数目为 $\dfrac{n \times (n - 1)}{2} - tot$。我们可以用哈希表统计每个元素 $x &#x3D; nums[i] - i$ 的出现次数。</li>
 <li>可能更复杂的解法还有线段树之类的解法。</li>
 <li>复杂度分析：</li>
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(n)$，$n$ 表示数组的长度。</li>
-<li>空间复杂度：$O(n)$，$n$ 表示数组的长度。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">countBadPairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = nums[i] - i;</span><br><span class="line">            <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(x)) &#123;</span><br><span class="line">                ans += cnt[x];</span><br><span class="line">            &#125;</span><br><span class="line">            cnt[x]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="type">long</span> <span class="type">long</span>)(n - <span class="number">1</span>) * n / <span class="number">2</span> - ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$，$n$ 表示数组的长度。</li>
 </ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">countBadPairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = nums[i] - i;</span><br><span class="line">            <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(x)) &#123;</span><br><span class="line">                ans += cnt[x];</span><br><span class="line">            &#125;</span><br><span class="line">            cnt[x]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="type">long</span> <span class="type">long</span>)(n - <span class="number">1</span>) * n / <span class="number">2</span> - ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6174-任务调度器-II"><a href="#6174-任务调度器-II" class="headerlink" title="6174. 任务调度器 II"></a>6174. 任务调度器 II</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你一个下标从 <code>0</code> 开始的正整数数组 <code>tasks</code> ，表示需要 按顺序 完成的任务，其中 <code>tasks[i]</code> 表示第 <code>i</code> 件任务的 类型 。</p>
 <p>同时给你一个正整数 <code>space</code> ，表示一个任务完成 后 ，另一个 相同 类型任务完成前需要间隔的 最少 天数。</p>
 <p>在所有任务完成前的每一天，你都必须进行以下两种操作中的一种：</p>
@@ -285,16 +289,18 @@
 <li>感觉这个题目出的挺无聊，直接模拟即可，我们设哈希表 $prev$，其中 $prev[x]$ 表示任务 $x$ 最后一次发生的时间。我们遍历每个任务 $task[i]$，有以下两种情况需要处理，设上一个任务的完成时间为 $now$:</li>
 </ol>
 <ul>
-<li>如果当前的任务 $task[i]$ 之前没有出现过，则此时当前任务的完成时间肯定为 $now + 1$，且此时 $prev[task[i]] = now + 1$，且此时更新 $now = now + 1$；</li>
-<li>如果当前的任务 $task[i]$ 之前出现过，由于相同的任务的间隔必须大于 $space$, 因此当前任务的完成时间要么是 $now + 1$ 和 $prev[task[i]] + space + 1$ 之间的较大值，则此时 $now = \max(now + 1,prev[task[i]] + space + 1) $, 更新 $prev[task[i]] = now$；</li>
+<li>如果当前的任务 $task[i]$ 之前没有出现过，则此时当前任务的完成时间肯定为 $now + 1$，且此时 $prev[task[i]] &#x3D; now + 1$，且此时更新 $now &#x3D; now + 1$；</li>
+<li>如果当前的任务 $task[i]$ 之前出现过，由于相同的任务的间隔必须大于 $space$, 因此当前任务的完成时间要么是 $now + 1$ 和 $prev[task[i]] + space + 1$ 之间的较大值，则此时 $now &#x3D; \max(now + 1,prev[task[i]] + space + 1) $, 更新 $prev[task[i]] &#x3D; now$；</li>
 </ul>
 <ol start="2">
 <li>复杂度分析：</li>
 </ol>
 <ul>
 <li>时间复杂度：时间复杂度为 $O(n)$，其中 $n$ 表示数组的长度。</li>
-<li>空间复杂度：空间复杂度为 $O(n)$，其中 $n$ 表示数组的长度。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">taskSchedulerII</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; tasks, <span class="type">int</span> space)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>,<span class="type">long</span> <span class="type">long</span>&gt; prev;</span><br><span class="line">        <span class="type">int</span> n = tasks.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> now = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prev.<span class="built_in">count</span>(tasks[i])) &#123;</span><br><span class="line">                now = <span class="built_in">max</span>(now, prev[tasks[i]] + space);</span><br><span class="line">            &#125; </span><br><span class="line">            now++;</span><br><span class="line">            prev[tasks[i]] = now;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> now;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：空间复杂度为 $O(n)$，其中 $n$ 表示数组的长度。</li>
 </ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">taskSchedulerII</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; tasks, <span class="type">int</span> space)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>,<span class="type">long</span> <span class="type">long</span>&gt; prev;</span><br><span class="line">        <span class="type">int</span> n = tasks.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> now = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prev.<span class="built_in">count</span>(tasks[i])) &#123;</span><br><span class="line">                now = <span class="built_in">max</span>(now, prev[tasks[i]] + space);</span><br><span class="line">            &#125; </span><br><span class="line">            now++;</span><br><span class="line">            prev[tasks[i]] = now;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> now;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="6144-将数组排序的最少替换次数"><a href="#6144-将数组排序的最少替换次数" class="headerlink" title="6144. 将数组排序的最少替换次数"></a>6144. 将数组排序的最少替换次数</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>给你一个下表从 <code>0</code> 开始的整数数组 <code>nums</code> 。每次操作中，你可以将数组中任何一个元素替换为 任意两个 和为该元素的数字。<br>比方说，<code>nums = [5,6,7]</code> 。一次操作中，我们可以将 <code>nums[1]</code> 替换成 <code>2</code> 和 <code>4</code> ，将 <code>nums</code> 转变成 <code>[5,2,4,7]</code> 。<br>请你执行上述操作，将数组变成元素按 非递减 顺序排列的数组，并返回所需的最少操作次数。</p>
 <p> </p>
 <p>示例 1：</p>
@@ -317,7 +323,7 @@
 <li>拆分的出数的序列中的最大值一定要满足小于等于 $nums[i+1]$;</li>
 <li>拆分的出数的序列中的最小值一定要尽可能的大;</li>
 </ul>
-<p>如何满足以上条件的拆分法，所有需要切分的最少次数 $k = \dfrac{nums[i]}{nums[i+1]}$。此时可以知道切分后最小的数为 $x = \lfloor\dfrac{nums[i]}{k + 1} \rfloor$。</p>
+<p>如何满足以上条件的拆分法，所有需要切分的最少次数 $k &#x3D; \dfrac{nums[i]}{nums[i+1]}$。此时可以知道切分后最小的数为 $x &#x3D; \lfloor\dfrac{nums[i]}{k + 1} \rfloor$。</p>
 <ol start="2">
 <li>复杂度分析：</li>
 </ol>
@@ -351,17 +357,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/26/">
+      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/21/">
         <span class="nav-arrow">← </span>
         
-          leetcode  biweekly contest 85
+          leetcode  conttest 304
         
       </a>
     
     
-      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/25/">
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/20/">
         
-          leetcode  biweekly contest 85
+          leetcode  conttest 303
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -467,6 +473,15 @@
 
 
 
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
@@ -519,6 +534,15 @@
 
 
 <script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
 
 
   </body>

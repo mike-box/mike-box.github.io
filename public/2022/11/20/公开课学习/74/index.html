@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      【CSAPP】 lab4 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>【CSAPP】 lab4</h2>
+  <p class="post-date">2022-11-20</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="CSAPP-lab4-archlab"><a href="#CSAPP-lab4-archlab" class="headerlink" title="CSAPP lab4 archlab"></a>CSAPP lab4 archlab</h1><p><code>lab</code>真心难，这一章的体系结构部分还是真心很难，总共分为<code>parta、partb、partc</code>三部分，三部分都还挺难的，<code>parta,partb</code>部分还算比较容易,<code>partc</code>部分真心还是挺难的，需要仔细了解和学习相关知识。自我感觉学习还是非常有成效的，特别是之前做过《from nand to tetris》部分的课程还是有非常大的帮助，通过课程的学习对于体系结构和底层的汇编指令都有了一个初步的入门和学习。<br>首先需要了解一下<code>y86</code>的指令集如下:<br><img src="https://i.loli.net/2021/02/05/bVG6Wa9runO8DpR.png"><br><img src="https://i.loli.net/2021/02/05/3aZrcPGX2u7gM4Q.png"><br>基本上目前教材中已经给出的指令与指令详细的描述和指令字上如上图所示。</p>
+<ul>
+<li>有4个整数操作指令。对应表中的OPq，分别是addq, subq, andq, xorq。它们只对寄存器数据操作，同时还会设置条件码。</li>
+<li>这里有7个跳转指令，就是图中的jXX。根据条件码来设置分支条件并进行跳转，分支条件和X86-64一样。</li>
+<li>有6个条件传送指令，图示的cmovXX，这些指令格式和寄存器-寄存器传送指令一样，但是只有当条件码满足所需要的约束时，才会更新目的寄存器的值。</li>
+<li>call指令和ret指令同X86-64一致，pushq和popq亦是如此</li>
+<li>halt指令终止程序运行，并将状态码设置为HLT。<br>其中关于流水线的部分感觉过于晦涩，可以参考CSDN的中文翻译，质量很不错。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39997311/article/details/110458772">处理器体系结构</a></li>
+</ul>
+<h2 id="parta"><a href="#parta" class="headerlink" title="parta"></a>parta</h2><p>Write a Y86-64 program sum.ys that iteratively sums the elements of a linked list. Your program should<br>consist of some code that sets up the stack structure, invokes a function, and then halts. In this case,<br>the function should be Y86-64 code for a function (sum list) that is functionally equivalent to the C<br>sum list function in Figure 1. Test your program using the following three-element list:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/* linked list element */</span><br><span class="line">2 typedef struct ELE &#123;</span><br><span class="line">3 long val;</span><br><span class="line">4 struct ELE *next;</span><br><span class="line">5 &#125; *list_ptr;</span><br><span class="line">6 7</span><br><span class="line">/* sum_list - Sum the elements of a linked list */</span><br><span class="line">8 long sum_list(list_ptr ls)</span><br><span class="line">9 &#123;</span><br><span class="line">10 long val = 0;</span><br><span class="line">11 while (ls) &#123;</span><br><span class="line">12 val += ls-&gt;val;</span><br><span class="line">13 ls = ls-&gt;next;</span><br><span class="line">14 &#125;</span><br><span class="line">15 return val;</span><br><span class="line">16 &#125;</span><br><span class="line">17</span><br><span class="line">18 /* rsum_list - Recursive version of sum_list */</span><br><span class="line">19 long rsum_list(list_ptr ls)</span><br><span class="line">20 &#123;</span><br><span class="line">21 if (!ls)</span><br><span class="line">22 return 0;</span><br><span class="line">23 else &#123;</span><br><span class="line">24 long val = ls-&gt;val;</span><br><span class="line">25 long rest = rsum_list(ls-&gt;next);</span><br><span class="line">26 return val + rest;</span><br><span class="line">27 &#125;</span><br><span class="line">28 &#125;</span><br><span class="line">29</span><br><span class="line">30 /* copy_block - Copy src to dest and return xor checksum of src */</span><br><span class="line">31 long copy_block(long *src, long *dest, long len)</span><br><span class="line">32 &#123;</span><br><span class="line">33 long result = 0;</span><br><span class="line">34 while (len &gt; 0) &#123;</span><br><span class="line">35 long val = *src++;</span><br><span class="line">36 *dest++ = val;</span><br><span class="line">37 result ˆ= val;</span><br><span class="line">38 len--;</span><br><span class="line">39 &#125;</span><br><span class="line">40 return result;</span><br><span class="line">41 &#125;</span><br></pre></td></tr></table></figure>
+<p>针对上述的三个函数<code>sum_list</code>,<code>rsum_list</code>,<code>copy_block</code>这三个函数用<code>y86</code>的汇编实现出来，并完成通过测试用例。</p>
+<ul>
+<li><code>sum_list</code>: 这个函数实现起来非常简单，我们直接用常规的几个指令即可完成，无非是有一个<code>loop</code>和判断条件。<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* $begin code-yso */</span></span><br><span class="line"><span class="comment">/* $begin code-ysa */</span></span><br><span class="line"># Execution begins at address <span class="number">0</span> </span><br><span class="line">	.pos <span class="number">0</span> </span><br><span class="line">init:	irmovl Stack, %esp  	# Set up <span class="built_in">stack</span> pointer  </span><br><span class="line">	irmovl Stack, %ebp  	# Set up base pointer   </span><br><span class="line">	call Main		# Execute main program</span><br><span class="line">	halt			# Terminate program </span><br><span class="line"></span><br><span class="line"># Sample linked <span class="built_in">list</span></span><br><span class="line">    .align <span class="number">4</span></span><br><span class="line">ele1:   </span><br><span class="line">    .<span class="type">long</span> <span class="number">0x00a</span></span><br><span class="line">    .<span class="type">long</span> ele2</span><br><span class="line">ele2:   </span><br><span class="line">    .<span class="type">long</span> <span class="number">0x0b0</span></span><br><span class="line">    .<span class="type">long</span> ele3</span><br><span class="line">ele3:   </span><br><span class="line">    .<span class="type">long</span> <span class="number">0xc00</span></span><br><span class="line">    .<span class="type">long</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">Main:	pushl %ebp </span><br><span class="line">	rrmovl %esp,%ebp</span><br><span class="line">	irmovl ele1,%edx</span><br><span class="line">	pushl %edx      # Push linklist head</span><br><span class="line">	call sum_list	# Sum(<span class="built_in">array</span>, <span class="number">4</span>)</span><br><span class="line">	rrmovl %ebp,%esp</span><br><span class="line">	popl %ebp</span><br><span class="line">	ret </span><br><span class="line"></span><br><span class="line">sum_list:   pushl %ebp</span><br><span class="line">	rrmovl %esp,%ebp</span><br><span class="line">    mrmovl <span class="number">8</span>(%ebp),%ebx 	<span class="meta"># eax = header, move list header to the register;</span></span><br><span class="line">    irmovl $<span class="number">0</span>,%eax            <span class="meta"># sum = 0;</span></span><br><span class="line">    irmovl <span class="number">4</span>,%ecx</span><br><span class="line">Loop:   mrmovl (%ebx),%esi	<span class="meta"># get val</span></span><br><span class="line">    addl %esi,%eax</span><br><span class="line">	addl %ecx,%ebx          <span class="meta"># list = list-&gt;next;</span></span><br><span class="line">    mrmovl (%ebx),%edx</span><br><span class="line">    rrmovl %edx,%ebx</span><br><span class="line">    andl   %ebx,%ebx</span><br><span class="line">    jne Loop</span><br><span class="line">End:	rrmovl %ebp,%esp</span><br><span class="line">	popl %ebp</span><br><span class="line">    ret</span><br><span class="line">    .pos <span class="number">0x200</span></span><br><span class="line">Stack:	# The <span class="built_in">stack</span> goes here</span><br></pre></td></tr></table></figure>
+运行结果如下：<br><img src="https://i.loli.net/2021/02/05/hmSgNG5c9UrzIOl.png"></li>
+<li><code>rsum_list</code>: 这个链表遍历是用递归实现的，因此稍微复杂一些，因为用到递归则寄存器<code>esi</code>存在重入的风险，因此此时我们则需要降每次取出的<code>val</code>压入到栈中，待到当前的函数调用结束后，再降其从栈中弹出上一次计算的值，与函数返回的值进行相加即可得到本次函数返回值。<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* $begin code-yso */</span></span><br><span class="line"><span class="comment">/* $begin code-ysa */</span></span><br><span class="line"># Execution begins at address <span class="number">0</span> </span><br><span class="line">	.pos <span class="number">0</span> </span><br><span class="line">init:	irmovl Stack, %esp  	# Set up <span class="built_in">stack</span> pointer  </span><br><span class="line">	irmovl Stack, %ebp  	# Set up base pointer   </span><br><span class="line">	call Main		# Execute main program</span><br><span class="line">	halt			# Terminate program </span><br><span class="line"></span><br><span class="line"># Sample linked <span class="built_in">list</span></span><br><span class="line">.align <span class="number">4</span></span><br><span class="line">ele1:</span><br><span class="line">    .<span class="type">long</span> <span class="number">0x00a</span></span><br><span class="line">    .<span class="type">long</span> ele2</span><br><span class="line">ele2:</span><br><span class="line">    .<span class="type">long</span> <span class="number">0x0b0</span></span><br><span class="line">    .<span class="type">long</span> ele3</span><br><span class="line">ele3:</span><br><span class="line">    .<span class="type">long</span> <span class="number">0xc00</span></span><br><span class="line">    .<span class="type">long</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">Main:	pushl %ebp </span><br><span class="line">	rrmovl %esp,%ebp</span><br><span class="line">	irmovl ele1,%edx</span><br><span class="line">	pushl %edx      # Push linklist head</span><br><span class="line">	call rsum_list	# Sum(<span class="built_in">array</span>, <span class="number">4</span>)</span><br><span class="line">	rrmovl %ebp,%esp</span><br><span class="line">	popl %ebp</span><br><span class="line">	ret </span><br><span class="line"></span><br><span class="line">rsum_list:   pushl %ebp</span><br><span class="line">	rrmovl %esp,%ebp</span><br><span class="line">    mrmovl <span class="number">8</span>(%ebp),%ebx 	<span class="meta"># ebx = header, move list header to the register;</span></span><br><span class="line">    xorl   %eax,%eax        <span class="meta"># eax = 0 </span></span><br><span class="line">    andl   %ebx,%ebx        <span class="meta"># ebx = 0 </span></span><br><span class="line">    je End</span><br><span class="line">    pushl  %esi             <span class="meta"># esi = val</span></span><br><span class="line">    mrmovl (%ebx),%esi	<span class="meta"># get val</span></span><br><span class="line">    mrmovl <span class="number">4</span>(%ebx),%edx	<span class="meta"># get val    </span></span><br><span class="line">    pushl  %edx</span><br><span class="line">    call   rsum_list</span><br><span class="line">    popl   %edx     </span><br><span class="line">    addl   %esi,%eax</span><br><span class="line">    popl   %esi</span><br><span class="line">End:	rrmovl %ebp,%esp</span><br><span class="line">	popl %ebp</span><br><span class="line">    ret</span><br><span class="line">    .pos <span class="number">0x200</span></span><br><span class="line">Stack:	# The <span class="built_in">stack</span> goes here</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+运行结果如下:<br><img src="https://i.loli.net/2021/02/05/TjNknOHeFzC7pYb.png"></li>
+<li><code>copy_block</code>: 这个就更简单了，就是基本的拷贝和复制，用好几种寻址方式即可。<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">/* $begin code-yso */</span><br><span class="line">/* $begin code-ysa */</span><br><span class="line"><span class="comment"># Execution begins at address 0 </span></span><br><span class="line">	.pos <span class="number">0</span> </span><br><span class="line">init:	irmovl Stack, %esp  	<span class="comment"># Set up stack pointer  </span></span><br><span class="line">	irmovl Stack, %ebp  	<span class="comment"># Set up base pointer   </span></span><br><span class="line">	call Main		<span class="comment"># Execute main program</span></span><br><span class="line">	halt			<span class="comment"># Terminate program </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Source block</span></span><br><span class="line">.align <span class="number">4</span></span><br><span class="line">src:</span><br><span class="line">    .long <span class="number">0x00a</span></span><br><span class="line">    .long <span class="number">0x0b0</span></span><br><span class="line">    .long <span class="number">0xc00</span></span><br><span class="line"><span class="comment"># Destination block</span></span><br><span class="line">dest:</span><br><span class="line">    .long <span class="number">0x111</span></span><br><span class="line">    .long <span class="number">0x222</span></span><br><span class="line">    .long <span class="number">0x333</span></span><br><span class="line"></span><br><span class="line">Main:	pushl %ebp </span><br><span class="line">	rrmovl %esp,%ebp</span><br><span class="line">    irmovl $<span class="number">3</span>,%edx</span><br><span class="line">	pushl %edx      <span class="comment"># Push linklist head</span></span><br><span class="line">    irmovl dest,%edx</span><br><span class="line">    pushl %edx</span><br><span class="line">    irmovl src,%edx</span><br><span class="line">    pushl %edx</span><br><span class="line">	call copy_block	<span class="comment"># Sum(array, 4)</span></span><br><span class="line">	rrmovl %ebp,%esp</span><br><span class="line">	popl %ebp</span><br><span class="line">	ret </span><br><span class="line"></span><br><span class="line">copy_block:   pushl %ebp</span><br><span class="line">	rrmovl %esp,%ebp</span><br><span class="line">    mrmovl <span class="number">8</span>(%ebp),%ebx 	<span class="comment"># ebx = src ;</span></span><br><span class="line">    mrmovl <span class="number">12</span>(%ebp),%ecx 	<span class="comment"># ecx = dst ;</span></span><br><span class="line">    mrmovl <span class="number">16</span>(%ebp),%edx 	<span class="comment"># edx = len;</span></span><br><span class="line">    xorl   %eax,%eax</span><br><span class="line">    andl   %edx,%edx</span><br><span class="line">    jle  End</span><br><span class="line">Loop:    mrmovl (%ebx),%esi	<span class="comment"># get src</span></span><br><span class="line">    rmmovl %esi,(%ecx)  <span class="comment"># dst = src</span></span><br><span class="line">    xorl   %esi,%eax    <span class="comment"># result = result^vald</span></span><br><span class="line">    irmovl $<span class="number">4</span>,%esi</span><br><span class="line">    addl   %esi,%ebx    <span class="comment"># dst++</span></span><br><span class="line">    addl   %esi,%ecx    <span class="comment"># src++</span></span><br><span class="line">    irmovl $-<span class="number">1</span>,%esi	    </span><br><span class="line">    addl   %esi,%edx    <span class="comment"># len--</span></span><br><span class="line">    jg Loop</span><br><span class="line">End:	rrmovl %ebp,%esp</span><br><span class="line">	popl %ebp</span><br><span class="line">    ret</span><br><span class="line">    .pos <span class="number">0x200</span></span><br><span class="line">Stack:	<span class="comment"># The stack goes here</span></span><br></pre></td></tr></table></figure>
+运行结果如下：<br><img src="https://i.loli.net/2021/02/05/HhVydEMFLgYsBvG.png"></li>
+</ul>
+<h2 id="partb"><a href="#partb" class="headerlink" title="partb"></a>partb</h2><p>Your task in Part B is to extend the SEQ processor to support the iaddq, described in Homework problems<br>4.51 and 4.52. To add this instructions, you will modify the file seq-full.hcl, which implements the<br>version of SEQ described in the CS:APP3e textbook. In addition, it contains declarations of some constants<br>that you will need for your solution.<br>这部分需要你在<code>seq</code>处理器中实现<code>leave</code>和<code>iaddl</code>指令。我们知道按照<code>seq</code>的指令执行过程一般分为:<br><code>fetch</code>,<code>decode</code>,<code>Execute</code>,<code>Memory</code>,<code>Write back</code>,<code>PC update</code>等几个阶段，每个阶段都需要设置不同的标志位。因为在<code>y86</code>的指令集中为变长指令，所有的指令集都可可能是</p>
+<h3 id="iaddl"><a href="#iaddl" class="headerlink" title="iaddl"></a>iaddl</h3><ul>
+<li><code>iaddl</code>指令：即实现立即数与寄存器的值进行相加，结果存储在寄存器中。指令形式如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">iaddl C,rB</span><br><span class="line">rB = C + rB</span><br></pre></td></tr></table></figure>
+指令的翻译过程为:<table>
+<thead>
+<tr>
+<th>stage</th>
+<th>iaddl V,rB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fetch</td>
+<td>icode:ifun ← M1[PC]<br>rA:rB ← M1[PC + 1] <br>valC ← M4[PC + 2]<br>valP ← PC + 6</td>
+</tr>
+<tr>
+<td>decode</td>
+<td>valB ← R[rb]</td>
+</tr>
+<tr>
+<td>Execute</td>
+<td>valE ← valC + valB</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td></td>
+</tr>
+<tr>
+<td>Write back</td>
+<td>r[rb] ← valE</td>
+</tr>
+<tr>
+<td>PC update</td>
+<td>PC ← valP</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="leave"><a href="#leave" class="headerlink" title="leave:"></a>leave:</h3><ul>
+<li><code>leave</code>指令的翻译就较为复杂，首先我们来看一下<code>leave</code>指令的实际执行过程<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">movl %ebp,%esp</span><br><span class="line">popl %ebp</span><br></pre></td></tr></table></figure>
+首先将当前的基值寄存器中的值写入到栈寄存器，然后将栈顶的数据写入到基质寄存器中，然后栈寄存器加<code>4</code>，实际我们可以如下翻译:<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%ebp_new = (%esp_odd)</span><br><span class="line">%esp_new = %esp_odd + 4</span><br></pre></td></tr></table></figure>
+指令的翻译过程为:<table>
+<thead>
+<tr>
+<th>stage</th>
+<th>leave</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fetch</td>
+<td>icode:ifun ← M1[PC]<br>valP ← PC + 1</td>
+</tr>
+<tr>
+<td>decode</td>
+<td>valA ← R[%esp]</td>
+</tr>
+<tr>
+<td>Execute</td>
+<td>valE ← 4 + valA</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>valM ← M4[valA]</td>
+</tr>
+<tr>
+<td>Write back</td>
+<td>R[%esp] ← valE<br>R[%ebp] ← valM</td>
+</tr>
+<tr>
+<td>PC update</td>
+<td>PC ← valP</td>
+</tr>
+<tr>
+<td>即将当前基址寄存器中的数据写入到栈寄存器中，感觉还是挺不容易理解的，对于指令的翻译过程其实蛮有意思的，需要对<code>HCL</code>语言有基本的熟悉过程即可。就是几个阶段的数据要弄清楚即可，必须寻址阶段的地址非常有必要的学习，还有<code>ALU</code>的使用，写会操作等等。</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="partc"><a href="#partc" class="headerlink" title="partc"></a>partc</h2><p>You will be working in directory sim&#x2F;pipe in this part.<br>The ncopy function in Figure 2 copies a len-element integer array src to a non-overlapping dst, returning a count of the number of positive integers contained in src. Figure 3 shows the baseline Y86-64<br>version of ncopy. The file pipe-full.hcl contains a copy of the HCL code for PIPE, along with a<br>declaration of the constant value IIADDQ.<br>Your task in Part C is to modify ncopy.ys and pipe-full.hcl with the goal of making ncopy.ys<br>run as fast as possible.<br>You will be handing in two files: pipe-full.hcl and ncopy.ys. Each file should begin with a header<br><code>partc</code>部分需要对<code>ncopy</code>这段程序翻译后的汇编程序进行流水线优化，从而达到加速效果。根据提示，主要优化方法为将循环进行展开，命令即可进行流水线化，从而节省运行时间。目前对于这个程序主要有两部分可以进行优化，一是尽量避免流水线的数据冒险和控制冒险，二是尽量对循环进行展开，从而可以优化指令，减少运行的指令数。本章对于流水线的深度部分讲的原理还是非常深刻的，特别是对于流水线的运行以及加速原理讲的非常浅显易懂，如因为自己并不是处理器架构方面的资深工程师，对这一部分还是有许多很模糊的概念需要弄明白。</p>
+<ul>
+<li>流水线的基本原理：常规的运行模式我们称之为<code>RTC</code>模式(run to complete)，即从头开始执行到尾然后再开始下一条指令的执行。经典的<code>rtc</code>模式即每条指令执行完成上述的五个阶段<code>fetch、decode、Execute、Memory、Write back</code>之后,跟新<code>pc</code>后，<code>cpu</code>再开始执行下一条指令。因此每条指令需要等待前一条指令的五个阶段全部执行完成后，才开始进入<code>fetch</code>阶段，而流水线的原理则是利用缓存，每个阶段的计算结果完成后先进入缓冲区，再由缓冲区送入到下一个阶段，这样每当当前的<code>stage</code>的结果送入缓存后，我们即可将下一条指令送入到本次的<code>stage</code>中,具体的每个<code>stage</code>的详细处理细节可以参考章节<code>4.3.4</code>。<br>RTC模式：<br><img src="https://i.loli.net/2021/02/17/RuCqaGJYIUv4ntE.jpg"><br>Pipeline模式:<br>通过在每个stage处都加入缓存即可实现流水线，因为有缓存的存在，此时我们可以将上一个<code>stage</code>的结果临时存放在缓存中，此时当前的<code>stage</code>即可进行下一条指令，待后一个<code>stage</code>完成后，我们将其从缓存中取出临时结果放入到下一个<code>stage</code>中。如果需要实现<code>pipeline</code>则缓存一定是必须的。<br><img src="https://i.loli.net/2021/02/17/D42VmicUvkaqeX7.jpg"><br><img src="https://i.loli.net/2021/02/17/rj5STc6HEfYmq3v.png"></li>
+<li>流水的加速比的计算：假设每条指令几个阶段<code>fetch、decode、Execute、Memory、Write back</code>的耗时分别为$t_{0},t_{1},t_{2},t_{3},t_{4}$,则执行一条完整的指令的执行时间为:<br>$$<br>T &#x3D; t_{0} + t_{1} + t_{2} + t_{3} + t_{4} &#x3D; \sum_{i&#x3D;0}^{n}t_{i}<br>$$<br>如果按照<code>rtc</code>模式的执行的话，如果执行<code>n</code>条指令则需要的总时间为$t &#x3D; N<em>T$，如果采用流水线时，则如果执行<code>N</code>条指令则需要的总时间约为:<br>$$<br>t &#x3D; (n</em>t_{max}) + (N-1)<em>t_{max}<br>$$<br>其中<code>n</code>代表此流水线有<code>n</code>个<code>stage</code>,$t_{max}$代表<code>n</code>个<code>stage</code>中耗时最长的<code>stage</code>.<br>则加速比的计算公式为:<br>$$<br>S &#x3D; \frac{t_{rtc}}{t_{pipeline}} &#x3D; \frac{(n</em>t_{max}) + (N-1)<em>t_{max}}{N</em>\sum_{i&#x3D;0}^{n}t_{i}}<br>$$<br><img src="https://i.loli.net/2021/02/17/vBbzhYdHaOFiWge.png"></li>
+<li>流水线的数据冒险：在流水线的实际运行中某些关联指令可能存在问题，比如下一条指令必须用到上一条指令的运算结果，则此时就出现了数据错误，因为下一条指令在<code>decode</code>阶段时，可能某个寄存器的值还没有在上一个指令中完成更新，则此时计算时肯定存在错误。比如执行以下指令时，如果严格按照执行<code>rrmoveq</code>指令时，此时可能<code>rdx</code>寄存器还未完成跟新，因为第三条在执行<code>decode</code>阶段时，此时第二条指令还在<code>excute</code>阶段，还未到<code>写回</code>阶段，则此时直接读取<code>%rdx</code>寄存器时的值可能是未知的，因此这就意味着风险，此时我们必须将流水线暂停几个<code>stage</code>等待寄存器<code>%rdx</code>完成更新后，我们再执行第三条指令。<br><img src="https://i.loli.net/2021/02/17/v2YHpi4lb9V15rI.png"><br>则此时我们需要插入两个空指令等待第二条指令完成<code>写回</code>阶段后，我们即可进行<code>decode</code>阶段。<br><img src="https://i.loli.net/2021/02/17/TtlyzMXK5LJBZsI.png"></li>
+<li>流水线的控制冒险：我们知道正常的指令跳转地址为该指令执行完成后，紧挨着的下一条指令，一般情况下我们在取指令阶段即同时预先完成下一条指令地址的更新，但是由于部分指令中存在条件跳转指令，则此时之前在<code>fectch</code>阶段更新的指令地址可能会失效，我们此时就需要重新填入更新的指令地址，则此时我们需要进行指令取消，即在流水线中中止此时已经执行的指令。<br><img src="https://i.loli.net/2021/02/17/o4X2AfaFgLl9Q3w.png"></li>
+</ul>
+<h3 id="unrolling-loop"><a href="#unrolling-loop" class="headerlink" title="unrolling loop"></a>unrolling loop</h3><p>我们可以参考第<code>5</code>章的优化技术，即对循环进行展开，循环展开的好处有两点，一是可以充分的利用<code>cache</code>，另一方面可以有效的避免数据冒险，即相邻的指令使用同一个寄存器。<br>对于<code>partc</code>部分，主要针对原有的程序进行了如下优化：</p>
+<ol>
+<li>对于循环进行展开，每次我们每次读取<code>4</code>个字节，对每个字节进行分别读取和转存，同时尽可能的避免相邻的指令读取和存储同一个寄存器，从而避免气泡和空指令，从而来加速流水线的执行，由于本课程的工具的限制，本来有<code>15</code>个通用的寄存器，但是不知道为什么它提供的工具竟然不允许用<code>%r8~%r14</code>这<code>5</code>个寄存器。</li>
+<li>使用<code>partb</code>部分的<code>iaddl</code>指令，即可以用一条指令完成之前用三条指令实现。</li>
+<li>感觉本章的许多细节部分还是糊里糊涂，不是特别清楚，只能等待后续有实际的应用场景后再结合实际来研究细节的话，效果才能更好。<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">##################################################################</span><br><span class="line"><span class="meta"># ncopy.ys - Copy a src block of len ints to dst.</span></span><br><span class="line"># <span class="function">Return the number of positive <span class="title">ints</span> <span class="params">(&gt;<span class="number">0</span>)</span> contained in src.</span></span><br><span class="line"><span class="function">#</span></span><br><span class="line"><span class="function"># Include your name <span class="keyword">and</span> ID here.</span></span><br><span class="line"><span class="function">#</span></span><br><span class="line"><span class="function"># Describe how <span class="keyword">and</span> why you modified the baseline code.</span></span><br><span class="line"><span class="function">#</span></span><br><span class="line"><span class="function">##################################################################</span></span><br><span class="line"><span class="function"># Do <span class="keyword">not</span> modify <span class="keyword">this</span> portion</span></span><br><span class="line"><span class="function"># Function prologue.</span></span><br><span class="line"><span class="function">ncopy:	pushl %ebp		# Save old frame pointer</span></span><br><span class="line"><span class="function">	rrmovl %esp,%ebp	# Set up new frame pointer</span></span><br><span class="line"><span class="function">	pushl %esi		# Save callee-save regs</span></span><br><span class="line"><span class="function">	pushl %ebx</span></span><br><span class="line"><span class="function">	pushl %edi</span></span><br><span class="line"><span class="function">	mrmovl <span class="number">8</span>(%ebp),%ebx	# src</span></span><br><span class="line"><span class="function">	mrmovl <span class="number">16</span>(%ebp),%edx	# len</span></span><br><span class="line"><span class="function">	mrmovl <span class="number">12</span>(%ebp),%ecx	# dst</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">##################################################################</span></span><br><span class="line"><span class="function"># You can modify this portion</span></span><br><span class="line"><span class="function"># Loop header</span></span><br><span class="line"><span class="function">	xorl %eax,%eax		# count =</span> <span class="number">0</span>;</span><br><span class="line">	iaddl $<span class="number">-4</span> , %edx      <span class="meta"># len = len - 4</span></span><br><span class="line">	andl %edx,%edx		<span class="meta"># len &lt;= 0?</span></span><br><span class="line">	jle Remain		    <span class="meta"># <span class="keyword">if</span> so, goto Done:</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># loop unrolling </span></span><br><span class="line">Loop:  </span><br><span class="line">	<span class="built_in">mrmovl</span> (%ebx),%esi      <span class="meta"># read val from src</span></span><br><span class="line">	mrmovl <span class="number">4</span>(%ebx), %edi    <span class="meta"># read val from src</span></span><br><span class="line">	rmmovl %esi, (%ecx)	# ...<span class="keyword">and</span> store it to dst</span><br><span class="line">	andl %esi, %esi</span><br><span class="line">	jle Nop1</span><br><span class="line">	iaddl  $<span class="number">1</span>, %eax         <span class="meta"># count = count + 1</span></span><br><span class="line">Nop1:</span><br><span class="line">	rmmovl %edi, <span class="number">4</span>(%ecx)	# ...<span class="keyword">and</span> store it to dst</span><br><span class="line">	andl %edi, %edi</span><br><span class="line">	jle Nop2</span><br><span class="line">	iaddl  $<span class="number">1</span>, %eax         <span class="meta"># count = count + 1</span></span><br><span class="line">Nop2:</span><br><span class="line">	iaddl  $<span class="number">-4</span>, %edx        <span class="meta"># len = len - 4</span></span><br><span class="line">	mrmovl <span class="number">8</span>(%ebx),%esi      <span class="meta"># read val from src</span></span><br><span class="line">	mrmovl <span class="number">12</span>(%ebx), %edi    <span class="meta"># read val from src</span></span><br><span class="line">	rmmovl %esi, <span class="number">8</span>(%ecx)	# ...<span class="keyword">and</span> store it to dst</span><br><span class="line">	andl %esi, %esi</span><br><span class="line">	jle Nop3</span><br><span class="line">	iaddl  $<span class="number">1</span>, %eax         <span class="meta"># count = count + 1</span></span><br><span class="line">Nop3:</span><br><span class="line">	rmmovl %edi, <span class="number">12</span>(%ecx)	# ...<span class="keyword">and</span> store it to dst</span><br><span class="line">	andl %edi, %edi</span><br><span class="line">	jle Nop4</span><br><span class="line">	iaddl  $<span class="number">1</span>, %eax         <span class="meta"># count = count + 1</span></span><br><span class="line">Nop4:</span><br><span class="line">	iaddl  $<span class="number">16</span>, %ebx</span><br><span class="line">	iaddl  $<span class="number">16</span>, %ecx</span><br><span class="line">	andl   %edx,%edx        <span class="meta"># len &gt; 0 ? </span></span><br><span class="line">	jg Loop			<span class="meta"># <span class="keyword">if</span> so, goto Loop:</span></span><br><span class="line"></span><br><span class="line">###############<span class="meta">#left element######################################</span></span><br><span class="line">Remain:</span><br><span class="line">	iaddl  $<span class="number">4</span>, %edx</span><br><span class="line">	andl  %edx,%edx</span><br><span class="line">	jle   Done</span><br><span class="line">Nxloop:</span><br><span class="line">	<span class="built_in">mrmovl</span> (%ebx),%esi      <span class="meta"># read val from src</span></span><br><span class="line">	iaddl $<span class="number">4</span>,%ebx</span><br><span class="line">	iaddl $<span class="number">-1</span>,%edx</span><br><span class="line">	rmmovl %esi, (%ecx)	# ...<span class="keyword">and</span> store it to dst</span><br><span class="line">	iaddl $<span class="number">4</span>,%ecx</span><br><span class="line">	andl %esi, %esi</span><br><span class="line">	jle Nop5</span><br><span class="line">	iaddl  $<span class="number">1</span>, %eax         <span class="meta"># count = count + 1</span></span><br><span class="line">Nop5:	</span><br><span class="line">	andl  %edx,%edx</span><br><span class="line">	jg Nxloop</span><br><span class="line">	</span><br><span class="line">##################################################################</span><br><span class="line"># Do <span class="keyword">not</span> modify the following section of code</span><br><span class="line"># Function epilogue.</span><br><span class="line">Done:</span><br><span class="line">	popl %edi               # Restore callee-save registers</span><br><span class="line">	popl %ebx</span><br><span class="line">	popl %esi</span><br><span class="line">	rrmovl %ebp, %esp</span><br><span class="line">	popl %ebp</span><br><span class="line">	ret</span><br><span class="line">##################################################################</span><br><span class="line"># Keep the following label at the end of your function</span><br><span class="line">End:</span><br><span class="line"># <span class="comment">/* $end ncopy-ys */</span></span><br></pre></td></tr></table></figure>
+最终的运行的<code>bechmark</code>的结果<code>CPE</code>竟然为<code>1.41</code>，感觉不可思议，应该还是部分地方处理有点问题，不过最终的细节还需要后面仔细的考虑和学习，部分细节也没有更多的时间去思考了，不过由于本身自己并不是做处理器加速的，这块的理论需要很深厚的理论基础，当然作为科普了解一下基本的内容和原理来说还是非常不错的。<br><img src="https://i.loli.net/2021/02/17/TjHPEe7ftI5dr4x.png"><br>欢迎关注和打赏，感谢支持！</li>
+</ol>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#公开课学习" >
+    <span class="tag-code">公开课学习</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/11/20/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/66/">
+        <span class="nav-arrow">← </span>
+        
+          【MIT6.S081】lab1 utils
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2022/11/20/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/73/">
+        
+          【MIT6.824】lab 1 mapreduce
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#CSAPP-lab4-archlab"><span class="toc-nav-text">CSAPP lab4 archlab</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#parta"><span class="toc-nav-text">parta</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#partb"><span class="toc-nav-text">partb</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#iaddl"><span class="toc-nav-text">iaddl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#leave"><span class="toc-nav-text">leave:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#partc"><span class="toc-nav-text">partc</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#unrolling-loop"><span class="toc-nav-text">unrolling loop</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/11/20/公开课学习/74/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2022 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>

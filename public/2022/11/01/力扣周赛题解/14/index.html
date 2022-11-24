@@ -233,8 +233,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n \log n))$, 其中 $n$ 为区间的长度。</li>
-<li>空间复杂度：$O(n)$，其中 $n$ 为区间的长度。<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">canReceiveAllSignals</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; intervals)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = intervals.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(intervals.<span class="built_in">begin</span>(), intervals.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> last = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (intervals[i][<span class="number">0</span>] &lt; last) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            last = intervals[i][<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$，其中 $n$ 为区间的长度。</li>
 </ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">canReceiveAllSignals</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; intervals)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = intervals.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(intervals.<span class="built_in">begin</span>(), intervals.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> last = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (intervals[i][<span class="number">0</span>] &lt; last) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            last = intervals[i][<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="zj-future02-黑白棋游戏"><a href="#zj-future02-黑白棋游戏" class="headerlink" title="zj-future02. 黑白棋游戏"></a>zj-future02. 黑白棋游戏</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>现有一个黑白棋游戏，初始时给出一排棋子，记作数组 <code>chess</code>，其中白色棋子记作 <code>0</code>，黑色棋子记作 <code>1</code>。用户可以每次交换 任意位置 的两颗棋子的位置。</p>
 <p>为了使得所有黑色棋子相连，请返回最少需要交换多少次。</p>
 <p>示例 1:</p>
@@ -258,12 +260,14 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n)$，其中 $n$ 为数组的长度。</li>
-<li>空间复杂度：$O(n)$，可以将其优化到 $O(1)$。<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSwaps</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; chess)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = chess.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">sum</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(chess[i] == <span class="number">1</span>) &#123;</span><br><span class="line">                tot++;</span><br><span class="line">            &#125;</span><br><span class="line">            sum[i + <span class="number">1</span>] = sum[i] + chess[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = tot; i &lt;= n; i++) &#123;</span><br><span class="line">            ans = <span class="built_in">min</span>(ans, tot - (sum[i] - sum[i-tot]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$，可以将其优化到 $O(1)$。</li>
 </ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSwaps</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; chess)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = chess.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">sum</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(chess[i] == <span class="number">1</span>) &#123;</span><br><span class="line">                tot++;</span><br><span class="line">            &#125;</span><br><span class="line">            sum[i + <span class="number">1</span>] = sum[i] + chess[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = tot; i &lt;= n; i++) &#123;</span><br><span class="line">            ans = <span class="built_in">min</span>(ans, tot - (sum[i] - sum[i-tot]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="zj-future03-快递中转站选址"><a href="#zj-future03-快递中转站选址" class="headerlink" title="zj-future03. 快递中转站选址"></a>zj-future03. 快递中转站选址</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>某区域地图记录在 <code>k</code> 二维数组 <code>area</code>，其中 <code>0</code> 表示空地，<code>1</code> 表示快递分发点。</p>
 <p>若希望选取一个地点设立中转站，使得中转站至各快递分发点的「曼哈顿距离」总和最小。请返回这个 最小 的距离总和。</p>
 <p>注意：</p>
-<p>曼哈顿距离：distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|<br>所有位置均可作为快递中转站的设立点。</p>
+<p>曼哈顿距离：distance(p1, p2) &#x3D; |p2.x - p1.x| + |p2.y - p1.y|<br>所有位置均可作为快递中转站的设立点。</p>
 <p>示例 1：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: area = [[0,1,0,0,0],[0,0,0,0,1],[0,0,1,0,0]]</span><br><span class="line">输出: 5 </span><br><span class="line">解释: 三个快递分发点分别位于(0,1)，(1,4) 和 (2,2):</span><br><span class="line">     (1,2) 是最佳的中转站选址，总距离为 2 + 2 + 1 = 5。</span><br></pre></td></tr></table></figure>
 <p>示例 2:</p>
@@ -286,8 +290,10 @@
 </ol>
 <ul>
 <li>时间复杂度：$O(n^2)$, $n$ 表示给定的天数，可以优化到 $O(n)$ 的时间复杂度。</li>
-<li>空间复杂度：$O(n)$，$n$ 表示给定的天数。<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">buildTransferStation</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; area)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = area.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> n = area[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ver;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; hec;</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt; arr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (area[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">                    ver.<span class="built_in">emplace_back</span>(i);</span><br><span class="line">                    hec.<span class="built_in">emplace_back</span>(j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> k = ver.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(ver.<span class="built_in">begin</span>(), ver.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">sort</span>(hec.<span class="built_in">begin</span>(), hec.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> x = ver[k/<span class="number">2</span>];</span><br><span class="line">        <span class="type">int</span> y = hec[k/<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (area[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">                    ans += <span class="built_in">abs</span>(x - i) + <span class="built_in">abs</span>(y - j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>空间复杂度：$O(n)$，$n$ 表示给定的天数。</li>
 </ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">buildTransferStation</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; area)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = area.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> n = area[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ver;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; hec;</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt; arr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (area[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">                    ver.<span class="built_in">emplace_back</span>(i);</span><br><span class="line">                    hec.<span class="built_in">emplace_back</span>(j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> k = ver.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(ver.<span class="built_in">begin</span>(), ver.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">sort</span>(hec.<span class="built_in">begin</span>(), hec.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> x = ver[k/<span class="number">2</span>];</span><br><span class="line">        <span class="type">int</span> y = hec[k/<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (area[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">                    ans += <span class="built_in">abs</span>(x - i) + <span class="built_in">abs</span>(y - j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="zj-future04-门店商品调配"><a href="#zj-future04-门店商品调配" class="headerlink" title="zj-future04. 门店商品调配"></a>zj-future04. 门店商品调配</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>某连锁店开设了若干门店，门店间允许进行商品借调以应对暂时性的短缺。本月商品借调的情况记于数组<code> distributions</code>，其中 <code>distributions[i] = [from,to,num]</code>，表示从 <code>from</code> 门店调配了 <code>num</code> 件商品给 <code>to</code> 门店。</p>
 <p>若要使得每一个门店最终借出和借入的商品数量相同，请问至少还需要进行多少次商品调配。</p>
 <p>注意：一次商品调配以三元组 <code>[from, to, num]</code> 表示，并有 <code>from ≠ to</code> 且<code> num &gt; 0</code>。</p>
@@ -311,7 +317,7 @@
 <li>题目中最关键的一点需要说明下，如果知道这个关键点，则这个题目比较容易，否则还是还是挺难的。对于一个集合 $S$，如果集合 $S$ 且除空集以外的任意子集 $S^{‘}$ 满足子集中的所有元素的和 $\sum(S^{‘}) \neq 0$，此时将集合 $S$ 变为 $0$ 的最小调配次数为 $|S| - 1$。根据以上分析则我们可以知道如下：</li>
 </ol>
 <ul>
-<li>设 $dp[mask]$ 表示以 $mask$ 代表的集合变为 $0$ 最小调配次数，则此时 $i = mask \oplus j$，则此时满足 $i | j = mask$, 且满足 $sum(mask) = 0, sum(i) = 0, sum(j) = 0$ 此时我们可以知道 $dp[mask] = \min(dp[mask], dp[i] + dp[j])$</li>
+<li>设 $dp[mask]$ 表示以 $mask$ 代表的集合变为 $0$ 最小调配次数，则此时 $i &#x3D; mask \oplus j$，则此时满足 $i | j &#x3D; mask$, 且满足 $sum(mask) &#x3D; 0, sum(i) &#x3D; 0, sum(j) &#x3D; 0$ 此时我们可以知道 $dp[mask] &#x3D; \min(dp[mask], dp[i] + dp[j])$</li>
 <li>我们依次检测 $mask$ 的子集即可。</li>
 </ul>
 <ol start="2">
@@ -347,17 +353,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/16/">
+      <a class="nav-left" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/15/">
         <span class="nav-arrow">← </span>
         
-          leetcode conttest 301
+          leetcode biweekly contest 82
         
       </a>
     
     
-      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/12/">
+      <a class="nav-right" href="/2022/11/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/13/">
         
-          leetcode  contest 299
+          leetcode  contest 300
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -463,6 +469,15 @@
 
 
 
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
@@ -515,6 +530,15 @@
 
 
 <script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
 
 
   </body>
