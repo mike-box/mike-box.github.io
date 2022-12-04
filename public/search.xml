@@ -10645,4 +10645,203 @@ $1 \rightarrow 2 \rightarrow 3 \rightarrow 4\rightarrow 5\rightarrow 6\rightarro
         <tag>力扣周赛</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode  contest 322</title>
+    <url>/2022/12/04/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/85/</url>
+    <content><![CDATA[<h2 id="leetcode-contest-322"><a href="#leetcode-contest-322" class="headerlink" title="leetcode  contest 322"></a>leetcode  contest 322</h2><p>前三题都是常规题目，最后一题并没有用到太多复杂的算法，两个 <code>BFS</code> 即可搞定。</p>
+<h3 id="6253-回环句"><a href="#6253-回环句" class="headerlink" title="6253. 回环句"></a>6253. 回环句</h3><p><strong>句子</strong> 是由单个空格分隔的一组单词，且不含前导或尾随空格。</p>
+<ul>
+<li>例如，<code>&quot;Hello World&quot;</code>、<code>&quot;HELLO&quot;</code>、<code>&quot;hello world hello world&quot;</code> 都是符合要求的句子。</li>
+</ul>
+<p>单词 <strong>仅</strong> 由大写和小写英文字母组成。且大写和小写字母会视作不同字符。</p>
+<p>如果句子满足下述全部条件，则认为它是一个 <strong>回环句</strong> ：</p>
+<ul>
+<li>单词的最后一个字符和下一个单词的第一个字符相等。</li>
+<li>最后一个单词的最后一个字符和第一个单词的第一个字符相等。</li>
+</ul>
+<p>例如，<code>&quot;leetcode exercises sound delightful&quot;</code>、<code>&quot;eetcode&quot;</code>、<code>&quot;leetcode eats soul&quot;</code> 都是回环句。然而，<code>&quot;Leetcode is cool&quot;</code>、<code>&quot;happy Leetcode&quot;</code>、<code>&quot;Leetcode&quot;</code> 和 <code>&quot;I like Leetcode&quot;</code> 都 <strong>不</strong> 是回环句。</p>
+<p>给你一个字符串 <code>sentence</code> ，请你判断它是不是一个回环句。如果是，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：sentence = &quot;leetcode exercises sound delightful&quot;</span><br><span class="line">输出：true</span><br><span class="line">解释：句子中的单词是 [&quot;leetcode&quot;, &quot;exercises&quot;, &quot;sound&quot;, &quot;delightful&quot;] 。</span><br><span class="line">- leetcode 的最后一个字符和 exercises 的第一个字符相等。</span><br><span class="line">- exercises 的最后一个字符和 sound 的第一个字符相等。</span><br><span class="line">- sound 的最后一个字符和 delightful 的第一个字符相等。</span><br><span class="line">- delightful 的最后一个字符和 leetcode 的第一个字符相等。</span><br><span class="line">这个句子是回环句。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：sentence = &quot;eetcode&quot;</span><br><span class="line">输出：true</span><br><span class="line">解释：句子中的单词是 [&quot;eetcode&quot;] 。</span><br><span class="line">- eetcode 的最后一个字符和 eetcode 的第一个字符相等。</span><br><span class="line">这个句子是回环句。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：sentence = &quot;Leetcode is cool&quot;</span><br><span class="line">输出：false</span><br><span class="line">解释：句子中的单词是 [&quot;Leetcode&quot;, &quot;is&quot;, &quot;cool&quot;] 。</span><br><span class="line">- Leetcode 的最后一个字符和 is 的第一个字符 不 相等。 </span><br><span class="line">这个句子 不 是回环句。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= sentence.length &lt;= 500</code></li>
+<li><code>sentence</code> 仅由大小写英文字母和空格组成</li>
+<li><code>sentence</code> 中的单词由单个空格进行分隔</li>
+<li>不含任何前导或尾随空格</li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-322/problems/circular-sentence/">https://leetcode.cn/contest/weekly-contest-322/problems/circular-sentence/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接遍历
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接将字符串切分为单词，然后依次检测相邻的单词是否符合回环的条件即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(1)$。</li>
+<li>空间复杂度：$O(n)$。可以优化到 $O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isCircularSentence</span><span class="params">(string sentence)</span> </span>&#123;</span><br><span class="line">        vector&lt;string&gt; arr;</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; sentence.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (sentence[i] != <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                string s;</span><br><span class="line">                <span class="keyword">while</span>(i &lt; sentence.<span class="built_in">size</span>() &amp;&amp; sentence[i] != <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                    s.<span class="built_in">push_back</span>(sentence[i]);</span><br><span class="line">                    i++;</span><br><span class="line">                &#125;</span><br><span class="line">                arr.<span class="built_in">emplace_back</span>(s);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> m = arr.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; arr.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i].<span class="built_in">back</span>() != arr[(i + <span class="number">1</span>) % m][<span class="number">0</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6254-划分技能点相等的团队"><a href="#6254-划分技能点相等的团队" class="headerlink" title="6254. 划分技能点相等的团队"></a>6254. 划分技能点相等的团队</h3><p>给你一个正整数数组 <code>skill</code> ，数组长度为 <strong>偶数</strong> <code>n</code> ，其中 <code>skill[i]</code> 表示第 <code>i</code> 个玩家的技能点。将所有玩家分成 <code>n / 2</code> 个 <code>2</code> 人团队，使每一个团队的技能点之和 <strong>相等</strong> 。</p>
+<p>团队的 <strong>化学反应</strong> 等于团队中玩家的技能点 <strong>乘积</strong> 。</p>
+<p>返回所有团队的 <strong>化学反应</strong> 之和，如果无法使每个团队的技能点之和相等，则返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：skill = [3,2,5,1,3,4]</span><br><span class="line">输出：22</span><br><span class="line">解释：</span><br><span class="line">将玩家分成 3 个团队 (1, 5), (2, 4), (3, 3) ，每个团队的技能点之和都是 6 。</span><br><span class="line">所有团队的化学反应之和是 1 * 5 + 2 * 4 + 3 * 3 = 5 + 8 + 9 = 22 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：skill = [3,4]</span><br><span class="line">输出：12</span><br><span class="line">解释：</span><br><span class="line">两个玩家形成一个团队，技能点之和是 7 。</span><br><span class="line">团队的化学反应是 3 * 4 = 12 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：skill = [1,1,2,3]</span><br><span class="line">输出：-1</span><br><span class="line">解释：</span><br><span class="line">无法将玩家分成每个团队技能点都相等的若干个 2 人团队。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= skill.length &lt;= 105</code></li>
+<li><code>skill.length</code> 是偶数</li>
+<li><code>1 &lt;= skill[i] &lt;= 1000</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-322/problems/divide-players-into-teams-of-equal-skill/">https://leetcode.cn/contest/weekly-contest-322/problems/divide-players-into-teams-of-equal-skill/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>数学问题
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目要求数组中的元素可以分为 $\dfrac{n}{2}$ 个团队，且每个对中两个名成员的机能之和相等，则可以推出如下:</li>
+</ol>
+<ul>
+<li>数组中的所有元素和 $sum$ 一定能被 $\dfrac{n}{2}$，且每两个成员中的和为 $x &#x3D; \dfrac{2 \times sum}{n}$;</li>
+<li>我们直接将数组按照从小到大进行排序，可以知道 $skill[i] + skill[n-i-1] &#x3D; x$，我们依次判断即可。</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 为数组的元素。</li>
+<li>空间复杂度：$O(\og n)$，其中 $n$ 为数组的元素。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">dividePlayers</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; skill)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> tot = <span class="built_in">accumulate</span>(skill.<span class="built_in">begin</span>(), skill.<span class="built_in">end</span>(), <span class="number">0LL</span>);</span><br><span class="line">        <span class="type">int</span> n = skill.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> m = n / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (tot % m != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> val = tot / m;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">sort</span>(skill.<span class="built_in">begin</span>(), skill.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (skill[i] + skill[n - i - <span class="number">1</span>] != val) &#123;</span><br><span class="line">                 <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            res += skill[i] * skill[n - i - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6255-两个城市间路径的最小分数"><a href="#6255-两个城市间路径的最小分数" class="headerlink" title="6255. 两个城市间路径的最小分数"></a>6255. 两个城市间路径的最小分数</h3><p>给你一个正整数 <code>n</code> ，表示总共有 <code>n</code> 个城市，城市从 <code>1</code> 到 <code>n</code> 编号。给你一个二维数组 <code>roads</code> ，其中 <code>roads[i] = [ai, bi, distancei]</code> 表示城市 <code>ai</code> 和 <code>bi</code> 之间有一条 <strong>双向</strong> 道路，道路距离为 <code>distancei</code> 。城市构成的图不一定是连通的。</p>
+<p>两个城市之间一条路径的 <strong>分数</strong> 定义为这条路径中道路的 <strong>最小</strong> 距离。</p>
+<p>城市 <code>1</code> 和城市 <code>n</code> 之间的所有路径的 <strong>最小</strong> 分数。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>一条路径指的是两个城市之间的道路序列。</li>
+<li>一条路径可以 <strong>多次</strong> 包含同一条道路，你也可以沿着路径多次到达城市 <code>1</code> 和城市 <code>n</code> 。</li>
+<li>测试数据保证城市 <code>1</code> 和城市<code>n</code> 之间 <strong>至少</strong> 有一条路径。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/12/graph11.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 4, roads = [[1,2,9],[2,3,6],[2,4,5],[1,4,7]]</span><br><span class="line">输出：5</span><br><span class="line">解释：城市 1 到城市 4 的路径中，分数最小的一条为：1 -&gt; 2 -&gt; 4 。这条路径的分数是 min(9,5) = 5 。</span><br><span class="line">不存在分数更小的路径。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/12/graph22.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 4, roads = [[1,2,2],[1,3,4],[3,4,7]]</span><br><span class="line">输出：2</span><br><span class="line">解释：城市 1 到城市 4 分数最小的路径是：1 -&gt; 2 -&gt; 1 -&gt; 3 -&gt; 4 。这条路径的分数是 min(2,2,4,7) = 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>1 &lt;= roads.length &lt;= 105</code></li>
+<li><code>roads[i].length == 3</code></li>
+<li><code>1 &lt;= ai, bi &lt;= n</code></li>
+<li><code>ai != bi</code></li>
+<li><code>1 &lt;= distancei &lt;= 104</code></li>
+<li>不会有重复的边。</li>
+<li>城市 <code>1</code> 和城市 <code>n</code> 之间至少有一条路径。</li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-322/problems/minimum-score-of-a-path-between-two-cities/">https://leetcode.cn/contest/weekly-contest-322/problems/minimum-score-of-a-path-between-two-cities/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>广度优先搜索
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目出的很奇怪，由于题目求的所有路径中小的两点距离，且两点间的路径可以来回重复，这就变的非常简单的题目，我们直接找到包含节点 $1$ 与节点 $n-1$ 的所有在的有向图构成的连通单元，并找到该连通单元中最小的边的值即可。</li>
+</ol>
+<ul>
+<li>我们可以用 $BFS$ 遍历所有的边即可。标记每个顶点，由于任意两个顶点中有且只有一条边连接，所有我们遍历所有的顶点即可遍历所有的边。</li>
+</ul>
+<ol start="2">
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(V + E)$，$V$ 表示顶点个数，$E$ 表示边的个数。</li>
+<li>空间复杂度：空间复杂度为 $O(V + E)$，$V$ 表示顶点个数，$E$ 表示边的个数。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minScore</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; roads)</span> </span>&#123;</span><br><span class="line">        vector&lt;vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt;&gt; <span class="built_in">graph</span>(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : roads) &#123;</span><br><span class="line">            <span class="type">int</span> x = v[<span class="number">0</span>] - <span class="number">1</span>, y = v[<span class="number">1</span>] - <span class="number">1</span>, cost = v[<span class="number">2</span>];</span><br><span class="line">            graph[x].<span class="built_in">emplace_back</span>(y, cost);</span><br><span class="line">            graph[y].<span class="built_in">emplace_back</span>(x, cost);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> res = INT_MAX;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visit</span><span class="params">(n, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        queue&lt;<span class="type">int</span>&gt; qu;</span><br><span class="line">        qu.<span class="built_in">emplace</span>(<span class="number">0</span>);</span><br><span class="line">        visit[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">while</span>(!qu.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">auto</span> cur = qu.<span class="built_in">front</span>();</span><br><span class="line">            qu.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> [next, cost] : graph[cur]) &#123;</span><br><span class="line">                res = <span class="built_in">min</span>(res, cost);</span><br><span class="line">                <span class="keyword">if</span> (visit[next]) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                qu.<span class="built_in">emplace</span>(next);</span><br><span class="line">                visit[next] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6256-将节点分成尽可能多的组"><a href="#6256-将节点分成尽可能多的组" class="headerlink" title="6256. 将节点分成尽可能多的组"></a>6256. 将节点分成尽可能多的组</h3><p>给你一个正整数 <code>n</code> ，表示一个 <strong>无向</strong> 图中的节点数目，节点编号从 <code>1</code> 到 <code>n</code> 。</p>
+<p>同时给你一个二维整数数组 <code>edges</code> ，其中 <code>edges[i] = [ai, bi]</code> 表示节点 <code>ai</code> 和 <code>bi</code> 之间有一条 <strong>双向</strong> 边。注意给定的图可能是不连通的。</p>
+<p>请你将图划分为 <code>m</code> 个组（编号从 <strong>1</strong> 开始），满足以下要求：</p>
+<ul>
+<li>图中每个节点都只属于一个组。</li>
+<li>图中每条边连接的两个点 <code>[ai, bi]</code> ，如果 <code>ai</code> 属于编号为 <code>x</code> 的组，<code>bi</code> 属于编号为 <code>y</code> 的组，那么 <code>|y - x| = 1</code> 。</li>
+</ul>
+<p>请你返回最多可以将节点分为多少个组（也就是最大的 <code>m</code> ）。如果没办法在给定条件下分组，请你返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/13/example1.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 6, edges = [[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]</span><br><span class="line">输出：4</span><br><span class="line">解释：如上图所示，</span><br><span class="line">- 节点 5 在第一个组。</span><br><span class="line">- 节点 1 在第二个组。</span><br><span class="line">- 节点 2 和节点 4 在第三个组。</span><br><span class="line">- 节点 3 和节点 6 在第四个组。</span><br><span class="line">所有边都满足题目要求。</span><br><span class="line">如果我们创建第五个组，将第三个组或者第四个组中任何一个节点放到第五个组，至少有一条边连接的两个节点所属的组编号不符合题目要求。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 3, edges = [[1,2],[2,3],[3,1]]</span><br><span class="line">输出：-1</span><br><span class="line">解释：如果我们将节点 1 放入第一个组，节点 2 放入第二个组，节点 3 放入第三个组，前两条边满足题目要求，但第三条边不满足题目要求。</span><br><span class="line">没有任何符合题目要求的分组方式。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 500</code></li>
+<li><code>1 &lt;= edges.length &lt;= 104</code></li>
+<li><code>edges[i].length == 2</code></li>
+<li><code>1 &lt;= ai, bi &lt;= n</code></li>
+<li><code>ai != bi</code></li>
+<li>两个点之间至多只有一条边。</li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-322/problems/divide-nodes-into-the-maximum-number-of-groups/">https://leetcode.cn/contest/weekly-contest-322/problems/divide-nodes-into-the-maximum-number-of-groups/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>首先根据题目的思路大概就可以知道本体的时间复杂度范围大概在 $V\times (V + E)$ 内可以接受，因为本题中 $0 \le V \le 500$。</li>
+<li>对于每个连通图单元的分组我们观察一下一定有以下特这：</li>
+</ol>
+<ul>
+<li>一定包含只有一个节点的分组，否则一定存在属于某条边的两个节点被分到一个分组中，这样就部分题目要求满足 $|x-y| &#x3D; 1$。</li>
+<li>我们一旦确定某个分组，则根据依赖关系可知，其他分组也可以确定，此时我们即可计算出分组的个数；</li>
+<li>我们依次枚举只含有一个节点的分组，即可得到该连通单元的最大分组；</li>
+<li>不同连通单元之间的最大分组互不影响；<br>根据上述的分析可以知道，解题步骤如下：</li>
+<li>首先求出图中各个连通单元 $component$，此时我们可以用 $BFS$ 求出即可；</li>
+<li>其次我们可以依次对每个 $component$ 求出最大分组：<ul>
+<li>我们依次枚举 $component$ 中的顶点 $V_{i}$ 作为分组的起点，然后依次求出其他所有可能的分组，我们对分组进行编号 $order[v_{i}]$，我们知道同属于一条边的两个节点 $x,y$，则此时一定满足 $|order[x] -order[y]| &#x3D; 1$；</li>
+<li>依据上述条件作为检测依据，检查该 $component$ 可被完成划分，最得到最大的分组 $cnt$；</li>
+</ul>
+</li>
+<li>所有节点的最大划分即为 $cnt_{j}$ 之和。</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(V \times (V + E))$，其中 $V$ 表示顶点的个数，$E$ 表示边的数组。</li>
+<li>空间复杂度：$O(V \times (V + E))$，其中 $V$ 表示顶点的个数，$E$ 表示边的数组。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">magnificentSets</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">adj</span>(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : edges) &#123;</span><br><span class="line">            <span class="type">int</span> x = v[<span class="number">0</span>] - <span class="number">1</span>, y = v[<span class="number">1</span>] - <span class="number">1</span>;</span><br><span class="line">            adj[x].<span class="built_in">emplace_back</span>(y);</span><br><span class="line">            adj[y].<span class="built_in">emplace_back</span>(x);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visit</span><span class="params">(n, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visit[i]) &#123;</span><br><span class="line">                vector&lt;<span class="type">int</span>&gt; component;</span><br><span class="line">                queue&lt;<span class="type">int</span>&gt; qu;</span><br><span class="line">                qu.<span class="built_in">emplace</span>(i);</span><br><span class="line">                visit[i] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">while</span>(!qu.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                    <span class="type">int</span> curr = qu.<span class="built_in">front</span>();</span><br><span class="line">                    qu.<span class="built_in">pop</span>();</span><br><span class="line">                    component.<span class="built_in">emplace_back</span>(curr);</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">auto</span> next : adj[curr]) &#123;</span><br><span class="line">                        <span class="keyword">if</span>(visit[next]) <span class="keyword">continue</span>;</span><br><span class="line">                        visit[next] = <span class="literal">true</span>;</span><br><span class="line">                        qu.<span class="built_in">emplace</span>(next);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="type">int</span> cnt = <span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> v : component) &#123;</span><br><span class="line">                    queue&lt;<span class="type">int</span>&gt; qu;</span><br><span class="line">                    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">order</span><span class="params">(n, <span class="number">-1</span>)</span></span>;</span><br><span class="line">                    qu.<span class="built_in">emplace</span>(v);</span><br><span class="line">                    order[v] = <span class="number">0</span>;</span><br><span class="line">                    <span class="type">int</span> step = <span class="number">0</span>;</span><br><span class="line">                    <span class="type">bool</span> valid = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">while</span>(!qu.<span class="built_in">empty</span>() &amp;&amp; valid) &#123;</span><br><span class="line">                        <span class="type">int</span> sz = qu.<span class="built_in">size</span>();</span><br><span class="line">                        step++;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; sz; j++) &#123;</span><br><span class="line">                            <span class="type">int</span> curr = qu.<span class="built_in">front</span>();</span><br><span class="line">                            qu.<span class="built_in">pop</span>();</span><br><span class="line">                            <span class="keyword">for</span> (<span class="keyword">auto</span> next : adj[curr]) &#123;</span><br><span class="line">                                <span class="keyword">if</span> (order[next] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                                    <span class="keyword">if</span> (<span class="built_in">abs</span>(order[curr] - order[next]) != <span class="number">1</span>) &#123;</span><br><span class="line">                                        valid = <span class="literal">false</span>;</span><br><span class="line">                                        <span class="keyword">break</span>;</span><br><span class="line">                                    &#125;</span><br><span class="line">                                    <span class="keyword">continue</span>;</span><br><span class="line">                                &#125;</span><br><span class="line">                                order[next] = step;</span><br><span class="line">                                qu.<span class="built_in">emplace</span>(next);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (valid) &#123;</span><br><span class="line">                        cnt = <span class="built_in">max</span>(cnt, step);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (cnt &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                ans += cnt;</span><br><span class="line">            &#125;            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>力扣周赛</category>
+      </categories>
+      <tags>
+        <tag>力扣周赛</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
 </search>
