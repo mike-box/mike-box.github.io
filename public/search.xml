@@ -10844,4 +10844,334 @@ $1 \rightarrow 2 \rightarrow 3 \rightarrow 4\rightarrow 5\rightarrow 6\rightarro
         <tag>题解</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode biweekly contest 93</title>
+    <url>/2022/12/11/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/87/</url>
+    <content><![CDATA[<h2 id="leetcode-biweekly-contest-93"><a href="#leetcode-biweekly-contest-93" class="headerlink" title="leetcode  biweekly contest 93"></a>leetcode  biweekly contest 93</h2><p>双周赛的前三题都是简单题目，最后一题比较难，思考了很长时间还是没有太好的思路。</p>
+<h3 id="6261-数组中字符串的最大值"><a href="#6261-数组中字符串的最大值" class="headerlink" title="6261. 数组中字符串的最大值"></a>6261. 数组中字符串的最大值</h3><p>一个由字母和数字组成的字符串的 <strong>值</strong> 定义如下：</p>
+<ul>
+<li>如果字符串 <strong>只</strong> 包含数字，那么值为该字符串在 <code>10</code> 进制下的所表示的数字。</li>
+<li>否则，值为字符串的 <strong>长度</strong> 。</li>
+</ul>
+<p>给你一个字符串数组 <code>strs</code> ，每个字符串都只由字母和数字组成，请你返回 <code>strs</code> 中字符串的 <strong>最大值</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：strs = [&quot;alic3&quot;,&quot;bob&quot;,&quot;3&quot;,&quot;4&quot;,&quot;00000&quot;]</span><br><span class="line">输出：5</span><br><span class="line">解释：</span><br><span class="line">- &quot;alic3&quot; 包含字母和数字，所以值为长度 5 。</span><br><span class="line">- &quot;bob&quot; 只包含字母，所以值为长度 3 。</span><br><span class="line">- &quot;3&quot; 只包含数字，所以值为 3 。</span><br><span class="line">- &quot;4&quot; 只包含数字，所以值为 4 。</span><br><span class="line">- &quot;00000&quot; 只包含数字，所以值为 0 。</span><br><span class="line">所以最大的值为 5 ，是字符串 &quot;alic3&quot; 的值。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：strs = [&quot;1&quot;,&quot;01&quot;,&quot;001&quot;,&quot;0001&quot;]</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">数组中所有字符串的值都是 1 ，所以我们返回 1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= strs.length &lt;= 100</code></li>
+<li><code>1 &lt;= strs[i].length &lt;= 9</code></li>
+<li><code>strs[i]</code> 只包含小写英文字母和数字。</li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-93/problems/maximum-value-of-a-string-in-an-array/">https://leetcode.cn/contest/biweekly-contest-93/problems/maximum-value-of-a-string-in-an-array/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接遍历
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>将每个字符串进行转换，如果只含有数字则进行转换，否则则不进行转换。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(mn)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumValue</span><span class="params">(vector&lt;string&gt;&amp; strs)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = strs.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">bool</span> isNum = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> c : strs[i]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!<span class="built_in">isdigit</span>(c)) &#123;</span><br><span class="line">                    isNum = <span class="literal">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!isNum) &#123;</span><br><span class="line">                res = <span class="built_in">max</span>(res, <span class="built_in">int</span>(strs[i].<span class="built_in">size</span>()));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                res = <span class="built_in">max</span>(res, <span class="built_in">stoi</span>(strs[i]));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6262-图中最大星和"><a href="#6262-图中最大星和" class="headerlink" title="6262. 图中最大星和"></a>6262. 图中最大星和</h3><p>给你一个 <code>n</code> 个点的无向图，节点从 <code>0</code> 到 <code>n - 1</code> 编号。给你一个长度为 <code>n</code> 下标从 <strong>0</strong> 开始的整数数组 <code>vals</code> ，其中 <code>vals[i]</code> 表示第 <code>i</code> 个节点的值。</p>
+<p>同时给你一个二维整数数组 <code>edges</code> ，其中 <code>edges[i] = [ai, bi]</code> 表示节点 <code>ai</code> 和 <code>bi</code> 之间有一条双向边。</p>
+<p><strong>星图</strong> 是给定图中的一个子图，它包含一个中心节点和 <code>0</code> 个或更多个邻居。换言之，星图是给定图中一个边的子集，且这些边都有一个公共节点。</p>
+<p>下图分别展示了有 <code>3</code> 个和 <code>4</code> 个邻居的星图，蓝色节点为中心节点。</p>
+<p><img src="https://assets.leetcode.com/uploads/2022/11/07/max-star-sum-descdrawio.png" alt="img"></p>
+<p><strong>星和</strong> 定义为星图中所有节点值的和。</p>
+<p>给你一个整数 <code>k</code> ，请你返回 <strong>至多</strong> 包含 <code>k</code> 条边的星图中的 <strong>最大星和</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/11/07/max-star-sum-example1drawio.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：vals = [1,2,3,4,10,-10,-20], edges = [[0,1],[1,2],[1,3],[3,4],[3,5],[3,6]], k = 2</span><br><span class="line">输出：16</span><br><span class="line">解释：上图展示了输入示例。</span><br><span class="line">最大星和对应的星图在上图中用蓝色标出。中心节点是 3 ，星图中还包含邻居 1 和 4 。</span><br><span class="line">无法得到一个和大于 16 且边数不超过 2 的星图。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：vals = [-5], edges = [], k = 0</span><br><span class="line">输出：-5</span><br><span class="line">解释：只有一个星图，就是节点 0 自己。</span><br><span class="line">所以我们返回 -5 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == vals.length</code></li>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>-104 &lt;= vals[i] &lt;= 104</code></li>
+<li><code>0 &lt;= edges.length &lt;= min(n * (n - 1) / 2``, 105)</code></li>
+<li><code>edges[i].length == 2</code></li>
+<li><code>0 &lt;= ai, bi &lt;= n - 1</code></li>
+<li><code>ai != bi</code></li>
+<li><code>0 &lt;= k &lt;= n - 1</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-93/problems/maximum-star-sum-of-a-graph/">https://leetcode.cn/contest/biweekly-contest-93/problems/maximum-star-sum-of-a-graph/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>排序
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们将与每个节点 $x$ 相邻的节点按照其值的从大到小进行排序，我们每次最多取 $k$ 个最大的相邻节点即可，即求前 $k$ 项的前缀和最大值即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(V \log E + V + E)$，其中 $V$ 为顶点的数目, $E$ 表示边的数目。</li>
+<li>空间复杂度：$O(V + E)$，其中 $V$ 为顶点的数目, $E$ 表示边的数目。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxStarSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; vals, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; edges, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = vals.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">graph</span>(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : edges) &#123;</span><br><span class="line">            graph[v[<span class="number">0</span>]].<span class="built_in">emplace_back</span>(v[<span class="number">1</span>]);</span><br><span class="line">            graph[v[<span class="number">1</span>]].<span class="built_in">emplace_back</span>(v[<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="built_in">sort</span>(graph[i].<span class="built_in">begin</span>(), graph[i].<span class="built_in">end</span>(), [&amp;](<span class="type">int</span> a, <span class="type">int</span> b) &#123;</span><br><span class="line">                <span class="keyword">return</span> vals[a] &gt; vals[b];</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> res = INT_MIN;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> sum = vals[i];</span><br><span class="line">            res = <span class="built_in">max</span>(res, sum);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; graph[i].<span class="built_in">size</span>() &amp;&amp; j &lt; k; j++) &#123;</span><br><span class="line">                sum += vals[graph[i][j]];</span><br><span class="line">                res = <span class="built_in">max</span>(res, sum);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6263-青蛙过河-II"><a href="#6263-青蛙过河-II" class="headerlink" title="6263. 青蛙过河 II"></a>6263. 青蛙过河 II</h3><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>stones</code> ，数组中的元素 <strong>严格递增</strong> ，表示一条河中石头的位置。</p>
+<p>一只青蛙一开始在第一块石头上，它想到达最后一块石头，然后回到第一块石头。同时每块石头 <strong>至多</strong> 到达 <strong>一次。</strong></p>
+<p>一次跳跃的 <strong>长度</strong> 是青蛙跳跃前和跳跃后所在两块石头之间的距离。</p>
+<ul>
+<li>更正式的，如果青蛙从 <code>stones[i]</code> 跳到 <code>stones[j]</code> ，跳跃的长度为 <code>|stones[i] - stones[j]|</code> 。</li>
+</ul>
+<p>一条路径的 <strong>代价</strong> 是这条路径里的 <strong>最大跳跃长度</strong> 。</p>
+<p>请你返回这只青蛙的 <strong>最小代价</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/11/14/example-1.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：stones = [0,2,5,6,7]</span><br><span class="line">输出：5</span><br><span class="line">解释：上图展示了一条最优路径。</span><br><span class="line">这条路径的代价是 5 ，是这条路径中的最大跳跃长度。</span><br><span class="line">无法得到一条代价小于 5 的路径，我们返回 5 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/11/14/example-2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：stones = [0,3,9]</span><br><span class="line">输出：9</span><br><span class="line">解释：</span><br><span class="line">青蛙可以直接跳到最后一块石头，然后跳回第一块石头。</span><br><span class="line">在这条路径中，每次跳跃长度都是 9 。所以路径代价是 max(9, 9) = 9 。</span><br><span class="line">这是可行路径中的最小代价。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= stones.length &lt;= 105</code></li>
+<li><code>0 &lt;= stones[i] &lt;= 109</code></li>
+<li><code>stones[0] == 0</code></li>
+<li><code>stones</code> 中的元素严格递增。</li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-93/problems/frog-jump-ii/">https://leetcode.cn/contest/biweekly-contest-93/problems/frog-jump-ii/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>贪心算法
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>最优算法肯定为隔一个元素跳，要么去的时候每次跳的步骤为 $[0,2,4,\cdots]$，要么回的时候每次跳的步骤则为 $[0,1,3,\cdots]$，题目等价于有两只青蛙从 $0$ 开始起跳，且二者没有共同落地地点都到达终点时的二者的最小跳的距离。</li>
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n)$，$n$ 表示数组的长度。</li>
+<li>空间复杂度：时间复杂度为 $O(1)$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxJump</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; stones)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = stones.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i += <span class="number">2</span>) &#123;</span><br><span class="line">            res = <span class="built_in">max</span>(res, stones[<span class="built_in">min</span>(i + <span class="number">2</span>, n - <span class="number">1</span>)] - stones[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i += <span class="number">2</span>) &#123;</span><br><span class="line">            res = <span class="built_in">max</span>(res, stones[<span class="built_in">min</span>(i + <span class="number">2</span>, n - <span class="number">1</span>)] - stones[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6264-让数组不相等的最小总代价"><a href="#6264-让数组不相等的最小总代价" class="headerlink" title="6264. 让数组不相等的最小总代价"></a>6264. 让数组不相等的最小总代价</h3><p>给你两个下标从 <strong>0</strong> 开始的整数数组 <code>nums1</code> 和 <code>nums2</code> ，两者长度都为 <code>n</code> 。</p>
+<p>每次操作中，你可以选择交换 <code>nums1</code> 中任意两个下标处的值。操作的 <strong>开销</strong> 为两个下标的 <strong>和</strong> 。</p>
+<p>你的目标是对于所有的 <code>0 &lt;= i &lt;= n - 1</code> ，都满足 <code>nums1[i] != nums2[i]</code> ，你可以进行 <strong>任意次</strong> 操作，请你返回达到这个目标的 <strong>最小</strong> 总代价。</p>
+<p>请你返回让 <code>nums1</code> 和 <code>nums2</code> 满足上述条件的 <strong>最小总代价</strong> ，如果无法达成目标，返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums1 = [1,2,3,4,5], nums2 = [1,2,3,4,5]</span><br><span class="line">输出：10</span><br><span class="line">解释：</span><br><span class="line">实现目标的其中一种方法为：</span><br><span class="line">- 交换下标为 0 和 3 的两个值，代价为 0 + 3 = 3 。现在 nums1 = [4,2,3,1,5] 。</span><br><span class="line">- 交换下标为 1 和 2 的两个值，代价为 1 + 2 = 3 。现在 nums1 = [4,3,2,1,5] 。</span><br><span class="line">- 交换下标为 0 和 4 的两个值，代价为 0 + 4 = 4 。现在 nums1 = [5,3,2,1,4] 。</span><br><span class="line">最后，对于每个下标 i ，都有 nums1[i] != nums2[i] 。总代价为 10 。</span><br><span class="line">还有别的交换值的方法，但是无法得到代价和小于 10 的方案。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums1 = [2,2,2,1,3], nums2 = [1,2,2,3,3]</span><br><span class="line">输出：10</span><br><span class="line">解释：</span><br><span class="line">实现目标的一种方法为：</span><br><span class="line">- 交换下标为 2 和 3 的两个值，代价为 2 + 3 = 5 。现在 nums1 = [2,2,1,2,3] 。</span><br><span class="line">- 交换下标为 1 和 4 的两个值，代价为 1 + 4 = 5 。现在 nums1 = [2,3,1,2,2] 。</span><br><span class="line">总代价为 10 ，是所有方案中的最小代价。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums1 = [1,2,2], nums2 = [1,2,2]</span><br><span class="line">输出：-1</span><br><span class="line">解释：</span><br><span class="line">不管怎么操作，都无法满足题目要求。</span><br><span class="line">所以返回 -1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == nums1.length == nums2.length</code></li>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>1 &lt;= nums1[i], nums2[i] &lt;= n</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-93/problems/minimum-total-cost-to-make-arrays-unequal/">https://leetcode.cn/contest/biweekly-contest-93/problems/minimum-total-cost-to-make-arrays-unequal/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 数学问题</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>看了一个非常的好的解题思路，本质还是数论的问题：<a href="https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/solutions/2015532/tan-xin-by-seedjyh-yih9/">题解</a></li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示数组的元素。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的元素。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">minimumTotalCost</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums1.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; sameIndex;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums1[i] == nums2[i]) &#123;</span><br><span class="line">                sameIndex.<span class="built_in">push_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; freq;</span><br><span class="line">        <span class="type">int</span> maxVal = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span> maxFreq = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> index : sameIndex) &#123;</span><br><span class="line">            freq[nums1[index]]++;</span><br><span class="line">            <span class="keyword">if</span> (freq[nums1[index]] &gt; maxFreq) &#123;</span><br><span class="line">                maxFreq = freq[nums1[index]];</span><br><span class="line">                maxVal = nums1[index];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (maxFreq * <span class="number">2</span> &lt;= sameIndex.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">accumulate</span>(sameIndex.<span class="built_in">begin</span>(), sameIndex.<span class="built_in">end</span>(), <span class="number">0LL</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums1[i] == nums2[i]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums1[i] != maxVal &amp;&amp; nums2[i] != maxVal) &#123;</span><br><span class="line">                sameIndex.<span class="built_in">push_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (maxFreq * <span class="number">2</span> &lt;= sameIndex.<span class="built_in">size</span>()) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (maxFreq * <span class="number">2</span> &lt;= sameIndex.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">accumulate</span>(sameIndex.<span class="built_in">begin</span>(), sameIndex.<span class="built_in">end</span>(), <span class="number">0LL</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>力扣周赛</category>
+      </categories>
+      <tags>
+        <tag>力扣周赛</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode  contest 323</title>
+    <url>/2022/12/11/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/86/</url>
+    <content><![CDATA[<h2 id="leetcode-contest-323"><a href="#leetcode-contest-323" class="headerlink" title="leetcode  contest 323"></a>leetcode  contest 323</h2><p>周赛的题目又是大放水了，感觉双周赛的题目比较难，周赛的题目放水的概率非常高。</p>
+<h3 id="6257-删除每行中的最大值"><a href="#6257-删除每行中的最大值" class="headerlink" title="6257. 删除每行中的最大值"></a>6257. 删除每行中的最大值</h3><p>给你一个 <code>m x n</code> 大小的矩阵 <code>grid</code> ，由若干正整数组成。</p>
+<p>执行下述操作，直到 <code>grid</code> 变为空矩阵：</p>
+<ul>
+<li>从每一行删除值最大的元素。如果存在多个这样的值，删除其中任何一个。</li>
+<li>将删除元素中的最大值与答案相加。</li>
+</ul>
+<p><strong>注意</strong> 每执行一次操作，矩阵中列的数据就会减 1 。</p>
+<p>返回执行上述操作后的答案。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/19/q1ex1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [[1,2,4],[3,3,1]]</span><br><span class="line">输出：8</span><br><span class="line">解释：上图展示在每一步中需要移除的值。</span><br><span class="line">- 在第一步操作中，从第一行删除 4 ，从第二行删除 3（注意，有两个单元格中的值为 3 ，我们可以删除任一）。在答案上加 4 。</span><br><span class="line">- 在第二步操作中，从第一行删除 2 ，从第二行删除 3 。在答案上加 3 。</span><br><span class="line">- 在第三步操作中，从第一行删除 1 ，从第二行删除 1 。在答案上加 1 。</span><br><span class="line">最终，答案 = 4 + 3 + 1 = 8 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/19/q1ex2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [[10]]</span><br><span class="line">输出：10</span><br><span class="line">解释：上图展示在每一步中需要移除的值。</span><br><span class="line">- 在第一步操作中，从第一行删除 10 。在答案上加 10 。</span><br><span class="line">最终，答案 = 10 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 50</code></li>
+<li><code>1 &lt;= grid[i][j] &lt;= 100</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-323/problems/delete-greatest-value-in-each-row/">https://leetcode.cn/contest/weekly-contest-323/problems/delete-greatest-value-in-each-row/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接遍历
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>将矩阵的每一行按照从小到大排序，每次我们取出每一列的最大值即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(mn\log n)$。</li>
+<li>空间复杂度：$O(\log)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">deleteGreatestValue</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = grid.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> n = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="built_in">sort</span>(grid[i].<span class="built_in">begin</span>(), grid[i].<span class="built_in">end</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> maxVal = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                maxVal = <span class="built_in">max</span>(maxVal, grid[j][i]);</span><br><span class="line">            &#125;</span><br><span class="line">            res += maxVal;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6258-数组中最长的方波"><a href="#6258-数组中最长的方波" class="headerlink" title="6258. 数组中最长的方波"></a>6258. 数组中最长的方波</h3><p>给你一个整数数组 <code>nums</code> 。如果 <code>nums</code> 的子序列满足下述条件，则认为该子序列是一个 <strong>方波</strong> ：</p>
+<ul>
+<li>子序列的长度至少为 <code>2</code> ，并且</li>
+<li>将子序列从小到大排序 <strong>之后</strong> ，除第一个元素外，每个元素都是前一个元素的 <strong>平方</strong> 。</li>
+</ul>
+<p>返回 <code>nums</code> 中 <strong>最长方波</strong> 的长度，如果不存在 <strong>方波</strong> 则返回 <code>-1</code> 。</p>
+<p><strong>子序列</strong> 也是一个数组，可以由另一个数组删除一些或不删除元素且不改变剩余元素的顺序得到。</p>
+<p><strong>示例 1 ：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,3,6,16,8,2]</span><br><span class="line">输出：3</span><br><span class="line">解释：选出子序列 [4,16,2] 。排序后，得到 [2,4,16] 。</span><br><span class="line">- 4 = 2 * 2.</span><br><span class="line">- 16 = 4 * 4.</span><br><span class="line">因此，[4,16,2] 是一个方波.</span><br><span class="line">可以证明长度为 4 的子序列都不是方波。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2 ：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,3,5,6,7]</span><br><span class="line">输出：-1</span><br><span class="line">解释：nums 不存在方波，所以返回 -1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 105</code></li>
+<li><code>2 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-323/problems/longest-square-streak-in-an-array/">https://leetcode.cn/contest/weekly-contest-323/problems/longest-square-streak-in-an-array/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>动态规划
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>由于题目中方波数组的顺序必须满足从小到大排列，我们设 $dp[x]$ 表示以 $x$ 为结尾的方波数组的最长长度，则 $dp[x] &#x3D; dp[\sqrt{x}] + 1$。我们找到最长的方波数组长度即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 为数组的元素个数。</li>
+<li>空间复杂度：$O(\log n)$，其中 $n$ 为数组的元素的个数。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestSquareStreak</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; dp;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            dp[nums[i]] = <span class="number">1</span>;</span><br><span class="line">            <span class="type">int</span> x = <span class="built_in">sqrt</span>(nums[i]);</span><br><span class="line">            <span class="keyword">if</span> (x * x == nums[i]) &#123;</span><br><span class="line">                dp[nums[i]] = dp[x] + <span class="number">1</span>;</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">if</span> (dp[nums[i]] &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                res = <span class="built_in">max</span>(res, dp[nums[i]]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6259-设计内存分配器"><a href="#6259-设计内存分配器" class="headerlink" title="6259. 设计内存分配器"></a>6259. 设计内存分配器</h3><p>给你一个整数 <code>n</code> ，表示下标从 <strong>0</strong> 开始的内存数组的大小。所有内存单元开始都是空闲的。</p>
+<p>请你设计一个具备以下功能的内存分配器：</p>
+<ol>
+<li><strong>分配</strong> 一块大小为 <code>size</code> 的连续空闲内存单元并赋 id <code>mID</code> 。</li>
+<li><strong>释放</strong> 给定 id <code>mID</code> 对应的所有内存单元。</li>
+</ol>
+<p><strong>注意：</strong></p>
+<ul>
+<li>多个块可以被分配到同一个 <code>mID</code> 。</li>
+<li>你必须释放 <code>mID</code> 对应的所有内存单元，即便这些内存单元被分配在不同的块中。</li>
+</ul>
+<p>实现 <code>Allocator</code> 类：</p>
+<ul>
+<li><code>Allocator(int n)</code> 使用一个大小为 <code>n</code> 的内存数组初始化 <code>Allocator</code> 对象。</li>
+<li><code>int allocate(int size, int mID)</code> 找出大小为 <code>size</code> 个连续空闲内存单元且位于 <strong>最左侧</strong> 的块，分配并赋 id <code>mID</code> 。返回块的第一个下标。如果不存在这样的块，返回 <code>-1</code> 。</li>
+<li><code>int free(int mID)</code> 释放 id <code>mID</code> 对应的所有内存单元。返回释放的内存单元数目。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;Allocator&quot;, &quot;allocate&quot;, &quot;allocate&quot;, &quot;allocate&quot;, &quot;free&quot;, &quot;allocate&quot;, &quot;allocate&quot;, &quot;allocate&quot;, &quot;free&quot;, &quot;allocate&quot;, &quot;free&quot;]</span><br><span class="line">[[10], [1, 1], [1, 2], [1, 3], [2], [3, 4], [1, 1], [1, 1], [1], [10, 2], [7]]</span><br><span class="line">输出</span><br><span class="line">[null, 0, 1, 2, 1, 3, 1, 6, 3, -1, 0]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">Allocator loc = new Allocator(10); // 初始化一个大小为 10 的内存数组，所有内存单元都是空闲的。</span><br><span class="line">loc.allocate(1, 1); // 最左侧的块的第一个下标是 0 。内存数组变为 [1, , , , , , , , , ]。返回 0 。</span><br><span class="line">loc.allocate(1, 2); // 最左侧的块的第一个下标是 1 。内存数组变为 [1,2, , , , , , , , ]。返回 1 。</span><br><span class="line">loc.allocate(1, 3); // 最左侧的块的第一个下标是 2 。内存数组变为 [1,2,3, , , , , , , ]。返回 2 。</span><br><span class="line">loc.free(2); // 释放 mID 为 2 的所有内存单元。内存数组变为 [1, ,3, , , , , , , ] 。返回 1 ，因为只有 1 个 mID 为 2 的内存单元。</span><br><span class="line">loc.allocate(3, 4); // 最左侧的块的第一个下标是 3 。内存数组变为 [1, ,3,4,4,4, , , , ]。返回 3 。</span><br><span class="line">loc.allocate(1, 1); // 最左侧的块的第一个下标是 1 。内存数组变为 [1,1,3,4,4,4, , , , ]。返回 1 。</span><br><span class="line">loc.allocate(1, 1); // 最左侧的块的第一个下标是 6 。内存数组变为 [1,1,3,4,4,4,1, , , ]。返回 6 。</span><br><span class="line">loc.free(1); // 释放 mID 为 1 的所有内存单元。内存数组变为 [ , ,3,4,4,4, , , , ] 。返回 3 ，因为有 3 个 mID 为 1 的内存单元。</span><br><span class="line">loc.allocate(10, 2); // 无法找出长度为 10 个连续空闲内存单元的空闲块，所有返回 -1 。</span><br><span class="line">loc.free(7); // 释放 mID 为 7 的所有内存单元。内存数组保持原状，因为不存在 mID 为 7 的内存单元。返回 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n, size, mID &lt;= 1000</code></li>
+<li>最多调用 <code>allocate</code> 和 <code>free</code> 方法 <code>1000</code> 次</li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-323/problems/design-memory-allocator/">https://leetcode.cn/contest/weekly-contest-323/problems/design-memory-allocator/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>由于给定的数据量太小，直接暴力模拟即可，没有什么太大的难度，这个题目出的比较失败，至少应该将数量级到达 $10^4$ 以上。</li>
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(nm)$，$n$ 表示给定的数组的长度， $m$ 表示调用的函数的次数。</li>
+<li>空间复杂度：空间复杂度为 $O(n)$，$n$ 表示给定的数组的长度。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Allocator</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Allocator</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        mem = <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">allocate</span><span class="params">(<span class="type">int</span> size, <span class="type">int</span> mID)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; mem.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (mem[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="type">int</span> start = i;</span><br><span class="line">                <span class="keyword">while</span> (i &lt; mem.<span class="built_in">size</span>() &amp;&amp; mem[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                    i++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (i - start &gt;= size) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> i = start; i &lt; start + size; i++) &#123;</span><br><span class="line">                        mem[i] = mID;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span> start;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">free</span><span class="params">(<span class="type">int</span> mID)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; mem.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (mem[i] == mID) &#123;</span><br><span class="line">                mem[i] = <span class="number">0</span>;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; mem;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6260-矩阵查询可获得的最大分数"><a href="#6260-矩阵查询可获得的最大分数" class="headerlink" title="6260. 矩阵查询可获得的最大分数"></a>6260. 矩阵查询可获得的最大分数</h3><p>给你一个大小为 <code>m x n</code> 的整数矩阵 <code>grid</code> 和一个大小为 <code>k</code> 的数组 <code>queries</code> 。</p>
+<p>找出一个大小为 <code>k</code> 的数组 <code>answer</code> ，且满足对于每个整数 <code>queres[i]</code> ，你从矩阵 <strong>左上角</strong> 单元格开始，重复以下过程：</p>
+<ul>
+<li>如果 <code>queries[i]</code> <strong>严格</strong> 大于你当前所处位置单元格，如果该单元格是第一次访问，则获得 1 分，并且你可以移动到所有 <code>4</code> 个方向（上、下、左、右）上任一 <strong>相邻</strong> 单元格。</li>
+<li>否则，你不能获得任何分，并且结束这一过程。</li>
+</ul>
+<p>在过程结束后，<code>answer[i]</code> 是你可以获得的最大分数。注意，对于每个查询，你可以访问同一个单元格 <strong>多次</strong> 。</p>
+<p>返回结果数组 <code>answer</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/19/yetgriddrawio.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [[1,2,3],[2,5,7],[3,5,1]], queries = [5,6,2]</span><br><span class="line">输出：[5,8,1]</span><br><span class="line">解释：上图展示了每个查询中访问并获得分数的单元格。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/10/20/yetgriddrawio-2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [[5,2,1],[1,1,2]], queries = [3]</span><br><span class="line">输出：[0]</span><br><span class="line">解释：无法获得分数，因为左上角单元格的值大于等于 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>2 &lt;= m, n &lt;= 1000</code></li>
+<li><code>4 &lt;= m * n &lt;= 105</code></li>
+<li><code>k == queries.length</code></li>
+<li><code>1 &lt;= k &lt;= 104</code></li>
+<li><code>1 &lt;= grid[i][j], queries[i] &lt;= 106</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-323/problems/maximum-number-of-points-from-grid-queries/">https://leetcode.cn/contest/weekly-contest-323/problems/maximum-number-of-points-from-grid-queries/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 离线查询 + 优先队列</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目出的不是很好，感觉太过于模板的题目，即且翻译的有问题，简单的来说即给定的 $x$，从 $(0,0)$ 出发可以遍历的所有小于 $x$ 的元素的数目。</li>
+<li>本题的解法有多种，首先我们只需将所有的查询从小到大进行排序，从而我们可以将矩阵从小到大进行遍历。</li>
+</ol>
+<ul>
+<li><strong>优先队列</strong>: 我们从 $(0,0)$ 压入到优先队列，每次查询 $x$ 时，我们将队列中所有严格小于 $x$ 的元素 $(x,y)$ 弹出并计数，并同时将 $(x,y)$ 四个方向上相邻的元素压入到队列中，这样保证队列中待访问且所有符合要求的元素全部从队列中弹出。我们计数所有当前已弹出的元素为 $tot$，满足小于 $x$ 的元素的个数即为 $tot$。</li>
+<li><strong>并查集</strong>: 将矩阵所有的元素按照从小到大进行排序，每次查询 $x$ 时将所有小于 $x$ 的矩阵中的元素与其相邻的边进行聚合，最后我们查询 $(0,0)$ 所在的连通单元的单元的数目即可。</li>
+</ul>
+<ol start="3">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(q \log q + q \times (\log mn))$，其中 $q$ 表示查询的次数，$m,n$ 表示矩阵的行与列。</li>
+<li>空间复杂度：$O(mn)$，其中 $m,n$ 表示矩阵的行与列。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><ul>
+<li>优先队列<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">maxPoints</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid, vector&lt;<span class="type">int</span>&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = grid.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> n = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> k = queries.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">res</span><span class="params">(k)</span></span>;</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt; arr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            arr.<span class="built_in">emplace_back</span>(queries[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>());</span><br><span class="line">        vector&lt;vector&lt;<span class="type">bool</span>&gt;&gt; <span class="built_in">visit</span>(m, <span class="built_in">vector</span>&lt;<span class="type">bool</span>&gt;(n, <span class="literal">false</span>));</span><br><span class="line">        priority_queue&lt;tuple&lt;<span class="type">int</span>,<span class="type">int</span>,<span class="type">int</span>&gt;, vector&lt;tuple&lt;<span class="type">int</span>,<span class="type">int</span>,<span class="type">int</span>&gt;&gt;, greater&lt;tuple&lt;<span class="type">int</span>,<span class="type">int</span>,<span class="type">int</span>&gt;&gt;&gt; pq;</span><br><span class="line">        pq.<span class="built_in">emplace</span>(grid[<span class="number">0</span>][<span class="number">0</span>], <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">        visit[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="type">int</span> dir[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span>(!pq.<span class="built_in">empty</span>() &amp;&amp; <span class="built_in">get</span>&lt;<span class="number">0</span>&gt;(pq.<span class="built_in">top</span>()) &lt; arr[i].first) &#123;</span><br><span class="line">                <span class="keyword">auto</span> [val, x, y] = pq.<span class="built_in">top</span>();</span><br><span class="line">                pq.<span class="built_in">pop</span>();</span><br><span class="line">                tot++;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">                    <span class="type">int</span> nx = x + dir[j][<span class="number">0</span>];</span><br><span class="line">                    <span class="type">int</span> ny = y + dir[j][<span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">if</span> (nx &gt;= <span class="number">0</span> &amp;&amp; nx &lt; m &amp;&amp; ny &gt;= <span class="number">0</span> &amp;&amp; ny &lt; n) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (visit[nx][ny]) <span class="keyword">continue</span>;</span><br><span class="line">                        pq.<span class="built_in">emplace</span>(grid[nx][ny], nx, ny);</span><br><span class="line">                        visit[nx][ny] = <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res[arr[i].second] = tot;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>并查集<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> dirs[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">-1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">maxPoints</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; &amp;grid, vector&lt;<span class="type">int</span>&gt; &amp;queries)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = grid.<span class="built_in">size</span>(), n = grid[<span class="number">0</span>].<span class="built_in">size</span>(), mn = m * n;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 并查集模板</span></span><br><span class="line">        <span class="type">int</span> fa[mn], size[mn];</span><br><span class="line">        <span class="built_in">iota</span>(fa, fa + mn, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">fill</span>(size, size + mn, <span class="number">1</span>);</span><br><span class="line">        function&lt;<span class="type">int</span>(<span class="type">int</span>)&gt; find = [&amp;](<span class="type">int</span> x) -&gt; <span class="type">int</span> &#123; <span class="keyword">return</span> fa[x] == x ? x : fa[x] = <span class="built_in">find</span>(fa[x]); &#125;;</span><br><span class="line">        <span class="keyword">auto</span> merge = [&amp;](<span class="type">int</span> from, <span class="type">int</span> to) &#123;</span><br><span class="line">            from = <span class="built_in">find</span>(from);</span><br><span class="line">            to = <span class="built_in">find</span>(to);</span><br><span class="line">            <span class="keyword">if</span> (from != to) &#123;</span><br><span class="line">                fa[from] = to;</span><br><span class="line">                size[to] += size[from];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 矩阵元素从小到大排序，方便离线</span></span><br><span class="line">        array&lt;<span class="type">int</span>, 3&gt; a[mn];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; ++j)</span><br><span class="line">                a[i * n + j] = &#123;grid[i][j], i, j&#125;;</span><br><span class="line">        <span class="built_in">sort</span>(a, a + mn);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 查询的下标按照查询值从小到大排序，方便离线</span></span><br><span class="line">        <span class="type">int</span> k = queries.<span class="built_in">size</span>(), id[k];</span><br><span class="line">        <span class="built_in">iota</span>(id, id + k, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">sort</span>(id, id + k, [&amp;](<span class="type">int</span> i, <span class="type">int</span> j) &#123; <span class="keyword">return</span> queries[i] &lt; queries[j]; &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(k)</span></span>;</span><br><span class="line">        <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i : id) &#123;</span><br><span class="line">            <span class="type">int</span> q = queries[i];</span><br><span class="line">            <span class="keyword">for</span> (; j &lt; mn &amp;&amp; a[j][<span class="number">0</span>] &lt; q; ++j) &#123;</span><br><span class="line">                <span class="type">int</span> x = a[j][<span class="number">1</span>], y = a[j][<span class="number">2</span>];</span><br><span class="line">                <span class="comment">// 枚举周围四个格子，值小于 q 才可以合并</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;d : dirs) &#123;</span><br><span class="line">                    <span class="type">int</span> x2 = x + d[<span class="number">0</span>], y2 = y + d[<span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">if</span> (<span class="number">0</span> &lt;= x2 &amp;&amp; x2 &lt; m &amp;&amp; <span class="number">0</span> &lt;= y2 &amp;&amp; y2 &lt; n &amp;&amp; grid[x2][y2] &lt; q)</span><br><span class="line">                        <span class="built_in">merge</span>(x * n + y, x2 * n + y2); <span class="comment">// 把坐标压缩成一维的编号</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (grid[<span class="number">0</span>][<span class="number">0</span>] &lt; q)</span><br><span class="line">                ans[i] = size[<span class="built_in">find</span>(<span class="number">0</span>)]; <span class="comment">// 左上角的连通块的大小</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+欢迎关注和打赏，感谢支持！</li>
+<li>关注我的博客: <a href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>力扣周赛</category>
+      </categories>
+      <tags>
+        <tag>力扣周赛</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
 </search>
