@@ -11466,4 +11466,339 @@ $1 \rightarrow 2 \rightarrow 3 \rightarrow 4\rightarrow 5\rightarrow 6\rightarro
         <tag>公开课学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode biweekly contest 94</title>
+    <url>/2022/12/25/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/89/</url>
+    <content><![CDATA[<h2 id="leetcode-biweekly-contest-94"><a href="#leetcode-biweekly-contest-94" class="headerlink" title="leetcode biweekly contest 94"></a>leetcode biweekly contest 94</h2><p>第四题就是模板题目，太没什么新意了，第三题时个贪心的数论的题目还算比较有新意的题目。</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202212251359326.png" alt="image-20221225135945227"></p>
+<h3 id="6273-最多可以摧毁的敌人城堡数目"><a href="#6273-最多可以摧毁的敌人城堡数目" class="headerlink" title="6273. 最多可以摧毁的敌人城堡数目"></a>6273. 最多可以摧毁的敌人城堡数目</h3><p>给你一个长度为 <code>n</code> ，下标从 <strong>0</strong> 开始的整数数组 <code>forts</code> ，表示一些城堡。<code>forts[i]</code> 可以是 <code>-1</code> ，<code>0</code> 或者 <code>1</code> ，其中：</p>
+<ul>
+<li><code>-1</code> 表示第 <code>i</code> 个位置 <strong>没有</strong> 城堡。</li>
+<li><code>0</code> 表示第 <code>i</code> 个位置有一个 <strong>敌人</strong> 的城堡。</li>
+<li><code>1</code> 表示第 <code>i</code> 个位置有一个你控制的城堡。</li>
+</ul>
+<p>现在，你需要决定，将你的军队从某个你控制的城堡位置 <code>i</code> 移动到一个空的位置 <code>j</code> ，满足：</p>
+<ul>
+<li><code>0 &lt;= i, j &lt;= n - 1</code></li>
+<li>军队经过的位置 <strong>只有</strong> 敌人的城堡。正式的，对于所有 <code>min(i,j) &lt; k &lt; max(i,j)</code> 的 <code>k</code> ，都满足 <code>forts[k] == 0</code> 。</li>
+</ul>
+<p>当军队移动时，所有途中经过的敌人城堡都会被 <strong>摧毁</strong> 。</p>
+<p>请你返回 <strong>最多</strong> 可以摧毁的敌人城堡数目。如果 <strong>无法</strong> 移动你的军队，或者没有你控制的城堡，请返回 <code>0</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：forts = [1,0,0,-1,0,0,0,0,1]</span><br><span class="line">输出：4</span><br><span class="line">解释：</span><br><span class="line">- 将军队从位置 0 移动到位置 3 ，摧毁 2 个敌人城堡，位置分别在 1 和 2 。</span><br><span class="line">- 将军队从位置 8 移动到位置 3 ，摧毁 4 个敌人城堡。</span><br><span class="line">4 是最多可以摧毁的敌人城堡数目，所以我们返回 4 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：forts = [0,0,1,-1]</span><br><span class="line">输出：0</span><br><span class="line">解释：由于无法摧毁敌人的城堡，所以返回 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= forts.length &lt;= 1000</code></li>
+<li><code>-1 &lt;= forts[i] &lt;= 1</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-94/problems/maximum-enemy-forts-that-can-be-captured/">https://leetcode.cn/contest/biweekly-contest-94/problems/maximum-enemy-forts-that-can-be-captured/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接遍历
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>由于移动方向可以有两种，那么从左到右移动，要么从右向左移动，我们需要找到一段连续的区间，起点为 $1$，终点为 $-1$，且中间的位置全部为 $0$，找到这样的最长的连续区间即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。其中 $n$ 表示数组的长度。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">captureForts</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; forts)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = forts.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (forts[i] == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (forts[j] == <span class="number">0</span>) &#123;</span><br><span class="line">                        cnt++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">if</span> (forts[j] == <span class="number">-1</span>) &#123;</span><br><span class="line">                            ans = <span class="built_in">max</span>(ans, j - i - <span class="number">1</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (forts[i] == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (forts[j] == <span class="number">0</span>) &#123;</span><br><span class="line">                        cnt++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">if</span> (forts[j] == <span class="number">-1</span>) &#123;</span><br><span class="line">                            ans = <span class="built_in">max</span>(ans, i - j - <span class="number">1</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6274-奖励最顶尖的-K-名学生"><a href="#6274-奖励最顶尖的-K-名学生" class="headerlink" title="6274. 奖励最顶尖的 K 名学生"></a>6274. 奖励最顶尖的 K 名学生</h3><p>给你两个字符串数组 <code>positive_feedback</code> 和 <code>negative_feedback</code> ，分别包含表示正面的和负面的词汇。<strong>不会</strong> 有单词同时是正面的和负面的。</p>
+<p>一开始，每位学生分数为 <code>0</code> 。每个正面的单词会给学生的分数 <strong>加</strong> <code>3</code> 分，每个负面的词会给学生的分数 <strong>减</strong> <code>1</code> 分。</p>
+<p>给你 <code>n</code> 个学生的评语，用一个下标从 <strong>0</strong> 开始的字符串数组 <code>report</code> 和一个下标从 <strong>0</strong> 开始的整数数组 <code>student_id</code> 表示，其中 <code>student_id[i]</code> 表示这名学生的 ID ，这名学生的评语是 <code>report[i]</code> 。每名学生的 ID <strong>互不相同</strong>。</p>
+<p>给你一个整数 <code>k</code> ，请你返回按照得分 <strong>从高到低</strong> 最顶尖的 <code>k</code> 名学生。如果有多名学生分数相同，ID 越小排名越前。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：positive_feedback = [&quot;smart&quot;,&quot;brilliant&quot;,&quot;studious&quot;], negative_feedback = [&quot;not&quot;], report = [&quot;this student is studious&quot;,&quot;the student is smart&quot;], student_id = [1,2], k = 2</span><br><span class="line">输出：[1,2]</span><br><span class="line">解释：</span><br><span class="line">两名学生都有 1 个正面词汇，都得到 3 分，学生 1 的 ID 更小所以排名更前。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：positive_feedback = [&quot;smart&quot;,&quot;brilliant&quot;,&quot;studious&quot;], negative_feedback = [&quot;not&quot;], report = [&quot;this student is not studious&quot;,&quot;the student is smart&quot;], student_id = [1,2], k = 2</span><br><span class="line">输出：[2,1]</span><br><span class="line">解释：</span><br><span class="line">- ID 为 1 的学生有 1 个正面词汇和 1 个负面词汇，所以得分为 3-1=2 分。</span><br><span class="line">- ID 为 2 的学生有 1 个正面词汇，得分为 3 分。</span><br><span class="line">学生 2 分数更高，所以返回 [2,1] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= positive_feedback.length, negative_feedback.length &lt;= 104</code></li>
+<li><code>1 &lt;= positive_feedback[i].length, negative_feedback[j].length &lt;= 100</code></li>
+<li><code>positive_feedback[i]</code> 和 <code>negative_feedback[j]</code> 都只包含小写英文字母。</li>
+<li><code>positive_feedback</code> 和 <code>negative_feedback</code> 中不会有相同单词。</li>
+<li><code>n == report.length == student_id.length</code></li>
+<li><code>1 &lt;= n &lt;= 104</code></li>
+<li><code>report[i]</code> 只包含小写英文字母和空格 <code>&#39; &#39;</code> 。</li>
+<li><code>report[i]</code> 中连续单词之间有单个空格隔开。</li>
+<li><code>1 &lt;= report[i].length &lt;= 100</code></li>
+<li><code>1 &lt;= student_id[i] &lt;= 109</code></li>
+<li><code>student_id[i]</code> 的值 <strong>互不相同</strong> 。</li>
+<li><code>1 &lt;= k &lt;= n</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-94/problems/reward-top-k-students/">https://leetcode.cn/contest/biweekly-contest-94/problems/reward-top-k-students/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>哈希表
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目比较简单的哈希映射即可。首先我们对每个单词求出其对应的分数。接着我们遍历每个人对应的报告，并将其报告中的每个单词切割出来，对每个单词求其分数。如果该单词为正面单词，则其得分加上 $3$，如果该单词为负面单词，则其得分减去 $3$，最后求出每个人的总得分，按照题目要求取最大的 $k$ 个得分的 $ID$ 即可。 </li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(nm + n\log n)$，其中 $n$ 为给定的学生的人数，$m$ 表示每个同学的句子的长度。先遍历求出每个学生的得分，然后利用排序求出 $topk$ 即可。</li>
+<li>空间复杂度：$O(n)$。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">topStudents</span><span class="params">(vector&lt;string&gt;&amp; positive_feedback, vector&lt;string&gt;&amp; negative_feedback, vector&lt;string&gt;&amp; report, vector&lt;<span class="type">int</span>&gt;&amp; student_id, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = student_id.<span class="built_in">size</span>();</span><br><span class="line">        unordered_set&lt;string&gt; pos, neg;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> w : positive_feedback) &#123;</span><br><span class="line">            pos.<span class="built_in">emplace</span>(w);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> w : negative_feedback) &#123;</span><br><span class="line">            neg.<span class="built_in">emplace</span>(w);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt; arr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            string s = report[i];</span><br><span class="line">            <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> score = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (j &lt; s.<span class="built_in">size</span>()) &#123;</span><br><span class="line">                string word;</span><br><span class="line">                <span class="keyword">while</span> (j &lt; s.<span class="built_in">size</span>() &amp;&amp; s[j] != <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                    word.<span class="built_in">push_back</span>(s[j]);</span><br><span class="line">                    j++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (pos.<span class="built_in">count</span>(word)) &#123;</span><br><span class="line">                    score += <span class="number">3</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (neg.<span class="built_in">count</span>(word)) &#123;</span><br><span class="line">                    score -= <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">while</span> (j &lt; s.<span class="built_in">size</span>() &amp;&amp; s[j] == <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                    j++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            arr.<span class="built_in">emplace_back</span>(student_id[i], score);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>(), [](<span class="type">const</span> pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; &amp;a, <span class="type">const</span> pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; &amp; b) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a.second == b.second) &#123;</span><br><span class="line">                <span class="keyword">return</span> a.first &lt; b.first;</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">return</span> a.second &gt; b.second;</span><br><span class="line">        &#125;);</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            res.<span class="built_in">emplace_back</span>(arr[i].first);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6295-最小化两个数组中的最大值"><a href="#6295-最小化两个数组中的最大值" class="headerlink" title="6295. 最小化两个数组中的最大值"></a>6295. 最小化两个数组中的最大值</h3><p>给你两个数组 <code>arr1</code> 和 <code>arr2</code> ，它们一开始都是空的。你需要往它们中添加正整数，使它们满足以下条件：</p>
+<ul>
+<li><code>arr1</code> 包含 <code>uniqueCnt1</code> 个 <strong>互不相同</strong> 的正整数，每个整数都 <strong>不能</strong> 被 <code>divisor1</code> <strong>整除</strong> 。</li>
+<li><code>arr2</code> 包含 <code>uniqueCnt2</code> 个 <strong>互不相同</strong> 的正整数，每个整数都 <strong>不能</strong> 被 <code>divisor2</code> <strong>整除</strong> 。</li>
+<li><code>arr1</code> 和 <code>arr2</code> 中的元素 <strong>互不相同</strong> 。</li>
+</ul>
+<p>给你 <code>divisor1</code> ，<code>divisor2</code> ，<code>uniqueCnt1</code> 和 <code>uniqueCnt2</code> ，请你返回两个数组中 <strong>最大元素</strong> 的 <strong>最小值</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：divisor1 = 2, divisor2 = 7, uniqueCnt1 = 1, uniqueCnt2 = 3</span><br><span class="line">输出：4</span><br><span class="line">解释：</span><br><span class="line">我们可以把前 4 个自然数划分到 arr1 和 arr2 中。</span><br><span class="line">arr1 = [1] 和 arr2 = [2,3,4] 。</span><br><span class="line">可以看出两个数组都满足条件。</span><br><span class="line">最大值是 4 ，所以返回 4 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：divisor1 = 3, divisor2 = 5, uniqueCnt1 = 2, uniqueCnt2 = 1</span><br><span class="line">输出：3</span><br><span class="line">解释：</span><br><span class="line">arr1 = [1,2] 和 arr2 = [3] 满足所有条件。</span><br><span class="line">最大值是 3 ，所以返回 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：divisor1 = 2, divisor2 = 4, uniqueCnt1 = 8, uniqueCnt2 = 2</span><br><span class="line">输出：15</span><br><span class="line">解释：</span><br><span class="line">最终数组为 arr1 = [1,3,5,7,9,11,13,15] 和 arr2 = [2,6] 。</span><br><span class="line">上述方案是满足所有条件的最优解。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= divisor1, divisor2 &lt;= 105</code></li>
+<li><code>1 &lt;= uniqueCnt1, uniqueCnt2 &lt; 109</code></li>
+<li><code>2 &lt;= uniqueCnt1 + uniqueCnt2 &lt;= 109</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-94/problems/minimize-the-maximum-of-two-arrays/">https://leetcode.cn/contest/biweekly-contest-94/problems/minimize-the-maximum-of-two-arrays/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>贪心
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>这个题目稍微有点意思，假如我们直接求最小数的话似乎不太好求，但是我们自然而然的会想到用二分法，假设当前的最大数为 $x$，我们只需要求出所有小于等于 $x$ 的元素中符合题要求的元素数目大于等于 $uniqueCnt1 + uniqueCnt2$ 即可，采用逼近法即可求出最小的 $x$。首先我们需要分析一下数的关系:</li>
+</ol>
+<ul>
+<li>所有不能被 $divisor1$ 整除的元素都可以作为 $arr1$ 的元素；</li>
+<li>所有不能被 $divisor2$ 整除的元素都可以作为 $arr2$ 的元素；</li>
+<li>$arr1$ 与 $arr2$ 都不能包含既能被 $divisor1$ 整除又能被 $divisor2$ 整除的元素；</li>
+<li>我们知道给定的上限为 $x$，则可以知道:<ul>
+<li>所有小于等于 $x$ 且能被 $divisor1$ 整除的元素数目为 $c_1 &#x3D;\dfrac{x}{divisor1}$；</li>
+<li>所有小于等于 $x$ 且能被 $divisor2$ 整除的元素数目为 $c_2 &#x3D; \dfrac{x}{divisor2}$；</li>
+<li>所有小于等于 $x$ 且能被 $divisor1$ 又能被 $divisor2$ 整除的元素数目为 $c_3 &#x3D; \dfrac{x}{lcm(divisor1,divisor2)}$, 其中 $lcm(divisor1,divisor2) &#x3D; \dfrac{divisor1 \times divisor2}{\gcd(divisor1,divisor2)}$，表示二者的最小公倍数。</li>
+</ul>
+</li>
+<li>根据贪心原则，首先我们应该剔除所有能被二者整除的元素，即剔除掉 $c_3$，此时还剩下 $x-c_3$ 个元素；</li>
+<li>所有能被 $divisor1$ 整除但不能被 $divisor2$ 整除的元素都可以放到 $arr2$ 中，其数目为 $c_1 - c_3$；所有能被 $divisor2$ 整除但不能被 $divisor1$ 整除的元素都可以放到 $arr1$ 中，其数目为 $c_2-c_3$，此时 $arr1$ 还需要从小于等于 $x$ 的元素中取出 $uniqueCnt1 - (c_2-c_3)$ 个元素，$arr2$ 还需要从小于等于 $x$ 的元素中取出 $uniqueCnt2 - (c_1-c_3)$ 个元素，此时只需要满足剩下的元素能够被二者全部取到即可。此时需要满足的条件为:<br>$$<br>x - c_1 - c_2 + c_3  \ge \textit{uniqueCnt1} - (c_2-c_3) +  uniqueCnt2 - (c_1-c_3)\<br>$$</li>
+<li>我们只需要利用上述的规则找到最小的 $x$ 即可，即为满足题目要求的最大元素的最小值。</li>
+</ul>
+<ol start="2">
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(\log n)$，$n$ 表示给定元素的最大数目。</li>
+<li>空间复杂度：时间复杂度为 $O(1)$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimizeSet</span><span class="params">(<span class="type">int</span> divisor1, <span class="type">int</span> divisor2, <span class="type">int</span> uniqueCnt1, <span class="type">int</span> uniqueCnt2)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> l = <span class="number">1</span>;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> r = <span class="number">1e10</span> + <span class="number">10</span>;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> lcm = (<span class="type">long</span> <span class="type">long</span>)divisor1 * divisor2 / __gcd(divisor1, divisor2);</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> c3 = mid / lcm;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> c1 = mid / divisor1 - c3;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> c2 = mid / divisor2 - c3;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> tot = mid - c1 - c2 - c3;</span><br><span class="line">            <span class="type">int</span> need1 = <span class="built_in">max</span>(<span class="number">0LL</span>, uniqueCnt1 - c2);</span><br><span class="line">            <span class="type">int</span> need2 = <span class="built_in">max</span>(<span class="number">0LL</span>, uniqueCnt2 - c1);</span><br><span class="line">            <span class="keyword">if</span> (need1 + need2 &lt;= tot) &#123;</span><br><span class="line">                res = mid;</span><br><span class="line">                r = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6276-统计同位异构字符串数目"><a href="#6276-统计同位异构字符串数目" class="headerlink" title="6276. 统计同位异构字符串数目"></a>6276. 统计同位异构字符串数目</h3><p>给你一个字符串 <code>s</code> ，它包含一个或者多个单词。单词之间用单个空格 <code>&#39; &#39;</code> 隔开。</p>
+<p>如果字符串 <code>t</code> 中第 <code>i</code> 个单词是 <code>s</code> 中第 <code>i</code> 个单词的一个 <strong>排列</strong> ，那么我们称字符串 <code>t</code> 是字符串 <code>s</code> 的同位异构字符串。</p>
+<ul>
+<li>比方说，<code>&quot;acb dfe&quot;</code> 是 <code>&quot;abc def&quot;</code> 的同位异构字符串，但是 <code>&quot;def cab&quot;</code> 和 <code>&quot;adc bef&quot;</code> 不是。</li>
+</ul>
+<p>请你返回 <code>s</code> 的同位异构字符串的数目，由于答案可能很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;too hot&quot;</span><br><span class="line">输出：18</span><br><span class="line">解释：输入字符串的一些同位异构字符串为 &quot;too hot&quot; ，&quot;oot hot&quot; ，&quot;oto toh&quot; ，&quot;too toh&quot; 以及 &quot;too oht&quot; 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;aa&quot;</span><br><span class="line">输出：1</span><br><span class="line">解释：输入字符串只有一个同位异构字符串。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 105</code></li>
+<li><code>s</code> 只包含小写英文字母和空格 <code>&#39; &#39;</code> 。</li>
+<li>相邻单词之间由单个空格隔开。</li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-94/problems/count-anagrams/">https://leetcode.cn/contest/biweekly-contest-94/problems/count-anagrams/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 模板题目 + 排列组合</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目一看非常简单，无法比较麻烦的是求阶乘的逆元。首先求出每个单词异构的单词的数目，这个很容易求出，我们可以利用排列组合公式，$cnt_i &#x3D; \dfrac{(a+b+c+\cdots)!}{a!\times b!\times c!\cdots}$，求出每个单词的异构单词数目，然后相乘即可求出整个句子的异构数目，此时需要复杂的操作时需要用到求阶乘的逆元，常规做法利用逆元的求解公式加上快速幂 $a^{-1} \equiv a^{m-2} \pmod m$，当然我们也可以用利用公式在线性时间复杂度内求出阶乘的逆元，这个直接抄模板即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示字符串的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示字符串的长度。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MOD = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Comb</span> &#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; Facs, Invs;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">expand</span><span class="params">(<span class="type">size_t</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(Facs.<span class="built_in">size</span>() &lt; n + <span class="number">1</span>) Facs.<span class="built_in">push_back</span>(<span class="number">1ll</span> * Facs.<span class="built_in">back</span>() * Facs.<span class="built_in">size</span>() % MOD);</span><br><span class="line">        <span class="keyword">if</span>(Invs.<span class="built_in">size</span>() &lt; n + <span class="number">1</span>) &#123; <span class="comment">// 线性求阶乘的逆元</span></span><br><span class="line">            Invs.<span class="built_in">resize</span>(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">            Invs.<span class="built_in">back</span>() = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> a = Facs[n], p = MOD - <span class="number">2</span>; p; p &gt;&gt;= <span class="number">1</span>, a = <span class="number">1ll</span> * a * a % MOD)</span><br><span class="line">                <span class="keyword">if</span>(p &amp; <span class="number">1</span>) Invs.<span class="built_in">back</span>() = <span class="number">1ll</span> * Invs.<span class="built_in">back</span>() * a % MOD; <span class="comment">// 快速乘求 n! 的逆元</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = n<span class="number">-1</span>; !Invs[j]; --j) Invs[j] = <span class="number">1ll</span> * Invs[j+<span class="number">1</span>] * (j + <span class="number">1</span>) % MOD;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Comb</span>() : <span class="built_in">Facs</span>(&#123;<span class="number">1</span>&#125;), <span class="built_in">Invs</span>(&#123;<span class="number">1</span>&#125;) &#123;&#125;</span><br><span class="line">    <span class="built_in">Comb</span>(<span class="type">int</span> n) : <span class="built_in">Facs</span>(&#123;<span class="number">1</span>&#125;), <span class="built_in">Invs</span>(&#123;<span class="number">1</span>&#125;) &#123; <span class="built_in">expand</span>(n); &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="type">int</span> n, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(k &gt; n) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">expand</span>(n);</span><br><span class="line">        <span class="keyword">return</span> (<span class="number">1ll</span> * Facs[n] * Invs[n-k] % MOD) * Invs[k] % MOD; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">inv</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Invs[x];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">fac</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Facs[x];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countAnagrams</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="function">Comb <span class="title">comb</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; s.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">26</span>)</span></span>;</span><br><span class="line">            <span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; s.<span class="built_in">size</span>() &amp;&amp; s[i] != <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                cnt[s[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">                tot++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (tot &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                ans = (ans * comb.<span class="built_in">fac</span>(tot)) % mod;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (cnt[j] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        ans = ans * comb.<span class="built_in">inv</span>(cnt[j]) % mod;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; s.<span class="built_in">size</span>() &amp;&amp; s[i] == <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>力扣周赛</category>
+      </categories>
+      <tags>
+        <tag>力扣周赛</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode contest 325</title>
+    <url>/2022/12/25/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/90/</url>
+    <content><![CDATA[<h2 id="leetcode-contest-325"><a href="#leetcode-contest-325" class="headerlink" title="leetcode  contest 325"></a>leetcode  contest 325</h2><p>难得见到质量稍微高一些的第四题，前几次的周赛的第四题基本上都是送分题，这次的周赛第四题还算有些难度。</p>
+<h3 id="6269-到目标字符串的最短距离"><a href="#6269-到目标字符串的最短距离" class="headerlink" title="6269. 到目标字符串的最短距离"></a>6269. 到目标字符串的最短距离</h3><p>给你一个下标从 <strong>0</strong> 开始的 <strong>环形</strong> 字符串数组 <code>words</code> 和一个字符串 <code>target</code> 。<strong>环形数组</strong> 意味着数组首尾相连。</p>
+<ul>
+<li>形式上， <code>words[i]</code> 的下一个元素是 <code>words[(i + 1) % n]</code> ，而 <code>words[i]</code> 的前一个元素是 <code>words[(i - 1 + n) % n]</code> ，其中 <code>n</code> 是 <code>words</code> 的长度。</li>
+</ul>
+<p>从 <code>startIndex</code> 开始，你一次可以用 <code>1</code> 步移动到下一个或者前一个单词。</p>
+<p>返回到达目标字符串 <code>target</code> 所需的最短距离。如果 <code>words</code> 中不存在字符串 <code>target</code> ，返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：words = [&quot;hello&quot;,&quot;i&quot;,&quot;am&quot;,&quot;leetcode&quot;,&quot;hello&quot;], target = &quot;hello&quot;, startIndex = 1</span><br><span class="line">输出：1</span><br><span class="line">解释：从下标 1 开始，可以经由以下步骤到达 &quot;hello&quot; ：</span><br><span class="line">- 向右移动 3 个单位，到达下标 4 。</span><br><span class="line">- 向左移动 2 个单位，到达下标 4 。</span><br><span class="line">- 向右移动 4 个单位，到达下标 0 。</span><br><span class="line">- 向左移动 1 个单位，到达下标 0 。</span><br><span class="line">到达 &quot;hello&quot; 的最短距离是 1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：words = [&quot;a&quot;,&quot;b&quot;,&quot;leetcode&quot;], target = &quot;leetcode&quot;, startIndex = 0</span><br><span class="line">输出：1</span><br><span class="line">解释：从下标 0 开始，可以经由以下步骤到达 &quot;leetcode&quot; ：</span><br><span class="line">- 向右移动 2 个单位，到达下标 3 。</span><br><span class="line">- 向左移动 1 个单位，到达下标 3 。</span><br><span class="line">到达 &quot;leetcode&quot; 的最短距离是 1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：words = [&quot;i&quot;,&quot;eat&quot;,&quot;leetcode&quot;], target = &quot;ate&quot;, startIndex = 0</span><br><span class="line">输出：-1</span><br><span class="line">解释：因为 words 中不存在字符串 &quot;ate&quot; ，所以返回 -1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= words.length &lt;= 100</code></li>
+<li><code>1 &lt;= words[i].length &lt;= 100</code></li>
+<li><code>words[i]</code> 和 <code>target</code> 仅由小写英文字母组成</li>
+<li><code>0 &lt;= startIndex &lt; words.length</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-325/problems/shortest-distance-to-target-string-in-a-circular-array/">https://leetcode.cn/contest/weekly-contest-325/problems/shortest-distance-to-target-string-in-a-circular-array/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接遍历
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>找到所有索引位置 $j$ 满足 $words[j] &#x3D; target$，此时我们需要检测两个方向，要么为左到右，要么为从右向左,检测过程如下:</li>
+</ol>
+<ul>
+<li>如果满足 $j \le startIndex$，此时我们从左向右需要移动的距离为 $startIndex - j$，从右向左移动的距离为 $(j - startIndex + n) \mod n $。</li>
+<li>如果满足 $j &gt; startIndex$，此时我们从左向右需要移动的距离为 $j - startIndex$，从右向左移动的距离为 $(startIndex - j + n) \mod n $。</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。其中 $n$ 表示数组的长度。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">closetTarget</span><span class="params">(vector&lt;string&gt;&amp; words, string target, <span class="type">int</span> startIndex)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = words.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> res = INT_MAX;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (words[i] == target) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i &lt;= startIndex) &#123;</span><br><span class="line">                    res = <span class="built_in">min</span>(res, startIndex - i);</span><br><span class="line">                    res = <span class="built_in">min</span>(res, (i - startIndex + n) % n);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    res = <span class="built_in">min</span>(res, i - startIndex);</span><br><span class="line">                    res = <span class="built_in">min</span>(res, (startIndex - i + n) % n);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res == INT_MAX ? <span class="number">-1</span> : res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6270-每种字符至少取-K-个"><a href="#6270-每种字符至少取-K-个" class="headerlink" title="6270. 每种字符至少取 K 个"></a>6270. 每种字符至少取 K 个</h3><p>给你一个由字符 <code>&#39;a&#39;</code>、<code>&#39;b&#39;</code>、<code>&#39;c&#39;</code> 组成的字符串 <code>s</code> 和一个非负整数 <code>k</code> 。每分钟，你可以选择取走 <code>s</code> <strong>最左侧</strong> 还是 <strong>最右侧</strong> 的那个字符。</p>
+<p>你必须取走每种字符 <strong>至少</strong> <code>k</code> 个，返回需要的 <strong>最少</strong> 分钟数；如果无法取到，则返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;aabaaaacaabc&quot;, k = 2</span><br><span class="line">输出：8</span><br><span class="line">解释：</span><br><span class="line">从 s 的左侧取三个字符，现在共取到两个字符 &#x27;a&#x27; 、一个字符 &#x27;b&#x27; 。</span><br><span class="line">从 s 的右侧取五个字符，现在共取到四个字符 &#x27;a&#x27; 、两个字符 &#x27;b&#x27; 和两个字符 &#x27;c&#x27; 。</span><br><span class="line">共需要 3 + 5 = 8 分钟。</span><br><span class="line">可以证明需要的最少分钟数是 8 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;a&quot;, k = 1</span><br><span class="line">输出：-1</span><br><span class="line">解释：无法取到一个字符 &#x27;b&#x27; 或者 &#x27;c&#x27;，所以返回 -1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 105</code></li>
+<li><code>s</code> 仅由字母 <code>&#39;a&#39;</code>、<code>&#39;b&#39;</code>、<code>&#39;c&#39;</code> 组成</li>
+<li><code>0 &lt;= k &lt;= s.length</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-325/problems/take-k-of-each-character-from-left-and-right/">https://leetcode.cn/contest/weekly-contest-325/problems/take-k-of-each-character-from-left-and-right/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>二分查找或者滑动窗口
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目说的很长，其实很简单我们只需要找到字符串的前 $i$ 个元素与后 $j$ 个元素，且满足 $i + j$ 个元素中每个字符都至少出现了 $k$ 次，且满足 $i + j$ 最小即可。因此我们可以利用典型的二分查找或者滑动窗口即可，我们可以依次尝试字符串的左边依次取了 $i&#x3D; 0,1,2,\cdots,n$ 个元素，然后此时求出且满足条件的 $j$ 即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为给定的数。最优的情况的下变换一次 $n$ 变为 $\dfrac{n}{2} + 2$，所以最多需要给定的元素变换即可</li>
+<li>空间复杂度：$O(n)$，需要</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><ul>
+<li>二分查找<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">takeCharacters</span><span class="params">(string s, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">cnt</span>(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">3</span>));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            cnt[i + <span class="number">1</span>] = cnt[i];</span><br><span class="line">            cnt[i + <span class="number">1</span>][s[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> res = INT_MAX;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> ca = cnt[i][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> cb = cnt[i][<span class="number">1</span>];</span><br><span class="line">            <span class="type">int</span> cc = cnt[i][<span class="number">2</span>];</span><br><span class="line">            <span class="type">int</span> l = <span class="number">0</span>, r = n - i;</span><br><span class="line">            <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">                <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">                <span class="type">int</span> ta = ca + cnt[n][<span class="number">0</span>] - cnt[n - mid][<span class="number">0</span>];</span><br><span class="line">                <span class="type">int</span> tb = cb + cnt[n][<span class="number">1</span>] - cnt[n - mid][<span class="number">1</span>];</span><br><span class="line">                <span class="type">int</span> tc = cc + cnt[n][<span class="number">2</span>] - cnt[n - mid][<span class="number">2</span>];</span><br><span class="line">                <span class="keyword">if</span> (ta &gt;= k &amp;&amp; tb &gt;= k &amp;&amp; tc &gt;= k) &#123;</span><br><span class="line">                    res = <span class="built_in">min</span>(res, mid + i);</span><br><span class="line">                    r = mid - <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    l = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res == INT_MAX ? <span class="number">-1</span> : res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>滑动窗口<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">takeCharacters</span><span class="params">(String s, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] c = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> s.length(),j = n;</span><br><span class="line">        <span class="keyword">while</span>(c[<span class="number">0</span>] &lt; k || c[<span class="number">1</span>] &lt; k || c[<span class="number">2</span>] &lt; k)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            j--;</span><br><span class="line">            c[s.charAt(j) - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> n - j;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            c[s.charAt(i) - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            <span class="keyword">while</span>(j &lt; n &amp;&amp; c[s.charAt(j)-<span class="string">&#x27;a&#x27;</span>] &gt; k)&#123;</span><br><span class="line">                c[s.charAt(j)-<span class="string">&#x27;a&#x27;</span>]--;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = Math.min(ans,n - (j - i) + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(j == n) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6271-礼盒的最大甜蜜度"><a href="#6271-礼盒的最大甜蜜度" class="headerlink" title="6271. 礼盒的最大甜蜜度"></a>6271. 礼盒的最大甜蜜度</h3><p>给你一个正整数数组 <code>price</code> ，其中 <code>price[i]</code> 表示第 <code>i</code> 类糖果的价格，另给你一个正整数 <code>k</code> 。</p>
+<p>商店组合 <code>k</code> 类 <strong>不同</strong> 糖果打包成礼盒出售。礼盒的 <strong>甜蜜度</strong> 是礼盒中任意两种糖果 <strong>价格</strong> 绝对差的最小值。</p>
+<p>返回礼盒的 <strong>最大</strong> 甜蜜度<em>。</em></p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：price = [13,5,1,8,21,2], k = 3</span><br><span class="line">输出：8</span><br><span class="line">解释：选出价格分别为 [13,5,21] 的三类糖果。</span><br><span class="line">礼盒的甜蜜度为 min(|13 - 5|, |13 - 21|, |5 - 21|) = min(8, 8, 16) = 8 。</span><br><span class="line">可以证明能够取得的最大甜蜜度就是 8 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：price = [1,3,1], k = 2</span><br><span class="line">输出：2</span><br><span class="line">解释：选出价格分别为 [1,3] 的两类糖果。 </span><br><span class="line">礼盒的甜蜜度为 min(|1 - 3|) = min(2) = 2 。</span><br><span class="line">可以证明能够取得的最大甜蜜度就是 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：price = [7,7,7,7], k = 2</span><br><span class="line">输出：0</span><br><span class="line">解释：从现有的糖果中任选两类糖果，甜蜜度都会是 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= price.length &lt;= 105</code></li>
+<li><code>1 &lt;= price[i] &lt;= 109</code></li>
+<li><code>2 &lt;= k &lt;= price.length</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-325/problems/maximum-tastiness-of-candy-basket/">https://leetcode.cn/contest/weekly-contest-325/problems/maximum-tastiness-of-candy-basket/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>二分查找 + 贪心
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目看起来貌似很难的题目，实际仔细分析一下发现很简单，题目要求取出的 $k$ 个元素中的绝对值的最小值要尽可能的大，我们若要使的绝对值的最小值尽可能的大，则应该要求数组中的任意两个数的绝对值的最小值都应尽可能的大，因此按照贪心原则，我们假设相邻元素的最小间隔为 $x$，则我们在这个最小间隔下应该可以取足 $k$ 个元素即可。</li>
+</ol>
+<ul>
+<li>此时我们想到了二分查找 + 贪心的解法，我们将数组按照从小达到大进行排序，因为要保证相邻元素的差值尽可能的大，因此我们应该最优选择从最小值或者最大值开始选择，按照每次相邻至少为 $maxVal$ 的取法，检测数组中是否可以取到 $k$ 个元素即可。</li>
+</ul>
+<ol start="2">
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n \log n)$，$n$ 表示数组中元素的数目。</li>
+<li>空间复杂度：时间复杂度为 $O(\log n)$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; price, <span class="type">int</span> k, <span class="type">int</span> maxVal)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = price.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> prev = price[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> tot = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; price.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (price[i] - prev &gt;= maxVal) &#123;</span><br><span class="line">                tot++;</span><br><span class="line">                prev = price[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (tot &gt;= k) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumTastiness</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; price, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = price.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(price.<span class="built_in">begin</span>(), price.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = price[n - <span class="number">1</span>] - price[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">check</span>(price, k, mid)) &#123;</span><br><span class="line">                res = mid;</span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                r = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6272-好分区的数目"><a href="#6272-好分区的数目" class="headerlink" title="6272. 好分区的数目"></a>6272. 好分区的数目</h3><p>给你一个正整数数组 <code>nums</code> 和一个整数 <code>k</code> 。</p>
+<p><strong>分区</strong> 的定义是：将数组划分成两个有序的 <strong>组</strong> ，并满足每个元素 <strong>恰好</strong> 存在于 <strong>某一个</strong> 组中。如果分区中每个组的元素和都大于等于 <code>k</code> ，则认为分区是一个好分区。</p>
+<p>返回 <strong>不同</strong> 的好分区的数目。由于答案可能很大，请返回对 <code>109 + 7</code> <strong>取余</strong> 后的结果。</p>
+<p>如果在两个分区中，存在某个元素 <code>nums[i]</code> 被分在不同的组中，则认为这两个分区不同。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,3,4], k = 4</span><br><span class="line">输出：6</span><br><span class="line">解释：好分区的情况是 ([1,2,3], [4]), ([1,3], [2,4]), ([1,4], [2,3]), ([2,3], [1,4]), ([2,4], [1,3]) 和 ([4], [1,2,3]) 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,3,3], k = 4</span><br><span class="line">输出：0</span><br><span class="line">解释：数组中不存在好分区。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [6,6], k = 2</span><br><span class="line">输出：2</span><br><span class="line">解释：可以将 nums[0] 放入第一个分区或第二个分区中。</span><br><span class="line">好分区的情况是 ([6], [6]) 和 ([6], [6]) 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length, k &lt;= 1000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-325/problems/number-of-great-partitions/">https://leetcode.cn/contest/weekly-contest-325/problems/number-of-great-partitions/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>看来时自己想复杂了，逆向求出数组的和小于 $k$ 的数目，此时题目就变的容易多了，我们利用 $0-1$ 背包问题就很容易求解了，可以参考题解<a href="https://leetcode.cn/problems/number-of-great-partitions/solutions/2032009/ni-xiang-si-wei-01-bei-bao-fang-an-shu-p-v47x/">题解</a>。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(nk)$，其中 $n$ 表示数组的长度，$k$ 表示给定的元素。</li>
+<li>空间复杂度：$O(nk)$，其中 $n$ 表示数组的长度，$k$ 表示给定的元素。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countPartitions</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> res = <span class="number">1LL</span>;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> sum = <span class="built_in">accumulate</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), <span class="number">0LL</span>);</span><br><span class="line">        <span class="keyword">if</span> (sum &lt; k * <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            res = res * <span class="number">2L</span> % mod;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">long</span> <span class="type">long</span>&gt;&gt; <span class="built_in">dp</span>(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">long</span> <span class="type">long</span>&gt;(k));</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1LL</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = k - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt;= nums[i]) &#123;</span><br><span class="line">                    dp[i + <span class="number">1</span>][j] = (dp[i][j] + dp[i][j - nums[i]]) % mod;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i + <span class="number">1</span>][j] = dp[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> tot = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            tot = (tot + dp[n][i]) % mod;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (res - tot * <span class="number">2L</span> + mod) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>力扣周赛</category>
+      </categories>
+      <tags>
+        <tag>力扣周赛</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
 </search>
