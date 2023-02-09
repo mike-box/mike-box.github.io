@@ -73,4 +73,4 @@ FiberHome Co.ltd Wuhan. China, July 2008 – Oct 2011
 
 ### Blog
 + [https://mike-box.github.io/](https://mike-box.github.io/)
-+ [中文简历](https://docs.qq.com/pdf/DQXp6S3ZnekVQUU1S?)
++ [Chinese Resume](https://docs.qq.com/pdf/DQXp6S3ZnekVQUU1S?)
