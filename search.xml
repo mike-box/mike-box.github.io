@@ -11862,7 +11862,7 @@ $1 \rightarrow 2 \rightarrow 3 \rightarrow 4\rightarrow 5\rightarrow 6\rightarro
   </entry>
   <entry>
     <title>【2023】新年计划</title>
-    <url>/2023/02/20/%E4%B8%AA%E4%BA%BA%E9%97%B2%E8%B0%88/82/</url>
+    <url>/2023/03/12/%E4%B8%AA%E4%BA%BA%E9%97%B2%E8%B0%88/82/</url>
     <content><![CDATA[<h2 id="2023年新年计划"><a href="#2023年新年计划" class="headerlink" title="2023年新年计划"></a>2023年新年计划</h2><p>新的一年感觉工作日益繁忙，需要加强自身各方面的基础学习以及各种计划安排。自然12月份感染了以后，感觉身体差不多快三个星期才逐步恢复过来，感觉逐步好了许多。身体和精力慢慢重回巅峰状态，当然这段时间的工作也不是特别忙，所以可以有时间闲下来自己慢慢思考未来的计划。每年通过写总结才知道今年的这一年的不足之处，感觉2022年过的乱七八糟，好多计划都没有完成，所以洗心革面，重新制定2023年计划，新年要有新的计划和安排。需要严格执行相关计划，并进行总结，及时跟进相关进度。</p>
 <h4 id="个人学习计划"><a href="#个人学习计划" class="headerlink" title="个人学习计划"></a>个人学习计划</h4><p>今年的学习计划安排还是以公开课与英语学习为主，坚持两手抓的原则，坚持既要又要的原则，坚持贪心原则，所以主要学习方向为以下两个重点:专业学习与英语学习，专业学习是为了保持自身的竞争力，不至于在体制内这样一个温柔乡里面自废武功，英语学习是为了以后自身的改变做好打算与准备，不管何时英语不能丢掉，都要把英语作为自身安身立命的一项机能。</p>
 <ul>
@@ -12058,12 +12058,24 @@ $1 \rightarrow 2 \rightarrow 3 \rightarrow 4\rightarrow 5\rightarrow 6\rightarro
 </tr>
 <tr>
 <td align="center">2.20~2.26</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">游泳2次</td>
 </tr>
 <tr>
 <td align="center">2.27-3.5</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">游泳2次</td>
+</tr>
+<tr>
+<td align="center">3.6-3.12</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">游泳2次</td>
+</tr>
+<tr>
+<td align="center">3.13-3.19</td>
 <td align="center"></td>
 <td align="center"></td>
 <td align="center"></td>
@@ -15601,6 +15613,665 @@ $1 \rightarrow 2 \rightarrow 3 \rightarrow 4\rightarrow 5\rightarrow 6\rightarro
 <li>空间复杂度：$O(1)$。</li>
 </ul>
 <h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">findTheString</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; lcp)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = lcp.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (lcp[i][i] != n - i) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (lcp[i][j] &gt; n - j || lcp[i][j] != lcp[j][i]) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (lcp[i][j] &gt; <span class="number">0</span> &amp;&amp; (i + <span class="number">1</span> &lt; n &amp;&amp; j + <span class="number">1</span> &lt; n &amp;&amp; lcp[i][j] != lcp[i + <span class="number">1</span>][j + <span class="number">1</span>] + <span class="number">1</span>)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">                &#125; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">string <span class="title">s</span><span class="params">(n, <span class="string">&#x27; &#x27;</span>)</span></span>;</span><br><span class="line">        <span class="type">char</span> c = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (c &gt; <span class="string">&#x27;z&#x27;</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                s[i] = c;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (lcp[i][j] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        s[j] = s[i];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                c++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>力扣周赛</category>
+      </categories>
+      <tags>
+        <tag>力扣周赛</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode weekly contest 334</title>
+    <url>/2023/02/28/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/103/</url>
+    <content><![CDATA[<h2 id="leetcode-weekly-contest-334"><a href="#leetcode-weekly-contest-334" class="headerlink" title="leetcode weekly contest 334"></a>leetcode weekly contest 334</h2><p>本场周赛的题目确实不算太难。</p>
+<h3 id="2574-左右元素和的差值"><a href="#2574-左右元素和的差值" class="headerlink" title="2574. 左右元素和的差值"></a>2574. 左右元素和的差值</h3><p>给你一个下标从 <code>0</code> 开始的整数数组 <code>nums</code> ，请你找出一个下标从 <code>0</code> 开始的整数数组 <code>answer</code> ，其中：</p>
+<ul>
+<li><code>answer.length == nums.length</code></li>
+<li><code>answer[i] = |leftSum[i] - rightSum[i]|</code><br>其中：</li>
+<li><code>leftSum[i]</code> 是数组 <code>nums</code> 中下标 <code>i</code> 左侧元素之和。如果不存在对应的元素，<code>leftSum[i] = 0</code> 。</li>
+<li><code>rightSum[i]</code> 是数组 <code>nums</code> 中下标 <code>i</code> 右侧元素之和。如果不存在对应的元素，<code>rightSum[i] = 0</code> 。<br>返回数组 answer 。</li>
+</ul>
+<p> </p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [10,4,8,3]</span><br><span class="line">输出：[15,1,11,22]</span><br><span class="line">解释：数组 leftSum 为 [0,10,14,22] 且数组 rightSum 为 [15,11,3,0] 。</span><br><span class="line">数组 answer 为 [|0 - 15|,|10 - 11|,|14 - 3|,|22 - 0|] = [15,1,11,22] 。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1]</span><br><span class="line">输出：[0]</span><br><span class="line">解释：数组 leftSum 为 [0] 且数组 rightSum 为 [0] 。</span><br><span class="line">数组 answer 为 [|0 - 0|] = [0] 。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/problems/left-and-right-sum-differences/">https://leetcode.cn/problems/left-and-right-sum-differences/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>简单题目，利用前缀和直接计算即可；</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为数组的长度。</li>
+<li>空间复杂度：$O(n)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">leftRightDifference</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">left</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">right</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            left[i + <span class="number">1</span>] = left[i] + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            right[i] = right[i + <span class="number">1</span>] + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            ans[i] = <span class="built_in">abs</span>(left[i] - right[i + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2575-找出字符串的可整除数组"><a href="#2575-找出字符串的可整除数组" class="headerlink" title="2575. 找出字符串的可整除数组"></a>2575. 找出字符串的可整除数组</h3><p>给你一个下标从 <code>0</code> 开始的字符串 <code>word</code> ，长度为 <code>n</code> ，由从 <code>0</code> 到 <code>9</code> 的数字组成。另给你一个正整数 <code>m</code> 。</p>
+<p><code>word</code> 的 可整除数组 <code>div</code>  是一个长度为 <code>n</code> 的整数数组，并满足：</p>
+<p>如果 <code>word[0,...,i]</code> 所表示的 数值 能被 <code>m</code> 整除，<code>div[i] = 1</code><br>否则，<code>div[i] = 0</code><br>返回 <code>word</code> 的可整除数组。</p>
+<p> </p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：word = &quot;998244353&quot;, m = 3</span><br><span class="line">输出：[1,1,0,0,0,1,1,0,0]</span><br><span class="line">解释：仅有 4 个前缀可以被 3 整除：&quot;9&quot;、&quot;99&quot;、&quot;998244&quot; 和 &quot;9982443&quot; 。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：word = &quot;1010&quot;, m = 10</span><br><span class="line">输出：[0,1,0,1]</span><br><span class="line">解释：仅有 2 个前缀可以被 10 整除：&quot;10&quot; 和 &quot;1010&quot; 。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>word.length == n</code></li>
+<li><code>word</code> 由数字 <code>0</code> 到 <code>9</code> 组成</li>
+<li><code>1 &lt;= m &lt;= 109</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/problems/find-the-divisibility-array-of-a-string">https://leetcode.cn/problems/find-the-divisibility-array-of-a-string</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>直接计算
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们直接计算即可，关键问题在于我们不能直接取大数，可以可以编辑算边对计算结果进行取模，这样就可以避免大数计算溢出的问题。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为字符串的长度。</li>
+<li>空间复杂度：$O(n)$，主要为排序需要空间。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">divisibilityArray</span><span class="params">(string word, <span class="type">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = word.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> curr = <span class="number">0</span>;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            curr = (curr * <span class="number">10</span> + word[i] - <span class="string">&#x27;0&#x27;</span>) % m;</span><br><span class="line">            <span class="keyword">if</span> (curr == <span class="number">0</span>) &#123;</span><br><span class="line">                ans.<span class="built_in">emplace_back</span>(<span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ans.<span class="built_in">emplace_back</span>(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2576-求出最多标记下标"><a href="#2576-求出最多标记下标" class="headerlink" title="2576. 求出最多标记下标"></a>2576. 求出最多标记下标</h3><p>给你一个下标从 <code>0</code> 开始的整数数组 <code>nums</code> 。</p>
+<p>一开始，所有下标都没有被标记。你可以执行以下操作任意次：</p>
+<p>选择两个 互不相同且未标记 的下标 <code>i</code> 和 <code>j</code> ，满足 <code>2 * nums[i] &lt;= nums[j]</code> ，标记下标 <code>i</code> 和 <code>j </code>。<br>请你执行上述操作任意次，返回 <code>nums</code> 中最多可以标记的下标数目。</p>
+<p> </p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,5,2,4]</span><br><span class="line">输出：2</span><br><span class="line">解释：第一次操作中，选择 i = 2 和 j = 1 ，操作可以执行的原因是 2 * nums[2] &lt;= nums[1] ，标记下标 2 和 1 。</span><br><span class="line">没有其他更多可执行的操作，所以答案为 2 。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [9,2,5,4]</span><br><span class="line">输出：4</span><br><span class="line">解释：第一次操作中，选择 i = 3 和 j = 0 ，操作可以执行的原因是 2 * nums[3] &lt;= nums[0] ，标记下标 3 和 0 。</span><br><span class="line">第二次操作中，选择 i = 1 和 j = 2 ，操作可以执行的原因是 2 * nums[1] &lt;= nums[2] ，标记下标 1 和 2 。</span><br><span class="line">没有其他更多可执行的操作，所以答案为 4 。</span><br></pre></td></tr></table></figure>
+<p>示例 3：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [7,6,8]</span><br><span class="line">输出：0</span><br><span class="line">解释：没有任何可以执行的操作，所以答案为 0 。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/problems/find-the-maximum-number-of-marked-indices/">https://leetcode.cn/problems/find-the-maximum-number-of-marked-indices/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 双指针</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>首先想到的就是要对数组进行排序，只有排序后我们才尽可能的使用贪心算法。我们通过比对发现数组最多只能有 $\frac{n}{2}$ 个配对，因此我们可以尽量使用贪心法：</li>
+</ol>
+<ul>
+<li>假设数组存在 $\frac{n}{2}$ 个配对，则一定满足 $nums[i]$ 可以与 $nums[i + \dfrac{n}{2}]$ 一定可以完成配对；</li>
+<li>因此我们最优探测法，应该从 $(0, \frac{n}{2})$ 索引开始配对，我们令 $i &#x3D; 0, j &#x3D; \frac{n}{2}$：<ul>
+<li>如果 $nums[i] * 2 &gt; nums[j]$，此时我们需要将 $j$ 往右移动;</li>
+<li>如果 $nums[i] * 2 \le nums[j]$，此时我们需要将 $i,j$ 同时往右移动;</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>二分法的思路可能更容易理解，假设我们可以找到 $k$ 对配对，则可以知道一定满足最小的 $k$ 个数可以与最大的 $k$ 个数进行配对，否一定无法完成配对，如果题目存在 $k$ 个配对，则一定存在 $k-1$ 个配对；如果题目中无法满足 $k$ 个配对，则一定无法满足 $k+1$ 个配对，满足单调性；</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 为数组的长度。</li>
+<li>空间复杂度：$O(\log n)$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><ul>
+<li><p>双指针</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxNumOfMarkedIndices</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = n / <span class="number">2</span>; i &lt; n / <span class="number">2</span> &amp;&amp; j &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &lt; n &amp;&amp; nums[j] &lt; nums[i] * <span class="number">2</span>) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (j &lt; n) &#123;</span><br><span class="line">                ans += <span class="number">2</span>;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>二分查找</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxNumOfMarkedIndices</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">auto</span> check = [&amp;](<span class="type">int</span> k)-&gt; <span class="type">bool</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] * <span class="number">2</span> &gt; nums[n - k + i]) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="type">int</span> L = <span class="number">0</span>, R = n / <span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (L &lt;= R) &#123;</span><br><span class="line">            <span class="type">int</span> mid = L + (R - L) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">check</span>(mid)) &#123;</span><br><span class="line">                ans = mid * <span class="number">2</span>;</span><br><span class="line">                L = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                R = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="2577-在网格图中访问一个格子的最少时间"><a href="#2577-在网格图中访问一个格子的最少时间" class="headerlink" title="2577. 在网格图中访问一个格子的最少时间"></a>2577. 在网格图中访问一个格子的最少时间</h3><p>给你一个 <code>m x n</code> 的矩阵 <code>grid</code> ，每个元素都为非负整数，其中 <code>grid[row][col]</code> 表示可以访问格子 <code>(row, col)</code> 的 最早 时间。也就是说当你访问格子 <code>(row, col)</code> 时，最少已经经过的时间为 <code>grid[row][col]</code> 。</p>
+<p>你从 最左上角 出发，出发时刻为 <code>0</code> ，你必须一直移动到上下左右相邻四个格子中的 任意 一个格子（即不能停留在格子上）。每次移动都需要花费 <code>1</code> 单位时间。</p>
+<p>请你返回 最早 到达右下角格子的时间，如果你无法到达右下角的格子，请你返回 <code>-1</code> 。</p>
+<p> </p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [[0,1,3,2],[5,1,2,5],[4,3,8,6]]</span><br><span class="line">输出：7</span><br><span class="line">解释：一条可行的路径为：</span><br><span class="line">- 时刻 t = 0 ，我们在格子 (0,0) 。</span><br><span class="line">- 时刻 t = 1 ，我们移动到格子 (0,1) ，可以移动的原因是 grid[0][1] &lt;= 1 。</span><br><span class="line">- 时刻 t = 2 ，我们移动到格子 (1,1) ，可以移动的原因是 grid[1][1] &lt;= 2 。</span><br><span class="line">- 时刻 t = 3 ，我们移动到格子 (1,2) ，可以移动的原因是 grid[1][2] &lt;= 3 。</span><br><span class="line">- 时刻 t = 4 ，我们移动到格子 (1,1) ，可以移动的原因是 grid[1][1] &lt;= 4 。</span><br><span class="line">- 时刻 t = 5 ，我们移动到格子 (1,2) ，可以移动的原因是 grid[1][2] &lt;= 5 。</span><br><span class="line">- 时刻 t = 6 ，我们移动到格子 (1,3) ，可以移动的原因是 grid[1][3] &lt;= 6 。</span><br><span class="line">- 时刻 t = 7 ，我们移动到格子 (2,3) ，可以移动的原因是 grid[2][3] &lt;= 7 。</span><br><span class="line">最终到达时刻为 7 。这是最早可以到达的时间。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [[0,2,4],[3,2,1],[1,0,4]]</span><br><span class="line">输出：-1</span><br><span class="line">解释：没法从左上角按题目规定走到右下角。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>2 &lt;= m, n &lt;= 1000</code></li>
+<li><code>4 &lt;= m * n &lt;= 105</code></li>
+<li><code>0 &lt;= grid[i][j] &lt;= 105</code></li>
+<li><code>grid[0][0] == 0</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/">https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> dijistra</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目要求求出到达终点的最早时间，实际上假如我们知道每个格子的最早到达时间，则相应的我们即可求出终点的最早到达时间。思考如下：</li>
+</ol>
+<ul>
+<li>如果我们到达格子 $(i,j)$ 的最早时间为 $t$，则其到达 $(i,j + 1)$ 的最早时间是多少呢？分类讨论如下：<ul>
+<li>假设 $t + 1 \ge grid[i][j + 1]$，即 $t + 1$ 满足 $(i, j + 1)$ 最早到达时间，此时我们可以认为 $(i, j + 1)$ 的最早到达时间为可能为 $t + 1$；</li>
+<li>假设 $t + 1 &lt; grid[i][j + 1]$，即 $t + 1$ 无法满足 $(i, j + 1)$ 最早到达时间，我们可以退一个格子然后再跳回到 $(i, j + 1)$，直到满足 $grid[i][j + 1]$ 的要求，此时我们思考一下，最少需要跳的步数为 $step &#x3D; grid[i][j + 1] - t$，由于每次来回跳需要的步数总是偶数，如果 $step$ 为奇数的话，我们可以来回跳 $step - 1$ 步，最后在 $step$ 步从 $(i, j)$ 跳到 $(i, j + 1)$，如果 $step$ 为偶数的话，我们可以来回跳 $step$ 步，然后在 $step + 1$ 从 $(i, j)$ 跳到 $(i, j + 1)$。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>为了快速计算，我们用 $dijistra$ 算法，这样就使得最早的步骤先进行计算，即可快速的得到每个格子的最早达到步数。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(m \times n \times \log (mn))$，其中 $m,n$ 为字符串的长度。</li>
+<li>空间复杂度：$O(mn)$。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumTime</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (grid[<span class="number">0</span>][<span class="number">1</span>] &gt; <span class="number">1</span> &amp;&amp; grid[<span class="number">1</span>][<span class="number">0</span>] &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">typedef</span> tuple&lt;<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>&gt; Node;</span><br><span class="line">        <span class="type">int</span> m = grid.<span class="built_in">size</span>(), n = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(m, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, INT_MAX));</span><br><span class="line">        priority_queue&lt;Node, vector&lt;Node&gt;, greater&lt;Node&gt;&gt; pq;</span><br><span class="line">        <span class="type">int</span> dir[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">        pq.<span class="built_in">emplace</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!pq.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">auto</span> [time, x, y] = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span> (x == m - <span class="number">1</span> &amp;&amp; y == n - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> time;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">                <span class="type">int</span> nx = x + dir[i][<span class="number">0</span>];</span><br><span class="line">                <span class="type">int</span> ny = y + dir[i][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span> (nx &gt;= <span class="number">0</span> &amp;&amp; ny &gt;= <span class="number">0</span> &amp;&amp; nx &lt; m &amp;&amp; ny &lt; n &amp;&amp; time + <span class="number">1</span> &lt; dp[nx][ny]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (time + <span class="number">1</span> &gt;= grid[nx][ny]) &#123;</span><br><span class="line">                        dp[nx][ny] = time + <span class="number">1</span>;</span><br><span class="line">                        pq.<span class="built_in">emplace</span>(time + <span class="number">1</span>, nx, ny);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="type">int</span> step = grid[nx][ny] + ((grid[nx][ny] - time) % <span class="number">2</span> == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">                        dp[nx][ny] = step;</span><br><span class="line">                        pq.<span class="built_in">emplace</span>(step, nx, ny);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>力扣周赛</category>
+      </categories>
+      <tags>
+        <tag>力扣周赛</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode weekly biweekly contest 99</title>
+    <url>/2023/03/05/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/104/</url>
+    <content><![CDATA[<h2 id="leetcode-weekly-biweekly-contest-99"><a href="#leetcode-weekly-biweekly-contest-99" class="headerlink" title="leetcode weekly biweekly contest 99"></a>leetcode weekly biweekly contest 99</h2><p>最近几场的比赛质量确实很高。</p>
+<h3 id="6312-最小和分割"><a href="#6312-最小和分割" class="headerlink" title="6312. 最小和分割"></a>6312. 最小和分割</h3><p>给你一个正整数 <code>num</code> ，请你将它分割成两个非负整数 <code>num1</code> 和 <code>num2</code> ，满足：</p>
+<ul>
+<li><p><code>num1</code>和<code>num2</code>直接连起来，得到 <code>num</code>各数位的一个排列。</p>
+</li>
+<li><p>换句话说，<code>num1</code> 和 <code>num2</code> 中所有数字出现的次数之和等于 <code>num</code> 中所有数字出现的次数。</p>
+</li>
+<li><p><code>num1</code> 和 <code>num2</code> 可以包含前导 0 。</p>
+</li>
+</ul>
+<p>请你返回 <code>num1</code> 和 <code>num2</code> 可以得到的和的 <strong>最小</strong> 值。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li><code>num</code> 保证没有前导 0 。</li>
+<li><code>num1</code> 和 <code>num2</code> 中数位顺序可以与 <code>num</code> 中数位顺序不同。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：num = 4325</span><br><span class="line">输出：59</span><br><span class="line">解释：我们可以将 4325 分割成 num1 = 24 和 num2 = 35 ，和为 59 ，59 是最小和。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：num = 687</span><br><span class="line">输出：75</span><br><span class="line">解释：我们可以将 687 分割成 num1 = 68 和 num2 = 7 ，和为最优值 75 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>10 &lt;= num &lt;= 109</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-99/problems/split-with-minimum-sum/">https://leetcode.cn/contest/biweekly-contest-99/problems/split-with-minimum-sum/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>贪心法
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>如使得合最小则应该使得两个数的最高位之和尽可能的小，因此我们直接可以将两个数的按照奇偶位分开即可；</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(\log n)$，其中 $n$ 为给定的数。</li>
+<li>空间复杂度：$O(\log n)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">splitNum</span><span class="params">(<span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">        string s = <span class="built_in">to_string</span>(num);</span><br><span class="line">        <span class="built_in">sort</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        string s1, s2;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i += <span class="number">2</span>) &#123;</span><br><span class="line">            s1.<span class="built_in">push_back</span>(s[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i += <span class="number">2</span>) &#123;</span><br><span class="line">            s2.<span class="built_in">push_back</span>(s[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">stoi</span>(s1) + <span class="built_in">stoi</span>(s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6311-统计染色格子数"><a href="#6311-统计染色格子数" class="headerlink" title="6311. 统计染色格子数"></a>6311. 统计染色格子数</h3><p>有一个无穷大的二维网格图，一开始所有格子都未染色。给你一个正整数 <code>n</code> ，表示你需要执行以下步骤 <code>n</code> 分钟：</p>
+<ul>
+<li>第一分钟，将 <strong>任一</strong> 格子染成蓝色。</li>
+<li>之后的每一分钟，将与蓝色格子相邻的 <strong>所有</strong> 未染色格子染成蓝色。</li>
+</ul>
+<p>下图分别是 1、2、3 分钟后的网格图。</p>
+<p><img src="https://assets.leetcode.com/uploads/2023/01/10/example-copy-2.png" alt="img"></p>
+<p>请你返回 <code>n</code> 分钟之后 <strong>被染色的格子</strong> 数目。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 1</span><br><span class="line">输出：1</span><br><span class="line">解释：1 分钟后，只有 1 个蓝色的格子，所以返回 1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 2</span><br><span class="line">输出：5</span><br><span class="line">解释：2 分钟后，有 4 个在边缘的蓝色格子和 1 个在中间的蓝色格子，所以返回 5 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-99/problems/count-total-number-of-colored-cells/">https://leetcode.cn/contest/biweekly-contest-99/problems/count-total-number-of-colored-cells/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>数学
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们可以观察到一下按照列分布，每一列的长度刚好为 $(1,3,5, 2 * n - 1, 2 * n - 2, \cdots, 5, 3 ,1)$。本质为两个等差数列，我们直接按照等差数列求和公式计算即可。<br>我们可以得到它的计算公式为 :<br>$$<br>tot &#x3D;  2 * n - 1 + (n - 1) * (1 + 2 * n - 3) \<br>&#x3D; 2 * n - 1 + 2 * (n - 1)^{2}<br>$$</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为字符串的长度。</li>
+<li>空间复杂度：$O(n)$，主要为排序需要空间。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">coloredCells</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span> * n - <span class="number">1</span> + <span class="number">2</span> * (<span class="type">long</span> <span class="type">long</span>)(n - <span class="number">1</span>) * (n - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6313-统计将重叠区间合并成组的方案数"><a href="#6313-统计将重叠区间合并成组的方案数" class="headerlink" title="6313. 统计将重叠区间合并成组的方案数"></a>6313. 统计将重叠区间合并成组的方案数</h3><p>给你一个二维整数数组 <code>ranges</code> ，其中 <code>ranges[i] = [starti, endi]</code> 表示 <code>starti</code> 到 <code>endi</code> 之间（包括二者）的所有整数都包含在第 <code>i</code> 个区间中。</p>
+<p>你需要将 <code>ranges</code> 分成 <strong>两个</strong> 组（可以为空），满足：</p>
+<ul>
+<li>每个区间只属于一个组。</li>
+<li>两个有 <strong>交集</strong> 的区间必须在 <strong>同一个</strong> 组内。</li>
+</ul>
+<p>如果两个区间有至少 <strong>一个</strong> 公共整数，那么这两个区间是 <strong>有交集</strong> 的。</p>
+<ul>
+<li>比方说，区间 <code>[1, 3]</code> 和 <code>[2, 5]</code> 有交集，因为 <code>2</code> 和 <code>3</code> 在两个区间中都被包含。</li>
+</ul>
+<p>请你返回将 <code>ranges</code> 划分成两个组的 <strong>总方案数</strong> 。由于答案可能很大，将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ranges = [[6,10],[5,15]]</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">两个区间有交集，所以它们必须在同一个组内。</span><br><span class="line">所以有两种方案：</span><br><span class="line">- 将两个区间都放在第 1 个组中。</span><br><span class="line">- 将两个区间都放在第 2 个组中。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ranges = [[1,3],[10,20],[2,5],[4,8]]</span><br><span class="line">输出：4</span><br><span class="line">解释：</span><br><span class="line">区间 [1,3] 和 [2,5] 有交集，所以它们必须在同一个组中。</span><br><span class="line">同理，区间 [2,5] 和 [4,8] 也有交集，所以它们也必须在同一个组中。</span><br><span class="line">所以总共有 4 种分组方案：</span><br><span class="line">- 所有区间都在第 1 组。</span><br><span class="line">- 所有区间都在第 2 组。</span><br><span class="line">- 区间 [1,3] ，[2,5] 和 [4,8] 在第 1 个组中，[10,20] 在第 2 个组中。</span><br><span class="line">- 区间 [1,3] ，[2,5] 和 [4,8] 在第 2 个组中，[10,20] 在第 1 个组中。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= ranges.length &lt;= 105</code></li>
+<li><code>ranges[i].length == 2</code></li>
+<li><code>0 &lt;= starti &lt;= endi &lt;= 109</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/">https://leetcode.cn/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 排序 + 取模</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>我们对所有有重叠的区间进行连续合并，统计合并后的区间的数目，这些合并后的区间之间是不存在交集的，他们之间可以在两个分组中任意选择，因此可能的分组数目为 $2^n$ 个，其中 $n$ 表示合并后不想交的区间的总数。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 为区间的数目。</li>
+<li>空间复杂度：$O(\log n)$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countWays</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; ranges)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = ranges.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(ranges.<span class="built_in">begin</span>(), ranges.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> last = <span class="number">0</span>, cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ) &#123;</span><br><span class="line">            last = ranges[i][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">while</span> (i &lt; n &amp;&amp; ranges[i][<span class="number">0</span>] &lt;= last) &#123;</span><br><span class="line">                last = <span class="built_in">max</span>(last, ranges[i][<span class="number">1</span>]);</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">1</span>, curr = <span class="number">2</span>;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">while</span> (cnt) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt &amp; <span class="number">1</span>) &#123;</span><br><span class="line">                ans = (ans * curr) % mod;</span><br><span class="line">            &#125;</span><br><span class="line">            cnt &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">            curr = (curr * curr) % mod;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="6314-统计可能的树根数目"><a href="#6314-统计可能的树根数目" class="headerlink" title="6314. 统计可能的树根数目"></a>6314. 统计可能的树根数目</h3><p>Alice 有一棵 <code>n</code> 个节点的树，节点编号为 <code>0</code> 到 <code>n - 1</code> 。树用一个长度为 <code>n - 1</code> 的二维整数数组 <code>edges</code> 表示，其中 <code>edges[i] = [ai, bi]</code> ，表示树中节点 <code>ai</code> 和 <code>bi</code> 之间有一条边。</p>
+<p>Alice 想要 Bob 找到这棵树的根。她允许 Bob 对这棵树进行若干次 <strong>猜测</strong> 。每一次猜测，Bob 做如下事情：</p>
+<ul>
+<li>选择两个 <strong>不相等</strong> 的整数 <code>u</code> 和 <code>v</code> ，且树中必须存在边 <code>[u, v]</code> 。</li>
+<li>Bob 猜测树中 <code>u</code> 是 <code>v</code> 的 <strong>父节点</strong> 。</li>
+</ul>
+<p>Bob 的猜测用二维整数数组 <code>guesses</code> 表示，其中 <code>guesses[j] = [uj, vj]</code> 表示 Bob 猜 <code>uj</code> 是 <code>vj</code> 的父节点。</p>
+<p>Alice 非常懒，她不想逐个回答 Bob 的猜测，只告诉 Bob 这些猜测里面 <strong>至少</strong> 有 <code>k</code> 个猜测的结果为 <code>true</code> 。</p>
+<p>给你二维整数数组 <code>edges</code> ，Bob 的所有猜测和整数 <code>k</code> ，请你返回可能成为树根的 <strong>节点数目</strong> 。如果没有这样的树，则返回 <code>0</code>。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/12/19/ex-1.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：edges = [[0,1],[1,2],[1,3],[4,2]], guesses = [[1,3],[0,1],[1,0],[2,4]], k = 3</span><br><span class="line">输出：3</span><br><span class="line">解释：</span><br><span class="line">根为节点 0 ，正确的猜测为 [1,3], [0,1], [2,4]</span><br><span class="line">根为节点 1 ，正确的猜测为 [1,3], [1,0], [2,4]</span><br><span class="line">根为节点 2 ，正确的猜测为 [1,3], [1,0], [2,4]</span><br><span class="line">根为节点 3 ，正确的猜测为 [1,0], [2,4]</span><br><span class="line">根为节点 4 ，正确的猜测为 [1,3], [1,0]</span><br><span class="line">节点 0 ，1 或 2 为根时，可以得到 3 个正确的猜测。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/12/19/ex-2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：edges = [[0,1],[1,2],[2,3],[3,4]], guesses = [[1,0],[3,4],[2,1],[3,2]], k = 1</span><br><span class="line">输出：5</span><br><span class="line">解释：</span><br><span class="line">根为节点 0 ，正确的猜测为 [3,4]</span><br><span class="line">根为节点 1 ，正确的猜测为 [1,0], [3,4]</span><br><span class="line">根为节点 2 ，正确的猜测为 [1,0], [2,1], [3,4]</span><br><span class="line">根为节点 3 ，正确的猜测为 [1,0], [2,1], [3,2], [3,4]</span><br><span class="line">根为节点 4 ，正确的猜测为 [1,0], [2,1], [3,2]</span><br><span class="line">任何节点为根，都至少有 1 个正确的猜测。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>edges.length == n - 1</code></li>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>1 &lt;= guesses.length &lt;= 105</code></li>
+<li><code>0 &lt;= ai, bi, uj, vj &lt;= n - 1</code></li>
+<li><code>ai != bi</code></li>
+<li><code>uj != vj</code></li>
+<li><code>edges</code> 表示一棵有效的树。</li>
+<li><code>guesses[j]</code> 是树中的一条边。</li>
+<li><code>0 &lt;= k &lt;= guesses.length</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/">https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 树形 dp</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>题目初看起来好像很麻烦，没有思路，实际上比较还不算很难，力扣上有类似的题目，本题与之前的某个题目非常相似<a href="https://leetcode.cn/problems/sum-of-distances-in-tree/">834. 树中距离之和</a>，题目本身思考还是非常有意思的，我们假设当前根为 $x$，根的孩子节点为 $y$，此时 $[x,y]$ 则为合法的关系，而当我们仅仅转换到以 $y$ 为根时，此时树中父亲与孩子节点的对应关系，实际仅仅只有 $(x,y)$ 变为 $(y,x)$，其余的父亲与孩子节点的对应关系实际均保持不变的。因此我们每次进行遍历时，则换一次根即可，快速得到当前的合法关系的数目。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(V + E)$，其中 $V$ 为树中节点的数目,$E$ 表示边的数目。</li>
+<li>空间复杂度：$O(m + n)$，其中 $V$ 为树中节点的数目,$E$ 表示边的数目。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">hash</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span>  ((<span class="type">long</span> <span class="type">long</span>) x &lt;&lt; <span class="number">32</span>) | y;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">rootCount</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; edges, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; guesses, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = edges.<span class="built_in">size</span>() + <span class="number">1</span>, m = guesses.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">adj</span>(n);</span><br><span class="line">        unordered_set&lt;<span class="type">long</span> <span class="type">long</span>&gt; cnt;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : edges) &#123;</span><br><span class="line">            adj[v[<span class="number">0</span>]].<span class="built_in">emplace_back</span>(v[<span class="number">1</span>]);</span><br><span class="line">            adj[v[<span class="number">1</span>]].<span class="built_in">emplace_back</span>(v[<span class="number">0</span>]);</span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : guesses) &#123;</span><br><span class="line">            cnt.<span class="built_in">emplace</span>(<span class="built_in">hash</span>(v[<span class="number">0</span>], v[<span class="number">1</span>]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> valid = <span class="number">0</span>;</span><br><span class="line">        function&lt;<span class="type">void</span>(<span class="type">int</span>, <span class="type">int</span>)&gt; dfs1 = [&amp;](<span class="type">int</span> parent, <span class="type">int</span> vertex) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> neg : adj[vertex]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (neg != parent) &#123;</span><br><span class="line">                    valid += cnt.<span class="built_in">count</span>(<span class="built_in">hash</span>(vertex, neg));</span><br><span class="line">                    <span class="built_in">dfs1</span>(vertex, neg);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        function&lt;<span class="type">void</span>(<span class="type">int</span>, <span class="type">int</span>)&gt; dfs2 = [&amp;](<span class="type">int</span> parent, <span class="type">int</span> vertex) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> neg : adj[vertex]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (neg != parent) &#123;</span><br><span class="line">                    valid -= cnt.<span class="built_in">count</span>(<span class="built_in">hash</span>(vertex, neg));</span><br><span class="line">                    valid += cnt.<span class="built_in">count</span>(<span class="built_in">hash</span>(neg, vertex));</span><br><span class="line">                    <span class="keyword">if</span> (valid &gt;= k) &#123;</span><br><span class="line">                        res++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="built_in">dfs2</span>(vertex, neg);</span><br><span class="line">                    valid += cnt.<span class="built_in">count</span>(<span class="built_in">hash</span>(vertex, neg));</span><br><span class="line">                    valid -= cnt.<span class="built_in">count</span>(<span class="built_in">hash</span>(neg, vertex));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">dfs1</span>(<span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (valid &gt;= k) &#123;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dfs2</span>(<span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>力扣周赛</category>
+      </categories>
+      <tags>
+        <tag>力扣周赛</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode weekly contest 336</title>
+    <url>/2023/03/12/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/106/</url>
+    <content><![CDATA[<h2 id="leetcode-weekly-contest-336"><a href="#leetcode-weekly-contest-336" class="headerlink" title="leetcode weekly contest 336"></a>leetcode weekly contest 336</h2><p>本场周赛第四题还算比较新的题目。</p>
+<h3 id="6315-统计范围内的元音字符串数"><a href="#6315-统计范围内的元音字符串数" class="headerlink" title="6315. 统计范围内的元音字符串数"></a>6315. 统计范围内的元音字符串数</h3><p>给你一个下标从 <strong>0</strong> 开始的字符串数组 <code>words</code> 和两个整数：<code>left</code> 和 <code>right</code> 。</p>
+<p>如果字符串以元音字母开头并以元音字母结尾，那么该字符串就是一个 <strong>元音字符串</strong> ，其中元音字母是 <code>&#39;a&#39;</code>、<code>&#39;e&#39;</code>、<code>&#39;i&#39;</code>、<code>&#39;o&#39;</code>、<code>&#39;u&#39;</code> 。</p>
+<p>返回 <code>words[i]</code> 是元音字符串的数目，其中 <code>i</code> 在闭区间 <code>[left, right]</code> 内。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：words = [&quot;are&quot;,&quot;amy&quot;,&quot;u&quot;], left = 0, right = 2</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">- &quot;are&quot; 是一个元音字符串，因为它以 &#x27;a&#x27; 开头并以 &#x27;e&#x27; 结尾。</span><br><span class="line">- &quot;amy&quot; 不是元音字符串，因为它没有以元音字母结尾。</span><br><span class="line">- &quot;u&quot; 是一个元音字符串，因为它以 &#x27;u&#x27; 开头并以 &#x27;u&#x27; 结尾。</span><br><span class="line">在上述范围中的元音字符串数目为 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：words = [&quot;hey&quot;,&quot;aeo&quot;,&quot;mu&quot;,&quot;ooo&quot;,&quot;artro&quot;], left = 1, right = 4</span><br><span class="line">输出：3</span><br><span class="line">解释：</span><br><span class="line">- &quot;aeo&quot; 是一个元音字符串，因为它以 &#x27;a&#x27; 开头并以 &#x27;o&#x27; 结尾。</span><br><span class="line">- &quot;mu&quot; 不是元音字符串，因为它没有以元音字母开头。</span><br><span class="line">- &quot;ooo&quot; 是一个元音字符串，因为它以 &#x27;o&#x27; 开头并以 &#x27;o&#x27; 结尾。</span><br><span class="line">- &quot;artro&quot; 是一个元音字符串，因为它以 &#x27;a&#x27; 开头并以 &#x27;o&#x27; 结尾。</span><br><span class="line">在上述范围中的元音字符串数目为 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= words.length &lt;= 1000</code></li>
+<li><code>1 &lt;= words[i].length &lt;= 10</code></li>
+<li><code>words[i]</code> 仅由小写英文字母组成</li>
+<li><code>0 &lt;= left &lt;= right &lt; words.length</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-336/problems/count-the-number-of-vowel-strings-in-range/">https://leetcode.cn/contest/weekly-contest-336/problems/count-the-number-of-vowel-strings-in-range/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接遍历
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接遍历所有的字符串即可，找到符合要求的字符串即可，检测每个字符的首字符与末尾的字符是否为元音字母。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">vowelStrings</span><span class="params">(vector&lt;string&gt;&amp; words, <span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">char</span>&gt; arr = &#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;i&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;u&#x27;</span>&#125;;</span><br><span class="line">        <span class="function">unordered_set&lt;<span class="type">char</span>&gt; <span class="title">cnt</span><span class="params">(arr.begin(), arr.end())</span></span>;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt;= right; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(words[i][<span class="number">0</span>]) &amp;&amp; cnt.<span class="built_in">count</span>(words[i].<span class="built_in">back</span>())) &#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6316-重排数组以得到最大前缀分数"><a href="#6316-重排数组以得到最大前缀分数" class="headerlink" title="6316. 重排数组以得到最大前缀分数"></a>6316. 重排数组以得到最大前缀分数</h3><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 。你可以将 <code>nums</code> 中的元素按 <strong>任意顺序</strong> 重排（包括给定顺序）。</p>
+<p>令 <code>prefix</code> 为一个数组，它包含了 <code>nums</code> 重新排列后的前缀和。换句话说，<code>prefix[i]</code> 是 <code>nums</code> 重新排列后下标从 <code>0</code> 到 <code>i</code> 的元素之和。<code>nums</code> 的 <strong>分数</strong> 是 <code>prefix</code> 数组中正整数的个数。</p>
+<p>返回可以得到的最大分数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,-1,0,1,-3,3,-3]</span><br><span class="line">输出：6</span><br><span class="line">解释：数组重排为 nums = [2,3,1,-1,-3,0,-3] 。</span><br><span class="line">prefix = [2,5,6,5,2,2,-1] ，分数为 6 。</span><br><span class="line">可以证明 6 是能够得到的最大分数。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [-2,-3,0]</span><br><span class="line">输出：0</span><br><span class="line">解释：不管怎么重排数组得到的分数都是 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-106 &lt;= nums[i] &lt;= 106</code></li>
+</ul>
+<p><a href="https://leetcode.cn/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/">https://leetcode.cn/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>排序
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>贪心即可，我们将所有的元素按照从大到小的顺序进行排序，这样即可保证前缀中为正整数的数量尽可能的多，因为遇到负数时，所有的正整数全部都已经包含在其中。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 为数组的长度。</li>
+<li>空间复杂度：$O(\log n)$，其中 $n$ 为为数组的长度。排序需要的空间为 $O(\log n)$。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxScore</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), [&amp;](<span class="type">int</span> a, <span class="type">int</span> b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a &gt; b;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            <span class="keyword">if</span> (sum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                ans++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6317-统计美丽子数组数目"><a href="#6317-统计美丽子数组数目" class="headerlink" title="6317. 统计美丽子数组数目"></a>6317. 统计美丽子数组数目</h3><p>给你一个下标从 <strong>0</strong> 开始的整数数组<code>nums</code> 。每次操作中，你可以：</p>
+<ul>
+<li>选择两个满足 <code>0 &lt;= i, j &lt; nums.length</code> 的不同下标 <code>i</code> 和 <code>j</code> 。</li>
+<li>选择一个非负整数 <code>k</code> ，满足 <code>nums[i]</code> 和 <code>nums[j]</code> 在二进制下的第 <code>k</code> 位（下标编号从 <strong>0</strong> 开始）是 <code>1</code> 。</li>
+<li>将 <code>nums[i]</code> 和 <code>nums[j]</code> 都减去 <code>2k</code> 。</li>
+</ul>
+<p>如果一个子数组内执行上述操作若干次后，该子数组可以变成一个全为 <code>0</code> 的数组，那么我们称它是一个 <strong>美丽</strong> 的子数组。</p>
+<p>请你返回数组 <code>nums</code> 中 <strong>美丽子数组</strong> 的数目。</p>
+<p>子数组是一个数组中一段连续 <strong>非空</strong> 的元素序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,3,1,2,4]</span><br><span class="line">输出：2</span><br><span class="line">解释：nums 中有 2 个美丽子数组：[4,3,1,2,4] 和 [4,3,1,2,4] 。</span><br><span class="line">- 按照下述步骤，我们可以将子数组 [3,1,2] 中所有元素变成 0 ：</span><br><span class="line">  - 选择 [3, 1, 2] 和 k = 1 。将 2 个数字都减去 21 ，子数组变成 [1, 1, 0] 。</span><br><span class="line">  - 选择 [1, 1, 0] 和 k = 0 。将 2 个数字都减去 20 ，子数组变成 [0, 0, 0] 。</span><br><span class="line">- 按照下述步骤，我们可以将子数组 [4,3,1,2,4] 中所有元素变成 0 ：</span><br><span class="line">  - 选择 [4, 3, 1, 2, 4] 和 k = 2 。将 2 个数字都减去 22 ，子数组变成 [0, 3, 1, 2, 0] 。</span><br><span class="line">  - 选择 [0, 3, 1, 2, 0] 和 k = 0 。将 2 个数字都减去 20 ，子数组变成 [0, 2, 0, 2, 0] 。</span><br><span class="line">  - 选择 [0, 2, 0, 2, 0] 和 k = 1 。将 2 个数字都减去 21 ，子数组变成 [0, 0, 0, 0, 0] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,10,4]</span><br><span class="line">输出：0</span><br><span class="line">解释：nums 中没有任何美丽子数组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 106</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-336/problems/count-the-number-of-beautiful-subarrays/">https://leetcode.cn/contest/weekly-contest-336/problems/count-the-number-of-beautiful-subarrays/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>本题与力扣的某个题目基本上是一模一样的，由于每次减法两个数的第 $i$ 位，即一定存在两个数的第 $i$ 位均为 $1$。我们用 $mask$ 表示子序列中第 $i$ 位的数目的统计情况，存在奇数个元素的第 $i$ 位的为 $1$ ，此时 $mask$ 的第 $i$ 位为 $1$，否则第 $i$ 位为 $0$。如果满足题目要求，则我们知道一定满足存在偶数个元素使得其相同的第 $k$ 位都一定为 $1$，这样我们才能执行同时减去 $2^k$。我们找到当前前缀中 $mask$ 的每一位的奇偶性与当前的奇偶性相同的位置的个数，则从这些位置 $j$ 到 当前位置$i$ 之间的子序列构成的 一定满足题目要求。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为数组的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 为数组的长度。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">beautifulSubarrays</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="type">int</span> mask = <span class="number">0</span>;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        cnt[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            mask ^= nums[i];</span><br><span class="line">            ans += cnt[mask]; </span><br><span class="line">            cnt[mask]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="6318-完成所有任务的最少时间"><a href="#6318-完成所有任务的最少时间" class="headerlink" title="6318. 完成所有任务的最少时间"></a>6318. 完成所有任务的最少时间</h3><p>你有一台电脑，它可以 <strong>同时</strong> 运行无数个任务。给你一个二维整数数组 <code>tasks</code> ，其中 <code>tasks[i] = [starti, endi, durationi]</code> 表示第 <code>i</code> 个任务需要在 <strong>闭区间</strong> 时间段 <code>[starti, endi]</code> 内运行 <code>durationi</code> 个整数时间点（但不需要连续）。</p>
+<p>当电脑需要运行任务时，你可以打开电脑，如果空闲时，你可以将电脑关闭。</p>
+<p>请你返回完成所有任务的情况下，电脑最少需要运行多少秒。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：tasks = [[2,3,1],[4,5,1],[1,5,2]]</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">- 第一个任务在闭区间 [2, 2] 运行。</span><br><span class="line">- 第二个任务在闭区间 [5, 5] 运行。</span><br><span class="line">- 第三个任务在闭区间 [2, 2] 和 [5, 5] 运行。</span><br><span class="line">电脑总共运行 2 个整数时间点。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：tasks = [[1,3,2],[2,5,3],[5,6,2]]</span><br><span class="line">输出：4</span><br><span class="line">解释：</span><br><span class="line">- 第一个任务在闭区间 [2, 3] 运行</span><br><span class="line">- 第二个任务在闭区间 [2, 3] 和 [5, 5] 运行。</span><br><span class="line">- 第三个任务在闭区间 [5, 6] 运行。</span><br><span class="line">电脑总共运行 4 个整数时间点。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= tasks.length &lt;= 2000</code></li>
+<li><code>tasks[i].length == 3</code></li>
+<li><code>1 &lt;= starti, endi &lt;= 2000</code></li>
+<li><code>1 &lt;= durationi &lt;= endi - starti + 1</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/">https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 贪心</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>最开始的贪心策略想错了，想成每次选择重叠数目最多的时间点了，这样我们就可能尽可能的少，但实际存在错误。实际的贪心规则时，优先选择每个序列每个区间的后缀，这样就能保证在去区间的时候尽量保证做到最优。<ul>
+<li>首先按照结束时间从小到大进行排序；</li>
+<li>用数组标记已经取过的时间点，依次统计当前区间已经覆盖的时间点 $count$，如果 $count &lt; tasks[i][2]$，表示还需要再该区间中再取部分点，此时我们依次从右向左取未访问过的时间点，直到 $count &#x3D;&#x3D; tasks[i][2]$ 时结束；</li>
+<li>对已经访问过的点同时进行标记。</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times U)$，其中$ n$ 表示数组的长度，$U$ 表示题目中的左右边界的最大值。</li>
+<li>空间复杂度：$O(U)$。其中 $U$ 表示题目中的左右边界的最大值。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMinimumTime</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; tasks)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(tasks.<span class="built_in">begin</span>(), tasks.<span class="built_in">end</span>(), [&amp;](<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp;a, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp;b) &#123;</span><br><span class="line">           <span class="keyword">return</span> a[<span class="number">1</span>] &lt; b[<span class="number">1</span>]; </span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> n = tasks.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> total = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visit</span><span class="params">(<span class="number">2002</span>, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> start = tasks[i][<span class="number">0</span>], end = tasks[i][<span class="number">1</span>];</span><br><span class="line">            <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = start; j &lt;= end; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (visit[j]) &#123;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (count &gt;= tasks[i][<span class="number">2</span>]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = end, k = tasks[i][<span class="number">2</span>] - count; j &gt;= start &amp;&amp; k &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!visit[j]) &#123;</span><br><span class="line">                    visit[j] = <span class="literal">true</span>;</span><br><span class="line">                    total++;</span><br><span class="line">                    k--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>力扣周赛</category>
+      </categories>
+      <tags>
+        <tag>力扣周赛</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode weekly contest 335</title>
+    <url>/2023/03/05/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/105/</url>
+    <content><![CDATA[<h2 id="leetcode-weekly-contest-335"><a href="#leetcode-weekly-contest-335" class="headerlink" title="leetcode weekly contest 335"></a>leetcode weekly contest 335</h2><p>本场周赛的题目的第三题确实比较好的题目，难得见到高质量的第三题。</p>
+<h3 id="6307-递枕头"><a href="#6307-递枕头" class="headerlink" title="6307. 递枕头"></a>6307. 递枕头</h3><p><code>n</code> 个人站成一排，按从 <code>1</code> 到 <code>n</code> 编号。</p>
+<p>最初，排在队首的第一个人拿着一个枕头。每秒钟，拿着枕头的人会将枕头传递给队伍中的下一个人。一旦枕头到达队首或队尾，传递方向就会改变，队伍会继续沿相反方向传递枕头。</p>
+<ul>
+<li>例如，当枕头到达第 <code>n</code> 个人时，TA 会将枕头传递给第 <code>n - 1</code> 个人，然后传递给第 <code>n - 2</code> 个人，依此类推。</li>
+</ul>
+<p>给你两个正整数 <code>n</code> 和 <code>time</code> ，返回 <code>time</code> 秒后拿着枕头的人的编号。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 4, time = 5</span><br><span class="line">输出：2</span><br><span class="line">解释：队伍中枕头的传递情况为：1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 3 -&gt; 2 。</span><br><span class="line">5 秒后，枕头传递到第 2 个人手中。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 3, time = 2</span><br><span class="line">输出：3</span><br><span class="line">解释：队伍中枕头的传递情况为：1 -&gt; 2 -&gt; 3 。</span><br><span class="line">2 秒后，枕头传递到第 3 个人手中。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= n &lt;= 1000</code></li>
+<li><code>1 &lt;= time &lt;= 1000</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-335/problems/pass-the-pillow/">https://leetcode.cn/contest/weekly-contest-335/problems/pass-the-pillow/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>找规律即可
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>每次来回需要花费的时间为 $2*(n - 1)$，我们对 $2*(n - 1)$ 进行取模：</li>
+</ol>
+<ul>
+<li>如果余数大于 $n - 1$，此时需要的位置为 $2 * n - x - 1$;</li>
+<li>如果余数小于等于 $n - 1$，此时需要的位置为 $1 + x$;</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(1)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">passThePillow</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> x = time % (<span class="number">2</span> * ( n - <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= n - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span> + x;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span> * n - x - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6308-二叉树中的第-K-大层和"><a href="#6308-二叉树中的第-K-大层和" class="headerlink" title="6308. 二叉树中的第 K 大层和"></a>6308. 二叉树中的第 K 大层和</h3><p>给你一棵二叉树的根节点 <code>root</code> 和一个正整数 <code>k</code> 。</p>
+<p>树中的 <strong>层和</strong> 是指 <strong>同一层</strong> 上节点值的总和。</p>
+<p>返回树中第 <code>k</code> 大的层和（不一定不同）。如果树少于 <code>k</code> 层，则返回 <code>-1</code> 。</p>
+<p><strong>注意</strong>，如果两个节点与根节点的距离相同，则认为它们在同一层。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/12/14/binaryytreeedrawio-2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [5,8,9,2,1,3,7,4,6], k = 2</span><br><span class="line">输出：13</span><br><span class="line">解释：树中每一层的层和分别是：</span><br><span class="line">- Level 1: 5</span><br><span class="line">- Level 2: 8 + 9 = 17</span><br><span class="line">- Level 3: 2 + 1 + 3 + 7 = 13</span><br><span class="line">- Level 4: 4 + 6 = 10</span><br><span class="line">第 2 大的层和等于 13 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/12/14/treedrawio-3.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [1,2,null,3], k = 1</span><br><span class="line">输出：3</span><br><span class="line">解释：最大的层和是 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>树中的节点数为 <code>n</code></li>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>1 &lt;= Node.val &lt;= 106</code></li>
+<li><code>1 &lt;= k &lt;= n</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-335/problems/kth-largest-sum-in-a-binary-tree/">https://leetcode.cn/contest/weekly-contest-335/problems/kth-largest-sum-in-a-binary-tree/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>层次遍历
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接利用 $BFS$ 将二叉树中所有层次的和求出来，然后将其排序取最大的第 $k$ 的数即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为二叉树节点的数目。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 为二叉树节点的数目。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">kthLargestLevelSum</span><span class="params">(TreeNode* root, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; arr;</span><br><span class="line">        queue&lt;TreeNode *&gt; qu;</span><br><span class="line">        qu.<span class="built_in">emplace</span>(root);</span><br><span class="line">        <span class="keyword">while</span> (!qu.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="type">int</span> sz = qu.<span class="built_in">size</span>();</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> curr = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">                TreeNode * node = qu.<span class="built_in">front</span>();</span><br><span class="line">                qu.<span class="built_in">pop</span>();</span><br><span class="line">                curr += node-&gt;val;</span><br><span class="line">                <span class="keyword">if</span> (node-&gt;left) &#123;</span><br><span class="line">                    qu.<span class="built_in">emplace</span>(node-&gt;left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (node-&gt;right) &#123;</span><br><span class="line">                    qu.<span class="built_in">emplace</span>(node-&gt;right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            arr.<span class="built_in">emplace_back</span>(curr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>(), [&amp;](<span class="type">long</span> <span class="type">long</span> a, <span class="type">long</span> <span class="type">long</span> b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a &gt; b;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">if</span> (arr.<span class="built_in">size</span>() &lt; k) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr[k - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6309-分割数组使乘积互质"><a href="#6309-分割数组使乘积互质" class="headerlink" title="6309. 分割数组使乘积互质"></a>6309. 分割数组使乘积互质</h3><p>给你一个长度为 <code>n</code> 的整数数组 <code>nums</code> ，下标从 <strong>0</strong> 开始。</p>
+<p>如果在下标 <code>i</code> 处 <strong>分割</strong> 数组，其中 <code>0 &lt;= i &lt;= n - 2</code> ，使前 <code>i + 1</code> 个元素的乘积和剩余元素的乘积互质，则认为该分割 <strong>有效</strong> 。</p>
+<ul>
+<li>例如，如果 <code>nums = [2, 3, 3]</code> ，那么在下标 <code>i = 0</code> 处的分割有效，因为 <code>2</code> 和 <code>9</code> 互质，而在下标 <code>i = 1</code> 处的分割无效，因为 <code>6</code> 和 <code>3</code> 不互质。在下标 <code>i = 2</code> 处的分割也无效，因为 <code>i == n - 1</code> 。</li>
+</ul>
+<p>返回可以有效分割数组的最小下标 <code>i</code> ，如果不存在有效分割，则返回 <code>-1</code> 。</p>
+<p>当且仅当 <code>gcd(val1, val2) == 1</code> 成立时，<code>val1</code> 和 <code>val2</code> 这两个值才是互质的，其中 <code>gcd(val1, val2)</code> 表示 <code>val1</code> 和 <code>val2</code> 的最大公约数。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/12/14/second.PNG" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,7,8,15,3,5]</span><br><span class="line">输出：2</span><br><span class="line">解释：上表展示了每个下标 i 处的前 i + 1 个元素的乘积、剩余元素的乘积和它们的最大公约数的值。</span><br><span class="line">唯一一个有效分割位于下标 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/12/14/capture.PNG" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,7,15,8,3,5]</span><br><span class="line">输出：-1</span><br><span class="line">解释：上表展示了每个下标 i 处的前 i + 1 个元素的乘积、剩余元素的乘积和它们的最大公约数的值。</span><br><span class="line">不存在有效分割。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == nums.length</code></li>
+<li><code>1 &lt;= n &lt;= 104</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 106</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-335/problems/split-the-array-to-make-coprime-products/">https://leetcode.cn/contest/weekly-contest-335/problems/split-the-array-to-make-coprime-products/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 质数区+间合并</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>对每个元素的质因子分解，并求出所有的含有质因子 $x$ 覆盖的最大区间为 $[start, end]$，这表示区间 $[start,end]$ 在划分时一定要划分到一起，要么全部划分到左边，要么全部划分到右边，我们在筛选时没有必要筛选 $[2,U]$，实际我们只需要筛选 $[2,\sqrt{U}]$ 即可，将 $[2,\sqrt{U}]$ 筛选完成后，剩下的数必然为质数。</li>
+<li>我们假设质数 $a$ 的覆盖区间为 $[l_1,r_1]$，质数 $b$ 的覆盖区间为 $[l_2,r_2]$，假设二者之间存在交集，则可以推出这两个区间一定需要划分在一个分组中，即这两个区间可以合并为 $[\min(l_1,l_2),\max(r_1,r_2)]$，参考「<a href="https://leetcode.cn/problems/count-ways-to-group-overlapping-ranges/">6313. 统计将重叠区间合并成组的方案数</a>」我们找到左侧第一个不相交的集合并从该处划分开即可。<br>假设存在数组 $[2,6,4,3]$，此时我们知道含有质因子 $2$ 必须要划分在一起的区间为 $[0,2]$，含有质因子 $3$ 必须要划分在一起的区间为 $[1,3]$，此时由于二者存在交集，因此 $[0,4]$ 这个区间中所有数必须要划分在同一个分组中，否则不能满足题目要求。</li>
+<li>我们将质因子覆盖的区间从小到大进行排序，并对从左到右进行合并，找到第一个不想交的区间，即可从此处划分开来。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log U )$，其中 $n$ 为数组的长度，$U$ 表示数组中的最大元素。</li>
+<li>空间复杂度：$O(\log U)$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findValidSplit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> maxVal = *<span class="built_in">max_element</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> m = <span class="built_in">sqrt</span>(maxVal) + <span class="number">3</span>;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; primer;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visit</span><span class="params">(m + <span class="number">1</span>, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visit[i]) &#123;</span><br><span class="line">                primer.<span class="built_in">emplace_back</span>(i);</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt;= m; j += i) &#123;</span><br><span class="line">                    visit[i] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, vector&lt;<span class="type">int</span>&gt;&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = nums[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> p : primer) &#123;</span><br><span class="line">                <span class="keyword">if</span> (p &gt; x) <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">if</span> (x % p) <span class="keyword">continue</span>;</span><br><span class="line">                cnt[p].<span class="built_in">emplace_back</span>(i);</span><br><span class="line">                <span class="keyword">while</span> (x % p == <span class="number">0</span>) &#123;</span><br><span class="line">                    x /= p;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (x &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                cnt[x].<span class="built_in">emplace_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cnt.<span class="built_in">size</span>() &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; arr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [_, v] : cnt) &#123;</span><br><span class="line">            arr.<span class="built_in">emplace_back</span>(v[<span class="number">0</span>], v.<span class="built_in">back</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> last = arr[<span class="number">0</span>].second;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; arr.<span class="built_in">size</span>() &amp;&amp; arr[i].first &lt;= last) &#123;</span><br><span class="line">            last = <span class="built_in">max</span>(last, arr[i].second);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; arr.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> last;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="6310-获得分数的方法数"><a href="#6310-获得分数的方法数" class="headerlink" title="6310. 获得分数的方法数"></a>6310. 获得分数的方法数</h3><p>考试中有 <code>n</code> 种类型的题目。给你一个整数 <code>target</code> 和一个下标从 <strong>0</strong> 开始的二维整数数组 <code>types</code> ，其中 <code>types[i] = [counti, marksi] </code>表示第 <code>i</code> 种类型的题目有 <code>counti</code> 道，每道题目对应 <code>marksi</code> 分。</p>
+<p>返回你在考试中恰好得到 <code>target</code> 分的方法数。由于答案可能很大，结果需要对 <code>109 +7</code> 取余。</p>
+<p><strong>注意</strong>，同类型题目无法区分。</p>
+<ul>
+<li>比如说，如果有 <code>3</code> 道同类型题目，那么解答第 <code>1</code> 和第 <code>2</code> 道题目与解答第 <code>1</code> 和第 <code>3</code> 道题目或者第 <code>2</code> 和第 <code>3</code> 道题目是相同的。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：target = 6, types = [[6,1],[3,2],[2,3]]</span><br><span class="line">输出：7</span><br><span class="line">解释：要获得 6 分，你可以选择以下七种方法之一：</span><br><span class="line">- 解决 6 道第 0 种类型的题目：1 + 1 + 1 + 1 + 1 + 1 = 6</span><br><span class="line">- 解决 4 道第 0 种类型的题目和 1 道第 1 种类型的题目：1 + 1 + 1 + 1 + 2 = 6</span><br><span class="line">- 解决 2 道第 0 种类型的题目和 2 道第 1 种类型的题目：1 + 1 + 2 + 2 = 6</span><br><span class="line">- 解决 3 道第 0 种类型的题目和 1 道第 2 种类型的题目：1 + 1 + 1 + 3 = 6</span><br><span class="line">- 解决 1 道第 0 种类型的题目、1 道第 1 种类型的题目和 1 道第 2 种类型的题目：1 + 2 + 3 = 6</span><br><span class="line">- 解决 3 道第 1 种类型的题目：2 + 2 + 2 = 6</span><br><span class="line">- 解决 2 道第 2 种类型的题目：3 + 3 = 6</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：target = 5, types = [[50,1],[50,2],[50,5]]</span><br><span class="line">输出：4</span><br><span class="line">解释：要获得 5 分，你可以选择以下四种方法之一：</span><br><span class="line">- 解决 5 道第 0 种类型的题目：1 + 1 + 1 + 1 + 1 = 5</span><br><span class="line">- 解决 3 道第 0 种类型的题目和 1 道第 1 种类型的题目：1 + 1 + 1 + 2 = 5</span><br><span class="line">- 解决 1 道第 0 种类型的题目和 2 道第 1 种类型的题目：1 + 2 + 2 = 5</span><br><span class="line">- 解决 1 道第 2 种类型的题目：5</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：target = 18, types = [[6,1],[3,2],[2,3]]</span><br><span class="line">输出：1</span><br><span class="line">解释：只有回答所有题目才能获得 18 分。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= target &lt;= 1000</code></li>
+<li><code>n == types.length</code></li>
+<li><code>1 &lt;= n &lt;= 50</code></li>
+<li><code>types[i].length == 2</code></li>
+<li><code>1 &lt;= counti, marksi &lt;= 50</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a href="https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/">https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>经典的动态规划，设 $dp[i][x]$ 表示在前 $i$ 组中取出分数为 $x$ 的方法数，此时我们可以得到递推公式:<br>$$<br>dp[i + 1][x] &#x3D; \sum_{k&#x3D;0}^{t_{i+1}[1]}dp[i][x - k * t_{i + 1}[0]]<br>$$<br>即最后一个分组的取值范围为 $k \times marks_i$，其中 $k \in [0, count_i]$，应该是经典的动态规划题目了。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(m \times n \times U)$，其中 $m$ 表示给定的分数，$n$ 表示题目类型的数目，$U$ 表示给定的题目最大数目。</li>
+<li>空间复杂度：$O(m \times n)$。其中 $m$ 表示给定的分数，$n$ 表示题目类型的数目。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">waysToReachTarget</span><span class="params">(<span class="type">int</span> target, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; types)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = types.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">long</span> <span class="type">long</span>&gt;&gt; <span class="built_in">dp</span>(target + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">long</span> <span class="type">long</span>&gt;(n + <span class="number">1</span>));</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= target; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt;= types[i][<span class="number">0</span>]; k++) &#123;</span><br><span class="line">                    <span class="type">int</span> x = k * types[i][<span class="number">1</span>] + j;</span><br><span class="line">                    <span class="keyword">if</span> (x &lt;= target) &#123;</span><br><span class="line">                        dp[x][i + <span class="number">1</span>] = (dp[x][i + <span class="number">1</span>] + dp[j][i]) % mod;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>  dp[target][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>欢迎关注和打赏，感谢支持！</p>
 <ul>

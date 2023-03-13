@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode weekly contest 336 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode weekly contest 336</h2>
+  <p class="post-date">2023-03-12</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-weekly-contest-336"><a href="#leetcode-weekly-contest-336" class="headerlink" title="leetcode weekly contest 336"></a>leetcode weekly contest 336</h2><p>本场周赛第四题还算比较新的题目。</p>
+<h3 id="6315-统计范围内的元音字符串数"><a href="#6315-统计范围内的元音字符串数" class="headerlink" title="6315. 统计范围内的元音字符串数"></a>6315. 统计范围内的元音字符串数</h3><p>给你一个下标从 <strong>0</strong> 开始的字符串数组 <code>words</code> 和两个整数：<code>left</code> 和 <code>right</code> 。</p>
+<p>如果字符串以元音字母开头并以元音字母结尾，那么该字符串就是一个 <strong>元音字符串</strong> ，其中元音字母是 <code>&#39;a&#39;</code>、<code>&#39;e&#39;</code>、<code>&#39;i&#39;</code>、<code>&#39;o&#39;</code>、<code>&#39;u&#39;</code> 。</p>
+<p>返回 <code>words[i]</code> 是元音字符串的数目，其中 <code>i</code> 在闭区间 <code>[left, right]</code> 内。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：words = [&quot;are&quot;,&quot;amy&quot;,&quot;u&quot;], left = 0, right = 2</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">- &quot;are&quot; 是一个元音字符串，因为它以 &#x27;a&#x27; 开头并以 &#x27;e&#x27; 结尾。</span><br><span class="line">- &quot;amy&quot; 不是元音字符串，因为它没有以元音字母结尾。</span><br><span class="line">- &quot;u&quot; 是一个元音字符串，因为它以 &#x27;u&#x27; 开头并以 &#x27;u&#x27; 结尾。</span><br><span class="line">在上述范围中的元音字符串数目为 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：words = [&quot;hey&quot;,&quot;aeo&quot;,&quot;mu&quot;,&quot;ooo&quot;,&quot;artro&quot;], left = 1, right = 4</span><br><span class="line">输出：3</span><br><span class="line">解释：</span><br><span class="line">- &quot;aeo&quot; 是一个元音字符串，因为它以 &#x27;a&#x27; 开头并以 &#x27;o&#x27; 结尾。</span><br><span class="line">- &quot;mu&quot; 不是元音字符串，因为它没有以元音字母开头。</span><br><span class="line">- &quot;ooo&quot; 是一个元音字符串，因为它以 &#x27;o&#x27; 开头并以 &#x27;o&#x27; 结尾。</span><br><span class="line">- &quot;artro&quot; 是一个元音字符串，因为它以 &#x27;a&#x27; 开头并以 &#x27;o&#x27; 结尾。</span><br><span class="line">在上述范围中的元音字符串数目为 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= words.length &lt;= 1000</code></li>
+<li><code>1 &lt;= words[i].length &lt;= 10</code></li>
+<li><code>words[i]</code> 仅由小写英文字母组成</li>
+<li><code>0 &lt;= left &lt;= right &lt; words.length</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-336/problems/count-the-number-of-vowel-strings-in-range/">https://leetcode.cn/contest/weekly-contest-336/problems/count-the-number-of-vowel-strings-in-range/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接遍历
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接遍历所有的字符串即可，找到符合要求的字符串即可，检测每个字符的首字符与末尾的字符是否为元音字母。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">vowelStrings</span><span class="params">(vector&lt;string&gt;&amp; words, <span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">char</span>&gt; arr = &#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;i&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;u&#x27;</span>&#125;;</span><br><span class="line">        <span class="function">unordered_set&lt;<span class="type">char</span>&gt; <span class="title">cnt</span><span class="params">(arr.begin(), arr.end())</span></span>;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt;= right; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(words[i][<span class="number">0</span>]) &amp;&amp; cnt.<span class="built_in">count</span>(words[i].<span class="built_in">back</span>())) &#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6316-重排数组以得到最大前缀分数"><a href="#6316-重排数组以得到最大前缀分数" class="headerlink" title="6316. 重排数组以得到最大前缀分数"></a>6316. 重排数组以得到最大前缀分数</h3><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 。你可以将 <code>nums</code> 中的元素按 <strong>任意顺序</strong> 重排（包括给定顺序）。</p>
+<p>令 <code>prefix</code> 为一个数组，它包含了 <code>nums</code> 重新排列后的前缀和。换句话说，<code>prefix[i]</code> 是 <code>nums</code> 重新排列后下标从 <code>0</code> 到 <code>i</code> 的元素之和。<code>nums</code> 的 <strong>分数</strong> 是 <code>prefix</code> 数组中正整数的个数。</p>
+<p>返回可以得到的最大分数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,-1,0,1,-3,3,-3]</span><br><span class="line">输出：6</span><br><span class="line">解释：数组重排为 nums = [2,3,1,-1,-3,0,-3] 。</span><br><span class="line">prefix = [2,5,6,5,2,2,-1] ，分数为 6 。</span><br><span class="line">可以证明 6 是能够得到的最大分数。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [-2,-3,0]</span><br><span class="line">输出：0</span><br><span class="line">解释：不管怎么重排数组得到的分数都是 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-106 &lt;= nums[i] &lt;= 106</code></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/">https://leetcode.cn/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>排序
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>贪心即可，我们将所有的元素按照从大到小的顺序进行排序，这样即可保证前缀中为正整数的数量尽可能的多，因为遇到负数时，所有的正整数全部都已经包含在其中。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 为数组的长度。</li>
+<li>空间复杂度：$O(\log n)$，其中 $n$ 为为数组的长度。排序需要的空间为 $O(\log n)$。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxScore</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), [&amp;](<span class="type">int</span> a, <span class="type">int</span> b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a &gt; b;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            <span class="keyword">if</span> (sum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                ans++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6317-统计美丽子数组数目"><a href="#6317-统计美丽子数组数目" class="headerlink" title="6317. 统计美丽子数组数目"></a>6317. 统计美丽子数组数目</h3><p>给你一个下标从 <strong>0</strong> 开始的整数数组<code>nums</code> 。每次操作中，你可以：</p>
+<ul>
+<li>选择两个满足 <code>0 &lt;= i, j &lt; nums.length</code> 的不同下标 <code>i</code> 和 <code>j</code> 。</li>
+<li>选择一个非负整数 <code>k</code> ，满足 <code>nums[i]</code> 和 <code>nums[j]</code> 在二进制下的第 <code>k</code> 位（下标编号从 <strong>0</strong> 开始）是 <code>1</code> 。</li>
+<li>将 <code>nums[i]</code> 和 <code>nums[j]</code> 都减去 <code>2k</code> 。</li>
+</ul>
+<p>如果一个子数组内执行上述操作若干次后，该子数组可以变成一个全为 <code>0</code> 的数组，那么我们称它是一个 <strong>美丽</strong> 的子数组。</p>
+<p>请你返回数组 <code>nums</code> 中 <strong>美丽子数组</strong> 的数目。</p>
+<p>子数组是一个数组中一段连续 <strong>非空</strong> 的元素序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,3,1,2,4]</span><br><span class="line">输出：2</span><br><span class="line">解释：nums 中有 2 个美丽子数组：[4,3,1,2,4] 和 [4,3,1,2,4] 。</span><br><span class="line">- 按照下述步骤，我们可以将子数组 [3,1,2] 中所有元素变成 0 ：</span><br><span class="line">  - 选择 [3, 1, 2] 和 k = 1 。将 2 个数字都减去 21 ，子数组变成 [1, 1, 0] 。</span><br><span class="line">  - 选择 [1, 1, 0] 和 k = 0 。将 2 个数字都减去 20 ，子数组变成 [0, 0, 0] 。</span><br><span class="line">- 按照下述步骤，我们可以将子数组 [4,3,1,2,4] 中所有元素变成 0 ：</span><br><span class="line">  - 选择 [4, 3, 1, 2, 4] 和 k = 2 。将 2 个数字都减去 22 ，子数组变成 [0, 3, 1, 2, 0] 。</span><br><span class="line">  - 选择 [0, 3, 1, 2, 0] 和 k = 0 。将 2 个数字都减去 20 ，子数组变成 [0, 2, 0, 2, 0] 。</span><br><span class="line">  - 选择 [0, 2, 0, 2, 0] 和 k = 1 。将 2 个数字都减去 21 ，子数组变成 [0, 0, 0, 0, 0] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,10,4]</span><br><span class="line">输出：0</span><br><span class="line">解释：nums 中没有任何美丽子数组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 106</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-336/problems/count-the-number-of-beautiful-subarrays/">https://leetcode.cn/contest/weekly-contest-336/problems/count-the-number-of-beautiful-subarrays/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>本题与力扣的某个题目基本上是一模一样的，由于每次减法两个数的第 $i$ 位，即一定存在两个数的第 $i$ 位均为 $1$。我们用 $mask$ 表示子序列中第 $i$ 位的数目的统计情况，存在奇数个元素的第 $i$ 位的为 $1$ ，此时 $mask$ 的第 $i$ 位为 $1$，否则第 $i$ 位为 $0$。如果满足题目要求，则我们知道一定满足存在偶数个元素使得其相同的第 $k$ 位都一定为 $1$，这样我们才能执行同时减去 $2^k$。我们找到当前前缀中 $mask$ 的每一位的奇偶性与当前的奇偶性相同的位置的个数，则从这些位置 $j$ 到 当前位置$i$ 之间的子序列构成的 一定满足题目要求。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为数组的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 为数组的长度。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">beautifulSubarrays</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="type">int</span> mask = <span class="number">0</span>;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        cnt[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            mask ^= nums[i];</span><br><span class="line">            ans += cnt[mask]; </span><br><span class="line">            cnt[mask]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="6318-完成所有任务的最少时间"><a href="#6318-完成所有任务的最少时间" class="headerlink" title="6318. 完成所有任务的最少时间"></a>6318. 完成所有任务的最少时间</h3><p>你有一台电脑，它可以 <strong>同时</strong> 运行无数个任务。给你一个二维整数数组 <code>tasks</code> ，其中 <code>tasks[i] = [starti, endi, durationi]</code> 表示第 <code>i</code> 个任务需要在 <strong>闭区间</strong> 时间段 <code>[starti, endi]</code> 内运行 <code>durationi</code> 个整数时间点（但不需要连续）。</p>
+<p>当电脑需要运行任务时，你可以打开电脑，如果空闲时，你可以将电脑关闭。</p>
+<p>请你返回完成所有任务的情况下，电脑最少需要运行多少秒。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：tasks = [[2,3,1],[4,5,1],[1,5,2]]</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">- 第一个任务在闭区间 [2, 2] 运行。</span><br><span class="line">- 第二个任务在闭区间 [5, 5] 运行。</span><br><span class="line">- 第三个任务在闭区间 [2, 2] 和 [5, 5] 运行。</span><br><span class="line">电脑总共运行 2 个整数时间点。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：tasks = [[1,3,2],[2,5,3],[5,6,2]]</span><br><span class="line">输出：4</span><br><span class="line">解释：</span><br><span class="line">- 第一个任务在闭区间 [2, 3] 运行</span><br><span class="line">- 第二个任务在闭区间 [2, 3] 和 [5, 5] 运行。</span><br><span class="line">- 第三个任务在闭区间 [5, 6] 运行。</span><br><span class="line">电脑总共运行 4 个整数时间点。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= tasks.length &lt;= 2000</code></li>
+<li><code>tasks[i].length == 3</code></li>
+<li><code>1 &lt;= starti, endi &lt;= 2000</code></li>
+<li><code>1 &lt;= durationi &lt;= endi - starti + 1</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/">https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 贪心</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>最开始的贪心策略想错了，想成每次选择重叠数目最多的时间点了，这样我们就可能尽可能的少，但实际存在错误。实际的贪心规则时，优先选择每个序列每个区间的后缀，这样就能保证在去区间的时候尽量保证做到最优。<ul>
+<li>首先按照结束时间从小到大进行排序；</li>
+<li>用数组标记已经取过的时间点，依次统计当前区间已经覆盖的时间点 $count$，如果 $count &lt; tasks[i][2]$，表示还需要再该区间中再取部分点，此时我们依次从右向左取未访问过的时间点，直到 $count &#x3D;&#x3D; tasks[i][2]$ 时结束；</li>
+<li>对已经访问过的点同时进行标记。</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times U)$，其中$ n$ 表示数组的长度，$U$ 表示题目中的左右边界的最大值。</li>
+<li>空间复杂度：$O(U)$。其中 $U$ 表示题目中的左右边界的最大值。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMinimumTime</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; tasks)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(tasks.<span class="built_in">begin</span>(), tasks.<span class="built_in">end</span>(), [&amp;](<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp;a, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp;b) &#123;</span><br><span class="line">           <span class="keyword">return</span> a[<span class="number">1</span>] &lt; b[<span class="number">1</span>]; </span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> n = tasks.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> total = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visit</span><span class="params">(<span class="number">2002</span>, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> start = tasks[i][<span class="number">0</span>], end = tasks[i][<span class="number">1</span>];</span><br><span class="line">            <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = start; j &lt;= end; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (visit[j]) &#123;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (count &gt;= tasks[i][<span class="number">2</span>]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = end, k = tasks[i][<span class="number">2</span>] - count; j &gt;= start &amp;&amp; k &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!visit[j]) &#123;</span><br><span class="line">                    visit[j] = <span class="literal">true</span>;</span><br><span class="line">                    total++;</span><br><span class="line">                    k--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#力扣周赛" >
+    <span class="tag-code">力扣周赛</span>
+  </a>
+
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2023/03/05/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/105/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode weekly contest 335
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2023/03/12/%E4%B8%AA%E4%BA%BA%E9%97%B2%E8%B0%88/82/">
+        
+          【2023】新年计划
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-weekly-contest-336"><span class="toc-nav-text">leetcode weekly contest 336</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6315-%E7%BB%9F%E8%AE%A1%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E5%85%83%E9%9F%B3%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0"><span class="toc-nav-text">6315. 统计范围内的元音字符串数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6316-%E9%87%8D%E6%8E%92%E6%95%B0%E7%BB%84%E4%BB%A5%E5%BE%97%E5%88%B0%E6%9C%80%E5%A4%A7%E5%89%8D%E7%BC%80%E5%88%86%E6%95%B0"><span class="toc-nav-text">6316. 重排数组以得到最大前缀分数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6317-%E7%BB%9F%E8%AE%A1%E7%BE%8E%E4%B8%BD%E5%AD%90%E6%95%B0%E7%BB%84%E6%95%B0%E7%9B%AE"><span class="toc-nav-text">6317. 统计美丽子数组数目</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6318-%E5%AE%8C%E6%88%90%E6%89%80%E6%9C%89%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%9C%80%E5%B0%91%E6%97%B6%E9%97%B4"><span class="toc-nav-text">6318. 完成所有任务的最少时间</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2023/03/12/力扣周赛题解/106/';
+    var banner = '力扣周赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2023 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>
