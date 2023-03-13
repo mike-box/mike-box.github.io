@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode weekly contest 334 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode weekly contest 334</h2>
+  <p class="post-date">2023-02-28</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-weekly-contest-334"><a href="#leetcode-weekly-contest-334" class="headerlink" title="leetcode weekly contest 334"></a>leetcode weekly contest 334</h2><p>本场周赛的题目确实不算太难。</p>
+<h3 id="2574-左右元素和的差值"><a href="#2574-左右元素和的差值" class="headerlink" title="2574. 左右元素和的差值"></a>2574. 左右元素和的差值</h3><p>给你一个下标从 <code>0</code> 开始的整数数组 <code>nums</code> ，请你找出一个下标从 <code>0</code> 开始的整数数组 <code>answer</code> ，其中：</p>
+<ul>
+<li><code>answer.length == nums.length</code></li>
+<li><code>answer[i] = |leftSum[i] - rightSum[i]|</code><br>其中：</li>
+<li><code>leftSum[i]</code> 是数组 <code>nums</code> 中下标 <code>i</code> 左侧元素之和。如果不存在对应的元素，<code>leftSum[i] = 0</code> 。</li>
+<li><code>rightSum[i]</code> 是数组 <code>nums</code> 中下标 <code>i</code> 右侧元素之和。如果不存在对应的元素，<code>rightSum[i] = 0</code> 。<br>返回数组 answer 。</li>
+</ul>
+<p> </p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [10,4,8,3]</span><br><span class="line">输出：[15,1,11,22]</span><br><span class="line">解释：数组 leftSum 为 [0,10,14,22] 且数组 rightSum 为 [15,11,3,0] 。</span><br><span class="line">数组 answer 为 [|0 - 15|,|10 - 11|,|14 - 3|,|22 - 0|] = [15,1,11,22] 。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1]</span><br><span class="line">输出：[0]</span><br><span class="line">解释：数组 leftSum 为 [0] 且数组 rightSum 为 [0] 。</span><br><span class="line">数组 answer 为 [|0 - 0|] = [0] 。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/left-and-right-sum-differences/">https://leetcode.cn/problems/left-and-right-sum-differences/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>简单题目，利用前缀和直接计算即可；</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为数组的长度。</li>
+<li>空间复杂度：$O(n)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">leftRightDifference</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">left</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">right</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            left[i + <span class="number">1</span>] = left[i] + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            right[i] = right[i + <span class="number">1</span>] + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            ans[i] = <span class="built_in">abs</span>(left[i] - right[i + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2575-找出字符串的可整除数组"><a href="#2575-找出字符串的可整除数组" class="headerlink" title="2575. 找出字符串的可整除数组"></a>2575. 找出字符串的可整除数组</h3><p>给你一个下标从 <code>0</code> 开始的字符串 <code>word</code> ，长度为 <code>n</code> ，由从 <code>0</code> 到 <code>9</code> 的数字组成。另给你一个正整数 <code>m</code> 。</p>
+<p><code>word</code> 的 可整除数组 <code>div</code>  是一个长度为 <code>n</code> 的整数数组，并满足：</p>
+<p>如果 <code>word[0,...,i]</code> 所表示的 数值 能被 <code>m</code> 整除，<code>div[i] = 1</code><br>否则，<code>div[i] = 0</code><br>返回 <code>word</code> 的可整除数组。</p>
+<p> </p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：word = &quot;998244353&quot;, m = 3</span><br><span class="line">输出：[1,1,0,0,0,1,1,0,0]</span><br><span class="line">解释：仅有 4 个前缀可以被 3 整除：&quot;9&quot;、&quot;99&quot;、&quot;998244&quot; 和 &quot;9982443&quot; 。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：word = &quot;1010&quot;, m = 10</span><br><span class="line">输出：[0,1,0,1]</span><br><span class="line">解释：仅有 2 个前缀可以被 10 整除：&quot;10&quot; 和 &quot;1010&quot; 。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>word.length == n</code></li>
+<li><code>word</code> 由数字 <code>0</code> 到 <code>9</code> 组成</li>
+<li><code>1 &lt;= m &lt;= 109</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-divisibility-array-of-a-string">https://leetcode.cn/problems/find-the-divisibility-array-of-a-string</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>直接计算
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们直接计算即可，关键问题在于我们不能直接取大数，可以可以编辑算边对计算结果进行取模，这样就可以避免大数计算溢出的问题。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为字符串的长度。</li>
+<li>空间复杂度：$O(n)$，主要为排序需要空间。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">divisibilityArray</span><span class="params">(string word, <span class="type">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = word.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> curr = <span class="number">0</span>;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            curr = (curr * <span class="number">10</span> + word[i] - <span class="string">&#x27;0&#x27;</span>) % m;</span><br><span class="line">            <span class="keyword">if</span> (curr == <span class="number">0</span>) &#123;</span><br><span class="line">                ans.<span class="built_in">emplace_back</span>(<span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ans.<span class="built_in">emplace_back</span>(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2576-求出最多标记下标"><a href="#2576-求出最多标记下标" class="headerlink" title="2576. 求出最多标记下标"></a>2576. 求出最多标记下标</h3><p>给你一个下标从 <code>0</code> 开始的整数数组 <code>nums</code> 。</p>
+<p>一开始，所有下标都没有被标记。你可以执行以下操作任意次：</p>
+<p>选择两个 互不相同且未标记 的下标 <code>i</code> 和 <code>j</code> ，满足 <code>2 * nums[i] &lt;= nums[j]</code> ，标记下标 <code>i</code> 和 <code>j </code>。<br>请你执行上述操作任意次，返回 <code>nums</code> 中最多可以标记的下标数目。</p>
+<p> </p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,5,2,4]</span><br><span class="line">输出：2</span><br><span class="line">解释：第一次操作中，选择 i = 2 和 j = 1 ，操作可以执行的原因是 2 * nums[2] &lt;= nums[1] ，标记下标 2 和 1 。</span><br><span class="line">没有其他更多可执行的操作，所以答案为 2 。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [9,2,5,4]</span><br><span class="line">输出：4</span><br><span class="line">解释：第一次操作中，选择 i = 3 和 j = 0 ，操作可以执行的原因是 2 * nums[3] &lt;= nums[0] ，标记下标 3 和 0 。</span><br><span class="line">第二次操作中，选择 i = 1 和 j = 2 ，操作可以执行的原因是 2 * nums[1] &lt;= nums[2] ，标记下标 1 和 2 。</span><br><span class="line">没有其他更多可执行的操作，所以答案为 4 。</span><br></pre></td></tr></table></figure>
+<p>示例 3：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [7,6,8]</span><br><span class="line">输出：0</span><br><span class="line">解释：没有任何可以执行的操作，所以答案为 0 。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-maximum-number-of-marked-indices/">https://leetcode.cn/problems/find-the-maximum-number-of-marked-indices/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 双指针</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>首先想到的就是要对数组进行排序，只有排序后我们才尽可能的使用贪心算法。我们通过比对发现数组最多只能有 $\frac{n}{2}$ 个配对，因此我们可以尽量使用贪心法：</li>
+</ol>
+<ul>
+<li>假设数组存在 $\frac{n}{2}$ 个配对，则一定满足 $nums[i]$ 可以与 $nums[i + \dfrac{n}{2}]$ 一定可以完成配对；</li>
+<li>因此我们最优探测法，应该从 $(0, \frac{n}{2})$ 索引开始配对，我们令 $i &#x3D; 0, j &#x3D; \frac{n}{2}$：<ul>
+<li>如果 $nums[i] * 2 &gt; nums[j]$，此时我们需要将 $j$ 往右移动;</li>
+<li>如果 $nums[i] * 2 \le nums[j]$，此时我们需要将 $i,j$ 同时往右移动;</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>二分法的思路可能更容易理解，假设我们可以找到 $k$ 对配对，则可以知道一定满足最小的 $k$ 个数可以与最大的 $k$ 个数进行配对，否一定无法完成配对，如果题目存在 $k$ 个配对，则一定存在 $k-1$ 个配对；如果题目中无法满足 $k$ 个配对，则一定无法满足 $k+1$ 个配对，满足单调性；</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 为数组的长度。</li>
+<li>空间复杂度：$O(\log n)$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><ul>
+<li><p>双指针</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxNumOfMarkedIndices</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = n / <span class="number">2</span>; i &lt; n / <span class="number">2</span> &amp;&amp; j &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &lt; n &amp;&amp; nums[j] &lt; nums[i] * <span class="number">2</span>) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (j &lt; n) &#123;</span><br><span class="line">                ans += <span class="number">2</span>;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>二分查找</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxNumOfMarkedIndices</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">auto</span> check = [&amp;](<span class="type">int</span> k)-&gt; <span class="type">bool</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] * <span class="number">2</span> &gt; nums[n - k + i]) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="type">int</span> L = <span class="number">0</span>, R = n / <span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (L &lt;= R) &#123;</span><br><span class="line">            <span class="type">int</span> mid = L + (R - L) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">check</span>(mid)) &#123;</span><br><span class="line">                ans = mid * <span class="number">2</span>;</span><br><span class="line">                L = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                R = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="2577-在网格图中访问一个格子的最少时间"><a href="#2577-在网格图中访问一个格子的最少时间" class="headerlink" title="2577. 在网格图中访问一个格子的最少时间"></a>2577. 在网格图中访问一个格子的最少时间</h3><p>给你一个 <code>m x n</code> 的矩阵 <code>grid</code> ，每个元素都为非负整数，其中 <code>grid[row][col]</code> 表示可以访问格子 <code>(row, col)</code> 的 最早 时间。也就是说当你访问格子 <code>(row, col)</code> 时，最少已经经过的时间为 <code>grid[row][col]</code> 。</p>
+<p>你从 最左上角 出发，出发时刻为 <code>0</code> ，你必须一直移动到上下左右相邻四个格子中的 任意 一个格子（即不能停留在格子上）。每次移动都需要花费 <code>1</code> 单位时间。</p>
+<p>请你返回 最早 到达右下角格子的时间，如果你无法到达右下角的格子，请你返回 <code>-1</code> 。</p>
+<p> </p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [[0,1,3,2],[5,1,2,5],[4,3,8,6]]</span><br><span class="line">输出：7</span><br><span class="line">解释：一条可行的路径为：</span><br><span class="line">- 时刻 t = 0 ，我们在格子 (0,0) 。</span><br><span class="line">- 时刻 t = 1 ，我们移动到格子 (0,1) ，可以移动的原因是 grid[0][1] &lt;= 1 。</span><br><span class="line">- 时刻 t = 2 ，我们移动到格子 (1,1) ，可以移动的原因是 grid[1][1] &lt;= 2 。</span><br><span class="line">- 时刻 t = 3 ，我们移动到格子 (1,2) ，可以移动的原因是 grid[1][2] &lt;= 3 。</span><br><span class="line">- 时刻 t = 4 ，我们移动到格子 (1,1) ，可以移动的原因是 grid[1][1] &lt;= 4 。</span><br><span class="line">- 时刻 t = 5 ，我们移动到格子 (1,2) ，可以移动的原因是 grid[1][2] &lt;= 5 。</span><br><span class="line">- 时刻 t = 6 ，我们移动到格子 (1,3) ，可以移动的原因是 grid[1][3] &lt;= 6 。</span><br><span class="line">- 时刻 t = 7 ，我们移动到格子 (2,3) ，可以移动的原因是 grid[2][3] &lt;= 7 。</span><br><span class="line">最终到达时刻为 7 。这是最早可以到达的时间。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [[0,2,4],[3,2,1],[1,0,4]]</span><br><span class="line">输出：-1</span><br><span class="line">解释：没法从左上角按题目规定走到右下角。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>2 &lt;= m, n &lt;= 1000</code></li>
+<li><code>4 &lt;= m * n &lt;= 105</code></li>
+<li><code>0 &lt;= grid[i][j] &lt;= 105</code></li>
+<li><code>grid[0][0] == 0</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/">https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> dijistra</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目要求求出到达终点的最早时间，实际上假如我们知道每个格子的最早到达时间，则相应的我们即可求出终点的最早到达时间。思考如下：</li>
+</ol>
+<ul>
+<li>如果我们到达格子 $(i,j)$ 的最早时间为 $t$，则其到达 $(i,j + 1)$ 的最早时间是多少呢？分类讨论如下：<ul>
+<li>假设 $t + 1 \ge grid[i][j + 1]$，即 $t + 1$ 满足 $(i, j + 1)$ 最早到达时间，此时我们可以认为 $(i, j + 1)$ 的最早到达时间为可能为 $t + 1$；</li>
+<li>假设 $t + 1 &lt; grid[i][j + 1]$，即 $t + 1$ 无法满足 $(i, j + 1)$ 最早到达时间，我们可以退一个格子然后再跳回到 $(i, j + 1)$，直到满足 $grid[i][j + 1]$ 的要求，此时我们思考一下，最少需要跳的步数为 $step &#x3D; grid[i][j + 1] - t$，由于每次来回跳需要的步数总是偶数，如果 $step$ 为奇数的话，我们可以来回跳 $step - 1$ 步，最后在 $step$ 步从 $(i, j)$ 跳到 $(i, j + 1)$，如果 $step$ 为偶数的话，我们可以来回跳 $step$ 步，然后在 $step + 1$ 从 $(i, j)$ 跳到 $(i, j + 1)$。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>为了快速计算，我们用 $dijistra$ 算法，这样就使得最早的步骤先进行计算，即可快速的得到每个格子的最早达到步数。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(m \times n \times \log (mn))$，其中 $m,n$ 为字符串的长度。</li>
+<li>空间复杂度：$O(mn)$。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumTime</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (grid[<span class="number">0</span>][<span class="number">1</span>] &gt; <span class="number">1</span> &amp;&amp; grid[<span class="number">1</span>][<span class="number">0</span>] &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">typedef</span> tuple&lt;<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>&gt; Node;</span><br><span class="line">        <span class="type">int</span> m = grid.<span class="built_in">size</span>(), n = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(m, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, INT_MAX));</span><br><span class="line">        priority_queue&lt;Node, vector&lt;Node&gt;, greater&lt;Node&gt;&gt; pq;</span><br><span class="line">        <span class="type">int</span> dir[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">        pq.<span class="built_in">emplace</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!pq.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">auto</span> [time, x, y] = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span> (x == m - <span class="number">1</span> &amp;&amp; y == n - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> time;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">                <span class="type">int</span> nx = x + dir[i][<span class="number">0</span>];</span><br><span class="line">                <span class="type">int</span> ny = y + dir[i][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span> (nx &gt;= <span class="number">0</span> &amp;&amp; ny &gt;= <span class="number">0</span> &amp;&amp; nx &lt; m &amp;&amp; ny &lt; n &amp;&amp; time + <span class="number">1</span> &lt; dp[nx][ny]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (time + <span class="number">1</span> &gt;= grid[nx][ny]) &#123;</span><br><span class="line">                        dp[nx][ny] = time + <span class="number">1</span>;</span><br><span class="line">                        pq.<span class="built_in">emplace</span>(time + <span class="number">1</span>, nx, ny);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="type">int</span> step = grid[nx][ny] + ((grid[nx][ny] - time) % <span class="number">2</span> == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">                        dp[nx][ny] = step;</span><br><span class="line">                        pq.<span class="built_in">emplace</span>(step, nx, ny);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#力扣周赛" >
+    <span class="tag-code">力扣周赛</span>
+  </a>
+
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2023/02/20/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/102/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode weekly contest 333
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2023/03/05/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/104/">
+        
+          leetcode weekly biweekly contest 99
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-weekly-contest-334"><span class="toc-nav-text">leetcode weekly contest 334</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2574-%E5%B7%A6%E5%8F%B3%E5%85%83%E7%B4%A0%E5%92%8C%E7%9A%84%E5%B7%AE%E5%80%BC"><span class="toc-nav-text">2574. 左右元素和的差值</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2575-%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84"><span class="toc-nav-text">2575. 找出字符串的可整除数组</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2576-%E6%B1%82%E5%87%BA%E6%9C%80%E5%A4%9A%E6%A0%87%E8%AE%B0%E4%B8%8B%E6%A0%87"><span class="toc-nav-text">2576. 求出最多标记下标</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2577-%E5%9C%A8%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E8%AE%BF%E9%97%AE%E4%B8%80%E4%B8%AA%E6%A0%BC%E5%AD%90%E7%9A%84%E6%9C%80%E5%B0%91%E6%97%B6%E9%97%B4"><span class="toc-nav-text">2577. 在网格图中访问一个格子的最少时间</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2023/02/28/力扣周赛题解/103/';
+    var banner = '力扣周赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2023 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>

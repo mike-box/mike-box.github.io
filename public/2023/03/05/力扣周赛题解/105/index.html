@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode weekly contest 335 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode weekly contest 335</h2>
+  <p class="post-date">2023-03-05</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-weekly-contest-335"><a href="#leetcode-weekly-contest-335" class="headerlink" title="leetcode weekly contest 335"></a>leetcode weekly contest 335</h2><p>本场周赛的题目的第三题确实比较好的题目，难得见到高质量的第三题。</p>
+<h3 id="6307-递枕头"><a href="#6307-递枕头" class="headerlink" title="6307. 递枕头"></a>6307. 递枕头</h3><p><code>n</code> 个人站成一排，按从 <code>1</code> 到 <code>n</code> 编号。</p>
+<p>最初，排在队首的第一个人拿着一个枕头。每秒钟，拿着枕头的人会将枕头传递给队伍中的下一个人。一旦枕头到达队首或队尾，传递方向就会改变，队伍会继续沿相反方向传递枕头。</p>
+<ul>
+<li>例如，当枕头到达第 <code>n</code> 个人时，TA 会将枕头传递给第 <code>n - 1</code> 个人，然后传递给第 <code>n - 2</code> 个人，依此类推。</li>
+</ul>
+<p>给你两个正整数 <code>n</code> 和 <code>time</code> ，返回 <code>time</code> 秒后拿着枕头的人的编号。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 4, time = 5</span><br><span class="line">输出：2</span><br><span class="line">解释：队伍中枕头的传递情况为：1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 3 -&gt; 2 。</span><br><span class="line">5 秒后，枕头传递到第 2 个人手中。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 3, time = 2</span><br><span class="line">输出：3</span><br><span class="line">解释：队伍中枕头的传递情况为：1 -&gt; 2 -&gt; 3 。</span><br><span class="line">2 秒后，枕头传递到第 3 个人手中。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= n &lt;= 1000</code></li>
+<li><code>1 &lt;= time &lt;= 1000</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-335/problems/pass-the-pillow/">https://leetcode.cn/contest/weekly-contest-335/problems/pass-the-pillow/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>找规律即可
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>每次来回需要花费的时间为 $2*(n - 1)$，我们对 $2*(n - 1)$ 进行取模：</li>
+</ol>
+<ul>
+<li>如果余数大于 $n - 1$，此时需要的位置为 $2 * n - x - 1$;</li>
+<li>如果余数小于等于 $n - 1$，此时需要的位置为 $1 + x$;</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(1)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">passThePillow</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> x = time % (<span class="number">2</span> * ( n - <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= n - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span> + x;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span> * n - x - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6308-二叉树中的第-K-大层和"><a href="#6308-二叉树中的第-K-大层和" class="headerlink" title="6308. 二叉树中的第 K 大层和"></a>6308. 二叉树中的第 K 大层和</h3><p>给你一棵二叉树的根节点 <code>root</code> 和一个正整数 <code>k</code> 。</p>
+<p>树中的 <strong>层和</strong> 是指 <strong>同一层</strong> 上节点值的总和。</p>
+<p>返回树中第 <code>k</code> 大的层和（不一定不同）。如果树少于 <code>k</code> 层，则返回 <code>-1</code> 。</p>
+<p><strong>注意</strong>，如果两个节点与根节点的距离相同，则认为它们在同一层。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/12/14/binaryytreeedrawio-2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [5,8,9,2,1,3,7,4,6], k = 2</span><br><span class="line">输出：13</span><br><span class="line">解释：树中每一层的层和分别是：</span><br><span class="line">- Level 1: 5</span><br><span class="line">- Level 2: 8 + 9 = 17</span><br><span class="line">- Level 3: 2 + 1 + 3 + 7 = 13</span><br><span class="line">- Level 4: 4 + 6 = 10</span><br><span class="line">第 2 大的层和等于 13 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/12/14/treedrawio-3.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [1,2,null,3], k = 1</span><br><span class="line">输出：3</span><br><span class="line">解释：最大的层和是 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>树中的节点数为 <code>n</code></li>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>1 &lt;= Node.val &lt;= 106</code></li>
+<li><code>1 &lt;= k &lt;= n</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-335/problems/kth-largest-sum-in-a-binary-tree/">https://leetcode.cn/contest/weekly-contest-335/problems/kth-largest-sum-in-a-binary-tree/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>层次遍历
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接利用 $BFS$ 将二叉树中所有层次的和求出来，然后将其排序取最大的第 $k$ 的数即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为二叉树节点的数目。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 为二叉树节点的数目。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">kthLargestLevelSum</span><span class="params">(TreeNode* root, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; arr;</span><br><span class="line">        queue&lt;TreeNode *&gt; qu;</span><br><span class="line">        qu.<span class="built_in">emplace</span>(root);</span><br><span class="line">        <span class="keyword">while</span> (!qu.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="type">int</span> sz = qu.<span class="built_in">size</span>();</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> curr = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">                TreeNode * node = qu.<span class="built_in">front</span>();</span><br><span class="line">                qu.<span class="built_in">pop</span>();</span><br><span class="line">                curr += node-&gt;val;</span><br><span class="line">                <span class="keyword">if</span> (node-&gt;left) &#123;</span><br><span class="line">                    qu.<span class="built_in">emplace</span>(node-&gt;left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (node-&gt;right) &#123;</span><br><span class="line">                    qu.<span class="built_in">emplace</span>(node-&gt;right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            arr.<span class="built_in">emplace_back</span>(curr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>(), [&amp;](<span class="type">long</span> <span class="type">long</span> a, <span class="type">long</span> <span class="type">long</span> b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a &gt; b;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">if</span> (arr.<span class="built_in">size</span>() &lt; k) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr[k - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6309-分割数组使乘积互质"><a href="#6309-分割数组使乘积互质" class="headerlink" title="6309. 分割数组使乘积互质"></a>6309. 分割数组使乘积互质</h3><p>给你一个长度为 <code>n</code> 的整数数组 <code>nums</code> ，下标从 <strong>0</strong> 开始。</p>
+<p>如果在下标 <code>i</code> 处 <strong>分割</strong> 数组，其中 <code>0 &lt;= i &lt;= n - 2</code> ，使前 <code>i + 1</code> 个元素的乘积和剩余元素的乘积互质，则认为该分割 <strong>有效</strong> 。</p>
+<ul>
+<li>例如，如果 <code>nums = [2, 3, 3]</code> ，那么在下标 <code>i = 0</code> 处的分割有效，因为 <code>2</code> 和 <code>9</code> 互质，而在下标 <code>i = 1</code> 处的分割无效，因为 <code>6</code> 和 <code>3</code> 不互质。在下标 <code>i = 2</code> 处的分割也无效，因为 <code>i == n - 1</code> 。</li>
+</ul>
+<p>返回可以有效分割数组的最小下标 <code>i</code> ，如果不存在有效分割，则返回 <code>-1</code> 。</p>
+<p>当且仅当 <code>gcd(val1, val2) == 1</code> 成立时，<code>val1</code> 和 <code>val2</code> 这两个值才是互质的，其中 <code>gcd(val1, val2)</code> 表示 <code>val1</code> 和 <code>val2</code> 的最大公约数。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/12/14/second.PNG" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,7,8,15,3,5]</span><br><span class="line">输出：2</span><br><span class="line">解释：上表展示了每个下标 i 处的前 i + 1 个元素的乘积、剩余元素的乘积和它们的最大公约数的值。</span><br><span class="line">唯一一个有效分割位于下标 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/12/14/capture.PNG" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,7,15,8,3,5]</span><br><span class="line">输出：-1</span><br><span class="line">解释：上表展示了每个下标 i 处的前 i + 1 个元素的乘积、剩余元素的乘积和它们的最大公约数的值。</span><br><span class="line">不存在有效分割。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == nums.length</code></li>
+<li><code>1 &lt;= n &lt;= 104</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 106</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-335/problems/split-the-array-to-make-coprime-products/">https://leetcode.cn/contest/weekly-contest-335/problems/split-the-array-to-make-coprime-products/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 质数区+间合并</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>对每个元素的质因子分解，并求出所有的含有质因子 $x$ 覆盖的最大区间为 $[start, end]$，这表示区间 $[start,end]$ 在划分时一定要划分到一起，要么全部划分到左边，要么全部划分到右边，我们在筛选时没有必要筛选 $[2,U]$，实际我们只需要筛选 $[2,\sqrt{U}]$ 即可，将 $[2,\sqrt{U}]$ 筛选完成后，剩下的数必然为质数。</li>
+<li>我们假设质数 $a$ 的覆盖区间为 $[l_1,r_1]$，质数 $b$ 的覆盖区间为 $[l_2,r_2]$，假设二者之间存在交集，则可以推出这两个区间一定需要划分在一个分组中，即这两个区间可以合并为 $[\min(l_1,l_2),\max(r_1,r_2)]$，参考「<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-ways-to-group-overlapping-ranges/">6313. 统计将重叠区间合并成组的方案数</a>」我们找到左侧第一个不相交的集合并从该处划分开即可。<br>假设存在数组 $[2,6,4,3]$，此时我们知道含有质因子 $2$ 必须要划分在一起的区间为 $[0,2]$，含有质因子 $3$ 必须要划分在一起的区间为 $[1,3]$，此时由于二者存在交集，因此 $[0,4]$ 这个区间中所有数必须要划分在同一个分组中，否则不能满足题目要求。</li>
+<li>我们将质因子覆盖的区间从小到大进行排序，并对从左到右进行合并，找到第一个不想交的区间，即可从此处划分开来。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log U )$，其中 $n$ 为数组的长度，$U$ 表示数组中的最大元素。</li>
+<li>空间复杂度：$O(\log U)$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findValidSplit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> maxVal = *<span class="built_in">max_element</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> m = <span class="built_in">sqrt</span>(maxVal) + <span class="number">3</span>;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; primer;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visit</span><span class="params">(m + <span class="number">1</span>, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visit[i]) &#123;</span><br><span class="line">                primer.<span class="built_in">emplace_back</span>(i);</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt;= m; j += i) &#123;</span><br><span class="line">                    visit[i] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, vector&lt;<span class="type">int</span>&gt;&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = nums[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> p : primer) &#123;</span><br><span class="line">                <span class="keyword">if</span> (p &gt; x) <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">if</span> (x % p) <span class="keyword">continue</span>;</span><br><span class="line">                cnt[p].<span class="built_in">emplace_back</span>(i);</span><br><span class="line">                <span class="keyword">while</span> (x % p == <span class="number">0</span>) &#123;</span><br><span class="line">                    x /= p;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (x &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                cnt[x].<span class="built_in">emplace_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cnt.<span class="built_in">size</span>() &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; arr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [_, v] : cnt) &#123;</span><br><span class="line">            arr.<span class="built_in">emplace_back</span>(v[<span class="number">0</span>], v.<span class="built_in">back</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> last = arr[<span class="number">0</span>].second;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; arr.<span class="built_in">size</span>() &amp;&amp; arr[i].first &lt;= last) &#123;</span><br><span class="line">            last = <span class="built_in">max</span>(last, arr[i].second);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; arr.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> last;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="6310-获得分数的方法数"><a href="#6310-获得分数的方法数" class="headerlink" title="6310. 获得分数的方法数"></a>6310. 获得分数的方法数</h3><p>考试中有 <code>n</code> 种类型的题目。给你一个整数 <code>target</code> 和一个下标从 <strong>0</strong> 开始的二维整数数组 <code>types</code> ，其中 <code>types[i] = [counti, marksi] </code>表示第 <code>i</code> 种类型的题目有 <code>counti</code> 道，每道题目对应 <code>marksi</code> 分。</p>
+<p>返回你在考试中恰好得到 <code>target</code> 分的方法数。由于答案可能很大，结果需要对 <code>109 +7</code> 取余。</p>
+<p><strong>注意</strong>，同类型题目无法区分。</p>
+<ul>
+<li>比如说，如果有 <code>3</code> 道同类型题目，那么解答第 <code>1</code> 和第 <code>2</code> 道题目与解答第 <code>1</code> 和第 <code>3</code> 道题目或者第 <code>2</code> 和第 <code>3</code> 道题目是相同的。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：target = 6, types = [[6,1],[3,2],[2,3]]</span><br><span class="line">输出：7</span><br><span class="line">解释：要获得 6 分，你可以选择以下七种方法之一：</span><br><span class="line">- 解决 6 道第 0 种类型的题目：1 + 1 + 1 + 1 + 1 + 1 = 6</span><br><span class="line">- 解决 4 道第 0 种类型的题目和 1 道第 1 种类型的题目：1 + 1 + 1 + 1 + 2 = 6</span><br><span class="line">- 解决 2 道第 0 种类型的题目和 2 道第 1 种类型的题目：1 + 1 + 2 + 2 = 6</span><br><span class="line">- 解决 3 道第 0 种类型的题目和 1 道第 2 种类型的题目：1 + 1 + 1 + 3 = 6</span><br><span class="line">- 解决 1 道第 0 种类型的题目、1 道第 1 种类型的题目和 1 道第 2 种类型的题目：1 + 2 + 3 = 6</span><br><span class="line">- 解决 3 道第 1 种类型的题目：2 + 2 + 2 = 6</span><br><span class="line">- 解决 2 道第 2 种类型的题目：3 + 3 = 6</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：target = 5, types = [[50,1],[50,2],[50,5]]</span><br><span class="line">输出：4</span><br><span class="line">解释：要获得 5 分，你可以选择以下四种方法之一：</span><br><span class="line">- 解决 5 道第 0 种类型的题目：1 + 1 + 1 + 1 + 1 = 5</span><br><span class="line">- 解决 3 道第 0 种类型的题目和 1 道第 1 种类型的题目：1 + 1 + 1 + 2 = 5</span><br><span class="line">- 解决 1 道第 0 种类型的题目和 2 道第 1 种类型的题目：1 + 2 + 2 = 5</span><br><span class="line">- 解决 1 道第 2 种类型的题目：5</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：target = 18, types = [[6,1],[3,2],[2,3]]</span><br><span class="line">输出：1</span><br><span class="line">解释：只有回答所有题目才能获得 18 分。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= target &lt;= 1000</code></li>
+<li><code>n == types.length</code></li>
+<li><code>1 &lt;= n &lt;= 50</code></li>
+<li><code>types[i].length == 2</code></li>
+<li><code>1 &lt;= counti, marksi &lt;= 50</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/">https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>经典的动态规划，设 $dp[i][x]$ 表示在前 $i$ 组中取出分数为 $x$ 的方法数，此时我们可以得到递推公式:<br>$$<br>dp[i + 1][x] &#x3D; \sum_{k&#x3D;0}^{t_{i+1}[1]}dp[i][x - k * t_{i + 1}[0]]<br>$$<br>即最后一个分组的取值范围为 $k \times marks_i$，其中 $k \in [0, count_i]$，应该是经典的动态规划题目了。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(m \times n \times U)$，其中 $m$ 表示给定的分数，$n$ 表示题目类型的数目，$U$ 表示给定的题目最大数目。</li>
+<li>空间复杂度：$O(m \times n)$。其中 $m$ 表示给定的分数，$n$ 表示题目类型的数目。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">waysToReachTarget</span><span class="params">(<span class="type">int</span> target, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; types)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = types.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">long</span> <span class="type">long</span>&gt;&gt; <span class="built_in">dp</span>(target + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">long</span> <span class="type">long</span>&gt;(n + <span class="number">1</span>));</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= target; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt;= types[i][<span class="number">0</span>]; k++) &#123;</span><br><span class="line">                    <span class="type">int</span> x = k * types[i][<span class="number">1</span>] + j;</span><br><span class="line">                    <span class="keyword">if</span> (x &lt;= target) &#123;</span><br><span class="line">                        dp[x][i + <span class="number">1</span>] = (dp[x][i + <span class="number">1</span>] + dp[j][i]) % mod;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>  dp[target][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#力扣周赛" >
+    <span class="tag-code">力扣周赛</span>
+  </a>
+
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2023/03/05/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/104/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode weekly biweekly contest 99
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2023/03/12/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/106/">
+        
+          leetcode weekly contest 336
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-weekly-contest-335"><span class="toc-nav-text">leetcode weekly contest 335</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6307-%E9%80%92%E6%9E%95%E5%A4%B4"><span class="toc-nav-text">6307. 递枕头</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6308-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C"><span class="toc-nav-text">6308. 二叉树中的第 K 大层和</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6309-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E4%BD%BF%E4%B9%98%E7%A7%AF%E4%BA%92%E8%B4%A8"><span class="toc-nav-text">6309. 分割数组使乘积互质</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6310-%E8%8E%B7%E5%BE%97%E5%88%86%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95%E6%95%B0"><span class="toc-nav-text">6310. 获得分数的方法数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2023/03/05/力扣周赛题解/105/';
+    var banner = '力扣周赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2023 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>
