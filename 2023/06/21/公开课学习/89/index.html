@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      【CMU 15-445/645】lec5 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>【CMU 15-445/645】lec5</h2>
+  <p class="post-date">2023-06-21</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="CMU-15-445-x2F-645-Lec5"><a href="#CMU-15-445-x2F-645-Lec5" class="headerlink" title="CMU 15-445&#x2F;645 Lec5"></a>CMU 15-445&#x2F;645 Lec5</h2><h4 id="05-Storage-Models-amp-Compression"><a href="#05-Storage-Models-amp-Compression" class="headerlink" title="05 Storage Models &amp; Compression"></a>05 Storage Models &amp; Compression</h4><h4 id="DATA-B-A-S-E-W-O-R-K-LOA-D-S"><a href="#DATA-B-A-S-E-W-O-R-K-LOA-D-S" class="headerlink" title="DATA B A S E W O R K LOA D S"></a>DATA B A S E W O R K LOA D S</h4><ol>
+<li><code>OLTP</code>: On-Line Transaction Processing,  主要用来快速读取与更新数据，<code>OLTP</code> 最重要的是事务。对 <code>OLTP</code> 最重要的是要能够快速的读取与更新数据，但是查询功能较弱，典型的特征是写的频率远大于读的频率。</li>
+<li><code>OLAP</code>: On-Line Analytical Processing, 主要用来完成大量复杂的查询，主要用来进行数据的分析。<code>OLAP</code> 典型的特征时支持大批量且复杂的查询。<code>OLAP</code> 典型的工作场景是从 <code>OLTP</code> 数据库的收集数据，并对收集的数据进行查询与分析。</li>
+<li><code>HTAP</code>：Hybrid Transaction + Analytical Processing, 同时具有 <code>OLTP</code> 与 <code>OLAP</code> 的功能特征，同时既能很好的支持读写与更新数据，只能支持超大规模的复杂查询。</li>
+</ol>
+<h4 id="Storage-Models"><a href="#Storage-Models" class="headerlink" title="Storage Models"></a>Storage Models</h4><p>典型的为 <code>N-Ary Storage Model (NSM)</code> 与 <code>Decomposition Storage Model (DSM)</code>;</p>
+<ul>
+<li><p><code>NSM</code>: 也可成为行存储，数据库中表项中的每一行记录在 <code>page</code> 中连续存储，这种存储方式非常适合大量插入和更新，以及事务处理的 <code>OLTP</code> 类型数据库，因为只需要连续读取一次硬盘即可将某行的记录全部数据取出。</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306210954262.png"></p>
+<ul>
+<li>优点：插入、删除、更新速度很快，因为只需要读取一次 <code>page</code>中连续的存储区域即可，查询时方便查找整条记录，因为可以一次性读取整条记录；</li>
+<li>缺点：对于超大量的读取数据表中部分列数据非常低效，因为按照这样的存储方式需要将这个表中所有的记录全部读一遍。</li>
+</ul>
+</li>
+<li><p><code>DSM</code>:分解存储模型，也可以称为列存储模型，表项中每一列做为一个整体单独在 <code>page</code> 中连续存储。适合大规模的读取与复杂查询场景，这种存储方式非常适合<code>OLAP</code> 类型数据库。</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211032823.png"></p>
+<ul>
+<li>优点：可以有效的降低 <code>i/o</code> 的资源浪费，因为按照列存储， <code>DBMS</code> 只需要读取指定查询的列即可，对于不需要的数据可以不用去 <code>page</code> 中读取；更加便于复杂查询的优化执行与数据的压缩；</li>
+<li>缺点：由于每一列可能存放在不同的存储区域中中，对于单点查询、更新、删除、插入效率不如行存储模型，由于每一列都存放在不同的 <code>page</code> 中，更新或者删除一条记录需要同时更新多个不同的存储区域，实际效率较低</li>
+</ul>
+<p><code>DSM tuple id</code>:</p>
+<ul>
+<li><code>Fixed-length Offsets</code>: 表项中的每一列均含有固定长度，每一列的 <code>offset</code> 在即为该项在表中的 <code>id</code>编号，同一行中的不同列的数据在存储时具有相同的 <code>offset</code>，查找某一行的记录时只需要在每一列中通过指定 <code>offset</code> 即可找到该行的数据，要求表项中每一列都必须具备相同的长度；</li>
+<li><code>Embedded Tuple Ids</code>: 表项中的每一列均额外增加一个变量来存储其在表中的 <code>id</code>编号，每次查询给定的行时，直接通过查询该列中绑定的 <code>id</code> 即可，由于每一列都需要存储 <code>id</code>，这种存储方式的缺点是会带来额外的存储开销。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211045145.png"></p>
+<ul>
+<li>常见的数据库采用 <code>dsm</code>存储模型，绝大部分数据库均使用了<code>列存储</code></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211114522.png"></p>
+</li>
+</ul>
+<h4 id="Database-Compression"><a href="#Database-Compression" class="headerlink" title="Database Compression"></a>Database Compression</h4><p>数据压缩技术广泛应用在基于硬盘存储的  <code>dbms</code> 系统，由于  <code>disk i/o</code> 很容易成为  <code>dbms</code> 的性能瓶颈，通过数据压缩技术可以有效降低 <code>disk i/o</code> 吞吐量从而提高性能，特别是在大规模的只读统计与分析的场景，在进行压缩与解压缩之前，通过压缩技术<code>dbms</code> 可以提前从硬盘预读取更多的数据。基于内存型的数据在查询时，不需要从硬盘读取数据，但是通过压缩技术可以降低内存的使用率，因此它们需要更多的考虑压缩率与性能之间的平衡，毕竟更高的压缩率在压缩与解压缩时需要耗费更多的 <code>CPU cycle</code>会降低性能。</p>
+<p>压缩技术需要考虑的数据相关性，如果列中所有的数据均为随机码也就没有压缩的必要，但是真实的世界中数据集的分布总是存在一定的规律：</p>
+<ul>
+<li>数据集呈现出高度的偏态分布，大部分数据可能集中某个区间，而不是随机的正态分布，例如 <code>Zipfian distribution</code>；</li>
+<li>数据集呈现出高度的相关性，比如城市的邮政编码，日期等数据；</li>
+</ul>
+<p>基于以上对真实世界规律的观察，我们希望数据压缩尽可能的遵循以下原则：</p>
+<ul>
+<li>产生固定长度的值：这是由于 <code>dbms</code>在存储时数据元素固定长度存储，可以使用偏移量来读取源数据，效率高；</li>
+<li>允许在查询结果返回后再进行解压，便于提高性能，而不需要每次查询前都需要进行数据解压反而带来性能下降；</li>
+<li>必须是无损压缩：对于<code>dbms</code>来说，数据信息在压缩过程中丢失不可接受的，因此在压缩时必须保证信息不会丢失；</li>
+</ul>
+<h4 id="Compression-Granularity"><a href="#Compression-Granularity" class="headerlink" title="Compression Granularity"></a>Compression Granularity</h4><p>在进行压缩前我们需要确定采用什么样的压缩方式，具体到哪一层级进行压缩，一般常见的有以下层级压缩：</p>
+<ul>
+<li><code>Block Level</code>:  在同一个表中对部分数据块进行压缩，比如可以对同一个表中连续几行进行压缩；</li>
+<li><code>Tuple Level</code>: 对整个元组进行压缩，仅限于 <code>nsm</code>存储模式</li>
+<li><code>Attribute Level</code>: 对元组中的某一列属性进行压缩，可以压缩同一个元素中的多列属性。</li>
+<li><code>Columnar Level</code>：为多元组的一列或者多列进行压缩；</li>
+</ul>
+<h4 id="Naive-Compression"><a href="#Naive-Compression" class="headerlink" title="Naive Compression"></a>Naive Compression</h4><p>朴素压缩算法，常见的有 <code> gzip, LZO, LZ4, Snappy, Brotli, Oracle OZIP, Zstd</code>等压缩算法；</p>
+<ul>
+<li>比如 <code>mysql</code> 可以通过压缩技术将 <code>page</code> 压缩为大小为 $2^x$ <code>kb</code>的数据块，便于缓存进行预读取，读取时将需要的 <code>page</code>读取到内存中再进行解压缩；</li>
+<li>朴素的压缩算法虽然非常高效，但是使用场景有限，且没有关注数据内部的关联性；</li>
+</ul>
+<h4 id="Columnar-Compression"><a href="#Columnar-Compression" class="headerlink" title="Columnar Compression"></a>Columnar Compression</h4><ul>
+<li><p><code>Run-length Encoding </code>:  将单列中相同值的运行压缩为三元组，需要按照列的属性值进行排序，将相同的属性的值尽可能连续存放提高压缩率</p>
+<ul>
+<li>属性的值</li>
+<li>列段的起始位置</li>
+<li>列段的长度</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211203979.png"></p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211203743.png"></p>
+</li>
+<li><p><code>Bit-Packing Encoding </code>: 当属性的值始终小于该值声明的最大大小时，将它们存储为较小的数据类型。</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211208401.png"></p>
+</li>
+<li><p><code>Mostly Encoding</code>:  <code>Bit-Packing Encodin</code> 的变体，使用特殊标记来指示值何时超过最大大小，然后用额外的表存储这些特殊值。<br>存储它们的查找表。</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211213093.png"></p>
+</li>
+<li><p><code>Bitmap Encoding </code>: 位图，当列中属性值种类较少时，我们可以利用位图来标记每种属性即可，实际存放属性标记位图即可，但仅仅适用于属性值种类较少的情况。</p>
+</li>
+</ul>
+<p>  <img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211214230.png"></p>
+<ul>
+<li><p><code>Delta Encoding </code>:  记录数值之间的差异即可</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211216064.jpg"></p>
+</li>
+<li><p><code>Incremental Encoding </code>: 记录公共前缀或后缀及其长度，适用于排序数据</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211218658.png"></p>
+</li>
+<li><p><code>Dictionary Encoding</code>：基于字典的压缩编码，最常见的数据库压缩方法。用较小的代码替属性中的原始值，<code>dbms</code>中只存储这些代码和一个数据结构（即字典，可以通过将这些代码映射到它们的原始值。通过字典查找来快速实现 <code>Encoding and Decoding</code>，另外</p>
+<p>该编码需要支持范围查找与排序，即按照字典序编码后的排序结果要与编码前的排序结果保持一致，这样允许在查找时直接在编码后的结果上进行查找即可。</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202306211239266.png"></p>
+</li>
+</ul>
+<p>本章通过讲述了数据的存储结构基本信息，了解了数据中常见的数据类型等，需要通过下一章节详细了解数据库的存储结构。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><code>OLTP</code>: 行存储</li>
+<li><code>OLAP</code>: 列存储</li>
+<li><code>DBMS</code> 一般都会混合多种压缩方法，基于字典压缩编码是应用最广的一种压缩方法。</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#公开课学习" >
+    <span class="tag-code">公开课学习</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2023/06/19/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/126/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode weekly contes 349
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2023/06/21/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/87~1/">
+        
+          【CMU 15-445/645】lec2
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#CMU-15-445-x2F-645-Lec5"><span class="toc-nav-text">CMU 15-445&#x2F;645 Lec5</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#05-Storage-Models-amp-Compression"><span class="toc-nav-text">05 Storage Models &amp; Compression</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#DATA-B-A-S-E-W-O-R-K-LOA-D-S"><span class="toc-nav-text">DATA B A S E W O R K LOA D S</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Storage-Models"><span class="toc-nav-text">Storage Models</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Database-Compression"><span class="toc-nav-text">Database Compression</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Compression-Granularity"><span class="toc-nav-text">Compression Granularity</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Naive-Compression"><span class="toc-nav-text">Naive Compression</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Columnar-Compression"><span class="toc-nav-text">Columnar Compression</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-nav-text">总结</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2023/06/21/公开课学习/89/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2023 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>
