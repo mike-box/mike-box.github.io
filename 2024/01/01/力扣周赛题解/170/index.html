@@ -193,7 +193,7 @@
 
     <div id="article-banner">
   <h2>leetcode  contest 377</h2>
-  <p class="post-date">2023-12-29</p>
+  <p class="post-date">2024-01-01</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -235,7 +235,16 @@
 <h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numberGame</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        nums.sort()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(nums), <span class="number">2</span>):</span><br><span class="line">            nums[i], nums[i + <span class="number">1</span>] = nums[i + <span class="number">1</span>], nums[i]</span><br><span class="line">        <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="2975-移除栅栏得到的正方形田地的最大面积"><a href="#2975-移除栅栏得到的正方形田地的最大面积" class="headerlink" title="2975. 移除栅栏得到的正方形田地的最大面积"></a>2975. 移除栅栏得到的正方形田地的最大面积</h3><p>有一个大型的 <code>(m - 1) x (n - 1)</code> 矩形田地，其两个对角分别是 <code>(1, 1)</code> 和 <code>(m, n)</code> ，田地内部有一些水平栅栏和垂直栅栏，分别由数组 <code>hFences</code> 和 <code>vFences</code> 给出。</p>
+<h3 id="2975-移除栅栏得到的正方形田地的最大面积"><a href="#2975-移除栅栏得到的正方形田地的最大面积" class="headerlink" title="2975. 移除栅栏得到的正方形田地的最大面积"></a>2975. 移除栅栏得到的正方形田地的最大面积</h3><p> 显示英文描述</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-377/problems/maximum-square-area-by-removing-fences-from-a-field/submissions/">我的提交</a><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-377/">返回竞赛</a></p>
+<ul>
+<li><strong>通过的用户数</strong>1142</li>
+<li><strong>尝试过的用户数</strong>1915</li>
+<li><strong>用户总通过次数</strong>1170</li>
+<li><strong>用户总提交次数</strong>7471</li>
+<li><strong>题目难度****Medium</strong></li>
+</ul>
+<p>有一个大型的 <code>(m - 1) x (n - 1)</code> 矩形田地，其两个对角分别是 <code>(1, 1)</code> 和 <code>(m, n)</code> ，田地内部有一些水平栅栏和垂直栅栏，分别由数组 <code>hFences</code> 和 <code>vFences</code> 给出。</p>
 <p>水平栅栏为坐标 <code>(hFences[i], 1)</code> 到 <code>(hFences[i], n)</code>，垂直栅栏为坐标 <code>(1, vFences[i])</code> 到 <code>(m, vFences[i])</code> 。</p>
 <p>返回通过 <strong>移除</strong> 一些栅栏（<strong>可能不移除</strong>）所能形成的最大面积的 <strong>正方形</strong> 田地的面积，或者如果无法形成正方形田地则返回 <code>-1</code>。</p>
 <p>由于答案可能很大，所以请返回结果对 <code>109 + 7</code> <strong>取余</strong> 后的值。</p>
@@ -338,17 +347,17 @@
 </ul>
 <h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-377/problems/minimum-cost-to-convert-string-ii/">https://leetcode.cn/contest/weekly-contest-377/problems/minimum-cost-to-convert-string-ii/</a></p>
 <h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
-<p> <code>floyd</code> 算法 + 动态规划</p>
+<p> 字符串哈希或或者字符串trie树</p>
 </blockquote>
 <h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
-<li>实际思路与算法与上一个题目基本一样的实现思路，只不过上一个题目中字符替换变成了字符串替换，本质没有太大的变换。我们可以将字符串转换为 <code>trie</code> 树或者 <code>hash</code> 值，给每个替换的字符串进行编号，每次检测替换时，从后往前在 <code>trie</code> 树中查找两个字符串替换的编号 $(x,y)$，并通过 $x,y$ 找到替换的最小代价进行替换即可。</li>
+<li>题目本身不难，但是需要优化，如何把</li>
 <li>复杂度分析:</li>
 </ol>
 <ul>
-<li>时间复杂度：$O(n^3 + m^2)$，其中 $n$ 表示给定的替换的字典数组长度，$m$ 表示给字符串的长度;</li>
-<li>空间复杂度：$O(n^2)$，其中 $n$ 表示给定的替换的字典数组长度;</li>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示树中节点的数目;</li>
+<li>空间复杂度：$O(\log n)$，其中 $n$ 表示树中节点的数目;</li>
 </ul>
-<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><figcaption><span>[sol1-C++]</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TrieNode</span> &#123;</span><br><span class="line">    vector&lt;TrieNode *&gt; child;</span><br><span class="line">    <span class="type">bool</span> isEnd;</span><br><span class="line">    <span class="type">int</span> idx; </span><br><span class="line">    <span class="built_in">TrieNode</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;child = <span class="built_in">vector</span>&lt;TrieNode *&gt;(<span class="number">26</span>, <span class="literal">nullptr</span>);</span><br><span class="line">        <span class="keyword">this</span>-&gt;isEnd = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;idx = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TrieNode *root;</span><br><span class="line">    <span class="type">int</span> cnt;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;root = <span class="keyword">new</span> <span class="built_in">TrieNode</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">insert</span><span class="params">(<span class="type">const</span> string &amp;s)</span> </span>&#123;</span><br><span class="line">        TrieNode *node = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c : s) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!node-&gt;child[c - <span class="string">&#x27;a&#x27;</span>]) &#123;</span><br><span class="line">                node-&gt;child[c - <span class="string">&#x27;a&#x27;</span>] = <span class="keyword">new</span> <span class="built_in">TrieNode</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            node = node-&gt;child[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!node-&gt;isEnd) &#123;</span><br><span class="line">            node-&gt;isEnd = <span class="literal">true</span>;</span><br><span class="line">            node-&gt;idx = cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node-&gt;idx;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(<span class="type">const</span> string &amp;s)</span> </span>&#123;</span><br><span class="line">        TrieNode *node = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c : s) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!node-&gt;child[c - <span class="string">&#x27;a&#x27;</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node-&gt;child[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node-&gt;idx;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">count</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;cnt;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">minimumCost</span><span class="params">(string source, string target, vector&lt;string&gt;&amp; original, vector&lt;string&gt;&amp; changed, vector&lt;<span class="type">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        Trie trie;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ori_arr, cha_arr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; changed.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="built_in">reverse</span>(original[i].<span class="built_in">begin</span>(), original[i].<span class="built_in">end</span>());</span><br><span class="line">            <span class="built_in">reverse</span>(changed[i].<span class="built_in">begin</span>(), changed[i].<span class="built_in">end</span>());</span><br><span class="line">            ori_arr.<span class="built_in">emplace_back</span>(trie.<span class="built_in">insert</span>(original[i]));</span><br><span class="line">            cha_arr.<span class="built_in">emplace_back</span>(trie.<span class="built_in">insert</span>(changed[i]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> n = trie.<span class="built_in">count</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">long</span> <span class="type">long</span>&gt;&gt; <span class="built_in">dist</span>(n, <span class="built_in">vector</span>&lt;<span class="type">long</span> <span class="type">long</span>&gt;(n, LONG_MAX));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; changed.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = ori_arr[i];</span><br><span class="line">            <span class="type">int</span> y = cha_arr[i];</span><br><span class="line">            dist[x][y] = <span class="built_in">min</span>(dist[x][y], (<span class="type">long</span> <span class="type">long</span>)cost[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            dist[i][i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* floyd */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; n; k++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (dist[i][k] != LONG_MAX &amp;&amp; dist[k][j] != LONG_MAX &amp;&amp; dist[i][k] + dist[k][j] &lt; dist[i][j]) &#123;</span><br><span class="line">                        dist[i][j] = dist[i][k] + dist[k][j];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> m = source.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; <span class="title">dp</span><span class="params">(m + <span class="number">1</span>, LONG_MAX)</span></span>;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            TrieNode *src_node = trie.root;</span><br><span class="line">            TrieNode *dst_node = trie.root;</span><br><span class="line">            <span class="keyword">if</span> (source[i - <span class="number">1</span>] == target[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                dp[i] = dp[i - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i; j &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="type">char</span> ch1 = source[j - <span class="number">1</span>];</span><br><span class="line">                <span class="type">char</span> ch2 = target[j - <span class="number">1</span>];</span><br><span class="line">                src_node = src_node-&gt;child[ch1 - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">                dst_node = dst_node-&gt;child[ch2 - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">                <span class="keyword">if</span> (src_node &amp;&amp; dst_node) &#123;</span><br><span class="line">                    <span class="type">int</span> x = src_node-&gt;idx;</span><br><span class="line">                    <span class="type">int</span> y = dst_node-&gt;idx;</span><br><span class="line">                    <span class="keyword">if</span> (x &gt;= <span class="number">0</span> &amp;&amp; y &gt;= <span class="number">0</span> &amp;&amp; dist[x][y] != LONG_MAX &amp;&amp; dp[j - <span class="number">1</span>] != LONG_MAX) &#123;</span><br><span class="line">                        dp[i] = <span class="built_in">min</span>(dp[i], dist[x][y] + dp[j - <span class="number">1</span>]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m] == LONG_MAX ? <span class="number">-1</span> : dp[m];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><figcaption><span>[sol1-C++]</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 <p>欢迎关注和打赏，感谢支持！</p>
@@ -380,13 +389,20 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2023/12/28/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/169/">
+      <a class="nav-left" href="/2023/12/30/%E4%B8%AA%E4%BA%BA%E9%97%B2%E8%B0%88/83/">
         <span class="nav-arrow">← </span>
         
-          leetcode biweekly contest 120
+          【2023】年终总结
         
       </a>
     
+    
+      <a class="nav-right" href="/2024/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/171/">
+        
+          leetcode  contest 378
+        
+        <span class="nav-arrow"> →</span>
+      </a>
     
   </div>
 
@@ -428,7 +444,7 @@
 
 <script>
   (function () {
-    var url = 'http://example.com/2023/12/29/力扣周赛题解/170/';
+    var url = 'http://example.com/2024/01/01/力扣周赛题解/170/';
     var banner = '力扣季度赛'
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -503,7 +519,7 @@
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2023 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2024 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     
   </p>
