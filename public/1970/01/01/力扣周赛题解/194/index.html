@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode contest 393 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode contest 393</h2>
+  <p class="post-date">1970-01-01</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-contest-393"><a href="#leetcode-contest-393" class="headerlink" title="leetcode contest 393"></a>leetcode contest 393</h2><p><code>t3,t4</code> 都是比较难得题目。</p>
+<h3 id="100270-字符串的分数"><a href="#100270-字符串的分数" class="headerlink" title="100270. 字符串的分数"></a>100270. 字符串的分数</h3><p>给你一个字符串 <code>s</code> 。一个字符串的 <strong>分数</strong> 定义为相邻字符 <strong>ASCII</strong> 码差值绝对值的和。</p>
+<p>请你返回 <code>s</code> 的 <strong>分数</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>s &#x3D; “hello”</p>
+<p><strong>输出：</strong>13</p>
+<p><strong>解释：</strong></p>
+<p><code>s</code> 中字符的 <strong>ASCII</strong> 码分别为：<code>&#39;h&#39; = 104</code> ，<code>&#39;e&#39; = 101</code> ，<code>&#39;l&#39; = 108</code> ，<code>&#39;o&#39; = 111</code> 。所以 <code>s</code> 的分数为 <code>|104 - 101| + |101 - 108| + |108 - 108| + |108 - 111| = 3 + 7 + 0 + 3 = 13</code> 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>s &#x3D; “zaz”</p>
+<p><strong>输出：</strong>50</p>
+<p><strong>解释：</strong></p>
+<p><code>s</code> 中字符的 <strong>ASCII</strong> 码分别为：<code>&#39;z&#39; = 122</code> ，<code>&#39;a&#39; = 97</code> 。所以 <code>s</code> 的分数为 <code>|122 - 97| + |97 - 122| = 25 + 25 = 50</code> 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= s.length &lt;= 100</code></li>
+<li><code>s</code> 只包含小写英文字母。</li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-128/problems/score-of-a-string/">https://leetcode.cn/contest/biweekly-contest-128/problems/score-of-a-string/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接相邻数字的差的和即可，返回即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定字符串的长度。</li>
+<li>空间复杂度：$O(1)$,。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">scoreOfString</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">abs</span>(<span class="built_in">ord</span>(s[i]) - <span class="built_in">ord</span>(s[i - <span class="number">1</span>])) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(s)))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">score_of_string</span>(s: <span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">        s.<span class="title function_ invoke__">chars</span>()</span><br><span class="line">        .<span class="title function_ invoke__">skip</span>(<span class="number">1</span>)</span><br><span class="line">        .<span class="title function_ invoke__">enumerate</span>()</span><br><span class="line">        .<span class="title function_ invoke__">map</span>(|(i, c)| (c <span class="keyword">as</span> <span class="type">i32</span> - s.<span class="title function_ invoke__">chars</span>().<span class="title function_ invoke__">nth</span>(i).<span class="title function_ invoke__">unwrap</span>() <span class="keyword">as</span> <span class="type">i32</span>).<span class="title function_ invoke__">abs</span>())</span><br><span class="line">        .<span class="title function_ invoke__">sum</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="100280-覆盖所有点的最少矩形数目"><a href="#100280-覆盖所有点的最少矩形数目" class="headerlink" title="100280. 覆盖所有点的最少矩形数目"></a>100280. 覆盖所有点的最少矩形数目</h3><p>给你一个二维整数数组 <code>point</code> ，其中 <code>points[i] = [xi, yi]</code> 表示二维平面内的一个点。同时给你一个整数 <code>w</code> 。你需要用矩形 <strong>覆盖所有</strong> 点。</p>
+<p>每个矩形的左下角在某个点 <code>(x1, 0)</code> 处，且右上角在某个点 <code>(x2, y2)</code> 处，其中 <code>x1 &lt;= x2</code> 且 <code>y2 &gt;= 0</code> ，同时对于每个矩形都 <strong>必须</strong> 满足 <code>x2 - x1 &lt;= w</code> 。</p>
+<p>如果一个点在矩形内或者在边上，我们说这个点被矩形覆盖了。</p>
+<p>请你在确保每个点都 <strong>至少</strong> 被一个矩形覆盖的前提下，<strong>最少</strong> 需要多少个矩形。</p>
+<p><strong>注意：</strong>一个点可以被多个矩形覆盖。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/03/04/screenshot-from-2024-03-04-20-33-05.png" alt="img"></p>
+<p><strong>输入：</strong>points &#x3D; [[2,1],[1,0],[1,4],[1,8],[3,5],[4,6]], w &#x3D; 1</p>
+<p><strong>输出：</strong>2</p>
+<p><strong>解释：</strong></p>
+<p>上图展示了一种可行的矩形放置方案：</p>
+<ul>
+<li>一个矩形的左下角在 <code>(1, 0)</code> ，右上角在 <code>(2, 8)</code> 。</li>
+<li>一个矩形的左下角在 <code>(3, 0)</code> ，右上角在 <code>(4, 8)</code> 。</li>
+</ul>
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/03/04/screenshot-from-2024-03-04-18-59-12.png" alt="img"></p>
+<p><strong>输入：</strong>points &#x3D; [[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6]], w &#x3D; 2</p>
+<p><strong>输出：</strong>3</p>
+<p><strong>解释：</strong></p>
+<p>上图展示了一种可行的矩形放置方案：</p>
+<ul>
+<li>一个矩形的左下角在 <code>(0, 0)</code> ，右上角在 <code>(2, 2)</code> 。</li>
+<li>一个矩形的左下角在 <code>(3, 0)</code> ，右上角在 <code>(5, 5)</code> 。</li>
+<li>一个矩形的左下角在 <code>(6, 0)</code> ，右上角在 <code>(6, 6)</code> 。</li>
+</ul>
+<p><strong>示例 3：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/03/04/screenshot-from-2024-03-04-20-24-03.png" alt="img"></p>
+<p><strong>输入：</strong>points &#x3D; [[2,3],[1,2]], w &#x3D; 0</p>
+<p><strong>输出：</strong>2</p>
+<p><strong>解释：</strong></p>
+<p>上图展示了一种可行的矩形放置方案：</p>
+<ul>
+<li>一个矩形的左下角在 <code>(1, 0)</code> ，右上角在 <code>(1, 2)</code> 。</li>
+<li>一个矩形的左下角在 <code>(2, 0)</code> ，右上角在 <code>(2, 3)</code> 。</li>
+</ul>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= points.length &lt;= 105</code></li>
+<li><code>points[i].length == 2</code></li>
+<li><code>0 &lt;= xi == points[i][0] &lt;= 109</code></li>
+<li><code>0 &lt;= yi == points[i][1] &lt;= 109</code></li>
+<li><code>0 &lt;= w &lt;= 109</code></li>
+<li>所有点坐标 <code>(xi, yi)</code> 互不相同。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-128/problems/minimum-rectangles-to-cover-points/">https://leetcode.cn/contest/biweekly-contest-128/problems/minimum-rectangles-to-cover-points/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>排序
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>不晓得这个题目出的有什么意思，我们每次尝试用一个 $[x, x+w]$ 的窗口去覆盖当前的坐标区域，如果当前坐标 $i$ 无法被覆盖，此时我们再增加一个新的矩形 $[x_i,x_i+w]$ 来进行覆盖，统计需要增加的矩形数目即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times \log n)$，其中 $n$ 表示给定数组的长度。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minRectanglesToCoverPoints</span>(<span class="params">self, points: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], w: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        points.sort()</span><br><span class="line">        res = <span class="number">1</span></span><br><span class="line">        end = points[<span class="number">0</span>][<span class="number">0</span>] + w</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> points:</span><br><span class="line">            <span class="keyword">if</span> x &gt; end:</span><br><span class="line">                end = x + w</span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">min_rectangles_to_cover_points</span>(points: <span class="type">Vec</span>&lt;<span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;&gt;, w: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">points</span> = points;</span><br><span class="line">        points.<span class="title function_ invoke__">sort</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">res</span> = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">end</span> = points[<span class="number">0</span>][<span class="number">0</span>] + w;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">point</span> <span class="keyword">in</span> points &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">x</span> = point[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">if</span> x &gt; end &#123;</span><br><span class="line">                end = x + w;</span><br><span class="line">                res += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        res</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3112-访问消失节点的最少时间"><a href="#3112-访问消失节点的最少时间" class="headerlink" title="3112. 访问消失节点的最少时间"></a>3112. 访问消失节点的最少时间</h3><p>给你一个二维数组 <code>edges</code> 表示一个 <code>n</code> 个点的无向图，其中 <code>edges[i] = [ui, vi, lengthi]</code> 表示节点 <code>ui</code> 和节点 <code>vi</code> 之间有一条需要 <code>lengthi</code> 单位时间通过的无向边。</p>
+<p>同时给你一个数组 <code>disappear</code> ，其中 <code>disappear[i]</code> 表示节点 <code>i</code> 从图中消失的时间点，在那一刻及以后，你无法再访问这个节点。</p>
+<p><strong>注意</strong>，图有可能一开始是不连通的，两个节点之间也可能有多条边。</p>
+<p>请你返回数组 <code>answer</code> ，<code>answer[i]</code> 表示从节点 <code>0</code> 到节点 <code>i</code> 需要的 <strong>最少</strong> 单位时间。如果从节点 <code>0</code> 出发 <strong>无法</strong> 到达节点 <code>i</code> ，那么 <code>answer[i]</code> 为 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/03/09/example1.png" alt="img"></p>
+<p><strong>输入：</strong>n &#x3D; 3, edges &#x3D; [[0,1,2],[1,2,1],[0,2,4]], disappear &#x3D; [1,1,5]</p>
+<p><strong>输出：</strong>[0,-1,4]</p>
+<p><strong>解释：</strong></p>
+<p>我们从节点 0 出发，目的是用最少的时间在其他节点消失之前到达它们。</p>
+<ul>
+<li>对于节点 0 ，我们不需要任何时间，因为它就是我们的起点。</li>
+<li>对于节点 1 ，我们需要至少 2 单位时间，通过 <code>edges[0]</code> 到达。但当我们到达的时候，它已经消失了，所以我们无法到达它。</li>
+<li>对于节点 2 ，我们需要至少 4 单位时间，通过 <code>edges[2]</code> 到达。</li>
+</ul>
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/03/09/example2.png" alt="img"></p>
+<p><strong>输入：</strong>n &#x3D; 3, edges &#x3D; [[0,1,2],[1,2,1],[0,2,4]], disappear &#x3D; [1,3,5]</p>
+<p><strong>输出：</strong>[0,2,3]</p>
+<p><strong>解释：</strong></p>
+<p>我们从节点 0 出发，目的是用最少的时间在其他节点消失之前到达它们。</p>
+<ul>
+<li>对于节点 0 ，我们不需要任何时间，因为它就是我们的起点。</li>
+<li>对于节点 1 ，我们需要至少 2 单位时间，通过 <code>edges[0]</code> 到达。</li>
+<li>对于节点 2 ，我们需要至少 3 单位时间，通过 <code>edges[0]</code> 和 <code>edges[1]</code> 到达。</li>
+</ul>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong>n &#x3D; 2, edges &#x3D; [[0,1,1]], disappear &#x3D; [1,1]</p>
+<p><strong>输出：</strong>[0,-1]</p>
+<p><strong>解释：</strong></p>
+<p>当我们到达节点 1 的时候，它恰好消失，所以我们无法到达节点 1 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 5 * 104</code></li>
+<li><code>0 &lt;= edges.length &lt;= 105</code></li>
+<li><code>edges[i] == [ui, vi, lengthi]</code></li>
+<li><code>0 &lt;= ui, vi &lt;= n - 1</code></li>
+<li><code>1 &lt;= lengthi &lt;= 105</code></li>
+<li><code>disappear.length == n</code></li>
+<li><code>1 &lt;= disappear[i] &lt;= 105</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-391/problems/count-alternating-subarrays/">https://leetcode.cn/contest/weekly-contest-391/problems/count-alternating-subarrays/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> dijistra</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>典型的 <code>dijistra</code> 求最短距离的模版题目，感觉没有什么好说的，照着写即可；</p>
+</li>
+<li><p>复杂度：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 表示给定数组的长度；</li>
+<li>空间复杂度：$O(1)$；</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">minimumTime</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; edges, vector&lt;<span class="type">int</span>&gt;&amp; disappear)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dist</span><span class="params">(n, INT_MAX)</span></span>;</span><br><span class="line">        vector&lt;unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; <span class="built_in">graph</span>(n);</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">vis</span><span class="params">(n, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> e : edges) &#123;</span><br><span class="line">            <span class="type">int</span> x = e[<span class="number">0</span>], y = e[<span class="number">1</span>], cost = e[<span class="number">2</span>];</span><br><span class="line">            <span class="keyword">if</span> (graph[x].<span class="built_in">count</span>(y)) &#123;</span><br><span class="line">                graph[x][y] = <span class="built_in">min</span>(graph[x][y], cost);</span><br><span class="line">                graph[y][x] = <span class="built_in">min</span>(graph[x][y], cost);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                graph[x][y] = cost;</span><br><span class="line">                graph[y][x] = cost;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        priority_queue&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;, vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;, greater&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;&gt; pq;</span><br><span class="line">        pq.<span class="built_in">emplace</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        dist[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!pq.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">auto</span> [cost, cx] = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span> (vis[cx]) <span class="keyword">continue</span>;</span><br><span class="line">            vis[cx] = <span class="literal">true</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> [nx, ncost]: graph[cx]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (cost + ncost &gt;= disappear[nx]) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span> (cost + ncost &gt;= dist[nx]) <span class="keyword">continue</span>;</span><br><span class="line">                pq.<span class="built_in">emplace</span>(cost + ncost, nx);</span><br><span class="line">                dist[nx] = cost + ncost;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dist[i] == INT_MAX) &#123;</span><br><span class="line">                dist[i] = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dist;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minimumTime</span>(<span class="params">self, n: <span class="built_in">int</span>, edges: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], disappear: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        dist = [<span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)] * n</span><br><span class="line">        graph = defaultdict(<span class="built_in">dict</span>)</span><br><span class="line">        vis = [<span class="literal">False</span>] * n</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> x, y, cost <span class="keyword">in</span> edges:</span><br><span class="line">            <span class="keyword">if</span> y <span class="keyword">in</span> graph[x]:</span><br><span class="line">                graph[x][y] = <span class="built_in">min</span>(graph[x][y], cost)</span><br><span class="line">                graph[y][x] = <span class="built_in">min</span>(graph[x][y], cost)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                graph[x][y] = cost</span><br><span class="line">                graph[y][x] = cost</span><br><span class="line"></span><br><span class="line">        pq = [(<span class="number">0</span>, <span class="number">0</span>)]</span><br><span class="line">        dist[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> pq:</span><br><span class="line">            cost, cx = heapq.heappop(pq)</span><br><span class="line">            <span class="keyword">if</span> vis[cx]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            vis[cx] = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> nx, ncost <span class="keyword">in</span> graph[cx].items():</span><br><span class="line">                <span class="keyword">if</span> cost + ncost &gt;= disappear[nx]:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> cost + ncost &gt;= dist[nx]:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                heapq.heappush(pq, (cost + ncost, nx))</span><br><span class="line">                dist[nx] = cost + ncost</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">if</span> dist[i] == <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>):</span><br><span class="line">                dist[i] = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dist</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100273-边界元素是最大值的子数组数目"><a href="#100273-边界元素是最大值的子数组数目" class="headerlink" title="100273. 边界元素是最大值的子数组数目"></a>100273. 边界元素是最大值的子数组数目</h3><p>给你一个 <strong>正</strong> 整数数组 <code>nums</code> 。</p>
+<p>请你求出 <code>nums</code> 中有多少个子数组，满足子数组中 <strong>第一个</strong> 和 <strong>最后一个</strong> 元素都是这个子数组中的 <strong>最大</strong> 值。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [1,4,3,3,2]</p>
+<p><strong>输出：</strong>6</p>
+<p><strong>解释：</strong></p>
+<p>总共有 6 个子数组满足第一个元素和最后一个元素都是子数组中的最大值：</p>
+<ul>
+<li>子数组 <code>[***1***,4,3,3,2]</code> ，最大元素为 1 ，第一个和最后一个元素都是 1 。</li>
+<li>子数组 <code>[1,***4***,3,3,2]</code> ，最大元素为 4 ，第一个和最后一个元素都是 4 。</li>
+<li>子数组 <code>[1,4,***3***,3,2]</code> ，最大元素为 3 ，第一个和最后一个元素都是 3 。</li>
+<li>子数组 <code>[1,4,3,***3***,2]</code> ，最大元素为 3 ，第一个和最后一个元素都是 3 。</li>
+<li>子数组 <code>[1,4,3,3,***2***]</code> ，最大元素为 2 ，第一个和最后一个元素都是 2 。</li>
+<li>子数组 <code>[1,4,***3,3***,2]</code> ，最大元素为 3 ，第一个和最后一个元素都是 3 。</li>
+</ul>
+<p>所以我们返回 6 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [3,3,3]</p>
+<p><strong>输出：</strong>6</p>
+<p><strong>解释：</strong></p>
+<p>总共有 6 个子数组满足第一个元素和最后一个元素都是子数组中的最大值：</p>
+<ul>
+<li>子数组 <code>[***3***,3,3]</code> ，最大元素为 3 ，第一个和最后一个元素都是 3 。</li>
+<li>子数组 <code>[3,***3***,3]</code> ，最大元素为 3 ，第一个和最后一个元素都是 3 。</li>
+<li>子数组 <code>[3,3,***3***]</code> ，最大元素为 3 ，第一个和最后一个元素都是 3 。</li>
+<li>子数组 <code>[***3,3***,3]</code> ，最大元素为 3 ，第一个和最后一个元素都是 3 。</li>
+<li>子数组 <code>[3,***3,3***]</code> ，最大元素为 3 ，第一个和最后一个元素都是 3 。</li>
+<li>子数组 <code>[***3,3,3***]</code> ，最大元素为 3 ，第一个和最后一个元素都是 3 。</li>
+</ul>
+<p>所以我们返回 6 。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [1]</p>
+<p><strong>输出：</strong>1</p>
+<p><strong>解释：</strong></p>
+<p><code>nums</code> 中只有一个子数组 <code>[***1***]</code> ，最大元素为 1 ，第一个和最后一个元素都是 1 。</p>
+<p>所以我们返回 1 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-128/">https://leetcode.cn/contest/biweekly-contest-128/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 单调栈</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>题目确实比较模版，对于每个 $nums[i]$$ 我们只需要找到其坐标第一个大于等于 $ $nums[i]$ 的值 $nums[j]$，此时：</p>
+<ul>
+<li>$nums[j] &#x3D; nums[i]$，此时以 $nums[i]$ 为结尾的子数组的数目即等于以 $nums[j]$ 为结尾的子数组的数目加 $1$；</li>
+<li>$nums[j] &gt; nums[i]$，此时以 $nums[i]$ 为结尾的子数组的数目即等于 $1$​；</li>
+</ul>
+<p>使用单调栈检测左侧第一个大于等于 $nums[i]$ 的值 $nums[j]$ 是否等于 $nums[i]$ 即可，当然我们还可以排序，按照从大到小的顺序来依次遍历数组，此时 $nums[i] &#x3D; nums[j]$，我们可以利用二分查找检测 $[i,j]$ 中是否含有大于 $nums[i]$ 的元素即可。</p>
+</li>
+<li><p>复杂度分析:</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示数组的长度;</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度;</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numberOfSubarrays</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        cnt = [<span class="number">1</span>] * n</span><br><span class="line">        stack = []</span><br><span class="line">        <span class="keyword">for</span> i, x <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> nums[stack[-<span class="number">1</span>]] &lt; x:</span><br><span class="line">                stack.pop()</span><br><span class="line">            <span class="keyword">if</span> stack <span class="keyword">and</span> nums[stack[-<span class="number">1</span>]] == x:</span><br><span class="line">                cnt[i] += cnt[stack[-<span class="number">1</span>]]</span><br><span class="line">            stack.append(i)</span><br><span class="line">            res += cnt[i]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">number_of_subarrays</span>(nums: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;) <span class="punctuation">-&gt;</span> <span class="type">i64</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">n</span> = nums.<span class="title function_ invoke__">len</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">res</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">cnt</span> = <span class="built_in">vec!</span>[<span class="number">1</span>; n];</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">stack</span>: <span class="type">Vec</span>&lt;<span class="type">usize</span>&gt; = <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line"></span><br><span class="line">        <span class="title function_ invoke__">for</span> (i, &amp;x) <span class="keyword">in</span> nums.<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">enumerate</span>() &#123;</span><br><span class="line">            <span class="keyword">while</span> <span class="keyword">let</span> <span class="variable">Some</span>(&amp;top) = stack.<span class="title function_ invoke__">last</span>() &#123;</span><br><span class="line">                <span class="keyword">if</span> nums[top] &lt; x &#123;</span><br><span class="line">                    stack.<span class="title function_ invoke__">pop</span>();</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">Some</span>(&amp;top) = stack.<span class="title function_ invoke__">last</span>() &#123;</span><br><span class="line">                <span class="keyword">if</span> nums[top] == x &#123;</span><br><span class="line">                    cnt[i] += cnt[top];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            stack.<span class="title function_ invoke__">push</span>(i);</span><br><span class="line">            res += cnt[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        res</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg"></p>
+</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+  <a href="/tags#力扣周赛赛" >
+    <span class="tag-code">力扣周赛赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/195/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode contest 393
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/193/">
+        
+          leetcode biweekly contest 128
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-contest-393"><span class="toc-nav-text">leetcode contest 393</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100270-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%88%86%E6%95%B0"><span class="toc-nav-text">100270. 字符串的分数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100280-%E8%A6%86%E7%9B%96%E6%89%80%E6%9C%89%E7%82%B9%E7%9A%84%E6%9C%80%E5%B0%91%E7%9F%A9%E5%BD%A2%E6%95%B0%E7%9B%AE"><span class="toc-nav-text">100280. 覆盖所有点的最少矩形数目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3112-%E8%AE%BF%E9%97%AE%E6%B6%88%E5%A4%B1%E8%8A%82%E7%82%B9%E7%9A%84%E6%9C%80%E5%B0%91%E6%97%B6%E9%97%B4"><span class="toc-nav-text">3112. 访问消失节点的最少时间</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100273-%E8%BE%B9%E7%95%8C%E5%85%83%E7%B4%A0%E6%98%AF%E6%9C%80%E5%A4%A7%E5%80%BC%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E6%95%B0%E7%9B%AE"><span class="toc-nav-text">100273. 边界元素是最大值的子数组数目</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/1970/01/01/力扣周赛题解/194/';
+    var banner = '力扣季度赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2024 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    
+  </p>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>
