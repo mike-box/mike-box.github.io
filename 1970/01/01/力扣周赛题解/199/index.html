@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode weekly contest 396 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode weekly contest 396</h2>
+  <p class="post-date">1970-01-01</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-weekly-contest-396"><a href="#leetcode-weekly-contest-396" class="headerlink" title="leetcode weekly contest 396"></a>leetcode weekly contest 396</h2><p><code>T4</code> 确实是比较难的题目，非常不错的题目。</p>
+<h3 id="3136-有效单词"><a href="#3136-有效单词" class="headerlink" title="3136. 有效单词"></a>3136. 有效单词</h3><p><strong>有效单词</strong> 需要满足以下几个条件：</p>
+<ul>
+<li><strong>至少</strong> 包含 3 个字符。</li>
+<li>由数字 0-9 和英文大小写字母组成。（不必包含所有这类字符。）</li>
+<li><strong>至少</strong> 包含一个 <strong>元音字母</strong> 。</li>
+<li><strong>至少</strong> 包含一个 <strong>辅音字母</strong> 。</li>
+</ul>
+<p>给你一个字符串 <code>word</code> 。如果 <code>word</code> 是一个有效单词，则返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li><code>&#39;a&#39;</code>、<code>&#39;e&#39;</code>、<code>&#39;i&#39;</code>、<code>&#39;o&#39;</code>、<code>&#39;u&#39;</code> 及其大写形式都属于 <strong>元音字母</strong> 。</li>
+<li>英文中的 <strong>辅音字母</strong> 是指那些除元音字母之外的字母。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>word &#x3D; “234Adas”</p>
+<p><strong>输出：</strong>true</p>
+<p><strong>解释：</strong></p>
+<p>这个单词满足所有条件。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>word &#x3D; “b3”</p>
+<p><strong>输出：</strong>false</p>
+<p><strong>解释：</strong></p>
+<p>这个单词的长度少于 3 且没有包含元音字母。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong>word &#x3D; “a3$e”</p>
+<p><strong>输出：</strong>false</p>
+<p><strong>解释：</strong></p>
+<p>这个单词包含了 <code>&#39;$&#39;</code> 字符且没有包含辅音字母。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= word.length &lt;= 20</code></li>
+<li><code>word</code> 由英文大写和小写字母、数字、<code>&#39;@&#39;</code>、<code>&#39;#&#39;</code> 和 <code>&#39;$&#39;</code> 组成。</li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-396/problems/valid-word/">https://leetcode.cn/contest/weekly-contest-396/problems/valid-word/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接模拟即可，题目出的非常不好，细节处理问题较多，直接模拟即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (word.<span class="built_in">length</span>() &lt; <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">bool</span> f[<span class="number">2</span>]&#123;&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> c : word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">isalpha</span>(c)) &#123;</span><br><span class="line">                c = <span class="built_in">tolower</span>(c);</span><br><span class="line">                f[c == <span class="string">&#x27;a&#x27;</span> || c == <span class="string">&#x27;e&#x27;</span> || c == <span class="string">&#x27;i&#x27;</span> || c == <span class="string">&#x27;o&#x27;</span> || c == <span class="string">&#x27;u&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="built_in">isdigit</span>(c)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[<span class="number">0</span>] &amp;&amp; f[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3137-K-周期字符串需要的最少操作次数"><a href="#3137-K-周期字符串需要的最少操作次数" class="headerlink" title="3137. K 周期字符串需要的最少操作次数"></a>3137. K 周期字符串需要的最少操作次数</h3><p>给你一个长度为 <code>n</code> 的字符串 <code>word</code> 和一个整数 <code>k</code> ，其中 <code>k</code> 是 <code>n</code> 的因数。</p>
+<p>在一次操作中，你可以选择任意两个下标 <code>i</code> 和 <code>j</code>，其中 <code>0 &lt;= i, j &lt; n</code> ，且这两个下标都可以被 <code>k</code> 整除，然后用从 <code>j</code> 开始的长度为 <code>k</code> 的子串替换从 <code>i</code> 开始的长度为 <code>k</code> 的子串。也就是说，将子串 <code>word[i..i + k - 1]</code> 替换为子串 <code>word[j..j + k - 1]</code> 。</p>
+<p>返回使 <code>word</code> 成为 <strong>K 周期字符串</strong> 所需的 <strong>最少</strong> 操作次数。</p>
+<p>如果存在某个长度为 <code>k</code> 的字符串 <code>s</code>，使得 <code>word</code> 可以表示为任意次数连接 <code>s</code> ，则称字符串 <code>word</code> 是 <strong>K 周期字符串</strong> 。例如，如果 <code>word == &quot;ababab&quot;</code>，那么 <code>word</code> 就是 <code>s = &quot;ab&quot;</code> 时的 2 周期字符串 。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>word &#x3D; “leetcodeleet”, k &#x3D; 4</p>
+<p><strong>输出：</strong>1</p>
+<p><strong>解释：</strong>可以选择 i &#x3D; 4 和 j &#x3D; 0 获得一个 4 周期字符串。这次操作后，word 变为 “leetleetleet” 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>word &#x3D; “leetcoleet”, k &#x3D; 2</p>
+<p><strong>输出：</strong>3</p>
+<p><strong>解释：</strong>可以执行以下操作获得一个 2 周期字符串。</p>
+<table>
+<thead>
+<tr>
+<th>i</th>
+<th>j</th>
+<th>word</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>2</td>
+<td>etetcoleet</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>etetetleet</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0</td>
+<td>etetetetet</td>
+</tr>
+</tbody></table>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == word.length &lt;= 105</code></li>
+<li><code>1 &lt;= k &lt;= word.length</code></li>
+<li><code>k</code> 能整除 <code>word.length</code> 。</li>
+<li><code>word</code> 仅由小写英文字母组成。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-396/problems/minimum-number-of-operations-to-make-word-k-periodic/">https://leetcode.cn/contest/weekly-contest-396/problems/minimum-number-of-operations-to-make-word-k-periodic/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>哈希统计
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>依次统计字符串中连续长度为  $k$ 的字符串，统计出现次数最多的字符串即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定的字符串的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示给定的字符串的长度。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minimumOperationsToMakeKPeriodic</span>(<span class="params">self, word: <span class="built_in">str</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        cnt = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(word), k):</span><br><span class="line">            sub_word = word[i:i+k]</span><br><span class="line">            cnt[sub_word] = cnt.get(sub_word, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        max_val = <span class="built_in">max</span>(cnt.values(), default=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(word) // k - max_val</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">minimum_operations_to_make_k_periodic</span>(word: <span class="type">String</span>, k: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">cnt</span> = HashMap::<span class="title function_ invoke__">new</span>();</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> (<span class="number">0</span>..word.<span class="title function_ invoke__">len</span>()).<span class="title function_ invoke__">step_by</span>(k <span class="keyword">as</span> <span class="type">usize</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">sub_word</span> = &amp;word[i..i + k <span class="keyword">as</span> <span class="type">usize</span>];</span><br><span class="line">            *cnt.<span class="title function_ invoke__">entry</span>(sub_word.<span class="title function_ invoke__">to_string</span>()).<span class="title function_ invoke__">or_insert</span>(<span class="number">0</span>) += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">max_val</span> = *cnt.<span class="title function_ invoke__">values</span>().<span class="title function_ invoke__">max</span>().<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="number">1</span>);</span><br><span class="line">       ( word.<span class="title function_ invoke__">len</span>() / k <span class="keyword">as</span> <span class="type">usize</span> - max_val) <span class="keyword">as</span> <span class="type">i32</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="3138-同位字符串连接的最小长度"><a href="#3138-同位字符串连接的最小长度" class="headerlink" title="3138. 同位字符串连接的最小长度"></a>3138. 同位字符串连接的最小长度</h3><p>给你一个字符串 <code>s</code> ，它由某个字符串 <code>t</code> 和若干 <code>t</code> 的 <strong>同位字符串</strong> 连接而成。</p>
+<p>请你返回字符串 <code>t</code> 的 <strong>最小</strong> 可能长度。</p>
+<p><strong>同位字符串</strong> 指的是重新排列一个单词得到的另外一个字符串，原来字符串中的每个字符在新字符串中都恰好只使用一次。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>s &#x3D; “abba”</p>
+<p><strong>输出：</strong>2</p>
+<p><strong>解释：</strong></p>
+<p>一个可能的字符串 <code>t</code> 为 <code>&quot;ba&quot;</code> 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>s &#x3D; “cdef”</p>
+<p><strong>输出：</strong>4</p>
+<p><strong>解释：</strong></p>
+<p>一个可能的字符串 <code>t</code> 为 <code>&quot;cdef&quot;</code> ，注意 <code>t</code> 可能等于 <code>s</code> 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 105</code></li>
+<li><code>s</code> 只包含小写英文字母。</li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-396/problems/minimum-length-of-anagram-concatenation/">https://leetcode.cn/contest/weekly-contest-396/problems/minimum-length-of-anagram-concatenation/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 数学</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>对于两个字符串 $s,t$ ，判断其是否为同位字符串，方法比较简单，我们只需要要比较 $s,t$ 中所有的字符数目是否相等即可，按照题目要求需要找到同位字符串的最小连接长度，我们依次从小到大枚举长度 $l$ 即可，此时需要满足 $n \mod l &#x3D; 0$ 即可，即 $l$ 一定是 $n$ 的因子，此时我们直接枚举 $l$ 即可，对于给定的整数 $n$ ，它最多有 $\log n$ 个因子，我们直接枚举即可，并检测在长度 $l$ 下，字符串 $s$ 分割程长度为 $l$ 的子字符串是否满足均为同位字符串即可。 </p>
+</li>
+<li><p>复杂度：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n |\Sigma|)$，其中 $n$ 表示给定的字符串的长度，$|\Sigma|$ 表示字符集的数目；</li>
+<li>空间复杂度：$O(|\Sigma|)$；</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minAnagramLength</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        arr = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> n % i == <span class="number">0</span>:</span><br><span class="line">                arr.append(i)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> arr:</span><br><span class="line">            cnt = [<span class="number">0</span>] * <span class="number">26</span>  <span class="comment"># ASCII &#x27;a&#x27; to &#x27;z&#x27; is 0 to 25</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(x):</span><br><span class="line">                cnt[<span class="built_in">ord</span>(s[j]) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            valid = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(x, n, x):</span><br><span class="line">                now = [<span class="number">0</span>] * <span class="number">26</span></span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(j, <span class="built_in">min</span>(j + x, n)):</span><br><span class="line">                    now[<span class="built_in">ord</span>(s[k]) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)] += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> now != cnt:</span><br><span class="line">                    valid = <span class="literal">False</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> valid:</span><br><span class="line">                <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> n</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">min_anagram_length</span>(s: <span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">n</span> = s.<span class="title function_ invoke__">len</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">bytes</span> = s.<span class="title function_ invoke__">as_bytes</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">arr</span> = <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">1</span>..=n &#123;</span><br><span class="line">            <span class="keyword">if</span> n % i == <span class="number">0</span> &#123;</span><br><span class="line">                arr.<span class="title function_ invoke__">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> &amp;x <span class="keyword">in</span> &amp;arr &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">cnt</span> = <span class="built_in">vec!</span>[<span class="number">0</span>; <span class="number">26</span>]; </span><br><span class="line">            <span class="keyword">for</span> &amp;j <span class="keyword">in</span> bytes.<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">take</span>(x) &#123;</span><br><span class="line">                cnt[(j - <span class="string">b&#x27;a&#x27;</span>) <span class="keyword">as</span> <span class="type">usize</span>] += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">valid</span> = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> (x..n).<span class="title function_ invoke__">step_by</span>(x) &#123;</span><br><span class="line">                <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">now</span> = <span class="built_in">vec!</span>[<span class="number">0</span>; <span class="number">26</span>];</span><br><span class="line">                <span class="keyword">for</span> <span class="variable">k</span> <span class="keyword">in</span> <span class="number">0</span>..x &#123;</span><br><span class="line">                    now[(bytes[j + k] - <span class="string">b&#x27;a&#x27;</span>) <span class="keyword">as</span> <span class="type">usize</span>] += <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> now != cnt &#123;</span><br><span class="line">                    valid = <span class="literal">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> valid &#123;</span><br><span class="line">                <span class="keyword">return</span> x <span class="keyword">as</span> <span class="type">i32</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        n <span class="keyword">as</span> <span class="type">i32</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="3139-使数组中所有元素相等的最小开销"><a href="#3139-使数组中所有元素相等的最小开销" class="headerlink" title="3139. 使数组中所有元素相等的最小开销"></a>3139. 使数组中所有元素相等的最小开销</h3><p>给你一个整数数组 <code>nums</code> 和两个整数 <code>cost1</code> 和 <code>cost2</code> 。你可以执行以下 <strong>任一</strong> 操作 <strong>任意</strong> 次：</p>
+<ul>
+<li>从 <code>nums</code> 中选择下标 <code>i</code> 并且将 <code>nums[i]</code> <strong>增加</strong> <code>1</code> ，开销为 <code>cost1</code>。</li>
+<li>选择 <code>nums</code> 中两个 <strong>不同</strong> 下标 <code>i</code> 和 <code>j</code> ，并且将 <code>nums[i]</code> 和 <code>nums[j]</code> 都 <strong>增加</strong> <code>1</code> ，开销为 <code>cost2</code> 。</li>
+</ul>
+<p>你的目标是使数组中所有元素都 <strong>相等</strong> ，请你返回需要的 <strong>最小开销</strong> 之和。</p>
+<p>由于答案可能会很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [4,1], cost1 &#x3D; 5, cost2 &#x3D; 2</p>
+<p><strong>输出：</strong>15</p>
+<p><strong>解释：</strong></p>
+<p>执行以下操作可以使数组中所有元素相等：</p>
+<ul>
+<li>将 <code>nums[1]</code> 增加 1 ，开销为 5 ，<code>nums</code> 变为 <code>[4,2]</code> 。</li>
+<li>将 <code>nums[1]</code> 增加 1 ，开销为 5 ，<code>nums</code> 变为 <code>[4,3]</code> 。</li>
+<li>将 <code>nums[1]</code> 增加 1 ，开销为 5 ，<code>nums</code> 变为 <code>[4,4]</code> 。</li>
+</ul>
+<p>总开销为 15 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [2,3,3,3,5], cost1 &#x3D; 2, cost2 &#x3D; 1</p>
+<p><strong>输出：</strong>6</p>
+<p><strong>解释：</strong></p>
+<p>执行以下操作可以使数组中所有元素相等：</p>
+<ul>
+<li>将 <code>nums[0]</code> 和 <code>nums[1]</code> 同时增加 1 ，开销为 1 ，<code>nums</code> 变为 <code>[3,4,3,3,5]</code> 。</li>
+<li>将 <code>nums[0]</code> 和 <code>nums[2]</code> 同时增加 1 ，开销为 1 ，<code>nums</code> 变为 <code>[4,4,4,3,5]</code> 。</li>
+<li>将 <code>nums[0]</code> 和 <code>nums[3]</code> 同时增加 1 ，开销为 1 ，<code>nums</code> 变为 <code>[5,4,4,4,5]</code> 。</li>
+<li>将 <code>nums[1]</code> 和 <code>nums[2]</code> 同时增加 1 ，开销为 1 ，<code>nums</code> 变为 <code>[5,5,5,4,5]</code> 。</li>
+<li>将 <code>nums[3]</code> 增加 1 ，开销为 2 ，<code>nums</code> 变为 <code>[5,5,5,5,5]</code> 。</li>
+</ul>
+<p>总开销为 6 。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [3,5,3], cost1 &#x3D; 1, cost2 &#x3D; 3</p>
+<p><strong>输出：</strong>4</p>
+<p><strong>解释：</strong></p>
+<p>执行以下操作可以使数组中所有元素相等：</p>
+<ul>
+<li>将 <code>nums[0]</code> 增加 1 ，开销为 1 ，<code>nums</code> 变为 <code>[4,5,3]</code> 。</li>
+<li>将 <code>nums[0]</code> 增加 1 ，开销为 1 ，<code>nums</code> 变为 <code>[5,5,3]</code> 。</li>
+<li>将 <code>nums[2]</code> 增加 1 ，开销为 1 ，<code>nums</code> 变为 <code>[5,5,4]</code> 。</li>
+<li>将 <code>nums[2]</code> 增加 1 ，开销为 1 ，<code>nums</code> 变为 <code>[5,5,5]</code> 。</li>
+</ul>
+<p>总开销为 4 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 106</code></li>
+<li><code>1 &lt;= cost1 &lt;= 106</code></li>
+<li><code>1 &lt;= cost2 &lt;= 106</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-396/problems/minimum-cost-to-equalize-array/">https://leetcode.cn/contest/weekly-contest-396/problems/minimum-cost-to-equalize-array/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 数学，贪心</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>本题确实是个非常非常不错的思维题目，最喜欢的是这类思考性质的题目。我们首先要思考一个简单的问题，假设给定的数组，每次可以从数组中取两个不同的元素，将其减少 $1$，最多可以操作多少次？此时可以参考「<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/description/">1953. 你可以工作的最大周数</a>」，设数组的总元素的和为 $sum$，数组中最大的元素为 $x$，此时可以直到有两种情况:</li>
+</ol>
+<ul>
+<li>如果 $x &lt;&#x3D; sum - x$，我们一定可以将所有的元素都变为 $0$，操作次数即为 $\dfrac{sum}{2}$;</li>
+<li>如果 $x &gt; sum - x$，我们无法将所有不同的元素进行配对，操作次数即为 $\min(x, sum - x)$ 次;</li>
+</ul>
+<ol start="2">
+<li>回到题目本身，我们需要分类讨论：</li>
+</ol>
+<ul>
+<li><p>当数组元素小于等于 $2$ 个时，如果两个元素不相等，此时哦我们只能利用操作 $1$，无法利用操作 $2$；</p>
+</li>
+<li><p>当 $2 * cost_1 \le cost_2$ 时，我们肯定是利用第一种操作的代价更小，此时最终的目标元素即为数组中的最大值；</p>
+</li>
+<li><p>当 $2 * cost_1 &gt; cost_2$ 时，此时我们应该尽可能的使用操作 $2$ 才能使得代价最少。我们知道上述问题的解答方法后，再回到题目本身，对给定的数组 $nums$，我们要使得数组中所有元素相等，至少我们需要使得数组中的所有元素都与数组中的最大值相等。</p>
+<ul>
+<li>假设已知数组中的最大值为 $x$，此时求出每个元素与 $x$ 的差值，每次从差值中取出 $2$ 个元素，因此此时我们至少需要将数组中所有的元素都增加到 $x$，此时根据前述分析此时需要的代价为 $(n \times x - sum) \times cost_1$;</li>
+<li>每次取两个数增加比两次增加一个数的代价要小，此时我们应该尽可能的使用两个数的操作次数，假设我们将所有元素都增加到 $x$，此时需要的代价分两种即为：<ul>
+<li>如果 $x \le sum - x$，此时最多可以进行 $\frac{(nx - sum)}{2}$ 次操作 $2$，需要 $(nx - sum) &amp; 1$ 次操作 $1$,需要的代价即为 $\lfloor \dfrac{(nx - sum)}{2} \rfloor + (nx - sum) &amp; 1$;</li>
+<li>如果 $x &gt; sum - x$，此时最多可以进行 $sum - x$ 次操作 $2$，需要 $2x - sum$ 次操作 $1$,需要的代价即为 $(sum -x) \times cost_2 + (2x - sum) \times cost_1$;</li>
+</ul>
+</li>
+<li>但是我们需要继续明白一个问题， $x$ 的上限应该是多少？我们知道每次应该尽可能的使用操作 $2$，当 $x$ 增加到一定程度后，此时所有的操作已经都是操作 $2$ 时，此时继续增加 $x$ 就没有任何意义，此时我们需要计算这个上限制，即我们找到最小的 $x$ 使得所有的操作都可以使用操作 $2$ 完成即为上限制，此时需要满足两个条件：<ul>
+<li>设数组中最大的元素为 $maxval$，此时数组中原有元素的之和为 $sum$，此时由于数组中所有的元素都需要增加到 $x$，此时</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>复杂度分析:</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n + U)$，其中 $n$ 表示数组的长度， $U$ 表示数组中的最大元素；</li>
+<li>空间复杂度：$O(1)$；</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minCostToEqualizeArray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], cost1: <span class="built_in">int</span>, cost2: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        mod = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">        maxVal = <span class="built_in">max</span>(nums)</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            nums[i] = maxVal - nums[i]</span><br><span class="line">        maxVal = <span class="built_in">max</span>(nums)</span><br><span class="line">        tot = <span class="built_in">sum</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">2</span> <span class="keyword">or</span> <span class="number">2</span> * cost1 &lt;= cost2:</span><br><span class="line">            <span class="keyword">return</span> tot * cost1 % mod</span><br><span class="line">        </span><br><span class="line">        res = tot * cost1</span><br><span class="line">        cnt1, cnt2 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="comment"># 求出增加的上限 </span></span><br><span class="line">        x = <span class="built_in">max</span>(<span class="number">0</span>, (<span class="number">2</span> * maxVal - tot) // (n - <span class="number">2</span>)) + <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, x + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> maxVal + i &gt; tot - maxVal + (n - <span class="number">1</span>) * i:</span><br><span class="line">                cnt2 = tot - maxVal + (n - <span class="number">1</span>) * i</span><br><span class="line">                cnt1 = tot + n * i - <span class="number">2</span> * cnt2</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cnt2 = (tot + n * i) // <span class="number">2</span></span><br><span class="line">                cnt1 = (tot + n * i) &amp; <span class="number">1</span></span><br><span class="line">            res = <span class="built_in">min</span>(res, cost1 * cnt1 + cost2 * cnt2)</span><br><span class="line">        <span class="keyword">return</span> res % mod</span><br></pre></td></tr></table></figure>
+
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg"></p>
+</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+  <a href="/tags#力扣周赛赛" >
+    <span class="tag-code">力扣周赛赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/198/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode weekly contest 395
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/207/">
+        
+          leetcode weekly contest 401
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-weekly-contest-396"><span class="toc-nav-text">leetcode weekly contest 396</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3136-%E6%9C%89%E6%95%88%E5%8D%95%E8%AF%8D"><span class="toc-nav-text">3136. 有效单词</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3137-K-%E5%91%A8%E6%9C%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0"><span class="toc-nav-text">3137. K 周期字符串需要的最少操作次数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3138-%E5%90%8C%E4%BD%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%9C%80%E5%B0%8F%E9%95%BF%E5%BA%A6"><span class="toc-nav-text">3138. 同位字符串连接的最小长度</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3139-%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E5%BC%80%E9%94%80"><span class="toc-nav-text">3139. 使数组中所有元素相等的最小开销</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/1970/01/01/力扣周赛题解/199/';
+    var banner = '力扣季度赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2024 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    
+  </p>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>
