@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode contest 391 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode contest 391</h2>
+  <p class="post-date">2024-04-14</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-contest-391"><a href="#leetcode-contest-391" class="headerlink" title="leetcode contest 391"></a>leetcode contest 391</h2><p>虽然没参加周赛，但是 <code>T4</code> 确实是个模版题目，基本上知道的知识点就非常容易。 </p>
+<h3 id="3099-哈沙德数"><a href="#3099-哈沙德数" class="headerlink" title="3099. 哈沙德数"></a>3099. 哈沙德数</h3><p>如果一个整数能够被其各个数位上的数字之和整除，则称之为 <strong>哈沙德数</strong>（Harshad number）。给你一个整数 <code>x</code> 。如果 <code>x</code> 是 <strong>哈沙德数</strong> ，则返回 <code>x</code> 各个数位上的数字之和，否则，返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> x &#x3D; 18</p>
+<p><strong>输出：</strong> 9</p>
+<p><strong>解释：</strong></p>
+<p><code>x</code> 各个数位上的数字之和为 <code>9</code> 。<code>18</code> 能被 <code>9</code> 整除。因此 <code>18</code> 是哈沙德数，答案是 <code>9</code> 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> x &#x3D; 23</p>
+<p><strong>输出：</strong> -1</p>
+<p><strong>解释：</strong></p>
+<p><code>x</code> 各个数位上的数字之和为 <code>5</code> 。<code>23</code> 不能被 <code>5</code> 整除。因此 <code>23</code> 不是哈沙德数，答案是 <code>-1</code> 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= x &lt;= 100</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-391/problems/harshad-number/">https://leetcode.cn/contest/weekly-contest-391/problems/harshad-number/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接统计数字中每一位的和，检测是否能被 $x$ 整除即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(\log x)$，其中 $x$ 表给定的数。</li>
+<li>空间复杂度：$O(1)$,。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sumOfTheDigitsOfHarshadNumber</span>(<span class="params">self, x: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        s = <span class="built_in">sum</span>(<span class="built_in">ord</span>(c) - <span class="built_in">ord</span>(<span class="string">&#x27;0&#x27;</span>) <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">str</span>(x))</span><br><span class="line">        <span class="keyword">return</span> s <span class="keyword">if</span> x % s == <span class="number">0</span> <span class="keyword">else</span> -<span class="number">1</span> </span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">sum_of_the_digits_of_harshad_number</span>(x: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">sum</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">a</span> = x;</span><br><span class="line">        <span class="keyword">while</span> a &gt; <span class="number">0</span> &#123;</span><br><span class="line">            sum += a % <span class="number">10</span>;</span><br><span class="line">            a /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> x % sum == <span class="number">0</span> &#123;sum&#125; <span class="keyword">else</span> &#123;-<span class="number">1</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3100-换水问题-II"><a href="#3100-换水问题-II" class="headerlink" title="3100. 换水问题 II"></a>3100. 换水问题 II</h3><p>给你两个整数 <code>numBottles</code> 和 <code>numExchange</code> 。</p>
+<p><code>numBottles</code> 代表你最初拥有的满水瓶数量。在一次操作中，你可以执行以下操作之一：</p>
+<ul>
+<li>喝掉任意数量的满水瓶，使它们变成空水瓶。</li>
+<li>用 <code>numExchange</code> 个空水瓶交换一个满水瓶。然后，将 <code>numExchange</code> 的值增加 1 。</li>
+</ul>
+<p>注意，你不能使用相同的 <code>numExchange</code> 值交换多批空水瓶。例如，如果 <code>numBottles == 3</code> 并且 <code>numExchange == 1</code> ，则不能用 <code>3</code> 个空水瓶交换成 <code>3</code> 个满水瓶。</p>
+<p>返回你 <strong>最多</strong> 可以喝到多少瓶水。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/01/28/exampleone1.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：numBottles = 13, numExchange = 6</span><br><span class="line">输出：15</span><br><span class="line">解释：上表显示了满水瓶的数量、空水瓶的数量、numExchange 的值，以及累计喝掉的水瓶数量。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/01/28/example231.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：numBottles = 10, numExchange = 3</span><br><span class="line">输出：13</span><br><span class="line">解释：上表显示了满水瓶的数量、空水瓶的数量、numExchange 的值，以及累计喝掉的水瓶数量。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= numBottles &lt;= 100</code></li>
+<li><code>1 &lt;= numExchange &lt;= 100</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-391/problems/water-bottles-ii/">https://leetcode.cn/contest/weekly-contest-391/problems/water-bottles-ii/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>数学问题 + 模拟
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>由于给定的数值较小，我们直接按照题目要求进行模拟即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times \log n)$，其中 $n$ 表示给定数组的长度。</li>
+<li>空间复杂度：$O(\log n)$。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">max_bottles_drunk</span>(num_bottles: <span class="type">i32</span>, num_exchange: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">num_exchange</span> = num_exchange;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">res</span> = num_bottles;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">tot</span> = num_bottles;</span><br><span class="line">        <span class="keyword">while</span> tot &gt;= num_exchange &#123;</span><br><span class="line">            res += <span class="number">1</span>;</span><br><span class="line">            tot -= num_exchange - <span class="number">1</span>;</span><br><span class="line">            num_exchange += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        res</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxBottlesDrunk</span>(<span class="params">self, numBottles: <span class="built_in">int</span>, numExchange: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        res, tot = numBottles, numBottles</span><br><span class="line">        <span class="keyword">while</span> tot &gt;= numExchange:</span><br><span class="line">            res += <span class="number">1</span></span><br><span class="line">            tot -= numExchange - <span class="number">1</span></span><br><span class="line">            numExchange += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3101-交替子数组计数"><a href="#3101-交替子数组计数" class="headerlink" title="3101. 交替子数组计数"></a>3101. 交替子数组计数</h3><p>给你一个二进制数组 <code>nums</code> 。</p>
+<p>如果一个子数组中 <strong>不存在</strong> 两个 <strong>相邻</strong> 元素的值 <strong>相同</strong> 的情况，我们称这样的子数组为 <strong>交替子数组</strong> 。</p>
+<p>返回数组 <code>nums</code> 中交替子数组的数量。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> nums &#x3D; [0,1,1,1]</p>
+<p><strong>输出：</strong> 5</p>
+<p><strong>解释：</strong></p>
+<p>以下子数组是交替子数组：<code>[0]</code> 、<code>[1]</code> 、<code>[1]</code> 、<code>[1]</code> 以及 <code>[0,1]</code> 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> nums &#x3D; [1,0,1,0]</p>
+<p><strong>输出：</strong> 10</p>
+<p><strong>解释：</strong></p>
+<p>数组的每个子数组都是交替子数组。可以统计在内的子数组共有 10 个。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>nums[i]</code> 不是 <code>0</code> 就是 <code>1</code> 。</li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-391/problems/count-alternating-subarrays/">https://leetcode.cn/contest/weekly-contest-391/problems/count-alternating-subarrays/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 数学</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>感觉是个比较容易得题目，我们每次计算以当前位置 $i$ 为结尾的且构成交替子数组的长度为 $cnt$，则此时以 $i$ 为结尾可以构成的交替子数组的数目也为 $cnt$ 个，我们依次统计当前的交替子数组即可。感觉算是个简单题目。</p>
+</li>
+<li><p>复杂度：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定数组的长度；</li>
+<li>空间复杂度：$O(1)$；</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countAlternatingSubarrays</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        tot, res = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            tot = <span class="number">1</span> <span class="keyword">if</span> nums[i] == nums[i - <span class="number">1</span>] <span class="keyword">else</span> tot + <span class="number">1</span></span><br><span class="line">            res += tot</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">count_alternating_subarrays</span>(nums: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;) <span class="punctuation">-&gt;</span> <span class="type">i64</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">tot</span> = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">res</span> = <span class="number">1</span> <span class="keyword">as</span> <span class="type">i64</span>;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">1</span>..nums.<span class="title function_ invoke__">len</span>() &#123;</span><br><span class="line">            tot = <span class="keyword">if</span> nums[i] == nums[i - <span class="number">1</span>] &#123;<span class="number">1</span>&#125; <span class="keyword">else</span> &#123;tot + <span class="number">1</span>&#125;;</span><br><span class="line">            res += tot <span class="keyword">as</span> <span class="type">i64</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3102-最小化曼哈顿距离"><a href="#3102-最小化曼哈顿距离" class="headerlink" title="3102. 最小化曼哈顿距离"></a>3102. 最小化曼哈顿距离</h3><p>给你一个下标从 <strong>0</strong> 开始的数组 <code>points</code> ，它表示二维平面上一些点的整数坐标，其中 <code>points[i] = [xi, yi]</code> 。</p>
+<p>两点之间的距离定义为它们的曼哈顿距离。</p>
+<p>请你恰好移除一个点，返回移除后任意两点之间的 <strong>最大</strong> 距离可能的 <strong>最小</strong> 值。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：points = [[3,10],[5,15],[10,2],[4,4]]</span><br><span class="line">输出：12</span><br><span class="line">解释：移除每个点后的最大距离如下所示：</span><br><span class="line">- 移除第 0 个点后，最大距离在点 (5, 15) 和 (10, 2) 之间，为 |5 - 10| + |15 - 2| = 18 。</span><br><span class="line">- 移除第 1 个点后，最大距离在点 (3, 10) 和 (10, 2) 之间，为 |3 - 10| + |10 - 2| = 15 。</span><br><span class="line">- 移除第 2 个点后，最大距离在点 (5, 15) 和 (4, 4) 之间，为 |5 - 4| + |15 - 4| = 12 。</span><br><span class="line">- 移除第 3 个点后，最大距离在点 (5, 15) 和 (10, 2) 之间的，为 |5 - 10| + |15 - 2| = 18 。</span><br><span class="line">在恰好移除一个点后，任意两点之间的最大距离可能的最小值是 12 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：points = [[1,1],[1,1],[1,1]]</span><br><span class="line">输出：0</span><br><span class="line">解释：移除任一点后，任意两点之间的最大距离都是 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>3 &lt;= points.length &lt;= 105</code></li>
+<li><code>points[i].length == 2</code></li>
+<li><code>1 &lt;= points[i][0], points[i][1] &lt;= 108</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-391/problems/minimize-manhattan-distances/">https://leetcode.cn/contest/weekly-contest-391/problems/minimize-manhattan-distances/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 数学</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>直接暴力计算的话，时间复杂度为 $O(n^2)$，题目的关键在于求集合中曼哈顿零距离的变形，此时我们可以根据公式可知：<br>$$<br>|x_1-x_2| + |y_1 -y_2| &#x3D; \max(x_1-x_2,x_2-x_1) + \max(y_1-y_2,y_2-y1) \<br>&#x3D;\max(x_1-x_2+y_1-y_2, x_1-x_2+y_2-y1,x_2-x_1+y_1-y_2,x_2-x_1+y_2-y_1) \<br>&#x3D; \max((x_1+y_1)-(x_2+y_2),(x_2+y_2)-(x_1+y_1),(x_1-y_1)-(x_2-y_2),(x_2-y_2)-(x_1-y_1)) \<br>&#x3D; \max(|(x_1+y_1)-(x_2+y_2)|, |(x_1-y_1) - (x_2-y_2)|) \<br>&#x3D; \max(\max(x_1+y_1,x_2+y_2)-\min(x_1+y_1,x_2+y_2),\max(x_1-y_1,x_2-y_2)-\min(x_1-y_1,x_2-y_2))<br>$$<br>根据上述等式可以知道我们只需要找到 $(x_i+y_i,x_i-y_i)$ 的最大值与最小值即可求出集合中的最大的曼哈顿距离，此时题目就变的非常简单了，我们尝试去掉每个点，并在集合中去掉其相应的值，并求出最小的最大曼哈顿距离即可。实际计算过程中，我们只需要考虑去掉曼哈顿距离最大值中的两个点其中一个即可，我们分别尝试计算即可。</p>
+</li>
+<li><p>复杂度分析:</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n\log n)$，其中 $n$ 表示给定的点的数目;</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度;</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minimumDistance</span>(<span class="params">self, points: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(points)</span><br><span class="line">        add, sub = [], []</span><br><span class="line">        <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(points):</span><br><span class="line">            add.append([x + y, i])</span><br><span class="line">            sub.append([x - y, i])</span><br><span class="line">        add.sort()</span><br><span class="line">        sub.sort()</span><br><span class="line">        </span><br><span class="line">        x = add[-<span class="number">1</span>][<span class="number">0</span>] - add[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        y = sub[-<span class="number">1</span>][<span class="number">0</span>] - sub[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        res = inf</span><br><span class="line">        i, j = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> x &gt;= y:</span><br><span class="line">            i, j = add[<span class="number">0</span>][<span class="number">1</span>], add[-<span class="number">1</span>][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i, j = sub[<span class="number">0</span>][<span class="number">1</span>], sub[-<span class="number">1</span>][<span class="number">1</span>]</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">calc</span>(<span class="params">nums, i</span>):</span><br><span class="line">            <span class="keyword">if</span> nums[<span class="number">0</span>][<span class="number">1</span>] == i:</span><br><span class="line">                <span class="keyword">return</span> nums[-<span class="number">1</span>][<span class="number">0</span>] - nums[<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">elif</span> nums[-<span class="number">1</span>][<span class="number">1</span>] == i:</span><br><span class="line">                <span class="keyword">return</span> nums[-<span class="number">2</span>][<span class="number">0</span>] - nums[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> nums[-<span class="number">1</span>][<span class="number">0</span>] - nums[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        </span><br><span class="line">        res = <span class="built_in">min</span>(res, <span class="built_in">max</span>(calc(add, i), calc(sub, i)))</span><br><span class="line">        res = <span class="built_in">min</span>(res, <span class="built_in">max</span>(calc(add, j), calc(sub, j)))</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::cmp::min;</span><br><span class="line"><span class="keyword">use</span> std::cmp::max;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">minimum_distance</span>(points: <span class="type">Vec</span>&lt;<span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;&gt;) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">n</span> = points.<span class="title function_ invoke__">len</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">add</span>: <span class="type">Vec</span>&lt;[<span class="type">i32</span>; <span class="number">2</span>]&gt; = <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">sub</span>: <span class="type">Vec</span>&lt;[<span class="type">i32</span>; <span class="number">2</span>]&gt; = <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i, point) <span class="keyword">in</span> points.<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">enumerate</span>() &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">x</span> = point[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">y</span> = point[<span class="number">1</span>];</span><br><span class="line">            add.<span class="title function_ invoke__">push</span>([x + y, i <span class="keyword">as</span> <span class="type">i32</span>]);</span><br><span class="line">            sub.<span class="title function_ invoke__">push</span>([x - y, i <span class="keyword">as</span> <span class="type">i32</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        add.<span class="title function_ invoke__">sort_by</span>(|a, b| a.<span class="title function_ invoke__">cmp</span>(b));</span><br><span class="line">        sub.<span class="title function_ invoke__">sort_by</span>(|a, b| a.<span class="title function_ invoke__">cmp</span>(b));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">x</span> = add.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">0</span>] - add.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">y</span> = sub.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">0</span>] - sub.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">res</span> = <span class="type">i32</span>::MAX;</span><br><span class="line">        <span class="keyword">let</span> (<span class="keyword">mut</span> i, <span class="keyword">mut</span> j) = (<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> x &gt;= y &#123;</span><br><span class="line">            i = add.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">1</span>] <span class="keyword">as</span> <span class="type">usize</span>;</span><br><span class="line">            j = add.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">1</span>] <span class="keyword">as</span> <span class="type">usize</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            i = sub.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">1</span>] <span class="keyword">as</span> <span class="type">usize</span>;</span><br><span class="line">            j = sub.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">1</span>] <span class="keyword">as</span> <span class="type">usize</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">calc</span>(nums: &amp;<span class="type">Vec</span>&lt;[<span class="type">i32</span>; <span class="number">2</span>]&gt;, i: <span class="type">usize</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> nums.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">1</span>] == i <span class="keyword">as</span> <span class="type">i32</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> nums.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">0</span>] - nums[<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> nums.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">1</span>] == i <span class="keyword">as</span> <span class="type">i32</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[nums.<span class="title function_ invoke__">len</span>() - <span class="number">2</span>][<span class="number">0</span>] - nums.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">0</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> nums.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">0</span>] - nums.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap</span>()[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        res = <span class="title function_ invoke__">min</span>(res, <span class="title function_ invoke__">max</span>(<span class="title function_ invoke__">calc</span>(&amp;add, i), <span class="title function_ invoke__">calc</span>(&amp;sub, i)));</span><br><span class="line">        res = <span class="title function_ invoke__">min</span>(res, <span class="title function_ invoke__">max</span>(<span class="title function_ invoke__">calc</span>(&amp;add, j), <span class="title function_ invoke__">calc</span>(&amp;sub, j)));</span><br><span class="line">        res</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg"></p>
+</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+  <a href="/tags#力扣周赛赛" >
+    <span class="tag-code">力扣周赛赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2024/04/12/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/190/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode biweekly contest 127
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2024/04/14/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/193/">
+        
+          leetcode biweekly contest 128
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-contest-391"><span class="toc-nav-text">leetcode contest 391</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3099-%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0"><span class="toc-nav-text">3099. 哈沙德数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3100-%E6%8D%A2%E6%B0%B4%E9%97%AE%E9%A2%98-II"><span class="toc-nav-text">3100. 换水问题 II</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3101-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0"><span class="toc-nav-text">3101. 交替子数组计数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3102-%E6%9C%80%E5%B0%8F%E5%8C%96%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB"><span class="toc-nav-text">3102. 最小化曼哈顿距离</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2024/04/14/力扣周赛题解/191/';
+    var banner = '力扣季度赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2024 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    
+  </p>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>

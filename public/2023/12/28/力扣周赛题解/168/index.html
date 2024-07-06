@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode contest 376 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode contest 376</h2>
+  <p class="post-date">2023-12-28</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-contest-376"><a href="#leetcode-contest-376" class="headerlink" title="leetcode contest 376"></a>leetcode contest 376</h2><p><code>T4</code> 竟然没有做出来，不过 <code>T3</code> 确实是个不错的题目，非常考验思考的能力。</p>
+<h3 id="100149-找出缺失和重复的数字"><a href="#100149-找出缺失和重复的数字" class="headerlink" title="100149. 找出缺失和重复的数字"></a>100149. 找出缺失和重复的数字</h3><p>给你一个下标从 <strong>0</strong> 开始的二维整数矩阵 <code>grid</code>，大小为 <code>n * n</code> ，其中的值在 <code>[1, n2]</code> 范围内。除了 <code>a</code> 出现 <strong>两次</strong>，<code>b</code> <strong>缺失</strong> 之外，每个整数都 <strong>恰好出现一次</strong> 。</p>
+<p>任务是找出重复的数字<code>a</code> 和缺失的数字 <code>b</code> 。</p>
+<p>返回一个下标从 0 开始、长度为 <code>2</code> 的整数数组 <code>ans</code> ，其中 <code>ans[0]</code> 等于 <code>a</code> ，<code>ans[1]</code> 等于 <code>b</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [[1,3],[2,2]]</span><br><span class="line">输出：[2,4]</span><br><span class="line">解释：数字 2 重复，数字 4 缺失，所以答案是 [2,4] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [[9,1,7],[8,9,2],[3,4,6]]</span><br><span class="line">输出：[9,5]</span><br><span class="line">解释：数字 9 重复，数字 5 缺失，所以答案是 [9,5] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= n == grid.length == grid[i].length &lt;= 50</code></li>
+<li><code>1 &lt;= grid[i][j] &lt;= n * n</code></li>
+<li>对于所有满足<code>1 &lt;= x &lt;= n * n</code> 的 <code>x</code> ，恰好存在一个 <code>x</code> 与矩阵中的任何成员都不相等。</li>
+<li>对于所有满足<code>1 &lt;= x &lt;= n * n</code> 的 <code>x</code> ，恰好存在一个 <code>x</code> 与矩阵中的两个成员相等。</li>
+<li>除上述的两个之外，对于所有满足<code>1 &lt;= x &lt;= n * n</code> 的 <code>x</code> ，都恰好存在一对 <code>i, j</code> 满足 <code>0 &lt;= i, j &lt;= n - 1</code> 且 <code>grid[i][j] == x</code> 。</li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-376/problems/find-missing-and-repeated-values/">https://leetcode.cn/contest/weekly-contest-376/problems/find-missing-and-repeated-values/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>经典题目，找到一个出现一次和未出现的元素，直接模拟哈希统计就是非常简单的问题，当然还可以用异或之类的技巧解法。找到未出现的元素与出现两次的元素即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n^2)$，其中 $n$ 表示给定矩阵的行数。</li>
+<li>空间复杂度：$O(n^2)$,   其中 $n$ 表示给定矩阵的行数。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findMissingAndRepeatedValues</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        n = <span class="built_in">len</span>(grid)</span><br><span class="line">        arr = []</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> grid:</span><br><span class="line">            arr += row</span><br><span class="line">        cnt = Counter(arr)</span><br><span class="line">        res = [<span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n * n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> cnt:</span><br><span class="line">                res[<span class="number">1</span>] = i</span><br><span class="line">            <span class="keyword">if</span> cnt[i] == <span class="number">2</span>:</span><br><span class="line">                res[<span class="number">0</span>] = i</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100161-划分数组并满足最大差限制"><a href="#100161-划分数组并满足最大差限制" class="headerlink" title="100161. 划分数组并满足最大差限制"></a>100161. 划分数组并满足最大差限制</h3><p>给你一个长度为 <code>n</code> 的整数数组 <code>nums</code>，以及一个正整数 <code>k</code> 。</p>
+<p>将这个数组划分为一个或多个长度为 <code>3</code> 的子数组，并满足以下条件：</p>
+<ul>
+<li><code>nums</code> 中的 <strong>每个</strong> 元素都必须 <strong>恰好</strong> 存在于某个子数组中。</li>
+<li>子数组中 <strong>任意</strong> 两个元素的差必须小于或等于 <code>k</code> 。</li>
+</ul>
+<p>返回一个 <strong>二维数组</strong> ，包含所有的子数组。如果不可能满足条件，就返回一个空数组。如果有多个答案，返回 <strong>任意一个</strong> 即可。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,3,4,8,7,9,3,5,1], k = 2</span><br><span class="line">输出：[[1,1,3],[3,4,5],[7,8,9]]</span><br><span class="line">解释：可以将数组划分为以下子数组：[1,1,3]，[3,4,5] 和 [7,8,9] 。</span><br><span class="line">每个子数组中任意两个元素的差都小于或等于 2 。</span><br><span class="line">注意，元素的顺序并不重要。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,3,3,2,7,3], k = 3</span><br><span class="line">输出：[]</span><br><span class="line">解释：无法划分数组满足所有条件。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == nums.length</code></li>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>n</code> 是 <code>3</code> 的倍数</li>
+<li><code>1 &lt;= nums[i] &lt;= 105</code></li>
+<li><code>1 &lt;= k &lt;= 105</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-376/problems/divide-array-into-arrays-with-max-difference/">https://leetcode.cn/contest/weekly-contest-376/problems/divide-array-into-arrays-with-max-difference/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>数学问题 + 贪心
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>首先需要将数组排序，依次枚举，对第 $0$ 个元素，此时与 $nums[0]$ 最接近的两个元素即为 $nums[1],nums[2]$, 如果  $nums[1],nums[2]$ 与 $nums[0]$ 的差值都大于 $k$ ，则此时一定无法满足分类。然后再依次枚举 $nums[3]$, 相邻的三个元素是否可以构成合法分组。本质上是相邻的三个元素进行分组即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times \log n)$，其中 $n$ 表示给定数组的长度。</li>
+<li>空间复杂度：$O(\log n)$。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="function">def <span class="title">divideArray</span><span class="params">(self, nums: List[<span class="type">int</span>], k: <span class="type">int</span>)</span> -&gt; List[List[<span class="type">int</span>]]:</span></span><br><span class="line"><span class="function">        nums.sort()</span></span><br><span class="line"><span class="function">        ans =</span> []</span><br><span class="line">        <span class="function"><span class="keyword">for</span> i in <span class="title">range</span><span class="params">(<span class="number">0</span>, len(nums), <span class="number">3</span>)</span>:</span></span><br><span class="line"><span class="function">            if nums[i + <span class="number">2</span>] - nums[i] &gt; k:</span></span><br><span class="line"><span class="function">                return []</span></span><br><span class="line"><span class="function">            ans.append([nums[i], nums[i + <span class="number">1</span>], nums[i + <span class="number">2</span>]])</span></span><br><span class="line"><span class="function">        return ans</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100151-使数组成为等数数组的最小代价"><a href="#100151-使数组成为等数数组的最小代价" class="headerlink" title="100151. 使数组成为等数数组的最小代价"></a>100151. 使数组成为等数数组的最小代价</h3><p>给你一个长度为 <code>n</code> 下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 。</p>
+<p>你可以对 <code>nums</code> 执行特殊操作 <strong>任意次</strong> （也可以 <strong>0</strong> 次）。每一次特殊操作中，你需要 <strong>按顺序</strong> 执行以下步骤：</p>
+<ul>
+<li>从范围 <code>[0, n - 1]</code> 里选择一个下标 <code>i</code> 和一个 <strong>正</strong> 整数 <code>x</code> 。</li>
+<li>将 <code>|nums[i] - x|</code> 添加到总代价里。</li>
+<li>将 <code>nums[i]</code> 变为 <code>x</code> 。</li>
+</ul>
+<p>如果一个正整数正着读和反着读都相同，那么我们称这个数是 <strong>回文数</strong> 。比方说，<code>121</code> ，<code>2552</code> 和 <code>65756</code> 都是回文数，但是 <code>24</code> ，<code>46</code> ，<code>235</code> 都不是回文数。</p>
+<p>如果一个数组中的所有元素都等于一个整数 <code>y</code> ，且 <code>y</code> 是一个小于 <code>109</code> 的 <strong>回文数</strong> ，那么我们称这个数组是一个 <strong>等数数组</strong> 。</p>
+<p>请你返回一个整数，表示执行任意次特殊操作后使 <code>nums</code> 成为 <strong>等数数组</strong> 的 <strong>最小</strong> 总代价。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,3,4,5]</span><br><span class="line">输出：6</span><br><span class="line">解释：我们可以将数组中所有元素变为回文数 3 得到等数数组，数组变成 [3,3,3,3,3] 需要执行 4 次特殊操作，代价为 |1 - 3| + |2 - 3| + |4 - 3| + |5 - 3| = 6 。</span><br><span class="line">将所有元素变为其他回文数的总代价都大于 6 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [10,12,13,14,15]</span><br><span class="line">输出：11</span><br><span class="line">解释：我们可以将数组中所有元素变为回文数 11 得到等数数组，数组变成 [11,11,11,11,11] 需要执行 5 次特殊操作，代价为 |10 - 11| + |12 - 11| + |13 - 11| + |14 - 11| + |15 - 11| = 11 。</span><br><span class="line">将所有元素变为其他回文数的总代价都大于 11 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3 ：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [22,33,22,33,22]</span><br><span class="line">输出：22</span><br><span class="line">解释：我们可以将数组中所有元素变为回文数 22 得到等数数组，数组变为 [22,22,22,22,22] 需要执行 2 次特殊操作，代价为 |33 - 22| + |33 - 22| = 22 。</span><br><span class="line">将所有元素变为其他回文数的总代价都大于 22 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-376/problems/minimum-cost-to-make-array-equalindromic/">https://leetcode.cn/contest/weekly-contest-376/problems/minimum-cost-to-make-array-equalindromic/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 贪心 + 数学</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>对于一个数组来说，我们知道数组的中位数到所有元素的距离之和最小，此时我们只需要找到距离中位数最近的回文数 $x$，此时 $x$ 到所有元素的差的绝对值之和最小。此时我们可以参考力扣经典题目 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-closest-palindrome/description/">寻找最近的回文数</a>，可以得到最近的回文数一定在下属序列中：</p>
+<ul>
+<li><p>用原数的前半部分替换后半部分得到的回文整数。</p>
+</li>
+<li><p>用原数的前半部分加一后的结果替换后半部分得到的回文整数。</p>
+</li>
+<li><p>用原数的前半部分减一后的结果替换后半部分得到的回文整数。</p>
+</li>
+<li><p>为防止位数变化导致构造的回文整数错误，因此直接构造 $999999\dots 999 和 100\dots 001$ 作为备选答案。</p>
+</li>
+</ul>
+</li>
+<li><p>找到备选的元素后，我们直接求最小的变换数目即可。</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中$n$ 表示给定数组的长度；</li>
+<li>空间复杂度：$O(\log U)$，其中$u$ 表示给定数组中的最大元素；</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">def <span class="title">getCandidates</span><span class="params">(x)</span>:</span></span><br><span class="line"><span class="function">    s =</span> <span class="built_in">str</span>(x)</span><br><span class="line">    n = <span class="built_in">len</span>(s)</span><br><span class="line">    candidates = [<span class="number">10</span> ** (n - <span class="number">1</span>) - <span class="number">1</span>, <span class="number">10</span> ** (n) + <span class="number">1</span>]</span><br><span class="line">    selfPrefix = <span class="built_in">int</span>(s[<span class="number">0</span> : (n + <span class="number">1</span>) <span class="comment">// 2])</span></span><br><span class="line">    <span class="keyword">for</span> i in [selfPrefix - <span class="number">1</span>, selfPrefix, selfPrefix + <span class="number">1</span>]:</span><br><span class="line">        prefix = <span class="built_in">str</span>(i)</span><br><span class="line">        rev = prefix[::<span class="number">-1</span>]</span><br><span class="line">        candidate = prefix + rev[n &amp; <span class="number">1</span>:]</span><br><span class="line">        candidates.<span class="built_in">append</span>(<span class="built_in">int</span>(candidate))</span><br><span class="line">    <span class="keyword">return</span> candidates</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Solution:  </span><br><span class="line">    def <span class="built_in">minimumCost</span>(self, nums: List[<span class="type">int</span>]) -&gt; <span class="type">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        nums.<span class="built_in">sort</span>()</span><br><span class="line">        mid = (nums[(n - <span class="number">1</span>) <span class="comment">// 2] + nums[n // 2]) // 2</span></span><br><span class="line">        psum = [<span class="number">0</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i, x in <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            psum[i + <span class="number">1</span>] = psum[i] + x</span><br><span class="line">        </span><br><span class="line">        candidates = <span class="built_in">getCandidates</span>(mid)</span><br><span class="line">        res = inf</span><br><span class="line">        <span class="keyword">for</span> x in candidates:</span><br><span class="line">            a = <span class="built_in">bisect_right</span>(nums, x)</span><br><span class="line">            res = <span class="built_in">min</span>(res, a * x - psum[a] + psum[n] - psum[a] - (n - a) * x)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100123-执行操作使频率分数最大"><a href="#100123-执行操作使频率分数最大" class="headerlink" title="100123. 执行操作使频率分数最大"></a>100123. 执行操作使频率分数最大</h3><p> 显示英文描述</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-376/problems/apply-operations-to-maximize-frequency-score/submissions/">我的提交</a><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-376/">返回竞赛</a></p>
+<ul>
+<li><strong>通过的用户数</strong>215</li>
+<li><strong>尝试过的用户数</strong>451</li>
+<li><strong>用户总通过次数</strong>248</li>
+<li><strong>用户总提交次数</strong>936</li>
+<li><strong>题目难度****Hard</strong></li>
+</ul>
+<p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 和一个整数 <code>k</code> 。</p>
+<p>你可以对数组执行 <strong>至多</strong> <code>k</code> 次操作：</p>
+<ul>
+<li>从数组中选择一个下标 <code>i</code> ，将 <code>nums[i]</code> <strong>增加</strong> 或者 <strong>减少</strong> <code>1</code> 。</li>
+</ul>
+<p>最终数组的频率分数定义为数组中众数的 <strong>频率</strong> 。</p>
+<p>请你返回你可以得到的 <strong>最大</strong> 频率分数。</p>
+<p>众数指的是数组中出现次数最多的数。一个元素的频率指的是数组中这个元素的出现次数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,6,4], k = 3</span><br><span class="line">输出：3</span><br><span class="line">解释：我们可以对数组执行以下操作：</span><br><span class="line">- 选择 i = 0 ，将 nums[0] 增加 1 。得到数组 [2,2,6,4] 。</span><br><span class="line">- 选择 i = 3 ，将 nums[3] 减少 1 ，得到数组 [2,2,6,3] 。</span><br><span class="line">- 选择 i = 3 ，将 nums[3] 减少 1 ，得到数组 [2,2,6,2] 。</span><br><span class="line">元素 2 是最终数组中的众数，出现了 3 次，所以频率分数为 3 。</span><br><span class="line">3 是所有可行方案里的最大频率分数。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,4,4,2,4], k = 0</span><br><span class="line">输出：3</span><br><span class="line">解释：我们无法执行任何操作，所以得到的频率分数是原数组中众数的频率 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>0 &lt;= k &lt;= 1014</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-376/problems/apply-operations-to-maximize-frequency-score/">https://leetcode.cn/contest/weekly-contest-376/problems/apply-operations-to-maximize-frequency-score/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 滑动窗口</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>首先需要将数组排序，我们知道对于任意的窗口 $[l,r]$ 此时窗口内的所有元素到窗口的中位数差的绝对值之和最小，此时我们可以采用滑动窗口 $l$ 只想窗口的左端，$r$ 指向窗口的右端，此时计算窗口内将所有元素变为其中位数所花费的代价是否大于 $k$：<ul>
+<li>如果窗口变为中位数的代价小于 $k$, 则表示该窗口符合要求，并记录当前窗口的大小；</li>
+<li>如果窗口变为中位数的代价大于 $k$，则表示当前窗口无法满足要求，此时需要将窗口左端点向右移动；</li>
+<li>题目本质即为求医 $r$ 为右端点的且满足代价小于 $k$ 的最大长度；</li>
+</ul>
+</li>
+<li>复杂度分析:</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示数组的长度;</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度;</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxFrequencyScore</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        nums.sort()</span><br><span class="line">        psum = [<span class="number">0</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i, x <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            psum[i + <span class="number">1</span>] = psum[i] + x</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">calc</span>(<span class="params">l, r</span>):</span><br><span class="line">            <span class="keyword">return</span> psum[r + <span class="number">1</span>] - psum[(l + r + <span class="number">1</span>) // <span class="number">2</span>] - (psum[(l + r) // <span class="number">2</span> + <span class="number">1</span>] - psum[l])</span><br><span class="line">        </span><br><span class="line">        j = <span class="number">0</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">while</span> j &lt;= i <span class="keyword">and</span> calc(j, i) &gt; k:</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">            res = <span class="built_in">max</span>(res, i - j + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">                </span><br></pre></td></tr></table></figure>
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" alt="1"></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+  <a href="/tags#力扣周赛赛" >
+    <span class="tag-code">力扣周赛赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2023/12/19/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/164/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode contest 373
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2023/12/28/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/169/">
+        
+          leetcode biweekly contest 120
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-contest-376"><span class="toc-nav-text">leetcode contest 376</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100149-%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E5%92%8C%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97"><span class="toc-nav-text">100149. 找出缺失和重复的数字</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100161-%E5%88%92%E5%88%86%E6%95%B0%E7%BB%84%E5%B9%B6%E6%BB%A1%E8%B6%B3%E6%9C%80%E5%A4%A7%E5%B7%AE%E9%99%90%E5%88%B6"><span class="toc-nav-text">100161. 划分数组并满足最大差限制</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100151-%E4%BD%BF%E6%95%B0%E7%BB%84%E6%88%90%E4%B8%BA%E7%AD%89%E6%95%B0%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7"><span class="toc-nav-text">100151. 使数组成为等数数组的最小代价</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100123-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E4%BD%BF%E9%A2%91%E7%8E%87%E5%88%86%E6%95%B0%E6%9C%80%E5%A4%A7"><span class="toc-nav-text">100123. 执行操作使频率分数最大</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2023/12/28/力扣周赛题解/168/';
+    var banner = '力扣季度赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2024 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    
+  </p>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>
