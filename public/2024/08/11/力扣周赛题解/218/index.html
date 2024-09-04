@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode weekly contest 410 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode weekly contest 410</h2>
+  <p class="post-date">2024-08-11</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-weekly-contest-410"><a href="#leetcode-weekly-contest-410" class="headerlink" title="leetcode weekly contest 410"></a>leetcode weekly contest 410</h2><p>今天周赛比较简单的题目，<code>T3,T4</code> 注意观察规律即可，本质还是动态规划的变形题目，注意观察细节即可，本质上是数学技巧。</p>
+<h3 id="100396-单调数组对的数目-II"><a href="#100396-单调数组对的数目-II" class="headerlink" title="100396. 单调数组对的数目 II"></a>100396. 单调数组对的数目 II</h3><p>给你一个长度为 <code>n</code> 的 <strong>正</strong> 整数数组 <code>nums</code> 。</p>
+<p>如果两个 <strong>非负</strong> 整数数组 <code>(arr1, arr2)</code> 满足以下条件，我们称它们是 <strong>单调</strong> 数组对：</p>
+<ul>
+<li>两个数组的长度都是 <code>n</code> 。</li>
+<li><code>arr1</code> 是单调 <strong>非递减</strong> 的，换句话说 <code>arr1[0] &lt;= arr1[1] &lt;= ... &lt;= arr1[n - 1]</code> 。</li>
+<li><code>arr2</code> 是单调 <strong>非递增</strong> 的，换句话说 <code>arr2[0] &gt;= arr2[1] &gt;= ... &gt;= arr2[n - 1]</code> 。</li>
+<li>对于所有的 <code>0 &lt;= i &lt;= n - 1</code> 都有 <code>arr1[i] + arr2[i] == nums[i]</code> 。</li>
+</ul>
+<p>请你返回所有 <strong>单调</strong> 数组对的数目。</p>
+<p>由于答案可能很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [2,3,2]</p>
+<p><strong>输出：</strong>4</p>
+<p><strong>解释：</strong></p>
+<p>单调数组对包括：</p>
+<ol>
+<li><code>([0, 1, 1], [2, 2, 1])</code></li>
+<li><code>([0, 1, 2], [2, 2, 0])</code></li>
+<li><code>([0, 2, 2], [2, 1, 0])</code></li>
+<li><code>([1, 2, 2], [1, 1, 0])</code></li>
+</ol>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [5,5,5,5]</p>
+<p><strong>输出：</strong>126</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == nums.length &lt;= 2000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 1000</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-ii/">https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-ii/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接根据题意模拟即可，按照上下左右四个方向进行模拟即可，返回最终坐标即可；</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">finalPositionOfSnake</span>(<span class="params">self, n: <span class="built_in">int</span>, commands: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="built_in">dir</span> = [[<span class="number">0</span>, -<span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], [-<span class="number">1</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">0</span>]]</span><br><span class="line">        x, y = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> command <span class="keyword">in</span> commands:</span><br><span class="line">            <span class="built_in">print</span>(command)</span><br><span class="line">            <span class="keyword">if</span> command == <span class="string">&quot;LEFT&quot;</span>:</span><br><span class="line">                x += <span class="built_in">dir</span>[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">                y += <span class="built_in">dir</span>[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> command == <span class="string">&quot;RIGHT&quot;</span>:</span><br><span class="line">                x += <span class="built_in">dir</span>[<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line">                y += <span class="built_in">dir</span>[<span class="number">1</span>][<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> command == <span class="string">&quot;UP&quot;</span>:</span><br><span class="line">                x += <span class="built_in">dir</span>[<span class="number">2</span>][<span class="number">0</span>]</span><br><span class="line">                y += <span class="built_in">dir</span>[<span class="number">2</span>][<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> command == <span class="string">&quot;DOWN&quot;</span>:</span><br><span class="line">                x += <span class="built_in">dir</span>[<span class="number">3</span>][<span class="number">0</span>]</span><br><span class="line">                y += <span class="built_in">dir</span>[<span class="number">3</span>][<span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> x * n + y</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="100354-统计好节点的数目"><a href="#100354-统计好节点的数目" class="headerlink" title="100354. 统计好节点的数目"></a>100354. 统计好节点的数目</h3><p>现有一棵 <strong>无向</strong> 树，树中包含 <code>n</code> 个节点，按从 <code>0</code> 到 <code>n - 1</code> 标记。树的根节点是节点 <code>0</code> 。给你一个长度为 <code>n - 1</code> 的二维整数数组 <code>edges</code>，其中 <code>edges[i] = [ai, bi]</code> 表示树中节点 <code>ai</code> 与节点 <code>bi</code> 之间存在一条边。</p>
+<p>如果一个节点的所有子节点为根的 子树 包含的节点数相同，则认为该节点是一个 <strong>好节点</strong>。</p>
+<p>返回给定树中 <strong>好节点</strong> 的数量。</p>
+<p><strong>子树</strong> 指的是一个节点以及它所有后代节点构成的一棵树。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>edges &#x3D; [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]</p>
+<p><strong>输出：</strong>7</p>
+<p><strong>说明：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/05/26/tree1.png" alt="img"></p>
+<p>树的所有节点都是好节点。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>edges &#x3D; [[0,1],[1,2],[2,3],[3,4],[0,5],[1,6],[2,7],[3,8]]</p>
+<p><strong>输出：</strong>6</p>
+<p><strong>说明：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/06/03/screenshot-2024-06-03-193552.png" alt="img"></p>
+<p>树中有 6 个好节点。上图中已将这些节点着色。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong>edges &#x3D; [[0,1],[1,2],[1,3],[1,4],[0,5],[5,6],[6,7],[7,8],[0,9],[9,10],[9,12],[10,11]]</p>
+<p><strong>输出：</strong>12</p>
+<p><strong>解释：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/08/08/rob.jpg" alt="img"></p>
+<p>除了节点 9 以外其他所有节点都是好节点。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>edges.length == n - 1</code></li>
+<li><code>edges[i].length == 2</code></li>
+<li><code>0 &lt;= ai, bi &lt; n</code></li>
+<li>输入确保 <code>edges</code> 总表示一棵有效的树。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-410/problems/count-the-number-of-good-nodes/">https://leetcode.cn/contest/weekly-contest-410/problems/count-the-number-of-good-nodes/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>DFS，树形dp
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>在力扣上烂大街的题目了，但是还是按照题意模拟即可，从 $0$ 开始遍历根节点，每次遍历时依次检测当前节点 $v$ 的所有子节点构成的子树种含有的节点数目都相等，如果不相等，则当前节点 $v$ 不是好节点，否则当前节点节点则为好节点，同时返回当前节点 $v$ 的子树中含有的节点数目 $tot$ 即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定节点的数目。</li>
+<li>空间复杂度：$O(n)$；</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countGoodNodes</span>(<span class="params">self, edges: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(edges)  + <span class="number">1</span></span><br><span class="line">        graph = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> edges:</span><br><span class="line">            graph[x].append(y)</span><br><span class="line">            graph[y].append(x)</span><br><span class="line">        </span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">v, p</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res</span><br><span class="line">            tot, pre = <span class="number">1</span>, -<span class="number">1</span></span><br><span class="line">            valid = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">for</span> ch <span class="keyword">in</span> graph[v]:</span><br><span class="line">                <span class="keyword">if</span> ch == p:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                cur = dfs(ch, v)</span><br><span class="line">                tot += cur</span><br><span class="line">                <span class="keyword">if</span> pre == -<span class="number">1</span>:</span><br><span class="line">                    pre = cur</span><br><span class="line">                <span class="keyword">elif</span> pre != cur:</span><br><span class="line">                    valid = <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> valid:</span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> tot</span><br><span class="line">        </span><br><span class="line">        dfs(<span class="number">0</span>, -<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100395-单调数组对的数目-I"><a href="#100395-单调数组对的数目-I" class="headerlink" title="100395. 单调数组对的数目 I"></a>100395. 单调数组对的数目 I</h3><p>给你一个长度为 <code>n</code> 的 <strong>正</strong> 整数数组 <code>nums</code> 。</p>
+<p>如果两个 <strong>非负</strong> 整数数组 <code>(arr1, arr2)</code> 满足以下条件，我们称它们是 <strong>单调</strong> 数组对：</p>
+<ul>
+<li>两个数组的长度都是 <code>n</code> 。</li>
+<li><code>arr1</code> 是单调 <strong>非递减</strong> 的，换句话说 <code>arr1[0] &lt;= arr1[1] &lt;= ... &lt;= arr1[n - 1]</code> 。</li>
+<li><code>arr2</code> 是单调 <strong>非递增</strong> 的，换句话说 <code>arr2[0] &gt;= arr2[1] &gt;= ... &gt;= arr2[n - 1]</code> 。</li>
+<li>对于所有的 <code>0 &lt;= i &lt;= n - 1</code> 都有 <code>arr1[i] + arr2[i] == nums[i]</code> 。</li>
+</ul>
+<p>请你返回所有 <strong>单调</strong> 数组对的数目。</p>
+<p>由于答案可能很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [2,3,2]</p>
+<p><strong>输出：</strong>4</p>
+<p><strong>解释：</strong></p>
+<p>单调数组对包括：</p>
+<ol>
+<li><code>([0, 1, 1], [2, 2, 1])</code></li>
+<li><code>([0, 1, 2], [2, 2, 0])</code></li>
+<li><code>([0, 2, 2], [2, 1, 0])</code></li>
+<li><code>([1, 2, 2], [1, 1, 0])</code></li>
+</ol>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [5,5,5,5]</p>
+<p><strong>输出：</strong>126</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == nums.length &lt;= 2000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 50</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-i/">https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-i/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>当然我们根据题目给定的数据范围大概就可以知道该题目应该使用动态规划，特别是给定了需要取余，此时更加确定题目需要用到动态规划了。我们设 $dp[i][j]$ 表示 $arr_1$ 中第 $i$ 个元素以 $j$ 为结尾的方案数，此时我们可以知道：</p>
+<ul>
+<li><p>如果 $arr_1$ 中第 $i$ 个元素为 $j$ ，则此时 $arr_2$ 中第 $i$ 个元素则为 $nums[i] - j$;</p>
+</li>
+<li><p>由于 $arr_1$ 需要满足非递减，$arr_2$ 需要满足非递增，此时 $arr_1[i-1]$ 的取值范围则为 $[0, j]$, 此时 $arr_2[i-1]$ 的值为 $nums[i-1] - arr_1[i-1] \ge nums[i] - arr_1[i]$,  我们将公式变形可以得到 $arr_1[i] - arr_1[i-1] \ge nums[i] - nums[i - 1]$; </p>
+</li>
+<li><p>假设 $arr_1[i-1]$ 的取值为 $k$，则此时 $k \in[0,j]$,  同时 $nums[i-1] - k \ge nums[i] - j$，即此时 $k \le j - nums[i] + nums[i -1]$；</p>
+</li>
+<li><p>我们依次从$0$ 开始枚举 $k$，根据上诉结论可以知道递推公式如下：<br>$$<br>dp[i][j] &#x3D; \sum_{k&#x3D;0}^{\min(j, j - nums[i] + nums[i-1])}dp[i-1][k]<br>$$</p>
+</li>
+<li><p>我们根据上诉递推公式依次计算即可。</p>
+</li>
+</ul>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times U^2)$，其中 $n$ 表示给定数组的长度，$U$ 表示给定数组中元素的最大值;</li>
+<li>空间复杂度：$O(n \times U)$, 其中 $n$ 表示给定数组的长度，$U$ 表示给定数组中元素的最大值;</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countOfPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n, m = <span class="built_in">len</span>(nums), <span class="built_in">max</span>(nums)</span><br><span class="line">        mod = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">        dp = [[<span class="number">0</span>] * (m + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nums[<span class="number">0</span>] + <span class="number">1</span>):</span><br><span class="line">            dp[<span class="number">0</span>][i] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, nums[i] + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, j + <span class="number">1</span>):</span><br><span class="line">                    <span class="keyword">if</span> nums[i] - j &lt;= nums[i - <span class="number">1</span>] - k:</span><br><span class="line">                        dp[i][j] = (dp[i][j] + dp[i - <span class="number">1</span>][k]) % mod</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(dp[n - <span class="number">1</span>]) % mod</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="100396-单调数组对的数目-II-1"><a href="#100396-单调数组对的数目-II-1" class="headerlink" title="100396. 单调数组对的数目 II"></a>100396. 单调数组对的数目 II</h3><p>给你一个长度为 <code>n</code> 的 <strong>正</strong> 整数数组 <code>nums</code> 。</p>
+<p>如果两个 <strong>非负</strong> 整数数组 <code>(arr1, arr2)</code> 满足以下条件，我们称它们是 <strong>单调</strong> 数组对：</p>
+<ul>
+<li>两个数组的长度都是 <code>n</code> 。</li>
+<li><code>arr1</code> 是单调 <strong>非递减</strong> 的，换句话说 <code>arr1[0] &lt;= arr1[1] &lt;= ... &lt;= arr1[n - 1]</code> 。</li>
+<li><code>arr2</code> 是单调 <strong>非递增</strong> 的，换句话说 <code>arr2[0] &gt;= arr2[1] &gt;= ... &gt;= arr2[n - 1]</code> 。</li>
+<li>对于所有的 <code>0 &lt;= i &lt;= n - 1</code> 都有 <code>arr1[i] + arr2[i] == nums[i]</code> 。</li>
+</ul>
+<p>请你返回所有 <strong>单调</strong> 数组对的数目。</p>
+<p>由于答案可能很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [2,3,2]</p>
+<p><strong>输出：</strong>4</p>
+<p><strong>解释：</strong></p>
+<p>单调数组对包括：</p>
+<ol>
+<li><code>([0, 1, 1], [2, 2, 1])</code></li>
+<li><code>([0, 1, 2], [2, 2, 0])</code></li>
+<li><code>([0, 2, 2], [2, 1, 0])</code></li>
+<li><code>([1, 2, 2], [1, 1, 0])</code></li>
+</ol>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [5,5,5,5]</p>
+<p><strong>输出：</strong>126</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == nums.length &lt;= 2000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 1000</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-ii/">https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-ii/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划，前缀和</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>根据 <code>T3</code>的思路，我们可以看到实际 $dp[i][j]$ 等于 $dp[i-1]$ 的某个前缀和，根据递推公式可以知道：<br>$$<br>dp[i][j] &#x3D; \sum_{k&#x3D;0}^{\min(j, j - nums[i] + nums[i-1])}dp[i-1][k]<br>$$<br>我们设 $psum[i][j]$ 表示 $\sum_{k&#x3D;0}^{j}dp[i][j]$，此时上述等式则变化为前缀和公式如下：<br>$$<br>dp[i][j] &#x3D; psum[i-1][min(j, j - nums[i] + nums[i-1])]<br>$$<br>需要注意的细节是 $x &#x3D; min(j, j - nums[i] + nums[i-1])$ 可能出现小于 $0$ 的情形，我们需要剔除该异常情况即可。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times U)$，其中 $n$ 表示给定数组的长度，$U$ 表示给定数组中元素的最大值;</li>
+<li>空间复杂度：$O(n \times U)$, 其中 $n$ 表示给定数组的长度，$U$ 表示给定数组中元素的最大值;</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countOfPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n, m = <span class="built_in">len</span>(nums), <span class="built_in">max</span>(nums)</span><br><span class="line">        mod = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">        dp = [[<span class="number">0</span>] * (m + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        psum = [[<span class="number">0</span>] * (m + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nums[<span class="number">0</span>] + <span class="number">1</span>):</span><br><span class="line">            dp[<span class="number">0</span>][i] = <span class="number">1</span></span><br><span class="line">            psum[<span class="number">0</span>][i] = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, nums[i] + <span class="number">1</span>):</span><br><span class="line">                x = <span class="built_in">min</span>(nums[i - <span class="number">1</span>], j, j - nums[i] + nums[i - <span class="number">1</span>])</span><br><span class="line">                <span class="keyword">if</span> x &gt;= <span class="number">0</span>:</span><br><span class="line">                    dp[i][j] = (dp[i][j] + psum[i - <span class="number">1</span>][x]) % mod</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, nums[i] + <span class="number">1</span>):</span><br><span class="line">                psum[i][j] = dp[i][j]</span><br><span class="line">                <span class="keyword">if</span> j &gt; <span class="number">0</span>:</span><br><span class="line">                    psum[i][j] = (psum[i][j] + psum[i][j - <span class="number">1</span>]) % mod</span><br><span class="line">        <span class="keyword">return</span> psum[n - <span class="number">1</span>][nums[-<span class="number">1</span>]]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg"></p>
+</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+  <a href="/tags#力扣周赛赛" >
+    <span class="tag-code">力扣周赛赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2024/08/11/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/217/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode weekly contest 408
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2024/08/18/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/219/">
+        
+          leetcode biweekly contest 137
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-weekly-contest-410"><span class="toc-nav-text">leetcode weekly contest 410</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100396-%E5%8D%95%E8%B0%83%E6%95%B0%E7%BB%84%E5%AF%B9%E7%9A%84%E6%95%B0%E7%9B%AE-II"><span class="toc-nav-text">100396. 单调数组对的数目 II</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100354-%E7%BB%9F%E8%AE%A1%E5%A5%BD%E8%8A%82%E7%82%B9%E7%9A%84%E6%95%B0%E7%9B%AE"><span class="toc-nav-text">100354. 统计好节点的数目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100395-%E5%8D%95%E8%B0%83%E6%95%B0%E7%BB%84%E5%AF%B9%E7%9A%84%E6%95%B0%E7%9B%AE-I"><span class="toc-nav-text">100395. 单调数组对的数目 I</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100396-%E5%8D%95%E8%B0%83%E6%95%B0%E7%BB%84%E5%AF%B9%E7%9A%84%E6%95%B0%E7%9B%AE-II-1"><span class="toc-nav-text">100396. 单调数组对的数目 II</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2024/08/11/力扣周赛题解/218/';
+    var banner = '力扣季度赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2024 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    
+  </p>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>

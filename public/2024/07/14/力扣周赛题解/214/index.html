@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode weekly contest 406 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode weekly contest 406</h2>
+  <p class="post-date">2024-07-14</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-weekly-contest-406"><a href="#leetcode-weekly-contest-406" class="headerlink" title="leetcode weekly contest 406"></a>leetcode weekly contest 406</h2><h3 id="100352-交换后字典序最小的字符串"><a href="#100352-交换后字典序最小的字符串" class="headerlink" title="100352. 交换后字典序最小的字符串"></a>100352. 交换后字典序最小的字符串</h3><p>给你一个仅由数字组成的字符串 <code>s</code>，在最多交换一次 <strong>相邻</strong> 且具有相同 <strong>奇偶性</strong> 的数字后，返回可以得到的字典序最小的字符串。</p>
+<p>如果两个数字都是奇数或都是偶数，则它们具有相同的奇偶性。例如，5 和 9、2 和 4 奇偶性相同，而 6 和 9 奇偶性不同。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> s &#x3D; “45320”</p>
+<p><strong>输出：</strong> “43520”</p>
+<p><strong>解释：</strong></p>
+<p><code>s[1] == &#39;5&#39;</code> 和 <code>s[2] == &#39;3&#39;</code> 都具有相同的奇偶性，交换它们可以得到字典序最小的字符串。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> s &#x3D; “001”</p>
+<p><strong>输出：</strong> “001”</p>
+<p><strong>解释：</strong></p>
+<p>无需进行交换，因为 <code>s</code> 已经是字典序最小的。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= s.length &lt;= 100</code></li>
+<li><code>s</code> 仅由数字组成。</li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-406/problems/lexicographically-smallest-string-after-a-swap/">https://leetcode.cn/contest/weekly-contest-406/problems/lexicographically-smallest-string-after-a-swap/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接模拟交换即可，选择前一个字符比后一个大的字符进行交换即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getSmallestString</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        s = <span class="built_in">list</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(s)):</span><br><span class="line">            a = <span class="built_in">ord</span>(s[i - <span class="number">1</span>]) - <span class="built_in">ord</span>(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">            b = <span class="built_in">ord</span>(s[i]) - <span class="built_in">ord</span>(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> a &gt; b:</span><br><span class="line">                <span class="keyword">if</span> (a &amp; <span class="number">1</span>) == (b &amp; <span class="number">1</span>):</span><br><span class="line">                    s[i], s[i - <span class="number">1</span>] = s[i - <span class="number">1</span>], s[i]</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(s)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="100368-从链表中移除在数组中存在的节点"><a href="#100368-从链表中移除在数组中存在的节点" class="headerlink" title="100368. 从链表中移除在数组中存在的节点"></a>100368. 从链表中移除在数组中存在的节点</h3><p>给你一个整数数组 <code>nums</code> 和一个链表的头节点 <code>head</code>。从链表中<strong>移除</strong>所有存在于 <code>nums</code> 中的节点后，返回修改后的链表的头节点。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> nums &#x3D; [1,2,3], head &#x3D; [1,2,3,4,5]</p>
+<p><strong>输出：</strong> [4,5]</p>
+<p><strong>解释：</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2024/06/11/linkedlistexample0.png" alt="img"></strong></p>
+<p>移除数值为 1, 2 和 3 的节点。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> nums &#x3D; [1], head &#x3D; [1,2,1,2,1,2]</p>
+<p><strong>输出：</strong> [2,2,2]</p>
+<p><strong>解释：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/06/11/linkedlistexample1.png" alt="img"></p>
+<p>移除数值为 1 的节点。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong> nums &#x3D; [5], head &#x3D; [1,2,3,4]</p>
+<p><strong>输出：</strong> [1,2,3,4]</p>
+<p><strong>解释：</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2024/06/11/linkedlistexample2.png" alt="img"></strong></p>
+<p>链表中不存在值为 5 的节点。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 105</code></li>
+<li><code>nums</code> 中的所有元素都是唯一的。</li>
+<li>链表中的节点数在 <code>[1, 105]</code> 的范围内。</li>
+<li><code>1 &lt;= Node.val &lt;= 105</code></li>
+<li>输入保证链表中至少有一个值没有在 <code>nums</code> 中出现过。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-406/problems/delete-nodes-from-linked-list-present-in-array/">https://leetcode.cn/contest/weekly-contest-406/problems/delete-nodes-from-linked-list-present-in-array/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>将数组中的元素从链表中删除即可</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n + m)$，其中 $n$ 表示给定链表的长度。</li>
+<li>空间复杂度：$O(m)$，其中 $m$ 表示给定的数组的长度</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">modifiedList</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], head: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        cnt = <span class="built_in">set</span>(nums)</span><br><span class="line">        arr = []</span><br><span class="line">        <span class="keyword">while</span> head <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">if</span> head.val <span class="keyword">not</span> <span class="keyword">in</span> cnt:</span><br><span class="line">                arr.append(head.val)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        head = ListNode(arr[<span class="number">0</span>])</span><br><span class="line">        tail = head</span><br><span class="line">        <span class="keyword">for</span> _, x <span class="keyword">in</span> <span class="built_in">enumerate</span>(arr[<span class="number">1</span>:]):</span><br><span class="line">            tail.<span class="built_in">next</span> = ListNode(x)</span><br><span class="line">            tail = tail.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100361-切蛋糕的最小总开销-I"><a href="#100361-切蛋糕的最小总开销-I" class="headerlink" title="100361. 切蛋糕的最小总开销 I"></a>100361. 切蛋糕的最小总开销 I</h3><p>有一个 <code>m x n</code> 大小的矩形蛋糕，需要切成 <code>1 x 1</code> 的小块。</p>
+<p>给你整数 <code>m</code> ，<code>n</code> 和两个数组：</p>
+<ul>
+<li><code>horizontalCut</code> 的大小为 <code>m - 1</code> ，其中 <code>horizontalCut[i]</code> 表示沿着水平线 <code>i</code> 切蛋糕的开销。</li>
+<li><code>verticalCut</code> 的大小为 <code>n - 1</code> ，其中 <code>verticalCut[j]</code> 表示沿着垂直线 <code>j</code> 切蛋糕的开销。</li>
+</ul>
+<p>一次操作中，你可以选择任意不是 <code>1 x 1</code> 大小的矩形蛋糕并执行以下操作之一：</p>
+<ol>
+<li>沿着水平线 <code>i</code> 切开蛋糕，开销为 <code>horizontalCut[i]</code> 。</li>
+<li>沿着垂直线 <code>j</code> 切开蛋糕，开销为 <code>verticalCut[j]</code> 。</li>
+</ol>
+<p>每次操作后，这块蛋糕都被切成两个独立的小蛋糕。</p>
+<p>每次操作的开销都为最开始对应切割线的开销，并且不会改变。</p>
+<p>请你返回将蛋糕全部切成 <code>1 x 1</code> 的蛋糕块的 <strong>最小</strong> 总开销。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>m &#x3D; 3, n &#x3D; 2, horizontalCut &#x3D; [1,3], verticalCut &#x3D; [5]</p>
+<p><strong>输出：</strong>13</p>
+<p><strong>解释：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/06/04/ezgifcom-animated-gif-maker-1.gif" alt="img"></p>
+<ul>
+<li>沿着垂直线 0 切开蛋糕，开销为 5 。</li>
+<li>沿着水平线 0 切开 <code>3 x 1</code> 的蛋糕块，开销为 1 。</li>
+<li>沿着水平线 0 切开 <code>3 x 1</code> 的蛋糕块，开销为 1 。</li>
+<li>沿着水平线 1 切开 <code>2 x 1</code> 的蛋糕块，开销为 3 。</li>
+<li>沿着水平线 1 切开 <code>2 x 1</code> 的蛋糕块，开销为 3 。</li>
+</ul>
+<p>总开销为 <code>5 + 1 + 1 + 3 + 3 = 13</code> 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>m &#x3D; 2, n &#x3D; 2, horizontalCut &#x3D; [7], verticalCut &#x3D; [4]</p>
+<p><strong>输出：</strong>15</p>
+<p><strong>解释：</strong></p>
+<ul>
+<li>沿着水平线 0 切开蛋糕，开销为 7 。</li>
+<li>沿着垂直线 0 切开 <code>1 x 2</code> 的蛋糕块，开销为 4 。</li>
+<li>沿着垂直线 0 切开 <code>1 x 2</code> 的蛋糕块，开销为 4 。</li>
+</ul>
+<p>总开销为 <code>7 + 4 + 4 = 15</code> 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= m, n &lt;= 20</code></li>
+<li><code>horizontalCut.length == m - 1</code></li>
+<li><code>verticalCut.length == n - 1</code></li>
+<li><code>1 &lt;= horizontalCut[i], verticalCut[i] &lt;= 103</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-406/problems/minimum-cost-for-cutting-cake-i/">https://leetcode.cn/contest/weekly-contest-406/problems/minimum-cost-for-cutting-cake-i/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>最简单的就是动态规划了， 设 $f(x_1,y_1,x_2,y_2)$ 表示以 $(x_1,y_1)$ 为左上顶点，以 $(x_2,y_2)$ 为右下顶点的矩形切割的最小代价，此时下一次切割我们要门水平切，要么竖直切，此时我们水平切或者竖直的话，可以得到以下递推公式：<br>$$<br>f(x_1,y_1,x_2,y_2) &#x3D; \min(f(x_1, y_1, i, y_2) + f(i, y_1, x_2, y_2) + horizontalCut[i - 1]) \quad i  \in(x_1 + 1, x_2-1)\<br>f(x_1,y_1,x_2,y_2) &#x3D; \min(f(x_1, y_1, x_2, i) + f(x_1, i, x_2, y_2) + verticalCut[i - 1]) \quad i \in(y_1 + 1, y_2-1)<br>$$</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(m^2n^2(m+n))$，其中 $mn$ 表示给定的 $m,n$;</li>
+<li>空间复杂度：$O(m^2n^2)$，其中 $mn$ 表示给定的 $m,n$;</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minimumCost</span>(<span class="params">self, m: <span class="built_in">int</span>, n: <span class="built_in">int</span>, horizontalCut: <span class="type">List</span>[<span class="built_in">int</span>], verticalCut: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line"><span class="meta">        @cache </span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">x1, y1, x2, y2</span>):</span><br><span class="line">            <span class="keyword">if</span> x2 - x1 == <span class="number">1</span> <span class="keyword">and</span> y2 - y1 == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            res = inf</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(y1 + <span class="number">1</span>, y2):</span><br><span class="line">                res = <span class="built_in">min</span>(res, dfs(x1, y1, x2, i) + dfs(x1, i, x2, y2) + verticalCut[i - <span class="number">1</span>])</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(x1 + <span class="number">1</span>, x2):</span><br><span class="line">                res = <span class="built_in">min</span>(res, dfs(x1, y1, i, y2) + dfs(i, y1, x2, y2) + horizontalCut[i - <span class="number">1</span>])</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">return</span> dfs(<span class="number">0</span>, <span class="number">0</span>, m, n)</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="00367-切蛋糕的最小总开销-II"><a href="#00367-切蛋糕的最小总开销-II" class="headerlink" title="00367. 切蛋糕的最小总开销 II"></a>00367. 切蛋糕的最小总开销 II</h3><p>有一个 <code>m x n</code> 大小的矩形蛋糕，需要切成 <code>1 x 1</code> 的小块。</p>
+<p>给你整数 <code>m</code> ，<code>n</code> 和两个数组：</p>
+<ul>
+<li><code>horizontalCut</code> 的大小为 <code>m - 1</code> ，其中 <code>horizontalCut[i]</code> 表示沿着水平线 <code>i</code> 切蛋糕的开销。</li>
+<li><code>verticalCut</code> 的大小为 <code>n - 1</code> ，其中 <code>verticalCut[j]</code> 表示沿着垂直线 <code>j</code> 切蛋糕的开销。</li>
+</ul>
+<p>一次操作中，你可以选择任意不是 <code>1 x 1</code> 大小的矩形蛋糕并执行以下操作之一：</p>
+<ol>
+<li>沿着水平线 <code>i</code> 切开蛋糕，开销为 <code>horizontalCut[i]</code> 。</li>
+<li>沿着垂直线 <code>j</code> 切开蛋糕，开销为 <code>verticalCut[j]</code> 。</li>
+</ol>
+<p>每次操作后，这块蛋糕都被切成两个独立的小蛋糕。</p>
+<p>每次操作的开销都为最开始对应切割线的开销，并且不会改变。</p>
+<p>请你返回将蛋糕全部切成 <code>1 x 1</code> 的蛋糕块的 <strong>最小</strong> 总开销。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>m &#x3D; 3, n &#x3D; 2, horizontalCut &#x3D; [1,3], verticalCut &#x3D; [5]</p>
+<p><strong>输出：</strong>13</p>
+<p><strong>解释：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/06/04/ezgifcom-animated-gif-maker-1.gif" alt="img"></p>
+<ul>
+<li>沿着垂直线 0 切开蛋糕，开销为 5 。</li>
+<li>沿着水平线 0 切开 <code>3 x 1</code> 的蛋糕块，开销为 1 。</li>
+<li>沿着水平线 0 切开 <code>3 x 1</code> 的蛋糕块，开销为 1 。</li>
+<li>沿着水平线 1 切开 <code>2 x 1</code> 的蛋糕块，开销为 3 。</li>
+<li>沿着水平线 1 切开 <code>2 x 1</code> 的蛋糕块，开销为 3 。</li>
+</ul>
+<p>总开销为 <code>5 + 1 + 1 + 3 + 3 = 13</code> 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>m &#x3D; 2, n &#x3D; 2, horizontalCut &#x3D; [7], verticalCut &#x3D; [4]</p>
+<p><strong>输出：</strong>15</p>
+<p><strong>解释：</strong></p>
+<ul>
+<li>沿着水平线 0 切开蛋糕，开销为 7 。</li>
+<li>沿着垂直线 0 切开 <code>1 x 2</code> 的蛋糕块，开销为 4 。</li>
+<li>沿着垂直线 0 切开 <code>1 x 2</code> 的蛋糕块，开销为 4 。</li>
+</ul>
+<p>总开销为 <code>7 + 4 + 4 = 15</code> 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= m, n &lt;= 105</code></li>
+<li><code>horizontalCut.length == m - 1</code></li>
+<li><code>verticalCut.length == n - 1</code></li>
+<li><code>1 &lt;= horizontalCut[i], verticalCut[i] &lt;= 103</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-406/problems/minimum-cost-for-cutting-cake-ii/">https://leetcode.cn/contest/weekly-contest-406/problems/minimum-cost-for-cutting-cake-ii/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 贪心</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>假设当前已经再水平方向切成了 $x$ 块 ，竖直方向切成了 $y$ 块，此时如果当前选择水平切，则需要的代价为 $cost \times y$, 如果当前选择竖直切，则需要的代价为 $cost \times x$，实际比较我们发现越往后切的话，由于乘法倍数存在的原因，则此时需要的代价越大，因此根据贪心原则，此时单次切时代价越大切法应当即可能的提前切，单次切时代价越小的单位此时应该提前切，因此我们将所有代价按照从大到小进行排列，此时依次选择水平切或者竖直切，并统计当前再水平方向或者竖直方向已经切成的的块数即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O((m + n) \log (m + n)$，其中 $m,n$ 表示给的数；</li>
+<li>空间复杂度：$O(m + n)$，其中 $m,n$ 表示给的数；</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minimumCost</span>(<span class="params">self, m: <span class="built_in">int</span>, n: <span class="built_in">int</span>, horizontalCut: <span class="type">List</span>[<span class="built_in">int</span>], verticalCut: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        arr = []</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> horizontalCut:</span><br><span class="line">            arr.append([x, <span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> verticalCut:</span><br><span class="line">            arr.append([x, <span class="number">1</span>])</span><br><span class="line">        arr.sort(key = <span class="keyword">lambda</span> x : -x[<span class="number">0</span>])</span><br><span class="line">       </span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        hcut, vcut = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> cost, flag <span class="keyword">in</span> arr:</span><br><span class="line">            <span class="keyword">if</span> flag == <span class="number">0</span>:</span><br><span class="line">                res += vcut * cost</span><br><span class="line">                hcut += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res += hcut * cost</span><br><span class="line">                vcut += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg"></p>
+</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+  <a href="/tags#力扣周赛赛" >
+    <span class="tag-code">力扣周赛赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2024/07/13/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/212/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode biweekly contest 134
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2024/07/22/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/215/">
+        
+          leetcode biweekly contest 135
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-weekly-contest-406"><span class="toc-nav-text">leetcode weekly contest 406</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100352-%E4%BA%A4%E6%8D%A2%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-nav-text">100352. 交换后字典序最小的字符串</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100368-%E4%BB%8E%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%A7%BB%E9%99%A4%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AD%98%E5%9C%A8%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-nav-text">100368. 从链表中移除在数组中存在的节点</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#100361-%E5%88%87%E8%9B%8B%E7%B3%95%E7%9A%84%E6%9C%80%E5%B0%8F%E6%80%BB%E5%BC%80%E9%94%80-I"><span class="toc-nav-text">100361. 切蛋糕的最小总开销 I</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#00367-%E5%88%87%E8%9B%8B%E7%B3%95%E7%9A%84%E6%9C%80%E5%B0%8F%E6%80%BB%E5%BC%80%E9%94%80-II"><span class="toc-nav-text">00367. 切蛋糕的最小总开销 II</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2024/07/14/力扣周赛题解/214/';
+    var banner = '力扣季度赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2024 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    
+  </p>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>
