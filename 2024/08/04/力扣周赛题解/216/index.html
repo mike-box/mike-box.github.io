@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode weekly contest 407 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode weekly contest 407</h2>
+  <p class="post-date">2024-08-04</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-weekly-contest-407"><a href="#leetcode-weekly-contest-407" class="headerlink" title="leetcode weekly contest 407"></a>leetcode weekly contest 407</h2><h3 id="3226-使两个整数相等的位更改次数"><a href="#3226-使两个整数相等的位更改次数" class="headerlink" title="3226. 使两个整数相等的位更改次数"></a>3226. 使两个整数相等的位更改次数</h3><p>给你两个正整数 <code>n</code> 和 <code>k</code>。</p>
+<p>你可以选择 <code>n</code> 的 <strong>二进制表示</strong> 中任意一个值为 1 的位，并将其改为 0。</p>
+<p>返回使得 <code>n</code> 等于 <code>k</code> 所需要的更改次数。如果无法实现，返回 -1。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> n &#x3D; 13, k &#x3D; 4</p>
+<p><strong>输出：</strong> 2</p>
+<p><strong>解释：</strong><br>最初，<code>n</code> 和 <code>k</code> 的二进制表示分别为 <code>n = (1101)2</code> 和 <code>k = (0100)2</code>，</p>
+<p>我们可以改变 <code>n</code> 的第一位和第四位。结果整数为 <code>n = (**0**10**0**)2 = k</code>。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> n &#x3D; 21, k &#x3D; 21</p>
+<p><strong>输出：</strong> 0</p>
+<p><strong>解释：</strong><br><code>n</code> 和 <code>k</code> 已经相等，因此不需要更改。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong> n &#x3D; 14, k &#x3D; 13</p>
+<p><strong>输出：</strong> -1</p>
+<p><strong>解释：</strong><br>无法使 <code>n</code> 等于 <code>k</code>。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n, k &lt;= 106</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-407/problems/number-of-bit-changes-to-make-two-integers-equal/">https://leetcode.cn/contest/weekly-contest-407/problems/number-of-bit-changes-to-make-two-integers-equal/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>统计 $n$ 与 $k$ 两个数中数位不同的个数即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(1)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minChanges</span>(<span class="params">self, n: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span> <span class="keyword">if</span> n &amp; k != k <span class="keyword">else</span> (n ^ k).bit_count()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3227-字符串元音游戏"><a href="#3227-字符串元音游戏" class="headerlink" title="3227. 字符串元音游戏"></a>3227. 字符串元音游戏</h3><p>小红和小明在玩一个字符串元音游戏。</p>
+<p>给你一个字符串 <code>s</code>，小红和小明将轮流参与游戏，小红 <strong>先</strong> 开始：</p>
+<ul>
+<li>在小红的回合，她必须移除 <code>s</code> 中包含 <strong>奇数</strong> 个元音的任意 <strong>非空</strong> 子字符串。</li>
+<li>在小明的回合，他必须移除 <code>s</code> 中包含 <strong>偶数</strong> 个元音的任意 <strong>非空</strong> 子字符串。</li>
+</ul>
+<p>第一个无法在其回合内进行移除操作的玩家输掉游戏。假设小红和小明都采取 <strong>最优策略</strong> 。</p>
+<p>如果小红赢得游戏，返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>英文元音字母包括：<code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, 和 <code>u</code>。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> s &#x3D; “leetcoder”</p>
+<p><strong>输出：</strong> true</p>
+<p><strong>解释：</strong><br>小红可以执行如下移除操作来赢得游戏：</p>
+<ul>
+<li>小红先手，她可以移除加下划线的子字符串 <code>s = &quot;**leetco**der&quot;</code>，其中包含 3 个元音。结果字符串为 <code>s = &quot;der&quot;</code>。</li>
+<li>小明接着，他可以移除加下划线的子字符串 <code>s = &quot;**d**er&quot;</code>，其中包含 0 个元音。结果字符串为 <code>s = &quot;er&quot;</code>。</li>
+<li>小红再次操作，她可以移除整个字符串 <code>s = &quot;**er**&quot;</code>，其中包含 1 个元音。</li>
+<li>又轮到小明，由于字符串为空，无法执行移除操作，因此小红赢得游戏。</li>
+</ul>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> s &#x3D; “bbcd”</p>
+<p><strong>输出：</strong> false</p>
+<p><strong>解释：</strong><br>小红在她的第一回合无法执行移除操作，因此小红输掉了游戏。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 105</code></li>
+<li><code>s</code> 仅由小写英文字母组成。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-407/problems/vowels-game-in-a-string/">https://leetcode.cn/contest/weekly-contest-407/problems/vowels-game-in-a-string/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>本质即为统计字符串出现元音字符的数目，假设字符串中出现元音字符的个数为 $x$ 且满足 $x &gt; 0$，则此时最多经过两次即可取玩：<ul>
+<li>如果 $x$ 为奇数，则小红先手可以一次把字符串全部取完，此时小明会输；</li>
+<li>如果 $x$ 为偶数，则小红可以先取奇数个字符，然后剩余的元音字符也为奇数个，此时小明只能取偶数个，因此无论如何取，小红在下一回去取得时候一定可以把所有得字符全部取完；</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定字符串得长度。</li>
+<li>空间复杂度：$O(1)$；</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">doesAliceWin</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">if</span> c <span class="keyword">in</span> [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;u&#x27;</span>] <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> c <span class="keyword">in</span> s) &gt; <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3228-将-1-移动到末尾的最大操作次数"><a href="#3228-将-1-移动到末尾的最大操作次数" class="headerlink" title="3228. 将 1 移动到末尾的最大操作次数"></a>3228. 将 1 移动到末尾的最大操作次数</h3><p>给你一个 二进制字符串 <code>s</code>。</p>
+<p>你可以对这个字符串执行 <strong>任意次</strong> 下述操作：</p>
+<ul>
+<li>选择字符串中的任一下标 <code>i</code>（ <code>i + 1 &lt; s.length</code> ），该下标满足 <code>s[i] == &#39;1&#39;</code> 且 <code>s[i + 1] == &#39;0&#39;</code>。</li>
+<li>将字符 <code>s[i]</code> 向 <strong>右移</strong> 直到它到达字符串的末端或另一个 <code>&#39;1&#39;</code>。例如，对于 <code>s = &quot;010010&quot;</code>，如果我们选择 <code>i = 1</code>，结果字符串将会是 <code>s = &quot;0**001**10&quot;</code>。</li>
+</ul>
+<p>返回你能执行的 <strong>最大</strong> 操作次数。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> s &#x3D; “1001101”</p>
+<p><strong>输出：</strong> 4</p>
+<p><strong>解释：</strong></p>
+<p>可以执行以下操作：</p>
+<ul>
+<li>选择下标 <code>i = 0</code>。结果字符串为 <code>s = &quot;**001**1101&quot;</code>。</li>
+<li>选择下标 <code>i = 4</code>。结果字符串为 <code>s = &quot;0011**01**1&quot;</code>。</li>
+<li>选择下标 <code>i = 3</code>。结果字符串为 <code>s = &quot;001**01**11&quot;</code>。</li>
+<li>选择下标 <code>i = 2</code>。结果字符串为 <code>s = &quot;00**01**111&quot;</code>。</li>
+</ul>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> s &#x3D; “00111”</p>
+<p><strong>输出：</strong> 0</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 105</code></li>
+<li><code>s[i]</code> 为 <code>&#39;0&#39;</code> 或 <code>&#39;1&#39;</code>。</li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-406/problems/minimum-cost-for-cutting-cake-i/">https://leetcode.cn/contest/weekly-contest-406/problems/minimum-cost-for-cutting-cake-i/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 直接模拟</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>我们可以观察到，假设字符得末尾全部是 $1$ 则一定无法移动，我们从左到右遍历字符串，此时假设当前已经有 $x$ 个 $1$，此时遇到下一次 $01$ 交替时，我们一定可以移动 $x$ 次，此时接着连续有 $y$ 个 $1$，则此时遇到下一个 $01$，则一定可以移动 $x+ y$ 次，我们按照上诉方式模拟即可。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定字符串的长度;</li>
+<li>空间复杂度：$O(1)$;</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxOperations</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ans, cnt = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            <span class="keyword">if</span> c == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                cnt += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i <span class="keyword">and</span> s[i - <span class="number">1</span>] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                ans += cnt</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="3229-使数组等于目标数组所需的最少操作次数"><a href="#3229-使数组等于目标数组所需的最少操作次数" class="headerlink" title="3229. 使数组等于目标数组所需的最少操作次数"></a>3229. 使数组等于目标数组所需的最少操作次数</h3><p>给你两个长度相同的正整数数组 <code>nums</code> 和 <code>target</code>。</p>
+<p>在一次操作中，你可以选择 <code>nums</code> 的任何子数组，并将该子数组内的每个元素的值增加或减少 1。</p>
+<p>返回使 <code>nums</code> 数组变为 <code>target</code> 数组所需的 <strong>最少</strong> 操作次数。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> nums &#x3D; [3,5,1,2], target &#x3D; [4,6,2,4]</p>
+<p><strong>输出：</strong> 2</p>
+<p><strong>解释：</strong></p>
+<p>执行以下操作可以使 <code>nums</code> 等于 <code>target</code>：<br>- <code>nums[0..3]</code> 增加 1，<code>nums = [4,6,2,3]</code>。<br>- <code>nums[3..3]</code> 增加 1，<code>nums = [4,6,2,4]</code>。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> nums &#x3D; [1,3,2], target &#x3D; [2,1,4]</p>
+<p><strong>输出：</strong> 5</p>
+<p><strong>解释：</strong></p>
+<p>执行以下操作可以使 <code>nums</code> 等于 <code>target</code>：<br>- <code>nums[0..0]</code> 增加 1，<code>nums = [2,3,2]</code>。<br>- <code>nums[1..1]</code> 减少 1，<code>nums = [2,2,2]</code>。<br>- <code>nums[1..1]</code> 减少 1，<code>nums = [2,1,2]</code>。<br>- <code>nums[2..2]</code> 增加 1，<code>nums = [2,1,3]</code>。<br>- <code>nums[2..2]</code> 增加 1，<code>nums = [2,1,4]</code>。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length == target.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i], target[i] &lt;= 108</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-407/problems/minimum-operations-to-make-array-equal-to-target/">https://leetcode.cn/contest/weekly-contest-407/problems/minimum-operations-to-make-array-equal-to-target/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 模拟，差分数组</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>假设将两个数组变为相同，此时我们分别统计哪些数据需要递增，哪些数据需要递减，此时形成一些波峰，由于每次操作只能加$1$ 或者 减 $1$ ，此时我们尽可能使得数 $x$ 变为数 $y$ 的操作次数均为 $|x-y|$, 这个贪心算法证明还是挺难的，但是我们很容易计算出来。只需要计算上升沿的所有数字之和即可。</li>
+<li>差分数组的思想比较难想，但是整体思路还是可以的。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O((m + n) \log (m + n)$，其中 $m,n$ 表示给的数；</li>
+<li>空间复杂度：$O(m + n)$，其中 $m,n$ 表示给的数；</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minimumOperations</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        diff = [x - y <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(nums, target)]</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">arr : <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            pre = <span class="number">0</span></span><br><span class="line">            ret = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> arr:</span><br><span class="line">                <span class="keyword">if</span> x &gt;= pre:</span><br><span class="line">                    ret += x - pre</span><br><span class="line">                pre = x</span><br><span class="line">                </span><br><span class="line">            <span class="keyword">return</span> ret </span><br><span class="line"></span><br><span class="line">        res, i = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(nums):</span><br><span class="line">            arr = []</span><br><span class="line">            <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(nums) <span class="keyword">and</span> diff[i] &gt; <span class="number">0</span>:</span><br><span class="line">                arr.append(diff[i])</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            res += get(arr)</span><br><span class="line">            arr = []</span><br><span class="line">            <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(nums) <span class="keyword">and</span> diff[i] &lt;= <span class="number">0</span>:</span><br><span class="line">                arr.append(-diff[i])</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            res += get(arr)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg"></p>
+</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+  <a href="/tags#力扣周赛赛" >
+    <span class="tag-code">力扣周赛赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2024/07/22/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/213/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode weekly contest 407
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2024/08/11/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/217/">
+        
+          leetcode weekly contest 408
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-weekly-contest-407"><span class="toc-nav-text">leetcode weekly contest 407</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3226-%E4%BD%BF%E4%B8%A4%E4%B8%AA%E6%95%B4%E6%95%B0%E7%9B%B8%E7%AD%89%E7%9A%84%E4%BD%8D%E6%9B%B4%E6%94%B9%E6%AC%A1%E6%95%B0"><span class="toc-nav-text">3226. 使两个整数相等的位更改次数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3227-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%83%E9%9F%B3%E6%B8%B8%E6%88%8F"><span class="toc-nav-text">3227. 字符串元音游戏</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3228-%E5%B0%86-1-%E7%A7%BB%E5%8A%A8%E5%88%B0%E6%9C%AB%E5%B0%BE%E7%9A%84%E6%9C%80%E5%A4%A7%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0"><span class="toc-nav-text">3228. 将 1 移动到末尾的最大操作次数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3229-%E4%BD%BF%E6%95%B0%E7%BB%84%E7%AD%89%E4%BA%8E%E7%9B%AE%E6%A0%87%E6%95%B0%E7%BB%84%E6%89%80%E9%9C%80%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0"><span class="toc-nav-text">3229. 使数组等于目标数组所需的最少操作次数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2024/08/04/力扣周赛题解/216/';
+    var banner = '力扣季度赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2024 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    
+  </p>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="good study, day day up">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      leetcode weekly contest 407 | 且听疯吟
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>且听疯吟</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>leetcode weekly contest 407</h2>
+  <p class="post-date">2024-07-22</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="leetcode-weekly-contest-407"><a href="#leetcode-weekly-contest-407" class="headerlink" title="leetcode weekly contest 407"></a>leetcode weekly contest 407</h2><h3 id="3226-使两个整数相等的位更改次数"><a href="#3226-使两个整数相等的位更改次数" class="headerlink" title="3226. 使两个整数相等的位更改次数"></a>3226. 使两个整数相等的位更改次数</h3><p>给你两个正整数 <code>n</code> 和 <code>k</code>。</p>
+<p>你可以选择 <code>n</code> 的 <strong>二进制表示</strong> 中任意一个值为 1 的位，并将其改为 0。</p>
+<p>返回使得 <code>n</code> 等于 <code>k</code> 所需要的更改次数。如果无法实现，返回 -1。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> n &#x3D; 13, k &#x3D; 4</p>
+<p><strong>输出：</strong> 2</p>
+<p><strong>解释：</strong><br>最初，<code>n</code> 和 <code>k</code> 的二进制表示分别为 <code>n = (1101)2</code> 和 <code>k = (0100)2</code>，</p>
+<p>我们可以改变 <code>n</code> 的第一位和第四位。结果整数为 <code>n = (**0**10**0**)2 = k</code>。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> n &#x3D; 21, k &#x3D; 21</p>
+<p><strong>输出：</strong> 0</p>
+<p><strong>解释：</strong><br><code>n</code> 和 <code>k</code> 已经相等，因此不需要更改。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong> n &#x3D; 14, k &#x3D; 13</p>
+<p><strong>输出：</strong> -1</p>
+<p><strong>解释：</strong><br>无法使 <code>n</code> 等于 <code>k</code>。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n, k &lt;= 106</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-407/problems/number-of-bit-changes-to-make-two-integers-equal/">https://leetcode.cn/contest/weekly-contest-407/problems/number-of-bit-changes-to-make-two-integers-equal/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>1.<br>2. 复杂度分析：</p>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getEncryptedString</span>(<span class="params">self, s: <span class="built_in">str</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">return</span> s[k % <span class="built_in">len</span>(s):] + s[<span class="number">0</span>: k % <span class="built_in">len</span>(s)]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3211-生成不含相邻零的二进制字符串"><a href="#3211-生成不含相邻零的二进制字符串" class="headerlink" title="3211. 生成不含相邻零的二进制字符串"></a>3211. 生成不含相邻零的二进制字符串</h3><p>给你一个正整数 <code>n</code>。</p>
+<p>如果一个二进制字符串 <code>x</code> 的所有长度为 2 的子字符串中包含 <strong>至少</strong> 一个 <code>&quot;1&quot;</code>，则称 <code>x</code> 是一个 <strong>有效</strong> 字符串。</p>
+<p>返回所有长度为 <code>n</code> 的 <strong>有效</strong> 字符串，可以以任意顺序排列。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> n &#x3D; 3</p>
+<p><strong>输出：</strong> [“010”,”011”,”101”,”110”,”111”]</p>
+<p><strong>解释：</strong></p>
+<p>长度为 3 的有效字符串有：<code>&quot;010&quot;</code>、<code>&quot;011&quot;</code>、<code>&quot;101&quot;</code>、<code>&quot;110&quot;</code> 和 <code>&quot;111&quot;</code>。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> n &#x3D; 1</p>
+<p><strong>输出：</strong> [“0”,”1”]</p>
+<p><strong>解释：</strong></p>
+<p>长度为 1 的有效字符串有：<code>&quot;0&quot;</code> 和 <code>&quot;1&quot;</code>。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 18</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-405/problems/generate-binary-strings-without-adjacent-zeros/">https://leetcode.cn/contest/weekly-contest-405/problems/generate-binary-strings-without-adjacent-zeros/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟，枚举
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>嘴贱但</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n )$，其中 $n$ 表示给定数组的长度。</li>
+<li>空间复杂度：$O(\log n)$，其中 $n$ 表示给定数组的长度。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">validStrings</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        ans = []</span><br><span class="line">        mask = (<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span> &lt;&lt; n):</span><br><span class="line">            x = mask ^ i</span><br><span class="line">            <span class="keyword">if</span> (x &gt;&gt; <span class="number">1</span>) &amp; x == <span class="number">0</span>:</span><br><span class="line">                ans.append(<span class="string">f&quot;<span class="subst">&#123;i:<span class="number">0</span>&#123;n&#125;</span>b&#125;&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3212-统计-X-和-Y-频数相等的子矩阵数量"><a href="#3212-统计-X-和-Y-频数相等的子矩阵数量" class="headerlink" title="3212. 统计 X 和 Y 频数相等的子矩阵数量"></a>3212. 统计 X 和 Y 频数相等的子矩阵数量</h3><p>给你一个二维字符矩阵 <code>grid</code>，其中 <code>grid[i][j]</code> 可能是 <code>&#39;X&#39;</code>、<code>&#39;Y&#39;</code> 或 <code>&#39;.&#39;</code>，返回满足以下条件的子矩阵数量：</p>
+<ul>
+<li>包含 <code>grid[0][0]</code></li>
+<li><code>&#39;X&#39;</code> 和 <code>&#39;Y&#39;</code> 的频数相等。</li>
+<li>至少包含一个 <code>&#39;X&#39;</code>。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> grid &#x3D; [[“X”,”Y”,”.”],[“Y”,”.”,”.”]]</p>
+<p><strong>输出：</strong> 3</p>
+<p><strong>解释：</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2024/06/07/examplems.png" alt="img"></strong></p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> grid &#x3D; [[“X”,”X”],[“X”,”Y”]]</p>
+<p><strong>输出：</strong> 0</p>
+<p><strong>解释：</strong></p>
+<p>不存在满足 <code>&#39;X&#39;</code> 和 <code>&#39;Y&#39;</code> 频数相等的子矩阵。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong> grid &#x3D; [[“.”,”.”],[“.”,”.”]]</p>
+<p><strong>输出：</strong> 0</p>
+<p><strong>解释：</strong></p>
+<p>不存在满足至少包含一个 <code>&#39;X&#39;</code> 的子矩阵。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= grid.length, grid[i].length &lt;= 1000</code></li>
+<li><code>grid[i][j]</code> 可能是 <code>&#39;X&#39;</code>、<code>&#39;Y&#39;</code> 或 <code>&#39;.&#39;</code>.</li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-405/problems/count-submatrices-with-equal-frequency-of-x-and-y/">https://leetcode.cn/contest/weekly-contest-405/problems/count-submatrices-with-equal-frequency-of-x-and-y/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>我们利用动态规划可以统计所有以  $(0,0),(i,j)$ 组成的矩形中的 $x$ 与 $y$ 的数量，动态规划方程很容易写：<br>$$<br>dp1[i + 1][j + 1] &#x3D; dp1[i][j + 1] + dp1[i + 1][j] - dp1[i][j] + grid[i][j] &#x3D;&#x3D; ‘X’ \<br>dp2[i + 1][j + 1] &#x3D; dp2[i][j + 1] + dp2[i + 1][j] - dp2[i][j] + grid[i][j] &#x3D;&#x3D; ‘Y’<br>$$</p>
+</li>
+<li><p>我们求出所有位置中 $x,y$ 的统计数目，并按照题目要求检测是否满足数量是否相等即可。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(mn)$，其中 $mn$ 表示给定矩阵的行数与列数。</li>
+<li>空间复杂度：$O(mn)$，其中 $mn$ 表示给定矩阵的行数与列数。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numberOfSubmatrices</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m, n = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        dp1 = [[<span class="number">0</span>] * (n + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m + <span class="number">1</span>)]</span><br><span class="line">        dp2 = [[<span class="number">0</span>] * (n + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m + <span class="number">1</span>)]</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                dp1[i + <span class="number">1</span>][j + <span class="number">1</span>] = dp1[i][j + <span class="number">1</span>] + dp1[i + <span class="number">1</span>][j] - dp1[i][j]</span><br><span class="line">                dp2[i + <span class="number">1</span>][j + <span class="number">1</span>] = dp2[i][j + <span class="number">1</span>] + dp2[i + <span class="number">1</span>][j] - dp2[i][j]</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                    dp1[i + <span class="number">1</span>][j + <span class="number">1</span>] += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="string">&#x27;Y&#x27;</span>:</span><br><span class="line">                    dp2[i + <span class="number">1</span>][j + <span class="number">1</span>] += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> dp1[i + <span class="number">1</span>][j + <span class="number">1</span>] &gt; <span class="number">0</span> <span class="keyword">and</span> dp1[i + <span class="number">1</span>][j + <span class="number">1</span>] == dp2[i + <span class="number">1</span>][j + <span class="number">1</span>]:</span><br><span class="line">                    res += <span class="number">1</span></span><br><span class="line">         </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="3213-最小代价构造字符串"><a href="#3213-最小代价构造字符串" class="headerlink" title="3213. 最小代价构造字符串"></a>3213. 最小代价构造字符串</h3><p>给你一个字符串 <code>target</code>、一个字符串数组 <code>words</code> 以及一个整数数组 <code>costs</code>，这两个数组长度相同。</p>
+<p>设想一个空字符串 <code>s</code>。</p>
+<p>你可以执行以下操作任意次数（包括<strong>零</strong>次）：</p>
+<ul>
+<li>选择一个在范围 <code>[0, words.length - 1]</code> 的索引 <code>i</code>。</li>
+<li>将 <code>words[i]</code> 追加到 <code>s</code>。</li>
+<li>该操作的成本是 <code>costs[i]</code>。</li>
+</ul>
+<p>返回使 <code>s</code> 等于 <code>target</code> 的 <strong>最小</strong> 成本。如果不可能，返回 <code>-1</code>。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> target &#x3D; “abcdef”, words &#x3D; [“abdef”,”abc”,”d”,”def”,”ef”], costs &#x3D; [100,1,1,10,5]</p>
+<p><strong>输出：</strong> 7</p>
+<p><strong>解释：</strong></p>
+<ul>
+<li>选择索引 1 并以成本 1 将 <code>&quot;abc&quot;</code> 追加到 <code>s</code>，得到 <code>s = &quot;abc&quot;</code>。</li>
+<li>选择索引 2 并以成本 1 将 <code>&quot;d&quot;</code> 追加到 <code>s</code>，得到 <code>s = &quot;abcd&quot;</code>。</li>
+<li>选择索引 4 并以成本 5 将 <code>&quot;ef&quot;</code> 追加到 <code>s</code>，得到 <code>s = &quot;abcdef&quot;</code>。</li>
+</ul>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> target &#x3D; “aaaa”, words &#x3D; [“z”,”zz”,”zzz”], costs &#x3D; [1,10,100]</p>
+<p><strong>输出：</strong> -1</p>
+<p><strong>解释：</strong></p>
+<p>无法使 <code>s</code> 等于 <code>target</code>，因此返回 -1。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= target.length &lt;= 5 * 104</code></li>
+<li><code>1 &lt;= words.length == costs.length &lt;= 5 * 104</code></li>
+<li><code>1 &lt;= words[i].length &lt;= target.length</code></li>
+<li>所有 <code>words[i].length</code> 的总和小于或等于 <code>5 * 104</code></li>
+<li><code>target</code> 和 <code>words[i]</code> 仅由小写英文字母组成。</li>
+<li><code>1 &lt;= costs[i] &lt;= 104</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-405/problems/construct-string-with-minimum-cost/">https://leetcode.cn/contest/weekly-contest-405/problems/construct-string-with-minimum-cost/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> AC自动机，字符串哈希</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>题目还是比较经典，并且难度较高的题目，仔细看了 <code>AC</code> 的代码中有一半估计应该过不了的，力扣的测试用力不够强大。还是正统的用经典算法，当然字符串哈希的算法比较容易理解。当然题目看起来很直接的动态规划，设 $dp[i]$ 表示 $target$ 从 $0$ 到 $i-1$ 最小构造开销，此时我们可以知道假设子字符串 $taget[j\cdots i-1]$ 可以被 $words$ 种某个字符串替换，此时可以得到递推公式如下：<br>$$<br>dp[i] &#x3D; \min(dp[i], dp[j] + costs[k]), \quad if \quad taget[j\cdots i-1] &#x3D; words[k], j &lt; i<br>$$<br>题目的关键在于如何快速找到从 $i$ 往前可以匹配的子字符串，这个就需要一些技巧，首先我们想到的就是字符串哈希，此时我们只需要枚举所有可能的字符串的长度 $l$，并计算出当前 $target[i-l \cdots i-1]$ 的字符串哈希值，利用哈希表快速找到是否存在可以替换的字符串即可，当时想到了字符串哈希的解法，但是竟然觉得太麻烦就没有继续写下去了，直接用了 $trie$ 竟然超时了。</p>
+</li>
+<li><p>首先我们需要计算一下给定的字符串数组 $words$ 中不同字符串长度的数目，设所有字符串的长度之和为 $m$，此时最多的数目种类即为 $1+2+3+…+ q &#x3D; m$，此时 $\dfrac{q\times(q + 1)}{2} &#x3D; m$, 此时可以得到 $q \le \sqrt{2m}$, 因此不同的长度种类最多有 $\sqrt{2m}$ 种。</p>
+</li>
+<li><p>利用 <code>AC</code> 自动机匹配，也是一个经典的模板题目，但是 <code>AC</code> 自动机一般写起来比较麻烦，确实现场不看模板的话真心写不出来，每次自己写这个 <code>ac</code>自动机以后都会忘掉，遇到这题还是老老实实写字符串哈希。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 表示给定字符串的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示给定字符串的长度。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">public:</span><br><span class="line">    static constexpr long long mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">    static constexpr long long base = <span class="number">31</span>;</span><br><span class="line">    <span class="built_in">int</span> minimumCost(string target, vector&lt;string&gt;&amp; words, vector&lt;<span class="built_in">int</span>&gt;&amp; costs) &#123;</span><br><span class="line">        <span class="built_in">int</span> n = target.size();</span><br><span class="line">        vector&lt;long long&gt; hbase(n + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">        vector&lt;long long&gt; pre(n + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            hbase[i + <span class="number">1</span>] = hbase[i] * base % mod;</span><br><span class="line">            pre[i + <span class="number">1</span>] = (pre[i] * base + target[i] - <span class="string">&#x27;a&#x27;</span>) % mod;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /* 计算当前长度的哈希值 */</span><br><span class="line">        auto get = [&amp;](<span class="built_in">int</span> pos, <span class="built_in">int</span> <span class="built_in">len</span>) -&gt; long long &#123;</span><br><span class="line">            <span class="keyword">return</span> (pre[pos] - (pre[pos - <span class="built_in">len</span>] * hbase[<span class="built_in">len</span>] % mod) + mod) % mod;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">int</span>, unordered_map&lt;long long, <span class="built_in">int</span>&gt;&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; words.size(); i++) &#123;</span><br><span class="line">            long long cur = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">int</span> <span class="built_in">len</span> = words[i].size();</span><br><span class="line">            <span class="keyword">for</span> (char c : words[i]) &#123;</span><br><span class="line">                cur = (cur * base + c - <span class="string">&#x27;a&#x27;</span>) % mod;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (cnt[<span class="built_in">len</span>].find(cur) != cnt[<span class="built_in">len</span>].end()) &#123;</span><br><span class="line">                cnt[<span class="built_in">len</span>][cur] = <span class="built_in">min</span>(cnt[<span class="built_in">len</span>][cur], costs[i]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cnt[<span class="built_in">len</span>][cur] = costs[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; dp(n + <span class="number">1</span>, INT_MAX);</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (auto &amp;[<span class="built_in">len</span>, mp] : cnt) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">len</span> &gt; i) <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">if</span> (dp[i - <span class="built_in">len</span>] == INT_MAX) <span class="keyword">continue</span>;</span><br><span class="line">                long long key = get(i, <span class="built_in">len</span>);</span><br><span class="line">                <span class="keyword">if</span> (mp.count(key)) &#123;</span><br><span class="line">                    dp[i] = <span class="built_in">min</span>(dp[i], dp[i - <span class="built_in">len</span>] + mp[key]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[n] == INT_MAX ? -<span class="number">1</span> : dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct Node &#123;</span><br><span class="line">    Node* son[<span class="number">26</span>]&#123;&#125;;</span><br><span class="line">    Node* fail; // 当 cur.son[i] 不能匹配 target 中的某个字符时，cur.fail.son[i] 即为下一个待匹配节点（等于 root 则表示没有匹配）</span><br><span class="line">    Node* last; // 后缀链接（suffix link），用来快速跳到一定是某个 words[k] 的最后一个字母的节点（等于 root 则表示没有）</span><br><span class="line">    <span class="built_in">int</span> <span class="built_in">len</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">int</span> cost = INT_MAX;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct AhoCorasick &#123;</span><br><span class="line">    Node* root = new Node();</span><br><span class="line"></span><br><span class="line">    void put(string&amp; s, <span class="built_in">int</span> cost) &#123;</span><br><span class="line">        auto cur = root;</span><br><span class="line">        <span class="keyword">for</span> (char b : s) &#123;</span><br><span class="line">            b -= <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;son[b] == nullptr) &#123;</span><br><span class="line">                cur-&gt;son[b] = new Node();</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur-&gt;son[b];</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;<span class="built_in">len</span> = s.length();</span><br><span class="line">        cur-&gt;cost = <span class="built_in">min</span>(cur-&gt;cost, cost);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void build_fail() &#123;</span><br><span class="line">        root-&gt;fail = root-&gt;last = root;</span><br><span class="line">        queue&lt;Node*&gt; q;</span><br><span class="line">        <span class="keyword">for</span> (auto&amp; son : root-&gt;son) &#123;</span><br><span class="line">            <span class="keyword">if</span> (son == nullptr) &#123;</span><br><span class="line">                son = root;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                son-&gt;fail = son-&gt;last = root; // 第一层的失配指针，都指向根节点 ∅</span><br><span class="line">                q.push(son);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // BFS</span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            auto cur = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">                auto&amp; son = cur-&gt;son[i];</span><br><span class="line">                <span class="keyword">if</span> (son == nullptr) &#123;</span><br><span class="line">                    // 虚拟子节点 cur.son[i]，和 cur.fail.son[i] 是同一个</span><br><span class="line">                    // 方便失配时直接跳到下一个可能匹配的位置（但不一定是某个 words[k] 的最后一个字母）</span><br><span class="line">                    son = cur-&gt;fail-&gt;son[i];</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                son-&gt;fail = cur-&gt;fail-&gt;son[i]; // 计算失配位置</span><br><span class="line">                // 沿着 last 往上走，可以直接跳到一定是某个 words[k] 的最后一个字母的节点（如果跳到 root 表示没有匹配）</span><br><span class="line">                son-&gt;last = son-&gt;fail-&gt;<span class="built_in">len</span> ? son-&gt;fail : son-&gt;fail-&gt;last;</span><br><span class="line">                q.push(son);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">public:</span><br><span class="line">    <span class="built_in">int</span> minimumCost(string target, vector&lt;string&gt;&amp; words, vector&lt;<span class="built_in">int</span>&gt;&amp; costs) &#123;</span><br><span class="line">        AhoCorasick ac;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; words.size(); i++) &#123;</span><br><span class="line">            ac.put(words[i], costs[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        ac.build_fail();</span><br><span class="line"></span><br><span class="line">        <span class="built_in">int</span> n = target.size();</span><br><span class="line">        vector&lt;<span class="built_in">int</span>&gt; f(n + <span class="number">1</span>, INT_MAX / <span class="number">2</span>);</span><br><span class="line">        f[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        auto cur = ac.root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            cur = cur-&gt;son[target[i - <span class="number">1</span>] - <span class="string">&#x27;a&#x27;</span>]; // 如果没有匹配相当于移动到 fail 的 son[target[i-<span class="number">1</span>]-<span class="string">&#x27;a&#x27;</span>]</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;<span class="built_in">len</span>) &#123; // 匹配到了一个尽可能长的 words[k]</span><br><span class="line">                f[i] = <span class="built_in">min</span>(f[i], f[i - cur-&gt;<span class="built_in">len</span>] + cur-&gt;cost);</span><br><span class="line">            &#125;</span><br><span class="line">            // 还可能匹配其余更短的 words[k]，要在 last 链上找</span><br><span class="line">            <span class="keyword">for</span> (auto <span class="keyword">match</span> = cur-&gt;last; <span class="keyword">match</span> != ac.root; <span class="keyword">match</span> = <span class="keyword">match</span>-&gt;last) &#123;</span><br><span class="line">                f[i] = <span class="built_in">min</span>(f[i], f[i - <span class="keyword">match</span>-&gt;<span class="built_in">len</span>] + <span class="keyword">match</span>-&gt;cost);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[n] == INT_MAX / <span class="number">2</span> ? -<span class="number">1</span> : f[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg"></p>
+</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#题解" >
+    <span class="tag-code">题解</span>
+  </a>
+
+  <a href="/tags#力扣周赛赛" >
+    <span class="tag-code">力扣周赛赛</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2024/07/22/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/215/">
+        <span class="nav-arrow">← </span>
+        
+          leetcode biweekly contest 135
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2024/08/04/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/216/">
+        
+          leetcode weekly contest 407
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo="mike-box/blogtalk"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#leetcode-weekly-contest-407"><span class="toc-nav-text">leetcode weekly contest 407</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3226-%E4%BD%BF%E4%B8%A4%E4%B8%AA%E6%95%B4%E6%95%B0%E7%9B%B8%E7%AD%89%E7%9A%84%E4%BD%8D%E6%9B%B4%E6%94%B9%E6%AC%A1%E6%95%B0"><span class="toc-nav-text">3226. 使两个整数相等的位更改次数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3211-%E7%94%9F%E6%88%90%E4%B8%8D%E5%90%AB%E7%9B%B8%E9%82%BB%E9%9B%B6%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-nav-text">3211. 生成不含相邻零的二进制字符串</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-1"><span class="toc-nav-text">地址</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-1"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3212-%E7%BB%9F%E8%AE%A1-X-%E5%92%8C-Y-%E9%A2%91%E6%95%B0%E7%9B%B8%E7%AD%89%E7%9A%84%E5%AD%90%E7%9F%A9%E9%98%B5%E6%95%B0%E9%87%8F"><span class="toc-nav-text">3212. 统计 X 和 Y 频数相等的子矩阵数量</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-2"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-2"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3213-%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E6%9E%84%E9%80%A0%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-nav-text">3213. 最小代价构造字符串</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80-3"><span class="toc-nav-text">地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%A2%98%E6%84%8F-3"><span class="toc-nav-text">题意</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-nav-text">思路</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-text">代码</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2024/07/22/力扣周赛题解/213/';
+    var banner = '力扣季度赛'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2024 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    
+  </p>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+  </body>
+</html>
