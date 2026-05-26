@@ -1,0 +1,963 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="天堂硅谷·数字经济算法编程大赛题目质量还算可以，依旧三题的节奏 题目-01. 化学反应题目实验室内有一些化学反应物，其中的任意两种反应物之间都能发生反应，且质量的消耗量为 1:1 已知初始 material[i] 表示第 i 种反应物的质量，每次进行实验时，会选出当前 质量最大 的两种反应物进行反应，假设反应物的重量分别为 i 和 j ，且 i &lt;&#x3D; j。反应的结果如下：  如果 i &#x3D;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天堂硅谷·数字经济算法编程大赛">
+<meta property="og:url" content="http://example.com/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/39/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="天堂硅谷·数字经济算法编程大赛题目质量还算可以，依旧三题的节奏 题目-01. 化学反应题目实验室内有一些化学反应物，其中的任意两种反应物之间都能发生反应，且质量的消耗量为 1:1 已知初始 material[i] 表示第 i 种反应物的质量，每次进行实验时，会选出当前 质量最大 的两种反应物进行反应，假设反应物的重量分别为 i 和 j ，且 i &lt;&#x3D; j。反应的结果如下：  如果 i &#x3D;&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210071606141.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210072345234.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210072346579.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+<meta property="article:published_time" content="2022-11-01T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.814Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210071606141.png">
+  
+  
+  
+  <title>天堂硅谷·数字经济算法编程大赛 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="天堂硅谷·数字经济算法编程大赛"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-02 01:00" pubdate>
+          November 2, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">天堂硅谷·数字经济算法编程大赛</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="天堂硅谷·数字经济算法编程大赛"><a href="#天堂硅谷·数字经济算法编程大赛" class="headerlink" title="天堂硅谷·数字经济算法编程大赛"></a>天堂硅谷·数字经济算法编程大赛</h2><p>题目质量还算可以，依旧三题的节奏</p>
+<h4 id="题目-01-化学反应"><a href="#题目-01-化学反应" class="headerlink" title="题目-01. 化学反应"></a>题目-01. 化学反应</h4><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>实验室内有一些化学反应物，其中的任意两种反应物之间都能发生反应，且质量的消耗量为 <code>1:1</code></p>
+<p>已知初始 <code>material[i]</code> 表示第 <code>i</code> 种反应物的质量，每次进行实验时，会选出当前 质量最大 的两种反应物进行反应，假设反应物的重量分别为 <code>i</code> 和 <code>j</code> ，且 <code>i &lt;= j</code>。反应的结果如下：</p>
+<ul>
+<li>如果 <code>i == j</code>，那么两种化学反应物都将被消耗完；</li>
+<li>如果 <code>i &lt; j</code>，那么质量为 <code>i</code> 的反应物将会完全消耗，而质量为 <code>j</code> 的反应物质量变为 <code>j - i</code> 。<br>最后，最多只会剩下一种反应物，返回此反应物的质量。如果没有反应物剩下，返回 <code>0</code>。</li>
+</ul>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[10,2,6,1]</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">先选出 10 和 6，得到 4，数组转换为 [4,2,1]，</span><br><span class="line">再选出 4 和 2，得到 2，数组转换为 [2,1]，</span><br><span class="line">最后选出 2 和 1，得到 1，最终数组转换为 [1]，这就是最后剩下反应物的质量。</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[6,4,10]</span><br><span class="line">输出：0</span><br><span class="line">解释：</span><br><span class="line">先选出 10 和 6，得到 4，所以数组转换为 [4,4]，</span><br><span class="line">再选出 4 和 4，得到 0，所以数组转换为 []</span><br><span class="line">因为没有反应物剩下，返回 0。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= material.length &lt;= 30</code></li>
+<li><code>1 &lt;= material[i] &lt;= 1000</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/6CE719/">https://leetcode.cn/problems/6CE719/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>堆
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>典型的堆运算，每次选取序列中质量最大的两个元素，然后将其相减的结果加入到堆中，重复上述操作直到堆中的元素为 $0$ 个或者 $1$ 个则结束。需要注意的是当取出的两个元素相等时，则不会再往堆中放回元素。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 表示数组的长度。</li>
+<li>空间复杂度：$O(n)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">lastMaterial</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; material)</span> </span>&#123;</span><br><span class="line">        priority_queue&lt;<span class="type">int</span>, vector&lt;<span class="type">int</span>&gt;, less&lt;<span class="type">int</span>&gt;&gt; pq;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : material) &#123;</span><br><span class="line">            pq.<span class="built_in">emplace</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (pq.<span class="built_in">size</span>() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> x = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="type">int</span> y = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span> (x &gt; y) &#123;</span><br><span class="line">                pq.<span class="built_in">emplace</span>(x - y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (pq.<span class="built_in">size</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> pq.<span class="built_in">top</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="题目-02-销售出色区间"><a href="#题目-02-销售出色区间" class="headerlink" title="题目-02. 销售出色区间"></a>题目-02. 销售出色区间</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一份销售数量表 <code>sales</code>，上面记录着某一位销售员每天成功推销的产品数目。</p>
+<p>我们认为当销售员同一天推销的产品数目大于 <code>8</code> 个的时候，那么这一天就是「成功销售的一天」。</p>
+<p>所谓「销售出色区间」，意味在这段时间内，「成功销售的天数」是严格 大于「未成功销售的天数」。</p>
+<p>请你返回「销售出色区间」的最大长度。</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：sales = [10,2,1,4,3,9,6,9,9]</span><br><span class="line">输出：5</span><br><span class="line">解释：最大销售出色区间是 [3,9,6,9,9]。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：sales = [5,6,7]</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= sales.length &lt;= 104</code></li>
+<li><code>0 &lt;= sales[i] &lt;= 16</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/hhrc2022/problems/0Wx4Pc/">https://leetcode.cn/contest/hhrc2022/problems/0Wx4Pc/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>前缀和 + 贪心法则
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们当前元素如果 $\textit{sales}[i] &gt; 8$ 则记为 $1$，否则记为 $-1$，并用数组 $\textit{arr}$ 进行记录，然后我们统计 $arr$ 的前缀和，此时我们知道：</li>
+</ol>
+<ul>
+<li>如果 $sum[i] &gt; 0$ 则表示数组前 $i$ 项中正数的数目大于负数的数目，则该区间为销售出色区间。则此时以 $i$ 为终点的最大销售出色区间长度为 $i$。</li>
+<li>如果 $sum[i] \le 0$ 则表示数组前 $i$ 项中正数的数目小于等于负数的数目，则该区间不为销售出色区间。此时我们知道以 $i$ 为终点的最大区间则为 $sum[i] - cnt[sum[i] - 1]$</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n)$，其中 $n$ 表示节点的数目。</li>
+<li>空间复杂度：空间复杂度为 $O(n)$，其中 $n$ 表示节点的数目。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestESR</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; sales)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = sales.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="type">int</span> prevSum = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            prevSum += (sales[i] &gt; <span class="number">8</span> ? <span class="number">1</span> : <span class="number">-1</span>); </span><br><span class="line">            <span class="keyword">if</span> (prevSum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                res = <span class="built_in">max</span>(res, i + <span class="number">1</span>);</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(prevSum - <span class="number">1</span>)) &#123;</span><br><span class="line">                res = <span class="built_in">max</span>(res, i - cnt[prevSum - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!cnt.<span class="built_in">count</span>(prevSum)) &#123;</span><br><span class="line">                cnt[prevSum] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="题目-03-重复的彩灯树"><a href="#题目-03-重复的彩灯树" class="headerlink" title="题目-03. 重复的彩灯树"></a>题目-03. 重复的彩灯树</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>有一棵结构为二叉树的圣诞树 <code>root</code> 挂满了彩灯，各节点值表示彩灯的颜色。</p>
+<p>如果两棵子树具有 相同的结构 和 相同的彩灯颜色分布，则它们是 重复 的。</p>
+<p>请返回这棵树上所有 重复的子树。</p>
+<p>注意：</p>
+<p>对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [1,3,3,null,2,null,2]</span><br><span class="line">输出：[[3,null,2],[2]]</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [3,3,2,null,2]</span><br><span class="line">输出：[[2]]</span><br></pre></td></tr></table></figure>
+<p>示例 3：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [1,3,3,null,2,2]</span><br><span class="line">输出：[[2]]</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li>树中的结点数在 <code>[1,6000]</code> 范围内。</li>
+<li><code>-200 &lt;= Node.val &lt;= 200</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/EXvqDp/">https://leetcode.cn/problems/EXvqDp/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们直接将子树转换为字符串即可，具体子树转换为字符串的方式有许多中，可以参考力扣上的关于二叉树转换为字符串的题目，所以非常简单的题目了。</li>
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n^2)$，$n$ 为节点的数目。</li>
+<li>空间复杂度：时间复杂度为 $O(n^2)$，$n$ 为节点的数目。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">dfs</span><span class="params">(TreeNode* root, unordered_map&lt;string, vector&lt;TreeNode *&gt;&gt; &amp;cnt)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;null&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        string left = <span class="built_in">dfs</span>(root-&gt;left, cnt);</span><br><span class="line">        string right = <span class="built_in">dfs</span>(root-&gt;right, cnt);</span><br><span class="line">        string str =  <span class="string">&quot;(&quot;</span> + left + <span class="string">&quot;)&quot;</span> + <span class="built_in">to_string</span>(root-&gt;val) + <span class="string">&quot;(&quot;</span> + right + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">        cnt[str].<span class="built_in">emplace_back</span>(root);</span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;TreeNode*&gt; <span class="title">lightDistribution</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;string, vector&lt;TreeNode *&gt;&gt; cnt;</span><br><span class="line">        <span class="built_in">dfs</span>(root, cnt);</span><br><span class="line">        vector&lt;TreeNode *&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [_, vec] : cnt) &#123;</span><br><span class="line">            <span class="keyword">if</span> (vec.<span class="built_in">size</span>() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                res.<span class="built_in">emplace_back</span>(vec[<span class="number">0</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="题目-04-补给覆盖"><a href="#题目-04-补给覆盖" class="headerlink" title="题目-04. 补给覆盖"></a>题目-04. 补给覆盖</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>已知有一片呈二叉树的道路，我们要在道路上的一些节点设置补给站支援。</p>
+<p>补给站可以设置在任意节点上，每个补给站可以使距离自身小于等于 <code>1</code> 个单位的节点获得补给。</p>
+<p>若要使道路的所有节点均能获得补给，请返回所需设置的补给站最少数量。</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[0,0,0]</span><br><span class="line">输出：1</span><br><span class="line">解释：如图所示，一个补给站足够使道路的所有节点获得补给。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[0,0,0,null,null,null,0]</span><br><span class="line">输出：2</span><br><span class="line">解释：需要至少设置两个补给站来使道路的所有节点获得补给。 上图显示了补给站设置的有效位置之一。</span><br></pre></td></tr></table></figure>
+<p>提示：</p>
+<ul>
+<li>节点的数量范围为 <code>[1, 1000]</code>。</li>
+<li>每个节点的值均为 <code>0</code> 。</li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-312/problems/number-of-good-paths/">https://leetcode.cn/contest/weekly-contest-312/problems/number-of-good-paths/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>动态规划</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>设 $dp[node][0], dp[node][1], dp[node][2]$ 分别表示节点 $node$ 构成的子树全部可以获得补给的最小数量：</li>
+</ol>
+<ul>
+<li>$dp[node][0]$ 表示 $node$ 会被父节点补给的最少数量；</li>
+<li>$dp[node][1]$ 表示 $node$ 会被其孩子节点补给的最少数量；</li>
+<li>$dp[node][2]$ 表示 $node$ 会被自身补给的最少数量；</li>
+</ul>
+<p>则我们可以知道有以下推论：</p>
+<ul>
+<li><p>如果 $node$ 会被父节点补给，则此时 $node$ 的子节点此时要么被自身补给，要么被 $node$ 的子节点的子节点补给，且此时 $node$ 子节点不能被 $node$ 补给；所以可以得到以下推论:<br>$$<br>dp[node][0] &#x3D; \min(dp[node.left][1],dp[node.left][2]) + \min(dp[node.right][1],dp[node.right][2])<br>$$<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210071606141.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>如果 $node$ 会被孩子节点补给，则此时 $node$ 的子节点中一定有一个子节点被自身补给，$node$ 的左孩子要么为补给站要么右孩子为补给站，即两个孩子节点中至少有一个为补给站，所以可以得到以下推论:<br>$$<br>dp[node][1] &#x3D; \min((dp[node.left][1] + \min(dp[node.right][1], dp[node.right][2]), (dp[node.right][1] + \min(dp[node.left][1], dp[node.left][2]))<br>$$<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210072345234.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>如果 $node$ 会被自身补给，则此时 $node$ 的子节点可以被 $node$ 补给或者被自身、孩子节点补给，此时需要在 $node$ 处放置一个补给站，所以可以得到以下推论:<br>$$<br>dp[node][2] &#x3D; 1 + \min(dp[node.left][0],dp[node.left][1], dp[node.left][2]) + \min(dp[node.left][0],dp[node.left][1], dp[node.left][2])<br>$$<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210072346579.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(m \log m + n \times \alpha(n))$，其中 $m$ 表示边的数目，$n$ 表示节点的数目。</li>
+<li>空间复杂度：$O(n)$，$n$ 表示节点的数目。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/* [a, b, c], a : chose by father, b : chose by child, c : chose by self */</span></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSupplyStationNumber</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        function&lt;tuple&lt;<span class="type">int</span>,<span class="type">int</span>,<span class="type">int</span>&gt;(TreeNode *)&gt; dfs = [&amp;](TreeNode* root)-&gt;tuple&lt;<span class="type">int</span>,<span class="type">int</span>,<span class="type">int</span>&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">auto</span> [la, lb, lc] = <span class="built_in">dfs</span>(root-&gt;left);</span><br><span class="line">            <span class="keyword">auto</span> [ra, rb, rc] = <span class="built_in">dfs</span>(root-&gt;right);</span><br><span class="line">            <span class="type">int</span> a = <span class="built_in">min</span>(lb, lc) + <span class="built_in">min</span>(rb, rc);</span><br><span class="line">            <span class="type">int</span> b = <span class="built_in">min</span>(lc + <span class="built_in">min</span>(rb, rc), rc + <span class="built_in">min</span>(lb, lc));</span><br><span class="line">            <span class="type">int</span> c = <span class="number">1</span> + <span class="built_in">min</span>(&#123;la, lb, lc&#125;) + <span class="built_in">min</span>(&#123;ra, rb, rc&#125;);</span><br><span class="line">            <span class="keyword">return</span> &#123;a, b, c&#125;;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">auto</span> [a, b, c] = <span class="built_in">dfs</span>(root);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(b, c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="print-no-link">#力扣周赛</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>天堂硅谷·数字经济算法编程大赛</div>
+      <div>http://example.com/2022/11/02/力扣周赛题解/39/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 2, 2022</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/38/" title="leetcode LCCUP 2022">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode LCCUP 2022</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/51/" title="leetcode contest 317">
+                        <span class="hidden-mobile">leetcode contest 317</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,916 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="clickhouse学习记录（一）最近因为工作原因,开始尝试学习clickhouse数据库, 将会逐渐将clickhouse的一些学习总结记录下来, 作为自己的学习历程. clickhouse的简介项目起源clickhouse是由俄罗斯的一家互联网公司 Yandex 开发的,  Yandex 主要从事互联网分析，Yandex 使用 clickhouse 从事海量的互联网的流量分析，clickhou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【clickhouse】 clickhouse学习记录(一)">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/52/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="clickhouse学习记录（一）最近因为工作原因,开始尝试学习clickhouse数据库, 将会逐渐将clickhouse的一些学习总结记录下来, 作为自己的学习历程. clickhouse的简介项目起源clickhouse是由俄罗斯的一家互联网公司 Yandex 开发的,  Yandex 主要从事互联网分析，Yandex 使用 clickhouse 从事海量的互联网的流量分析，clickhou">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/01/18/iqTxDBH9Jw4okfU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/01/18/Zq2fsLAWYcuOQiH.png">
+<meta property="og:image" content="https://s2.loli.net/2022/01/18/IvoVqjZEpU69GMC.png">
+<meta property="og:image" content="https://s2.loli.net/2022/01/18/hjsSX97RMxn6tHK.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.481Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/01/18/iqTxDBH9Jw4okfU.png">
+  
+  
+  
+  <title>【clickhouse】 clickhouse学习记录(一) - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【clickhouse】 clickhouse学习记录(一)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【clickhouse】 clickhouse学习记录(一)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="clickhouse学习记录（一）"><a href="#clickhouse学习记录（一）" class="headerlink" title="clickhouse学习记录（一）"></a>clickhouse学习记录（一）</h1><p>最近因为工作原因,开始尝试学习<code>clickhouse</code>数据库, 将会逐渐将<code>clickhouse</code>的一些学习总结记录下来, 作为自己的学习历程.</p>
+<h2 id="clickhouse的简介"><a href="#clickhouse的简介" class="headerlink" title="clickhouse的简介"></a>clickhouse的简介</h2><p><strong>项目起源</strong><br><code>clickhouse</code>是由俄罗斯的一家互联网公司 <code>Yandex</code> 开发的,  <code>Yandex</code> 主要从事互联网分析，<code>Yandex</code> 使用 <code>clickhouse</code> 从事海量的互联网的流量分析，<code>clickhouse</code> 作为 <code>Yandex</code> 公司内部使用的项目, 后来走向开源． <code>clickhouse</code> 作为 <code>OLAP</code> 领域的流行, 主要得益于其出色的性能.<br>数据库领域有两个概念:</p>
+<ul>
+<li><p><code>OLTP</code>: on-line transaction processing翻译为联机事务处理, <code>OLTP</code>是主要从事事务处理, 包括数据库常见的增删改.<code>OLTP</code>主要用来记录某类业务事件的发生，如购买行为，当行为产生后，系统会记录是谁在何时何地做了何事，这样的一行（或多行）数据会以增删改的方式在数据库中进行数据的更新处理操作，要求实时性高、稳定性强、确保数据及时更新成功，像公司常见的业务系统如<code>ERP</code>，<code>CRM</code>，<code>OA</code>等系统都属于<code>OLTP</code>.</p>
+</li>
+<li><p><code>OLAP</code>: On-Line Analytical Processing翻译为联机分析处理, <code>OLAP</code>是主要侧重于数据分析和查询, 主要侧重的功能是数据库的查询.当数据积累到一定的程度，我们需要对过去发生的事情做一个总结分析时，就需要把过去一段时间内产生的数据拿出来进行统计分析，从中获取我们想要的信息，为公司做决策提供支持，这时候就是在做<code>OLAP</code>了。</p>
+</li>
+<li><p>数据仓库: 因为<code>OLTP</code>所产生的业务数据分散在不同的业务系统中，而<code>OLAP</code>往往需要将不同的业务数据集中到一起进行统一综合的分析，这时候就需要根据业务分析需求做对应的数据清洗后存储在数据仓库中，然后由数据仓库来统一提供<code>OLAP</code>分析。所以我们常说<code>OLTP</code>是数据库的应用，<code>OLAP</code>是数据仓库的应用。<br>详细可以参考知乎的<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/24110442/answer/851671343">回答</a></p>
+</li>
+</ul>
+<p><strong>clickhouse的特性</strong><br><code>clickhouse</code> 采用列式存储, 所有的数据都是以列为单位进行组织和存储的, <code>clickhouse</code>的最大的特色就是以性能著称, 官方的文档也给出了相关的<a target="_blank" rel="noopener" href="https://clickhouse.com/benchmark/dbms/">性能对比</a>.<code>clickhouse</code>的特性:</p>
+<ul>
+<li>以列为存储, 同一列的数据格式统一, 方便使用数据压缩算法. 目前<code>clickhouse</code> 使用的<code>LZ4</code> 压缩算法. 数据压缩可以带来两个好处, 数据存储的空间较小从而读写磁盘花费时间较短, 网络传输中也会较少缓存时间.</li>
+<li><code>ClickHouse</code>允许在运行时创建表和数据库、加载数据和运行查询，而无需重新配置或重启服务。具有完成的数据库管理系统的功能.</li>
+<li>多核心并行处理, 充分利用<code>CPU</code>的资源, 设计时针对具体的硬件进行充分优化, 从而提升性能. 看到字符串搜索中竟然用到了<code>intel hyperscan</code>, 这个是<code>dpi</code>设备里面常用的字符串搜索算法. 支持<code>CPU</code> 的<code>SIMD</code>指令, 可以向量执行数据的处理和读取.</li>
+<li>支持多服务器分布式处理, 支持分布式查询, 可以进行负载均衡.</li>
+<li>实时的数据更新, 为了使查询能够快速在主键中进行范围查找，数据总是以增量的方式有序的存储在<code>MergeTree</code>中。因此，数据可以持续不断地高效的写入到表中，并且写入的过程中不会存在任何加锁的行为。</li>
+<li><code>click house</code>中的很多优化技巧都值得仔细学习和琢磨.</li>
+</ul>
+<h3 id="clickhouse的不足之处"><a href="#clickhouse的不足之处" class="headerlink" title="clickhouse的不足之处"></a>clickhouse的不足之处</h3><p><code>clickhouse</code> 主要用于数据分析, 也有许多缺点.</p>
+<ul>
+<li>不支持事务<code>ACID</code>。</li>
+<li>缺少高频率，低延迟的修改或删除已存在数据的能力,以行进行更新数据的话性能较差.。</li>
+<li>稀疏索引使得<code>ClickHouse</code>不适合通过其键检索单行的点查询。</li>
+</ul>
+<h3 id="clickhouse的发展现状"><a href="#clickhouse的发展现状" class="headerlink" title="clickhouse的发展现状"></a>clickhouse的发展现状</h3><p><code>click</code> 以其出色的性能, 目前在很多很多<code>BI</code>领域得到应用, 还有许多广告流量，<code>web</code>分析, 电子商务等领域. 以下为常见的几个学习的资源库:</p>
+<ul>
+<li><code>clickhouse</code>文档: <a target="_blank" rel="noopener" href="https://clickhouse.com/docs/zh/">https://clickhouse.com/docs/zh/</a></li>
+<li><code>clickhouse</code>repo: <a target="_blank" rel="noopener" href="https://github.com/ClickHouse/ClickHouse">https://github.com/ClickHouse/ClickHouse</a></li>
+<li><code>clickhouse</code>中文社区: <a target="_blank" rel="noopener" href="http://www.clickhouse.com.cn/">http://www.clickhouse.com.cn/</a></li>
+<li><code>clickhouse</code>官方:<a target="_blank" rel="noopener" href="https://clickhouse.com/">https://clickhouse.com/</a></li>
+</ul>
+<h2 id="clickhouse的安装部署"><a href="#clickhouse的安装部署" class="headerlink" title="clickhouse的安装部署"></a>clickhouse的安装部署</h2><ul>
+<li><p><code>server</code>安装:官方提供的<code>guide</code>有许多种安装方式, 强烈推荐使用<code>apt-get</code>或者<code>yum</code>这种标准安装包的形式来安装,会自动更新和下载各种库, 自己可以下载源码,然后编译到本地进行安装, 机器性能太差, 编译实践太长, 中间容易经历各种坑,新手强烈不推荐. 安装过程踩过的坑是, 直接下载官方提供的编译好的库和程序, <code>windows</code>自带的<code>wsl</code>安装后反正各种莫名奇妙的问题，各种莫名奇妙的<code>abort</code>退出, 也找不到问题原因所在, 反而远程的<code>VPS</code>安装一次就顺利.</p>
+</li>
+<li><p><code>config</code> 文件说明: 默认的<code>config</code> 文件会存放在<code>/etc/clickhouse-server/config.xml</code>目录下, 安装完成之后需要进行修改, 当然默认的<code>clickhouse server</code> 只监听在本地<code>127.0.0.1</code>, 需要进行修改使得它可以接受所有外部的主机发起的<code>tcp</code>请求. 高级的配置文件参数定义可以参考官方的文档:<a target="_blank" rel="noopener" href="https://clickhouse.com/docs/zh/operations/configuration-files/">配置文件</a>. </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--允许所有的ipv6的请求--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listen_host</span>&gt;</span>::<span class="tag">&lt;/<span class="name">listen_host</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!--允许所有的ipv4的请求--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listen_host</span>&gt;</span>0.0.0.0<span class="tag">&lt;/<span class="name">listen_host</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><code>server</code>启动与测试: 直接执行<code>clickhouse-server</code>时, 会提示要求创建<code>clickhouse:clickhouse</code>账户, 建议直接使用脚本启动服务，<code>root</code>账户启动即可，需要修改配置文件，默认要求使用<code>clickhouse</code>的用户名.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service clickhouse-server start</span><br></pre></td></tr></table></figure>
+<p>查看进程：<br><img src="https://s2.loli.net/2022/01/18/iqTxDBH9Jw4okfU.png" srcset="/img/loading.gif" lazyload><br>查看端口：<br><img src="https://s2.loli.net/2022/01/18/Zq2fsLAWYcuOQiH.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p><code>vps firewall</code>设置: 直接将<code>centos</code>的防火墙关掉, 由于是远程<code>VPS</code>需要设置端口号, 允许<code>clickhouse</code>服务通行:<br><img src="https://s2.loli.net/2022/01/18/IvoVqjZEpU69GMC.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<h2 id="clickhouse的使用测试"><a href="#clickhouse的使用测试" class="headerlink" title="clickhouse的使用测试"></a>clickhouse的使用测试</h2><p>我们可以通过<code>clickhouse</code>自带的<code>clickhouse-client</code>程序来本地或者远程访问<code>clickhouse server</code>, 尝试以下数据库的基本操作:</p>
+<ul>
+<li>连接数据库<code>server</code>: <code>clickhouse-client</code>默认就会连接本地的<code>clickhouse</code>的数据库<code>server</code>, 我们尝试连接远程的<code>vps</code>, <code>clickhouse-client --host=x.x.x.x</code>即可连接指定<code>ip</code>的数据库。<code>clickhouse-client --query=&#39;xx&#39;</code>即可执行<code>query</code>中<code>sql</code>语句.</li>
+<li>创建数据库: 创建<code>test</code>数据库, <code>clickhouse-client --query=&#39;CREATE DATABASE IF NOT EXISTS test&#39;</code>.</li>
+<li>创建表项: 创建<code>numbers</code>表项, <code>clickhouse-client --query=&#39;CREATE TABLE IF NOT EXISTS test.numbers (id UInt64, name String) ENGINE = Memory&#39;</code>.</li>
+<li>插入表项: 插入<code>numbers</code>行, <code>clickhouse-client --query=&#39;INSERT INTO test.numbers VALUES (100, &#39;mengmingliang&#39;)&#39;</code>.</li>
+<li>删除表项: 删除<code>numbers</code>行, <code>clickhouse-client --query=&#39;INSERT INTO test.numbers VALUES (100, &#39;mengmingliang&#39;)&#39;</code>.</li>
+<li>查询表项: 查询基本的表，<code>clickhouse-client --query=&#39;SELECT id, name FROM test.numbers&#39;</code>;</li>
+<li>删除数据表项: 删除<code>numbers</code>表, <code>DROP TABLE test.numbers</code>.</li>
+</ul>
+<h2 id="clickhouse-client的连接接口测试"><a href="#clickhouse-client的连接接口测试" class="headerlink" title="clickhouse client的连接接口测试"></a>clickhouse client的连接接口测试</h2><p><code>clickhouse</code>提供了多种通用的接口用来连接和操作数据, 提供了<code>http</code>和<code>tcp</code>的两种访问接口形式，<code>http</code>的访问端口为<code>8123</code>, <code>tcp</code>的端口为<code>9000</code>, 我们可以在浏览器中输入<code>http://localhost:8123</code>就会打印出<code>ok</code>, 浏览器中输入<code>http://localhost:8123/?query=SELECT%201</code>就会返回查询结果. <code>http</code>的接口主要用于<code>Java</code>的开发,我们可以使用标准的<code>jdbc</code>来访问数据库, HTTP接口比原生接口受到更多的限制，但它具有更好的兼容性.<code>tcp</code>端口主要用于服务器间的通讯查询和管理，同时也支持数据库的查询，比<code>http</code>的接口会更加灵活使用, 官方目前只提供了标准的<code>C++</code>接口, 这种接口目前没有标准, 但是我能想到的是很容易对这些接口来进行扩展, 从而来对<code>clickhouse</code>增加新的功能和特性,这点确实不错, 为程序的灵活性做了更多的扩展.</p>
+<ul>
+<li>通过<code>C++</code>接口测试: 我们可以下载官方提供的标准的<code>C++</code>的接口<a target="_blank" rel="noopener" href="https://github.com/ClickHouse/clickhouse-cpp">CPP</a>, 下载之后进行编译, 需要注意的是由于<code>clickhouse</code>是用<code>C++17</code>的标准编写的, 需要升级本地的<code>gcc</code>程序支持<code>C++ 17</code>.编译完成之后发现支持静态链接库, 手动写个简单<code>makefile</code>, 测试跑了一遍, 还算比较正常. 下一步需要走读和分析一下<code>clinet</code>的代码, 熟悉一下原理, 尝试一下后面是否有扩展的可能性, 示例代码放在<a target="_blank" rel="noopener" href="https://github.com/mike-box/datdabasestudy/tree/main/clickhouse/proj">github</a>.</li>
+<li>通过<code>Python</code>接口测试: <code>python</code>的接口不是官方团队提供是, 是由第三方提供的代码, 目前尝试了一下<code>clickhouse-driver</code>这个第三方的库, 很多功能都没有深入尝试, 后面有时间时需要进行深入的探索.</li>
+<li>通过<code>DBeaver</code>接口测试: 下载尝试了一下通过可户端去连接<code>clickhouse</code>, 用<code>Gui</code>的客户端确实方便很多, 可以通过标准的<code>jdbc</code>接口去连接数据库, 需要下载<code>clickhouse</code>的驱动,我们可以很方便的访问数据库.可以直接执行标准的<code>sql</code>语句. 可以直接通过接口导入和导出数据, 确实比用纯粹的程序实现要方便许多.<br><img src="https://s2.loli.net/2022/01/18/hjsSX97RMxn6tHK.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h2 id="clickhouse-client的高级特性尝试"><a href="#clickhouse-client的高级特性尝试" class="headerlink" title="clickhouse client的高级特性尝试"></a>clickhouse client的高级特性尝试</h2><ol>
+<li>创建数据库: <code>CREATE DATABASE IF NOT EXISTS db_name [ENGINE = engine]</code><ul>
+<li><code>Ordinary</code>：默认引擎，在绝大多数情况下我们都会使用默认引擎，使用时无须刻意声明。在此数据库下可以使用任意类型的表引擎。</li>
+<li><code>Dictionary</code>：字典引擎，此类数据库会自动为所有数据字典创建它们的数据表，关于数据字典的详细介绍会在第5章展开。</li>
+<li><code>Memory</code>：内存引擎，用于存放临时数据。此类数据库下的数据表只会停留在内存中，不会涉及任何磁盘操作，当服务重启后数据会被清除。</li>
+<li><code>Lazy</code>：日志引擎，此类数据库下只能使用<code>Log</code>系列的表引擎，关于<code>Log</code>表引擎的详细介绍会在第8章展开。</li>
+<li><code>MySQL</code>：<code>MySQL</code>引擎，此类数据库下会自动拉取远端<code>MySQL</code>中的数据，并为它们创建<code>MySQL</code>表引擎的数据表</li>
+</ul>
+</li>
+</ol>
+<h2 id="进一步打算"><a href="#进一步打算" class="headerlink" title="进一步打算"></a>进一步打算</h2><ul>
+<li><ol>
+<li>学习<code>SQL</code>的高级语法基础知识以及数据库的高级一些理论知识，进行理论基础知识补充。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li><code>clickhouse</code>中文社区中找一些经典的入门资料进行学习，学习相关书籍<a target="_blank" rel="noopener" href="https://read.douban.com/reader/ebook/149635956/">clickhouse原理解析与应用实践</a>。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>熟悉和掌握实际业务中常用的<code>clickhouse</code>的高级特性和功能，并掌握背后的相关原理。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>相关业务知识和语言技能的掌握，熟悉相关的<code>JAVA/C++</code> 关于操作数据库的接口<code>api</code>函数的使用。</li>
+</ol>
+</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mike-box.github.io/">http://mike-box.github.io/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="print-no-link">#数据库</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【clickhouse】 clickhouse学习记录(一)</div>
+      <div>http://example.com/1970/01/01/公开课学习/52/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/61/" title="【MIT6.S081】 lab5 lazy alloaction">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【MIT6.S081】 lab5 lazy alloaction</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/73/" title="【MIT6.824】lab 1 mapreduce">
+                        <span class="hidden-mobile">【MIT6.824】lab 1 mapreduce</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

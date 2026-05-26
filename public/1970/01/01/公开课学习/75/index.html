@@ -1,0 +1,897 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="build a computer week 12终于完成了build a computer系列的最后几章了，最终所有的project全部都通过了。真心感觉这个过程比较艰难，这个project是该系列课程里面最后的一个toy project了，主要部分为一个非常简单的OS系统的源代码的实现，其实代码实现并不难，因为大部分算法都可以在网上找到，但是细节处理非常容易出错，写代码很爽，也就3天的时间完成了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【build a computer】 project 12">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/75/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="build a computer week 12终于完成了build a computer系列的最后几章了，最终所有的project全部都通过了。真心感觉这个过程比较艰难，这个project是该系列课程里面最后的一个toy project了，主要部分为一个非常简单的OS系统的源代码的实现，其实代码实现并不难，因为大部分算法都可以在网上找到，但是细节处理非常容易出错，写代码很爽，也就3天的时间完成了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/CnAQqULTpxglm31.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/mfrJ7Wb1PyUiIq9.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/vyblfnmK31guXMx.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/cpmYKZBMQbFkiEn.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/ToXsZj1rQmayYvi.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/1rsp7wxVLHeylhz.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/kh9UtOiQRc6uvSB.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/h4vZjAI1onYqGwx.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/YHGrcOXL9e6Iu4T.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/HuoG85sIwB1qbWJ.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/NwFfqjALMDPCeiT.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/gbOKMwFhPq5a1G3.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/ksChF6jzmga7V9S.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/dsfGmeUJn6jvxlO.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/CYkLzUNxcr9fVQ5.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.502Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="公开课学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/28/CnAQqULTpxglm31.png">
+  
+  
+  
+  <title>【build a computer】 project 12 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【build a computer】 project 12"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【build a computer】 project 12</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="build-a-computer-week-12"><a href="#build-a-computer-week-12" class="headerlink" title="build a computer week 12"></a>build a computer week 12</h1><p>终于完成了<code>build a computer</code>系列的最后几章了，最终所有的<code>project</code>全部都通过了。<br><img src="https://i.loli.net/2021/01/28/CnAQqULTpxglm31.png" srcset="/img/loading.gif" lazyload><br>真心感觉这个过程比较艰难，这个<code>project</code>是该系列课程里面最后的一个<code>toy project</code>了，主要部分为一个非常简单的<code>OS</code>系统的源代码的实现，其实代码实现并不难，因为大部分算法都可以在网上找到，但是细节处理非常容易出错，写代码很爽，也就3天的时间完成了大概也就将近<code>1000</code>行的代码，但是调试确实花了非常多的时间来完成，主要是因为部分细节确实实现比较坑爹，不太好弄，但是终于还是调通和实现了，感觉这种业务代码的实现也就是搬砖的活，还是写算法，刷题来的爽，因为算法的大部分问题思考的时间很多，写代码实际上非常容易实现，现在越来越喜欢类似的深度思考，需要花时间来解决的数学和技术难题，而不是拼命搬砖。所有的实现代码最终放在<code>github</code>上，<a href="">p12-jackos</a>.<br>终于完成全部的<code>build a modern computer</code>系列课程了，课程真的是太有趣了，我想做事有始有终，以前给自己定的<code>flag</code>是一定要完成这个课程，陆陆续续刷了大概有<code>6</code>个月的时间，才把整个系列的<code>part1,part2</code>课程完成了。本课程最有意思的是该课程讲出了计算机模型的本质，非常推荐国外这种化繁为简的教育理念和教育方法，通过现象可以看到本质，只需要实现最基本的<code>OS</code>的核心，非常低的门槛就可以将学生代入计算机的伟大世界中，了解计算的本质和基本原理，真心替两位教授点赞，看到资料介绍，本课程陆陆续续开发了近五年才最终完成了如此精品的课程。我想兴趣才是最好的老师，虽然学习这门课程花了很大的精力和很多的时间，但是学习完成之后，仍然会对本课程回味许多。</p>
+<h2 id="project"><a href="#project" class="headerlink" title="project"></a>project</h2><p>本章节的<code>project</code>主要是实现操作系统的部分核心内容，俗称造轮子。本次需要造的轮子如下：</p>
+<ul>
+<li><code>Math</code>:数学计算部分，包含最基本的乘法，除法，开方，乘方，取模运算等;</li>
+<li><code>String</code>: 字符串部分，主要包括字符类的基本功能，字符串转换，等等基本操作;</li>
+<li><code>Array</code>: 数组的管理，数组的管理，主要包括数组构造和删除；</li>
+<li><code>Output</code>: 字符或者数字的输出模块；</li>
+<li><code>Screen</code>: 最基本的图形显示部分，包含最基本的图形显示部分，比如像素、直线、圆、矩形的显示；</li>
+<li><code>Keyboard</code>:键盘的输入读取控制。</li>
+<li><code>Memory</code>: 基本的内存管理部分。</li>
+<li><code>Sys</code>：系统管理，包括系统的初始化和完成。<br><img src="https://i.loli.net/2021/01/28/mfrJ7Wb1PyUiIq9.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h3><p>整个<code>math</code>部分完成了乘法、除法、开方、乘方、取模、取绝对值运算，其中最难的还是乘法和除法以及开方的实现。<br><img src="https://i.loli.net/2021/01/28/vyblfnmK31guXMx.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><code>multiply</code>:乘法利用了二进位的特定来进行实现，实现其实比较简单，算法时间复杂度为$O(lgn)$，每次测试二进制位<code>i</code>是否为<code>1</code>，如果为<code>1</code>，则减去相应的值即可，利用位运算非常容易实现。<br><img src="https://i.loli.net/2021/01/28/cpmYKZBMQbFkiEn.png" srcset="/img/loading.gif" lazyload></li>
+<li><code>divide</code>: 除法部分稍微复杂点，我们提前减去利用算法的特性实现即可，时间复杂度为$O(lgn)$.<br><img src="https://i.loli.net/2021/01/28/ToXsZj1rQmayYvi.png" srcset="/img/loading.gif" lazyload></li>
+<li><code>sqrt</code>: 开方的实现方法有很多种，这个实现思路就很多了，最简单的利用二分查找实现即可，还可以利用牛顿法，或者逼近法，课程中给出的解法则利用左右边界的逼近法。<br>$$<br>y^{2} \le x \le (y+1)^{2}<br>$$</li>
+</ol>
+<h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><p>本节实现了非常简单的内存管理模块，堆的管理实现比较简单，也没有太大的难度，常见的两种办法为<code>first fit</code>和<code>best fit</code>,关于具体的内存管理的实现算法有许多成熟的论文或者开源的代码可以参考，不过基本上也没有什么太大的难度。在本章中是实现了简单的<code>first fit</code>算法，简单的链表实现即可，对于老鸟来说非常简单的实现，当然对于快速的缓存来说一般都是采用将内存划分为固定字节的块，避免繁琐的查找。<br><img src="https://i.loli.net/2021/01/28/1rsp7wxVLHeylhz.png" srcset="/img/loading.gif" lazyload><br><img src="https://i.loli.net/2021/01/28/kh9UtOiQRc6uvSB.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Screen"><a href="#Screen" class="headerlink" title="Screen"></a>Screen</h3><p>该小节实现了基本的图形显示界面的实现，比如实现了最基本的矩形，圆形，点，直线的代码实现。<br><img src="https://i.loli.net/2021/01/28/h4vZjAI1onYqGwx.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><code>pixel</code>:对于点的实现比较简单，由于内存的字长为<code>16</code>位，我们直接采用<code>16</code>位掩码的方式，来快速的对显存部分实现读取和写入。</li>
+<li><code>line</code>：<code>line</code>的部分就实现稍微复杂点，如果我们直接利用求斜率的方法则需要用到除法和乘法，非常耗时。在此利用加法和减法来实现快速的判别实现直线的点的计算。当然实现的过程中我们需要将直线分为3中类型，</li>
+<li><ul>
+<li>水平直线：即与<code>x</code>轴平行的直线，此时我们即可以快速的利用显存的<code>16</code>位带宽，一次性可以写入连续的<code>16</code>位，来加速写入显存的速率。</li>
+</ul>
+</li>
+<li><ul>
+<li>垂直直线: 此时的无法计算斜率，但是我们只需要连续填入即可，利用基本的几何知识即可实现。</li>
+</ul>
+</li>
+<li><ul>
+<li>普通直线: 我们则利用如下算法来实现相关代码，非常巧妙的加减法判断即可。<br><img src="https://i.loli.net/2021/01/28/YHGrcOXL9e6Iu4T.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li><code>rectangle</code>:此时我们则利用画水平线的方式，快速的实现即可。</li>
+<li><code>circle</code>:画圆的方式则比较容易实现，就是快速的画水平直线即可,当然如下的算法可以稍微改进一下，每次画两条直线，即可减少开方的计算，毕竟开方的计算非常耗时。<br><img src="https://i.loli.net/2021/01/28/HuoG85sIwB1qbWJ.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出部分主要为整个系统的字符输出和显示。整个系统中给所有的字符完成一种最基本的字符定义和类型，从中我们可以窥探到字符集的实现。本质为我们将每一种字符都进行位图编辑，每次输出字符时，我们显示该字符的实际的位图即可，这个起始非常容易实现。<br><img src="https://i.loli.net/2021/01/28/NwFfqjALMDPCeiT.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><code>printChar</code>：打印字符的实现，所有的字符都采用<code>11x8</code>的位图来实现，因此非常的简单。我们每次输出字符时只需要定位到相应的起始位置，在显存中写入该字符的位图即可。</li>
+<li><code>printInt</code>:这个即将整形转换为字符串，然后再输出即可，比较麻烦的地方是处理负数的问题。</li>
+</ul>
+<h3 id="Keyboard"><a href="#Keyboard" class="headerlink" title="Keyboard"></a>Keyboard</h3><p>读取和控制键盘，对键盘的输入进行读取和显示，这部分的实现起始非常简单，从键盘的<code>i/o</code>地址出，读取写入的字符然后显示相应的字符即可。<br><img src="https://i.loli.net/2021/01/28/gbOKMwFhPq5a1G3.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><code>keypressed</code>：从键盘读取一个输入字符，判断读取的循环即可<br><img src="https://i.loli.net/2021/01/28/ksChF6jzmga7V9S.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p><code>string</code>的处理则非常简单，因为只需要基本的函数即可，没啥太大难度，也没有多少难点需要阐述的。<br><img src="https://i.loli.net/2021/01/28/dsfGmeUJn6jvxlO.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><p><code>array</code>部分就更简单了，申请<code>size</code>长度的数组即为从堆中申请相应长度的空间即可。<br><img src="https://i.loli.net/2021/01/28/CYkLzUNxcr9fVQ5.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Sys"><a href="#Sys" class="headerlink" title="Sys"></a>Sys</h3><p><code>sys</code>系统部分，主要重点需要注意的为系统初始化部分，题目中给的完全可能是错误的，首先第一个需要初始化的应该是<code>memory</code>部分，因为其他模块都可能需要用到<code>memory</code>部分的功能。具体的初始流程如下即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function void init() &#123;</span><br><span class="line">    do Memory.init();</span><br><span class="line">    do Math.init();</span><br><span class="line">    do Screen.init();</span><br><span class="line">    do Output.init();</span><br><span class="line">    do Keyboard.init();</span><br><span class="line">    do Main.main();</span><br><span class="line">    do Sys.halt();</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>起始总的来说，这个<code>project</code>相比其他几个<code>project</code>都容易许多，但是许多需要注意的细节：</p>
+<ul>
+<li>对于数学的部分：这部分需要非常快速的效率来实现，所以非常需要快的数学方法来化简直接的方法，从而提高效率，否则后续容易出现程序执行效率不高的问题。</li>
+<li>对于图形部分的实现，如何继续改进则需要仔细的思考，特别是圆形的实现还需要非常多的优化。</li>
+<li>其余的部分感觉基本上就是<code>cround</code>，没有特别多的理论需要思考和实现的。</li>
+</ul>
+<h2 id="project-1"><a href="#project-1" class="headerlink" title="project"></a>project</h2><p>本周的<code>project</code>感觉还是非常复杂的<code>project</code>，虽然很简单，但是要不出错还是需要非常注意细节的实现。<br>代码实现：<a target="_blank" rel="noopener" href="https://github.com/mike-box/coursera/tree/master/Build%20a%20computer/nand2tetris/nand2tetris/projects/12">poj12</a>.</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/build-a-computer/" class="category-chain-item">build a computer</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/" class="print-no-link">#公开课学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【build a computer】 project 12</div>
+      <div>http://example.com/1970/01/01/公开课学习/75/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/82/" title="【build a computer】 project 9">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【build a computer】 project 9</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/61/" title="【MIT6.S081】 lab5 lazy alloaction">
+                        <span class="hidden-mobile">【MIT6.S081】 lab5 lazy alloaction</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

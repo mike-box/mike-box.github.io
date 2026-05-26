@@ -1,0 +1,996 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode weekly contes 361T4 算是比较难的题目了，需要仔细思考的题目，关键在题目给定的某些提示。 7020. 统计对称整数的数目给你两个正整数 low 和 high 。 对于一个由 2 * n 位数字组成的整数 x ，如果其前 n 位数字之和与后 n 位数字之和相等，则认为这个数字是一个对称整数。 返回在 [low, high] 范围内的 对称整数的数目 。 示例 1：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcodeweekly contes 361">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/145/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode weekly contes 361T4 算是比较难的题目了，需要仔细思考的题目，关键在题目给定的某些提示。 7020. 统计对称整数的数目给你两个正整数 low 和 high 。 对于一个由 2 * n 位数字组成的整数 x ，如果其前 n 位数字之和与后 n 位数字之和相等，则认为这个数字是一个对称整数。 返回在 [low, high] 范围内的 对称整数的数目 。 示例 1：">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2023/08/11/graph-6-1.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2023/08/11/graph-9-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.624Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛赛">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2023/08/11/graph-6-1.png">
+  
+  
+  
+  <title>leetcodeweekly contes 361 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcodeweekly contes 361"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          73 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcodeweekly contes 361</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-weekly-contes-361"><a href="#leetcode-weekly-contes-361" class="headerlink" title="leetcode weekly contes 361"></a>leetcode weekly contes 361</h2><p><code>T4</code> 算是比较难的题目了，需要仔细思考的题目，关键在题目给定的某些提示。</p>
+<h3 id="7020-统计对称整数的数目"><a href="#7020-统计对称整数的数目" class="headerlink" title="7020. 统计对称整数的数目"></a>7020. 统计对称整数的数目</h3><p>给你两个正整数 <code>low</code> 和 <code>high</code> 。</p>
+<p>对于一个由 <code>2 * n</code> 位数字组成的整数 <code>x</code> ，如果其前 <code>n</code> 位数字之和与后 <code>n</code> 位数字之和相等，则认为这个数字是一个对称整数。</p>
+<p>返回在 <code>[low, high]</code> 范围内的 <strong>对称整数的数目</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：low = 1, high = 100</span><br><span class="line">输出：9</span><br><span class="line">解释：在 1 到 100 范围内共有 9 个对称整数：11、22、33、44、55、66、77、88 和 99 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：low = 1200, high = 1230</span><br><span class="line">输出：4</span><br><span class="line">解释：在 1200 到 1230 范围内共有 4 个对称整数：1203、1212、1221 和 1230 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= low &lt;= high &lt;= 104</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-361/problems/count-symmetric-integers/">https://leetcode.cn/contest/weekly-contest-361/problems/count-symmetric-integers/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接检测 $[low, high]$ 之间所有的元素，是否为对称数，满足对称数需要满足两个条件：<ul>
+<li>数位长度为偶数；</li>
+<li>数位的前一半与后一半数字之和相等</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$, 其中 $n$ 表示给定的元素。</li>
+<li>空间复杂度：$O(\log n)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><figcaption><span>[sol1-C++]</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countSymmetricIntegers</span><span class="params">(<span class="type">int</span> low, <span class="type">int</span> high)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = low; i &lt;= high; i++) &#123;</span><br><span class="line">            string s = <span class="built_in">to_string</span>(i);</span><br><span class="line">            <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="type">int</span> sum1 = <span class="number">0</span>, sum2 = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n / <span class="number">2</span>; i++) &#123;</span><br><span class="line">                    sum1 += s[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> i = n / <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">                    sum2 += s[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sum1 == sum2) &#123;</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="8040-生成特殊数字的最少操作"><a href="#8040-生成特殊数字的最少操作" class="headerlink" title="8040. 生成特殊数字的最少操作"></a>8040. 生成特殊数字的最少操作</h3><p>给你一个下标从 <strong>0</strong> 开始的字符串 <code>num</code> ，表示一个非负整数。</p>
+<p>在一次操作中，您可以选择 <code>num</code> 的任意一位数字并将其删除。请注意，如果你删除 <code>num</code> 中的所有数字，则 <code>num</code> 变为 <code>0</code>。</p>
+<p>返回最少需要多少次操作可以使 <code>num</code> 变成特殊数字。</p>
+<p>如果整数 <code>x</code> 能被 <code>25</code> 整除，则该整数 <code>x</code> 被认为是特殊数字。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：num = &quot;2245047&quot;</span><br><span class="line">输出：2</span><br><span class="line">解释：删除数字 num[5] 和 num[6] ，得到数字 &quot;22450&quot; ，可以被 25 整除。</span><br><span class="line">可以证明要使数字变成特殊数字，最少需要删除 2 位数字。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：num = &quot;2908305&quot;</span><br><span class="line">输出：3</span><br><span class="line">解释：删除 num[3]、num[4] 和 num[6] ，得到数字 &quot;2900&quot; ，可以被 25 整除。</span><br><span class="line">可以证明要使数字变成特殊数字，最少需要删除 3 位数字。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：num = &quot;10&quot;</span><br><span class="line">输出：1</span><br><span class="line">解释：删除 num[0] ，得到数字 &quot;0&quot; ，可以被 25 整除。</span><br><span class="line">可以证明要使数字变成特殊数字，最少需要删除 1 位数字。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示</strong></p>
+<ul>
+<li><code>1 &lt;= num.length &lt;= 100</code></li>
+<li><code>num</code> 仅由数字 <code>&#39;0&#39;</code> 到 <code>&#39;9&#39;</code> 组成</li>
+<li><code>num</code> 不含任何前导零</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-361/problems/minimum-operations-to-make-a-special-number/">https://leetcode.cn/contest/weekly-contest-361/problems/minimum-operations-to-make-a-special-number/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>数学
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目本身不是特别难，但是需要一些数学技巧，首先我们之间能被 $25$ 整除的元素有以下特征:<ul>
+<li>要么为元素 $0$;</li>
+<li>要么数字最后两位为 $00,25,50,75$;</li>
+</ul>
+</li>
+<li>我们依次尝试上述两种情况，要么将数字变为 $0$, 要么变为指定的数字；<ul>
+<li>变为 $0$ 时，如果 $num$ 中本身含有 $0$ ，此时需要删除 $n-1$ 次，否则删除 $n$ 次；</li>
+<li>剩余的则是将字符串进行匹配，从尾部到头部开始匹配直到匹配目标字符串为止，需要将数字的最后两位变为指定的模式；</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为给定的字符串的长度。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumOperations</span><span class="params">(string num)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = num.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;string&gt; arr = &#123;<span class="string">&quot;00&quot;</span>, <span class="string">&quot;25&quot;</span>, <span class="string">&quot;50&quot;</span>, <span class="string">&quot;75&quot;</span>&#125;;</span><br><span class="line">        <span class="type">int</span> ans = n;</span><br><span class="line">        <span class="keyword">auto</span> calc = [&amp;](string s) &#123;</span><br><span class="line">            <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = s.<span class="built_in">size</span>() - <span class="number">1</span>, j = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">                <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; num[j] != s[i]) &#123;</span><br><span class="line">                    j--;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (j &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (num[j] == s[i]) &#123;</span><br><span class="line">                    j--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> count;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            <span class="type">int</span> cnt = <span class="built_in">calc</span>(arr[i]);</span><br><span class="line">            <span class="keyword">if</span> (cnt &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                ans = <span class="built_in">min</span>(ans, cnt);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/* zero */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num[i] == <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">                ans = <span class="built_in">min</span>(ans, n - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6952-统计趣味子数组的数目"><a href="#6952-统计趣味子数组的数目" class="headerlink" title="6952. 统计趣味子数组的数目"></a>6952. 统计趣味子数组的数目</h3><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> ，以及整数 <code>modulo</code> 和整数 <code>k</code> 。</p>
+<p>请你找出并统计数组中 <strong>趣味子数组</strong> 的数目。</p>
+<p>如果 <strong>子数组</strong> <code>nums[l..r]</code> 满足下述条件，则称其为 <strong>趣味子数组</strong> ：</p>
+<ul>
+<li>在范围 <code>[l, r]</code> 内，设 <code>cnt</code> 为满足 <code>nums[i] % modulo == k</code> 的索引 <code>i</code> 的数量。并且 <code>cnt % modulo == k</code> 。</li>
+</ul>
+<p>以整数形式表示并返回趣味子数组的数目。</p>
+<p><strong>注意：</strong>子数组是数组中的一个连续非空的元素序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,2,4], modulo = 2, k = 1</span><br><span class="line">输出：3</span><br><span class="line">解释：在这个示例中，趣味子数组分别是： </span><br><span class="line">子数组 nums[0..0] ，也就是 [3] 。 </span><br><span class="line">- 在范围 [0, 0] 内，只存在 1 个下标 i = 0 满足 nums[i] % modulo == k 。</span><br><span class="line">- 因此 cnt = 1 ，且 cnt % modulo == k 。</span><br><span class="line">子数组 nums[0..1] ，也就是 [3,2] 。</span><br><span class="line">- 在范围 [0, 1] 内，只存在 1 个下标 i = 0 满足 nums[i] % modulo == k 。</span><br><span class="line">- 因此 cnt = 1 ，且 cnt % modulo == k 。</span><br><span class="line">子数组 nums[0..2] ，也就是 [3,2,4] 。</span><br><span class="line">- 在范围 [0, 2] 内，只存在 1 个下标 i = 0 满足 nums[i] % modulo == k 。</span><br><span class="line">- 因此 cnt = 1 ，且 cnt % modulo == k 。</span><br><span class="line">可以证明不存在其他趣味子数组。因此，答案为 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,1,9,6], modulo = 3, k = 0</span><br><span class="line">输出：2</span><br><span class="line">解释：在这个示例中，趣味子数组分别是： </span><br><span class="line">子数组 nums[0..3] ，也就是 [3,1,9,6] 。</span><br><span class="line">- 在范围 [0, 3] 内，只存在 3 个下标 i = 0, 2, 3 满足 nums[i] % modulo == k 。</span><br><span class="line">- 因此 cnt = 3 ，且 cnt % modulo == k 。</span><br><span class="line">子数组 nums[1..1] ，也就是 [1] 。</span><br><span class="line">- 在范围 [1, 1] 内，不存在下标满足 nums[i] % modulo == k 。</span><br><span class="line">- 因此 cnt = 0 ，且 cnt % modulo == k 。</span><br><span class="line">可以证明不存在其他趣味子数组，因此答案为 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>1 &lt;= modulo &lt;= 109</code></li>
+<li><code>0 &lt;= k &lt; modulo</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-361/problems/count-of-interesting-subarrays/">https://leetcode.cn/contest/weekly-contest-361/problems/count-of-interesting-subarrays/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 前缀和</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>典型的前缀和的思想，假设当前索引 $i$ 中前 $i$  个元素中含有满足要求的索引数量为 $x$ 个，此时我们需要找到索引 $j$ 使得索引 $[j,i]$ 之间符合题目要求的索引数量对 $mod$ 取模为 $k$, 此时我们自然而然想到前缀和设 $sum[i]$ 表示前 $i$ 个元素中符合题目要求的数量，此时需要满足 $(sum[i] - sum[j]) \bmod modulo &#x3D; k$，则此时需要满足如下要求：</p>
+<ul>
+<li>设 $sum[i] \bmod modulo &#x3D; x$, 此时如要使得 $(sum[i] - sum[j]) \bmod modulo &#x3D; k$，则此时 $sum[j] \bmod modulo &#x3D; (x + modulo - k) \bmod modulo$；</li>
+</ul>
+<p>根据以上分析我们利用哈希依次记录当前前缀和为 $x$ 的出现次数为 $cnt[x]$,则后续的计算过程就是非常简单的题目了。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示数组的长度；</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度；</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">countInterestingSubarrays</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> modulo, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">sum</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] % modulo == k) &#123;</span><br><span class="line">                sum[i + <span class="number">1</span>] = sum[i] + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sum[i + <span class="number">1</span>] = sum[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> res = <span class="number">0</span>;</span><br><span class="line">        cnt[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = sum[i + <span class="number">1</span>];</span><br><span class="line">            <span class="type">int</span> y = x % modulo;</span><br><span class="line">            res += cnt[(y + modulo - k) % modulo];</span><br><span class="line">            cnt[sum[i + <span class="number">1</span>] % modulo]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100018-边权重均等查询"><a href="#100018-边权重均等查询" class="headerlink" title="100018. 边权重均等查询"></a>100018. 边权重均等查询</h3><p>现有一棵由 <code>n</code> 个节点组成的无向树，节点按从 <code>0</code> 到 <code>n - 1</code> 编号。给你一个整数 <code>n</code> 和一个长度为 <code>n - 1</code> 的二维整数数组 <code>edges</code> ，其中 <code>edges[i] = [ui, vi, wi]</code> 表示树中存在一条位于节点 <code>ui</code> 和节点 <code>vi</code> 之间、权重为 <code>wi</code> 的边。</p>
+<p>另给你一个长度为 <code>m</code> 的二维整数数组 <code>queries</code> ，其中 <code>queries[i] = [ai, bi]</code> 。对于每条查询，请你找出使从 <code>ai</code> 到 <code>bi</code> 路径上每条边的权重相等所需的 <strong>最小操作次数</strong> 。在一次操作中，你可以选择树上的任意一条边，并将其权重更改为任意值。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>查询之间 <strong>相互独立</strong> 的，这意味着每条新的查询时，树都会回到 <strong>初始状态</strong> 。</li>
+<li>从 <code>ai</code> 到 <code>bi</code>的路径是一个由 <strong>不同</strong> 节点组成的序列，从节点 <code>ai</code> 开始，到节点 <code>bi</code> 结束，且序列中相邻的两个节点在树中共享一条边。</li>
+</ul>
+<p>返回一个长度为 <code>m</code> 的数组 <code>answer</code> ，其中 <code>answer[i]</code> 是第 <code>i</code> 条查询的答案。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2023/08/11/graph-6-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 7, edges = [[0,1,1],[1,2,1],[2,3,1],[3,4,2],[4,5,2],[5,6,2]], queries = [[0,3],[3,6],[2,6],[0,6]]</span><br><span class="line">输出：[0,0,1,3]</span><br><span class="line">解释：第 1 条查询，从节点 0 到节点 3 的路径中的所有边的权重都是 1 。因此，答案为 0 。</span><br><span class="line">第 2 条查询，从节点 3 到节点 6 的路径中的所有边的权重都是 2 。因此，答案为 0 。</span><br><span class="line">第 3 条查询，将边 [2,3] 的权重变更为 2 。在这次操作之后，从节点 2 到节点 6 的路径中的所有边的权重都是 2 。因此，答案为 1 。</span><br><span class="line">第 4 条查询，将边 [0,1]、[1,2]、[2,3] 的权重变更为 2 。在这次操作之后，从节点 0 到节点 6 的路径中的所有边的权重都是 2 。因此，答案为 3 。</span><br><span class="line">对于每条查询 queries[i] ，可以证明 answer[i] 是使从 ai 到 bi 的路径中的所有边的权重相等的最小操作次数。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2023/08/11/graph-9-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 8, edges = [[1,2,6],[1,3,4],[2,4,6],[2,5,3],[3,6,6],[3,0,8],[7,0,2]], queries = [[4,6],[0,4],[6,5],[7,4]]</span><br><span class="line">输出：[1,2,2,3]</span><br><span class="line">解释：第 1 条查询，将边 [1,3] 的权重变更为 6 。在这次操作之后，从节点 4 到节点 6 的路径中的所有边的权重都是 6 。因此，答案为 1 。</span><br><span class="line">第 2 条查询，将边 [0,3]、[3,1] 的权重变更为 6 。在这次操作之后，从节点 0 到节点 4 的路径中的所有边的权重都是 6 。因此，答案为 2 。</span><br><span class="line">第 3 条查询，将边 [1,3]、[5,2] 的权重变更为 6 。在这次操作之后，从节点 6 到节点 5 的路径中的所有边的权重都是 6 。因此，答案为 2 。</span><br><span class="line">第 4 条查询，将边 [0,7]、[0,3]、[1,3] 的权重变更为 6 。在这次操作之后，从节点 7 到节点 4 的路径中的所有边的权重都是 6 。因此，答案为 3 。</span><br><span class="line">对于每条查询 queries[i] ，可以证明 answer[i] 是使从 ai 到 bi 的路径中的所有边的权重相等的最小操作次数。 </span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 104</code></li>
+<li><code>edges.length == n - 1</code></li>
+<li><code>edges[i].length == 3</code></li>
+<li><code>0 &lt;= ui, vi &lt; n</code></li>
+<li><code>1 &lt;= wi &lt;= 26</code></li>
+<li>生成的输入满足 <code>edges</code> 表示一棵有效的树</li>
+<li><code>1 &lt;= queries.length == m &lt;= 2 * 104</code></li>
+<li><code>queries[i].length == 2</code></li>
+<li><code>0 &lt;= ai, bi &lt; n</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-361/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/">https://leetcode.cn/contest/weekly-contest-361/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 倍增lca</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>没有想到是竟然又出了倍增的题目，确实是个不错的题目，如果非常熟悉倍增的话，则本题不算特别难，题目有几个关键点值得分析：</li>
+</ol>
+<ul>
+<li>每条边的权重 $w_i$ 的取值范围为 $[1,26]$，这是一个非常关键的题目，有了这个提示我们想到了可以统计每条路径上不同边的权重统计数目，这样用一个长度为 $26$ 的数组即可实现；</li>
+<li>为什么需要倍增，题目给定的树的节点范围为 $[1,10^4]$，查询的长度范围为 $10^4$，这就说明了我们必须要选择 $O(n)$ 或者 $O(\log n)$ 的解法，我们仔细分析来看对于查询为 $10^4$ 数量级，$O(n)$ 的解法无论如何都不现实。结合上面的分析，此时我们就需要 $O(n\log n)$ 的解法，自然而然想到了倍增  $LCA$ 的解法，每次倍增时保存两个节点之间路径中不同边的权重统计；</li>
+<li>每次查询不同的边时 $(x,y)$，此时我们通过倍增查询 $lca(x,y)$，此时我们分别统计 $x \rightarrow lca(x,y)$ 中的边的权重统计数目，同时也统计 $y \rightarrow lca(x,y)$ 的边权重统计数目，二者相加即可得到 $x \rightarrow y$ 之间的所有边权重的统计数目。</li>
+</ul>
+<ol start="2">
+<li>根据 $1$ 的思路分析以后我们采用倍增的模板即可，可以参考 <a target="_blank" rel="noopener" href="https://oi-wiki.org/graph/lca/">LCA</a>，题目就变得比较简单，非常好的模板题目。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(U \times m \log n)$，其中 $m$ 表示查询数组的长度，$n$ 表示节点的数目, $U$ 表示权重的最大值。</li>
+<li>空间复杂度：$O(Un)$，其中 $m$ 表示查询数组的长度，$n$ 表示节点的数目， $U$ 表示权重的最大值。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> pii = pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">bfs</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;depth, vector&lt;vector&lt;pii&gt;&gt; &amp;graph)</span> </span>&#123;</span><br><span class="line">        depth[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        queue&lt;<span class="type">int</span>&gt; qu;</span><br><span class="line">        qu.<span class="built_in">emplace</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">while</span> (!qu.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="type">int</span> curr = qu.<span class="built_in">front</span>();</span><br><span class="line">            qu.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> [x, w] : graph[curr]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (depth[x] &gt;= <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">                depth[x] = depth[curr] + <span class="number">1</span>;</span><br><span class="line">                qu.<span class="built_in">emplace</span>(x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;arr1, vector&lt;<span class="type">int</span>&gt; &amp;arr2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; arr<span class="number">1.</span><span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            arr1[i] += arr2[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">minOperationsQueries</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; edges, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = edges.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;pii&gt;&gt; <span class="built_in">graph</span>(n);</span><br><span class="line">        <span class="comment">/* 建立图的关系 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> e : edges) &#123;</span><br><span class="line">            <span class="type">int</span> u = e[<span class="number">0</span>], v = e[<span class="number">1</span>], w = e[<span class="number">2</span>];</span><br><span class="line">            graph[u].<span class="built_in">emplace_back</span>(v, w);</span><br><span class="line">            graph[v].<span class="built_in">emplace_back</span>(u, w);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; res;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">depth</span><span class="params">(n, <span class="number">-1</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> dp[n][<span class="number">21</span>][<span class="number">27</span>];</span><br><span class="line">        <span class="type">int</span> fa[n][<span class="number">21</span>];</span><br><span class="line">        <span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="built_in">sizeof</span>(dp));</span><br><span class="line">        <span class="built_in">memset</span>(fa, <span class="number">0</span>, <span class="built_in">sizeof</span>(fa));</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 求每个节点的深度， bfs 或者 dfs 均可*/</span></span><br><span class="line">        <span class="built_in">bfs</span>(depth, graph);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 倍增初始化 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> e : edges) &#123;</span><br><span class="line">            <span class="type">int</span> u = e[<span class="number">0</span>], v = e[<span class="number">1</span>], w = e[<span class="number">2</span>];</span><br><span class="line">            <span class="comment">/* 深度较小的父节点 */</span></span><br><span class="line">            <span class="keyword">if</span> (depth[u] &lt; depth[v]) &#123;</span><br><span class="line">                <span class="built_in">swap</span>(u, v);</span><br><span class="line">            &#125;</span><br><span class="line">            fa[u][<span class="number">0</span>] = v;</span><br><span class="line">            dp[u][<span class="number">0</span>][w]++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 建立倍增关系 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">20</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                <span class="type">int</span> x = fa[i][j - <span class="number">1</span>];</span><br><span class="line">                <span class="type">int</span> y = fa[x][j - <span class="number">1</span>];</span><br><span class="line">                fa[i][j] = y;</span><br><span class="line">                <span class="comment">/* 每次记录两个节点之间的节点数目关系 */</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">26</span>; k++) &#123;</span><br><span class="line">                    dp[i][j][k] = dp[i][j - <span class="number">1</span>][k] + dp[x][j - <span class="number">1</span>][k];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/* 对每个查询进行 lca 倍增查询 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> vec : queries) &#123;</span><br><span class="line">            <span class="type">int</span> x = vec[<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> y = vec[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (depth[x] &gt; depth[y]) &#123;</span><br><span class="line">                <span class="built_in">swap</span>(x, y);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 倍增对齐操作 */</span></span><br><span class="line">            <span class="type">int</span> diff = depth[y] - depth[x];</span><br><span class="line">            <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">27</span>)</span></span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; diff; ++j, diff &gt;&gt;= <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (diff &amp; <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">26</span>; k++) &#123;</span><br><span class="line">                        cnt[k] += dp[y][j][k];</span><br><span class="line">                    &#125;</span><br><span class="line">                    y = fa[y][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (x != y) &#123;</span><br><span class="line">                <span class="comment">/* 倍增查询 */</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">20</span>; j &gt;= <span class="number">0</span> &amp;&amp; y != x; --j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (fa[x][j] != fa[y][j]) &#123;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">26</span>; k++) &#123;</span><br><span class="line">                            cnt[k] += dp[x][j][k] + dp[y][j][k];</span><br><span class="line">                        &#125;</span><br><span class="line">                        x = fa[x][j];</span><br><span class="line">                        y = fa[y][j];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">26</span> &amp;&amp; x &gt;= <span class="number">0</span> &amp;&amp; y &gt;= <span class="number">0</span>; k++) &#123;</span><br><span class="line">                    cnt[k] += dp[x][<span class="number">0</span>][k] + dp[y][<span class="number">0</span>][k];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             <span class="type">int</span> total = <span class="built_in">accumulate</span>(cnt.<span class="built_in">begin</span>(), cnt.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">             <span class="type">int</span> maxVal = *<span class="built_in">max_element</span>(cnt.<span class="built_in">begin</span>(), cnt.<span class="built_in">end</span>());</span><br><span class="line">             res.<span class="built_in">emplace_back</span>(total - maxVal);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E8%B5%9B/" class="print-no-link">#力扣周赛赛</a>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcodeweekly contes 361</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/145/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/141/" title="leetcode biweekly contes 111">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode biweekly contes 111</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/143/" title="leetcode weekly contes 359">
+                        <span class="hidden-mobile">leetcode weekly contes 359</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

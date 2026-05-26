@@ -1,0 +1,1043 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode weekly contest 4043200. 三角形的最大高度给你两个整数 red 和 blue，分别表示红色球和蓝色球的数量。你需要使用这些球来组成一个三角形，满足第 1 行有 1 个球，第 2 行有 2 个球，第 3 行有 3 个球，依此类推。 每一行的球必须是 相同 颜色，且相邻行的颜色必须 不同。 返回可以实现的三角形的 最大 高度。 示例 1： 输入： red &amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode weekly contest 404">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/211/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode weekly contest 4043200. 三角形的最大高度给你两个整数 red 和 blue，分别表示红色球和蓝色球的数量。你需要使用这些球来组成一个三角形，满足第 1 行有 1 个球，第 2 行有 2 个球，第 3 行有 3 个球，依此类推。 每一行的球必须是 相同 颜色，且相邻行的颜色必须 不同。 返回可以实现的三角形的 最大 高度。 示例 1： 输入： red &amp;#x">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/06/16/brb.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/06/16/br.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/06/16/br.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/04/22/example11-transformed.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/04/22/example211.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.750Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛赛">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2024/06/16/brb.png">
+  
+  
+  
+  <title>leetcode weekly contest 404 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode weekly contest 404"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          59 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode weekly contest 404</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-weekly-contest-404"><a href="#leetcode-weekly-contest-404" class="headerlink" title="leetcode weekly contest 404"></a>leetcode weekly contest 404</h2><h3 id="3200-三角形的最大高度"><a href="#3200-三角形的最大高度" class="headerlink" title="3200. 三角形的最大高度"></a>3200. 三角形的最大高度</h3><p>给你两个整数 <code>red</code> 和 <code>blue</code>，分别表示红色球和蓝色球的数量。你需要使用这些球来组成一个三角形，满足第 1 行有 1 个球，第 2 行有 2 个球，第 3 行有 3 个球，依此类推。</p>
+<p>每一行的球必须是 <strong>相同</strong> 颜色，且相邻行的颜色必须 <strong>不同</strong>。</p>
+<p>返回可以实现的三角形的 <strong>最大</strong> 高度。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> red &#x3D; 2, blue &#x3D; 4</p>
+<p><strong>输出：</strong> 3</p>
+<p><strong>解释：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/06/16/brb.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>上图显示了唯一可能的排列方式。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> red &#x3D; 2, blue &#x3D; 1</p>
+<p><strong>输出：</strong> 2</p>
+<p><strong>解释：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/06/16/br.png" srcset="/img/loading.gif" lazyload alt="img"><br>上图显示了唯一可能的排列方式。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong> red &#x3D; 1, blue &#x3D; 1</p>
+<p><strong>输出：</strong> 1</p>
+<p><strong>示例 4：</strong></p>
+<p><strong>输入：</strong> red &#x3D; 10, blue &#x3D; 1</p>
+<p><strong>输出：</strong> 2</p>
+<p><strong>解释：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/06/16/br.png" srcset="/img/loading.gif" lazyload alt="img"><br>上图显示了唯一可能的排列方式。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= red, blue &lt;= 100</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-404/problems/maximum-height-of-a-triangle/">https://leetcode.cn/contest/weekly-contest-404/problems/maximum-height-of-a-triangle/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接枚举行数即可，假设一共有 $i$ 行:<ul>
+<li>如果 $i$ 为奇数，则两种颜色数目分别为 $\dfrac{(i + 1) \times (i + 1)}{4}, \dfrac{(i + 1) \times i}{2} -  \dfrac{(i + 1) \times (i + 1)}{4}$;</li>
+<li>如果 $i$ 为偶数，则两种颜色数目分别为 $\dfrac{i \times i}{4}, \dfrac{(i + 1) \times i}{2} -  \dfrac{i \times i}{4}$;</li>
+<li>枚举 $i$ ,并检测给定的球的数目是否满足两种要求即可。</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxHeightOfTriangle</span>(<span class="params">self, red: <span class="built_in">int</span>, blue: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        a, b = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            tot = i * (i + <span class="number">1</span>) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> i &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">                a = (<span class="number">1</span> + i) * (i + <span class="number">1</span>) // <span class="number">4</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                a = i * i // <span class="number">4</span></span><br><span class="line">            b = tot - a</span><br><span class="line">            <span class="keyword">if</span> red &gt;= a <span class="keyword">and</span> blue &gt;= b <span class="keyword">or</span> red &gt;= b <span class="keyword">and</span> blue &gt;= a:</span><br><span class="line">                <span class="keyword">return</span> i</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3201-找出有效子序列的最大长度-I"><a href="#3201-找出有效子序列的最大长度-I" class="headerlink" title="3201. 找出有效子序列的最大长度 I"></a>3201. 找出有效子序列的最大长度 I</h3><p>给你一个整数数组 <code>nums</code>。</p>
+<p><code>nums</code> 的子序列 <code>sub</code> 的长度为 <code>x</code> ，如果其满足以下条件，则称其为 <strong>有效子序列</strong>：</p>
+<ul>
+<li><code>(sub[0] + sub[1]) % 2 == (sub[1] + sub[2]) % 2 == ... == (sub[x - 2] + sub[x - 1]) % 2</code></li>
+</ul>
+<p>返回 <code>nums</code> 的 <strong>最长的有效子序列</strong> 的长度。</p>
+<p>一个 <strong>子序列</strong> 指的是从原数组中删除一些元素（也可以不删除任何元素），剩余元素保持原来顺序组成的新数组。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> nums &#x3D; [1,2,3,4]</p>
+<p><strong>输出：</strong> 4</p>
+<p><strong>解释：</strong></p>
+<p>最长的有效子序列是 <code>[1, 2, 3, 4]</code>。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> nums &#x3D; [1,2,1,1,2,1,2]</p>
+<p><strong>输出：</strong> 6</p>
+<p><strong>解释：</strong></p>
+<p>最长的有效子序列是 <code>[1, 2, 1, 2, 1, 2]</code>。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong> nums &#x3D; [1,3]</p>
+<p><strong>输出：</strong> 2</p>
+<p><strong>解释：</strong></p>
+<p>最长的有效子序列是 <code>[1, 3]</code>。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 2 * 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 107</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-404/problems/find-the-maximum-length-of-valid-subsequence-i/">https://leetcode.cn/contest/weekly-contest-404/problems/find-the-maximum-length-of-valid-subsequence-i/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>动态规划
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>与 <code>t3</code>  一样的思路，根据题意可以知道 $(a + b) \bmod k &#x3D; (b + c) \bmod k$， 此时可以得到 $a \bmod k + b \bmod k &#x3D; b \bmod k + c\bmod k$, 等价于 $a \bmod k &#x3D; c \bmod k$，此时我们一定可以得到如下：</p>
+<ul>
+<li>$sub[0] \bmod k &#x3D; sub[2] \bmod k &#x3D; sub[4] \bmod k, \cdots$;</li>
+<li>$sub[1] \bmod k &#x3D; sub[3] \bmod k &#x3D; sub[5] \bmod k, \cdots$;</li>
+</ul>
+<p>此时我们只需要找到依次相邻且相等的最长序列即可，我们设 $dp[i][j]$ 表示最后一个数为 $i$，前一个数为 $j$ 子序列的最长长度，此时我们可以得到递推公式，假设当前元素为 $x$，此时可以得到 $dp[x \bmod k][i] &#x3D; dp[i][x \bmod k] + 1$，特殊问题需要处理的时，假设当前遇到的元素为 $i$，$i$ 之前没有 $j$ 的时候该怎么处理，此时我们可以用一个标志位记录 $i$ 之前是否出现过 $j$ 即可，单独处理这类特殊情况即可，这样即可避免重复计算的问题。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(nk )$，其中 $n$ 表示给定数组的长度，$k$ 表示给定的数字 $k$。</li>
+<li>空间复杂度：$O(k^2)$，$k$ 表示给定的数字 $k$。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">public:</span><br><span class="line">    <span class="built_in">int</span> maximumLength(vector&lt;<span class="built_in">int</span>&gt;&amp; nums, <span class="built_in">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">int</span> n = nums.size();</span><br><span class="line">        vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt; f(k, vector&lt;<span class="built_in">int</span>&gt;(k));</span><br><span class="line">        <span class="built_in">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> x : nums) &#123;</span><br><span class="line">            <span class="built_in">int</span> j = x % k;</span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">                f[j][i] = <span class="number">1</span> + f[i][j];</span><br><span class="line">                res = <span class="built_in">max</span>(res, f[j][i]);</span><br><span class="line">            &#125;           </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3202-找出有效子序列的最大长度-II"><a href="#3202-找出有效子序列的最大长度-II" class="headerlink" title="3202. 找出有效子序列的最大长度 II"></a>3202. 找出有效子序列的最大长度 II</h3><p>给你一个整数数组 <code>nums</code> 和一个 <strong>正</strong> 整数 <code>k</code> 。</p>
+<p><code>nums</code> 的一个 子序列 <code>sub</code> 的长度为 <code>x</code> ，如果其满足以下条件，则称其为 <strong>有效子序列</strong> ：</p>
+<ul>
+<li><code>(sub[0] + sub[1]) % k == (sub[1] + sub[2]) % k == ... == (sub[x - 2] + sub[x - 1]) % k</code></li>
+</ul>
+<p>返回 <code>nums</code> 的 <strong>最长****有效子序列</strong> 的长度。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [1,2,3,4,5], k &#x3D; 2</p>
+<p><strong>输出：</strong>5</p>
+<p><strong>解释：</strong></p>
+<p>最长有效子序列是 <code>[1, 2, 3, 4, 5]</code> 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [1,4,2,3,1,4], k &#x3D; 3</p>
+<p><strong>输出：</strong>4</p>
+<p><strong>解释：</strong></p>
+<p>最长有效子序列是 <code>[1, 4, 1, 4]</code> 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 103</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 107</code></li>
+<li><code>1 &lt;= k &lt;= 103</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-404/problems/find-the-maximum-length-of-valid-subsequence-ii/">https://leetcode.cn/contest/weekly-contest-404/problems/find-the-maximum-length-of-valid-subsequence-ii/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>与 <code>t3</code>  一样的思路，根据题意可以知道 $(a + b) \bmod k &#x3D; (b + c) \bmod k$， 此时可以得到 $a \bmod k + b \bmod k &#x3D; b \bmod k + c\bmod k$, 等价于 $a \bmod k &#x3D; c \bmod k$，此时我们一定可以得到如下：</p>
+<ul>
+<li>$sub[0] \bmod k &#x3D; sub[2] \bmod k &#x3D; sub[4] \bmod k, \cdots$;</li>
+<li>$sub[1] \bmod k &#x3D; sub[3] \bmod k &#x3D; sub[5] \bmod k, \cdots$;</li>
+</ul>
+<p>此时我们只需要找到依次相邻且相等的最长序列即可，我们设 $dp[i][j]$ 表示最后一个数为 $i$，前一个数为 $j$ 子序列的最长长度，此时我们可以得到递推公式，假设当前元素为 $x$，此时可以得到 $dp[x \bmod k][i] &#x3D; dp[i][x \bmod k] + 1$，特殊问题需要处理的时，假设当前遇到的元素为 $i$，$i$ 之前没有 $j$ 的时候该怎么处理，此时我们可以用一个标志位记录 $i$ 之前是否出现过 $j$ 即可，单独处理这类特殊情况即可，这样即可避免重复计算的问题。</p>
+</li>
+<li><p>另一种解法，可以参考<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-maximum-length-of-valid-subsequence-ii/solutions/2826591/deng-jie-zhuan-huan-dong-tai-gui-hua-pyt-z2fs/">枚举余数，考察子序列的最后一项</a>, 假设子数组相邻两项对 $k$ 取模的结果为 $m$，此时假设已知第一项对 $k$ 取模的结果为 $x$，此时第二项对 $k$ 取模的结果即为 $(m - x + k) \bmod k$, 此时我们维护一个数组 $f$，其中 $f[x]$ 表示最后一项对 $k$ 取模的结果为 $x$ 的最长子序列的长度，假设当前的元素为 $y$，此时它前一个元素与 $k$ 取模的结果一定为 $(m - y \bmod k + k) \bmod k$ ，此时可以得到递推公式为 $f[x] &#x3D; f[(m - x + k) \bmod k] + 1$.</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(nk )$，其中 $n$ 表示给定数组的长度，$k$ 表示给定的数字 $k$。</li>
+<li>空间复杂度：$O(k^2)$，$k$ 表示给定的数字 $k$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">public:</span><br><span class="line">    <span class="built_in">int</span> maximumLength(vector&lt;<span class="built_in">int</span>&gt;&amp; nums, <span class="built_in">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">int</span> n = nums.size();</span><br><span class="line">        vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt; dp(k, vector&lt;<span class="built_in">int</span>&gt;(k));</span><br><span class="line">        vector&lt;<span class="built_in">bool</span>&gt; visit(k);</span><br><span class="line">        <span class="built_in">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> x : nums) &#123;</span><br><span class="line">            <span class="built_in">int</span> j = x % k;</span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == j) &#123;</span><br><span class="line">                    dp[i][j]++;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (visit[i] &amp;&amp; dp[j][i] == <span class="number">0</span>) &#123;</span><br><span class="line">                        dp[j][i] = <span class="number">2</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (dp[i][j] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        dp[j][i] = <span class="number">1</span> + dp[i][j];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                res = <span class="built_in">max</span>(res, dp[j][i]);</span><br><span class="line">            &#125;           </span><br><span class="line">            visit[j] = true;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">public:</span><br><span class="line">    <span class="built_in">int</span> maximumLength(vector&lt;<span class="built_in">int</span>&gt;&amp; nums, <span class="built_in">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            vector&lt;<span class="built_in">int</span>&gt; f(k);</span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">int</span> x : nums) &#123;</span><br><span class="line">                <span class="built_in">int</span> j = x % k;</span><br><span class="line">                f[j] = f[(i - j + k) % k] + <span class="number">1</span>;</span><br><span class="line">                res = <span class="built_in">max</span>(res, f[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="3203-合并两棵树后的最小直径"><a href="#3203-合并两棵树后的最小直径" class="headerlink" title="3203. 合并两棵树后的最小直径"></a>3203. 合并两棵树后的最小直径</h3><p>给你两棵 <strong>无向</strong> 树，分别有 <code>n</code> 和 <code>m</code> 个节点，节点编号分别为 <code>0</code> 到 <code>n - 1</code> 和 <code>0</code> 到 <code>m - 1</code> 。给你两个二维整数数组 <code>edges1</code> 和 <code>edges2</code> ，长度分别为 <code>n - 1</code> 和 <code>m - 1</code> ，其中 <code>edges1[i] = [ai, bi]</code> 表示在第一棵树中节点 <code>ai</code> 和 <code>bi</code> 之间有一条边，<code>edges2[i] = [ui, vi]</code> 表示在第二棵树中节点 <code>ui</code> 和 <code>vi</code> 之间有一条边。</p>
+<p>你必须在第一棵树和第二棵树中分别选一个节点，并用一条边连接它们。</p>
+<p>请你返回添加边后得到的树中，<strong>最小直径</strong> 为多少。</p>
+<p>一棵树的 <strong>直径</strong> 指的是树中任意两个节点之间的最长路径长度。</p>
+<p><strong>示例 1：</strong><img src="https://assets.leetcode.com/uploads/2024/04/22/example11-transformed.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>输入：</strong>edges1 &#x3D; [[0,1],[0,2],[0,3]], edges2 &#x3D; [[0,1]]</p>
+<p><strong>输出：</strong>3</p>
+<p><strong>解释：</strong></p>
+<p>将第一棵树中的节点 0 与第二棵树中的任意节点连接，得到一棵直径为 3 得树。</p>
+<p><strong>示例 2：<img src="https://assets.leetcode.com/uploads/2024/04/22/example211.png" srcset="/img/loading.gif" lazyload alt="img"></strong></p>
+<p><strong>输入：</strong>edges1 &#x3D; [[0,1],[0,2],[0,3],[2,4],[2,5],[3,6],[2,7]], edges2 &#x3D; [[0,1],[0,2],[0,3],[2,4],[2,5],[3,6],[2,7]]</p>
+<p><strong>输出：</strong>5</p>
+<p><strong>解释：</strong></p>
+<p>将第一棵树中的节点 0 和第二棵树中的节点 0 连接，可以得到一棵直径为 5 的树。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n, m &lt;= 105</code></li>
+<li><code>edges1.length == n - 1</code></li>
+<li><code>edges2.length == m - 1</code></li>
+<li><code>edges1[i].length == edges2[i].length == 2</code></li>
+<li><code>edges1[i] = [ai, bi]</code></li>
+<li><code>0 &lt;= ai, bi &lt; n</code></li>
+<li><code>edges2[i] = [ui, vi]</code></li>
+<li><code>0 &lt;= ui, vi &lt; m</code></li>
+<li>输入保证 <code>edges1</code> 和 <code>edges2</code> 分别表示一棵合法的树。</li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-404/problems/find-minimum-diameter-after-merging-two-trees/">https://leetcode.cn/contest/weekly-contest-404/problems/find-minimum-diameter-after-merging-two-trees/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 树</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>题目本身不是很难，难点在于树的直径的求法，可以参考<a target="_blank" rel="noopener" href="https://oi-wiki.org/graph/tree-diameter/">树的直径</a>，此时我们可以用两次 $dfs$ 或者 $bfs$ 即可，找到最远的距离即为树的直径，回到问题本身，题目要求合并后的直径尽可能的小，根据结论可以知道：</p>
+<ul>
+<li><p>两棵树合并后，新直径的两个端点，一定是原来两棵树直径的四个端点里的其中两个。</p>
+</li>
+<li><p>假设我们选择了第一个树的点 $x$  与第二个树的点 $y$ 进行相连，此时新的树的直径分为以下三种情况:</p>
+<ul>
+<li><p>要么为第一个树的直径 $d_1$;</p>
+</li>
+<li><p>要么为第二个树的直径 $d_2$;</p>
+</li>
+<li><p>要么为通过 $x-y$ 这条边相连的某个路径，假设此时最长的路径为 $a-x-y-b$，其中 $a,x$ 属于第一个树，$y,b$ 属于第二个树，经分析可以知道 $a,b$ 一定为叶子节点，此时我们需要使得 $a-x$ 与 $y-b$ 这两条边尽可能的小，即我们找到在第一个树中找到一个点  $x$ 使得树中其余的点到 $x$ 的最大距离尽可能的小，同理找到 $y$ 使得数中剩余的点到 $y$  的最大距离尽可能的小，根据直径的定义，最优选择是选择直径的最中间的两个点相连。</p>
+</li>
+<li><p>我们可以用反证法证明， 任意点到达 $x$ 的最小的最大距离一定是 $\dfrac{d_1 + 1}{2}$,任意点到达 $y$ 的最小的最大距离一定是 $\dfrac{d_2 + 1}{2}$,否则就违反了直径的定义；</p>
+</li>
+<li><p>此时最终的返回结果即为  $\max(d_1, d_2,\dfrac{d_1 + 1}{2} + \dfrac{d_2 + 1}{2} + 1)$;</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n + m)$，其中 $n,m$ 表示给定树的结点数目;</li>
+<li>空间复杂度：$O(n + m)$，其中 $n,m$ 表示给定树的结点数目;</li>
+<li></li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">public:</span><br><span class="line">    <span class="built_in">int</span> minimumDiameterAfterMerge(vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt;&amp; edges1, vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt;&amp; edges2) &#123;</span><br><span class="line">        <span class="built_in">int</span> d1 = bfs(edges1);</span><br><span class="line">        <span class="built_in">int</span> d2 = bfs(edges2);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(&#123;d1, d2, (d1 + <span class="number">1</span>) / <span class="number">2</span> + (d2 + <span class="number">1</span>) / <span class="number">2</span> + <span class="number">1</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">int</span> bfs(vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt;&amp; edges1) &#123;</span><br><span class="line">        <span class="built_in">int</span> n = edges1.size() + <span class="number">1</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt; graph(n);</span><br><span class="line">        vector&lt;<span class="built_in">bool</span>&gt; visit(n, false);</span><br><span class="line">        queue&lt;<span class="built_in">int</span>&gt; q;</span><br><span class="line">        <span class="built_in">int</span> last = -<span class="number">1</span>;</span><br><span class="line">        q.emplace(<span class="number">0</span>);</span><br><span class="line">        visit[<span class="number">0</span>] = true;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (auto e : edges1) &#123;</span><br><span class="line">            graph[e[<span class="number">0</span>]].emplace_back(e[<span class="number">1</span>]);</span><br><span class="line">            graph[e[<span class="number">1</span>]].emplace_back(e[<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            <span class="built_in">int</span> sz = q.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">                <span class="built_in">int</span> curr = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                last = curr;</span><br><span class="line">                <span class="keyword">for</span> (auto v : graph[curr]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (visit[v]) <span class="keyword">continue</span>;</span><br><span class="line">                    q.emplace(v);</span><br><span class="line">                    visit[v] = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visit[i] = false;</span><br><span class="line">        &#125;</span><br><span class="line">        q.emplace(last);</span><br><span class="line">        <span class="built_in">int</span> dist = -<span class="number">1</span>;</span><br><span class="line">        visit[last] = true;</span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            <span class="built_in">int</span> sz = q.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">                <span class="built_in">int</span> curr = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                <span class="keyword">for</span> (auto v : graph[curr]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (visit[v]) <span class="keyword">continue</span>;</span><br><span class="line">                    q.emplace(v);</span><br><span class="line">                    visit[v] = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            dist++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dist;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E8%B5%9B/" class="print-no-link">#力扣周赛赛</a>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode weekly contest 404</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/211/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/214/" title="leetcode weekly contest 406">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode weekly contest 406</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/212/" title="leetcode biweekly contest 134">
+                        <span class="hidden-mobile">leetcode biweekly contest 134</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

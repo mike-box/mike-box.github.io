@@ -1,0 +1,983 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode contest 374T4 确实是个好题目，总体来说本周周赛题目确实还算比较难，不过前三题难度还好，基本上不需要太多技巧。 2951. 找出峰值给你一个下标从 0 开始的数组 mountain 。你的任务是找出数组 mountain 中的所有 峰值。 以数组形式返回给定数组中 峰值 的下标，顺序不限 。 注意：  峰值 是指一个严格大于其相邻元素的元素。 数组的第一个和最后一个元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode contest 374">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/165/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode contest 374T4 确实是个好题目，总体来说本周周赛题目确实还算比较难，不过前三题难度还好，基本上不需要太多技巧。 2951. 找出峰值给你一个下标从 0 开始的数组 mountain 。你的任务是找出数组 mountain 中的所有 峰值。 以数组形式返回给定数组中 峰值 的下标，顺序不限 。 注意：  峰值 是指一个严格大于其相邻元素的元素。 数组的第一个和最后一个元">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.655Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛赛">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+  
+  
+  
+  <title>leetcode contest 374 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode contest 374"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode contest 374</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-contest-374"><a href="#leetcode-contest-374" class="headerlink" title="leetcode contest 374"></a>leetcode contest 374</h2><p><code>T4</code> 确实是个好题目，总体来说本周周赛题目确实还算比较难，不过前三题难度还好，基本上不需要太多技巧。</p>
+<h3 id="2951-找出峰值"><a href="#2951-找出峰值" class="headerlink" title="2951. 找出峰值"></a>2951. 找出峰值</h3><p>给你一个下标从 <strong>0</strong> 开始的数组 <code>mountain</code> 。你的任务是找出数组 <code>mountain</code> 中的所有 <strong>峰值</strong>。</p>
+<p>以数组形式返回给定数组中 <strong>峰值</strong> 的下标，<strong>顺序不限</strong> 。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li><strong>峰值</strong> 是指一个严格大于其相邻元素的元素。</li>
+<li>数组的第一个和最后一个元素 <strong>不</strong> 是峰值。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：mountain = [2,4,4]</span><br><span class="line">输出：[]</span><br><span class="line">解释：mountain[0] 和 mountain[2] 不可能是峰值，因为它们是数组的第一个和最后一个元素。</span><br><span class="line">mountain[1] 也不可能是峰值，因为它不严格大于 mountain[2] 。</span><br><span class="line">因此，答案为 [] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：mountain = [1,4,3,8,5]</span><br><span class="line">输出：[1,3]</span><br><span class="line">解释：mountain[0] 和 mountain[4] 不可能是峰值，因为它们是数组的第一个和最后一个元素。</span><br><span class="line">mountain[2] 也不可能是峰值，因为它不严格大于 mountain[3] 和 mountain[1] 。</span><br><span class="line">但是 mountain[1] 和 mountain[3] 严格大于它们的相邻元素。</span><br><span class="line">因此，答案是 [1,3] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>3 &lt;= mountain.length &lt;= 100</code></li>
+<li><code>1 &lt;= mountain[i] &lt;= 100</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-374/problems/find-the-peaks/">https://leetcode.cn/contest/weekly-contest-374/problems/find-the-peaks/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接模拟即可，检测相邻元素的差值即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定数组的长度。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findPeaks</span>(<span class="params">self, mountain: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">return</span> [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(mountain) - <span class="number">1</span>) <span class="keyword">if</span> mountain[i] &gt; mountain[i - <span class="number">1</span>] <span class="keyword">and</span> mountain[i] &gt; mountain[i + <span class="number">1</span>]]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2952-需要添加的硬币的最小数量"><a href="#2952-需要添加的硬币的最小数量" class="headerlink" title="2952. 需要添加的硬币的最小数量"></a>2952. 需要添加的硬币的最小数量</h3><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>coins</code>，表示可用的硬币的面值，以及一个整数 <code>target</code> 。</p>
+<p>如果存在某个 <code>coins</code> 的子序列总和为 <code>x</code>，那么整数 <code>x</code> 就是一个 <strong>可取得的金额</strong> 。</p>
+<p>返回需要添加到数组中的 <strong>任意面值</strong> 硬币的 <strong>最小数量</strong> ，使范围 <code>[1, target]</code> 内的每个整数都属于 <strong>可取得的金额</strong> 。</p>
+<p>数组的 <strong>子序列</strong> 是通过删除原始数组的一些（<strong>可能不删除</strong>）元素而形成的新的 <strong>非空</strong> 数组，删除过程不会改变剩余元素的相对位置。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：coins = [1,4,10], target = 19</span><br><span class="line">输出：2</span><br><span class="line">解释：需要添加面值为 2 和 8 的硬币各一枚，得到硬币数组 [1,2,4,8,10] 。</span><br><span class="line">可以证明从 1 到 19 的所有整数都可由数组中的硬币组合得到，且需要添加到数组中的硬币数目最小为 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：coins = [1,4,10,5,7,19], target = 19</span><br><span class="line">输出：1</span><br><span class="line">解释：只需要添加一枚面值为 2 的硬币，得到硬币数组 [1,2,4,5,7,10,19] 。</span><br><span class="line">可以证明从 1 到 19 的所有整数都可由数组中的硬币组合得到，且需要添加到数组中的硬币数目最小为 1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：coins = [1,1,1], target = 20</span><br><span class="line">输出：3</span><br><span class="line">解释：</span><br><span class="line">需要添加面值为 4 、8 和 16 的硬币各一枚，得到硬币数组 [1,1,1,4,8,16] 。 </span><br><span class="line">可以证明从 1 到 20 的所有整数都可由数组中的硬币组合得到，且需要添加到数组中的硬币数目最小为 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= target &lt;= 105</code></li>
+<li><code>1 &lt;= coins.length &lt;= 105</code></li>
+<li><code>1 &lt;= coins[i] &lt;= target</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-374/problems/minimum-number-of-coins-to-be-added/">https://leetcode.cn/contest/weekly-contest-374/problems/minimum-number-of-coins-to-be-added/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>贪心
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目带一点技巧，但是也不是很难，首选我们需要对数组按照从小到达进行排序，我们假设前 $i-1$ 个元素组成的数字之和的最大值 $x$, 此时的元素为 $y &#x3D; coins[i]$，此时可以知道：<ul>
+<li>$[1,2,3,4,\cdots,x]$ 都已经全部构成，此时我们知道加入加上 $coins[i]$ 后，此时可以构成 $[y,1 + y, 2 + y, 3 + y, 4 + y, \cdots,x + y]$；</li>
+<li>如何保证上述两部分数组连续，此时只需要满足 $y \le x + 1$ 即可，此时我们知道可以构成的最大元素即为 $x + y$, 我们更新 $x$ 即可；</li>
+<li>根据以上推论，我们只需检测到当前数目可以累加到 $target$ 即可。</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定的数组的长度</li>
+<li>空间复杂度：$O(1)$，其中 $n$ 表示给定字符串的长度。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="function">def <span class="title">minimumAddedCoins</span><span class="params">(self, coins: List[<span class="type">int</span>], target: <span class="type">int</span>)</span> -&gt; <span class="type">int</span>:</span></span><br><span class="line"><span class="function">        coins.sort()</span></span><br><span class="line"><span class="function">        cur =</span> <span class="number">0</span></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> x in coins:</span><br><span class="line">            <span class="keyword">if</span> x - cur &lt;= <span class="number">1</span>:</span><br><span class="line">                cur += x</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">while</span> cur &lt; target <span class="keyword">and</span> x - cur &gt; <span class="number">1</span>:</span><br><span class="line">                    cur += cur + <span class="number">1</span></span><br><span class="line">                    ans += <span class="number">1</span></span><br><span class="line">                cur += x</span><br><span class="line">            <span class="keyword">if</span> cur &gt;= target:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">while</span> cur &lt; target:</span><br><span class="line">            cur += cur + <span class="number">1</span></span><br><span class="line">            ans += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2953-统计完全子字符串"><a href="#2953-统计完全子字符串" class="headerlink" title="2953. 统计完全子字符串"></a>2953. 统计完全子字符串</h3><p>给你一个字符串 <code>word</code> 和一个整数 <code>k</code> 。</p>
+<p>如果 <code>word</code> 的一个子字符串 <code>s</code> 满足以下条件，我们称它是 <strong>完全字符串：</strong></p>
+<ul>
+<li><code>s</code> 中每个字符 <strong>恰好</strong> 出现 <code>k</code> 次。</li>
+<li>相邻字符在字母表中的顺序 <strong>至多</strong> 相差 <code>2</code> 。也就是说，<code>s</code> 中两个相邻字符 <code>c1</code> 和 <code>c2</code> ，它们在字母表中的位置相差 <strong>至多</strong> 为 <code>2</code> 。</li>
+</ul>
+<p>请你返回 <code>word</code> 中 <strong>完全</strong> 子字符串的数目。</p>
+<p><strong>子字符串</strong> 指的是一个字符串中一段连续 <strong>非空</strong> 的字符序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：word = &quot;igigee&quot;, k = 2</span><br><span class="line">输出：3</span><br><span class="line">解释：完全子字符串需要满足每个字符恰好出现 2 次，且相邻字符相差至多为 2 ：igigee, igigee, igigee 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：word = &quot;aaabbbccc&quot;, k = 3</span><br><span class="line">输出：6</span><br><span class="line">解释：完全子字符串需要满足每个字符恰好出现 3 次，且相邻字符相差至多为 2 ：aaabbbccc, aaabbbccc, aaabbbccc, aaabbbccc, aaabbbccc, aaabbbccc 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= word.length &lt;= 105</code></li>
+<li><code>word</code> 只包含小写英文字母。</li>
+<li><code>1 &lt;= k &lt;= word.length</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-374/problems/count-complete-substrings/">https://leetcode.cn/contest/weekly-contest-374/problems/count-complete-substrings/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 滑动窗口</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>不太明白这个题目也标 $hard$，题目本身不是很难，涉及一个核心问题，$s$ 中每个字符恰好出现 $k$ 次，此时 $s$ 的长度一共有 $26$ 可能，$len(s) \in[k,2k, \cdots, 26k]$，我们枚举 $s$ 的长度 $l$：<ul>
+<li>设以 $i$ 为结尾构成满足相邻字符差距小于等于 $2$ 的长度为 $dp[i]$, 此时 $l \le dp[i]$;</li>
+<li>$s[i-l+1:i]$ 之内的字符串均满足相同字符的数目均为 $k$, 我们可以利用前缀和求出相同字符的数目；</li>
+</ul>
+</li>
+<li>时间复杂度：</li>
+</ol>
+<ul>
+<li><p>时间复杂度：$O(n\times |\Sigma|^2)$，其中$n$ 表示给定数组的长度；</p>
+<p>空间复杂度：$O(n \times |\Sigma|)$，其中$n$ 表示给定数组的长度；</p>
+</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countCompleteSubstrings</span><span class="params">(string word, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = word.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(n, <span class="number">1</span>)</span></span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">cnt</span>(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">26</span>));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">abs</span>(word[i] - word[i - <span class="number">1</span>]) &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">                dp[i] = dp[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[i] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            cnt[i + <span class="number">1</span>] = cnt[i];</span><br><span class="line">            cnt[i + <span class="number">1</span>][word[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = k - <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">26</span> &amp;&amp; dp[i] &gt;= k * j &amp;&amp; i + <span class="number">1</span> - k * j &gt;= <span class="number">0</span>; j++) &#123;</span><br><span class="line">                <span class="type">bool</span> valid = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">0</span>; l &lt; <span class="number">26</span>; l++) &#123;</span><br><span class="line">                    <span class="type">int</span> x = cnt[i + <span class="number">1</span>][l] - cnt[i + <span class="number">1</span> - k * j][l];</span><br><span class="line">                    <span class="keyword">if</span> (x != <span class="number">0</span> &amp;&amp; x != k) &#123;</span><br><span class="line">                        valid = <span class="literal">false</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (valid) &#123;</span><br><span class="line">                    res++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2954-统计感冒序列的数目"><a href="#2954-统计感冒序列的数目" class="headerlink" title="2954. 统计感冒序列的数目"></a>2954. 统计感冒序列的数目</h3><p>给你一个整数 <code>n</code> 和一个下标从 <code>0</code> 开始的整数数组 <code>sick</code> ，数组按 升序 排序。</p>
+<p>有 <code>n</code> 位小朋友站成一排，按顺序编号为 <code>0</code> 到 <code>n - 1</code> 。数组 <code>sick</code> 包含一开始得了感冒的小朋友的位置。如果位置为 i 的小朋友得了感冒，他会传染给下标为 <code>i - 1</code> 或者 <code>i + 1</code> 的小朋友，前提 是被传染的小朋友存在且还没有得感冒。每一秒中， 至多一位 还没感冒的小朋友会被传染。</p>
+<p>经过有限的秒数后，队列中所有小朋友都会感冒。感冒序列 指的是 所有 一开始没有感冒的小朋友最后得感冒的顺序序列。请你返回所有感冒序列的数目。</p>
+<p>由于答案可能很大，请你将答案对 <code>109 + 7</code> 取余后返回。</p>
+<p>注意，感冒序列 不 包含一开始就得了感冒的小朋友的下标。</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 5, sick = [0,4]</span><br><span class="line">输出：4</span><br><span class="line">解释：一开始，下标为 1 ，2 和 3 的小朋友没有感冒。总共有 4 个可能的感冒序列：</span><br><span class="line">- 一开始，下标为 1 和 3 的小朋友可以被传染，因为他们分别挨着有感冒的小朋友 0 和 4 ，令下标为 1 的小朋友先被传染。</span><br><span class="line">然后，下标为 2 的小朋友挨着感冒的小朋友 1 ，下标为 3 的小朋友挨着感冒的小朋友 4 ，两位小朋友都可以被传染，令下标为 2 的小朋友被传染。</span><br><span class="line">最后，下标为 3 的小朋友被传染，因为他挨着感冒的小朋友 2 和 4 ，感冒序列为 [1,2,3] 。</span><br><span class="line">- 一开始，下标为 1 和 3 的小朋友可以被传染，因为他们分别挨着感冒的小朋友 0 和 4 ，令下标为 1 的小朋友先被传染。</span><br><span class="line">然后，下标为 2 的小朋友挨着感冒的小朋友 1 ，下标为 3 的小朋友挨着感冒的小朋友 4 ，两位小朋友都可以被传染，令下标为 3 的小朋友被传染。</span><br><span class="line">最后，下标为 2 的小朋友被传染，因为他挨着感冒的小朋友 1 和 3 ，感冒序列为  [1,3,2] 。</span><br><span class="line">- 感冒序列 [3,1,2] ，被传染的顺序：[0,1,2,3,4] =&gt; [0,1,2,3,4] =&gt; [0,1,2,3,4] =&gt; [0,1,2,3,4] 。</span><br><span class="line">- 感冒序列 [3,2,1] ，被传染的顺序：[0,1,2,3,4] =&gt; [0,1,2,3,4] =&gt; [0,1,2,3,4] =&gt; [0,1,2,3,4] 。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 4, sick = [1]</span><br><span class="line">输出：3</span><br><span class="line">解释：一开始，下标为 0 ，2 和 3 的小朋友没有感冒。总共有 3 个可能的感冒序列：</span><br><span class="line">- 感冒序列 [0,2,3] ，被传染的顺序：[0,1,2,3] =&gt; [0,1,2,3] =&gt; [0,1,2,3] =&gt; [0,1,2,3] 。</span><br><span class="line">- 感冒序列 [2,0,3] ，被传染的顺序：[0,1,2,3] =&gt; [0,1,2,3] =&gt; [0,1,2,3] =&gt; [0,1,2,3] 。</span><br><span class="line">- 感冒序列 [2,3,0] ，被传染的顺序：[0,1,2,3] =&gt; [0,1,2,3] =&gt; [0,1,2,3] =&gt; [0,1,2,3] 。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>1 &lt;= sick.length &lt;= n - 1</code></li>
+<li><code>0 &lt;= sick[i] &lt;= n - 1</code></li>
+<li><code>sick</code> 按升序排列。</li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-the-number-of-infection-sequences/description/">https://leetcode.cn/problems/count-the-number-of-infection-sequences/description/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 组合数学</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目本身还是比较难的，我们首先假设两个感冒的小朋友为 $(x,y)$，他们之间的距离为 $k$ 个位置时，有多少种感冒序列：</li>
+</ol>
+<ul>
+<li><p>此时我们可以知道第一个小朋友可以感染 $[0,1,2,3,4, \cdots, k]$ 个人，同时第二个小朋友可以感染 $[k, k - 1, k - 2, \cdots, 0]$ 个人；</p>
+</li>
+<li><p>此时假设第一个小朋友感染右边的 $i$, 则右边的小朋友会感染左边的 $k-i$ 个人。此时左边的感染序列是 $[0, 1,2, 3,4,\cdots, i]$, 右边的感染序列是$[0, 1, 2, 3,4, \cdots, n - i]$；我们可以看到产生的序列可能如下：<br>$$<br>[1,0,0,\cdots, 0, 0] \<br>[1,1,0,\cdots, 0, 0] \<br>[1,1,0,\cdots, 0, 1] \<br>\cdots \<br>[1,1,1,\cdots, 1, 1]<br>$$<br>上述序列的长度一共是 $k$ 个，我们可以看到无论 $i$ 为何值，此时最后一个序列总是相同的，此时我们只需要在前 $k-1$ 个序列中选择 $i-1$ 个序列分配给第一个小朋友的感染序列，此时第二个小朋友的感染序列即可确定，此时可能的选择方法数目为 $C_{k-1}^{i-1}$，此时我们知道 $i \in [0,k]$个，则此时可以知道总共可能的选择序列数目有 $C_{k-1}^{0} + C_{K-1}^{1} + \cdots + C_{k-1}^{k-1} &#x3D; 2^{k-1}$个；</p>
+</li>
+<li><p>假设存在现在存在多个感冒序列，长度分别为 $l_0,l_1,l_3 \cdots$,则此时可以选择的方法数目为 $s &#x3D; C_{l1+l2+l3 + \cdots}$ 中选择 $l_1$ 个位置存在 $l_1$ 的感冒序列，$l_2$ 个位置存在 $l_2$ 的感冒序列，此时总共的方法数目为 $C_s^{l_1} \times C_{s-l_1}^{l2} \times C_{s-l_1-l_2}^{l_3}$；</p>
+</li>
+<li><p>根据以上分析我们直接模拟即可，由于 $C_M^{N}$ 可能较大，此时需要进行乘法逆元运算，我们可以利用线性的乘法逆元计算即可，直接用快速幂求每个逆元的话会超时。</p>
+</li>
+</ul>
+<ol start="2">
+<li>复杂度分析:</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log U)$，其中 $n$ 表示数组的长度，$U$ 表示数组中元素的最大值；</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度；</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><figcaption><span>[sol1-python]</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numberOfSequence</span>(<span class="params">self, n: <span class="built_in">int</span>, sick: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">fastPow</span>(<span class="params">x, n, mod</span>):</span><br><span class="line">            res = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> n != <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">if</span> n &amp; <span class="number">1</span>:</span><br><span class="line">                    res = res * x % mod</span><br><span class="line">                x = x * x % mod</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">comb</span>(<span class="params">a, b</span>):</span><br><span class="line">            <span class="keyword">return</span> A[a] * invs[a - b] % mod * invs[b] % mod</span><br><span class="line"></span><br><span class="line">        m = <span class="built_in">len</span>(sick)</span><br><span class="line">        mod = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">        A = [<span class="number">1</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        invs = [<span class="number">1</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            A[i] = i * A[i - <span class="number">1</span>] % mod</span><br><span class="line">            invs[i] = fastPow(A[i], mod - <span class="number">2</span>, mod)</span><br><span class="line">        tot = n - m</span><br><span class="line">        start, end = sick[<span class="number">0</span>], n - sick[-<span class="number">1</span>] - <span class="number">1</span></span><br><span class="line">        ans = comb(tot, start) * comb(tot - start, end) % mod</span><br><span class="line">        tot -= start + end</span><br><span class="line">        cnt = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(sick)):</span><br><span class="line">            k = sick[i] - sick[i - <span class="number">1</span>] - <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> k &gt; <span class="number">0</span>:</span><br><span class="line">                ans = ans * comb(tot, k) % mod</span><br><span class="line">                cnt += k - <span class="number">1</span></span><br><span class="line">                tot -= k</span><br><span class="line">   </span><br><span class="line">        <span class="keyword">return</span> ans * fastPow(<span class="number">2</span>, cnt, mod) % mod</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><figcaption><span>[sol1-C++]</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">fastPow</span><span class="params">(<span class="type">long</span> <span class="type">long</span> x, <span class="type">int</span> n, <span class="type">long</span> <span class="type">long</span> mod)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> res = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = n; i != <span class="number">0</span>; i &gt;&gt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &amp; <span class="number">1</span>) &#123;</span><br><span class="line">                res = res * x % mod;</span><br><span class="line">            &#125;</span><br><span class="line">            x = x * x % mod;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numberOfSequence</span><span class="params">(<span class="type">int</span> n, vector&lt;<span class="type">int</span>&gt;&amp; sick)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = sick.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; <span class="title">A</span><span class="params">(n + <span class="number">1</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; <span class="title">invs</span><span class="params">(n + <span class="number">1</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            A[i] = i * A[i - <span class="number">1</span>] % mod;</span><br><span class="line">        &#125;</span><br><span class="line">        invs[n] = <span class="built_in">fastPow</span>(A[n], mod - <span class="number">2</span>, mod);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = n; i &gt; <span class="number">1</span>; i--) &#123;</span><br><span class="line">            invs[i - <span class="number">1</span>] = invs[i] * i % mod;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">auto</span> comb = [&amp;](<span class="type">int</span> a, <span class="type">int</span> b) &#123;</span><br><span class="line">            <span class="keyword">return</span> A[a] * invs[a - b] % mod * invs[b] % mod;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> tot = n - m;</span><br><span class="line">        <span class="type">int</span> start = sick[<span class="number">0</span>], end = n - sick.<span class="built_in">back</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="built_in">comb</span>(tot, start) * <span class="built_in">comb</span>(tot - start, end) % mod;</span><br><span class="line">        tot -= start + end;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> cnt = <span class="number">0</span>;     </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; sick.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> k = sick[i] - sick[i - <span class="number">1</span>] - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (k &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                ans = ans * <span class="built_in">comb</span>(tot, k) % mod;</span><br><span class="line">                cnt += k - <span class="number">1</span>;</span><br><span class="line">                tot -= k;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans * <span class="built_in">fastPow</span>(<span class="number">2</span>, cnt, mod) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E8%B5%9B/" class="print-no-link">#力扣周赛赛</a>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode contest 374</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/165/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/161/" title="leetcode weekly contes 371">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode weekly contes 371</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/163/" title="leetcode biweekly contes 118">
+                        <span class="hidden-mobile">leetcode biweekly contes 118</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

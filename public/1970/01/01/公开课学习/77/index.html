@@ -1,0 +1,871 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="week 11目前已经开始了build a computer系列的最后几章了，后面的章节感觉越来越难,中间无数次感觉头大，不想再写这么恶心的程序了，还好坚持了下来，最终完整的通过了测试。这个project是该系列课程里面最难的一个toy project了，总共写了差不多快2000行代码，这个还是用python写的，当然代码写的一团狗屎，一个函数都差不多几百行了，全部是cound,代码水平还是稀烂，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【build a computer】 project 11">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/77/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="week 11目前已经开始了build a computer系列的最后几章了，后面的章节感觉越来越难,中间无数次感觉头大，不想再写这么恶心的程序了，还好坚持了下来，最终完整的通过了测试。这个project是该系列课程里面最难的一个toy project了，总共写了差不多快2000行代码，这个还是用python写的，当然代码写的一团狗屎，一个函数都差不多几百行了，全部是cound,代码水平还是稀烂，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/01/11/PTqZEmKepJBuStg.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/11/HoJ1QDOXtbarKmp.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/11/3aKj1huD4ilMNdq.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/11/Pr7sQnui2EVAf6S.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.502Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="公开课学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/11/PTqZEmKepJBuStg.png">
+  
+  
+  
+  <title>【build a computer】 project 11 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【build a computer】 project 11"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          21k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          172 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【build a computer】 project 11</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="week-11"><a href="#week-11" class="headerlink" title="week 11"></a>week 11</h1><p>目前已经开始了<code>build a computer</code>系列的最后几章了，后面的章节感觉越来越难,中间无数次感觉头大，不想再写这么恶心的程序了，还好坚持了下来，最终完整的通过了测试。这个<code>project</code>是该系列课程里面最难的一个<code>toy project</code>了，总共写了差不多快<code>2000</code>行代码，这个还是用<code>python</code>写的，当然代码写的一团狗屎，一个函数都差不多几百行了，全部是<code>cound</code>,代码水平还是稀烂，需要好好的学习一下设计模式。刚开始还好，写着写着就变味了。需要认真的设计程序结构，则需要好好花心思将整个代码重新设计一下，将所有的结构全部重新理顺一遍，整个编译器的设计还是非常有意思的，通过这个简易的编译器，可以对<code>stack machine</code>的设计有了初步的了解，也对面向对象语言的原理有了基本的了解。<br>完成该<code>project</code>的资源非常少，最终在<code>github</code>上找到了一个资源<a target="_blank" rel="noopener" href="https://github.com/idelvall/jack-compiler">jack-compiler</a>，这个国外的小哥代码写得非常漂亮，值得仔细学习一下，还剩下最后一个<code>project</code>就终于可以完成全部的<code>build a modern computer</code>系列课程了，课程真的是太有趣了，最有意思的是该课程讲出了计算机模型的本质，非常的推荐。</p>
+<h2 id="probelm"><a href="#probelm" class="headerlink" title="probelm"></a>probelm</h2><h3 id="Data-Translation"><a href="#Data-Translation" class="headerlink" title="Data Translation"></a>Data Translation</h3><p>变量处理。在整个<code>jack</code>程序中，变量类型一种分为四种:</p>
+<ul>
+<li><code>static</code>:静态变量，实际存方在<code>static segment</code>中。</li>
+<li><code>argument</code>: 函数调用过程中的参数，每次调用函数时，需要指明传递的参数的个数，实际存放在<code>stack</code>中。</li>
+<li><code>field</code>: 类的成员变量，实际存放在<code>heap</code>中。</li>
+<li><code>local</code>：函数里面的过程变量，实际存在<code>stack</code>中。<br>在做实际的解析时，需要根据不同的类型，从而将相关的数据存放在不同的区域。</li>
+</ul>
+<h3 id="symbol-table"><a href="#symbol-table" class="headerlink" title="symbol table"></a>symbol table</h3><p>符号表每一行主要存放如下：</p>
+<ul>
+<li><code>varname</code>:变量的名称，实际变量的名称比如<code> var int a = 0</code>, 符号<code>a</code>即代表变量的名称。</li>
+<li><code>vartype</code>：变量的类型，实际变量的类型比如<code> var int a = 0</code>, 符号<code>int</code>即代表变量的类型。</li>
+<li><code>varkind</code>:变量的种类，即<code>static,argument,field,local</code>四种的一种。</li>
+<li><code>varidx</code>：变量的索引，实际可以作为变量存放的偏移位置。</li>
+</ul>
+<p>在<code>jack compiler</code>中，编译器中的符号表分类两类：</p>
+<ul>
+<li><code>class</code>符号表: 主要存放类的成员变量的映射符号表，该符号表生命周期在编译过程中一直存在。</li>
+<li><code>local</code>符号表: 主要存放函数调用过程中的映射符号表，该符号表仅在函数编译过程中存在。每一个函数会重新生成新的符号表。</li>
+</ul>
+<h3 id="Handling-Variables"><a href="#Handling-Variables" class="headerlink" title="Handling Variables"></a>Handling Variables</h3><p>所有的变量处理全部用符号表来处理，所有的变量定义和函数的形参全部需要传入到符号表中，在特定的调用时，查找符号表，即可快速的定位到变量的存储位置，从而实现变量的内存读写。</p>
+<h3 id="Handling-Arrays"><a href="#Handling-Arrays" class="headerlink" title="Handling Arrays"></a>Handling Arrays</h3><p>我觉整个<code>jack</code>语言最有趣的就是处理数组和对象了。在这里它就用到了<code>c</code>语言指针的模型，因为<code>jack</code>语言本身有两个寄存器专门做为间接寻址的寄存器，所以我们每次只需要将数组的地址写入到间接寻址的寄存器即可，原理看似复杂实际非常的简单，处理数组时我们专用<code>pointer 1</code>寄存器。</p>
+<ul>
+<li><code>pop</code>操作: 直接将栈顶的数据写入到特定的地址。</li>
+<li><code>push</code>操作：直接将地址中存放的变量读取到堆栈中即可。</li>
+</ul>
+<h1 id="Handling-Objects"><a href="#Handling-Objects" class="headerlink" title="Handling Objects"></a>Handling Objects</h1><p>处理成员变量跟数据也是同样的原因，我们实际调用对象时，也只是调用对象的首地址而已，将首地址写入到寄存器中，然后根据变量的索引求出变量与首地址的偏移，然后通过间接寻址，即可得到类的成员变量。我觉得这个思想非常有趣，可以利用这个思想实现<code>C</code>语言的面向对象的编程。处理类时，在类的构造函数运行时，则需要为该类在<code>heap</code>上单独开辟空间存放类的成员变量。</p>
+<h3 id="Commands-Translation"><a href="#Commands-Translation" class="headerlink" title="Commands Translation"></a>Commands Translation</h3><p>当然在本次的函数调用过程中并没有考虑到符号优先级的问题，只是简单的用<code>DFS</code>来处理表达式。比如如下处理：<br><img src="https://i.loli.net/2021/01/11/PTqZEmKepJBuStg.png" srcset="/img/loading.gif" lazyload alt="1"><br>我们采用如下简单的<code>dfs</code>算法来处理表达式：<br><img src="https://i.loli.net/2021/01/11/HoJ1QDOXtbarKmp.png" srcset="/img/loading.gif" lazyload alt="1"><br>如果理解上述核心的算法，处理就非常简单。这部分没啥好谈的。</p>
+<h3 id="Translating-Flow-Control"><a href="#Translating-Flow-Control" class="headerlink" title="Translating Flow Control"></a>Translating Flow Control</h3><p><code>jack</code>语言目前只支持<code>if</code>和<code>while</code>的过程操作，处理也非常简单，我们只需要用<code>if-goto</code>和<code>goto</code>来处理所有的过程即可。</p>
+<ul>
+<li>对于<code>if</code>的处理:<br><img src="https://i.loli.net/2021/01/11/3aKj1huD4ilMNdq.png" srcset="/img/loading.gif" lazyload></li>
+<li>对于<code>while</code>的处理:<br><img src="https://i.loli.net/2021/01/11/Pr7sQnui2EVAf6S.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>主要的处理如上所示，其余还有部分比较麻烦的细节处理：</p>
+<ul>
+<li>对于<code>class</code>的成员方法的调用： 在实际调用过程中则需要将<code>class</code>的首地址也传入进去，则此时函数的形参应比实际要多一个，第一个参数应将类的首地址传入进去。</li>
+<li>对于函数调用：在函数调用时，应将函数的参数按照顺序依次压入到栈中，当然对于绝大部分编译器来说，则此时函数参数都是倒序依次压入栈中的，每次求出参数的偏移则直接非常的简单偏移即可。</li>
+<li>对于所有的函数类型都需要返回一个值，<code>void</code>类型也需要返回一个任意值即可。</li>
+<li>对于乘法和出发运算，则需要调用系统自带的函数<code>mutily</code>和<code>div</code>，对于字符串常量则需要调用系统函数<code>string.new</code>，同时将字符一个一个的压入到类中，同时返回字符串类<code>string</code>的首地址，因此对于字符串常量实际是存放在<code>heap</code>中的。</li>
+</ul>
+<h2 id="project"><a href="#project" class="headerlink" title="project"></a>project</h2><p>本周的<code>project</code>还是非常有难度的<code>project</code>，本周的<code>project</code>花了差不多两个星期才完成，基本上都是利用中午休息和晚上的时间完成了这个<code>project</code>，还是非常的有意思。代码也同步放在<code>github</code>上，虽然写的非常稀烂，掩面哭一下。<br><a target="_blank" rel="noopener" href="https://github.com/mike-box/coursera/tree/master/Build%20a%20computer/nand2tetris/nand2tetris/projects/11">poj11</a>.</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> fileinput</span><br><span class="line"><span class="keyword">import</span> sys, getopt</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum, unique</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> JackTokenizer <span class="keyword">import</span> JackTokenizer,TOKEN_TYPE,KEYWORD_TYPE,tokentype,tokendict</span><br><span class="line"><span class="keyword">from</span> SymbolTable <span class="keyword">import</span> SymbolTable</span><br><span class="line"><span class="keyword">from</span> VmWriter <span class="keyword">import</span> VmWriter,SEG_TYPE,OP_TYPE,opdict</span><br><span class="line"><span class="keyword">from</span> CompileEngine <span class="keyword">import</span> CompileEngine</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CompileCodeWriter</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,infile</span>):</span><br><span class="line">        <span class="comment"># read all source code string to the buffer</span></span><br><span class="line">        <span class="variable language_">self</span>.parser = JackTokenizer(infile)</span><br><span class="line">        <span class="variable language_">self</span>.engile = CompileEngine(infile)</span><br><span class="line">        <span class="variable language_">self</span>.out = VmWriter(infile)</span><br><span class="line">        <span class="comment"># class global symbol table</span></span><br><span class="line">        <span class="variable language_">self</span>.classTable = SymbolTable()</span><br><span class="line">        <span class="comment"># sub routine symbol table</span></span><br><span class="line">        <span class="variable language_">self</span>.subTable = SymbolTable()</span><br><span class="line">        <span class="comment"># vm writer</span></span><br><span class="line">        <span class="variable language_">self</span>.vmout = VmWriter(infile)</span><br><span class="line">        <span class="comment"># class name</span></span><br><span class="line">        <span class="variable language_">self</span>.classname = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.subname = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.subkind = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.subtype = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.iflabelcnt = <span class="number">0</span></span><br><span class="line">        <span class="variable language_">self</span>.whilelabelcnt = <span class="number">0</span></span><br><span class="line">        <span class="variable language_">self</span>.writeClassCode()</span><br><span class="line">        <span class="variable language_">self</span>.out.close()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ifLabel</span>(<span class="params">self</span>):</span><br><span class="line">        res = []</span><br><span class="line">        res.append(<span class="string">&quot;IF_END&quot;</span> + <span class="built_in">str</span>(<span class="variable language_">self</span>.iflabelcnt))</span><br><span class="line">        res.append(<span class="string">&quot;IF_&quot;</span> + <span class="built_in">str</span>(<span class="variable language_">self</span>.iflabelcnt))</span><br><span class="line">        <span class="variable language_">self</span>.iflabelcnt += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">whileLabel</span>(<span class="params">self</span>):</span><br><span class="line">        res = []</span><br><span class="line">        res.append(<span class="string">&quot;WHILE_EXP&quot;</span> + <span class="built_in">str</span>(<span class="variable language_">self</span>.whilelabelcnt))</span><br><span class="line">        res.append(<span class="string">&quot;WHILE_END&quot;</span> + <span class="built_in">str</span>(<span class="variable language_">self</span>.whilelabelcnt))</span><br><span class="line">        <span class="variable language_">self</span>.whilelabelcnt += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">functionLabel</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.classname + <span class="string">&quot;.&quot;</span> + <span class="variable language_">self</span>.subname</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeClassCode</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.classTable.startSubroutine()</span><br><span class="line">        <span class="comment"># parse class</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse class name</span></span><br><span class="line">        <span class="variable language_">self</span>.classname = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment">#parse symbol &#x27;&#123;&#x27; </span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment">#parse class val des</span></span><br><span class="line">        <span class="keyword">while</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD <span class="keyword">and</span> \</span><br><span class="line">              (<span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;static&quot;</span> <span class="keyword">or</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;field&quot;</span>):</span><br><span class="line">            <span class="variable language_">self</span>.writeClassVarDecCode()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#parse class method</span></span><br><span class="line">        <span class="keyword">while</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD <span class="keyword">and</span> \</span><br><span class="line">            (<span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;method&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">            <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;constructor&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">            <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;function&quot;</span>):</span><br><span class="line">            <span class="variable language_">self</span>.subkind = <span class="variable language_">self</span>.parser.keyWord()</span><br><span class="line">            <span class="variable language_">self</span>.writeSubroutineCode()</span><br><span class="line">        <span class="comment">#parse symbol &#x27;&#123;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span>          </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeClassVarDecCode</span>(<span class="params">self</span>):</span><br><span class="line">        varname = <span class="string">&quot;&quot;</span></span><br><span class="line">        vartype = <span class="string">&quot;&quot;</span></span><br><span class="line">        varkind = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse key word</span></span><br><span class="line">        varkind = <span class="variable language_">self</span>.parser.keyWord()</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse val type</span></span><br><span class="line">        vartype = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse val name</span></span><br><span class="line">        varname = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment">#add one var define to the symbol table</span></span><br><span class="line">        <span class="variable language_">self</span>.classTable.define(varname,vartype,varkind)</span><br><span class="line">        <span class="comment"># parse the left val name</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> (<span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span> \</span><br><span class="line">              <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;;&quot;</span>):</span><br><span class="line">            <span class="comment"># parse symbol &#x27;,&#x27;</span></span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="comment"># parse val name</span></span><br><span class="line">            varname = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">            <span class="variable language_">self</span>.classTable.define(varname,vartype,varkind)</span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse the end symbol &#x27;;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeSubroutineCode</span>(<span class="params">self</span>):</span><br><span class="line">        fieldcnt = <span class="number">0</span></span><br><span class="line">        <span class="variable language_">self</span>.subTable.startSubroutine()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse key word</span></span><br><span class="line">        <span class="variable language_">self</span>.subkind = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.subkind == <span class="string">&quot;method&quot;</span>:</span><br><span class="line">            <span class="variable language_">self</span>.subTable.define(<span class="string">&quot;this&quot;</span>,<span class="variable language_">self</span>.classname,<span class="string">&quot;argument&quot;</span>)</span><br><span class="line">        <span class="comment"># parse type</span></span><br><span class="line">        <span class="variable language_">self</span>.subtype = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse subroutineName</span></span><br><span class="line">        <span class="variable language_">self</span>.subname = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse &#x27;(&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse param list</span></span><br><span class="line">        <span class="variable language_">self</span>.writeParameterListCode()</span><br><span class="line">        <span class="comment"># parse &#x27;)&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse body</span></span><br><span class="line">        <span class="variable language_">self</span>.writeSubroutineBodyCode()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeSubroutineBodyCode</span>(<span class="params">self</span>):</span><br><span class="line">        nlocals = <span class="number">0</span></span><br><span class="line">        <span class="comment"># parse &#x27;&#123;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse var </span></span><br><span class="line">        <span class="keyword">while</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD <span class="keyword">and</span> \</span><br><span class="line">           <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;var&quot;</span>:</span><br><span class="line">            nlocals += <span class="variable language_">self</span>.writeVarDecCode()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># function define</span></span><br><span class="line">        funcname = <span class="variable language_">self</span>.classname + <span class="string">&quot;.&quot;</span> + <span class="variable language_">self</span>.subname</span><br><span class="line">        <span class="variable language_">self</span>.out.writeFunction(funcname,nlocals)</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.subkind == <span class="string">&quot;constructor&quot;</span>:</span><br><span class="line">            fieldcnt = <span class="variable language_">self</span>.classTable.varCount(<span class="string">&quot;field&quot;</span>)</span><br><span class="line">            <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;constant&quot;</span>,fieldcnt)</span><br><span class="line">            <span class="variable language_">self</span>.out.writeCall(<span class="string">&quot;Memory.alloc&quot;</span>,<span class="number">1</span>)</span><br><span class="line">            <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;pointer&quot;</span>,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">elif</span> <span class="variable language_">self</span>.subkind == <span class="string">&quot;method&quot;</span>:</span><br><span class="line">            <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;argument&quot;</span>,<span class="number">0</span>)</span><br><span class="line">            <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;pointer&quot;</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse statements</span></span><br><span class="line">        <span class="variable language_">self</span>.writeStatementsCode()</span><br><span class="line">        <span class="comment"># parse &#x27;&#125;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeParameterListCode</span>(<span class="params">self</span>):</span><br><span class="line">        varname = <span class="string">&quot;&quot;</span></span><br><span class="line">        varkind = <span class="string">&quot;argument&quot;</span></span><br><span class="line">        vartype = <span class="string">&quot;&quot;</span></span><br><span class="line">        paramcnt = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse rest param</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> (<span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span>\</span><br><span class="line">            <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;)&quot;</span>):</span><br><span class="line">            <span class="comment"># parse element type</span></span><br><span class="line">            vartype = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="comment"># parse element varName</span></span><br><span class="line">            varname = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">            paramcnt += <span class="number">1</span></span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="comment"># add argument variable into the symbol table</span></span><br><span class="line">            <span class="variable language_">self</span>.subTable.define(varname,vartype,varkind)</span><br><span class="line">            <span class="comment"># parse &#x27;,&#x27;</span></span><br><span class="line">            <span class="keyword">if</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL:</span><br><span class="line">                <span class="keyword">if</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;,&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">                <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;)&quot;</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> paramcnt</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeVarDecCode</span>(<span class="params">self</span>):</span><br><span class="line">        nlocals = <span class="number">1</span></span><br><span class="line">        varname = <span class="string">&quot;&quot;</span></span><br><span class="line">        varkind = <span class="string">&quot;var&quot;</span></span><br><span class="line">        vartype = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse key word</span></span><br><span class="line">        varkind = <span class="variable language_">self</span>.parser.keyWord()</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse var type</span></span><br><span class="line">        vartype = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse var name</span></span><br><span class="line">        varname = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="variable language_">self</span>.subTable.define(varname,vartype,varkind)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse the rest var name</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> (<span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span> \</span><br><span class="line">              <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;;&quot;</span>):</span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="comment"># parse var name</span></span><br><span class="line">            nlocals += <span class="number">1</span></span><br><span class="line">            varname = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">            <span class="variable language_">self</span>.subTable.define(varname,vartype,varkind)</span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">  </span><br><span class="line">        <span class="comment"># parse the end symbol  </span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="keyword">return</span> nlocals </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeStatementsCode</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">while</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD <span class="keyword">and</span> \</span><br><span class="line">             (<span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;do&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">              <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;if&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">              <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;while&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">              <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;let&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">              <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;return&quot;</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;do&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.writeDoCode()</span><br><span class="line">            <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;if&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.writeIfCode()</span><br><span class="line">            <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;while&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.writeWhileCode()</span><br><span class="line">            <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;let&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.writeLetCode()</span><br><span class="line">            <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;return&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.writeReturnCode()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;valid statement define!\n&quot;</span>)</span><br><span class="line">                exit(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span> </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeDoCode</span>(<span class="params">self</span>):</span><br><span class="line">        funcname = []</span><br><span class="line">        argsCnt = <span class="number">0</span></span><br><span class="line">        varname = <span class="string">&quot;&quot;</span></span><br><span class="line">        vartype = <span class="string">&quot;&quot;</span></span><br><span class="line">        varkind = <span class="string">&quot;&quot;</span></span><br><span class="line">        varidx  = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse do</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse &#x27;call name&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> (<span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span> \</span><br><span class="line">           <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;(&quot;</span>):</span><br><span class="line">            <span class="comment"># write code</span></span><br><span class="line">            <span class="keyword">if</span> <span class="variable language_">self</span>.parser.tokenType() != TOKEN_TYPE.TOKEN_SYMBOL:</span><br><span class="line">                funcname.append(<span class="variable language_">self</span>.parser.currToken())</span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse &#x27;(&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># sub call</span></span><br><span class="line">        callname = <span class="string">&quot;&quot;</span></span><br><span class="line">        varname = funcname[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(funcname) == <span class="number">1</span>:</span><br><span class="line">            <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;pointer&quot;</span>,<span class="number">0</span>)</span><br><span class="line">            callname = <span class="variable language_">self</span>.classname + <span class="string">&quot;.&quot;</span> + funcname[<span class="number">0</span>]</span><br><span class="line">            argsCnt += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> <span class="built_in">len</span>(funcname) == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="variable language_">self</span>.subTable.indexOf(varname) &gt;= <span class="number">0</span>:</span><br><span class="line">                vartype = <span class="variable language_">self</span>.subTable.typeOf(varname)</span><br><span class="line">                varkind = <span class="variable language_">self</span>.subTable.kindOf(varname)</span><br><span class="line">                varidx =  <span class="variable language_">self</span>.subTable.indexOf(varname)</span><br><span class="line">                callname = vartype + <span class="string">&quot;.&quot;</span> + funcname[<span class="number">1</span>]</span><br><span class="line">                argsCnt += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> varkind == <span class="string">&quot;field&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;this&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;var&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;local&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;static&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;static&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;argument&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;argument&quot;</span>,varidx)</span><br><span class="line">            <span class="keyword">elif</span>  <span class="variable language_">self</span>.classTable.indexOf(varname) &gt;= <span class="number">0</span>:</span><br><span class="line">                vartype = <span class="variable language_">self</span>.classTable.typeOf(varname)</span><br><span class="line">                varkind = <span class="variable language_">self</span>.classTable.kindOf(varname)</span><br><span class="line">                varidx =  <span class="variable language_">self</span>.classTable.indexOf(varname)</span><br><span class="line">                callname = vartype + <span class="string">&quot;.&quot;</span> + funcname[<span class="number">1</span>]</span><br><span class="line">                argsCnt += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> varkind == <span class="string">&quot;field&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;this&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;var&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;local&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;static&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;static&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;argument&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;argument&quot;</span>,varidx)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                callname = funcname[<span class="number">0</span>] + <span class="string">&quot;.&quot;</span> + funcname[<span class="number">1</span>]</span><br><span class="line">        <span class="comment"># parse expression list       </span></span><br><span class="line">        argsCnt += <span class="variable language_">self</span>.writeExpressionListCode()</span><br><span class="line">        <span class="comment"># parse &#x27;)&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse  &#x27;;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># write call name</span></span><br><span class="line">        <span class="variable language_">self</span>.out.writeCall(callname,argsCnt)</span><br><span class="line">        <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;temp&quot;</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeLetCode</span>(<span class="params">self</span>):</span><br><span class="line">        varname = <span class="string">&quot;&quot;</span></span><br><span class="line">        vartype = <span class="string">&quot;&quot;</span></span><br><span class="line">        varkind = <span class="string">&quot;&quot;</span></span><br><span class="line">        varidx  = <span class="string">&quot;&quot;</span></span><br><span class="line">        isArray = <span class="literal">False</span></span><br><span class="line">        <span class="comment"># parse let </span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">   </span><br><span class="line">        <span class="comment"># parse varname</span></span><br><span class="line">        varname = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">        <span class="comment"># search the key</span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.subTable.indexOf(varname) &gt;= <span class="number">0</span>:</span><br><span class="line">            vartype = <span class="variable language_">self</span>.subTable.typeOf(varname)</span><br><span class="line">            varkind = <span class="variable language_">self</span>.subTable.kindOf(varname)</span><br><span class="line">            varidx =  <span class="variable language_">self</span>.subTable.indexOf(varname)</span><br><span class="line">        <span class="keyword">elif</span>  <span class="variable language_">self</span>.classTable.indexOf(varname) &gt;= <span class="number">0</span>:</span><br><span class="line">            vartype = <span class="variable language_">self</span>.classTable.typeOf(varname)</span><br><span class="line">            varkind = <span class="variable language_">self</span>.classTable.kindOf(varname)</span><br><span class="line">            varidx =  <span class="variable language_">self</span>.classTable.indexOf(varname)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;invalid var statement!&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># skip varname</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">      </span><br><span class="line">        <span class="comment"># parse `[expression]`</span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span> \</span><br><span class="line">           <span class="variable language_">self</span>.parser.symbol() == <span class="string">&#x27;[&#x27;</span>:</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># we push the head arrdress of the array</span></span><br><span class="line">            isArray = <span class="literal">True</span></span><br><span class="line">            <span class="comment"># parse &#x27;[&#x27;</span></span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="comment"># parse expression</span></span><br><span class="line">            <span class="variable language_">self</span>.writeExpressionCode()</span><br><span class="line">            <span class="comment"># we parse the array</span></span><br><span class="line">            <span class="keyword">if</span> varkind == <span class="string">&quot;field&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;this&quot;</span>,varidx)</span><br><span class="line">            <span class="keyword">elif</span> varkind == <span class="string">&quot;var&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;local&quot;</span>,varidx)</span><br><span class="line">            <span class="keyword">elif</span> varkind == <span class="string">&quot;static&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;static&quot;</span>,varidx)</span><br><span class="line">            <span class="keyword">elif</span> varkind == <span class="string">&quot;argument&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;argument&quot;</span>,varidx)</span><br><span class="line">            <span class="variable language_">self</span>.out.writeArithmetic(<span class="string">&quot;+&quot;</span>)</span><br><span class="line">            <span class="comment"># parse &#x27;]&#x27;</span></span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse  &#x27;=&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse expression</span></span><br><span class="line">        <span class="variable language_">self</span>.writeExpressionCode()</span><br><span class="line">        <span class="comment"># pop value from the stack</span></span><br><span class="line">        <span class="keyword">if</span> isArray:</span><br><span class="line">            <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;temp&quot;</span>,<span class="number">0</span>)</span><br><span class="line">            <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;pointer&quot;</span>,<span class="number">1</span>)</span><br><span class="line">            <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;temp&quot;</span>,<span class="number">0</span>)</span><br><span class="line">            <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;that&quot;</span>,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> varkind == <span class="string">&quot;field&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;this&quot;</span>,varidx)</span><br><span class="line">            <span class="keyword">elif</span> varkind == <span class="string">&quot;var&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;local&quot;</span>,varidx)</span><br><span class="line">            <span class="keyword">elif</span> varkind == <span class="string">&quot;static&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;static&quot;</span>,varidx)</span><br><span class="line">            <span class="keyword">elif</span> varkind == <span class="string">&quot;argument&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;argument&quot;</span>,varidx)</span><br><span class="line">        <span class="comment"># parse  &#x27;;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeWhileCode</span>(<span class="params">self</span>):</span><br><span class="line">        label = <span class="variable language_">self</span>.whileLabel()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse return </span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse &#x27;(&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse expression</span></span><br><span class="line">        <span class="variable language_">self</span>.out.writeLabel(label[<span class="number">0</span>])</span><br><span class="line">        <span class="variable language_">self</span>.writeExpressionCode()</span><br><span class="line">        <span class="variable language_">self</span>.out.writeSigArithmetic(<span class="string">&quot;~&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.out.writeIf(label[<span class="number">1</span>])</span><br><span class="line">        <span class="comment"># parse  &#x27;)&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse  &#x27;&#123;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse statements</span></span><br><span class="line">        <span class="variable language_">self</span>.writeStatementsCode()</span><br><span class="line">        <span class="variable language_">self</span>.out.writeGoto(label[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># parse  &#x27;&#125;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.out.writeLabel(label[<span class="number">1</span>])</span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeReturnCode</span>(<span class="params">self</span>):        </span><br><span class="line">        <span class="comment"># parse return </span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse expression  list</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> (<span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span> \</span><br><span class="line">           <span class="variable language_">self</span>.parser.symbol() == <span class="string">&#x27;;&#x27;</span>):</span><br><span class="line">            <span class="variable language_">self</span>.writeExpressionCode()</span><br><span class="line">        <span class="comment"># parse &#x27;;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.subtype == <span class="string">&quot;void&quot;</span>:</span><br><span class="line">            <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;constant&quot;</span>,<span class="number">0</span>)</span><br><span class="line">        <span class="variable language_">self</span>.out.writeReturn()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeIfCode</span>(<span class="params">self</span>):</span><br><span class="line">        label = <span class="variable language_">self</span>.ifLabel()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse if </span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse &#x27;(&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse expression</span></span><br><span class="line">        <span class="variable language_">self</span>.writeExpressionCode()</span><br><span class="line">        <span class="variable language_">self</span>.out.writeSigArithmetic(<span class="string">&quot;~&quot;</span>)</span><br><span class="line">        <span class="comment"># parse &#x27;)&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse &#x27;&#123;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="comment"># parse statements</span></span><br><span class="line">        <span class="variable language_">self</span>.out.writeIf(label[<span class="number">1</span>])</span><br><span class="line">        <span class="variable language_">self</span>.writeStatementsCode()</span><br><span class="line">        <span class="variable language_">self</span>.out.writeGoto(label[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># parse &#x27;&#125;&#x27;</span></span><br><span class="line">        <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">   </span><br><span class="line">        <span class="comment"># parse else</span></span><br><span class="line">        <span class="variable language_">self</span>.out.writeLabel(label[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD <span class="keyword">and</span> \</span><br><span class="line">           <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;else&quot;</span>:</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># parse &#x27;else&#x27;</span></span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="comment"># parse &#x27;&#123;&#x27;</span></span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="comment"># parse statements</span></span><br><span class="line">            <span class="variable language_">self</span>.writeStatementsCode()</span><br><span class="line">            <span class="comment"># parse &#x27;&#125;&#x27;</span></span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="variable language_">self</span>.out.writeLabel(label[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeExpressionCode</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># parse term</span></span><br><span class="line">        <span class="variable language_">self</span>.writeTermCode()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse op</span></span><br><span class="line">        <span class="keyword">while</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span> \</span><br><span class="line">           (<span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;+&quot;</span> <span class="keyword">or</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;-&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">            <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;*&quot;</span> <span class="keyword">or</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;/&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">            <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;&amp;&quot;</span> <span class="keyword">or</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;|&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">            <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;&gt;&quot;</span> <span class="keyword">or</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;&lt;&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">            <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;=&quot;</span>):</span><br><span class="line">            <span class="comment"># parse op</span></span><br><span class="line">            op = <span class="variable language_">self</span>.parser.symbol()</span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="comment"># parse term</span></span><br><span class="line">            <span class="variable language_">self</span>.writeTermCode()</span><br><span class="line">            <span class="comment"># code write op</span></span><br><span class="line">            <span class="keyword">if</span> op == <span class="string">&quot;*&quot;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writeCall(<span class="string">&quot;Math.multiply&quot;</span>,<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">elif</span> op == <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writeCall(<span class="string">&quot;Math.divide&quot;</span>,<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="variable language_">self</span>.out.writeArithmetic(op)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeTermCode</span>(<span class="params">self</span>):</span><br><span class="line">        varname = <span class="string">&quot;&quot;</span></span><br><span class="line">        vartype = <span class="string">&quot;&quot;</span></span><br><span class="line">        varkind = <span class="string">&quot;&quot;</span></span><br><span class="line">        varidx  = <span class="number">0</span></span><br><span class="line">        paramCnt = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_INT_CONST:</span><br><span class="line">            <span class="comment"># push constant x</span></span><br><span class="line">            <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;constant&quot;</span>,<span class="variable language_">self</span>.parser.intVal())</span><br><span class="line">            <span class="comment">#print(self.parser.intVal())</span></span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_STRING_CONST:</span><br><span class="line">            <span class="comment"># push string x</span></span><br><span class="line">            val = <span class="variable language_">self</span>.parser.stringVal()</span><br><span class="line">            <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;constant&quot;</span>,<span class="built_in">len</span>(val))</span><br><span class="line">            <span class="variable language_">self</span>.out.writeCall(<span class="string">&quot;String.new&quot;</span>,<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> val:</span><br><span class="line">                <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;constant&quot;</span>,<span class="built_in">ord</span>(c))</span><br><span class="line">                <span class="variable language_">self</span>.out.writeCall(<span class="string">&quot;String.appendChar&quot;</span>,<span class="number">2</span>)</span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD:</span><br><span class="line">            <span class="comment"># parse keword const</span></span><br><span class="line">            <span class="keyword">if</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;true&quot;</span> <span class="keyword">or</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;false&quot;</span> <span class="keyword">or</span> \</span><br><span class="line">               <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;null&quot;</span> <span class="keyword">or</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;this&quot;</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;true&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;constant&quot;</span>,<span class="number">0</span>)</span><br><span class="line">                    <span class="variable language_">self</span>.out.writeSigArithmetic(<span class="string">&quot;~&quot;</span>)</span><br><span class="line">                <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;false&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;constant&quot;</span>,<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;null&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;constant&quot;</span>,<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.keyWord() == <span class="string">&quot;this&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;pointer&quot;</span>,<span class="number">0</span>)</span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">        <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL:</span><br><span class="line">            <span class="keyword">if</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;(&quot;</span>:</span><br><span class="line">                <span class="comment"># parse &#x27;(&#x27;</span></span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">                <span class="comment"># parse expression</span></span><br><span class="line">                <span class="variable language_">self</span>.writeExpressionCode()</span><br><span class="line">                <span class="comment"># parse &#x27;)&#x27;</span></span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span> \</span><br><span class="line">                (<span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;-&quot;</span> <span class="keyword">or</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;~&quot;</span>):</span><br><span class="line">                <span class="comment"># parse unaryOp</span></span><br><span class="line">                op = <span class="variable language_">self</span>.parser.symbol()</span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">                <span class="comment"># parse term</span></span><br><span class="line">                <span class="variable language_">self</span>.writeTermCode()</span><br><span class="line">                <span class="variable language_">self</span>.out.writeSigArithmetic(op)</span><br><span class="line">        <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_IDENTIFIER:</span><br><span class="line">            <span class="comment"># skip varname</span></span><br><span class="line">            termname = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># we push the head arrdress of the array</span></span><br><span class="line">            <span class="comment"># parse expression</span></span><br><span class="line">            <span class="keyword">if</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;[&quot;</span>:</span><br><span class="line">                <span class="comment"># parse subroutineName or varName            </span></span><br><span class="line">                <span class="keyword">if</span> <span class="variable language_">self</span>.subTable.indexOf(termname) &gt;= <span class="number">0</span>:</span><br><span class="line">                    vartype = <span class="variable language_">self</span>.subTable.typeOf(termname)</span><br><span class="line">                    varkind = <span class="variable language_">self</span>.subTable.kindOf(termname)</span><br><span class="line">                    varidx =  <span class="variable language_">self</span>.subTable.indexOf(termname)</span><br><span class="line">                <span class="keyword">elif</span>  <span class="variable language_">self</span>.classTable.indexOf(termname) &gt;= <span class="number">0</span>:</span><br><span class="line">                    vartype = <span class="variable language_">self</span>.classTable.typeOf(termname)</span><br><span class="line">                    varkind = <span class="variable language_">self</span>.classTable.kindOf(termname)</span><br><span class="line">                    varidx =  <span class="variable language_">self</span>.classTable.indexOf(termname)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;invalid var statement!&quot;</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">                <span class="comment"># parse &#x27;[&#x27;</span></span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">                <span class="comment"># parse expression</span></span><br><span class="line">                <span class="variable language_">self</span>.writeExpressionCode()</span><br><span class="line">                 <span class="comment"># parse var type </span></span><br><span class="line">                <span class="keyword">if</span> varkind == <span class="string">&quot;field&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;this&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;var&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;local&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;static&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;static&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;argument&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;argument&quot;</span>,varidx)</span><br><span class="line">                <span class="comment"># add</span></span><br><span class="line">                <span class="variable language_">self</span>.out.writeArithmetic(<span class="string">&quot;+&quot;</span>)</span><br><span class="line">                <span class="variable language_">self</span>.out.writePop(<span class="string">&quot;pointer&quot;</span>,<span class="number">1</span>)</span><br><span class="line">                <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;that&quot;</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># parse &#x27;]&#x27;</span></span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="comment"># parse subcall</span></span><br><span class="line">            <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;.&quot;</span>:</span><br><span class="line">                <span class="comment"># parse &#x27;.&#x27;</span></span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line"></span><br><span class="line">                <span class="comment"># parse subroutineName</span></span><br><span class="line">                termfunc = <span class="variable language_">self</span>.parser.currToken()</span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line"></span><br><span class="line">                <span class="comment"># parse call name</span></span><br><span class="line">                <span class="keyword">if</span> <span class="variable language_">self</span>.subTable.indexOf(termname) &gt;= <span class="number">0</span>:</span><br><span class="line">                    vartype = <span class="variable language_">self</span>.subTable.typeOf(termname)</span><br><span class="line">                    varkind = <span class="variable language_">self</span>.subTable.kindOf(termname)</span><br><span class="line">                    varidx =  <span class="variable language_">self</span>.subTable.indexOf(termname)</span><br><span class="line">                    paramCnt += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> varkind == <span class="string">&quot;field&quot;</span>:</span><br><span class="line">                        <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;this&quot;</span>,varidx)</span><br><span class="line">                    <span class="keyword">elif</span> varkind == <span class="string">&quot;var&quot;</span>:</span><br><span class="line">                        <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;local&quot;</span>,varidx)</span><br><span class="line">                    <span class="keyword">elif</span> varkind == <span class="string">&quot;static&quot;</span>:</span><br><span class="line">                        <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;static&quot;</span>,varidx)</span><br><span class="line">                    <span class="keyword">elif</span> varkind == <span class="string">&quot;argument&quot;</span>:</span><br><span class="line">                        <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;argument&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span>  <span class="variable language_">self</span>.classTable.indexOf(termname) &gt;= <span class="number">0</span>:</span><br><span class="line">                    vartype = <span class="variable language_">self</span>.classTable.typeOf(termname)</span><br><span class="line">                    varkind = <span class="variable language_">self</span>.classTable.kindOf(termname)</span><br><span class="line">                    varidx =  <span class="variable language_">self</span>.classTable.indexOf(termname)</span><br><span class="line">                    paramCnt += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> varkind == <span class="string">&quot;field&quot;</span>:</span><br><span class="line">                        <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;this&quot;</span>,varidx)</span><br><span class="line">                    <span class="keyword">elif</span> varkind == <span class="string">&quot;var&quot;</span>:</span><br><span class="line">                        <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;local&quot;</span>,varidx)</span><br><span class="line">                    <span class="keyword">elif</span> varkind == <span class="string">&quot;static&quot;</span>:</span><br><span class="line">                        <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;static&quot;</span>,varidx)</span><br><span class="line">                    <span class="keyword">elif</span> varkind == <span class="string">&quot;argument&quot;</span>:</span><br><span class="line">                        <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;argument&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    vartype = termname</span><br><span class="line"></span><br><span class="line">                <span class="comment"># parse &#x27;(&#x27;</span></span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">                <span class="comment"># parse expressList</span></span><br><span class="line">                paramCnt += <span class="variable language_">self</span>.writeExpressionListCode()</span><br><span class="line">                <span class="comment"># parse &#x27;)&#x27;</span></span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">                <span class="comment"># write var code</span></span><br><span class="line">                <span class="variable language_">self</span>.out.writeCall(vartype + <span class="string">&quot;.&quot;</span> + termfunc,paramCnt)</span><br><span class="line">            <span class="comment"># parse call</span></span><br><span class="line">            <span class="keyword">elif</span> <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="keyword">and</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&quot;(&quot;</span>:</span><br><span class="line">                <span class="comment"># parse &#x27;(&#x27;</span></span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">                <span class="comment"># parse expressList</span></span><br><span class="line">                <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;pointer&quot;</span>,<span class="number">0</span>)</span><br><span class="line">                paramCnt = <span class="variable language_">self</span>.writeExpressionListCode() + <span class="number">1</span></span><br><span class="line">                <span class="comment"># parse &#x27;)&#x27;</span></span><br><span class="line">                <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">                <span class="comment"># write var code</span></span><br><span class="line">                <span class="variable language_">self</span>.out.writeCall(<span class="variable language_">self</span>.classname + <span class="string">&quot;.&quot;</span> + termfunc,paramCnt)</span><br><span class="line">                <span class="comment"># print(self.classname + &quot;.&quot; + termfunc + str(paramCnt))</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># parse subroutineName or varName            </span></span><br><span class="line">                <span class="keyword">if</span> <span class="variable language_">self</span>.subTable.indexOf(termname) &gt;= <span class="number">0</span>:</span><br><span class="line">                    vartype = <span class="variable language_">self</span>.subTable.typeOf(termname)</span><br><span class="line">                    varkind = <span class="variable language_">self</span>.subTable.kindOf(termname)</span><br><span class="line">                    varidx =  <span class="variable language_">self</span>.subTable.indexOf(termname)</span><br><span class="line">                <span class="keyword">elif</span>  <span class="variable language_">self</span>.classTable.indexOf(termname) &gt;= <span class="number">0</span>:</span><br><span class="line">                    vartype = <span class="variable language_">self</span>.classTable.typeOf(termname)</span><br><span class="line">                    varkind = <span class="variable language_">self</span>.classTable.kindOf(termname)</span><br><span class="line">                    varidx =  <span class="variable language_">self</span>.classTable.indexOf(termname)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;invalid var statement!&quot;</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> varkind == <span class="string">&quot;field&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;this&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;var&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;local&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;static&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;static&quot;</span>,varidx)</span><br><span class="line">                <span class="keyword">elif</span> varkind == <span class="string">&quot;argument&quot;</span>:</span><br><span class="line">                    <span class="variable language_">self</span>.out.writePush(<span class="string">&quot;argument&quot;</span>,varidx)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">writeExpressionListCode</span>(<span class="params">self</span>):</span><br><span class="line">        argsCnt = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&#x27;)&#x27;</span> <span class="keyword">and</span> \</span><br><span class="line">           <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL:</span><br><span class="line">            <span class="keyword">return</span> argsCnt</span><br><span class="line"></span><br><span class="line">        <span class="comment"># parse expression</span></span><br><span class="line">        argsCnt += <span class="number">1</span></span><br><span class="line">        <span class="variable language_">self</span>.writeExpressionCode()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># parse `, expression`</span></span><br><span class="line">        <span class="keyword">while</span> <span class="variable language_">self</span>.parser.symbol() == <span class="string">&#x27;,&#x27;</span> <span class="keyword">and</span> \</span><br><span class="line">              <span class="variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL:</span><br><span class="line">            <span class="comment"># parse &#x27;,&#x27;</span></span><br><span class="line">            <span class="variable language_">self</span>.parser.advance()</span><br><span class="line">            <span class="comment"># parse expression</span></span><br><span class="line">            argsCnt += <span class="number">1</span></span><br><span class="line">            <span class="variable language_">self</span>.writeExpressionCode()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> argsCnt</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="keyword">if</span> os.path.exists(<span class="built_in">input</span>):</span><br><span class="line">        <span class="keyword">if</span> os.path.isdir(<span class="built_in">input</span>):</span><br><span class="line">            files = os.listdir(<span class="built_in">input</span>)</span><br><span class="line">            <span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">                filename = <span class="built_in">input</span>+f</span><br><span class="line">                <span class="keyword">if</span> filename.find(<span class="string">&quot;.jack&quot;</span>) &gt;= <span class="number">0</span>:</span><br><span class="line">                    CompileCodeWriter(<span class="built_in">input</span>+f)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            CompileCodeWriter(<span class="built_in">input</span>)            </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;invalid path&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main(sys.argv[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/build-a-computer/" class="category-chain-item">build a computer</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/" class="print-no-link">#公开课学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【build a computer】 project 11</div>
+      <div>http://example.com/1970/01/01/公开课学习/77/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/58/" title="【MIT6.S081】 lab7 thread">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【MIT6.S081】 lab7 thread</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/142/" title="leetcode weekly contes 359">
+                        <span class="hidden-mobile">leetcode weekly contes 359</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

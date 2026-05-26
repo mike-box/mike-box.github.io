@@ -1,0 +1,978 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode biweekly contes 116双周赛的 T4 果然是个好题目，难度还是有的，需要用到线段树加数学技巧。 100094. 子数组不同元素数目的平方和 I给你一个下标从 0 开始的整数数组 nums 。 定义 nums 一个子数组的 不同计数 值如下：  令 nums[i..j] 表示 nums 中所有下标在 i 到 j 范围内的元素构成的子数组（满足 0 &lt;&#x3D; i &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode biweekly contes 116">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/157/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode biweekly contes 116双周赛的 T4 果然是个好题目，难度还是有的，需要用到线段树加数学技巧。 100094. 子数组不同元素数目的平方和 I给你一个下标从 0 开始的整数数组 nums 。 定义 nums 一个子数组的 不同计数 值如下：  令 nums[i..j] 表示 nums 中所有下标在 i 到 j 范围内的元素构成的子数组（满足 0 &lt;&#x3D; i &amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.639Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛赛">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+  
+  
+  
+  <title>leetcode biweekly contes 116 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode biweekly contes 116"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          62 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode biweekly contes 116</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-biweekly-contes-116"><a href="#leetcode-biweekly-contes-116" class="headerlink" title="leetcode biweekly contes 116"></a>leetcode biweekly contes 116</h2><p>双周赛的 <code>T4</code> 果然是个好题目，难度还是有的，需要用到线段树加数学技巧。</p>
+<h3 id="100094-子数组不同元素数目的平方和-I"><a href="#100094-子数组不同元素数目的平方和-I" class="headerlink" title="100094. 子数组不同元素数目的平方和 I"></a>100094. 子数组不同元素数目的平方和 I</h3><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 。</p>
+<p>定义 <code>nums</code> 一个子数组的 <strong>不同计数</strong> 值如下：</p>
+<ul>
+<li>令 <code>nums[i..j]</code> 表示 <code>nums</code> 中所有下标在 <code>i</code> 到 <code>j</code> 范围内的元素构成的子数组（满足 <code>0 &lt;= i &lt;= j &lt; nums.length</code> ），那么我们称子数组 <code>nums[i..j]</code> 中不同值的数目为 <code>nums[i..j]</code> 的不同计数。</li>
+</ul>
+<p>请你返回 <code>nums</code> 中所有子数组的 <strong>不同计数</strong> 的 <strong>平方</strong> 和。</p>
+<p>由于答案可能会很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p>子数组指的是一个数组里面一段连续 <strong>非空</strong> 的元素序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,1]</span><br><span class="line">输出：15</span><br><span class="line">解释：六个子数组分别为：</span><br><span class="line">[1]: 1 个互不相同的元素。</span><br><span class="line">[2]: 1 个互不相同的元素。</span><br><span class="line">[1]: 1 个互不相同的元素。</span><br><span class="line">[1,2]: 2 个互不相同的元素。</span><br><span class="line">[2,1]: 2 个互不相同的元素。</span><br><span class="line">[1,2,1]: 2 个互不相同的元素。</span><br><span class="line">所有不同计数的平方和为 12 + 12 + 12 + 22 + 22 + 22 = 15 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,2]</span><br><span class="line">输出：3</span><br><span class="line">解释：三个子数组分别为：</span><br><span class="line">[2]: 1 个互不相同的元素。</span><br><span class="line">[2]: 1 个互不相同的元素。</span><br><span class="line">[2,2]: 1 个互不相同的元素。</span><br><span class="line">所有不同计数的平方和为 12 + 12 + 12 = 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 100</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 100</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-116/problems/subarrays-distinct-element-sum-of-squares-i/">https://leetcode.cn/contest/biweekly-contest-116/problems/subarrays-distinct-element-sum-of-squares-i/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>枚举
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接枚举并统计所有的连续子数组中的元素的值即可，直接模拟。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n^2)$，其中 $n$ 表示给定的数组的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示给定的数组的长度。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sumCounts</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n):</span><br><span class="line">            cnt = <span class="built_in">set</span>()</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, n):</span><br><span class="line">                cnt.add(nums[j])</span><br><span class="line">                res += <span class="built_in">len</span>(cnt)**<span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> res % (<span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100104-使二进制字符串变美丽的最少修改次数"><a href="#100104-使二进制字符串变美丽的最少修改次数" class="headerlink" title="100104. 使二进制字符串变美丽的最少修改次数"></a>100104. 使二进制字符串变美丽的最少修改次数</h3><p>给你一个长度为偶数下标从 <strong>0</strong> 开始的二进制字符串 <code>s</code> 。</p>
+<p>如果可以将一个字符串分割成一个或者更多满足以下条件的子字符串，那么我们称这个字符串是 <strong>美丽的</strong> ：</p>
+<ul>
+<li>每个子字符串的长度都是 <strong>偶数</strong> 。</li>
+<li>每个子字符串都 <strong>只</strong> 包含 <code>1</code> 或 <strong>只</strong> 包含 <code>0</code> 。</li>
+</ul>
+<p>你可以将 <code>s</code> 中任一字符改成 <code>0</code> 或者 <code>1</code> 。</p>
+<p>请你返回让字符串 <code>s</code> 美丽的 <strong>最少</strong> 字符修改次数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;1001&quot;</span><br><span class="line">输出：2</span><br><span class="line">解释：我们将 s[1] 改为 1 ，且将 s[3] 改为 0 ，得到字符串 &quot;1100&quot; 。</span><br><span class="line">字符串 &quot;1100&quot; 是美丽的，因为我们可以将它分割成 &quot;11|00&quot; 。</span><br><span class="line">将字符串变美丽最少需要 2 次修改。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;10&quot;</span><br><span class="line">输出：1</span><br><span class="line">解释：我们将 s[1] 改为 1 ，得到字符串 &quot;11&quot; 。</span><br><span class="line">字符串 &quot;11&quot; 是美丽的，因为它已经是美丽的。</span><br><span class="line">将字符串变美丽最少需要 1 次修改。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;0000&quot;</span><br><span class="line">输出：0</span><br><span class="line">解释：不需要进行任何修改，字符串 &quot;0000&quot; 已经是美丽字符串。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= s.length &lt;= 105</code></li>
+<li><code>s</code> 的长度为偶数。</li>
+<li><code>s[i]</code> 要么是 <code>&#39;0&#39;</code> ，要么是 <code>&#39;1&#39;</code> 。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-116/problems/minimum-number-of-changes-to-make-binary-string-beautiful/">https://leetcode.cn/contest/biweekly-contest-116/problems/minimum-number-of-changes-to-make-binary-string-beautiful/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>枚举
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目想复杂了，实际只需要保证所有连续偶数的字符串的字符相等，其实我们只需要保证所有以偶数间隔的字符的相等即可。最小分割即为 $2$，因此我们只需要保证相邻间隔的两个字符相等即可，我们只需要检测 $s[i] &#x3D; s[i+1]$ 即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定的数组的长度。</li>
+<li>空间复杂度：$O(1)$，其中 $n$ 表示给定的数组的长度。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="function">def <span class="title">minChanges</span><span class="params">(self, s: str)</span> -&gt; <span class="type">int</span>:</span></span><br><span class="line"><span class="function">        return sum(s[i] !=</span> s[i + <span class="number">1</span>] <span class="function"><span class="keyword">for</span> i in <span class="title">range</span><span class="params">(<span class="number">0</span>, len(s), <span class="number">2</span>)</span>)      </span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100042-和为目标值的最长子序列的长度"><a href="#100042-和为目标值的最长子序列的长度" class="headerlink" title="100042. 和为目标值的最长子序列的长度"></a>100042. 和为目标值的最长子序列的长度</h3><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 和一个整数 <code>target</code> 。</p>
+<p>返回和为 <code>target</code> 的 <code>nums</code> 子序列中，子序列 <strong>长度的最大值</strong> 。如果不存在和为 <code>target</code> 的子序列，返回 <code>-1</code> 。</p>
+<p><strong>子序列</strong> 指的是从原数组中删除一些或者不删除任何元素后，剩余元素保持原来的顺序构成的数组。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,3,4,5], target = 9</span><br><span class="line">输出：3</span><br><span class="line">解释：总共有 3 个子序列的和为 9 ：[4,5] ，[1,3,5] 和 [2,3,4] 。最长的子序列是 [1,3,5] 和 [2,3,4] 。所以答案为 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,1,3,2,1,5], target = 7</span><br><span class="line">输出：4</span><br><span class="line">解释：总共有 5 个子序列的和为 7 ：[4,3] ，[4,1,2] ，[4,2,1] ，[1,1,5] 和 [1,3,2,1] 。最长子序列为 [1,3,2,1] 。所以答案为 4 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,1,5,4,5], target = 3</span><br><span class="line">输出：-1</span><br><span class="line">解释：无法得到和为 3 的子序列。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 1000</code></li>
+<li><code>1 &lt;= target &lt;= 1000</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-368/problems/minimum-number-of-groups-to-create-a-valid-assignment/">https://leetcode.cn/contest/weekly-contest-368/problems/minimum-number-of-groups-to-create-a-valid-assignment/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 0,1背包问题，动态规划</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>典型的动态规划问题，设 $dp[i]$ 表示使得目标和为 $i$ 的最长子序列数目，则此时我们可以知道遍历当前的 $x$ 时，可以有 </p>
+<p>$$dp[t] &#x3D; max(dp[t], dp[t-x] + 1)$$ ，我们从大到小遍历所有的元素即可得到使得当前元素为 $target$ 的最长子序列的数目。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times target)$，其中$n$ 表示数组的长度, $target$ 表示给定的元素；</li>
+<li>空间复杂度：$O(target)$， $target$ 表示给定的元素；</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lengthOfLongestSubsequence</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        dp = [-<span class="number">1</span>] * (target + <span class="number">1</span>)</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(target, x - <span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> dp[j - x] != -<span class="number">1</span>:</span><br><span class="line">                    dp[j] = <span class="built_in">max</span>(dp[j], dp[j - x] + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100074-子数组不同元素数目的平方和-II"><a href="#100074-子数组不同元素数目的平方和-II" class="headerlink" title="100074. 子数组不同元素数目的平方和 II"></a>100074. 子数组不同元素数目的平方和 II</h3><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 。</p>
+<p>定义 <code>nums</code> 一个子数组的 <strong>不同计数</strong> 值如下：</p>
+<ul>
+<li>令 <code>nums[i..j]</code> 表示 <code>nums</code> 中所有下标在 <code>i</code> 到 <code>j</code> 范围内的元素构成的子数组（满足 <code>0 &lt;= i &lt;= j &lt; nums.length</code> ），那么我们称子数组 <code>nums[i..j]</code> 中不同值的数目为 <code>nums[i..j]</code> 的不同计数。</li>
+</ul>
+<p>请你返回 <code>nums</code> 中所有子数组的 <strong>不同计数</strong> 的 <strong>平方</strong> 和。</p>
+<p>由于答案可能会很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p>子数组指的是一个数组里面一段连续 <strong>非空</strong> 的元素序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,1]</span><br><span class="line">输出：15</span><br><span class="line">解释：六个子数组分别为：</span><br><span class="line">[1]: 1 个互不相同的元素。</span><br><span class="line">[2]: 1 个互不相同的元素。</span><br><span class="line">[1]: 1 个互不相同的元素。</span><br><span class="line">[1,2]: 2 个互不相同的元素。</span><br><span class="line">[2,1]: 2 个互不相同的元素。</span><br><span class="line">[1,2,1]: 2 个互不相同的元素。</span><br><span class="line">所有不同计数的平方和为 12 + 12 + 12 + 22 + 22 + 22 = 15 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,2]</span><br><span class="line">输出：3</span><br><span class="line">解释：三个子数组分别为：</span><br><span class="line">[2]: 1 个互不相同的元素。</span><br><span class="line">[2]: 1 个互不相同的元素。</span><br><span class="line">[2,2]: 1 个互不相同的元素。</span><br><span class="line">所有不同计数的平方和为 12 + 12 + 12 = 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-116/problems/subarrays-distinct-element-sum-of-squares-ii/">https://leetcode.cn/contest/biweekly-contest-116/problems/subarrays-distinct-element-sum-of-squares-ii/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 线段树 ，数学公式展开</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>题目刚开始拿到确实不太好做，但是需要仔细思考一下，昨天想到了公式展开，但是想错了一个问题。比较难的是还需要用到懒标记的线段树，我们首先思考一个问题，假设以 $nums[i]$ 为结尾的子数组一共有 $i+1$ 个，长度分别为 $[l_0,l_1,l_3,\cdots,l_{i-1}, 1]$ 个，则此时以 $nums[i]$ 为结尾的子数组的长度的平方和则为:<br>$$<br>sum_i &#x3D; l_0^2 + l_1^2 + \cdots + l_{i-1}^2 + l_i^2 &#x3D; \sum_{j&#x3D;0}^{i}l_j^2<br>$$<br>其中 $l_j$ 表示以 $nums[j]$ 为起点，以 $nums[i]$ 为终点的子数组中不同元素的数目，此时我们当我们加入新的元素 $nums[i+1]$ 时会有什么表现？我们仔细分析一下，有两种情况需要讨论：</p>
+<ul>
+<li><p>如果 $nums[i+1]$ 在 $[0,i]$ 中从未出现过，则可以知道以 $nums[i+1]$ 为结尾的子数组的元素数目分别为 $[l_0 + 1，l_1+1,\cdots,l_{i-1}+1,l_i+1,1]$，则可以有以下递推：<br>$$<br>sum_{i+1} &#x3D; (l_0+1)^2 + (l_1+1)^2 + (l_2+1)^2 + \cdots + (l_{i-1}+1)^2 + (l_i + 1)^2 + 1 &#x3D; \<br>l_0^2 + l_1^2 + \cdots + l_{i-1}^2 + l_i^2 + 2(l_0 + l_1 +\cdots + l_{i-1} + l_i) + i + 1 &#x3D; \<br>sum_i + 2\sum_{j&#x3D;0}^{i}l_j + 1<br>$$<br>这意味着只要我们能够计算出 $\sum_{j&#x3D;0}^il_j$ 的和，上述的递推关系就可以计算出来，我们再来分析另外一种情况：</p>
+</li>
+<li><p>如果 $nums[i+1]$ 在 $[0,i]$ 中出现过不止一次，且最后出现的位置为 $j$，则可以知道以 $nums[i+1]$ 为结尾的子数组的元素数目分别为 $[l_0，l_1,\cdots,l_{j},l_{j+1} + 1,l_{j+2} + 1, \cdots, l_{i-1} + 1, l_{i} + 1,1]$，则可以有以下递推：<br>$$<br>sum_{i+1} &#x3D; l_0^2 + l_1^2 + l_2^2 + \cdots + l_j^2 + (l_{j}+1)^2 + (l_{j+2} + 1)^2 + \cdots + l_i^2 + 1 &#x3D; \<br>l_0^2 + l_1^2 + \cdots + l_{i-1}^2 + l_i^2 + 2(l_{j+1} + l_{j+2} +\cdots + l_{i-1} + l_i) + (i - j) + 1 &#x3D; \<br>sum_i + 2\sum_{k&#x3D;j+1}^{i}l_k + 1<br>$$<br>这意味着只要我们能够计算出 $\sum_{k&#x3D;j}^il_k$ 的和，上述的递推关系就可以计算出来。此时我们可以利用线段树的懒更新来标记当前索引 $i$ 时的所有以 $j \in [0,i]$ 开头的子数组的元素数目，当我们遍历到 $i+1$ 时，我们看到此时区间 $[j+1, i + 1]$ 中的元素全部加 $1$ 即为 当前 $i+1$ 为结尾的子数组中的元素数目分布，我们利用线段树的懒更新和范围查找即可快速的实现上述的递推关系，整个题目的关系在如何将公式展开和推导；</p>
+</li>
+<li><p>每次查询时，首先找到当前元素 $nums[i]$ 最近出现为位置 $j$，然后就是当前的值即为 $pre + 2 * sum(j + 1, i) + 1$, 更新当前的计算，然后更新当前的位置，在此对当前元素的子数组数目分布进行更新。</p>
+</li>
+</ul>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log n)$，其中 $n$ 表示数组的长度；</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度；</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">mod = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SegNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.l = <span class="number">0</span></span><br><span class="line">        <span class="variable language_">self</span>.r = <span class="number">0</span></span><br><span class="line">        <span class="variable language_">self</span>.lazytag = <span class="number">0</span></span><br><span class="line">        <span class="variable language_">self</span>.<span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SegTree</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, nums</span>):</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="variable language_">self</span>.tree = [SegNode()] * (<span class="number">4</span> * n + <span class="number">7</span>)</span><br><span class="line">        <span class="variable language_">self</span>.nums = nums</span><br><span class="line">        <span class="variable language_">self</span>.build(<span class="number">1</span>, <span class="number">0</span>, n - <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">build</span>(<span class="params">self, idx, l, r</span>):</span><br><span class="line">        <span class="variable language_">self</span>.tree[idx].l = l</span><br><span class="line">        <span class="variable language_">self</span>.tree[idx].r = r</span><br><span class="line">        <span class="variable language_">self</span>.tree[idx].lazytag = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> l == r:</span><br><span class="line">            <span class="variable language_">self</span>.tree[idx].<span class="built_in">sum</span> = <span class="variable language_">self</span>.nums[l]</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        mid = (l + r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="variable language_">self</span>.build(<span class="number">2</span> * idx, l, mid)</span><br><span class="line">        <span class="variable language_">self</span>.build(<span class="number">2</span> * idx + <span class="number">1</span>, mid + <span class="number">1</span>, r)</span><br><span class="line">        <span class="variable language_">self</span>.tree[idx].<span class="built_in">sum</span> = <span class="variable language_">self</span>.tree[<span class="number">2</span> * idx].<span class="built_in">sum</span> + <span class="variable language_">self</span>.tree[<span class="number">2</span> * idx + <span class="number">1</span>].<span class="built_in">sum</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pushup</span>(<span class="params">self, idx</span>):</span><br><span class="line">        <span class="variable language_">self</span>.tree[idx].<span class="built_in">sum</span> = <span class="variable language_">self</span>.tree[<span class="number">2</span> * idx].<span class="built_in">sum</span> + <span class="variable language_">self</span>.tree[<span class="number">2</span> * idx + <span class="number">1</span>].<span class="built_in">sum</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pushdown</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.tree[x].lazytag != <span class="number">0</span>:</span><br><span class="line">            lt = <span class="variable language_">self</span>.tree[x].lazytag</span><br><span class="line">            <span class="variable language_">self</span>.tree[<span class="number">2</span> * x].lazytag += lt</span><br><span class="line">            <span class="variable language_">self</span>.tree[<span class="number">2</span> * x].<span class="built_in">sum</span> = (<span class="variable language_">self</span>.tree[<span class="number">2</span> * x].<span class="built_in">sum</span> + lt * (<span class="variable language_">self</span>.tree[<span class="number">2</span> * x].r - <span class="variable language_">self</span>.tree[<span class="number">2</span> * x].l + <span class="number">1</span>)) % mod</span><br><span class="line">            <span class="variable language_">self</span>.tree[<span class="number">2</span> * x + <span class="number">1</span>].lazytag += lt</span><br><span class="line">            <span class="variable language_">self</span>.tree[<span class="number">2</span> * x + <span class="number">1</span>].<span class="built_in">sum</span> = (<span class="variable language_">self</span>.tree[<span class="number">2</span> * x + <span class="number">1</span>].<span class="built_in">sum</span> + lt * (<span class="variable language_">self</span>.tree[<span class="number">2</span> * x + <span class="number">1</span>].r - <span class="variable language_">self</span>.tree[<span class="number">2</span> * x + <span class="number">1</span>].l + <span class="number">1</span>)) % mod</span><br><span class="line">            <span class="variable language_">self</span>.tree[x].lazytag = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">modify</span>(<span class="params">self, idx, l, r, k</span>):   <span class="comment"># 这里的k是增加的值</span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.tree[idx].r &lt; l <span class="keyword">or</span> <span class="variable language_">self</span>.tree[idx].l &gt; r:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.tree[idx].l &gt;= l <span class="keyword">and</span> <span class="variable language_">self</span>.tree[idx].r &lt;= r:</span><br><span class="line">            <span class="variable language_">self</span>.tree[idx].<span class="built_in">sum</span> = (<span class="variable language_">self</span>.tree[idx].<span class="built_in">sum</span> + k * (<span class="variable language_">self</span>.tree[idx].r - <span class="variable language_">self</span>.tree[idx].l + <span class="number">1</span>)) % mod</span><br><span class="line">            <span class="variable language_">self</span>.tree[idx].lazytag += k</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="variable language_">self</span>.pushdown(idx);</span><br><span class="line">        mid = (<span class="variable language_">self</span>.tree[idx].l + <span class="variable language_">self</span>.tree[idx].r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.tree[<span class="number">2</span> * idx].r &gt;= l:</span><br><span class="line">            <span class="variable language_">self</span>.modify(<span class="number">2</span> * idx, l, r, k);</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.tree[<span class="number">2</span> * idx + <span class="number">1</span>].l &lt;= r:</span><br><span class="line">            <span class="variable language_">self</span>.modify(<span class="number">2</span> * idx + <span class="number">1</span>, l, r, k)</span><br><span class="line">        <span class="variable language_">self</span>.tree[idx].<span class="built_in">sum</span> = (<span class="variable language_">self</span>.tree[<span class="number">2</span> * idx].<span class="built_in">sum</span> + <span class="variable language_">self</span>.tree[<span class="number">2</span> * idx + <span class="number">1</span>].<span class="built_in">sum</span>) % mod</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 区间查询</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">query</span>(<span class="params">self, idx, l, r</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.tree[idx].r &lt; l <span class="keyword">or</span> <span class="variable language_">self</span>.tree[idx].l &gt; r:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>       </span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.tree[idx].l &gt;= l <span class="keyword">and</span> <span class="variable language_">self</span>.tree[idx].r &lt;= r:</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">self</span>.tree[idx].<span class="built_in">sum</span></span><br><span class="line">        <span class="variable language_">self</span>.pushdown(idx);</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.tree[<span class="number">2</span> * idx].r &gt;= l:</span><br><span class="line">            res = (res + <span class="variable language_">self</span>.query(<span class="number">2</span> * idx, l, r)) % mod</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.tree[<span class="number">2</span> * idx + <span class="number">1</span>].l &lt;= r:</span><br><span class="line">            res = (res + <span class="variable language_">self</span>.query(<span class="number">2</span> * idx + <span class="number">1</span>, l, r)) % mod;</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 单点更新</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">self, index, val</span>):</span><br><span class="line">        <span class="variable language_">self</span>.modify(<span class="number">1</span>, index, index, val - <span class="variable language_">self</span>.nums[index])</span><br><span class="line">        <span class="variable language_">self</span>.nums[index] = val</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 区间查询</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sumRange</span>(<span class="params">self, l, r</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.query(<span class="number">1</span>, l, r);</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sumCounts</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        tree = SegTree(nums)</span><br><span class="line">       </span><br><span class="line">        cnt = &#123;&#125;</span><br><span class="line">        res, curr = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            j = cnt[nums[i]] <span class="keyword">if</span> nums[i] <span class="keyword">in</span> cnt <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line">            curr = (curr + <span class="number">2</span> * tree.sumRange(j + <span class="number">1</span>, i - <span class="number">1</span>) + i - j) % mod</span><br><span class="line">            tree.modify(<span class="number">1</span>, j + <span class="number">1</span>, i, <span class="number">1</span>)</span><br><span class="line">            cnt[nums[i]] = i</span><br><span class="line">            res = (res + curr) % mod</span><br><span class="line">            <span class="built_in">print</span>(tree.sumRange(<span class="number">0</span>, i))</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">         </span><br></pre></td></tr></table></figure>
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E8%B5%9B/" class="print-no-link">#力扣周赛赛</a>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode biweekly contes 116</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/157/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/84/" title="leetcode  biweekly contest 92">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode  biweekly contest 92</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/160/" title="leetcode biweekly contes 117">
+                        <span class="hidden-mobile">leetcode biweekly contes 117</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

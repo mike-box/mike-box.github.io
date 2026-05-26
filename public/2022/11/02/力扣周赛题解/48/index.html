@@ -1,0 +1,951 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode 阿里天池专场第三题与第四题确实比较难，前两题都是常规题目 221021天池-01. 统计链表奇数节点题目给你一个链表的头节点 head，请统计链表中值为 奇数 的节点个数 示例 1： 输入：head &#x3D; [2,1,8]输出：1解释：链表中存在 1 个奇数值的节点，值为 1 示例 2： 输入：head &#x3D; [1,2,3,4]输出：2解释：链表中存在 2 个奇数值的节点，值分别为 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode 阿里天池专场">
+<meta property="og:url" content="http://example.com/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/48/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode 阿里天池专场第三题与第四题确实比较难，前两题都是常规题目 221021天池-01. 统计链表奇数节点题目给你一个链表的头节点 head，请统计链表中值为 奇数 的节点个数 示例 1： 输入：head &#x3D; [2,1,8]输出：1解释：链表中存在 1 个奇数值的节点，值为 1 示例 2： 输入：head &#x3D; [1,2,3,4]输出：2解释：链表中存在 2 个奇数值的节点，值分别为 1">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+<meta property="article:published_time" content="2022-11-01T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.829Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+  
+  
+  
+  <title>leetcode 阿里天池专场 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode 阿里天池专场"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-02 01:00" pubdate>
+          November 2, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode 阿里天池专场</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-阿里天池专场"><a href="#leetcode-阿里天池专场" class="headerlink" title="leetcode 阿里天池专场"></a>leetcode 阿里天池专场</h2><p>第三题与第四题确实比较难，前两题都是常规题目</p>
+<h4 id="221021天池-01-统计链表奇数节点"><a href="#221021天池-01-统计链表奇数节点" class="headerlink" title="221021天池-01. 统计链表奇数节点"></a>221021天池-01. 统计链表奇数节点</h4><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>给你一个链表的头节点 <code>head</code>，请统计链表中值为 奇数 的节点个数</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [2,1,8]</span><br><span class="line">输出：1</span><br><span class="line">解释：链表中存在 1 个奇数值的节点，值为 1</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [1,2,3,4]</span><br><span class="line">输出：2</span><br><span class="line">解释：链表中存在 2 个奇数值的节点，值分别为 1、3</span><br></pre></td></tr></table></figure>
+<p>提示：</p>
+<ul>
+<li>链表中节点的数目在 <code>[1, 5000]</code> 范围内。</li>
+<li><code>1 &lt;= Node.val &lt;= 10000</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/tianchi2022/problems/yGdjWb/">https://leetcode.cn/contest/tianchi2022/problems/yGdjWb/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们直接遍历整个链表即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numberEvenListNode</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(head) &#123;</span><br><span class="line">            <span class="keyword">if</span> (head-&gt;val % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="221021天池-02-光线反射"><a href="#221021天池-02-光线反射" class="headerlink" title="221021天池-02. 光线反射"></a>221021天池-02. 光线反射</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>工程师正在研究一个 <code>N*M</code> 大小的光线反射装置，装置内部的构造记录于 <code>grid</code> 中，其中</p>
+<ul>
+<li><code>&#39;.&#39;</code> 表示空白区域，不改变光的传播方向</li>
+<li><code>&#39;R&#39;</code> 表示向右倾斜的 双面 均可反射光线的镜子，改变光的传播方向</li>
+<li><code>&#39;L&#39;</code> 表示向左倾斜的 双面 均可反射光线的镜子，改变光的传播方向<br>假如光线从装置的左上方垂直向下进入装置，请问在离开装置前，光线在装置内部经过多长的路线。</li>
+</ul>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [&quot;...&quot;,&quot;L.L&quot;,&quot;RR.&quot;,&quot;L.R&quot;]</span><br><span class="line">输出：12</span><br><span class="line">解释：如图所示，光线经过路线长度为 12</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：grid = [&quot;R.&quot;,&quot;..&quot;]</span><br><span class="line">输出：1</span><br><span class="line">解释：如图所示，光线经过路线长度为 1</span><br></pre></td></tr></table></figure>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= grid.length, grid[i].length &lt;= 100</code></li>
+<li><code>grid[i][j]</code> 仅为 <code>&#39;L&#39;、&#39;R&#39;</code> 和 <code>&#39;.&#39;</code></li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-original-array-of-prefix-xor/">https://leetcode.cn/problems/find-the-original-array-of-prefix-xor/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>遍历
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目比较简单，只是一个简单的转换，我们设有四个方向：左上右下，沿着四个方向射入某个单元格。</li>
+</ol>
+<ul>
+<li>遇到右倾斜，则变换为:下右上左</li>
+<li>遇到左倾斜，则变换为:上左下右<br>根据当前的变换即可得到最终的结果。</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(m \times n)$，其中 $m$ 表示矩阵的行数，$n$ 表示矩阵的列数。</li>
+<li>空间复杂度：空间复杂度为 $O(1)$。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getLength</span><span class="params">(vector&lt;string&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = grid.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> n = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> dir[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">        <span class="type">int</span> cr[<span class="number">4</span>] = &#123;<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        <span class="type">int</span> cl[<span class="number">4</span>] = &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>&#125;;</span><br><span class="line">        queue&lt;tuple&lt;<span class="type">int</span>,<span class="type">int</span>,<span class="type">int</span>&gt;&gt; qu;</span><br><span class="line">        <span class="type">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>, d = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">while</span>(x &gt;= <span class="number">0</span> &amp;&amp; y &gt;= <span class="number">0</span> &amp;&amp; x &lt; m &amp;&amp; y &lt; n) &#123;</span><br><span class="line">            res++;</span><br><span class="line">            <span class="keyword">if</span> (grid[x][y] == <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">                x = x + dir[d][<span class="number">0</span>];</span><br><span class="line">                y = y + dir[d][<span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (grid[x][y] == <span class="string">&#x27;L&#x27;</span>) &#123;</span><br><span class="line">                d = cl[d];</span><br><span class="line">                x = x + dir[d][<span class="number">0</span>];</span><br><span class="line">                y = y + dir[d][<span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (grid[x][y] == <span class="string">&#x27;R&#x27;</span>) &#123;</span><br><span class="line">                d = cr[d];</span><br><span class="line">                x = x + dir[d][<span class="number">0</span>];</span><br><span class="line">                y = y + dir[d][<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="221021天池-03-整理书架"><a href="#221021天池-03-整理书架" class="headerlink" title="221021天池-03. 整理书架"></a>221021天池-03. 整理书架</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>书架上有若干本书，从左至右的书籍编号记于整型数组 <code>order</code> 中。为保证书籍多样性，管理员想取走一些重复编号的书籍，要求满足以下条件：</p>
+<ul>
+<li>剩余书本中相同编号的书本数量均不大于 <code>limit</code></li>
+<li>取走的书籍数量尽可能少<br>由于存在多种整理方案，请返回剩余书本编号的排列为「最小排列」的方案。</li>
+</ul>
+<p>注意：</p>
+<p>「最小排列」：若干数组中第一位数字最小的数组；若第一位数字相同，则为第二位数字最小的数组，以此类推。<br>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：order = [5,5,6,5], limit = 2</span><br><span class="line">输出：[5,5,6]</span><br><span class="line">解释：order 中出现了 3 次 5 号书：</span><br><span class="line">方案 1：去掉 order[0] 或 order[1]，所得排列为 [5,6,5]；</span><br><span class="line">方案 2：去掉 order[3]，所得排列为 [5,5,6]；</span><br><span class="line">经比较，最终返回排列最小的方案 2：[5,5,6]。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：order = [5,5,6,5], limit = 3</span><br><span class="line">输出：[5,5,6,5]</span><br><span class="line">解释：order 中所有相同编号的书本数目均未超过 limit，不需要去除，返回 [5,5,6,5]</span><br></pre></td></tr></table></figure>
+<p>示例 3：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：order = [3,3,9,8,9,2,8], limit = 1</span><br><span class="line">输出：[3,8,9,2]</span><br><span class="line">解释：列表中 3、8、9 号数字都出现了 2 次，去掉编号相同的书后的排列结果中 [3,8,9,2] 为排列最小的结果。</span><br></pre></td></tr></table></figure>
+<p>示例 4：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：order = [2,1,2,2,1,3,3,1,3,3], limit = 2</span><br><span class="line">输出：[1,2,2,1,3,3]</span><br></pre></td></tr></table></figure>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= order.length &lt;= 10^5</code></li>
+<li><code>1 &lt;= limit &lt;= 10</code></li>
+<li><code>1 &lt;= order[i] &lt;= 10^6</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/tianchi2022/problems/ev2bru/">https://leetcode.cn/contest/tianchi2022/problems/ev2bru/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>贪心 + 栈
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目本身有些难，比较难想到，最后看了解答用的贪心的栈，关键是在于剔除的操作，比如当前候选队列分别为 $[2,3,2],[2,1,2]$，由于我们现在需要剔除一个 $2$，则：</li>
+</ol>
+<ul>
+<li>对于第一种情况由于由于 $3$ 比 $2$ 大，此时我们需要检测 $3$ 之前存储的</li>
+</ul>
+<ol start="2">
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n)$，$n$ 为数组的长度。</li>
+<li>空间复杂度：时间复杂度为 $O(1)$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">arrangeBookshelf</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; order, <span class="type">int</span> limit)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; cnt, st_cnt;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : order) &#123;</span><br><span class="line">            cnt[v]++;</span><br><span class="line">        &#125;</span><br><span class="line">        res.<span class="built_in">emplace_back</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> x : order) &#123;</span><br><span class="line">            <span class="comment">/* skip the current val */</span></span><br><span class="line">            <span class="keyword">if</span> (st_cnt[x] == limit) &#123;</span><br><span class="line">                cnt[x]--;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (x &lt; res.<span class="built_in">back</span>() &amp;&amp; cnt[res.<span class="built_in">back</span>()] &gt; limit) &#123;</span><br><span class="line">                cnt[res.<span class="built_in">back</span>()]--;</span><br><span class="line">                st_cnt[res.<span class="built_in">back</span>()]--;</span><br><span class="line">                res.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            res.<span class="built_in">emplace_back</span>(x);</span><br><span class="line">            st_cnt[x]++;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; res.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            ans.<span class="built_in">emplace_back</span>(res[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="221021天池-04-意外惊喜"><a href="#221021天池-04-意外惊喜" class="headerlink" title="221021天池-04. 意外惊喜"></a>221021天池-04. 意外惊喜</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>某电商平台举办了一个用户抽奖活动，奖池中共有若干个礼包，每个礼包中包含一些礼物。 <code>present[i][j]</code> 表示第 <code>i</code> 个礼包第 <code>j</code> 件礼（下标从 <code>0</code> 开始）物的价值。抽奖规则如下：</p>
+<ul>
+<li>每个礼包中的礼物摆放是有顺序的，你必须从第 <code>0</code> 件礼物开始打开；</li>
+<li>对于同一个礼包中的礼物，必须在打开该礼包的第 <code>i</code> 个礼物之后，才能打开第 <code>i+1</code> 个礼物；</li>
+<li>每个礼物包中的礼物价值 非严格递增。<br>参加活动的用户总共可以打开礼物 <code>limit</code> 次，请返回用户能够获得的 最大 礼物价值总和。</li>
+</ul>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: present = [[1,2],[2,3],[3,4]], limit = 3</span><br><span class="line">输出: 9</span><br><span class="line">解释：最佳的方案为：</span><br><span class="line">第 1 次拿走第 3 个礼包中的第 1 个礼物，得到价值 3；</span><br><span class="line">第 2 次拿走第 3 个礼包中的第 2 个礼物，得到价值 4；</span><br><span class="line">第 3 次拿走第 2 个礼物包的第 1 个礼物，得到价值 2；</span><br><span class="line">返回打开的礼物价值总和 3 + 4 + 2 = 9</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: present = [[1,2,100],[4,5],[3,4]], limit = 4</span><br><span class="line">输出: 107</span><br><span class="line">解释：最佳的方案为：</span><br><span class="line">第 1 次拿走第 1 个礼包中的第 1 个礼物，得到价值 1；</span><br><span class="line">第 2 次拿走第 1 个礼包中的第 2 个礼物，得到价值 2；</span><br><span class="line">第 3 次拿走第 1 个礼物包的第 3 个礼物，得到价值 100；</span><br><span class="line">第 4 次拿走第 2 个礼物包的第 1 个礼物，得到价值 4；</span><br><span class="line">返回打开的礼物价值总和 107</span><br></pre></td></tr></table></figure>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= present.length &lt;= 2000</code></li>
+<li><code>1 &lt;= present[i].length &lt;= 1000</code></li>
+<li><code>1 &lt;= present[i][j] &lt;= present[i][j+1] &lt;= 10^5</code></li>
+<li><code>1 &lt;= limit &lt;= 1000</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/tianchi2022/problems/tRZfIV/">https://leetcode.cn/contest/tianchi2022/problems/tRZfIV/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 归并+ 01背包</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目难度太大，还是参考题解，很少会出这么难的题目。</li>
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(limit \times n \times \log n)$，$n$ 为数组的长度。</li>
+<li>空间复杂度：时间复杂度为 $O(n \times m)$。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">brilliantSurprise</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; present, <span class="type">int</span> limit)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = present.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">s</span>(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; present.<span class="built_in">size</span>(); i += <span class="number">1</span>) &#123;</span><br><span class="line">            s[i].<span class="built_in">resize</span>(present[i].<span class="built_in">size</span>() + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; present[i].<span class="built_in">size</span>(); j += <span class="number">1</span>)</span><br><span class="line">                s[i][j + <span class="number">1</span>] = s[i][j] + present[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(limit + <span class="number">1</span>)</span></span>;</span><br><span class="line">        function&lt;<span class="type">void</span>(<span class="type">int</span>, <span class="type">int</span>)&gt; DFS = [&amp;](<span class="type">int</span> L, <span class="type">int</span> R) &#123;</span><br><span class="line">            <span class="type">int</span> M = (L + R) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (L == R) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, pre = <span class="number">0</span>; i &lt;= limit; i += <span class="number">1</span>) &#123;</span><br><span class="line">                    pre = <span class="built_in">max</span>(pre, dp[i]);</span><br><span class="line">                    ans = <span class="built_in">max</span>(ans, pre + s[M][<span class="built_in">min</span>((<span class="type">int</span>)s[M].<span class="built_in">size</span>() - <span class="number">1</span>, limit - i)]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">auto</span> f = dp;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> i = M + <span class="number">1</span>; i &lt;= R; i += <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">auto</span> g = dp;</span><br><span class="line">                    <span class="type">int</span> x = (<span class="type">int</span>)s[i].<span class="built_in">size</span>() - <span class="number">1</span>, y = s[i].<span class="built_in">back</span>();</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j = x; j &lt;= limit; j += <span class="number">1</span>)</span><br><span class="line">                        g[j] = <span class="built_in">max</span>(g[j], dp[j - x] + y);</span><br><span class="line">                    dp.<span class="built_in">swap</span>(g);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">DFS</span>(L, M);</span><br><span class="line">                dp = f;</span><br><span class="line">            &#125;</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">auto</span> f = dp;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> i = L; i &lt;= M; i += <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">auto</span> g = dp;</span><br><span class="line">                    <span class="type">int</span> x = (<span class="type">int</span>)s[i].<span class="built_in">size</span>() - <span class="number">1</span>, y = s[i].<span class="built_in">back</span>();</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j = x; j &lt;= limit; j += <span class="number">1</span>)</span><br><span class="line">                        g[j] = <span class="built_in">max</span>(g[j], dp[j - x] + y);</span><br><span class="line">                    dp.<span class="built_in">swap</span>(g);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">DFS</span>(M + <span class="number">1</span>, R);</span><br><span class="line">                dp = f;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="built_in">DFS</span>(<span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="print-no-link">#力扣周赛</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode 阿里天池专场</div>
+      <div>http://example.com/2022/11/02/力扣周赛题解/48/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 2, 2022</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/02/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/45/" title="【MIT 6.S081】 lab9 mmap">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【MIT 6.S081】 lab9 mmap</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/50/" title="leetcode biweekly contest 90">
+                        <span class="hidden-mobile">leetcode biweekly contest 90</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
