@@ -1,0 +1,979 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode weekly contes 344手速场的题目，可惜的是每次手速场排名都不咋读，也许是年纪大了，思维不够快。非手速场，成绩还好一些。  6416. 找出不同元素数目差数组给你一个下标从 0 开始的数组 nums ，数组长度为 n 。 nums 的 不同元素数目差 数组可以用一个长度为 n 的数组 diff 表示，其中 diff[i] 等于前缀 nums[0, ..., i] 中不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode weekly contes 344">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/119/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode weekly contes 344手速场的题目，可惜的是每次手速场排名都不咋读，也许是年纪大了，思维不够快。非手速场，成绩还好一些。  6416. 找出不同元素数目差数组给你一个下标从 0 开始的数组 nums ，数组长度为 n 。 nums 的 不同元素数目差 数组可以用一个长度为 n 的数组 diff 表示，其中 diff[i] 等于前缀 nums[0, ..., i] 中不">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202305072021485.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2023/04/04/binaryytreeedrawio-4.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2023/04/04/binaryytreee2drawio.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.576Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="力扣季度赛">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202305072021485.png">
+  
+  
+  
+  <title>leetcode weekly contes 344 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode weekly contes 344"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          65 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode weekly contes 344</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-weekly-contes-344"><a href="#leetcode-weekly-contes-344" class="headerlink" title="leetcode weekly contes 344"></a>leetcode weekly contes 344</h2><p>手速场的题目，可惜的是每次手速场排名都不咋读，也许是年纪大了，思维不够快。非手速场，成绩还好一些。</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202305072021485.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="6416-找出不同元素数目差数组"><a href="#6416-找出不同元素数目差数组" class="headerlink" title="6416. 找出不同元素数目差数组"></a>6416. 找出不同元素数目差数组</h3><p>给你一个下标从 <strong>0</strong> 开始的数组 <code>nums</code> ，数组长度为 <code>n</code> 。</p>
+<p><code>nums</code> 的 <strong>不同元素数目差</strong> 数组可以用一个长度为 <code>n</code> 的数组 <code>diff</code> 表示，其中 <code>diff[i]</code> 等于前缀 <code>nums[0, ..., i]</code> 中不同元素的数目 <strong>减去</strong> 后缀 <code>nums[i + 1, ..., n - 1]</code> 中不同元素的数目。</p>
+<p>返回 <code>nums</code> 的 <strong>不同元素数目差</strong> 数组。</p>
+<p>注意 <code>nums[i, ..., j]</code> 表示 <code>nums</code> 的一个从下标 <code>i</code> 开始到下标 <code>j</code> 结束的子数组（包含下标 <code>i</code> 和 <code>j</code> 对应元素）。特别需要说明的是，如果 <code>i &gt; j</code> ，则 <code>nums[i, ..., j]</code> 表示一个空子数组。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,3,4,5]</span><br><span class="line">输出：[-3,-1,1,3,5]</span><br><span class="line">解释：</span><br><span class="line">对于 i = 0，前缀中有 1 个不同的元素，而在后缀中有 4 个不同的元素。因此，diff[0] = 1 - 4 = -3 。</span><br><span class="line">对于 i = 1，前缀中有 2 个不同的元素，而在后缀中有 3 个不同的元素。因此，diff[1] = 2 - 3 = -1 。</span><br><span class="line">对于 i = 2，前缀中有 3 个不同的元素，而在后缀中有 2 个不同的元素。因此，diff[2] = 3 - 2 = 1 。</span><br><span class="line">对于 i = 3，前缀中有 4 个不同的元素，而在后缀中有 1 个不同的元素。因此，diff[3] = 4 - 1 = 3 。</span><br><span class="line">对于 i = 4，前缀中有 5 个不同的元素，而在后缀中有 0 个不同的元素。因此，diff[4] = 5 - 0 = 5 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,2,3,4,2]</span><br><span class="line">输出：[-2,-1,0,2,3]</span><br><span class="line">解释：</span><br><span class="line">对于 i = 0，前缀中有 1 个不同的元素，而在后缀中有 3 个不同的元素。因此，diff[0] = 1 - 3 = -2 。</span><br><span class="line">对于 i = 1，前缀中有 2 个不同的元素，而在后缀中有 3 个不同的元素。因此，diff[1] = 2 - 3 = -1 。</span><br><span class="line">对于 i = 2，前缀中有 2 个不同的元素，而在后缀中有 2 个不同的元素。因此，diff[2] = 2 - 2 = 0 。</span><br><span class="line">对于 i = 3，前缀中有 3 个不同的元素，而在后缀中有 1 个不同的元素。因此，diff[3] = 3 - 1 = 2 。</span><br><span class="line">对于 i = 4，前缀中有 3 个不同的元素，而在后缀中有 0 个不同的元素。因此，diff[4] = 3 - 0 = 3 。 </span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == nums.length &lt;= 50</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 50</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-343/problems/determine-the-winner-of-a-bowling-game/">https://leetcode.cn/contest/weekly-contest-343/problems/determine-the-winner-of-a-bowling-game/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接统计数组前缀与后缀中不同元素的数目即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(n)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">distinctDifferenceArray</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; pre;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; diff;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : nums) &#123;</span><br><span class="line">            cnt[v]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : nums) &#123;</span><br><span class="line">            pre[v]++;</span><br><span class="line">            cnt[v]--;</span><br><span class="line">            <span class="keyword">if</span> (cnt[v] == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt.<span class="built_in">erase</span>(v);</span><br><span class="line">            &#125;</span><br><span class="line">            diff.<span class="built_in">emplace_back</span>(pre.<span class="built_in">size</span>() - cnt.<span class="built_in">size</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> diff;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6417-频率跟踪器"><a href="#6417-频率跟踪器" class="headerlink" title="6417. 频率跟踪器"></a>6417. 频率跟踪器</h3><p>请你设计并实现一个能够对其中的值进行跟踪的数据结构，并支持对频率相关查询进行应答。</p>
+<p>实现 <code>FrequencyTracker</code> 类：</p>
+<ul>
+<li><code>FrequencyTracker()</code>：使用一个空数组初始化 <code>FrequencyTracker</code> 对象。</li>
+<li><code>void add(int number)</code>：添加一个 <code>number</code> 到数据结构中。</li>
+<li><code>void deleteOne(int number)</code>：从数据结构中删除一个 <code>number</code> 。数据结构 <strong>可能不包含</strong> <code>number</code> ，在这种情况下不删除任何内容。</li>
+<li><code>bool hasFrequency(int frequency)</code>: 如果数据结构中存在出现 <code>frequency</code> 次的数字，则返回 <code>true</code>，否则返回 <code>false</code>。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;FrequencyTracker&quot;, &quot;add&quot;, &quot;add&quot;, &quot;hasFrequency&quot;]</span><br><span class="line">[[], [3], [3], [2]]</span><br><span class="line">输出</span><br><span class="line">[null, null, null, true]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">FrequencyTracker frequencyTracker = new FrequencyTracker();</span><br><span class="line">frequencyTracker.add(3); // 数据结构现在包含 [3]</span><br><span class="line">frequencyTracker.add(3); // 数据结构现在包含 [3, 3]</span><br><span class="line">frequencyTracker.hasFrequency(2); // 返回 true ，因为 3 出现 2 次</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;FrequencyTracker&quot;, &quot;add&quot;, &quot;deleteOne&quot;, &quot;hasFrequency&quot;]</span><br><span class="line">[[], [1], [1], [1]]</span><br><span class="line">输出</span><br><span class="line">[null, null, null, false]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">FrequencyTracker frequencyTracker = new FrequencyTracker();</span><br><span class="line">frequencyTracker.add(1); // 数据结构现在包含 [1]</span><br><span class="line">frequencyTracker.deleteOne(1); // 数据结构现在为空 []</span><br><span class="line">frequencyTracker.hasFrequency(1); // 返回 false ，因为数据结构为空</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;FrequencyTracker&quot;, &quot;hasFrequency&quot;, &quot;add&quot;, &quot;hasFrequency&quot;]</span><br><span class="line">[[], [2], [3], [1]]</span><br><span class="line">输出</span><br><span class="line">[null, false, null, true]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">FrequencyTracker frequencyTracker = new FrequencyTracker();</span><br><span class="line">frequencyTracker.hasFrequency(2); // 返回 false ，因为数据结构为空</span><br><span class="line">frequencyTracker.add(3); // 数据结构现在包含 [3]</span><br><span class="line">frequencyTracker.hasFrequency(1); // 返回 true ，因为 3 出现 1 次</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= number &lt;= 105</code></li>
+<li><code>1 &lt;= frequency &lt;= 105</code></li>
+<li>最多调用 <code>add</code>、<code>deleteOne</code> 和 <code>hasFrequency</code> <strong>共计</strong> <code>2 * 105</code> 次</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-343/problems/first-completely-painted-row-or-column/">https://leetcode.cn/contest/weekly-contest-343/problems/first-completely-painted-row-or-column/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接利用哈希表统计元素的出现次数，并统计元素出现的次数。<ul>
+<li>$\texttt{add}$ 操作：直接更新统计次数即可；</li>
+<li>$delete$: 更新统计次数；</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(mn)$，其中 $m,n$ 为矩阵的行数与列数。</li>
+<li>空间复杂度：$O(mn)$，其中 $m,n$ 为矩阵的行数与列数。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">FrequencyTracker</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">FrequencyTracker</span>() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(number)) &#123;</span><br><span class="line">            <span class="type">int</span> x = cnt[number];</span><br><span class="line">            freq[x]--;</span><br><span class="line">            <span class="keyword">if</span> (freq[x] == <span class="number">0</span>) &#123;</span><br><span class="line">                freq.<span class="built_in">erase</span>(x);</span><br><span class="line">            &#125;</span><br><span class="line">            cnt[number]++;</span><br><span class="line">            freq[x + <span class="number">1</span>]++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cnt[number] = <span class="number">1</span>;</span><br><span class="line">            freq[<span class="number">1</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">deleteOne</span><span class="params">(<span class="type">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(number)) &#123;</span><br><span class="line">            <span class="type">int</span> x = cnt[number];</span><br><span class="line">            freq[x]--;</span><br><span class="line">            <span class="keyword">if</span> (freq[x] == <span class="number">0</span>) &#123;</span><br><span class="line">                freq.<span class="built_in">erase</span>(x);</span><br><span class="line">            &#125;</span><br><span class="line">            cnt[number]--;</span><br><span class="line">            <span class="keyword">if</span> (cnt[number] == <span class="number">0</span>) &#123;</span><br><span class="line">                cnt.<span class="built_in">erase</span>(number);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (x - <span class="number">1</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                freq[x - <span class="number">1</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">hasFrequency</span><span class="params">(<span class="type">int</span> frequency)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> freq.<span class="built_in">count</span>(frequency);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; freq;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2672-有相同颜色的相邻元素数目"><a href="#2672-有相同颜色的相邻元素数目" class="headerlink" title="2672. 有相同颜色的相邻元素数目"></a>2672. 有相同颜色的相邻元素数目</h3><p>给你一个下标从 <strong>0</strong> 开始、长度为 <code>n</code> 的数组 <code>nums</code> 。一开始，所有元素都是 <strong>未染色</strong> （值为 <code>0</code> ）的。</p>
+<p>给你一个二维整数数组 <code>queries</code> ，其中 <code>queries[i] = [indexi, colori]</code> 。</p>
+<p>对于每个操作，你需要将数组 <code>nums</code> 中下标为 <code>indexi</code> 的格子染色为 <code>colori</code> 。</p>
+<p>请你返回一个长度与 <code>queries</code> 相等的数组 <code>answer</code> ，其中 <code>answer[i]</code>是前 <code>i</code> 个操作 <strong>之后</strong> ，相邻元素颜色相同的数目。</p>
+<p>更正式的，<code>answer[i]</code> 是执行完前 <code>i</code> 个操作后，<code>0 &lt;= j &lt; n - 1</code> 的下标 <code>j</code> 中，满足 <code>nums[j] == nums[j + 1]</code> 且 <code>nums[j] != 0</code> 的数目。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 4, queries = [[0,2],[1,2],[3,1],[1,1],[2,1]]</span><br><span class="line">输出：[0,1,1,0,2]</span><br><span class="line">解释：一开始数组 nums = [0,0,0,0] ，0 表示数组中还没染色的元素。</span><br><span class="line">- 第 1 个操作后，nums = [2,0,0,0] 。相邻元素颜色相同的数目为 0 。</span><br><span class="line">- 第 2 个操作后，nums = [2,2,0,0] 。相邻元素颜色相同的数目为 1 。</span><br><span class="line">- 第 3 个操作后，nums = [2,2,0,1] 。相邻元素颜色相同的数目为 1 。</span><br><span class="line">- 第 4 个操作后，nums = [2,1,0,1] 。相邻元素颜色相同的数目为 0 。</span><br><span class="line">- 第 5 个操作后，nums = [2,1,1,1] 。相邻元素颜色相同的数目为 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 1, queries = [[0,100000]]</span><br><span class="line">输出：[0]</span><br><span class="line">解释：一开始数组 nums = [0] ，0 表示数组中还没染色的元素。</span><br><span class="line">- 第 1 个操作后，nums = [100000] 。相邻元素颜色相同的数目为 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>1 &lt;= queries.length &lt;= 105</code></li>
+<li><code>queries[i].length == 2</code></li>
+<li><code>0 &lt;= indexi &lt;= n - 1</code></li>
+<li><code>1 &lt;= colori &lt;= 105</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-344/problems/number-of-adjacent-elements-with-the-same-color/">https://leetcode.cn/contest/weekly-contest-344/problems/number-of-adjacent-elements-with-the-same-color/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 直接模拟</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>由于每次改变第 $i$ 个元素，此时只会改变 $(i - 1, i),(i, i + 1)$ 这两个数对，我们直接计算前后变换后的数对关系即可，直接模拟即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为给定的数组的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 为给定的数组的长度。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">colorTheArray</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = queries.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(m)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nums</span><span class="params">(n + <span class="number">2</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = queries[i][<span class="number">0</span>] + <span class="number">1</span>;</span><br><span class="line">            <span class="type">int</span> c = queries[i][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (nums[x]) &#123;</span><br><span class="line">                tot -= (nums[x - <span class="number">1</span>] == nums[x]) + (nums[x + <span class="number">1</span>] == nums[x]);</span><br><span class="line">            &#125;</span><br><span class="line">            nums[x] = c;</span><br><span class="line">            tot += (nums[x - <span class="number">1</span>] == nums[x]) + (nums[x + <span class="number">1</span>] == nums[x]);</span><br><span class="line">            ans[i] = tot;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2673-使二叉树所有路径值相等的最小代价"><a href="#2673-使二叉树所有路径值相等的最小代价" class="headerlink" title="2673. 使二叉树所有路径值相等的最小代价"></a>2673. 使二叉树所有路径值相等的最小代价</h3><p>给你一个整数 <code>n</code> 表示一棵 <strong>满二叉树</strong> 里面节点的数目，节点编号从 <code>1</code> 到 <code>n</code> 。根节点编号为 <code>1</code> ，树中每个非叶子节点 <code>i</code> 都有两个孩子，分别是左孩子 <code>2 * i</code> 和右孩子 <code>2 * i + 1</code> 。</p>
+<p>树中每个节点都有一个值，用下标从 <strong>0</strong> 开始、长度为 <code>n</code> 的整数数组 <code>cost</code> 表示，其中 <code>cost[i]</code> 是第 <code>i + 1</code> 个节点的值。每次操作，你可以将树中 <strong>任意</strong> 节点的值 <strong>增加</strong> <code>1</code> 。你可以执行操作 <strong>任意</strong> 次。</p>
+<p>你的目标是让根到每一个 <strong>叶子结点</strong> 的路径值相等。请你返回 <strong>最少</strong> 需要执行增加操作多少次。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li><strong>满二叉树</strong> 指的是一棵树，它满足树中除了叶子节点外每个节点都恰好有 2 个节点，且所有叶子节点距离根节点距离相同。</li>
+<li><strong>路径值</strong> 指的是路径上所有节点的值之和。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2023/04/04/binaryytreeedrawio-4.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 7, cost = [1,5,2,2,3,3,1]</span><br><span class="line">输出：6</span><br><span class="line">解释：我们执行以下的增加操作：</span><br><span class="line">- 将节点 4 的值增加一次。</span><br><span class="line">- 将节点 3 的值增加三次。</span><br><span class="line">- 将节点 7 的值增加两次。</span><br><span class="line">从根到叶子的每一条路径值都为 9 。</span><br><span class="line">总共增加次数为 1 + 3 + 2 = 6 。</span><br><span class="line">这是最小的答案。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2023/04/04/binaryytreee2drawio.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 3, cost = [5,3,3]</span><br><span class="line">输出：0</span><br><span class="line">解释：两条路径已经有相等的路径值，所以不需要执行任何增加操作。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>3 &lt;= n &lt;= 105</code></li>
+<li><code>n + 1</code> 是 <code>2</code> 的幂</li>
+<li><code>cost.length == n</code></li>
+<li><code>1 &lt;= cost[i] &lt;= 104</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-344/problems/make-costs-of-paths-equal-in-a-binary-tree/">https://leetcode.cn/contest/weekly-contest-344/problems/make-costs-of-paths-equal-in-a-binary-tree/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 贪心</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目要求从根节点到所有叶子节点的路径和相等，首先我们可以知道路径和越小，则执行的加法操作肯定越少，首先我们观察一下最小的路径和为多少，此时我们求出所有当前树中从根节点到所有叶子节点的路径和，此时假设最大的路径和为 $distmax$，则此时我们应该在子树中对部分节点执行操作是的从根节点到所有叶子节点的路径和都为 $distmax$;</li>
+<li>接下来我们需要求出最小操作步数，此时我们可以知道最大步数肯定是在每个叶子节点上执行加法操作即可，但是我们如何贪心的最小操作呢？<ul>
+<li>假设根节点到左子树的叶子节点最大距离为 $distleft$,到右子树的叶子节点的最大距离为 $distright$，则此时根据贪心原则，我们应该在根节点的左孩子上增加 $distmax - distleft$,在根节点的右孩子上增加 $distmax - distright$，这样可以保证所有经过左孩子的路径和全部都会增加  $distmax - distleft$, 所有经过右孩子的路径和全部都会增加 $distmax - distright$，这样即可满足贪心；</li>
+<li>我们依次将经过当前节点的最大路径和往下传递即可，即可依次计算出该节点增加的值；</li>
+</ul>
+</li>
+<li>同时可以参考更为简洁的解法，自底向上的求解，<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/solutions/2259884/shu-dp-by-tsreaper-hbrj/">DFS</a></li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为节点的数目；</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 为节点的数目；</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> root, <span class="type">int</span> n, vector&lt;<span class="type">int</span>&gt;&amp; cost, vector&lt;<span class="type">int</span>&gt; &amp;sum)</span> </span>&#123;</span><br><span class="line">        sum[root - <span class="number">1</span>] = cost[root - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (root * <span class="number">2</span> &gt; n) &#123;</span><br><span class="line">            <span class="keyword">return</span> sum[root - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        sum[root - <span class="number">1</span>] += <span class="built_in">max</span>(<span class="built_in">dfs1</span>(root * <span class="number">2</span>, n, cost, sum), <span class="built_in">dfs1</span>(root * <span class="number">2</span> + <span class="number">1</span>, n, cost, sum));</span><br><span class="line">        <span class="keyword">return</span> sum[root - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> root, <span class="type">int</span> n, <span class="type">int</span> curr, vector&lt;<span class="type">int</span>&gt; &amp;cost, vector&lt;<span class="type">int</span>&gt; &amp;sum, vector&lt;<span class="type">int</span>&gt; &amp;add)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (root * <span class="number">2</span> &gt; n) &#123;</span><br><span class="line">            add[root - <span class="number">1</span>] = curr - sum[root - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> left = root * <span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> right = root * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">        add[root - <span class="number">1</span>] = curr - sum[root - <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> tot = curr - add[root - <span class="number">1</span>] - cost[root - <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">dfs2</span>(left, n, tot, cost, sum, add);</span><br><span class="line">        <span class="built_in">dfs2</span>(right, n, tot, cost, sum, add);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minIncrements</span><span class="params">(<span class="type">int</span> n, vector&lt;<span class="type">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">sum</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">add</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="type">int</span> maxVal = <span class="built_in">dfs1</span>(<span class="number">1</span>, n, cost, sum);</span><br><span class="line">        <span class="built_in">dfs2</span>(<span class="number">1</span>, n, maxVal, cost, sum, add);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">accumulate</span>(add.<span class="built_in">begin</span>(), add.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minIncrements</span><span class="params">(<span class="type">int</span> n, vector&lt;<span class="type">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        function&lt;<span class="type">long</span> <span class="type">long</span>(<span class="type">int</span>)&gt; f = [&amp;](<span class="type">int</span> x) &#123;</span><br><span class="line">            <span class="type">int</span> L = x * <span class="number">2</span>, R = x * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 已经是叶子节点，直接返回节点的值</span></span><br><span class="line">            <span class="keyword">if</span> (L &gt; n) <span class="keyword">return</span> <span class="number">1LL</span> * cost[x - <span class="number">1</span>];</span><br><span class="line">            <span class="comment">// 计算两个子节点到叶子的路径长度</span></span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> a = <span class="built_in">f</span>(L), b = <span class="built_in">f</span>(R);</span><br><span class="line">            <span class="comment">// 较短的路径要补足成较长的路径</span></span><br><span class="line">            ans += <span class="built_in">max</span>(a, b) - <span class="built_in">min</span>(a, b);</span><br><span class="line">            <span class="comment">// 套 dp 方程</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(a, b) + cost[x - <span class="number">1</span>];</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="built_in">f</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%AD%A3%E5%BA%A6%E8%B5%9B/" class="print-no-link">#力扣季度赛</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode weekly contes 344</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/119/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/115/" title="leetcode contest 342">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode contest 342</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/106/" title="leetcode weekly contest 336">
+                        <span class="hidden-mobile">leetcode weekly contest 336</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

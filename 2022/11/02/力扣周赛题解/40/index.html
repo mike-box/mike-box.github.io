@@ -1,0 +1,947 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode biweekly contest 88只能说放水太严重的周赛题目了，最后一题就是线段树的模板题目。 6212. 删除字符使频率相同题目给你一个下标从 0 开始的字符串 word，字符串只包含小写英文字母。你需要选择 一个 下标并 删除 下标处的字符，使得 word 中剩余每个字母出现 频率 相同。 如果删除一个字母后，word 中剩余所有字母的出现频率都相同，那么返回 true">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode biweekly contest 88">
+<meta property="og:url" content="http://example.com/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/40/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode biweekly contest 88只能说放水太严重的周赛题目了，最后一题就是线段树的模板题目。 6212. 删除字符使频率相同题目给你一个下标从 0 开始的字符串 word，字符串只包含小写英文字母。你需要选择 一个 下标并 删除 下标处的字符，使得 word 中剩余每个字母出现 频率 相同。 如果删除一个字母后，word 中剩余所有字母的出现频率都相同，那么返回 true">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png">
+<meta property="article:published_time" content="2022-11-01T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.814Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png">
+  
+  
+  
+  <title>leetcode biweekly contest 88 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode biweekly contest 88"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-02 01:00" pubdate>
+          November 2, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode biweekly contest 88</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-biweekly-contest-88"><a href="#leetcode-biweekly-contest-88" class="headerlink" title="leetcode biweekly contest 88"></a>leetcode biweekly contest 88</h2><p>只能说放水太严重的周赛题目了，最后一题就是线段树的模板题目。</p>
+<h4 id="6212-删除字符使频率相同"><a href="#6212-删除字符使频率相同" class="headerlink" title="6212. 删除字符使频率相同"></a>6212. 删除字符使频率相同</h4><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>给你一个下标从 <code>0</code> 开始的字符串 <code>word</code>，字符串只包含小写英文字母。你需要选择 一个 下标并 删除 下标处的字符，使得 <code>word</code> 中剩余每个字母出现 频率 相同。</p>
+<p>如果删除一个字母后，<code>word</code> 中剩余所有字母的出现频率都相同，那么返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+<p>注意：</p>
+<ul>
+<li>字母 <code>x</code> 的 频率 是这个字母在字符串中出现的次数。<br>你必须恰好删除一个字母，不能一个字母都不删除。</li>
+</ul>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：word = &quot;abcc&quot;</span><br><span class="line">输出：true</span><br><span class="line">解释：选择下标 3 并删除该字母，word 变成 &quot;abc&quot; 且每个字母出现频率都为 1 。</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：word = &quot;aazz&quot;</span><br><span class="line">输出：false</span><br><span class="line">解释：我们必须删除一个字母，所以要么 &quot;a&quot; 的频率变为 1 且 &quot;z&quot; 的频率为 2 ，要么两个字母频率反过来。所以不可能让剩余所有字母出现频率相同。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>2 &lt;= word.length &lt;= 100</code></li>
+<li><code>word</code> 只包含小写英文字母。</li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-letter-to-equalize-frequency/">https://leetcode.cn/problems/remove-letter-to-equalize-frequency/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>太容易出错的题目，因为数量较少，不如直接模拟，对所有的字符种类进行统计，依次尝试减少某一个字符后，所有的数据是否可以相等。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n + |\Sigma|)$，其中 $n$ 表示数组的长度，$|\Sigma|$ 表示字符集。</li>
+<li>空间复杂度：$O(C)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">equalFrequency</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">26</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c : word) &#123;</span><br><span class="line">            cnt[c - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                cnt[i]--;</span><br><span class="line">                <span class="type">int</span> prev = <span class="number">0</span>;</span><br><span class="line">                <span class="type">bool</span> isEqual = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (cnt[j] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (prev == <span class="number">0</span>) &#123;</span><br><span class="line">                            prev = cnt[j];</span><br><span class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (prev != cnt[j])&#123;</span><br><span class="line">                            isEqual = <span class="literal">false</span>;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                cnt[i]++;</span><br><span class="line">                <span class="keyword">if</span> (isEqual) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6197-最长上传前缀"><a href="#6197-最长上传前缀" class="headerlink" title="6197. 最长上传前缀"></a>6197. 最长上传前缀</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>给你一个 <code>n </code>个视频的上传序列，每个视频编号为 <code>1 </code>到 <code>n</code> 之间的 不同 数字，你需要依次将这些视频上传到服务器。请你实现一个数据结构，在上传的过程中计算 最长上传前缀 。</p>
+<p>如果 闭区间<code> 1</code> 到 <code>i</code> 之间的视频全部都已经被上传到服务器，那么我们称 <code>i</code> 是上传前缀。最长上传前缀指的是符合定义的 <code>i</code> 中的 最大值 。</p>
+<p>请你实现 <code>LUPrefix</code> 类：</p>
+<ul>
+<li><code>LUPrefix(int n)</code> 初始化一个 <code>n</code> 个视频的流对象。</li>
+<li><code>void upload(int video)</code> 上传 <code>video</code> 到服务器。</li>
+<li><code>int longest()</code> 返回上述定义的 最长上传前缀 的长度。</li>
+</ul>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">[&quot;LUPrefix&quot;, &quot;upload&quot;, &quot;longest&quot;, &quot;upload&quot;, &quot;longest&quot;, &quot;upload&quot;, &quot;longest&quot;]</span><br><span class="line">[[4], [3], [], [1], [], [2], []]</span><br><span class="line">输出：</span><br><span class="line">[null, null, 0, null, 1, null, 3]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">LUPrefix server = new LUPrefix(4);   // 初始化 4个视频的上传流</span><br><span class="line">server.upload(3);                    // 上传视频 3 。</span><br><span class="line">server.longest();                    // 由于视频 1 还没有被上传，最长上传前缀是 0 。</span><br><span class="line">server.upload(1);                    // 上传视频 1 。</span><br><span class="line">server.longest();                    // 前缀 [1] 是最长上传前缀，所以我们返回 1 。</span><br><span class="line">server.upload(2);                    // 上传视频 2 。</span><br><span class="line">server.longest();                    // 前缀 [1,2,3] 是最长上传前缀，所以我们返回 3 。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>1 &lt;= video &lt;= 105</code></li>
+<li><code>video</code> 中所有值 互不相同 。</li>
+<li><code>upload</code> 和 <code>longest</code> 总调用 次数至多不超过 <code>2 * 105</code> 次。</li>
+<li>至少会调用 <code>longest</code> 一次。</li>
+</ul>
+<h4 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/cnunionpay2022/problems/6olJmJ/">https://leetcode.cn/contest/cnunionpay2022/problems/6olJmJ/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们用 $curr$ 指向当前已经上传完成的最大索引，并用哈希表记录当前所有已经上传的编号。</li>
+</ol>
+<ul>
+<li>每次再查询时，我们依次往后查询 $curr + 1, curr + 2, \cdots$ 是否连续的编号是否都已经上传即可。</li>
+</ul>
+<ol start="2">
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n)$，其中 $n$ 表示已经上传的次数。</li>
+<li>空间复杂度：空间复杂度为 $O(n)$，其中 $n$ 表示已经上传的次数。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LUPrefix</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">LUPrefix</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        flag = <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n + <span class="number">1</span>, <span class="literal">false</span>);</span><br><span class="line">        flag[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">upload</span><span class="params">(<span class="type">int</span> video)</span> </span>&#123;</span><br><span class="line">        flag[video] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">while</span>(curr + <span class="number">1</span> &lt; flag.<span class="built_in">size</span>() &amp;&amp; flag[curr + <span class="number">1</span>]) &#123;</span><br><span class="line">            curr++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> curr;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> curr = <span class="number">0</span>;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; flag;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6213-所有数对的异或和"><a href="#6213-所有数对的异或和" class="headerlink" title="6213. 所有数对的异或和"></a>6213. 所有数对的异或和</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>给你两个下标从 <code>0</code> 开始的数组 <code>nums1</code> 和 <code>nums2</code> ，两个数组都只包含非负整数。请你求出另外一个数组 <code>nums3</code> ，包含 <code>nums1</code> 和 <code>nums2</code> 中 所有数对 的异或和（<code>nums1</code> 中每个整数都跟 <code>nums2</code> 中每个整数 恰好 匹配一次）。</p>
+<p>请你返回 <code>nums3</code> 中所有整数的 异或和 。</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums1 = [2,1,3], nums2 = [10,2,5,0]</span><br><span class="line">输出：13</span><br><span class="line">解释：</span><br><span class="line">一个可能的 nums3 数组是 [8,0,7,2,11,3,4,1,9,1,6,3] 。</span><br><span class="line">所有这些数字的异或和是 13 ，所以我们返回 13 。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums1 = [1,2], nums2 = [3,4]</span><br><span class="line">输出：0</span><br><span class="line">解释：</span><br><span class="line">所有数对异或和的结果分别为 nums1[0] ^ nums2[0] ，nums1[0] ^ nums2[1] ，nums1[1] ^ nums2[0] 和 nums1[1] ^ nums2[1] 。</span><br><span class="line">所以，一个可能的 nums3 数组是 [2,5,1,6] 。</span><br><span class="line">2 ^ 5 ^ 1 ^ 6 = 0 ，所以我们返回 0 。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= nums1.length, nums2.length &lt;= 105</code></li>
+<li><code>0 &lt;= nums1[i], nums2[j] &lt;= 109</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/bitwise-xor-of-all-pairings/">https://leetcode.cn/problems/bitwise-xor-of-all-pairings/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><pre><code>数学问题
+</code></pre>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>简单的数学模拟问题，我们设数组 $nums1,nums2$ 的长度分别为 $m,n$，根据题意可以知道最终异或的结果即为 $nums1$ 的每个元素要与 $nums2$ 中的每个元素异或，则可以知道 $nums1$ 中的每个元素在最终异或的等式中出现了 $n$ 次；$nums2$ 的每个元素要与 $nums1$ 中的每个元素异或，$nums2$ 中的每个元素在最终异或的等式中出现了 $m$ 次。</li>
+<li>复杂度分析</li>
+</ol>
+<ul>
+<li>时间复杂度：时间复杂度为 $O(n)$，$n$ 为数组的长度。</li>
+<li>空间复杂度：时间复杂度为 $O(n)$，$n$ 为数组的长度。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">xorAllNums</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = nums<span class="number">1.</span><span class="built_in">size</span>(), n = nums<span class="number">2.</span><span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (n &amp; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> v : nums1) &#123;</span><br><span class="line">                tot ^= v;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (m &amp; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> v : nums2) &#123;</span><br><span class="line">                tot ^= v;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6198-满足不等式的数对数目"><a href="#6198-满足不等式的数对数目" class="headerlink" title="6198. 满足不等式的数对数目"></a>6198. 满足不等式的数对数目</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>给你两个下标从 <code>0</code> 开始的整数数组 <code>nums1</code> 和 <code>nums2</code> ，两个数组的大小都为 <code>n</code> ，同时给你一个整数 <code>diff</code> ，统计满足以下条件的 数对 <code>(i, j)</code> ：</p>
+<ul>
+<li><code>0 &lt;= i &lt; j &lt;= n - 1</code> 且<br><code>nums1[i] - nums1[j] &lt;= nums2[i] - nums2[j] + diff.</code><br>请你返回满足条件的 数对数目 。</li>
+</ul>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums1 = [3,2,5], nums2 = [2,2,1], diff = 1</span><br><span class="line">输出：3</span><br><span class="line">解释：</span><br><span class="line">总共有 3 个满足条件的数对：</span><br><span class="line">1. i = 0, j = 1：3 - 2 &lt;= 2 - 2 + 1 。因为 i &lt; j 且 1 &lt;= 1 ，这个数对满足条件。</span><br><span class="line">2. i = 0, j = 2：3 - 5 &lt;= 2 - 1 + 1 。因为 i &lt; j 且 -2 &lt;= 2 ，这个数对满足条件。</span><br><span class="line">3. i = 1, j = 2：2 - 5 &lt;= 2 - 1 + 1 。因为 i &lt; j 且 -3 &lt;= 2 ，这个数对满足条件。</span><br><span class="line">所以，我们返回 3 。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums1 = [3,-1], nums2 = [-2,2], diff = -1</span><br><span class="line">输出：0</span><br><span class="line">解释：</span><br><span class="line">没有满足条件的任何数对，所以我们返回 0 。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li><code>n == nums1.length == nums2.length</code></li>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>-104 &lt;= nums1[i], nums2[i] &lt;= 104</code></li>
+<li><code>-104 &lt;= diff &lt;= 104</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/">https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p>线段树或者树状数组</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>这个题目实在是太模板题目了，不好怎么平均这个题目，知道线段树之类的模板，题目就非常简单。题目给定的不等式装换为 $nums1[i] -  nums2[i] &lt;&#x3D; nums1[j] - nums2[j] + diff$，我们令 $c[i] &#x3D; nums1[i] -  nums2[i]$，也就装换为 $c[i] &lt;&#x3D; c[j] + diff, \quad (i &lt; j)$，非常模板的题目了，我们每次遍历到 $c[j]$ 时，求处在区间 $[-\infty,c[i] - diff]$ 的元素的数目有多少个，由于题目存在负数，我们加上一个常数 $C$ 使得 $c[i] - diff + C \ge 0$，此时即转换为了求 $[0, c[i] - diff + C]$ 可以取 $C &#x3D; 40000$ 即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \log \max(nums))$，其中 $n$ 表示数组的元素，$\max(nums)$ 表示给定的数组的最大值。</li>
+<li>空间复杂度：$O(C)$，$C$ 表示给定的常数大小。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> CHL(x) (x * 2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CHR(x) (x * 2 + 1)</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN = <span class="number">4e5</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SegTreeNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> l, r;</span><br><span class="line">    <span class="type">int</span> sum;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">SegTreeNode tree[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushUpTree</span><span class="params">(<span class="type">int</span> idx)</span> </span>&#123;</span><br><span class="line">    tree[idx].sum = tree[<span class="built_in">CHL</span>(idx)].sum + tree[<span class="built_in">CHR</span>(idx)].sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">buildTree</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; r) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">        tree[idx].l = tree[idx].r = l;</span><br><span class="line">        tree[idx].sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    tree[idx].l = l;</span><br><span class="line">    tree[idx].r = r;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">buildTree</span>(<span class="built_in">CHL</span>(idx), l, mid);</span><br><span class="line">    <span class="built_in">buildTree</span>(<span class="built_in">CHR</span>(idx), mid + <span class="number">1</span>, r);</span><br><span class="line">    <span class="built_in">pushUpTree</span>(idx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">updateTree</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> val, <span class="type">int</span> idx)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; tree[idx].l || x &gt; tree[idx].r) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x == tree[idx].l &amp;&amp; x == tree[idx].r) &#123;</span><br><span class="line">        tree[idx].sum += val;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> mid = (tree[idx].l + tree[idx].r) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (x &lt;= mid) &#123;</span><br><span class="line">        <span class="built_in">updateTree</span>(x, val, <span class="built_in">CHL</span>(idx));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">updateTree</span>(x, val, <span class="built_in">CHR</span>(idx));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">pushUpTree</span>(idx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">queryTree</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> idx)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (r &lt; tree[idx].l || l &gt; tree[idx].r) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (l &lt;= tree[idx].l &amp;&amp; r &gt;= tree[idx].r) &#123;</span><br><span class="line">        <span class="keyword">return</span> tree[idx].sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> mid = (tree[idx].l + tree[idx].r) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (r &lt;= mid) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">queryTree</span>(l, r, <span class="built_in">CHL</span>(idx));</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (l &gt; mid) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">queryTree</span>(l, r, <span class="built_in">CHR</span>(idx));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">queryTree</span>(l, mid, <span class="built_in">CHL</span>(idx)) + <span class="built_in">queryTree</span>(mid + <span class="number">1</span>, r, <span class="built_in">CHR</span>(idx));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">numberOfPairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2, <span class="type">int</span> diff)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums<span class="number">1.</span><span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">buildTree</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">80000</span>);</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = nums1[i] - nums2[i] + <span class="number">40000</span>;</span><br><span class="line">            <span class="type">int</span> y = diff;</span><br><span class="line">            ans += <span class="built_in">queryTree</span>(<span class="number">0</span>, x + y, <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">updateTree</span>(x, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="print-no-link">#力扣周赛</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode biweekly contest 88</div>
+      <div>http://example.com/2022/11/02/力扣周赛题解/40/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 2, 2022</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/50/" title="leetcode biweekly contest 90">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode biweekly contest 90</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/02/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/43/" title="leetcode contest 315">
+                        <span class="hidden-mobile">leetcode contest 315</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

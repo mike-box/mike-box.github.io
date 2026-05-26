@@ -1,0 +1,924 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode biweekly contest 137T4 确实是个不错的题目，值得思考的题目，确实想到了一点思路，但还是关键的一步没有想到，还是三题的节奏。 100384. 长度为 K 的子数组的能量值 II给你一个长度为 n 的整数数组 nums 和一个正整数 k 。 一个数组的 能量值 定义为：  如果 所有 元素都是依次 连续 且 上升 的，那么能量值为 最大 的元素。 否则为 -1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode biweekly contest 137">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/219/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode biweekly contest 137T4 确实是个不错的题目，值得思考的题目，确实想到了一点思路，但还是关键的一步没有想到，还是三题的节奏。 100384. 长度为 K 的子数组的能量值 II给你一个长度为 n 的整数数组 nums 和一个正整数 k 。 一个数组的 能量值 定义为：  如果 所有 元素都是依次 连续 且 上升 的，那么能量值为 最大 的元素。 否则为 -1">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/08/08/rooks2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.766Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛赛">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2024/08/08/rooks2.png">
+  
+  
+  
+  <title>leetcode biweekly contest 137 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode biweekly contest 137"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode biweekly contest 137</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-biweekly-contest-137"><a href="#leetcode-biweekly-contest-137" class="headerlink" title="leetcode biweekly contest 137"></a>leetcode biweekly contest 137</h2><p><code>T4</code> 确实是个不错的题目，值得思考的题目，确实想到了一点思路，但还是关键的一步没有想到，还是三题的节奏。</p>
+<h3 id="100384-长度为-K-的子数组的能量值-II"><a href="#100384-长度为-K-的子数组的能量值-II" class="headerlink" title="100384. 长度为 K 的子数组的能量值 II"></a>100384. 长度为 K 的子数组的能量值 II</h3><p>给你一个长度为 <code>n</code> 的整数数组 <code>nums</code> 和一个正整数 <code>k</code> 。</p>
+<p>一个数组的 <strong>能量值</strong> 定义为：</p>
+<ul>
+<li>如果 <strong>所有</strong> 元素都是依次 <strong>连续</strong> 且 <strong>上升</strong> 的，那么能量值为 <strong>最大</strong> 的元素。</li>
+<li>否则为 -1 。</li>
+</ul>
+<p>你需要求出 <code>nums</code> 中所有长度为 <code>k</code> 的 子数组 的能量值。</p>
+<p>请你返回一个长度为 <code>n - k + 1</code> 的整数数组 <code>results</code> ，其中 <code>results[i]</code> 是子数组 <code>nums[i..(i + k - 1)]</code> 的能量值。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [1,2,3,4,3,2,5], k &#x3D; 3</p>
+<p><strong>输出：</strong>[3,4,-1,-1,-1]</p>
+<p><strong>解释：</strong></p>
+<p><code>nums</code> 中总共有 5 个长度为 3 的子数组：</p>
+<ul>
+<li><code>[1, 2, 3]</code> 中最大元素为 3 。</li>
+<li><code>[2, 3, 4]</code> 中最大元素为 4 。</li>
+<li><code>[3, 4, 3]</code> 中元素 <strong>不是</strong> 连续的。</li>
+<li><code>[4, 3, 2]</code> 中元素 <strong>不是</strong> 上升的。</li>
+<li><code>[3, 2, 5]</code> 中元素 <strong>不是</strong> 连续的。</li>
+</ul>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [2,2,2,2,2], k &#x3D; 4</p>
+<p><strong>输出：</strong>[-1,-1]</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [3,2,3,2,3,2], k &#x3D; 2</p>
+<p><strong>输出：</strong>[-1,3,-1,3,-1]</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 106</code></li>
+<li><code>1 &lt;= k &lt;= n</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-137/problems/find-the-power-of-k-size-subarrays-ii/">https://leetcode.cn/contest/biweekly-contest-137/problems/find-the-power-of-k-size-subarrays-ii/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><code>T1</code>  与 <code>T2</code> 的解法完全一致，我们直接计算以 $i$ 为结尾的最长连续能量数组的长度，假设当前的能量长度 $dp[i] &gt; k$ ，此时能量值即为 $nums[i]$，否则为 $-1$。<ul>
+<li>$dp[i] &#x3D; dp[i - 1] + 1, \quad if nums[i] - nums[i - 1] &#x3D; 1$;</li>
+<li>$dp[i] &#x3D; 1, \quad if nums[i] - nums[i - 1] \neq 1$;</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">resultsArray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        ans = []</span><br><span class="line">        tot = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i, x <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            tot = <span class="number">1</span> <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> nums[i] - nums[i - <span class="number">1</span>] != <span class="number">1</span> <span class="keyword">else</span> tot + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> i &gt;= k - <span class="number">1</span>:</span><br><span class="line">                ans.append(nums[i] <span class="keyword">if</span> tot &gt;= k <span class="keyword">else</span> -<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="100401-放三个车的价值之和最大-II"><a href="#100401-放三个车的价值之和最大-II" class="headerlink" title="100401. 放三个车的价值之和最大 II"></a>100401. 放三个车的价值之和最大 II</h3><p>给你一个 <code>m x n</code> 的二维整数数组 <code>board</code> ，它表示一个国际象棋棋盘，其中 <code>board[i][j]</code> 表示格子 <code>(i, j)</code> 的 <strong>价值</strong> 。</p>
+<p>处于 <strong>同一行</strong> 或者 <strong>同一列</strong> 车会互相 <strong>攻击</strong> 。你需要在棋盘上放三个车，确保它们两两之间都 <strong>无法互相攻击</strong> 。</p>
+<p>请你返回满足上述条件下，三个车所在格子 <strong>值</strong> 之和 <strong>最大</strong> 为多少。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>board &#x3D; [[-3,1,1,1],[-3,1,-3,1],[-3,2,1,1]]</p>
+<p><strong>输出：</strong>4</p>
+<p><strong>解释：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/08/08/rooks2.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>我们可以将车分别放在格子 <code>(0, 2)</code> ，<code>(1, 3)</code> 和 <code>(2, 1)</code> 处，价值之和为 <code>1 + 1 + 2 = 4</code> 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>board &#x3D; [[1,2,3],[4,5,6],[7,8,9]]</p>
+<p><strong>输出：</strong>15</p>
+<p><strong>解释：</strong></p>
+<p>我们可以将车分别放在格子 <code>(0, 0)</code> ，<code>(1, 1)</code> 和 <code>(2, 2)</code> 处，价值之和为 <code>1 + 5 + 9 = 15</code> 。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong>board &#x3D; [[1,1,1],[1,1,1],[1,1,1]]</p>
+<p><strong>输出：</strong>3</p>
+<p><strong>解释：</strong></p>
+<p>我们可以将车分别放在格子 <code>(0, 2)</code> ，<code>(1, 1)</code> 和 <code>(2, 0)</code> 处，价值之和为 <code>1 + 1 + 1 = 3</code> 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>3 &lt;= m == board.length &lt;= 500</code></li>
+<li><code>3 &lt;= n == board[i].length &lt;= 500</code></li>
+<li><code>-109 &lt;= board[i][j] &lt;= 109</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-137/problems/maximum-value-sum-by-placing-three-rooks-ii/">https://leetcode.cn/contest/biweekly-contest-137/problems/maximum-value-sum-by-placing-three-rooks-ii/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>贪心，动态规划
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><code>T3</code> 与 <code>T4</code>的题目完全一致，主要差别在数量级上，先说 <code>t3</code> 比较容易的解法，首先题目要求找到 $3$ 个不再同一列，且不在同一行的三个点之和的最大值，此时我们可以考虑贪心的解法，此时我们找到每一列中的最大的 $3$ 个值，然后枚举 $3$ 个不同的行 $i,j,k$ ，此时我们知道根据排列组合，由于此时我们已经知到 $i,j,k$ 三行中每行的最大的  $3$ 个值，此时我们枚举遍历每行最大值的不同组合，一定可以找到最大的组合出来。此时需要的时间复杂度为 $O(mn + 27m^3 )$, 其中 $m,n$ 表示给定二维矩阵的行与列，贪心的方法比较简单。</li>
+<li><code>t4</code>的的数量级扩大了，此时在按照 <code>t3</code> 的解法就会超时，需要进一步优化。仔细思考一个问题，此时假设最大为不同的 $3$ 行，分别为 $i,j,k, i &lt; j &lt; k$, 我们可以枚举中间最中间的行 $j$  ，此时第 $j$ 行的元素一定出自于第 $j$ 行的最大的 $3$ 个元素之一,  对于 第 $i$ 行的第 $a$ 列的元素，, 此时同一列中按照贪心法则，此时我们应该选择  $board[i’][a]$ 更优。我们首先找到 $0$ 到 $i-1$ 行中所有列中最大得 $3$ 值，同理我们选择第 $k$ 行时也应选择 $j+1$ 到 $n-1$ 中所有列中的最大的 $3$ 个值，思考难度还是比较难得题目，整体还是比较难得题目。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定节点的数目。</li>
+<li>空间复杂度：$O(n)$；</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maximumValueSum</span>(<span class="params">self, board: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m, n = <span class="built_in">len</span>(board), <span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        cnt = [[[-inf, -<span class="number">1</span>] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            <span class="keyword">for</span> j, x <span class="keyword">in</span> <span class="built_in">enumerate</span>(board[i]):</span><br><span class="line">                cnt[i].append([x, j])</span><br><span class="line">                cnt[i].sort(key = <span class="keyword">lambda</span> x : -x[<span class="number">0</span>])</span><br><span class="line">                cnt[i].pop()</span><br><span class="line">        </span><br><span class="line">        res = -inf</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m - <span class="number">2</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, m - <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(j + <span class="number">1</span>, m):</span><br><span class="line">                    <span class="keyword">for</span> a <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">                        <span class="keyword">for</span> b <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">                            <span class="keyword">if</span> cnt[i][a][<span class="number">1</span>] == cnt[j][b][<span class="number">1</span>]:</span><br><span class="line">                                <span class="keyword">continue</span></span><br><span class="line">                            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">                                <span class="keyword">if</span> cnt[k][c][<span class="number">1</span>] == cnt[i][a][<span class="number">1</span>] <span class="keyword">or</span> cnt[k][c][<span class="number">1</span>] == cnt[j][b][<span class="number">1</span>]:</span><br><span class="line">                                    <span class="keyword">continue</span></span><br><span class="line">                                res = <span class="built_in">max</span>(res, cnt[i][a][<span class="number">0</span>] + cnt[j][b][<span class="number">0</span>] + cnt[k][c][<span class="number">0</span>])</span><br><span class="line">                          </span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">   </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maximumValueSum</span>(<span class="params">self, board: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m, n = <span class="built_in">len</span>(board), <span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        prefix = [[[-inf, -<span class="number">1</span>] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m)]</span><br><span class="line">        suffix = [[[-inf, -<span class="number">1</span>] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m)]</span><br><span class="line">        maxThree = [[[-inf, -<span class="number">1</span>] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m)]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># prefix[i]: 求出 0~i 行中最大得 3个列</span></span><br><span class="line">        cnt = [[-inf, -<span class="number">1</span>] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            <span class="keyword">for</span> j, x <span class="keyword">in</span> <span class="built_in">enumerate</span>(board[i]):</span><br><span class="line">                <span class="comment"># 求出每一行中得最大得 3 个列</span></span><br><span class="line">                maxThree[i].append([x, j])</span><br><span class="line">                maxThree[i].sort(key = <span class="keyword">lambda</span> x : -x[<span class="number">0</span>])</span><br><span class="line">                maxThree[i].pop()</span><br><span class="line">                <span class="keyword">if</span> x &gt; cnt[j][<span class="number">0</span>]:</span><br><span class="line">                    cnt[j] = [x, j]</span><br><span class="line">            <span class="keyword">for</span> x, j <span class="keyword">in</span> cnt:</span><br><span class="line">                prefix[i].append([x, j])</span><br><span class="line">                prefix[i].sort(key = <span class="keyword">lambda</span> x : -x[<span class="number">0</span>])</span><br><span class="line">                prefix[i].pop()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># suffix[i]: 求出 i~m-1 行中最大得 3个列</span></span><br><span class="line">        cnt = [[-inf, -<span class="number">1</span>] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j, x <span class="keyword">in</span> <span class="built_in">enumerate</span>(board[i]):</span><br><span class="line">                <span class="keyword">if</span> x &gt; cnt[j][<span class="number">0</span>]:</span><br><span class="line">                    cnt[j] = [x, j]</span><br><span class="line">            <span class="keyword">for</span> x, j <span class="keyword">in</span> cnt:</span><br><span class="line">                suffix[i].append([x, j])</span><br><span class="line">                suffix[i].sort(key = <span class="keyword">lambda</span> x : -x[<span class="number">0</span>])</span><br><span class="line">                suffix[i].pop()</span><br><span class="line">            </span><br><span class="line">        res = -inf</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, m - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> x, a <span class="keyword">in</span> prefix[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">for</span> y, b <span class="keyword">in</span> maxThree[i]:</span><br><span class="line">                    <span class="keyword">if</span> a == b:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    <span class="keyword">for</span> z, c <span class="keyword">in</span> suffix[i + <span class="number">1</span>]:</span><br><span class="line">                        <span class="keyword">if</span> a == c <span class="keyword">or</span> b == c:</span><br><span class="line">                            <span class="keyword">continue</span></span><br><span class="line">                        res = <span class="built_in">max</span>(res, x + y + z)                        </span><br><span class="line">                          </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E8%B5%9B/" class="print-no-link">#力扣周赛赛</a>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode biweekly contest 137</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/219/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/215/" title="leetcode biweekly contest 135">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode biweekly contest 135</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/217/" title="leetcode weekly contest 408">
+                        <span class="hidden-mobile">leetcode weekly contest 408</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

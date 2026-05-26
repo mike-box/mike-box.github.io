@@ -1,0 +1,994 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode biweekly contes 113这次的双周赛题目还算不错，确实不太难的题目，比拼的还是手速场。 8039. 使数组成为递增数组的最少右移次数给你一个长度为 n 下标从 0 开始的数组 nums ，数组中的元素为 互不相同 的正整数。请你返回让 nums 成为递增数组的 最少右移 次数，如果无法得到递增数组，返回 -1 。 一次 右移 指的是同时对所有下标进行操作，将下标为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode biweekly contes 113">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/148/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode biweekly contes 113这次的双周赛题目还算不错，确实不太难的题目，比拼的还是手速场。 8039. 使数组成为递增数组的最少右移次数给你一个长度为 n 下标从 0 开始的数组 nums ，数组中的元素为 互不相同 的正整数。请你返回让 nums 成为递增数组的 最少右移 次数，如果无法得到递增数组，返回 -1 。 一次 右移 指的是同时对所有下标进行操作，将下标为">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2023/08/26/image-20230826221104-3.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2023/08/26/image-20230826225541-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202309172312995.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.624Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛赛">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2023/08/26/image-20230826221104-3.png">
+  
+  
+  
+  <title>leetcode biweekly contes 113 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode biweekly contes 113"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          56 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode biweekly contes 113</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-biweekly-contes-113"><a href="#leetcode-biweekly-contes-113" class="headerlink" title="leetcode biweekly contes 113"></a>leetcode biweekly contes 113</h2><p>这次的双周赛题目还算不错，确实不太难的题目，比拼的还是手速场。</p>
+<h3 id="8039-使数组成为递增数组的最少右移次数"><a href="#8039-使数组成为递增数组的最少右移次数" class="headerlink" title="8039. 使数组成为递增数组的最少右移次数"></a>8039. 使数组成为递增数组的最少右移次数</h3><p>给你一个长度为 <code>n</code> 下标从 <strong>0</strong> 开始的数组 <code>nums</code> ，数组中的元素为 <strong>互不相同</strong> 的正整数。请你返回让 <code>nums</code> 成为递增数组的 <strong>最少右移</strong> 次数，如果无法得到递增数组，返回 <code>-1</code> 。</p>
+<p>一次 <strong>右移</strong> 指的是同时对所有下标进行操作，将下标为 <code>i</code> 的元素移动到下标 <code>(i + 1) % n</code> 处。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,4,5,1,2]</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">第一次右移后，nums = [2,3,4,5,1] 。</span><br><span class="line">第二次右移后，nums = [1,2,3,4,5] 。</span><br><span class="line">现在 nums 是递增数组了，所以答案为 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,3,5]</span><br><span class="line">输出：0</span><br><span class="line">解释：nums 已经是递增数组了，所以答案为 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,1,4]</span><br><span class="line">输出：-1</span><br><span class="line">解释：无法将数组变为递增数组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 100</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 100</code></li>
+<li><code>nums</code> 中的整数互不相同。</li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-363/problems/sum-of-values-at-indices-with-k-set-bits/">https://leetcode.cn/contest/weekly-contest-363/problems/sum-of-values-at-indices-with-k-set-bits/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>检测数组是否为循环递增数组，假设数组的长度为 $n$，即找到是否存在索引 $i$ 满足:<ul>
+<li>$[0,i-1]$ 之间数组为递增，$[i,n-1]$ 之间数组递增，且满足 $nums[n-1] &lt; nums[0]$；</li>
+<li>是否满足将数组 $nums$ 循环移动 $x$ 位置后数组变为递增；</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示数组的长度。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><figcaption><span>[sol1-C++]</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumRightShifts</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> last = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                last = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (last &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = last; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; nums[<span class="number">0</span>]) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">if</span> (i + <span class="number">1</span> &lt; nums.<span class="built_in">size</span>()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i + <span class="number">1</span>] &lt; nums[i]) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums.<span class="built_in">size</span>() - last;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2856-删除数对后的最小数组长度"><a href="#2856-删除数对后的最小数组长度" class="headerlink" title="2856. 删除数对后的最小数组长度"></a>2856. 删除数对后的最小数组长度</h3><p>给你一个下标从 <strong>0</strong> 开始的 <strong>非递减</strong> 整数数组 <code>nums</code> 。</p>
+<p>你可以执行以下操作任意次：</p>
+<ul>
+<li>选择 <strong>两个</strong> 下标 <code>i</code> 和 <code>j</code> ，满足 <code>i &lt; j</code> 且 <code>nums[i] &lt; nums[j]</code> 。</li>
+<li>将 <code>nums</code> 中下标在 <code>i</code> 和 <code>j</code> 处的元素删除。剩余元素按照原来的顺序组成新的数组，下标也重新从 <strong>0</strong> 开始编号。</li>
+</ul>
+<p>请你返回一个整数，表示执行以上操作任意次后（可以执行 <strong>0</strong> 次），<code>nums</code> 数组的 <strong>最小</strong> 数组长度。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,3,4,9]</span><br><span class="line">输出：0</span><br><span class="line">解释：一开始，nums = [1, 3, 4, 9] 。</span><br><span class="line">第一次操作，我们选择下标 0 和 1 ，满足 nums[0] &lt; nums[1] &lt;=&gt; 1 &lt; 3 。</span><br><span class="line">删除下标 0 和 1 处的元素，nums 变成 [4, 9] 。</span><br><span class="line">下一次操作，我们选择下标 0 和 1 ，满足 nums[0] &lt; nums[1] &lt;=&gt; 4 &lt; 9 。</span><br><span class="line">删除下标 0 和 1 处的元素，nums 变成空数组 [] 。</span><br><span class="line">所以，可以得到的最小数组长度为 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,3,6,9]</span><br><span class="line">输出：0</span><br><span class="line">解释：一开始，nums = [2, 3, 6, 9] 。</span><br><span class="line">第一次操作，我们选择下标 0 和 2 ，满足 nums[0] &lt; nums[2] &lt;=&gt; 2 &lt; 6 。</span><br><span class="line">删除下标 0 和 2 处的元素，nums 变成 [3, 9] 。</span><br><span class="line">下一次操作，我们选择下标 0 和 1 ，满足 nums[0] &lt; nums[1] &lt;=&gt; 3 &lt; 9 。</span><br><span class="line">删除下标 0 和 1 处的元素，nums 变成空数组 [] 。</span><br><span class="line">所以，可以得到的最小数组长度为 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,1,2]</span><br><span class="line">输出：1</span><br><span class="line">解释：一开始，nums = [1, 1, 2] 。</span><br><span class="line">第一次操作，我们选择下标 0 和 2 ，满足 nums[0] &lt; nums[2] &lt;=&gt; 1 &lt; 2 。</span><br><span class="line">删除下标 0 和 2 处的元素，nums 变成 [1] 。</span><br><span class="line">无法对数组再执行操作。</span><br><span class="line">所以，可以得到的最小数组长度为 1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>nums</code> 是 <strong>非递减</strong> 数组。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-113/problems/minimum-array-length-after-pair-removals/">https://leetcode.cn/contest/biweekly-contest-113/problems/minimum-array-length-after-pair-removals/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>数学题目
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>最简单的做法每次选取频次最高的两个数进行配对，最后知道剩下的即可，另一种数学方法，假设当前数组的长度为 $n$，此时出现次数最多的元素为 $nums[i]$, 出现的次数为 $x$，<ul>
+<li>如果 $2x &gt; n$, 即 $x$ 出现的次数超过数组的长度的一半，此时超出 $n -x$ 的部分无法配对，此时可以配对的次数为 $n - x$ 次， 剩余 $n - 2(n-x) &#x3D; 2x - n$；</li>
+<li>如果 $2x \le n$:<ul>
+<li>如果 $n$ 为偶数则一定可以完成配对；</li>
+<li>如果 $n$ 为奇数则一定存在一个元素无法完成配对；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 为数组的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 为数组的长度。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minLengthAfterRemovals</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = nums.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : nums) cnt[v]++;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; arr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [k, v] : cnt) &#123;</span><br><span class="line">            arr.<span class="built_in">emplace_back</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        priority_queue&lt;<span class="type">int</span>, vector&lt;<span class="type">int</span>&gt;, less&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">pq</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">while</span> (pq.<span class="built_in">size</span>() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> x = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="type">int</span> y = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            x--;</span><br><span class="line">            y--;</span><br><span class="line">            ans -= <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (x &gt; <span class="number">0</span>) pq.<span class="built_in">emplace</span>(x);</span><br><span class="line">            <span class="keyword">if</span> (y &gt; <span class="number">0</span>) pq.<span class="built_in">emplace</span>(y);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minLengthAfterRemovals</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> x = nums[n / <span class="number">2</span>];</span><br><span class="line">        <span class="type">int</span> max_cnt = <span class="built_in">upper_bound</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), x) -</span><br><span class="line">                      <span class="built_in">lower_bound</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), x);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(max_cnt * <span class="number">2</span> - n, n % <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6988-统计距离为-k-的点对"><a href="#6988-统计距离为-k-的点对" class="headerlink" title="6988. 统计距离为 k 的点对"></a>6988. 统计距离为 k 的点对</h3><p>给你一个 <strong>二维</strong> 整数数组 <code>coordinates</code> 和一个整数 <code>k</code> ，其中 <code>coordinates[i] = [xi, yi]</code> 是第 <code>i</code> 个点在二维平面里的坐标。</p>
+<p>我们定义两个点 <code>(x1, y1)</code> 和 <code>(x2, y2)</code> 的 <strong>距离</strong> 为 <code>(x1 XOR x2) + (y1 XOR y2)</code> ，<code>XOR</code> 指的是按位异或运算。</p>
+<p>请你返回满足 <code>i &lt; j</code> 且点 <code>i</code> 和点 <code>j</code>之间距离为 <code>k</code> 的点对数目。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：coordinates = [[1,2],[4,2],[1,3],[5,2]], k = 5</span><br><span class="line">输出：2</span><br><span class="line">解释：以下点对距离为 k ：</span><br><span class="line">- (0, 1)：(1 XOR 4) + (2 XOR 2) = 5 。</span><br><span class="line">- (2, 3)：(1 XOR 5) + (3 XOR 2) = 5 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：coordinates = [[1,3],[1,3],[1,3],[1,3],[1,3]], k = 0</span><br><span class="line">输出：10</span><br><span class="line">解释：任何两个点之间的距离都为 0 ，所以总共有 10 组点对。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= coordinates.length &lt;= 50000</code></li>
+<li><code>0 &lt;= xi, yi &lt;= 106</code></li>
+<li><code>0 &lt;= k &lt;= 100</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-113/problems/count-pairs-of-points-with-distance-k/">https://leetcode.cn/contest/biweekly-contest-113/problems/count-pairs-of-points-with-distance-k/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 枚举</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>题目初看起来貌似很难，但是关键在于 $k \in[0,100]$, $k$ 的取值范围非常小，所以导致题目就不是很难了。根据公式可以知道：</p>
+<p>$$k &#x3D; a \oplus x + b \oplus y$$，当然我们直接求 $a,b$ 比较困难，但是我们知道 $k&#x3D; 100$，则此时假设  $a\oplus x &#x3D; c$，则 $b \oplus y &#x3D; 100 -c$，由于 $k$ 的范围非常小我们直接枚举 $c$ 的取值，则此时 $a &#x3D; c \oplus x, b &#x3D; y \oplus (100 - c)$, 此时我们即可知道另一个点的取值，此时我们利用哈希统计当前值为 $(a,b)$ 的点的数量，依次统计即可。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(nk)$，其中 $n$ 表示数组的长度，$k$ 表示给定的元素；</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示数组的长度；</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countPairs</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; coordinates, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = coordinates.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="type">long</span> <span class="type">long</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> x = coordinates[i][<span class="number">0</span>];</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> y = coordinates[i][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= k; j++) &#123;</span><br><span class="line">                <span class="type">long</span> <span class="type">long</span> a = x ^ j;</span><br><span class="line">                <span class="type">long</span> <span class="type">long</span> b = y ^ (k - j);</span><br><span class="line">                <span class="type">long</span> <span class="type">long</span> key = (a &lt;&lt; <span class="number">32</span>) + b;</span><br><span class="line">                <span class="keyword">if</span> (cnt.<span class="built_in">count</span>(key)) &#123;</span><br><span class="line">                    ans += cnt[key];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            cnt[(x &lt;&lt; <span class="number">32</span>) + y]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100041-可以到达每一个节点的最少边反转次数"><a href="#100041-可以到达每一个节点的最少边反转次数" class="headerlink" title="100041. 可以到达每一个节点的最少边反转次数"></a>100041. 可以到达每一个节点的最少边反转次数</h3><p>给你一个 <code>n</code> 个点的 <strong>简单有向图</strong> （没有重复边的有向图），节点编号为 <code>0</code> 到 <code>n - 1</code> 。如果这些边是双向边，那么这个图形成一棵 <strong>树</strong> 。</p>
+<p>给你一个整数 <code>n</code> 和一个 <strong>二维</strong> 整数数组 <code>edges</code> ，其中 <code>edges[i] = [ui, vi]</code> 表示从节点 <code>ui</code> 到节点 <code>vi</code> 有一条 <strong>有向边</strong> 。</p>
+<p><strong>边反转</strong> 指的是将一条边的方向反转，也就是说一条从节点 <code>ui</code> 到节点 <code>vi</code> 的边会变为一条从节点 <code>vi</code> 到节点 <code>ui</code> 的边。</p>
+<p>对于范围 <code>[0, n - 1]</code> 中的每一个节点 <code>i</code> ，你的任务是分别 <strong>独立</strong> 计算 <strong>最少</strong> 需要多少次 <strong>边反转</strong> ，从节点 <code>i</code> 出发经过 <strong>一系列有向边</strong> ，可以到达所有的节点。</p>
+<p>请你返回一个长度为 <code>n</code> 的整数数组 <code>answer</code> ，其中 <code>answer[i]</code>表示从节点 <code>i</code> 出发，可以到达所有节点的 <strong>最少边反转</strong> 次数。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2023/08/26/image-20230826221104-3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 4, edges = [[2,0],[2,1],[1,3]]</span><br><span class="line">输出：[1,1,0,2]</span><br><span class="line">解释：上图表示了与输入对应的简单有向图。</span><br><span class="line">对于节点 0 ：反转 [2,0] ，从节点 0 出发可以到达所有节点。</span><br><span class="line">所以 answer[0] = 1 。</span><br><span class="line">对于节点 1 ：反转 [2,1] ，从节点 1 出发可以到达所有节点。</span><br><span class="line">所以 answer[1] = 1 。</span><br><span class="line">对于节点 2 ：不需要反转就可以从节点 2 出发到达所有节点。</span><br><span class="line">所以 answer[2] = 0 。</span><br><span class="line">对于节点 3 ：反转 [1,3] 和 [2,1] ，从节点 3 出发可以到达所有节点。</span><br><span class="line">所以 answer[3] = 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2023/08/26/image-20230826225541-2.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 3, edges = [[1,2],[2,0]]</span><br><span class="line">输出：[2,0,1]</span><br><span class="line">解释：上图表示了与输入对应的简单有向图。</span><br><span class="line">对于节点 0 ：反转 [2,0] 和 [1,2] ，从节点 0 出发可以到达所有节点。</span><br><span class="line">所以 answer[0] = 2 。</span><br><span class="line">对于节点 1 ：不需要反转就可以从节点 2 出发到达所有节点。</span><br><span class="line">所以 answer[1] = 0 。</span><br><span class="line">对于节点 2 ：反转 [1,2] ，从节点 2 出发可以到达所有节点。</span><br><span class="line">所以 answer[2] = 1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>edges.length == n - 1</code></li>
+<li><code>edges[i].length == 2</code></li>
+<li><code>0 &lt;= ui == edges[i][0] &lt; n</code></li>
+<li><code>0 &lt;= vi == edges[i][1] &lt; n</code></li>
+<li><code>ui != vi</code></li>
+<li>输入保证如果边是双向边，可以得到一棵树。</li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-112/problems/count-k-subsequences-of-a-string-with-maximum-beauty/">https://leetcode.cn/contest/biweekly-contest-112/problems/count-k-subsequences-of-a-string-with-maximum-beauty/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 换根 dp</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>题目还是经典的题目变形，跟「<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-distances-in-tree/">834. 树中距离之和</a>」基本类似的题目，</p>
+<ul>
+<li><p>首先我们统计以 $0$ 点为根时需要反转的次数，这个就用简单的 $dfs$ 即可，即统计当前从孩子节点指向父亲节点的边的数目，总的数目为 $tot$；</p>
+</li>
+<li><p>其次我们从 $0$ 点开始依次遍历每个节点 $x$，此时我们只需要反装从 $0$ 到 $x$ 这条路径上的边即可，其余的边保证不再反转即可，</p>
+<ul>
+<li>此时如果当前的边是孩子节点指向父亲节点的边，则此时反转的边的数目减 $1$, 即 $tot-1$；</li>
+<li>此时如果当前的边是父亲节点指向孩子节点的边，则此时反转的边的数目加 $1$, 即 $tot+1$；</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/202309172312995.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示节点的数目。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示节点的数目。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">minEdgeReversals</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">graph</span>(n);</span><br><span class="line">        vector&lt;unordered_set&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">cnt</span>(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> e : edges) &#123;</span><br><span class="line">            graph[e[<span class="number">0</span>]].<span class="built_in">emplace_back</span>(e[<span class="number">1</span>]);</span><br><span class="line">            graph[e[<span class="number">1</span>]].<span class="built_in">emplace_back</span>(e[<span class="number">0</span>]);</span><br><span class="line">            cnt[e[<span class="number">0</span>]].<span class="built_in">emplace</span>(e[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">       </span><br><span class="line">        function&lt;<span class="type">int</span>(<span class="type">int</span>, <span class="type">int</span>)&gt; dfs1 = [&amp;](<span class="type">int</span> root, <span class="type">int</span> parent) -&gt; <span class="type">int</span> &#123;</span><br><span class="line">            <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> v : graph[root]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v == parent) <span class="keyword">continue</span>;</span><br><span class="line">                res += <span class="built_in">dfs1</span>(v, root);</span><br><span class="line">                <span class="keyword">if</span> (cnt[v].<span class="built_in">count</span>(root)) res++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> tot = <span class="built_in">dfs1</span>(<span class="number">0</span>, <span class="number">-1</span>);</span><br><span class="line">         <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n)</span></span>;</span><br><span class="line">        function&lt;<span class="type">void</span>(<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>)&gt; dfs2 = [&amp;](<span class="type">int</span> root, <span class="type">int</span> parent, <span class="type">int</span> tot) &#123;</span><br><span class="line">            ans[root] = tot;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> v : graph[root]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v == parent) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span> (cnt[v].<span class="built_in">count</span>(root)) &#123;</span><br><span class="line">                    <span class="built_in">dfs2</span>(v, root, tot - <span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">dfs2</span>(v, root, tot + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="built_in">dfs2</span>(<span class="number">0</span>, <span class="number">-1</span>, tot);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E8%B5%9B/" class="print-no-link">#力扣周赛赛</a>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode biweekly contes 113</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/148/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/149/" title="leetcode biweekly contes 363">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode biweekly contes 363</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/151/" title="leetcode biweekly contes 114">
+                        <span class="hidden-mobile">leetcode biweekly contes 114</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1032 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode weekly contest 410今天周赛比较简单的题目，T3,T4 注意观察规律即可，本质还是动态规划的变形题目，注意观察细节即可，本质上是数学技巧。 100396. 单调数组对的数目 II给你一个长度为 n 的 正 整数数组 nums 。 如果两个 非负 整数数组 (arr1, arr2) 满足以下条件，我们称它们是 单调 数组对：  两个数组的长度都是 n 。 arr1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode weekly contest 410">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/218/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode weekly contest 410今天周赛比较简单的题目，T3,T4 注意观察规律即可，本质还是动态规划的变形题目，注意观察细节即可，本质上是数学技巧。 100396. 单调数组对的数目 II给你一个长度为 n 的 正 整数数组 nums 。 如果两个 非负 整数数组 (arr1, arr2) 满足以下条件，我们称它们是 单调 数组对：  两个数组的长度都是 n 。 arr1">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/05/26/tree1.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/06/03/screenshot-2024-06-03-193552.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/08/08/rob.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.766Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛赛">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2024/05/26/tree1.png">
+  
+  
+  
+  <title>leetcode weekly contest 410 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode weekly contest 410"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          46 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode weekly contest 410</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-weekly-contest-410"><a href="#leetcode-weekly-contest-410" class="headerlink" title="leetcode weekly contest 410"></a>leetcode weekly contest 410</h2><p>今天周赛比较简单的题目，<code>T3,T4</code> 注意观察规律即可，本质还是动态规划的变形题目，注意观察细节即可，本质上是数学技巧。</p>
+<h3 id="100396-单调数组对的数目-II"><a href="#100396-单调数组对的数目-II" class="headerlink" title="100396. 单调数组对的数目 II"></a>100396. 单调数组对的数目 II</h3><p>给你一个长度为 <code>n</code> 的 <strong>正</strong> 整数数组 <code>nums</code> 。</p>
+<p>如果两个 <strong>非负</strong> 整数数组 <code>(arr1, arr2)</code> 满足以下条件，我们称它们是 <strong>单调</strong> 数组对：</p>
+<ul>
+<li>两个数组的长度都是 <code>n</code> 。</li>
+<li><code>arr1</code> 是单调 <strong>非递减</strong> 的，换句话说 <code>arr1[0] &lt;= arr1[1] &lt;= ... &lt;= arr1[n - 1]</code> 。</li>
+<li><code>arr2</code> 是单调 <strong>非递增</strong> 的，换句话说 <code>arr2[0] &gt;= arr2[1] &gt;= ... &gt;= arr2[n - 1]</code> 。</li>
+<li>对于所有的 <code>0 &lt;= i &lt;= n - 1</code> 都有 <code>arr1[i] + arr2[i] == nums[i]</code> 。</li>
+</ul>
+<p>请你返回所有 <strong>单调</strong> 数组对的数目。</p>
+<p>由于答案可能很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [2,3,2]</p>
+<p><strong>输出：</strong>4</p>
+<p><strong>解释：</strong></p>
+<p>单调数组对包括：</p>
+<ol>
+<li><code>([0, 1, 1], [2, 2, 1])</code></li>
+<li><code>([0, 1, 2], [2, 2, 0])</code></li>
+<li><code>([0, 2, 2], [2, 1, 0])</code></li>
+<li><code>([1, 2, 2], [1, 1, 0])</code></li>
+</ol>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [5,5,5,5]</p>
+<p><strong>输出：</strong>126</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == nums.length &lt;= 2000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 1000</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-ii/">https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-ii/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接根据题意模拟即可，按照上下左右四个方向进行模拟即可，返回最终坐标即可；</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">finalPositionOfSnake</span>(<span class="params">self, n: <span class="built_in">int</span>, commands: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="built_in">dir</span> = [[<span class="number">0</span>, -<span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], [-<span class="number">1</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">0</span>]]</span><br><span class="line">        x, y = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> command <span class="keyword">in</span> commands:</span><br><span class="line">            <span class="built_in">print</span>(command)</span><br><span class="line">            <span class="keyword">if</span> command == <span class="string">&quot;LEFT&quot;</span>:</span><br><span class="line">                x += <span class="built_in">dir</span>[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">                y += <span class="built_in">dir</span>[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> command == <span class="string">&quot;RIGHT&quot;</span>:</span><br><span class="line">                x += <span class="built_in">dir</span>[<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line">                y += <span class="built_in">dir</span>[<span class="number">1</span>][<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> command == <span class="string">&quot;UP&quot;</span>:</span><br><span class="line">                x += <span class="built_in">dir</span>[<span class="number">2</span>][<span class="number">0</span>]</span><br><span class="line">                y += <span class="built_in">dir</span>[<span class="number">2</span>][<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> command == <span class="string">&quot;DOWN&quot;</span>:</span><br><span class="line">                x += <span class="built_in">dir</span>[<span class="number">3</span>][<span class="number">0</span>]</span><br><span class="line">                y += <span class="built_in">dir</span>[<span class="number">3</span>][<span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> x * n + y</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="100354-统计好节点的数目"><a href="#100354-统计好节点的数目" class="headerlink" title="100354. 统计好节点的数目"></a>100354. 统计好节点的数目</h3><p>现有一棵 <strong>无向</strong> 树，树中包含 <code>n</code> 个节点，按从 <code>0</code> 到 <code>n - 1</code> 标记。树的根节点是节点 <code>0</code> 。给你一个长度为 <code>n - 1</code> 的二维整数数组 <code>edges</code>，其中 <code>edges[i] = [ai, bi]</code> 表示树中节点 <code>ai</code> 与节点 <code>bi</code> 之间存在一条边。</p>
+<p>如果一个节点的所有子节点为根的 子树 包含的节点数相同，则认为该节点是一个 <strong>好节点</strong>。</p>
+<p>返回给定树中 <strong>好节点</strong> 的数量。</p>
+<p><strong>子树</strong> 指的是一个节点以及它所有后代节点构成的一棵树。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>edges &#x3D; [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]</p>
+<p><strong>输出：</strong>7</p>
+<p><strong>说明：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/05/26/tree1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>树的所有节点都是好节点。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>edges &#x3D; [[0,1],[1,2],[2,3],[3,4],[0,5],[1,6],[2,7],[3,8]]</p>
+<p><strong>输出：</strong>6</p>
+<p><strong>说明：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/06/03/screenshot-2024-06-03-193552.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>树中有 6 个好节点。上图中已将这些节点着色。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong>edges &#x3D; [[0,1],[1,2],[1,3],[1,4],[0,5],[5,6],[6,7],[7,8],[0,9],[9,10],[9,12],[10,11]]</p>
+<p><strong>输出：</strong>12</p>
+<p><strong>解释：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/08/08/rob.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>除了节点 9 以外其他所有节点都是好节点。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>edges.length == n - 1</code></li>
+<li><code>edges[i].length == 2</code></li>
+<li><code>0 &lt;= ai, bi &lt; n</code></li>
+<li>输入确保 <code>edges</code> 总表示一棵有效的树。</li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-410/problems/count-the-number-of-good-nodes/">https://leetcode.cn/contest/weekly-contest-410/problems/count-the-number-of-good-nodes/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>DFS，树形dp
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>在力扣上烂大街的题目了，但是还是按照题意模拟即可，从 $0$ 开始遍历根节点，每次遍历时依次检测当前节点 $v$ 的所有子节点构成的子树种含有的节点数目都相等，如果不相等，则当前节点 $v$ 不是好节点，否则当前节点节点则为好节点，同时返回当前节点 $v$ 的子树中含有的节点数目 $tot$ 即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定节点的数目。</li>
+<li>空间复杂度：$O(n)$；</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countGoodNodes</span>(<span class="params">self, edges: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(edges)  + <span class="number">1</span></span><br><span class="line">        graph = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> edges:</span><br><span class="line">            graph[x].append(y)</span><br><span class="line">            graph[y].append(x)</span><br><span class="line">        </span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">v, p</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res</span><br><span class="line">            tot, pre = <span class="number">1</span>, -<span class="number">1</span></span><br><span class="line">            valid = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">for</span> ch <span class="keyword">in</span> graph[v]:</span><br><span class="line">                <span class="keyword">if</span> ch == p:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                cur = dfs(ch, v)</span><br><span class="line">                tot += cur</span><br><span class="line">                <span class="keyword">if</span> pre == -<span class="number">1</span>:</span><br><span class="line">                    pre = cur</span><br><span class="line">                <span class="keyword">elif</span> pre != cur:</span><br><span class="line">                    valid = <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> valid:</span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> tot</span><br><span class="line">        </span><br><span class="line">        dfs(<span class="number">0</span>, -<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="100395-单调数组对的数目-I"><a href="#100395-单调数组对的数目-I" class="headerlink" title="100395. 单调数组对的数目 I"></a>100395. 单调数组对的数目 I</h3><p>给你一个长度为 <code>n</code> 的 <strong>正</strong> 整数数组 <code>nums</code> 。</p>
+<p>如果两个 <strong>非负</strong> 整数数组 <code>(arr1, arr2)</code> 满足以下条件，我们称它们是 <strong>单调</strong> 数组对：</p>
+<ul>
+<li>两个数组的长度都是 <code>n</code> 。</li>
+<li><code>arr1</code> 是单调 <strong>非递减</strong> 的，换句话说 <code>arr1[0] &lt;= arr1[1] &lt;= ... &lt;= arr1[n - 1]</code> 。</li>
+<li><code>arr2</code> 是单调 <strong>非递增</strong> 的，换句话说 <code>arr2[0] &gt;= arr2[1] &gt;= ... &gt;= arr2[n - 1]</code> 。</li>
+<li>对于所有的 <code>0 &lt;= i &lt;= n - 1</code> 都有 <code>arr1[i] + arr2[i] == nums[i]</code> 。</li>
+</ul>
+<p>请你返回所有 <strong>单调</strong> 数组对的数目。</p>
+<p>由于答案可能很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [2,3,2]</p>
+<p><strong>输出：</strong>4</p>
+<p><strong>解释：</strong></p>
+<p>单调数组对包括：</p>
+<ol>
+<li><code>([0, 1, 1], [2, 2, 1])</code></li>
+<li><code>([0, 1, 2], [2, 2, 0])</code></li>
+<li><code>([0, 2, 2], [2, 1, 0])</code></li>
+<li><code>([1, 2, 2], [1, 1, 0])</code></li>
+</ol>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [5,5,5,5]</p>
+<p><strong>输出：</strong>126</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == nums.length &lt;= 2000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 50</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-i/">https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-i/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>当然我们根据题目给定的数据范围大概就可以知道该题目应该使用动态规划，特别是给定了需要取余，此时更加确定题目需要用到动态规划了。我们设 $dp[i][j]$ 表示 $arr_1$ 中第 $i$ 个元素以 $j$ 为结尾的方案数，此时我们可以知道：</p>
+<ul>
+<li><p>如果 $arr_1$ 中第 $i$ 个元素为 $j$ ，则此时 $arr_2$ 中第 $i$ 个元素则为 $nums[i] - j$;</p>
+</li>
+<li><p>由于 $arr_1$ 需要满足非递减，$arr_2$ 需要满足非递增，此时 $arr_1[i-1]$ 的取值范围则为 $[0, j]$, 此时 $arr_2[i-1]$ 的值为 $nums[i-1] - arr_1[i-1] \ge nums[i] - arr_1[i]$,  我们将公式变形可以得到 $arr_1[i] - arr_1[i-1] \ge nums[i] - nums[i - 1]$; </p>
+</li>
+<li><p>假设 $arr_1[i-1]$ 的取值为 $k$，则此时 $k \in[0,j]$,  同时 $nums[i-1] - k \ge nums[i] - j$，即此时 $k \le j - nums[i] + nums[i -1]$；</p>
+</li>
+<li><p>我们依次从$0$ 开始枚举 $k$，根据上诉结论可以知道递推公式如下：<br>$$<br>dp[i][j] &#x3D; \sum_{k&#x3D;0}^{\min(j, j - nums[i] + nums[i-1])}dp[i-1][k]<br>$$</p>
+</li>
+<li><p>我们根据上诉递推公式依次计算即可。</p>
+</li>
+</ul>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times U^2)$，其中 $n$ 表示给定数组的长度，$U$ 表示给定数组中元素的最大值;</li>
+<li>空间复杂度：$O(n \times U)$, 其中 $n$ 表示给定数组的长度，$U$ 表示给定数组中元素的最大值;</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countOfPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n, m = <span class="built_in">len</span>(nums), <span class="built_in">max</span>(nums)</span><br><span class="line">        mod = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">        dp = [[<span class="number">0</span>] * (m + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nums[<span class="number">0</span>] + <span class="number">1</span>):</span><br><span class="line">            dp[<span class="number">0</span>][i] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, nums[i] + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, j + <span class="number">1</span>):</span><br><span class="line">                    <span class="keyword">if</span> nums[i] - j &lt;= nums[i - <span class="number">1</span>] - k:</span><br><span class="line">                        dp[i][j] = (dp[i][j] + dp[i - <span class="number">1</span>][k]) % mod</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(dp[n - <span class="number">1</span>]) % mod</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="100396-单调数组对的数目-II-1"><a href="#100396-单调数组对的数目-II-1" class="headerlink" title="100396. 单调数组对的数目 II"></a>100396. 单调数组对的数目 II</h3><p>给你一个长度为 <code>n</code> 的 <strong>正</strong> 整数数组 <code>nums</code> 。</p>
+<p>如果两个 <strong>非负</strong> 整数数组 <code>(arr1, arr2)</code> 满足以下条件，我们称它们是 <strong>单调</strong> 数组对：</p>
+<ul>
+<li>两个数组的长度都是 <code>n</code> 。</li>
+<li><code>arr1</code> 是单调 <strong>非递减</strong> 的，换句话说 <code>arr1[0] &lt;= arr1[1] &lt;= ... &lt;= arr1[n - 1]</code> 。</li>
+<li><code>arr2</code> 是单调 <strong>非递增</strong> 的，换句话说 <code>arr2[0] &gt;= arr2[1] &gt;= ... &gt;= arr2[n - 1]</code> 。</li>
+<li>对于所有的 <code>0 &lt;= i &lt;= n - 1</code> 都有 <code>arr1[i] + arr2[i] == nums[i]</code> 。</li>
+</ul>
+<p>请你返回所有 <strong>单调</strong> 数组对的数目。</p>
+<p>由于答案可能很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [2,3,2]</p>
+<p><strong>输出：</strong>4</p>
+<p><strong>解释：</strong></p>
+<p>单调数组对包括：</p>
+<ol>
+<li><code>([0, 1, 1], [2, 2, 1])</code></li>
+<li><code>([0, 1, 2], [2, 2, 0])</code></li>
+<li><code>([0, 2, 2], [2, 1, 0])</code></li>
+<li><code>([1, 2, 2], [1, 1, 0])</code></li>
+</ol>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [5,5,5,5]</p>
+<p><strong>输出：</strong>126</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == nums.length &lt;= 2000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 1000</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-ii/">https://leetcode.cn/contest/weekly-contest-410/problems/find-the-count-of-monotonic-pairs-ii/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划，前缀和</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>根据 <code>T3</code>的思路，我们可以看到实际 $dp[i][j]$ 等于 $dp[i-1]$ 的某个前缀和，根据递推公式可以知道：<br>$$<br>dp[i][j] &#x3D; \sum_{k&#x3D;0}^{\min(j, j - nums[i] + nums[i-1])}dp[i-1][k]<br>$$<br>我们设 $psum[i][j]$ 表示 $\sum_{k&#x3D;0}^{j}dp[i][j]$，此时上述等式则变化为前缀和公式如下：<br>$$<br>dp[i][j] &#x3D; psum[i-1][min(j, j - nums[i] + nums[i-1])]<br>$$<br>需要注意的细节是 $x &#x3D; min(j, j - nums[i] + nums[i-1])$ 可能出现小于 $0$ 的情形，我们需要剔除该异常情况即可。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times U)$，其中 $n$ 表示给定数组的长度，$U$ 表示给定数组中元素的最大值;</li>
+<li>空间复杂度：$O(n \times U)$, 其中 $n$ 表示给定数组的长度，$U$ 表示给定数组中元素的最大值;</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countOfPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n, m = <span class="built_in">len</span>(nums), <span class="built_in">max</span>(nums)</span><br><span class="line">        mod = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">        dp = [[<span class="number">0</span>] * (m + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        psum = [[<span class="number">0</span>] * (m + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nums[<span class="number">0</span>] + <span class="number">1</span>):</span><br><span class="line">            dp[<span class="number">0</span>][i] = <span class="number">1</span></span><br><span class="line">            psum[<span class="number">0</span>][i] = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, nums[i] + <span class="number">1</span>):</span><br><span class="line">                x = <span class="built_in">min</span>(nums[i - <span class="number">1</span>], j, j - nums[i] + nums[i - <span class="number">1</span>])</span><br><span class="line">                <span class="keyword">if</span> x &gt;= <span class="number">0</span>:</span><br><span class="line">                    dp[i][j] = (dp[i][j] + psum[i - <span class="number">1</span>][x]) % mod</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, nums[i] + <span class="number">1</span>):</span><br><span class="line">                psum[i][j] = dp[i][j]</span><br><span class="line">                <span class="keyword">if</span> j &gt; <span class="number">0</span>:</span><br><span class="line">                    psum[i][j] = (psum[i][j] + psum[i][j - <span class="number">1</span>]) % mod</span><br><span class="line">        <span class="keyword">return</span> psum[n - <span class="number">1</span>][nums[-<span class="number">1</span>]]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E8%B5%9B/" class="print-no-link">#力扣周赛赛</a>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode weekly contest 410</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/218/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/93/" title="leetcode contest 327">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode contest 327</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/223/" title="leetcode weekly contest 413">
+                        <span class="hidden-mobile">leetcode weekly contest 413</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,993 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode weekly contest 397t4 又是一个比较难的题目。 3146. 两个字符串的排列差给你两个字符串 s 和 t，每个字符串中的字符都不重复，且 t 是 s 的一个排列。 排列差 定义为 s 和 t 中每个字符在两个字符串中位置的绝对差值之和。 返回 s 和 t 之间的 排列差 。 示例 1： 输入：s &#x3D; “abc”, t &#x3D; “bac” 输出：2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode weekly contest 397">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/202/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode weekly contest 397t4 又是一个比较难的题目。 3146. 两个字符串的排列差给你两个字符串 s 和 t，每个字符串中的字符都不重复，且 t 是 s 的一个排列。 排列差 定义为 s 和 t 中每个字符在两个字符串中位置的绝对差值之和。 返回 s 和 t 之间的 排列差 。 示例 1： 输入：s &#x3D; “abc”, t &#x3D; “bac” 输出：2">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/03/14/grid1.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/04/08/moregridsdrawio-1.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/04/04/example0gif.gif">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2024/04/04/example1gif.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.734Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛赛">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2024/03/14/grid1.png">
+  
+  
+  
+  <title>leetcode weekly contest 397 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode weekly contest 397"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          48 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode weekly contest 397</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-weekly-contest-397"><a href="#leetcode-weekly-contest-397" class="headerlink" title="leetcode weekly contest 397"></a>leetcode weekly contest 397</h2><p><code>t4</code> 又是一个比较难的题目。</p>
+<h3 id="3146-两个字符串的排列差"><a href="#3146-两个字符串的排列差" class="headerlink" title="3146. 两个字符串的排列差"></a>3146. 两个字符串的排列差</h3><p>给你两个字符串 <code>s</code> 和 <code>t</code>，每个字符串中的字符都不重复，且 <code>t</code> 是 <code>s</code> 的一个排列。</p>
+<p><strong>排列差</strong> 定义为 <code>s</code> 和 <code>t</code> 中每个字符在两个字符串中位置的绝对差值之和。</p>
+<p>返回 <code>s</code> 和 <code>t</code> 之间的 <strong>排列差</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>s &#x3D; “abc”, t &#x3D; “bac”</p>
+<p><strong>输出：</strong>2</p>
+<p><strong>解释：</strong></p>
+<p>对于 <code>s = &quot;abc&quot;</code> 和 <code>t = &quot;bac&quot;</code>，排列差是：</p>
+<ul>
+<li><code>&quot;a&quot;</code> 在 <code>s</code> 中的位置与在 <code>t</code> 中的位置之差的绝对值。</li>
+<li><code>&quot;b&quot;</code> 在 <code>s</code> 中的位置与在 <code>t</code> 中的位置之差的绝对值。</li>
+<li><code>&quot;c&quot;</code> 在 <code>s</code> 中的位置与在 <code>t</code> 中的位置之差的绝对值。</li>
+</ul>
+<p>即，<code>s</code> 和 <code>t</code> 的排列差等于 <code>|0 - 1| + |2 - 2| + |1 - 0| = 2</code>。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>s &#x3D; “abcde”, t &#x3D; “edbac”</p>
+<p><strong>输出：</strong>12</p>
+<p><strong>解释：</strong> <code>s</code> 和 <code>t</code> 的排列差等于 <code>|0 - 3| + |1 - 2| + |2 - 4| + |3 - 1| + |4 - 0| = 12</code>。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 26</code></li>
+<li>每个字符在 <code>s</code> 中最多出现一次。</li>
+<li><code>t</code> 是 <code>s</code> 的一个排列。</li>
+<li><code>s</code> 仅由小写英文字母组成。</li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-397/problems/permutation-difference-between-two-strings/">https://leetcode.cn/contest/weekly-contest-397/problems/permutation-difference-between-two-strings/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code>直接模拟
+</code></pre>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接模拟即可，每个字符的索引进行相减即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findPermutationDifference</span>(<span class="params">self, s: <span class="built_in">str</span>, t: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        cnt1 = [<span class="number">0</span>] * <span class="number">26</span></span><br><span class="line">        cnt2 = [<span class="number">0</span>] * <span class="number">26</span></span><br><span class="line">        <span class="keyword">for</span> i, ch <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            cnt1[<span class="built_in">ord</span>(ch) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)] = i</span><br><span class="line">        <span class="keyword">for</span> i, ch <span class="keyword">in</span> <span class="built_in">enumerate</span>(t):</span><br><span class="line">            cnt2[<span class="built_in">ord</span>(ch) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)] = i;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">abs</span>(cnt1[i] - cnt2[i]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">26</span>))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">find_permutation_difference</span>(s: <span class="type">String</span>, t: <span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">cnt1</span> = <span class="built_in">vec!</span>[<span class="number">0</span>; <span class="number">26</span>];</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">cnt2</span> = <span class="built_in">vec!</span>[<span class="number">0</span>; <span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span> (i, ch) <span class="keyword">in</span> s.<span class="title function_ invoke__">chars</span>().<span class="title function_ invoke__">enumerate</span>() &#123;</span><br><span class="line">            cnt1[(ch <span class="keyword">as</span> <span class="type">usize</span> - <span class="string">&#x27;a&#x27;</span> <span class="keyword">as</span> <span class="type">usize</span>)] = i <span class="keyword">as</span> <span class="type">i32</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (i, ch) <span class="keyword">in</span> t.<span class="title function_ invoke__">chars</span>().<span class="title function_ invoke__">enumerate</span>() &#123;</span><br><span class="line">            cnt2[(ch <span class="keyword">as</span> <span class="type">usize</span> - <span class="string">&#x27;a&#x27;</span> <span class="keyword">as</span> <span class="type">usize</span>)] = i <span class="keyword">as</span> <span class="type">i32</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        (<span class="number">0</span>..<span class="number">26</span>).<span class="title function_ invoke__">map</span>(|i| (cnt1[i] - cnt2[i]).<span class="title function_ invoke__">abs</span>()).<span class="title function_ invoke__">sum</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3147-从魔法师身上吸取的最大能量"><a href="#3147-从魔法师身上吸取的最大能量" class="headerlink" title="3147. 从魔法师身上吸取的最大能量"></a>3147. 从魔法师身上吸取的最大能量</h3><p>在神秘的地牢中，<code>n</code> 个魔法师站成一排。每个魔法师都拥有一个属性，这个属性可以给你提供能量。有些魔法师可能会给你负能量，即从你身上吸取能量。</p>
+<p>你被施加了一种诅咒，当你从魔法师 <code>i</code> 处吸收能量后，你将被立即传送到魔法师 <code>(i + k)</code> 处。这一过程将重复进行，直到你到达一个不存在 <code>(i + k)</code> 的魔法师为止。</p>
+<p>换句话说，你将选择一个起点，然后以 <code>k</code> 为间隔跳跃，直到到达魔法师序列的末端，<strong>在过程中吸收所有的能量</strong>。</p>
+<p>给定一个数组 <code>energy</code> 和一个整数<code>k</code>，返回你能获得的 <strong>最大</strong> 能量。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong> energy &#x3D; [5,2,-10,-5,1], k &#x3D; 3</p>
+<p><strong>输出：</strong> 3</p>
+<p><strong>解释：</strong>可以从魔法师 1 开始，吸收能量 2 + 1 &#x3D; 3。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> energy &#x3D; [-2,-3,-1], k &#x3D; 2</p>
+<p><strong>输出：</strong> -1</p>
+<p><strong>解释：</strong>可以从魔法师 2 开始，吸收能量 -1。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= energy.length &lt;= 105</code></li>
+<li><code>-1000 &lt;= energy[i] &lt;= 1000</code></li>
+<li><code>1 &lt;= k &lt;= energy.length - 1</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-397/problems/taking-maximum-energy-from-the-mystic-dungeon/">https://leetcode.cn/contest/weekly-contest-397/problems/taking-maximum-energy-from-the-mystic-dungeon/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code>前缀和
+</code></pre>
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>我们可以观察到一个问题，一旦某个从某个位置 $i$ 开始吸取时，此时它可以吸取的能量一定是确定的，它吸取的能量即为 $energy[i],energy [i + k], energy [i + 2k], \cdots,energy[x]$。此时我们自然而然想到了前缀和，记录从 $i$ 开始每隔 $k$ 个位置的元素的前缀和，此时就可以求出每个位置中可以汲取的最大能量。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$ 表示给定的数组的长度。</li>
+<li>空间复杂度：$O(n)$，其中 $n$ 表示给定的数组的长度。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">maximum_energy</span>(energy: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;, k: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">n</span> = energy.<span class="title function_ invoke__">len</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">res</span> = std::<span class="type">i32</span>::MIN;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span>..k &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">psum</span> = <span class="built_in">vec!</span>[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">tot</span> = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> (i..n <span class="keyword">as</span> <span class="type">i32</span>).<span class="title function_ invoke__">step_by</span>(k <span class="keyword">as</span> <span class="type">usize</span>) &#123;</span><br><span class="line">                tot += energy[j <span class="keyword">as</span> <span class="type">usize</span>];</span><br><span class="line">                psum.<span class="title function_ invoke__">push</span>(tot);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> <span class="number">1</span>..psum.<span class="title function_ invoke__">len</span>() &#123;</span><br><span class="line">                res = res.<span class="title function_ invoke__">max</span>(psum[psum.<span class="title function_ invoke__">len</span>() - <span class="number">1</span>] - psum[j - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        res</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maximumEnergy</span>(<span class="params">self, energy: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(energy)</span><br><span class="line">        res = -inf</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">            psum = [<span class="number">0</span>]</span><br><span class="line">            tot = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, n, k):</span><br><span class="line">                tot += energy[j]</span><br><span class="line">                psum.append(tot)</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(psum)):</span><br><span class="line">                res = <span class="built_in">max</span>(res, psum[-<span class="number">1</span>] - psum[j - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> res;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3148-矩阵中的最大得分"><a href="#3148-矩阵中的最大得分" class="headerlink" title="3148. 矩阵中的最大得分"></a>3148. 矩阵中的最大得分</h3><p>给你一个由 <strong>正整数</strong> 组成、大小为 <code>m x n</code> 的矩阵 <code>grid</code>。你可以从矩阵中的任一单元格移动到另一个位于正下方或正右侧的任意单元格（不必相邻）。从值为 <code>c1</code> 的单元格移动到值为 <code>c2</code> 的单元格的得分为 <code>c2 - c1</code> 。</p>
+<p>你可以从 <strong>任一</strong> 单元格开始，并且必须至少移动一次。</p>
+<p>返回你能得到的 <strong>最大</strong> 总得分。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/03/14/grid1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>输入：</strong>grid &#x3D; [[9,5,7,3],[8,9,6,1],[6,7,14,3],[2,5,3,1]]</p>
+<p><strong>输出：</strong>9</p>
+<p><strong>解释：</strong>从单元格 <code>(0, 1)</code> 开始，并执行以下移动：<br>- 从单元格 <code>(0, 1)</code> 移动到 <code>(2, 1)</code>，得分为 <code>7 - 5 = 2</code> 。<br>- 从单元格 <code>(2, 1)</code> 移动到 <code>(2, 2)</code>，得分为 <code>14 - 7 = 7</code> 。<br>总得分为 <code>2 + 7 = 9</code> 。</p>
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2024/04/08/moregridsdrawio-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>输入：</strong>grid &#x3D; [[4,3,2],[3,2,1]]</p>
+<p><strong>输出：</strong>-1</p>
+<p><strong>解释：</strong>从单元格 <code>(0, 0)</code> 开始，执行一次移动：从 <code>(0, 0)</code> 到 <code>(0, 1)</code> 。得分为 <code>3 - 4 = -1</code> 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>2 &lt;= m, n &lt;= 1000</code></li>
+<li><code>4 &lt;= m * n &lt;= 105</code></li>
+<li><code>1 &lt;= grid[i][j] &lt;= 105</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-397/problems/maximum-difference-score-in-a-grid/">https://leetcode.cn/contest/weekly-contest-397/problems/maximum-difference-score-in-a-grid/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 动态规划</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>假设我们移动的轨迹为 $c_1,c_2,c_3,\cdots,c_m$，此时每次的得分分别为 $c_2 - c_1,c_3-c_2, \cdots,c_m -c_{m-1}$, 将这些得分加起来的和即为 $c_m - c_1$，即位置 $(i,j)$ 移动到所有满足 $(i’,j’), i’ \ge i, j \ge j$ 时满足 $grid[i’][j’]-grid[i][j]$ 的最大值，反过来给定 $(i’,j’)$,  找到所有满足 $(i,j),i’ \ge i, j \ge j$ 时的 $grid[i’][j’]-grid[i][j]$ 的最大值，此时我们找到 $(i,j),i’ \ge i, j \ge j$ 的最小值即可。</p>
+</li>
+<li><p>复杂度：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n^2)$，其中 $n$ 表示给定的字符串的长度；</li>
+<li>空间复杂度：$O(n)$；</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxScore</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m, n = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        dp = [row[:] <span class="keyword">for</span> row <span class="keyword">in</span> grid]</span><br><span class="line">        res = -inf</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n):</span><br><span class="line">                <span class="keyword">if</span> i &gt; <span class="number">0</span>:</span><br><span class="line">                    res = <span class="built_in">max</span>(res, grid[i][j] - dp[i - <span class="number">1</span>][j])</span><br><span class="line">                    dp[i][j] = <span class="built_in">min</span>(dp[i][j], dp[i - <span class="number">1</span>][j])</span><br><span class="line">                <span class="keyword">if</span> j &gt; <span class="number">0</span>:</span><br><span class="line">                    res = <span class="built_in">max</span>(res, grid[i][j] - dp[i][j - <span class="number">1</span>])</span><br><span class="line">                    dp[i][j] = <span class="built_in">min</span>(dp[i][j], dp[i][j - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="3149-找出分数最低的排列"><a href="#3149-找出分数最低的排列" class="headerlink" title="3149. 找出分数最低的排列"></a>3149. 找出分数最低的排列</h3><p>给你一个数组 <code>nums</code> ，它是 <code>[0, 1, 2, ..., n - 1]</code> 的一个排列 。对于任意一个 <code>[0, 1, 2, ..., n - 1]</code> 的排列 <code>perm</code> ，其 <strong>分数</strong> 定义为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">score(perm) = |perm[0] - nums[perm[1]]| + |perm[1] - nums[perm[2]]| + ... + |perm[n - 1] - nums[perm[0]]|</span><br></pre></td></tr></table></figure>
+
+<p>返回具有 <strong>最低</strong> 分数的排列 <code>perm</code> 。如果存在多个满足题意且分数相等的排列，则返回其中字典序最小的一个。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [1,0,2]</p>
+<p><strong>输出：</strong>[0,1,2]</p>
+<p><strong>解释：</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2024/04/04/example0gif.gif" srcset="/img/loading.gif" lazyload alt="img"></strong></p>
+<p>字典序最小且分数最低的排列是 <code>[0,1,2]</code>。这个排列的分数是 <code>|0 - 0| + |1 - 2| + |2 - 1| = 2</code> 。</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>nums &#x3D; [0,2,1]</p>
+<p><strong>输出：</strong>[0,2,1]</p>
+<p><strong>解释：</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2024/04/04/example1gif.gif" srcset="/img/loading.gif" lazyload alt="img"></strong></p>
+<p>字典序最小且分数最低的排列是 <code>[0,2,1]</code>。这个排列的分数是 <code>|0 - 1| + |2 - 2| + |1 - 0| = 2</code> 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= n == nums.length &lt;= 14</code></li>
+<li><code>nums</code> 是 <code>[0, 1, 2, ..., n - 1]</code> 的一个排列。</li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-397/problems/find-the-minimum-cost-array-permutation/">https://leetcode.cn/contest/weekly-contest-397/problems/find-the-minimum-cost-array-permutation/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 状态压缩dp，记忆化搜索</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>比较经典的动态规划，设 $memo[mask][i]$ 表示当前选择的元素为 $mask$ 且最后选择的元素为 $i$，题目关键在于第一个元素一定选择 $0$，然后就是常规的动态规划了。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n \times 2^n)$，其中 $n$ 表示给数组的长度;</li>
+<li>空间复杂度：$O(2^n)$，其中 $n$ 表示给数组的长度;</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><figcaption><span>[sol1-C++]</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">findPermutation</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">memo</span>(<span class="number">1</span> &lt;&lt; n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, <span class="number">-1</span>));</span><br><span class="line">        </span><br><span class="line">        function&lt;<span class="type">int</span>(<span class="type">int</span>, <span class="type">int</span>)&gt; dfs = [&amp;](<span class="type">int</span> mask, <span class="type">int</span> i) -&gt; <span class="type">int</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (mask == (<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span>) &#123;</span><br><span class="line">                memo[mask][i] = <span class="built_in">abs</span>(i - nums[<span class="number">0</span>]);</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">abs</span>(i - nums[<span class="number">0</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (memo[mask][i] != <span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> memo[mask][i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> res = INT_MAX;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> ((mask &amp; (<span class="number">1</span> &lt;&lt; j)) == <span class="number">0</span>) &#123;</span><br><span class="line">                    res = <span class="built_in">min</span>(res, <span class="built_in">dfs</span>(mask | (<span class="number">1</span> &lt;&lt; j), j) + <span class="built_in">abs</span>(i - nums[j]));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            memo[mask][i] = res;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;;</span><br><span class="line">        function&lt;<span class="type">void</span>(<span class="type">int</span>, <span class="type">int</span>)&gt; make = [&amp;](<span class="type">int</span> mask, <span class="type">int</span> i) &#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(i);</span><br><span class="line">            <span class="keyword">if</span> (mask == (<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> ((mask &amp; (<span class="number">1</span> &lt;&lt; j)) == <span class="number">0</span> &amp;&amp; memo[mask][i] == memo[mask | (<span class="number">1</span> &lt;&lt; j)][j] + <span class="built_in">abs</span>(i - nums[j])) &#123;</span><br><span class="line">                    <span class="built_in">make</span>(mask | (<span class="number">1</span> &lt;&lt; j), j);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">make</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li><p>关注我的博客: <a target="_blank" rel="noopener" href="https://mike-box.github.io/">https://mike-box.github.io/</a></p>
+</li>
+<li><p>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></p>
+</li>
+<li><p>关注我的微信公众号: 哪些奋斗者</p>
+<p><img src="https://raw.githubusercontent.com/mike-box/pic/main/qrcode_for_gh_f998262ac369_344.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E8%B5%9B/" class="print-no-link">#力扣周赛赛</a>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode weekly contest 397</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/202/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/200/" title="leetcode weekly contest 398">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode weekly contest 398</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/207/" title="leetcode weekly contest 401">
+                        <span class="hidden-mobile">leetcode weekly contest 401</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

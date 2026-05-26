@@ -1,0 +1,880 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="mono stack最近在练习题目的时候经常遇到mono stack的题目，总的来说题目还是非常非常的有意思，单调栈真心是个利器。可以解决非常多的复杂的问题。可以利用单调栈求出以当前值为最大值或者最小值的连续子数组的最大长度。 单调栈的原理单调栈中的数据需要遵循两个原则：  栈中的数据会是严格递增或者递减，则我们可以知道，假如单调栈中的数据为递减，则可以知道栈顶的数据一定为当前序列中最大的数据;假">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【算法】 mono stack">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/69/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="mono stack最近在练习题目的时候经常遇到mono stack的题目，总的来说题目还是非常非常的有意思，单调栈真心是个利器。可以解决非常多的复杂的问题。可以利用单调栈求出以当前值为最大值或者最小值的连续子数组的最大长度。 单调栈的原理单调栈中的数据需要遵循两个原则：  栈中的数据会是严格递增或者递减，则我们可以知道，假如单调栈中的数据为递减，则可以知道栈顶的数据一定为当前序列中最大的数据;假">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/05/11/xJKB3lbXmrjCZ6q.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.845Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/05/11/xJKB3lbXmrjCZ6q.png">
+  
+  
+  
+  <title>【算法】 mono stack - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【算法】 mono stack"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【算法】 mono stack</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="mono-stack"><a href="#mono-stack" class="headerlink" title="mono stack"></a>mono stack</h1><p>最近在练习题目的时候经常遇到<code>mono stack</code>的题目，总的来说题目还是非常非常的有意思，单调栈真心是个利器。可以解决非常多的复杂的问题。可以利用单调栈求出以当前值为最大值或者最小值的连续子数组的最大长度。</p>
+<h2 id="单调栈的原理"><a href="#单调栈的原理" class="headerlink" title="单调栈的原理"></a>单调栈的原理</h2><p>单调栈中的数据需要遵循两个原则：</p>
+<ul>
+<li>栈中的数据会是严格递增或者递减，则我们可以知道，假如单调栈中的数据为递减，则可以知道栈顶的数据一定为当前序列中最大的数据;假如单调栈中的数据为递增，则可以知道栈顶的数据一定为当前序列中最小的数据。一般情况下我们都会用<code>dequeue</code>来处理单调栈的数据，则可以知道队列的头部一定为当前序列中所求的最大值或者最小值。</li>
+<li>为了保持单调性，则每当加入一个新的元素时，则会将栈中所有比当前元素小或者大的数据全部进行出栈，则由此我们可以判断如下，假设当前的栈为递减：<br><img src="https://i.loli.net/2021/05/11/xJKB3lbXmrjCZ6q.png" srcset="/img/loading.gif" lazyload alt="1"><br>从图中可以看出我们可以在$O(1)$的时间复杂度内求出当前序列的极值。栈中任意相邻的两个元素比如$(arr[i],arr[j])$,则表示所有处于$(i,j)$之间的元素均小于$arr[j]$,有了这个重要的推论，则许多问题都可以利用这个特性来求解，比如我们知道假设某个元素<code>x</code>大于$arr[j]$,则表示<code>x</code>一定大于所有位于$[i+1,j]$之间的元素。下面有几个非常有代表性的题目需要讨论下：</li>
+</ul>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.hackerrank.com/challenges/deque-stl/problem">找到子数组长度为k的最大值</a></li>
+<li><a target="_blank" rel="noopener" href="https://binarysearch.com/problems/Longest-Sublist-with-Value-Range-Condition">Longest Sublist with Value Range Condition</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray-min-product/">子数组最小乘积的最大值</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-greater-element-i/">下一个更大元素 I</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-greater-element-ii/">下一个更大元素 II</a></li>
+</ol>
+<h2 id="下一个更大元素-II"><a href="#下一个更大元素-II" class="headerlink" title="下一个更大元素 II"></a>下一个更大元素 II</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个循环数组（最后一个元素的下一个元素是数组的第一个元素），输出每个元素的下一个更大元素。数字 x 的下一个更大的元素是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 -1。</p>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-greater-element-ii">https://leetcode-cn.com/problems/next-greater-element-ii</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  classical problem</p>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>首先题目中要求循环处理，这个很简单我们只需要在数组后面对数组本身再进行重复复制一遍即可，这样我们即可完成循环处理。</li>
+<li>最经典的处理莫过于如何求第一个比其小或者大的数的处理，我们利用单调栈，所有小于当前的数全部从栈中弹出，因为我们知道一个推论为，栈中任意相邻的两个元素比如$(arr[i],arr[j])$,则表示所有处于$(i,j)$之间的元素均小于$arr[j]$,此时我们即可利用单调性很快求出所有的值。</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nextGreaterElements</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            nums.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n,<span class="number">-1</span>)</span></span>;</span><br><span class="line">        deque&lt;<span class="type">int</span>&gt; dq;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!dq.<span class="built_in">empty</span>() &amp;&amp; nums[dq.<span class="built_in">back</span>()] &lt; nums[i])&#123;</span><br><span class="line">                <span class="keyword">if</span>(dq.<span class="built_in">back</span>() &lt; n)&#123;</span><br><span class="line">                    ans[dq.<span class="built_in">back</span>()] = nums[i];</span><br><span class="line">                &#125;</span><br><span class="line">                dq.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            dq.<span class="built_in">push_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Longest-Sublist-with-Value-Range-Condition"><a href="#Longest-Sublist-with-Value-Range-Condition" class="headerlink" title="Longest Sublist with Value Range Condition"></a>Longest Sublist with Value Range Condition</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>Given a list of integers nums, return the length of the longest sublist where 2 * min(sublist) &gt; max(sublist).</p>
+<p>Constraints</p>
+<p>n ≤ 100,000 where n is the length of nums<br>Example 1<br>Input<br>nums &#x3D; [9, 1, 5, 5, 3, 3]<br>Output<br>4<br>Explanation<br>The sublist [5, 5, 3, 3] is the longest sublist that meet the criteria since 2 * 3 &gt; 5.</p>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://binarysearch.com/problems/Longest-Sublist-with-Value-Range-Condition">https://binarysearch.com/problems/Longest-Sublist-with-Value-Range-Condition</a></p>
+<h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  双指针加单调栈</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>这个题目更加经典，需要同时利用单调栈和双指针。</li>
+</ol>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    deque&lt;<span class="type">int</span>&gt; minq;</span><br><span class="line">    deque&lt;<span class="type">int</span>&gt; maxq;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="comment">// we remove all the element is more than nums[i]</span></span><br><span class="line">        <span class="keyword">while</span>(!minq.<span class="built_in">empty</span>() &amp;&amp; nums[minq.<span class="built_in">back</span>()] &gt; nums[i]) minq.<span class="built_in">pop_back</span>();</span><br><span class="line">        minq.<span class="built_in">push_back</span>(i);</span><br><span class="line">        <span class="comment">// we remove all the element is less than nums[i]</span></span><br><span class="line">        <span class="keyword">while</span>(!maxq.<span class="built_in">empty</span>() &amp;&amp; nums[maxq.<span class="built_in">back</span>()] &lt; nums[i]) maxq.<span class="built_in">pop_back</span>();</span><br><span class="line">        maxq.<span class="built_in">push_back</span>(i);</span><br><span class="line">        <span class="keyword">while</span>(!minq.<span class="built_in">empty</span>() &amp;&amp; !maxq.<span class="built_in">empty</span>() &amp;&amp; nums[maxq.<span class="built_in">front</span>()] &gt;= <span class="number">2</span>*nums[minq.<span class="built_in">front</span>()])&#123;</span><br><span class="line">            <span class="keyword">while</span>(!minq.<span class="built_in">empty</span>() &amp;&amp; minq.<span class="built_in">front</span>() &lt;= j) minq.<span class="built_in">pop_front</span>();</span><br><span class="line">            <span class="keyword">while</span>(!maxq.<span class="built_in">empty</span>() &amp;&amp; maxq.<span class="built_in">front</span>() &lt;= j) maxq.<span class="built_in">pop_front</span>();</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans = <span class="built_in">max</span>(ans,i-j<span class="number">+1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="qiu"><a href="#qiu" class="headerlink" title="qiu"></a>qiu</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>Given a set of arrays of size  and an integer , you have to find the maximum integer for each and every contiguous subarray of size  for each of the given arrays.<br>nput Format</p>
+<p>First line of input will contain the number of test cases T. For each test case, you will be given the size of array N and the size of subarray to be used K. This will be followed by the elements of the array Ai.</p>
+<p>Constraints, where  is the  element in the array .</p>
+<p>Output Format</p>
+<p>For each of the contiguous subarrays of size  of each array, you have to print the maximum integer.</p>
+<p>Sample Input</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2</span><br><span class="line">5 2</span><br><span class="line">3 4 6 3 4</span><br><span class="line">7 4</span><br><span class="line">3 4 5 8 1 4 10</span><br></pre></td></tr></table></figure>
+<p>Sample Output</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4 6 6 4</span><br><span class="line">8 8 8 10</span><br></pre></td></tr></table></figure>
+<h3 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://www.hackerrank.com/challenges/deque-stl/problem">https://www.hackerrank.com/challenges/deque-stl/problem</a></p>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>  单调栈 + 滑动窗口</p>
+</blockquote>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>这个题目更加经典，需要同时利用单调栈和双指针。利用单调性，单调栈中的栈头一定保存的是当前序列的最大值。同时利用滑动窗口，一旦窗口超过队头的元素，则将队头的元素进行删除即可。</li>
+</ol>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span> </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printKMax</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> n, <span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="comment">//Write your code here.</span></span><br><span class="line">    deque&lt;<span class="type">int</span>&gt; dq;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(!dq.<span class="built_in">empty</span>() &amp;&amp; arr[i] &gt; arr[dq.<span class="built_in">back</span>()])&#123;</span><br><span class="line">            dq.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        dq.<span class="built_in">push_back</span>(i);</span><br><span class="line">        <span class="keyword">while</span>((i-j<span class="number">+1</span>) &gt; k)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!dq.<span class="built_in">empty</span>() &amp;&amp; dq.<span class="built_in">front</span>() &lt;= j) dq.<span class="built_in">pop_front</span>();</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i<span class="number">+1</span> &gt;= k)&#123;</span><br><span class="line">            cout&lt;&lt;arr[dq.<span class="built_in">front</span>()]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">	<span class="type">int</span> t;</span><br><span class="line">	cin &gt;&gt; t;</span><br><span class="line">	<span class="keyword">while</span>(t&gt;<span class="number">0</span>) &#123;</span><br><span class="line">		<span class="type">int</span> n,k;</span><br><span class="line">    	cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    	<span class="type">int</span> i;</span><br><span class="line">    	<span class="type">int</span> arr[n];</span><br><span class="line">    	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">      		cin &gt;&gt; arr[i];</span><br><span class="line">    	<span class="built_in">printKMax</span>(arr, n, k);</span><br><span class="line">    	t--;</span><br><span class="line">  	&#125;</span><br><span class="line">  	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【算法】 mono stack</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/69/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/164/" title="leetcode contest 373">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode contest 373</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/70/" title="【kickstart】 kick start 2021 roundB">
+                        <span class="hidden-mobile">【kickstart】 kick start 2021 roundB</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

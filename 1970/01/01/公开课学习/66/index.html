@@ -1,0 +1,856 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MIT6.S081很早就听说MIT6.S081的课程比较经典了，所以从上周末就开始学习MIT6.S081的lecture,目前刚学习完lecture 1，并且成功完成了lab1，不得不说lab太花费时间了，lab设置的非常好，难度适中，有挑战性与趣味性并存，非常感谢这么好与经典的课程，不过不得不说因为确实平时没有时间，又要照顾家庭，又要上班，只能利用周末和晚上的时间抓紧来学习和完成这些lab的代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【MIT6.S081】lab1 utils">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/66/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="MIT6.S081很早就听说MIT6.S081的课程比较经典了，所以从上周末就开始学习MIT6.S081的lecture,目前刚学习完lecture 1，并且成功完成了lab1，不得不说lab太花费时间了，lab设置的非常好，难度适中，有挑战性与趣味性并存，非常感谢这么好与经典的课程，不过不得不说因为确实平时没有时间，又要照顾家庭，又要上班，只能利用周末和晚上的时间抓紧来学习和完成这些lab的代码">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/IQJYxFsA52fdEo3.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/08/dtliNxaYBsSP7Fu.gif">
+<meta property="og:image" content="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-26T08:40:41.497Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="公开课学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/06/07/IQJYxFsA52fdEo3.png">
+  
+  
+  
+  <title>【MIT6.S081】lab1 utils - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【MIT6.S081】lab1 utils"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          66 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【MIT6.S081】lab1 utils</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="MIT6-S081"><a href="#MIT6-S081" class="headerlink" title="MIT6.S081"></a>MIT6.S081</h1><p>很早就听说MIT6.S081的课程比较经典了，所以从上周末就开始学习MIT6.S081的<code>lecture</code>,目前刚学习完<code>lecture 1</code>，并且成功完成了<code>lab1</code>，不得不说<code>lab</code>太花费时间了，<code>lab</code>设置的非常好，难度适中，有挑战性与趣味性并存，非常感谢这么好与经典的课程，不过不得不说因为确实平时没有时间，又要照顾家庭，又要上班，只能利用周末和晚上的时间抓紧来学习和完成这些<code>lab</code>的代码了，每次都需要花时间调试代码调试很长时间，目测后面的挑战题目更难。<code>MIT</code>的课程难度一向很大，难怪能够培养出很多非常优秀和出色的工程师。</p>
+<ul>
+<li>lab环境：<br>所有的<code>lab</code>都是基于<code>qemu</code>的模拟硬件环境的，它的所有的<code>lab</code>全部更新为基于<code>risc-v</code>的硬件环境，紧跟最新的潮流，不像国内一个<code>8086</code>都还在讲，恨不得一门组成原理用了不知道多少年，目前还在停留在单核的x86时代，目前几乎所有的通用<code>cpu</code>都是基于多核处理器，所有的体系结构都应该更新了。所有的<code>lab</code>都是基于<code>xv6</code>的操作系统，一个非常精简的微小的操作系统。按照<code>lab</code>的提示从网上下载<code>qemu</code>模拟器和<code>risc-v</code>的编译环境，国内尽量将<code>apt-get</code>的源改为阿里或者清华的，很快就能完成下载。</li>
+<li>测试结果：<br><img src="https://i.loli.net/2021/06/07/IQJYxFsA52fdEo3.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h2 id="1-sleep"><a href="#1-sleep" class="headerlink" title="1. sleep"></a>1. sleep</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Implement the UNIX program sleep for xv6; your sleep should pause for a user-specified number of ticks. A tick is a notion of time defined by the xv6 kernel, namely the time between two interrupts from the timer chip. Your solution should be in the file user/sleep.c.</span><br></pre></td></tr></table></figure>
+<p>实现一个基本的<code>sleep</code>命令，这个基本上就是热身，通过最简单的题目来快速上手，实现一个最简单的程序，没有多少难度。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/stat.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;user/user.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span></span></span><br><span class="line"><span class="function"><span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> wait = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(argc &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sleep: need parameter error\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">   wait = <span class="built_in">atoi</span>(argv[<span class="number">1</span>]);</span><br><span class="line">   <span class="built_in">sleep</span>(wait);</span><br><span class="line">   <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-pingpong"><a href="#2-pingpong" class="headerlink" title="2. pingpong"></a>2. pingpong</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Write a program that uses UNIX system calls to &#x27;&#x27;ping-pong&#x27;&#x27; a byte between two processes over a pair of pipes, one for each direction. The parent should send a byte to the child; the child should print &quot;&lt;pid&gt;: received ping&quot;, where &lt;pid&gt; is its process ID, write the byte on the pipe to the parent, and exit; the parent should read the byte from the child, print &quot;&lt;pid&gt;: received pong&quot;, and exit. Your solution should be in the file user/pingpong.c.</span><br></pre></td></tr></table></figure>
+<p>利用管道实现子进程与父进程的通信，通过这个简单的程序熟悉<code>pipe</code>的使用，不过很坑爹的是这个操作系统的管道不支持双端通信，只支持一端是写，一端是读，这个<code>bug</code>调试了很长时间才发现是这个问题。具体实现方法为：开两个管道，父进程往管道<code>1</code>里写数据，从管道<code>2</code>中读数据，子进程从管道<code>1</code>读数据，从管道<code>2</code>写数据。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/stat.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;user/user.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span></span></span><br><span class="line"><span class="function"><span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> p1[<span class="number">2</span>];</span><br><span class="line">    <span class="type">int</span> p2[<span class="number">2</span>];</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(argc &gt; <span class="number">1</span>)&#123;</span><br><span class="line">       <span class="built_in">fprintf</span>(<span class="number">2</span>,<span class="string">&quot;Only 1 argument is needed!\n&quot;</span>);</span><br><span class="line">       <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// creat a pipe</span></span><br><span class="line">    <span class="built_in">pipe</span>(p1);</span><br><span class="line">    <span class="built_in">pipe</span>(p2);</span><br><span class="line">    <span class="comment">// child</span></span><br><span class="line">    <span class="keyword">if</span>(fork() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="type">char</span> buffer[<span class="number">32</span>];</span><br><span class="line">        <span class="comment">//read from the parent</span></span><br><span class="line">        <span class="built_in">close</span>(p1[<span class="number">1</span>]);</span><br><span class="line">        <span class="built_in">close</span>(p2[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">read</span>(p1[<span class="number">0</span>],buffer,<span class="number">4</span>);</span><br><span class="line">        <span class="built_in">close</span>(p1[<span class="number">0</span>]);</span><br><span class="line">        <span class="comment">// write a byte to the parent</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d: received ping\n&quot;</span>,<span class="built_in">getpid</span>());</span><br><span class="line">        <span class="built_in">write</span>(p2[<span class="number">1</span>],<span class="string">&quot;pong&quot;</span>, <span class="number">4</span>);</span><br><span class="line">        <span class="built_in">close</span>(p2[<span class="number">1</span>]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">        <span class="type">char</span> buffer[<span class="number">32</span>];</span><br><span class="line">        <span class="comment">// send a byte</span></span><br><span class="line">        <span class="built_in">close</span>(p1[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">close</span>(p2[<span class="number">1</span>]);</span><br><span class="line">        <span class="built_in">write</span>(p1[<span class="number">1</span>],<span class="string">&quot;ping&quot;</span>,<span class="number">4</span>);</span><br><span class="line">        <span class="built_in">close</span>(p1[<span class="number">1</span>]);</span><br><span class="line">        <span class="comment">// receive from child</span></span><br><span class="line">        <span class="built_in">read</span>(p2[<span class="number">0</span>],buffer,<span class="number">4</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d: received pong\n&quot;</span>,<span class="built_in">getpid</span>());</span><br><span class="line">        <span class="built_in">close</span>(p2[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-primes"><a href="#3-primes" class="headerlink" title="3. primes"></a>3. primes</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Write a concurrent version of prime sieve using pipes. This idea is due to Doug McIlroy, inventor of Unix pipes. The picture halfway down this page and the surrounding text explain how to do it. Your solution should be in the file user/primes.c.</span><br></pre></td></tr></table></figure>
+<p>利用进程实现素数筛选，不知道为什么实现的很蛋疼。估计还是<code>xv6</code>的文件描述符资源有限不能很好支持多个管道同时读写，因为开的管道过多，资源就卡住了，各种问题不知道有没有人实现快速版本，及子进程同时接受数据也同时开始计算，并同时开始写数据。目前这个的实现很糙，将当前进程筛选的不能被第一个素数整数的数据全部写入管道中，交给子进程去处理，依次这样递归下去即可。这个做法就是跟素数的快速筛查的算法是处理的一模一样的,在$O(n)$的时间复杂度内筛选出所有小于$n$的素数。</p>
+<p><img src="https://i.loli.net/2021/06/08/dtliNxaYBsSP7Fu.gif" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">p = get a number from left neighbor</span><br><span class="line">print p</span><br><span class="line">loop:</span><br><span class="line">    n = get a number from left neighbor</span><br><span class="line">    if (p does not divide n)</span><br><span class="line">        send n to right neighbor</span><br></pre></td></tr></table></figure>
+<p>需要特殊处理的是父进程需要等待子进程完成后，才能退出。</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/stat.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;user/user.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">process</span><span class="params">(<span class="type">const</span> <span class="type">int</span> * p)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> prime = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> pip[<span class="number">2</span>];</span><br><span class="line">    <span class="type">int</span> status;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*close p1*/</span></span><br><span class="line">    <span class="built_in">pipe</span>(pip);</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">read</span>(p[<span class="number">0</span>],&amp;num,<span class="number">4</span>))&#123;</span><br><span class="line">        <span class="keyword">if</span>(num == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span>(prime == <span class="number">1</span>)&#123;</span><br><span class="line">            prime = num;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;prime %d\n&quot;</span>,prime);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(num%prime == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="built_in">write</span>(pip[<span class="number">1</span>],&amp;num,<span class="number">4</span>);</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">close</span>(p[<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">close</span>(pip[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">if</span>(prime &gt; <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(fork() == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">process</span>(pip);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">wait</span>(&amp;status);</span><br><span class="line">    <span class="built_in">close</span>(pip[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span></span></span><br><span class="line"><span class="function"><span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> p[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">pipe</span>(p);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">35</span>; ++i)&#123;</span><br><span class="line">        <span class="built_in">write</span>(p[<span class="number">1</span>],&amp;i,<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">close</span>(p[<span class="number">1</span>]);</span><br><span class="line">    <span class="built_in">process</span>(p);</span><br><span class="line">    <span class="built_in">close</span>(p[<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="4-find"><a href="#4-find" class="headerlink" title="4. find"></a>4. find</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Write a simple version of the UNIX find program: find all the files in a directory tree with a specific name. Your solution should be in the file user/find.c.</span><br></pre></td></tr></table></figure>
+<p>实现一个简单的查找文件名为指定关键字的程序，典型的利用递归查找到子目录下，即可完成所有子目录的查找。这个就是常规的操作。各种处理文件时需要查找相应的库函数，需要小心处理。</p>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/stat.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;user/user.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/fs.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">getname</span><span class="params">(<span class="type">char</span> *path)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">char</span> *p;</span><br><span class="line">  <span class="comment">// Find first character after last slash.</span></span><br><span class="line">  <span class="keyword">for</span>(p=path+<span class="built_in">strlen</span>(path); p &gt;= path &amp;&amp; *p != <span class="string">&#x27;/&#x27;</span>; p--)&#123;&#125;</span><br><span class="line">  <span class="comment">// skip &#x27;/&#x27;</span></span><br><span class="line">  p++;</span><br><span class="line">  <span class="comment">// Return blank-padded name.</span></span><br><span class="line">  <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">find</span><span class="params">(<span class="type">char</span> *path,<span class="type">const</span> <span class="type">char</span> * filename)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">512</span>], *p;</span><br><span class="line">  <span class="type">char</span> *curr;</span><br><span class="line">  <span class="type">char</span> *fname;</span><br><span class="line">  <span class="type">int</span> fd;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">dirent</span> de;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">stat</span> st;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// open the dir</span></span><br><span class="line">  <span class="keyword">if</span>((fd = <span class="built_in">open</span>(path, <span class="number">0</span>)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="number">2</span>, <span class="string">&quot;ls: cannot open %s\n&quot;</span>, path);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// open stat</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">fstat</span>(fd, &amp;st) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="number">2</span>, <span class="string">&quot;ls: cannot stat %s\n&quot;</span>, path);</span><br><span class="line">    <span class="built_in">close</span>(fd);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// check the current the file is </span></span><br><span class="line">  <span class="keyword">if</span>(st.type != T_DIR)&#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="number">2</span>, <span class="string">&quot;the current the file is not dictionary\n&quot;</span>, path);</span><br><span class="line">    <span class="built_in">close</span>(fd);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//read all the files under the dir</span></span><br><span class="line">  <span class="built_in">strcpy</span>(buf, path);</span><br><span class="line">  p = buf + <span class="built_in">strlen</span>(buf);</span><br><span class="line">  *p++ = <span class="string">&#x27;/&#x27;</span>;</span><br><span class="line">  <span class="keyword">while</span>(<span class="built_in">read</span>(fd, &amp;de, <span class="built_in">sizeof</span>(de)) == <span class="built_in">sizeof</span>(de))&#123;</span><br><span class="line">      <span class="keyword">if</span>(de.inum == <span class="number">0</span>)</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">      <span class="comment">// skip &quot;.&quot; and &quot;..&quot;</span></span><br><span class="line">      <span class="keyword">if</span>(<span class="built_in">strcmp</span>(de.name,<span class="string">&quot;.&quot;</span>) == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">      <span class="keyword">if</span>(<span class="built_in">strcmp</span>(de.name,<span class="string">&quot;..&quot;</span>) == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">      curr = p;</span><br><span class="line">      <span class="built_in">memmove</span>(curr, de.name, DIRSIZ);</span><br><span class="line">      curr[DIRSIZ] = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span>(<span class="built_in">stat</span>(buf, &amp;st) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">          <span class="built_in">printf</span>(<span class="string">&quot;ls: cannot stat %s\n&quot;</span>, buf);</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// printf(&quot;current file name is：%s \n&quot;,buf);</span></span><br><span class="line">      <span class="comment">// record the current file</span></span><br><span class="line">      <span class="keyword">switch</span>(st.type)&#123;</span><br><span class="line">        <span class="comment">// we check the current file</span></span><br><span class="line">        <span class="keyword">case</span> T_FILE:</span><br><span class="line">            fname = <span class="built_in">getname</span>(buf);</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">strcmp</span>(fname,filename) == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,buf);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="comment">// we check the current dir</span></span><br><span class="line">        <span class="keyword">case</span> T_DIR:</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">strlen</span>(path) + <span class="number">1</span> + DIRSIZ + <span class="number">1</span> &gt; <span class="built_in">sizeof</span>(buf))&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;ls: path too long\n&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">find</span>(buf,filename);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">close</span>(fd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span></span></span><br><span class="line"><span class="function"><span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(argc != <span class="number">3</span>)&#123;</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;we need 3 paramters!\n&quot;</span>);</span><br><span class="line">     <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">find</span>(argv[<span class="number">1</span>],argv[<span class="number">2</span>]);</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="5-xargs"><a href="#5-xargs" class="headerlink" title="5. xargs"></a>5. xargs</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Write a simple version of the UNIX xargs program: read lines from the standard input and run a command for each line, supplying the line as arguments to the command. Your solution should be in the file user/xargs.c.</span><br></pre></td></tr></table></figure>
+<p>实现类似于<code>unix</code>下的<code>xargs</code>操作，这个因为要求的比较低，其实非常容易完成，我们只需要利用<code>fork</code>和<code>exec</code>函数即可完成。我们每次标准输入，在<code>xv6</code>操作系统中，标准输入及时<code>fd 0</code>读取即可，标准输出即为写入<code>fd 1</code>即可，本质来说非常简单。将参数从标准输入读入然后作为附加参数执行<code>xargs</code>后面的程序。简单就是将输入参数进行重写即可。具体可以参考代码实现。</p>
+<h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/stat.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;user/user.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/fs.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/param.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="type">char</span> buf[<span class="number">512</span>];</span><br><span class="line">   <span class="type">char</span> *args[MAXARG];</span><br><span class="line">   <span class="type">char</span> c;</span><br><span class="line">   <span class="type">char</span> *p;</span><br><span class="line">   <span class="type">int</span> n;</span><br><span class="line">   <span class="type">int</span> status;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">memset</span>(buf,<span class="number">0</span>,<span class="built_in">sizeof</span>(buf));</span><br><span class="line">   <span class="built_in">memset</span>(args,<span class="number">0</span>,<span class="built_in">sizeof</span>(args));</span><br><span class="line">   <span class="keyword">if</span>(argc &lt; <span class="number">2</span>)&#123;</span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">&quot;need more parameter!\n&quot;</span>);</span><br><span class="line">       <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/*read from the file*/</span></span><br><span class="line">   <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; argc; ++i)&#123;</span><br><span class="line">       args[i<span class="number">-1</span>] = argv[i];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">for</span>(;;)&#123;</span><br><span class="line">     p = buf;</span><br><span class="line">     <span class="comment">/*read each line from the stand input*/</span></span><br><span class="line">     <span class="keyword">while</span>((n = <span class="built_in">read</span>(<span class="number">0</span>,&amp;c,<span class="number">1</span>)) &amp;&amp; c != <span class="string">&#x27;\n&#x27;</span>)&#123;</span><br><span class="line">        *p = c;</span><br><span class="line">        p++;</span><br><span class="line">     &#125;</span><br><span class="line">     *p = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">     <span class="keyword">if</span>(p != buf)&#123;</span><br><span class="line">        args[argc<span class="number">-1</span>] = buf;</span><br><span class="line">        <span class="keyword">if</span>(fork() == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">exec</span>(argv[<span class="number">1</span>],args);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">wait</span>(&amp;status);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">     <span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="number">2</span>, <span class="string">&quot;read error\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Optional-challenge-exercises"><a href="#Optional-challenge-exercises" class="headerlink" title="Optional challenge exercises"></a>Optional challenge exercises</h2><p>最后看了后面几个挑战题目也都是非常有意思，后面准备继续将三个挑战题目也完成，总的来说题目质量真心非常不错。</p>
+<ul>
+<li><code>uptime</code>:<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Write an uptime program that prints the uptime in terms of ticks using the uptime system call. (easy)</span><br></pre></td></tr></table></figure></li>
+<li><code>regular</code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Support regular expressions in name matching for find. grep.c has some primitive support for regular expressions. (easy)</span><br></pre></td></tr></table></figure></li>
+<li><code>sh</code>:<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">The xv6 shell (user/sh.c) is just another user program and you can improve it. It is a minimal shell and lacks many features found in real shell. For example, modify the shell to not print a $ when processing shell commands from a file (moderate), modify the shell to support wait (easy), modify the shell to support lists of commands, separated by &quot;;&quot; (moderate), modify the shell to support sub-shells by implementing &quot;(&quot; and &quot;)&quot; (moderate), modify the shell to support tab completion (easy), modify the shell to keep a history of passed shell commands (moderate), or anything else you would like your shell to do. (If you are very ambitious, you may have to modify the kernel to support the kernel features you need; xv6 doesn&#x27;t support much.)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MIT6-S081/" class="category-chain-item">MIT6.S081</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/" class="print-no-link">#公开课学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【MIT6.S081】lab1 utils</div>
+      <div>http://example.com/1970/01/01/公开课学习/66/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E4%B8%AA%E4%BA%BA%E9%97%B2%E8%B0%88/82/" title="【2023】新年计划">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【2023】新年计划</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E4%B8%AA%E4%BA%BA%E9%97%B2%E8%B0%88/85/" title="【2024】周计划">
+                        <span class="hidden-mobile">【2024】周计划</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
