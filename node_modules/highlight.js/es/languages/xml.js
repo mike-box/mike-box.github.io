@@ -161,10 +161,7 @@ function xml(hljs) {
         starts: {
           end: /<\/style>/,
           returnEnd: true,
-          subLanguage: [
-            'css',
-            'xml'
-          ]
+          subLanguage: 'css'
         }
       },
       {
@@ -177,11 +174,7 @@ function xml(hljs) {
         starts: {
           end: /<\/script>/,
           returnEnd: true,
-          subLanguage: [
-            'javascript',
-            'handlebars',
-            'xml'
-          ]
+          subLanguage: 'javascript'
         }
       },
       // we need this for now for jSX

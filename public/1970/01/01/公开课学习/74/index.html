@@ -1,0 +1,947 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CSAPP lab4 archlablab真心难，这一章的体系结构部分还是真心很难，总共分为parta、partb、partc三部分，三部分都还挺难的，parta,partb部分还算比较容易,partc部分真心还是挺难的，需要仔细了解和学习相关知识。自我感觉学习还是非常有成效的，特别是之前做过《from nand to tetris》部分的课程还是有非常大的帮助，通过课程的学习对于体系结构和底层的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【CSAPP】 lab4">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/74/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="CSAPP lab4 archlablab真心难，这一章的体系结构部分还是真心很难，总共分为parta、partb、partc三部分，三部分都还挺难的，parta,partb部分还算比较容易,partc部分真心还是挺难的，需要仔细了解和学习相关知识。自我感觉学习还是非常有成效的，特别是之前做过《from nand to tetris》部分的课程还是有非常大的帮助，通过课程的学习对于体系结构和底层的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/05/bVG6Wa9runO8DpR.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/05/3aZrcPGX2u7gM4Q.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/05/hmSgNG5c9UrzIOl.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/05/TjNknOHeFzC7pYb.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/05/HhVydEMFLgYsBvG.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/17/RuCqaGJYIUv4ntE.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/02/17/D42VmicUvkaqeX7.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/02/17/rj5STc6HEfYmq3v.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/17/vBbzhYdHaOFiWge.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/17/v2YHpi4lb9V15rI.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/17/TtlyzMXK5LJBZsI.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/17/o4X2AfaFgLl9Q3w.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/17/TjHPEe7ftI5dr4x.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-28T04:57:02.701Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="公开课学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/05/bVG6Wa9runO8DpR.png">
+  
+  
+  
+  <title>【CSAPP】 lab4 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【CSAPP】 lab4"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          88 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【CSAPP】 lab4</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="CSAPP-lab4-archlab"><a href="#CSAPP-lab4-archlab" class="headerlink" title="CSAPP lab4 archlab"></a>CSAPP lab4 archlab</h1><p><code>lab</code>真心难，这一章的体系结构部分还是真心很难，总共分为<code>parta、partb、partc</code>三部分，三部分都还挺难的，<code>parta,partb</code>部分还算比较容易,<code>partc</code>部分真心还是挺难的，需要仔细了解和学习相关知识。自我感觉学习还是非常有成效的，特别是之前做过《from nand to tetris》部分的课程还是有非常大的帮助，通过课程的学习对于体系结构和底层的汇编指令都有了一个初步的入门和学习。<br>首先需要了解一下<code>y86</code>的指令集如下:<br><img src="https://i.loli.net/2021/02/05/bVG6Wa9runO8DpR.png" srcset="/img/loading.gif" lazyload alt=""><br><img src="https://i.loli.net/2021/02/05/3aZrcPGX2u7gM4Q.png" srcset="/img/loading.gif" lazyload alt=""><br>基本上目前教材中已经给出的指令与指令详细的描述和指令字上如上图所示。</p>
+<ul>
+<li>有4个整数操作指令。对应表中的OPq，分别是addq, subq, andq, xorq。它们只对寄存器数据操作，同时还会设置条件码。</li>
+<li>这里有7个跳转指令，就是图中的jXX。根据条件码来设置分支条件并进行跳转，分支条件和X86-64一样。</li>
+<li>有6个条件传送指令，图示的cmovXX，这些指令格式和寄存器-寄存器传送指令一样，但是只有当条件码满足所需要的约束时，才会更新目的寄存器的值。</li>
+<li>call指令和ret指令同X86-64一致，pushq和popq亦是如此</li>
+<li>halt指令终止程序运行，并将状态码设置为HLT。<br>其中关于流水线的部分感觉过于晦涩，可以参考CSDN的中文翻译，质量很不错。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39997311/article/details/110458772">处理器体系结构</a><h2 id="parta"><a href="#parta" class="headerlink" title="parta"></a>parta</h2>Write a Y86-64 program sum.ys that iteratively sums the elements of a linked list. Your program should<br>consist of some code that sets up the stack structure, invokes a function, and then halts. In this case,<br>the function should be Y86-64 code for a function (sum list) that is functionally equivalent to the C<br>sum list function in Figure 1. Test your program using the following three-element list:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/* linked list element */</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ELE</span> &#123;<br><span class="hljs-number">3</span> <span class="hljs-type">long</span> val;<br><span class="hljs-number">4</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ELE</span> *next;<br><span class="hljs-number">5</span> &#125; *list_ptr;<br><span class="hljs-number">6</span> <span class="hljs-number">7</span><br><span class="hljs-comment">/* sum_list - Sum the elements of a linked list */</span><br><span class="hljs-number">8</span> <span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-title">sum_list</span><span class="hljs-params">(list_ptr ls)</span></span><br><span class="hljs-function">9 </span>&#123;<br><span class="hljs-number">10</span> <span class="hljs-type">long</span> val = <span class="hljs-number">0</span>;<br><span class="hljs-number">11</span> <span class="hljs-keyword">while</span> (ls) &#123;<br><span class="hljs-number">12</span> val += ls-&gt;val;<br><span class="hljs-number">13</span> ls = ls-&gt;next;<br><span class="hljs-number">14</span> &#125;<br><span class="hljs-number">15</span> <span class="hljs-keyword">return</span> val;<br><span class="hljs-number">16</span> &#125;<br><span class="hljs-number">17</span><br><span class="hljs-number">18</span> <span class="hljs-comment">/* rsum_list - Recursive version of sum_list */</span><br><span class="hljs-number">19</span> <span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-title">rsum_list</span><span class="hljs-params">(list_ptr ls)</span></span><br><span class="hljs-function">20 </span>&#123;<br><span class="hljs-number">21</span> <span class="hljs-keyword">if</span> (!ls)<br><span class="hljs-number">22</span> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><span class="hljs-number">23</span> <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-number">24</span> <span class="hljs-type">long</span> val = ls-&gt;val;<br><span class="hljs-number">25</span> <span class="hljs-type">long</span> rest = <span class="hljs-built_in">rsum_list</span>(ls-&gt;next);<br><span class="hljs-number">26</span> <span class="hljs-keyword">return</span> val + rest;<br><span class="hljs-number">27</span> &#125;<br><span class="hljs-number">28</span> &#125;<br><span class="hljs-number">29</span><br><span class="hljs-number">30</span> <span class="hljs-comment">/* copy_block - Copy src to dest and return xor checksum of src */</span><br><span class="hljs-number">31</span> <span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-title">copy_block</span><span class="hljs-params">(<span class="hljs-type">long</span> *src, <span class="hljs-type">long</span> *dest, <span class="hljs-type">long</span> len)</span></span><br><span class="hljs-function">32 </span>&#123;<br><span class="hljs-number">33</span> <span class="hljs-type">long</span> result = <span class="hljs-number">0</span>;<br><span class="hljs-number">34</span> <span class="hljs-keyword">while</span> (len &gt; <span class="hljs-number">0</span>) &#123;<br><span class="hljs-number">35</span> <span class="hljs-type">long</span> val = *src++;<br><span class="hljs-number">36</span> *dest++ = val;<br><span class="hljs-number">37</span> result ˆ= val;<br><span class="hljs-number">38</span> len--;<br><span class="hljs-number">39</span> &#125;<br><span class="hljs-number">40</span> <span class="hljs-keyword">return</span> result;<br><span class="hljs-number">41</span> &#125;<br></code></pre></td></tr></table></figure>
+针对上述的三个函数<code>sum_list</code>,<code>rsum_list</code>,<code>copy_block</code>这三个函数用<code>y86</code>的汇编实现出来，并完成通过测试用例。</li>
+<li><code>sum_list</code>: 这个函数实现起来非常简单，我们直接用常规的几个指令即可完成，无非是有一个<code>loop</code>和判断条件。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* $begin code-yso */</span><br><span class="hljs-comment">/* $begin code-ysa */</span><br># Execution begins at address <span class="hljs-number">0</span> <br>	.pos <span class="hljs-number">0</span> <br>init:	irmovl Stack, %esp  	# Set up <span class="hljs-built_in">stack</span> pointer  <br>	irmovl Stack, %ebp  	# Set up base pointer   <br>	call Main		# Execute main program<br>	halt			# Terminate program <br><br># Sample linked <span class="hljs-built_in">list</span><br>    .align <span class="hljs-number">4</span><br>ele1:   <br>    .<span class="hljs-type">long</span> <span class="hljs-number">0x00a</span><br>    .<span class="hljs-type">long</span> ele2<br>ele2:   <br>    .<span class="hljs-type">long</span> <span class="hljs-number">0x0b0</span><br>    .<span class="hljs-type">long</span> ele3<br>ele3:   <br>    .<span class="hljs-type">long</span> <span class="hljs-number">0xc00</span><br>    .<span class="hljs-type">long</span> <span class="hljs-number">0</span><br><br>Main:	pushl %ebp <br>	rrmovl %esp,%ebp<br>	irmovl ele1,%edx<br>	pushl %edx      # Push linklist head<br>	call sum_list	# Sum(<span class="hljs-built_in">array</span>, <span class="hljs-number">4</span>)<br>	rrmovl %ebp,%esp<br>	popl %ebp<br>	ret <br><br>sum_list:   pushl %ebp<br>	rrmovl %esp,%ebp<br>    mrmovl <span class="hljs-number">8</span>(%ebp),%ebx 	<span class="hljs-meta"># eax = header, move list header to the register;</span><br>    irmovl $<span class="hljs-number">0</span>,%eax            <span class="hljs-meta"># sum = 0;</span><br>    irmovl <span class="hljs-number">4</span>,%ecx<br>Loop:   mrmovl (%ebx),%esi	<span class="hljs-meta"># get val</span><br>    addl %esi,%eax<br>	addl %ecx,%ebx          <span class="hljs-meta"># list = list-&gt;next;</span><br>    mrmovl (%ebx),%edx<br>    rrmovl %edx,%ebx<br>    andl   %ebx,%ebx<br>    jne Loop<br>End:	rrmovl %ebp,%esp<br>	popl %ebp<br>    ret<br>    .pos <span class="hljs-number">0x200</span><br>Stack:	# The <span class="hljs-built_in">stack</span> goes here<br></code></pre></td></tr></table></figure>
+运行结果如下：<br><img src="https://i.loli.net/2021/02/05/hmSgNG5c9UrzIOl.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li><code>rsum_list</code>: 这个链表遍历是用递归实现的，因此稍微复杂一些，因为用到递归则寄存器<code>esi</code>存在重入的风险，因此此时我们则需要降每次取出的<code>val</code>压入到栈中，待到当前的函数调用结束后，再降其从栈中弹出上一次计算的值，与函数返回的值进行相加即可得到本次函数返回值。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* $begin code-yso */</span><br><span class="hljs-comment">/* $begin code-ysa */</span><br># Execution begins at address <span class="hljs-number">0</span> <br>	.pos <span class="hljs-number">0</span> <br>init:	irmovl Stack, %esp  	# Set up <span class="hljs-built_in">stack</span> pointer  <br>	irmovl Stack, %ebp  	# Set up base pointer   <br>	call Main		# Execute main program<br>	halt			# Terminate program <br><br># Sample linked <span class="hljs-built_in">list</span><br>.align <span class="hljs-number">4</span><br>ele1:<br>    .<span class="hljs-type">long</span> <span class="hljs-number">0x00a</span><br>    .<span class="hljs-type">long</span> ele2<br>ele2:<br>    .<span class="hljs-type">long</span> <span class="hljs-number">0x0b0</span><br>    .<span class="hljs-type">long</span> ele3<br>ele3:<br>    .<span class="hljs-type">long</span> <span class="hljs-number">0xc00</span><br>    .<span class="hljs-type">long</span> <span class="hljs-number">0</span><br><br>Main:	pushl %ebp <br>	rrmovl %esp,%ebp<br>	irmovl ele1,%edx<br>	pushl %edx      # Push linklist head<br>	call rsum_list	# Sum(<span class="hljs-built_in">array</span>, <span class="hljs-number">4</span>)<br>	rrmovl %ebp,%esp<br>	popl %ebp<br>	ret <br><br>rsum_list:   pushl %ebp<br>	rrmovl %esp,%ebp<br>    mrmovl <span class="hljs-number">8</span>(%ebp),%ebx 	<span class="hljs-meta"># ebx = header, move list header to the register;</span><br>    xorl   %eax,%eax        <span class="hljs-meta"># eax = 0 </span><br>    andl   %ebx,%ebx        <span class="hljs-meta"># ebx = 0 </span><br>    je End<br>    pushl  %esi             <span class="hljs-meta"># esi = val</span><br>    mrmovl (%ebx),%esi	<span class="hljs-meta"># get val</span><br>    mrmovl <span class="hljs-number">4</span>(%ebx),%edx	<span class="hljs-meta"># get val    </span><br>    pushl  %edx<br>    call   rsum_list<br>    popl   %edx     <br>    addl   %esi,%eax<br>    popl   %esi<br>End:	rrmovl %ebp,%esp<br>	popl %ebp<br>    ret<br>    .pos <span class="hljs-number">0x200</span><br>Stack:	# The <span class="hljs-built_in">stack</span> goes here<br><br></code></pre></td></tr></table></figure>
+运行结果如下:<br><img src="https://i.loli.net/2021/02/05/TjNknOHeFzC7pYb.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li><code>copy_block</code>: 这个就更简单了，就是基本的拷贝和复制，用好几种寻址方式即可。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs python">/* $begin code-yso */<br>/* $begin code-ysa */<br><span class="hljs-comment"># Execution begins at address 0 </span><br>	.pos <span class="hljs-number">0</span> <br>init:	irmovl Stack, %esp  	<span class="hljs-comment"># Set up stack pointer  </span><br>	irmovl Stack, %ebp  	<span class="hljs-comment"># Set up base pointer   </span><br>	call Main		<span class="hljs-comment"># Execute main program</span><br>	halt			<span class="hljs-comment"># Terminate program </span><br><br><br><span class="hljs-comment"># Source block</span><br>.align <span class="hljs-number">4</span><br>src:<br>    .long <span class="hljs-number">0x00a</span><br>    .long <span class="hljs-number">0x0b0</span><br>    .long <span class="hljs-number">0xc00</span><br><span class="hljs-comment"># Destination block</span><br>dest:<br>    .long <span class="hljs-number">0x111</span><br>    .long <span class="hljs-number">0x222</span><br>    .long <span class="hljs-number">0x333</span><br><br>Main:	pushl %ebp <br>	rrmovl %esp,%ebp<br>    irmovl $<span class="hljs-number">3</span>,%edx<br>	pushl %edx      <span class="hljs-comment"># Push linklist head</span><br>    irmovl dest,%edx<br>    pushl %edx<br>    irmovl src,%edx<br>    pushl %edx<br>	call copy_block	<span class="hljs-comment"># Sum(array, 4)</span><br>	rrmovl %ebp,%esp<br>	popl %ebp<br>	ret <br><br>copy_block:   pushl %ebp<br>	rrmovl %esp,%ebp<br>    mrmovl <span class="hljs-number">8</span>(%ebp),%ebx 	<span class="hljs-comment"># ebx = src ;</span><br>    mrmovl <span class="hljs-number">12</span>(%ebp),%ecx 	<span class="hljs-comment"># ecx = dst ;</span><br>    mrmovl <span class="hljs-number">16</span>(%ebp),%edx 	<span class="hljs-comment"># edx = len;</span><br>    xorl   %eax,%eax<br>    andl   %edx,%edx<br>    jle  End<br>Loop:    mrmovl (%ebx),%esi	<span class="hljs-comment"># get src</span><br>    rmmovl %esi,(%ecx)  <span class="hljs-comment"># dst = src</span><br>    xorl   %esi,%eax    <span class="hljs-comment"># result = result^vald</span><br>    irmovl $<span class="hljs-number">4</span>,%esi<br>    addl   %esi,%ebx    <span class="hljs-comment"># dst++</span><br>    addl   %esi,%ecx    <span class="hljs-comment"># src++</span><br>    irmovl $-<span class="hljs-number">1</span>,%esi	    <br>    addl   %esi,%edx    <span class="hljs-comment"># len--</span><br>    jg Loop<br>End:	rrmovl %ebp,%esp<br>	popl %ebp<br>    ret<br>    .pos <span class="hljs-number">0x200</span><br>Stack:	<span class="hljs-comment"># The stack goes here</span><br></code></pre></td></tr></table></figure>
+运行结果如下：<br><img src="https://i.loli.net/2021/02/05/HhVydEMFLgYsBvG.png" srcset="/img/loading.gif" lazyload alt=""><h2 id="partb"><a href="#partb" class="headerlink" title="partb"></a>partb</h2>Your task in Part B is to extend the SEQ processor to support the iaddq, described in Homework problems<br>4.51 and 4.52. To add this instructions, you will modify the file seq-full.hcl, which implements the<br>version of SEQ described in the CS:APP3e textbook. In addition, it contains declarations of some constants<br>that you will need for your solution.<br>这部分需要你在<code>seq</code>处理器中实现<code>leave</code>和<code>iaddl</code>指令。我们知道按照<code>seq</code>的指令执行过程一般分为:<br><code>fetch</code>,<code>decode</code>,<code>Execute</code>,<code>Memory</code>,<code>Write back</code>,<code>PC update</code>等几个阶段，每个阶段都需要设置不同的标志位。因为在<code>y86</code>的指令集中为变长指令，所有的指令集都可可能是<h3 id="iaddl"><a href="#iaddl" class="headerlink" title="iaddl"></a>iaddl</h3></li>
+<li><code>iaddl</code>指令：即实现立即数与寄存器的值进行相加，结果存储在寄存器中。指令形式如下：<figure class="highlight freedesktop"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs freedesktop">iaddl C,rB<br><span class="hljs-attr">rB</span> <span class="hljs-operator">=</span> C + rB<br></code></pre></td></tr></table></figure>
+指令的翻译过程为:<br>| stage|iaddl V,rB|<br>|—-|——|<br>|fetch|icode:ifun ← M1[PC]<br>rA:rB ← M1[PC + 1] <br>valC ← M4[PC + 2]<br>valP ← PC + 6|<br>|decode|valB ← R[rb]|<br>|Execute|valE ← valC + valB|<br>|Memory||<br>|Write back|r[rb] ← valE|<br>|PC update|PC ← valP|<h3 id="leave"><a href="#leave" class="headerlink" title="leave:"></a>leave:</h3></li>
+<li><code>leave</code>指令的翻译就较为复杂，首先我们来看一下<code>leave</code>指令的实际执行过程<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cos">movl <span class="hljs-built_in">%ebp</span>,<span class="hljs-built_in">%esp</span><br>popl <span class="hljs-built_in">%ebp</span><br></code></pre></td></tr></table></figure>
+首先将当前的基值寄存器中的值写入到栈寄存器，然后将栈顶的数据写入到基质寄存器中，然后栈寄存器加<code>4</code>，实际我们可以如下翻译:<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cos"><span class="hljs-built_in">%ebp</span>_new = (<span class="hljs-built_in">%esp</span>_odd)<br><span class="hljs-built_in">%esp</span>_new = <span class="hljs-built_in">%esp</span>_odd + <span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+指令的翻译过程为:<br>| stage|leave|<br>|—-|——|<br>|fetch|icode:ifun ← M1[PC]<br>valP ← PC + 1|<br>|decode|valA ← R[%esp]|<br>|Execute|valE ← 4 + valA|<br>|Memory|valM ← M4[valA]|<br>|Write back|R[%esp] ← valE<br>R[%ebp] ← valM|<br>|PC update|PC ← valP|<br>即将当前基址寄存器中的数据写入到栈寄存器中，感觉还是挺不容易理解的，对于指令的翻译过程其实蛮有意思的，需要对<code>HCL</code>语言有基本的熟悉过程即可。就是几个阶段的数据要弄清楚即可，必须寻址阶段的地址非常有必要的学习，还有<code>ALU</code>的使用，写会操作等等。<h2 id="partc"><a href="#partc" class="headerlink" title="partc"></a>partc</h2>You will be working in directory sim/pipe in this part.<br>The ncopy function in Figure 2 copies a len-element integer array src to a non-overlapping dst, returning a count of the number of positive integers contained in src. Figure 3 shows the baseline Y86-64<br>version of ncopy. The file pipe-full.hcl contains a copy of the HCL code for PIPE, along with a<br>declaration of the constant value IIADDQ.<br>Your task in Part C is to modify ncopy.ys and pipe-full.hcl with the goal of making ncopy.ys<br>run as fast as possible.<br>You will be handing in two files: pipe-full.hcl and ncopy.ys. Each file should begin with a header<br><code>partc</code>部分需要对<code>ncopy</code>这段程序翻译后的汇编程序进行流水线优化，从而达到加速效果。根据提示，主要优化方法为将循环进行展开，命令即可进行流水线化，从而节省运行时间。目前对于这个程序主要有两部分可以进行优化，一是尽量避免流水线的数据冒险和控制冒险，二是尽量对循环进行展开，从而可以优化指令，减少运行的指令数。本章对于流水线的深度部分讲的原理还是非常深刻的，特别是对于流水线的运行以及加速原理讲的非常浅显易懂，如因为自己并不是处理器架构方面的资深工程师，对这一部分还是有许多很模糊的概念需要弄明白。</li>
+<li>流水线的基本原理：常规的运行模式我们称之为<code>RTC</code>模式(run to complete)，即从头开始执行到尾然后再开始下一条指令的执行。经典的<code>rtc</code>模式即每条指令执行完成上述的五个阶段<code>fetch、decode、Execute、Memory、Write back</code>之后,跟新<code>pc</code>后，<code>cpu</code>再开始执行下一条指令。因此每条指令需要等待前一条指令的五个阶段全部执行完成后，才开始进入<code>fetch</code>阶段，而流水线的原理则是利用缓存，每个阶段的计算结果完成后先进入缓冲区，再由缓冲区送入到下一个阶段，这样每当当前的<code>stage</code>的结果送入缓存后，我们即可将下一条指令送入到本次的<code>stage</code>中,具体的每个<code>stage</code>的详细处理细节可以参考章节<code>4.3.4</code>。<br>RTC模式：<br><img src="https://i.loli.net/2021/02/17/RuCqaGJYIUv4ntE.jpg" srcset="/img/loading.gif" lazyload alt=""><br>Pipeline模式:<br>通过在每个stage处都加入缓存即可实现流水线，因为有缓存的存在，此时我们可以将上一个<code>stage</code>的结果临时存放在缓存中，此时当前的<code>stage</code>即可进行下一条指令，待后一个<code>stage</code>完成后，我们将其从缓存中取出临时结果放入到下一个<code>stage</code>中。如果需要实现<code>pipeline</code>则缓存一定是必须的。<br><img src="https://i.loli.net/2021/02/17/D42VmicUvkaqeX7.jpg" srcset="/img/loading.gif" lazyload alt=""><br><img src="https://i.loli.net/2021/02/17/rj5STc6HEfYmq3v.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>流水的加速比的计算：假设每条指令几个阶段<code>fetch、decode、Execute、Memory、Write back</code>的耗时分别为$t<em>{0},t</em>{1},t<em>{2},t</em>{3},t_{4}$,则执行一条完整的指令的执行时间为:<script type="math/tex; mode=display">
+T = t_{0} + t_{1} + t_{2} + t_{3} + t_{4} = \sum_{i=0}^{n}t_{i}</script>如果按照<code>rtc</code>模式的执行的话，如果执行<code>n</code>条指令则需要的总时间为$t = N*T$，如果采用流水线时，则如果执行<code>N</code>条指令则需要的总时间约为:<script type="math/tex; mode=display">
+t = (n*t_{max}) + (N-1)*t_{max}</script>其中<code>n</code>代表此流水线有<code>n</code>个<code>stage</code>,$t_{max}$代表<code>n</code>个<code>stage</code>中耗时最长的<code>stage</code>.<br>则加速比的计算公式为:<script type="math/tex; mode=display">
+S = \frac{t_{rtc}}{t_{pipeline}} = \frac{(n*t_{max}) + (N-1)*t_{max}}{N*\sum_{i=0}^{n}t_{i}}</script><img src="https://i.loli.net/2021/02/17/vBbzhYdHaOFiWge.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>流水线的数据冒险：在流水线的实际运行中某些关联指令可能存在问题，比如下一条指令必须用到上一条指令的运算结果，则此时就出现了数据错误，因为下一条指令在<code>decode</code>阶段时，可能某个寄存器的值还没有在上一个指令中完成更新，则此时计算时肯定存在错误。比如执行以下指令时，如果严格按照执行<code>rrmoveq</code>指令时，此时可能<code>rdx</code>寄存器还未完成跟新，因为第三条在执行<code>decode</code>阶段时，此时第二条指令还在<code>excute</code>阶段，还未到<code>写回</code>阶段，则此时直接读取<code>%rdx</code>寄存器时的值可能是未知的，因此这就意味着风险，此时我们必须将流水线暂停几个<code>stage</code>等待寄存器<code>%rdx</code>完成更新后，我们再执行第三条指令。<br><img src="https://i.loli.net/2021/02/17/v2YHpi4lb9V15rI.png" srcset="/img/loading.gif" lazyload alt=""><br>则此时我们需要插入两个空指令等待第二条指令完成<code>写回</code>阶段后，我们即可进行<code>decode</code>阶段。<br><img src="https://i.loli.net/2021/02/17/TtlyzMXK5LJBZsI.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>流水线的控制冒险：我们知道正常的指令跳转地址为该指令执行完成后，紧挨着的下一条指令，一般情况下我们在取指令阶段即同时预先完成下一条指令地址的更新，但是由于部分指令中存在条件跳转指令，则此时之前在<code>fectch</code>阶段更新的指令地址可能会失效，我们此时就需要重新填入更新的指令地址，则此时我们需要进行指令取消，即在流水线中中止此时已经执行的指令。<br><img src="https://i.loli.net/2021/02/17/o4X2AfaFgLl9Q3w.png" srcset="/img/loading.gif" lazyload alt=""><h3 id="unrolling-loop"><a href="#unrolling-loop" class="headerlink" title="unrolling loop"></a>unrolling loop</h3>我们可以参考第<code>5</code>章的优化技术，即对循环进行展开，循环展开的好处有两点，一是可以充分的利用<code>cache</code>，另一方面可以有效的避免数据冒险，即相邻的指令使用同一个寄存器。<br>对于<code>partc</code>部分，主要针对原有的程序进行了如下优化：</li>
+</ul>
+<ol>
+<li>对于循环进行展开，每次我们每次读取<code>4</code>个字节，对每个字节进行分别读取和转存，同时尽可能的避免相邻的指令读取和存储同一个寄存器，从而避免气泡和空指令，从而来加速流水线的执行，由于本课程的工具的限制，本来有<code>15</code>个通用的寄存器，但是不知道为什么它提供的工具竟然不允许用<code>%r8~%r14</code>这<code>5</code>个寄存器。</li>
+<li>使用<code>partb</code>部分的<code>iaddl</code>指令，即可以用一条指令完成之前用三条指令实现。</li>
+<li>感觉本章的许多细节部分还是糊里糊涂，不是特别清楚，只能等待后续有实际的应用场景后再结合实际来研究细节的话，效果才能更好。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><code class="hljs c++">##################################################################<br><span class="hljs-meta"># ncopy.ys - Copy a src block of len ints to dst.</span><br># <span class="hljs-function">Return the number of positive <span class="hljs-title">ints</span> <span class="hljs-params">(&gt;<span class="hljs-number">0</span>)</span> contained in src.</span><br><span class="hljs-function">#</span><br><span class="hljs-function"># Include your name <span class="hljs-keyword">and</span> ID here.</span><br><span class="hljs-function">#</span><br><span class="hljs-function"># Describe how <span class="hljs-keyword">and</span> why you modified the baseline code.</span><br><span class="hljs-function">#</span><br><span class="hljs-function">##################################################################</span><br><span class="hljs-function"># Do <span class="hljs-keyword">not</span> modify <span class="hljs-keyword">this</span> portion</span><br><span class="hljs-function"># Function prologue.</span><br><span class="hljs-function">ncopy:	pushl %ebp		# Save old frame pointer</span><br><span class="hljs-function">	rrmovl %esp,%ebp	# Set up new frame pointer</span><br><span class="hljs-function">	pushl %esi		# Save callee-save regs</span><br><span class="hljs-function">	pushl %ebx</span><br><span class="hljs-function">	pushl %edi</span><br><span class="hljs-function">	mrmovl <span class="hljs-number">8</span>(%ebp),%ebx	# src</span><br><span class="hljs-function">	mrmovl <span class="hljs-number">16</span>(%ebp),%edx	# len</span><br><span class="hljs-function">	mrmovl <span class="hljs-number">12</span>(%ebp),%ecx	# dst</span><br><span class="hljs-function"></span><br><span class="hljs-function">##################################################################</span><br><span class="hljs-function"># You can modify this portion</span><br><span class="hljs-function"># Loop header</span><br><span class="hljs-function">	xorl %eax,%eax		# count =</span> <span class="hljs-number">0</span>;<br>	iaddl $<span class="hljs-number">-4</span> , %edx      <span class="hljs-meta"># len = len - 4</span><br>	andl %edx,%edx		<span class="hljs-meta"># len &lt;= 0?</span><br>	jle Remain		    <span class="hljs-meta"># <span class="hljs-keyword">if</span> so, goto Done:</span><br><br><span class="hljs-meta"># loop unrolling </span><br>Loop:  <br>	<span class="hljs-built_in">mrmovl</span> (%ebx),%esi      <span class="hljs-meta"># read val from src</span><br>	mrmovl <span class="hljs-number">4</span>(%ebx), %edi    <span class="hljs-meta"># read val from src</span><br>	rmmovl %esi, (%ecx)	# ...<span class="hljs-keyword">and</span> store it to dst<br>	andl %esi, %esi<br>	jle Nop1<br>	iaddl  $<span class="hljs-number">1</span>, %eax         <span class="hljs-meta"># count = count + 1</span><br>Nop1:<br>	rmmovl %edi, <span class="hljs-number">4</span>(%ecx)	# ...<span class="hljs-keyword">and</span> store it to dst<br>	andl %edi, %edi<br>	jle Nop2<br>	iaddl  $<span class="hljs-number">1</span>, %eax         <span class="hljs-meta"># count = count + 1</span><br>Nop2:<br>	iaddl  $<span class="hljs-number">-4</span>, %edx        <span class="hljs-meta"># len = len - 4</span><br>	mrmovl <span class="hljs-number">8</span>(%ebx),%esi      <span class="hljs-meta"># read val from src</span><br>	mrmovl <span class="hljs-number">12</span>(%ebx), %edi    <span class="hljs-meta"># read val from src</span><br>	rmmovl %esi, <span class="hljs-number">8</span>(%ecx)	# ...<span class="hljs-keyword">and</span> store it to dst<br>	andl %esi, %esi<br>	jle Nop3<br>	iaddl  $<span class="hljs-number">1</span>, %eax         <span class="hljs-meta"># count = count + 1</span><br>Nop3:<br>	rmmovl %edi, <span class="hljs-number">12</span>(%ecx)	# ...<span class="hljs-keyword">and</span> store it to dst<br>	andl %edi, %edi<br>	jle Nop4<br>	iaddl  $<span class="hljs-number">1</span>, %eax         <span class="hljs-meta"># count = count + 1</span><br>Nop4:<br>	iaddl  $<span class="hljs-number">16</span>, %ebx<br>	iaddl  $<span class="hljs-number">16</span>, %ecx<br>	andl   %edx,%edx        <span class="hljs-meta"># len &gt; 0 ? </span><br>	jg Loop			<span class="hljs-meta"># <span class="hljs-keyword">if</span> so, goto Loop:</span><br><br>###############<span class="hljs-meta">#left element######################################</span><br>Remain:<br>	iaddl  $<span class="hljs-number">4</span>, %edx<br>	andl  %edx,%edx<br>	jle   Done<br>Nxloop:<br>	<span class="hljs-built_in">mrmovl</span> (%ebx),%esi      <span class="hljs-meta"># read val from src</span><br>	iaddl $<span class="hljs-number">4</span>,%ebx<br>	iaddl $<span class="hljs-number">-1</span>,%edx<br>	rmmovl %esi, (%ecx)	# ...<span class="hljs-keyword">and</span> store it to dst<br>	iaddl $<span class="hljs-number">4</span>,%ecx<br>	andl %esi, %esi<br>	jle Nop5<br>	iaddl  $<span class="hljs-number">1</span>, %eax         <span class="hljs-meta"># count = count + 1</span><br>Nop5:	<br>	andl  %edx,%edx<br>	jg Nxloop<br>	<br>##################################################################<br># Do <span class="hljs-keyword">not</span> modify the following section of code<br># Function epilogue.<br>Done:<br>	popl %edi               # Restore callee-save registers<br>	popl %ebx<br>	popl %esi<br>	rrmovl %ebp, %esp<br>	popl %ebp<br>	ret<br>##################################################################<br># Keep the following label at the end of your function<br>End:<br># <span class="hljs-comment">/* $end ncopy-ys */</span><br></code></pre></td></tr></table></figure>
+最终的运行的<code>bechmark</code>的结果<code>CPE</code>竟然为<code>1.41</code>，感觉不可思议，应该还是部分地方处理有点问题，不过最终的细节还需要后面仔细的考虑和学习，部分细节也没有更多的时间去思考了，不过由于本身自己并不是做处理器加速的，这块的理论需要很深厚的理论基础，当然作为科普了解一下基本的内容和原理来说还是非常不错的。<br><img src="https://i.loli.net/2021/02/17/TjHPEe7ftI5dr4x.png" srcset="/img/loading.gif" lazyload alt=""><br>欢迎关注和打赏，感谢支持！</li>
+</ol>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CSAPP/" class="category-chain-item">CSAPP</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/" class="print-no-link">#公开课学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【CSAPP】 lab4</div>
+      <div>http://example.com/1970/01/01/公开课学习/74/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>August 28, 2026</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/66/" title="【MIT6.S081】lab1 utils">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【MIT6.S081】lab1 utils</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/73/" title="【MIT6.824】lab 1 mapreduce">
+                        <span class="hidden-mobile">【MIT6.824】lab 1 mapreduce</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

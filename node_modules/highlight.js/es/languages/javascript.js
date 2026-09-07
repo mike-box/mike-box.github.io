@@ -1,4 +1,5 @@
 const IDENT_RE = '[A-Za-z$_][0-9A-Za-z$_]*';
+
 const KEYWORDS = [
   "as", // for exports
   "in",
@@ -149,6 +150,7 @@ const BUILT_IN_VARIABLES = [
   "localStorage",
   "sessionStorage",
   "module",
+  "self",
   "global" // Node.js
 ];
 
@@ -546,7 +548,8 @@ function javascript(hljs) {
       noneOf([
         ...BUILT_IN_GLOBALS,
         "super",
-        "import"
+        "import",
+        "await",
       ].map(x => `${x}\\s*\\(`)),
       IDENT_RE$1, regex.lookahead(/\s*\(/)),
     className: "title.function",
@@ -615,7 +618,7 @@ function javascript(hljs) {
     keywords: KEYWORDS$1,
     // this will be extended by TypeScript
     exports: { PARAMS_CONTAINS, CLASS_REFERENCE },
-    illegal: /#(?![$_A-z])/,
+    illegal: /#(?![$_A-Za-z])/,
     contains: [
       hljs.SHEBANG({
         label: "shebang",

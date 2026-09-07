@@ -13,10 +13,7 @@ function dos(hljs) {
     { relevance: 10 }
   );
   const LABEL = {
-    className: 'symbol',
-    begin: '^\\s*[A-Za-z._?][A-Za-z0-9_$#@~.?]*(:|\\s+label)',
-    relevance: 0
-  };
+    begin: '^\\s*[A-Za-z._?][A-Za-z0-9_$#@~.?]*(:|\\s+label)'};
   const KEYWORDS = [
     "if",
     "else",
@@ -132,6 +129,7 @@ function dos(hljs) {
     name: 'Batch file (DOS)',
     aliases: [
       'bat',
+      'batch',
       'cmd'
     ],
     case_insensitive: true,

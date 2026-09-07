@@ -111,6 +111,7 @@ function llvm(hljs) {
       // another language than an actual comment
       hljs.COMMENT(/;\s*$/, null, { relevance: 0 }),
       hljs.COMMENT(/;/, /$/),
+      hljs.C_BLOCK_COMMENT_MODE,
       {
         className: 'string',
         begin: /"/,

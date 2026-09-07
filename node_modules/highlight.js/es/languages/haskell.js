@@ -141,7 +141,7 @@ function haskell(hljs) {
         className: 'class',
         begin: '\\b(data|(new)?type)\\b',
         end: '$',
-        keywords: 'data family type newtype deriving',
+        keywords: 'data family type newtype deriving where',
         contains: [
           PRAGMA,
           CONSTRUCTOR,

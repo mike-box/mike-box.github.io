@@ -64,6 +64,18 @@ function either(...args) {
   return joined;
 }
 
+// BACKREF_RE matches an open parenthesis or backreference. To avoid an
+// incorrect parse, it also matches the constructs where the meaning of
+// parentheses, escapes, or capture counting changes.
+new RegExp(either(
+  /\[(?:[^\\\]]|\\.)*\]/, // a character class, inside which ( and \ lose their meaning
+  /\(\?<(?![=!])[^>]+>/, // a named capture group `(?<name>` (not a lookbehind `(?<=` / `(?<!`)
+  /\(\?'[^']+'/, // a named capture group `(?'name'`
+  /\(\??/, // an opening parenthesis, capturing or non-capturing / lookahead
+  /\\([1-9][0-9]*)/, // a backreference like `\1`
+  /\\./ // any other escape sequence
+));
+
 const keywordWrapper = keyword => concat(
   /\b/,
   keyword,

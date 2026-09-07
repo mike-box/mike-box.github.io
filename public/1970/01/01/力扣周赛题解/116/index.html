@@ -1,0 +1,1039 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode spring LCCUP季度赛果真打酱油，水了三道题，前三道题目确实难度太低了。 LCP 72. 补给马车远征队即将开启未知的冒险之旅，不过在此之前，将对补给车队进行最后的检查。supplies[i] 表示编号为 i 的补给马车装载的物资数量。 考虑到车队过长容易被野兽偷袭，他们决定将车队的长度变为原来的一半（向下取整），计划为： 找出车队中 物资之和最小 两辆 相邻 马车，将它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode spring LCCUP">
+<meta property="og:url" content="http://example.com/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/116/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode spring LCCUP季度赛果真打酱油，水了三道题，前三道题目确实难度太低了。 LCP 72. 补给马车远征队即将开启未知的冒险之旅，不过在此之前，将对补给车队进行最后的检查。supplies[i] 表示编号为 i 的补给马车装载的物资数量。 考虑到车队过长容易被野兽偷袭，他们决定将车队的长度变为原来的一半（向下取整），计划为： 找出车队中 物资之和最小 两辆 相邻 马车，将它">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-28T04:57:03.138Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣季度赛">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+  
+  
+  
+  <title>leetcode spring LCCUP - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode spring LCCUP"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          January 1, 1970 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          87 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode spring LCCUP</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-spring-LCCUP"><a href="#leetcode-spring-LCCUP" class="headerlink" title="leetcode spring LCCUP"></a>leetcode spring LCCUP</h2><p>季度赛果真打酱油，水了三道题，前三道题目确实难度太低了。</p>
+<h3 id="LCP-72-补给马车"><a href="#LCP-72-补给马车" class="headerlink" title="LCP 72. 补给马车"></a>LCP 72. 补给马车</h3><p>远征队即将开启未知的冒险之旅，不过在此之前，将对补给车队进行最后的检查。<code>supplies[i]</code> 表示编号为 <code>i</code> 的补给马车装载的物资数量。 考虑到车队过长容易被野兽偷袭，他们决定将车队的长度变为原来的一半（向下取整），计划为：</p>
+<p>找出车队中 物资之和最小 两辆 相邻 马车，将它们车辆的物资整合为一辆。若存在多组物资之和相同的马车，则取编号最小的两辆马车进行整合；<br>重复上述操作直到车队长度符合要求。<br>请返回车队长度符合要求后，物资的分布情况。</p>
+<p>示例 1：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：supplies = [<span class="hljs-number">7</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>,<span class="hljs-number">8</span>]<br><br>输出：[<span class="hljs-number">10</span>,<span class="hljs-number">15</span>]<br><br>解释： 第 <span class="hljs-number">1</span> 次合并，符合条件的两辆马车为 <span class="hljs-number">6</span>,<span class="hljs-number">1</span>，合并后的车队为 [<span class="hljs-number">7</span>,<span class="hljs-number">3</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>]； 第 <span class="hljs-number">2</span> 次合并，符合条件的两辆马车为 <span class="hljs-punctuation">(</span><span class="hljs-number">7</span>,<span class="hljs-number">3</span><span class="hljs-punctuation">)</span> 和 <span class="hljs-punctuation">(</span><span class="hljs-number">3</span>,<span class="hljs-number">7</span><span class="hljs-punctuation">)</span>，取编号最小的 <span class="hljs-punctuation">(</span><span class="hljs-number">7</span>,<span class="hljs-number">3</span><span class="hljs-punctuation">)</span>，合并后的车队为 [<span class="hljs-number">10</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>]； 第 <span class="hljs-number">3</span> 次合并，符合条件的两辆马车为 <span class="hljs-number">7</span>,<span class="hljs-number">8</span>，合并后的车队为 [<span class="hljs-number">10</span>,<span class="hljs-number">15</span>]； 返回 [<span class="hljs-number">10</span>,<span class="hljs-number">15</span>]<br></code></pre></td></tr></table></figure></p>
+<p>示例 2：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：supplies = <span class="hljs-comment">[1,3,1,5]</span><br><br>输出：<span class="hljs-comment">[5,5]</span><br></code></pre></td></tr></table></figure><br>解释：</p>
+<ul>
+<li><code>2 &lt;= supplies.length &lt;= 1000</code></li>
+<li><code>1 &lt;= supplies[i] &lt;= 1000</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/hqCnmP/description/">https://leetcode.cn/problems/hqCnmP/description/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code class="hljs">直接模拟
+</code></pre><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目比较简单了，假设数组长度为 $n$，每次整合将减小一辆马车，一共需要整合 $\frac{n}{2}$ 次，直接模拟即可，每次找到最大相邻元素，然后进行合并即可</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n^2)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">supplyWagon</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; supplies)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = supplies.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; (n + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>; i++) &#123;<br>            <span class="hljs-type">int</span> minSum = INT_MAX;<br>            <span class="hljs-type">int</span> start = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; supplies.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; j++) &#123;<br>                <span class="hljs-keyword">if</span> (supplies[j] + supplies[j + <span class="hljs-number">1</span>] &lt; minSum) &#123;<br>                    minSum = supplies[j] + supplies[j + <span class="hljs-number">1</span>];<br>                    start = j;<br>                &#125;<br>            &#125;<br>            supplies[start] = supplies[start] + supplies[start + <span class="hljs-number">1</span>];<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = start + <span class="hljs-number">1</span>; j &lt; supplies.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; j++) &#123;<br>                supplies[j] = supplies[j + <span class="hljs-number">1</span>]; <br>            &#125;<br>            supplies.<span class="hljs-built_in">pop_back</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> supplies;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="LCP-73-探险营地"><a href="#LCP-73-探险营地" class="headerlink" title="LCP 73. 探险营地"></a>LCP 73. 探险营地</h3><p>探险家小扣的行动轨迹，都将保存在记录仪中。<code>expeditions[i]</code> 表示小扣第 <code>i</code> 次探险记录，用一个字符串数组表示。其中的每个「营地」由大小写字母组成，通过子串<code>-&gt;</code>连接。</p>
+<p>例：<code>&quot;Leet-&gt;code-&gt;Campsite&quot;</code>，表示到访了 <code>&quot;Leet&quot;、&quot;code&quot;、&quot;Campsite&quot;</code> 三个营地。</p>
+<p><code>expeditions[0]</code> 包含了初始小扣已知的所有营地；对于之后的第 <code>i</code> 次探险(即 <code>expeditions[i]</code> 且 <code>i &gt; 0</code>)，如果记录中包含了之前均没出现的营地，则表示小扣 新发现 的营地。</p>
+<p>请你找出小扣发现新营地最多且索引最小的那次探险，并返回对应的记录索引。如果所有探险记录都没有发现新的营地，返回 <code>-1</code></p>
+<p>注意：<br>大小写不同的营地视为不同的营地；<br>营地的名称长度均大于 <code>0</code>。<br>示例 1：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入：expeditions = [<span class="hljs-string">&quot;leet-&gt;code&quot;</span>,<span class="hljs-string">&quot;leet-&gt;code-&gt;Campsite-&gt;Leet&quot;</span>,<span class="hljs-string">&quot;leet-&gt;code-&gt;leet-&gt;courier&quot;</span>]<br><br>输出：<span class="hljs-number">1</span><br><br>解释： 初始已知的所有营地为 <span class="hljs-string">&quot;leet&quot;</span> 和 <span class="hljs-string">&quot;code&quot;</span> 第 <span class="hljs-number">1</span> 次，到访了 <span class="hljs-string">&quot;leet&quot;</span>、<span class="hljs-string">&quot;code&quot;</span>、<span class="hljs-string">&quot;Campsite&quot;</span>、<span class="hljs-string">&quot;Leet&quot;</span>，新发现营地 <span class="hljs-number">2</span> 处：<span class="hljs-string">&quot;Campsite&quot;</span>、<span class="hljs-string">&quot;Leet&quot;</span> 第 <span class="hljs-number">2</span> 次，到访了 <span class="hljs-string">&quot;leet&quot;</span>、<span class="hljs-string">&quot;code&quot;</span>、<span class="hljs-string">&quot;courier&quot;</span>，新发现营地 <span class="hljs-number">1</span> 处：<span class="hljs-string">&quot;courier&quot;</span> 第 <span class="hljs-number">1</span> 次探险发现的新营地数量最多，因此返回 <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入：expeditions = [<span class="hljs-string">&quot;Alice-&gt;Dex&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;Dex&quot;</span>]<br><br>输出：<span class="hljs-number">-1</span><br><br>解释： 初始已知的所有营地为 <span class="hljs-string">&quot;Alice&quot;</span> 和 <span class="hljs-string">&quot;Dex&quot;</span> 第 <span class="hljs-number">1</span> 次，未到访任何营地； 第 <span class="hljs-number">2</span> 次，到访了 <span class="hljs-string">&quot;Dex&quot;</span>，未新发现营地； 因为两次探险均未发现新的营地，返回 <span class="hljs-number">-1</span><br></code></pre></td></tr></table></figure></p>
+<p>示例 3：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入：expeditions = [<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;Gryffindor-&gt;Slytherin-&gt;Gryffindor&quot;</span>,<span class="hljs-string">&quot;Hogwarts-&gt;Hufflepuff-&gt;Ravenclaw&quot;</span>]<br><br>输出：<span class="hljs-number">2</span><br>解释： 初始未发现任何营地； 第 <span class="hljs-number">1</span> 次，到访 <span class="hljs-string">&quot;Gryffindor&quot;</span>、<span class="hljs-string">&quot;Slytherin&quot;</span> 营地，其中重复到访 <span class="hljs-string">&quot;Gryffindor&quot;</span> 两次， 因此新发现营地为 <span class="hljs-number">2</span> 处：<span class="hljs-string">&quot;Gryffindor&quot;</span>、<span class="hljs-string">&quot;Slytherin&quot;</span> 第 <span class="hljs-number">2</span> 次，到访 <span class="hljs-string">&quot;Hogwarts&quot;</span>、<span class="hljs-string">&quot;Hufflepuff&quot;</span>、<span class="hljs-string">&quot;Ravenclaw&quot;</span> 营地； 新发现营地 <span class="hljs-number">3</span> 处：<span class="hljs-string">&quot;Hogwarts&quot;</span>、<span class="hljs-string">&quot;Hufflepuff&quot;</span>、<span class="hljs-string">&quot;Ravenclaw&quot;</span>； 第 <span class="hljs-number">2</span> 次探险发现的新营地数量最多，因此返回 <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= expeditions.length &lt;= 1000</code></li>
+<li><code>0 &lt;= expeditions[i].length &lt;= 1000</code></li>
+<li>探险记录中只包含大小写字母和子串<code>&quot;-&gt;&quot;</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/0Zeoeg/description/">https://leetcode.cn/problems/0Zeoeg/description/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code class="hljs">简单题目了
+</code></pre><h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>简单的哈希统计即可，每次插入新的字符串数组时，首先检测当前插入的组中有多少之前未出现的元素，然后再将当前组全部插入一遍即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(nm)$，其中 $n$ 为给定数组的长度，$m$ 表示每个字符串数组的长度。</li>
+<li>空间复杂度：$O(nm)$。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">split</span><span class="hljs-params">(string &amp;s)</span> </span>&#123;<br>        vector&lt;string&gt; res;<br>        unordered_set&lt;string&gt; cnt;<br>        <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (i &lt; s.<span class="hljs-built_in">size</span>()) &#123;<br>            string t;<br>            <span class="hljs-keyword">while</span> (i &lt; s.<span class="hljs-built_in">size</span>() &amp;&amp; s[i] != <span class="hljs-string">&#x27;-&#x27;</span>) &#123;<br>                t.<span class="hljs-built_in">push_back</span>(s[i]);<br>                i++;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (!cnt.<span class="hljs-built_in">count</span>(t)) &#123;<br>                res.<span class="hljs-built_in">emplace_back</span>(t);<br>                cnt.<span class="hljs-built_in">emplace</span>(t);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (i &lt; s.<span class="hljs-built_in">size</span>() &amp;&amp; s[i] == <span class="hljs-string">&#x27;-&#x27;</span>) &#123;<br>                i += <span class="hljs-number">2</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">adventureCamp</span><span class="hljs-params">(vector&lt;string&gt;&amp; expeditions)</span> </span>&#123;<br>        vector&lt;string&gt; arr = <span class="hljs-built_in">split</span>(expeditions[<span class="hljs-number">0</span>]);<br>        unordered_set&lt;string&gt; cnt;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> v : arr) &#123;<br>            cnt.<span class="hljs-built_in">emplace</span>(v);<br>        &#125;<br>        <span class="hljs-type">int</span> res = <span class="hljs-number">-1</span>;<br>        <span class="hljs-type">int</span> maxVal = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; expeditions.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            vector&lt;string&gt; camp = <span class="hljs-built_in">split</span>(expeditions[i]);<br>            <span class="hljs-type">int</span> diff = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> v : camp) &#123;<br>                <span class="hljs-keyword">if</span> (!cnt.<span class="hljs-built_in">count</span>(v)) &#123;<br>                    diff++;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (diff &gt; maxVal) &#123;<br>                maxVal = diff;<br>                res = i;<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> v : camp) &#123;<br>                cnt.<span class="hljs-built_in">emplace</span>(v);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="LCP-74-最强祝福力场"><a href="#LCP-74-最强祝福力场" class="headerlink" title="LCP 74. 最强祝福力场"></a>LCP 74. 最强祝福力场</h3><p>小扣在探索丛林的过程中，无意间发现了传说中“落寞的黄金之都”。而在这片建筑废墟的地带中，小扣使用探测仪监测到了存在某种带有「祝福」效果的力场。 经过不断的勘测记录，小扣将所有力场的分布都记录了下来。<code>forceField[i] = [x,y,side]</code> 表示第 <code>i</code> 片力场将覆盖以坐标 <code>(x,y)</code> 为中心，边长为 <code>side</code> 的正方形区域。</p>
+<p>若任意一点的 力场强度 等于覆盖该点的力场数量，请求出在这片地带中 力场强度 最强处的 力场强度。</p>
+<p>注意：</p>
+<p>力场范围的边缘同样被力场覆盖。<br>示例 1：<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入： forceField = <span class="hljs-string">[[0,0,1],[1,0,1]]</span><br><br>输出：<span class="hljs-number">2</span><br><br>解释：如图所示，（<span class="hljs-number">0.5</span>, <span class="hljs-number">0</span>) 处力场强度最强为 <span class="hljs-number">2</span>， （<span class="hljs-number">0.5</span>，<span class="hljs-number">-0.5</span>）处力场强度同样是 <span class="hljs-number">2</span>。image.png<br></code></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入： forceField = <span class="hljs-comment">[<span class="hljs-comment">[4,4,6]</span>,<span class="hljs-comment">[7,5,3]</span>,<span class="hljs-comment">[1,6,2]</span>,<span class="hljs-comment">[5,6,3]</span>]</span><br><br>输出：3<br><br>解释：如下图所示， forceField<span class="hljs-comment">[0]</span>、forceField<span class="hljs-comment">[1]</span>、forceField<span class="hljs-comment">[3]</span> 重叠的区域力场强度最大，返回 3image.png<br></code></pre></td></tr></table></figure><br>提示：</p>
+<ul>
+<li><code>1 &lt;= forceField.length &lt;= 100</code></li>
+<li><code>forceField[i].length == 3</code></li>
+<li><code>0 &lt;= forceField[i][0], forceField[i][1] &lt;= 10^9</code></li>
+<li><code>1 &lt;= forceField[i][2] &lt;= 10^9</code></li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/xepqZ5/">https://leetcode.cn/problems/xepqZ5/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 差分数组</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>本题与「<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/rectangle-area-ii/">850. 矩形面积 II</a>」非常相似的题目，如果知道该题的解法，则本题目非常类似。</li>
+<li>首先需要将矩形按照横坐标 $x$ 的最小区域进行切分，然后求每个切分部分的最大重叠即可，所谓的最小区域即不可能再被某个矩形的边再次切分。</li>
+<li>每次在横坐标的区域中，依次对 $y$ 坐标进行差分统计，统计当前区域中的最大重叠值即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n^2 \log n)$，其中 $n$ 为矩形的数量。</li>
+<li>空间复杂度：$O(n)$。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fieldOfGreatestBlessing</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; forceField)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = forceField.<span class="hljs-built_in">size</span>();<br>        vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt; arrX;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; forceField.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            arrX.<span class="hljs-built_in">emplace_back</span>((<span class="hljs-type">long</span> <span class="hljs-type">long</span>)forceField[i][<span class="hljs-number">0</span>] * <span class="hljs-number">2</span> - forceField[i][<span class="hljs-number">2</span>]);<br>            arrX.<span class="hljs-built_in">emplace_back</span>((<span class="hljs-type">long</span> <span class="hljs-type">long</span>)forceField[i][<span class="hljs-number">0</span>] * <span class="hljs-number">2</span> + forceField[i][<span class="hljs-number">2</span>]);<br>        &#125;<br>        <span class="hljs-built_in">sort</span>(arrX.<span class="hljs-built_in">begin</span>(), arrX.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; arrX.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-type">long</span> <span class="hljs-type">long</span> left = arrX[i - <span class="hljs-number">1</span>];<br>            <span class="hljs-type">long</span> <span class="hljs-type">long</span> right = arrX[i];<br>            map&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>, <span class="hljs-type">int</span>&gt; cnt;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>                <span class="hljs-type">long</span> <span class="hljs-type">long</span> start = (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)forceField[j][<span class="hljs-number">0</span>] * <span class="hljs-number">2</span> - forceField[j][<span class="hljs-number">2</span>];<br>                <span class="hljs-type">long</span> <span class="hljs-type">long</span> end = (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)forceField[j][<span class="hljs-number">0</span>] * <span class="hljs-number">2</span> + forceField[j][<span class="hljs-number">2</span>];<br>                <span class="hljs-keyword">if</span> (start &lt;= left &amp;&amp; right &lt;= end) &#123;<br>                    start = (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)forceField[j][<span class="hljs-number">1</span>] * <span class="hljs-number">2</span> - forceField[j][<span class="hljs-number">2</span>];<br>                    end = (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)forceField[j][<span class="hljs-number">1</span>] * <span class="hljs-number">2</span> + forceField[j][<span class="hljs-number">2</span>];<br>                    cnt[start]++;<br>                    cnt[end + <span class="hljs-number">1</span>]--;<br>                &#125;<br>                <br>            &#125;<br>            <span class="hljs-type">int</span> curr = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [_, x] : cnt) &#123;<br>                curr += x;<br>                res = <span class="hljs-built_in">max</span>(res, curr);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="LCP-75-传送卷轴"><a href="#LCP-75-传送卷轴" class="headerlink" title="LCP 75. 传送卷轴"></a>LCP 75. 传送卷轴</h3><p>相关企业<br>随着不断的深入，小扣来到了守护者之森寻找的魔法水晶。首先，他必须先通过守护者的考验。</p>
+<p>考验的区域是一个正方形的迷宫，<code>maze[i][j]</code>表示在迷宫 <code>i</code> 行 <code>j</code> 列的地形：</p>
+<ul>
+<li>若为 <code>.</code>，表示可以到达的空地；</li>
+<li>若为 <code>#</code> ，表示不可到达的墙壁；</li>
+<li>若为 <code>S</code> ，表示小扣的初始位置；</li>
+<li>若为 <code>T</code>，表示魔法水晶的位置。</li>
+</ul>
+<p>小扣每次可以向 上、下、左、右 相邻的位置移动一格。而守护者拥有一份「传送魔法卷轴」，使用规则如下：</p>
+<ul>
+<li>魔法需要在小扣位于 空地 时才能释放，发动后卷轴消失；；</li>
+<li>发动后，小扣会被传送到水平或者竖直的镜像位置，且目标位置不得为墙壁(如下图所示)；</li>
+<li>在使用卷轴后，小扣将被「附加负面效果」，因此小扣需要尽可能缩短传送后到达魔法水晶的距离。而守护者的目标是阻止小扣到达魔法水晶的位置；如果无法阻止，则尽可能 增加 小扣传送后到达魔法水晶的距离。 假设小扣和守护者都按最优策略行事，返回小扣需要在 「附加负面效果」的情况下 最少 移动多少次才能到达魔法水晶。如果无法到达，返回 -1。</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>守护者可以不使用卷轴；</li>
+<li>传送后的镜像位置可能与原位置相同。</li>
+</ul>
+<p>示例 1：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">输入：maze = <span class="hljs-selector-attr">[<span class="hljs-string">&quot;.....&quot;</span>,<span class="hljs-string">&quot;##S..&quot;</span>,<span class="hljs-string">&quot;...#.&quot;</span>,<span class="hljs-string">&quot;T.#..&quot;</span>,<span class="hljs-string">&quot;###..&quot;</span>]</span><br><br>输出：<span class="hljs-number">7</span><br><br>解释：如下图所示： 守护者释放魔法的两个最佳的位置为 <span class="hljs-selector-attr">[2,0]</span> 或 <span class="hljs-selector-attr">[3,1]</span>： 若小扣经过 <span class="hljs-selector-attr">[2,0]</span>，守护者在该位置释放魔法， 小扣被传送至 <span class="hljs-selector-attr">[2,4]</span> 处且加上负面效果，此时小扣还需要移动 <span class="hljs-number">7</span> 次才能到达魔法水晶； 若小扣经过 <span class="hljs-selector-attr">[3,1]</span>，守护者在该位置释放魔法， 小扣被传送至 <span class="hljs-selector-attr">[3,3]</span> 处且加上负面效果，此时小扣还需要移动 <span class="hljs-number">9</span> 次才能到达魔法水晶； 因此小扣负面效果下最少需要移动 <span class="hljs-number">7</span> 次才能到达魔法水晶。<span class="hljs-selector-tag">image</span>.png<br></code></pre></td></tr></table></figure><br>示例 2：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">输入：maze = <span class="hljs-selector-attr">[<span class="hljs-string">&quot;.#..&quot;</span>,<span class="hljs-string">&quot;..##&quot;</span>,<span class="hljs-string">&quot;.#S.&quot;</span>,<span class="hljs-string">&quot;.#.T&quot;</span>]</span><br><br>输出：-<span class="hljs-number">1</span><br><br>解释：如下图所示。 若小扣向下移动至 <span class="hljs-selector-attr">[3,2]</span>，守护者使其传送至 <span class="hljs-selector-attr">[0,2]</span>，小扣将无法到达魔法水晶； 若小扣向右移动至 <span class="hljs-selector-attr">[2,3]</span>，守护者使其传送至 <span class="hljs-selector-attr">[2,0]</span>，小扣将无法到达魔法水晶；<span class="hljs-selector-tag">image</span>.png<br></code></pre></td></tr></table></figure><br>示例 3：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入：maze = [<span class="hljs-string">&quot;S###.&quot;</span>,<span class="hljs-string">&quot;..###&quot;</span>,<span class="hljs-string">&quot;#..##&quot;</span>,<span class="hljs-string">&quot;##..#&quot;</span>,<span class="hljs-string">&quot;###.T&quot;</span>]<br><br>输出：<span class="hljs-number">5</span><br><br>解释：如下图所示： 守护者需要小扣在空地才能释放，因此初始无法将其从 [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>] 传送至 [<span class="hljs-number">0</span>,<span class="hljs-number">4</span>]; 当小扣移动至 [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>] 时，释放卷轴将其传送至水平方向的镜像位置 [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]（为原位置） 而后小扣需要移动 <span class="hljs-number">5</span> 次到达魔法水晶image.png<br></code></pre></td></tr></table></figure><br>提示：</p>
+<ul>
+<li><code>4 &lt;= maze.length == maze[i].length &lt;= 200</code></li>
+<li><code>maze[i][j]</code> 仅包含 <code>&quot;.&quot;、&quot;#&quot;、&quot;S&quot;、&quot;T&quot;</code></li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/rdmXM7/">https://leetcode.cn/problems/rdmXM7/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 二分查找</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>题目的难点有以下几点：</li>
+</ol>
+<ul>
+<li>如果找到从某个坐标开始最少移动到达魔法水晶的步数，这个问题比较容易解决，我们从魔法水晶开始广度优先搜索即可得到每个位置到达水晶的最小步数；</li>
+<li>假设小扣和守护者都按最优策略行事，如何理解最优策略；</li>
+</ul>
+<ol>
+<li>如果理解最优策略：</li>
+</ol>
+<ul>
+<li>假设在某个点 $(x,y)$，如果将其进行传递，应当选择什么方式传递？<ul>
+<li>如果按照水平位置镜像后则到达点 $(x, n - 1- y)$，此时其到达水晶的距离为 $dist_x$；</li>
+<li>如果按照竖直位置镜像后则到达点 $(m - 1- x, y)$，此时其到达水晶的距离为 $dist_y$；</li>
+<li>假设 $dist_x &gt; dist_y$, 则最优策略时按照水平位置传送；否则应按照垂直方向传送；因此此时传递后的移动步数按照最优策略为 $dist(x,y) = \max(dist_x,dist_y)$;</li>
+</ul>
+</li>
+<li>假设选择一个位置进行传送，最优选择应该哪个位置传送？<ul>
+<li>假设小扣选择了某条最优的路径为 $(a_0 \rightarrow a_1 \rightarrow a_2 \rightarrow a_3 \rightarrow \cdots)$，此时在该路径经过的点 $(a_0,a_1,a_2,a_3, \cdots)$ 集合中，对于守护者来说一定是优先选择该路径上传送后移动距离最大的位置，即此时一定优先选择 $\max(dist(a_i))$ 的某个位置 $a_i$，只有这样才尽可能「 增加 」小扣传送后到达魔法水晶的距离；</li>
+<li>对于小扣来说，由于守护者是按照最优策略来防守的，此时他的策略是尽可能「减少」小扣传送后到达魔法水晶的距离，因此他在所有可能的路径中选择一条路径，且该路径被守护者按照最优策略施法传送后到达魔法水晶的距离的最小，等价于该路径上所有点被施法后传送到达水晶的最大距离尽可能的小；</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>根据以上提示我们直接采用二分查找即可，假设当前位置通过传送到达水晶的最大距离大于 $\textit{mid}$，则该点一定不在选择范围内。我们直接采用 $\textit{BFS}$ 遍历整个图即可，我们应该尽量选择传送后距离小于等于 $\textit{mid}$ 点。</li>
+<li><p>当然题目中存在疑惑的点为，假设从起点无法到达终点，此时直接返回 $-1$，还有另外一种情况，假设当前未进行传送时小扣的移动距离更远一些，通过一次传送后，小口可能距离水晶的距离更近了，所以因此这样的传送实际为无效传送，按道理不应该传送；</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(mn\log(mn))$，其中 $m,n$ 为矩阵的行数与列数；</li>
+<li>空间复杂度：$O(mn)$，其中 $m,n$ 为矩阵的行数与列数；</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> INF = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">challengeOfTheKeeper</span><span class="hljs-params">(vector&lt;string&gt;&amp; maze)</span> </span>&#123;<br>        <span class="hljs-type">int</span> m = maze.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> n = maze[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();<br>        <br>        <span class="hljs-type">int</span> sx = <span class="hljs-number">0</span>, sy = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> tx = <span class="hljs-number">0</span>, ty = <span class="hljs-number">0</span>;<br>        <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>                <span class="hljs-keyword">if</span> (maze[i][j] == <span class="hljs-string">&#x27;S&#x27;</span>) &#123;<br>                    sx = i;<br>                    sy = j;<br>                &#125;<br>                <span class="hljs-keyword">if</span> (maze[i][j] == <span class="hljs-string">&#x27;T&#x27;</span>) &#123;<br>                    tx = i;<br>                    ty = j;<br>                &#125;<br>            &#125;<br>        &#125;<br><br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dist</span>(m, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n, INF));<br>        <span class="hljs-type">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = &#123;&#123;<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>&#125;, &#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>&#125;, &#123;<span class="hljs-number">1</span>, <span class="hljs-number">0</span>&#125;&#125;;<br>        queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; qu;<br>        dist[tx][ty] = <span class="hljs-number">0</span>;<br>        qu.<span class="hljs-built_in">emplace</span>(tx, ty);<br>        <span class="hljs-keyword">while</span> (!qu.<span class="hljs-built_in">empty</span>()) &#123;<br>            <span class="hljs-keyword">auto</span> [x, y] = qu.<span class="hljs-built_in">front</span>();<br>            qu.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) &#123;<br>                <span class="hljs-type">int</span> nx = x + dir[i][<span class="hljs-number">0</span>];<br>                <span class="hljs-type">int</span> ny = y + dir[i][<span class="hljs-number">1</span>];<br>                <span class="hljs-keyword">if</span> (nx &gt;= <span class="hljs-number">0</span> &amp;&amp; ny &gt;= <span class="hljs-number">0</span> &amp;&amp; nx &lt; m &amp;&amp; ny &lt; n &amp;&amp; maze[nx][ny] != <span class="hljs-string">&#x27;#&#x27;</span> &amp;&amp; dist[nx][ny] == INF) &#123;<br>                    dist[nx][ny] = dist[x][y] + <span class="hljs-number">1</span>;<br>                    qu.<span class="hljs-built_in">emplace</span>(nx, ny);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (dist[sx][sy] == INF) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>        &#125;<br><br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">transfer</span>(m, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n, <span class="hljs-number">0</span>));<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>                <span class="hljs-keyword">if</span> (maze[i][j] == <span class="hljs-string">&#x27;.&#x27;</span>) &#123;<br>                    <span class="hljs-keyword">if</span> (maze[i][n - <span class="hljs-number">1</span> - j] != <span class="hljs-string">&#x27;#&#x27;</span>) transfer[i][j] = <span class="hljs-built_in">max</span>(transfer[i][j], dist[i][n - <span class="hljs-number">1</span> - j]);<br>                    <span class="hljs-keyword">if</span> (maze[m - <span class="hljs-number">1</span> - i][j] != <span class="hljs-string">&#x27;#&#x27;</span>) transfer[i][j] = <span class="hljs-built_in">max</span>(transfer[i][j], dist[m - <span class="hljs-number">1</span> - i][j]);<br>                &#125;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-type">int</span> res = INF;<br>        <span class="hljs-type">int</span> L = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> R = INF;<br>        <span class="hljs-keyword">while</span> (L &lt;= R) &#123;<br>            <span class="hljs-type">int</span> mid = L + (R - L) / <span class="hljs-number">2</span>;<br>            queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; qu;<br>            vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt;&gt; <span class="hljs-built_in">visit</span>(m, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(n, <span class="hljs-literal">false</span>));<br>            qu.<span class="hljs-built_in">emplace</span>(sx, sy);<br>            visit[sx][sy] = <span class="hljs-literal">true</span>;<br>            <span class="hljs-keyword">while</span> (!qu.<span class="hljs-built_in">empty</span>()) &#123;<br>                <span class="hljs-keyword">auto</span> [x, y] = qu.<span class="hljs-built_in">front</span>();<br>                qu.<span class="hljs-built_in">pop</span>();<br>                <span class="hljs-keyword">if</span> (x == tx &amp;&amp; y == ty) &#123;<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) &#123;<br>                    <span class="hljs-type">int</span> nx = x + dir[i][<span class="hljs-number">0</span>];<br>                    <span class="hljs-type">int</span> ny = y + dir[i][<span class="hljs-number">1</span>];<br>                    <span class="hljs-keyword">if</span> (nx &gt;= <span class="hljs-number">0</span> &amp;&amp; ny &gt;= <span class="hljs-number">0</span> &amp;&amp; nx &lt; m &amp;&amp; ny &lt; n &amp;&amp; maze[nx][ny] != <span class="hljs-string">&#x27;#&#x27;</span> &amp;&amp; transfer[nx][ny] &lt;= mid &amp;&amp; !visit[nx][ny]) &#123;<br>                        visit[nx][ny] = <span class="hljs-literal">true</span>;<br>                        qu.<span class="hljs-built_in">emplace</span>(nx, ny);<br>                    &#125;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (visit[tx][ty]) &#123;<br>                res = mid;<br>                R = mid - <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                L = mid + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res == INF ? <span class="hljs-number">-1</span> : res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%AD%A3%E5%BA%A6%E8%B5%9B/" class="print-no-link">#力扣季度赛</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode spring LCCUP</div>
+      <div>http://example.com/1970/01/01/力扣周赛题解/116/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 1970</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>August 28, 2026</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/117/" title="leetcode biweekly contes 103">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode biweekly contes 103</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/119/" title="leetcode weekly contes 344">
+                        <span class="hidden-mobile">leetcode weekly contes 344</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

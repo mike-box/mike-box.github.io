@@ -161,7 +161,9 @@ function kotlin(hljs) {
     name: 'Kotlin',
     aliases: [
       'kt',
-      'kts'
+      'kts',
+      'ktm',
+      'ktx'
     ],
     keywords: KEYWORDS,
     contains: [
