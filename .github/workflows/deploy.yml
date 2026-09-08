@@ -2,29 +2,47 @@ name: 部署 Hexo 到 GitHub Pages
 
 on:
   push:
-    branches: [ master ]  # 如果您的默认分支是 master，请改为 master
+    branches: [ master ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 检出代码
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          submodules: true  # 如果主题是子模块，保留此行
+          submodules: true
 
       - name: 设置 Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '20'
+          cache: 'npm'
 
-      - name: 安装 Hexo 依赖
+      - name: 安装 Hexo CLI
+        run: npm install -g hexo-cli
+
+      - name: 安装依赖
         run: |
-          npm install -g hexo-cli
-          npm install
+          rm -rf node_modules
+          rm -f package-lock.json
+          npm install --legacy-peer-deps
+
+      - name: 调试：检查依赖版本
+        run: |
+          echo "=== Node.js 版本 ==="
+          node -v
+          echo "=== Hexo 版本 ==="
+          npm list hexo
+          echo "=== Generator 版本 ==="
+          npm list hexo-generator-archive hexo-generator-category hexo-generator-index hexo-generator-tag
+          echo "=== strip-ansi 版本 ==="
+          npm list strip-ansi
 
       - name: 生成静态文件
-        run: npm run build  # 即 hexo generate
+        run: |
+          npm run clean
+          npm run build
 
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
