@@ -1,0 +1,931 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="week 11目前已经开始了build a computer系列的最后几章了，后面的章节感觉越来越难,中间无数次感觉头大，不想再写这么恶心的程序了，还好坚持了下来，最终完整的通过了测试。这个project是该系列课程里面最难的一个toy project了，总共写了差不多快2000行代码，这个还是用python写的，当然代码写的一团狗屎，一个函数都差不多几百行了，全部是cound,代码水平还是稀烂，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【build a computer】 project 11">
+<meta property="og:url" content="http://example.com/2026/09/08/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/77/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="week 11目前已经开始了build a computer系列的最后几章了，后面的章节感觉越来越难,中间无数次感觉头大，不想再写这么恶心的程序了，还好坚持了下来，最终完整的通过了测试。这个project是该系列课程里面最难的一个toy project了，总共写了差不多快2000行代码，这个还是用python写的，当然代码写的一团狗屎，一个函数都差不多几百行了，全部是cound,代码水平还是稀烂，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/01/11/PTqZEmKepJBuStg.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/11/HoJ1QDOXtbarKmp.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/11/3aKj1huD4ilMNdq.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/11/Pr7sQnui2EVAf6S.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png">
+<meta property="article:published_time" content="2026-09-08T08:08:49.122Z">
+<meta property="article:modified_time" content="2026-09-08T08:08:49.122Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="公开课学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/11/PTqZEmKepJBuStg.png">
+  
+  
+  
+  <title>【build a computer】 project 11 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【build a computer】 project 11"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-08 16:08" pubdate>
+          September 8, 2026 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          23k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          188 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【build a computer】 project 11</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="week-11"><a href="#week-11" class="headerlink" title="week 11"></a>week 11</h1><p>目前已经开始了<code>build a computer</code>系列的最后几章了，后面的章节感觉越来越难,中间无数次感觉头大，不想再写这么恶心的程序了，还好坚持了下来，最终完整的通过了测试。这个<code>project</code>是该系列课程里面最难的一个<code>toy project</code>了，总共写了差不多快<code>2000</code>行代码，这个还是用<code>python</code>写的，当然代码写的一团狗屎，一个函数都差不多几百行了，全部是<code>cound</code>,代码水平还是稀烂，需要好好的学习一下设计模式。刚开始还好，写着写着就变味了。需要认真的设计程序结构，则需要好好花心思将整个代码重新设计一下，将所有的结构全部重新理顺一遍，整个编译器的设计还是非常有意思的，通过这个简易的编译器，可以对<code>stack machine</code>的设计有了初步的了解，也对面向对象语言的原理有了基本的了解。<br>完成该<code>project</code>的资源非常少，最终在<code>github</code>上找到了一个资源<a target="_blank" rel="noopener" href="https://github.com/idelvall/jack-compiler">jack-compiler</a>，这个国外的小哥代码写得非常漂亮，值得仔细学习一下，还剩下最后一个<code>project</code>就终于可以完成全部的<code>build a modern computer</code>系列课程了，课程真的是太有趣了，最有意思的是该课程讲出了计算机模型的本质，非常的推荐。</p>
+<h2 id="probelm"><a href="#probelm" class="headerlink" title="probelm"></a>probelm</h2><h3 id="Data-Translation"><a href="#Data-Translation" class="headerlink" title="Data Translation"></a>Data Translation</h3><p>变量处理。在整个<code>jack</code>程序中，变量类型一种分为四种:</p>
+<ul>
+<li><code>static</code>:静态变量，实际存方在<code>static segment</code>中。</li>
+<li><code>argument</code>: 函数调用过程中的参数，每次调用函数时，需要指明传递的参数的个数，实际存放在<code>stack</code>中。</li>
+<li><code>field</code>: 类的成员变量，实际存放在<code>heap</code>中。</li>
+<li><code>local</code>：函数里面的过程变量，实际存在<code>stack</code>中。<br>在做实际的解析时，需要根据不同的类型，从而将相关的数据存放在不同的区域。<h3 id="symbol-table"><a href="#symbol-table" class="headerlink" title="symbol table"></a>symbol table</h3>符号表每一行主要存放如下：</li>
+<li><code>varname</code>:变量的名称，实际变量的名称比如<code>var int a = 0</code>, 符号<code>a</code>即代表变量的名称。</li>
+<li><code>vartype</code>：变量的类型，实际变量的类型比如<code>var int a = 0</code>, 符号<code>int</code>即代表变量的类型。</li>
+<li><code>varkind</code>:变量的种类，即<code>static,argument,field,local</code>四种的一种。</li>
+<li><code>varidx</code>：变量的索引，实际可以作为变量存放的偏移位置。</li>
+</ul>
+<p>在<code>jack compiler</code>中，编译器中的符号表分类两类：</p>
+<ul>
+<li><code>class</code>符号表: 主要存放类的成员变量的映射符号表，该符号表生命周期在编译过程中一直存在。</li>
+<li><code>local</code>符号表: 主要存放函数调用过程中的映射符号表，该符号表仅在函数编译过程中存在。每一个函数会重新生成新的符号表。<h3 id="Handling-Variables"><a href="#Handling-Variables" class="headerlink" title="Handling Variables"></a>Handling Variables</h3>所有的变量处理全部用符号表来处理，所有的变量定义和函数的形参全部需要传入到符号表中，在特定的调用时，查找符号表，即可快速的定位到变量的存储位置，从而实现变量的内存读写。<h3 id="Handling-Arrays"><a href="#Handling-Arrays" class="headerlink" title="Handling Arrays"></a>Handling Arrays</h3>我觉整个<code>jack</code>语言最有趣的就是处理数组和对象了。在这里它就用到了<code>c</code>语言指针的模型，因为<code>jack</code>语言本身有两个寄存器专门做为间接寻址的寄存器，所以我们每次只需要将数组的地址写入到间接寻址的寄存器即可，原理看似复杂实际非常的简单，处理数组时我们专用<code>pointer 1</code>寄存器。</li>
+<li><code>pop</code>操作: 直接将栈顶的数据写入到特定的地址。</li>
+<li><code>push</code>操作：直接将地址中存放的变量读取到堆栈中即可。<h1 id="Handling-Objects"><a href="#Handling-Objects" class="headerlink" title="Handling Objects"></a>Handling Objects</h1>处理成员变量跟数据也是同样的原因，我们实际调用对象时，也只是调用对象的首地址而已，将首地址写入到寄存器中，然后根据变量的索引求出变量与首地址的偏移，然后通过间接寻址，即可得到类的成员变量。我觉得这个思想非常有趣，可以利用这个思想实现<code>C</code>语言的面向对象的编程。处理类时，在类的构造函数运行时，则需要为该类在<code>heap</code>上单独开辟空间存放类的成员变量。<h3 id="Commands-Translation"><a href="#Commands-Translation" class="headerlink" title="Commands Translation"></a>Commands Translation</h3>当然在本次的函数调用过程中并没有考虑到符号优先级的问题，只是简单的用<code>DFS</code>来处理表达式。比如如下处理：<br><img src="https://i.loli.net/2021/01/11/PTqZEmKepJBuStg.png" srcset="/img/loading.gif" lazyload alt="1"><br>我们采用如下简单的<code>dfs</code>算法来处理表达式：<br><img src="https://i.loli.net/2021/01/11/HoJ1QDOXtbarKmp.png" srcset="/img/loading.gif" lazyload alt="1"><br>如果理解上述核心的算法，处理就非常简单。这部分没啥好谈的。<h3 id="Translating-Flow-Control"><a href="#Translating-Flow-Control" class="headerlink" title="Translating Flow Control"></a>Translating Flow Control</h3><code>jack</code>语言目前只支持<code>if</code>和<code>while</code>的过程操作，处理也非常简单，我们只需要用<code>if-goto</code>和<code>goto</code>来处理所有的过程即可。</li>
+<li>对于<code>if</code>的处理:<br><img src="https://i.loli.net/2021/01/11/3aKj1huD4ilMNdq.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>对于<code>while</code>的处理:<br><img src="https://i.loli.net/2021/01/11/Pr7sQnui2EVAf6S.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>主要的处理如上所示，其余还有部分比较麻烦的细节处理：</p>
+<ul>
+<li>对于<code>class</code>的成员方法的调用： 在实际调用过程中则需要将<code>class</code>的首地址也传入进去，则此时函数的形参应比实际要多一个，第一个参数应将类的首地址传入进去。</li>
+<li>对于函数调用：在函数调用时，应将函数的参数按照顺序依次压入到栈中，当然对于绝大部分编译器来说，则此时函数参数都是倒序依次压入栈中的，每次求出参数的偏移则直接非常的简单偏移即可。</li>
+<li>对于所有的函数类型都需要返回一个值，<code>void</code>类型也需要返回一个任意值即可。</li>
+<li>对于乘法和出发运算，则需要调用系统自带的函数<code>mutily</code>和<code>div</code>，对于字符串常量则需要调用系统函数<code>string.new</code>，同时将字符一个一个的压入到类中，同时返回字符串类<code>string</code>的首地址，因此对于字符串常量实际是存放在<code>heap</code>中的。</li>
+</ul>
+<h2 id="project"><a href="#project" class="headerlink" title="project"></a>project</h2><p>本周的<code>project</code>还是非常有难度的<code>project</code>，本周的<code>project</code>花了差不多两个星期才完成，基本上都是利用中午休息和晚上的时间完成了这个<code>project</code>，还是非常的有意思。代码也同步放在<code>github</code>上，虽然写的非常稀烂，掩面哭一下。<br><a target="_blank" rel="noopener" href="https://github.com/mike-box/coursera/tree/master/Build%20a%20computer/nand2tetris/nand2tetris/projects/11">poj11</a>.</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> fileinput<br><span class="hljs-keyword">import</span> sys, getopt<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">from</span> enum <span class="hljs-keyword">import</span> Enum, unique<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">from</span> JackTokenizer <span class="hljs-keyword">import</span> JackTokenizer,TOKEN_TYPE,KEYWORD_TYPE,tokentype,tokendict<br><span class="hljs-keyword">from</span> SymbolTable <span class="hljs-keyword">import</span> SymbolTable<br><span class="hljs-keyword">from</span> VmWriter <span class="hljs-keyword">import</span> VmWriter,SEG_TYPE,OP_TYPE,opdict<br><span class="hljs-keyword">from</span> CompileEngine <span class="hljs-keyword">import</span> CompileEngine<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CompileCodeWriter</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,infile</span>):<br>        <span class="hljs-comment"># read all source code string to the buffer</span><br>        <span class="hljs-variable language_">self</span>.parser = JackTokenizer(infile)<br>        <span class="hljs-variable language_">self</span>.engile = CompileEngine(infile)<br>        <span class="hljs-variable language_">self</span>.out = VmWriter(infile)<br>        <span class="hljs-comment"># class global symbol table</span><br>        <span class="hljs-variable language_">self</span>.classTable = SymbolTable()<br>        <span class="hljs-comment"># sub routine symbol table</span><br>        <span class="hljs-variable language_">self</span>.subTable = SymbolTable()<br>        <span class="hljs-comment"># vm writer</span><br>        <span class="hljs-variable language_">self</span>.vmout = VmWriter(infile)<br>        <span class="hljs-comment"># class name</span><br>        <span class="hljs-variable language_">self</span>.classname = <span class="hljs-string">&quot;&quot;</span><br>        <span class="hljs-variable language_">self</span>.subname = <span class="hljs-string">&quot;&quot;</span><br>        <span class="hljs-variable language_">self</span>.subkind = <span class="hljs-string">&quot;&quot;</span><br>        <span class="hljs-variable language_">self</span>.subtype = <span class="hljs-string">&quot;&quot;</span><br>        <span class="hljs-variable language_">self</span>.iflabelcnt = <span class="hljs-number">0</span><br>        <span class="hljs-variable language_">self</span>.whilelabelcnt = <span class="hljs-number">0</span><br>        <span class="hljs-variable language_">self</span>.writeClassCode()<br>        <span class="hljs-variable language_">self</span>.out.close()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">ifLabel</span>(<span class="hljs-params">self</span>):<br>        res = []<br>        res.append(<span class="hljs-string">&quot;IF_END&quot;</span> + <span class="hljs-built_in">str</span>(<span class="hljs-variable language_">self</span>.iflabelcnt))<br>        res.append(<span class="hljs-string">&quot;IF_&quot;</span> + <span class="hljs-built_in">str</span>(<span class="hljs-variable language_">self</span>.iflabelcnt))<br>        <span class="hljs-variable language_">self</span>.iflabelcnt += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> res<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">whileLabel</span>(<span class="hljs-params">self</span>):<br>        res = []<br>        res.append(<span class="hljs-string">&quot;WHILE_EXP&quot;</span> + <span class="hljs-built_in">str</span>(<span class="hljs-variable language_">self</span>.whilelabelcnt))<br>        res.append(<span class="hljs-string">&quot;WHILE_END&quot;</span> + <span class="hljs-built_in">str</span>(<span class="hljs-variable language_">self</span>.whilelabelcnt))<br>        <span class="hljs-variable language_">self</span>.whilelabelcnt += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> res<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">functionLabel</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.classname + <span class="hljs-string">&quot;.&quot;</span> + <span class="hljs-variable language_">self</span>.subname<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeClassCode</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-variable language_">self</span>.classTable.startSubroutine()<br>        <span class="hljs-comment"># parse class</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse class name</span><br>        <span class="hljs-variable language_">self</span>.classname = <span class="hljs-variable language_">self</span>.parser.currToken()<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment">#parse symbol &#x27;&#123;&#x27; </span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment">#parse class val des</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD <span class="hljs-keyword">and</span> \<br>              (<span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;static&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;field&quot;</span>):<br>            <span class="hljs-variable language_">self</span>.writeClassVarDecCode()<br>        <br>        <span class="hljs-comment">#parse class method</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD <span class="hljs-keyword">and</span> \<br>            (<span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;method&quot;</span> <span class="hljs-keyword">or</span> \<br>            <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;constructor&quot;</span> <span class="hljs-keyword">or</span> \<br>            <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;function&quot;</span>):<br>            <span class="hljs-variable language_">self</span>.subkind = <span class="hljs-variable language_">self</span>.parser.keyWord()<br>            <span class="hljs-variable language_">self</span>.writeSubroutineCode()<br>        <span class="hljs-comment">#parse symbol &#x27;&#123;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>          <br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeClassVarDecCode</span>(<span class="hljs-params">self</span>):<br>        varname = <span class="hljs-string">&quot;&quot;</span><br>        vartype = <span class="hljs-string">&quot;&quot;</span><br>        varkind = <span class="hljs-string">&quot;&quot;</span><br><br>        <span class="hljs-comment"># parse key word</span><br>        varkind = <span class="hljs-variable language_">self</span>.parser.keyWord()<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse val type</span><br>        vartype = <span class="hljs-variable language_">self</span>.parser.currToken()<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse val name</span><br>        varname = <span class="hljs-variable language_">self</span>.parser.currToken()<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment">#add one var define to the symbol table</span><br>        <span class="hljs-variable language_">self</span>.classTable.define(varname,vartype,varkind)<br>        <span class="hljs-comment"># parse the left val name</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> (<span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span> \<br>              <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;;&quot;</span>):<br>            <span class="hljs-comment"># parse symbol &#x27;,&#x27;</span><br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-comment"># parse val name</span><br>            varname = <span class="hljs-variable language_">self</span>.parser.currToken()<br>            <span class="hljs-variable language_">self</span>.classTable.define(varname,vartype,varkind)<br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse the end symbol &#x27;;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeSubroutineCode</span>(<span class="hljs-params">self</span>):<br>        fieldcnt = <span class="hljs-number">0</span><br>        <span class="hljs-variable language_">self</span>.subTable.startSubroutine()<br><br>        <span class="hljs-comment"># parse key word</span><br>        <span class="hljs-variable language_">self</span>.subkind = <span class="hljs-variable language_">self</span>.parser.currToken()<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.subkind == <span class="hljs-string">&quot;method&quot;</span>:<br>            <span class="hljs-variable language_">self</span>.subTable.define(<span class="hljs-string">&quot;this&quot;</span>,<span class="hljs-variable language_">self</span>.classname,<span class="hljs-string">&quot;argument&quot;</span>)<br>        <span class="hljs-comment"># parse type</span><br>        <span class="hljs-variable language_">self</span>.subtype = <span class="hljs-variable language_">self</span>.parser.currToken()<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse subroutineName</span><br>        <span class="hljs-variable language_">self</span>.subname = <span class="hljs-variable language_">self</span>.parser.currToken()<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse &#x27;(&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse param list</span><br>        <span class="hljs-variable language_">self</span>.writeParameterListCode()<br>        <span class="hljs-comment"># parse &#x27;)&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse body</span><br>        <span class="hljs-variable language_">self</span>.writeSubroutineBodyCode()<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeSubroutineBodyCode</span>(<span class="hljs-params">self</span>):<br>        nlocals = <span class="hljs-number">0</span><br>        <span class="hljs-comment"># parse &#x27;&#123;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse var </span><br>        <span class="hljs-keyword">while</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD <span class="hljs-keyword">and</span> \<br>           <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;var&quot;</span>:<br>            nlocals += <span class="hljs-variable language_">self</span>.writeVarDecCode()<br>        <br>        <span class="hljs-comment"># function define</span><br>        funcname = <span class="hljs-variable language_">self</span>.classname + <span class="hljs-string">&quot;.&quot;</span> + <span class="hljs-variable language_">self</span>.subname<br>        <span class="hljs-variable language_">self</span>.out.writeFunction(funcname,nlocals)<br>        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.subkind == <span class="hljs-string">&quot;constructor&quot;</span>:<br>            fieldcnt = <span class="hljs-variable language_">self</span>.classTable.varCount(<span class="hljs-string">&quot;field&quot;</span>)<br>            <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;constant&quot;</span>,fieldcnt)<br>            <span class="hljs-variable language_">self</span>.out.writeCall(<span class="hljs-string">&quot;Memory.alloc&quot;</span>,<span class="hljs-number">1</span>)<br>            <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;pointer&quot;</span>,<span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.subkind == <span class="hljs-string">&quot;method&quot;</span>:<br>            <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;argument&quot;</span>,<span class="hljs-number">0</span>)<br>            <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;pointer&quot;</span>,<span class="hljs-number">0</span>)<br><br>        <span class="hljs-comment"># parse statements</span><br>        <span class="hljs-variable language_">self</span>.writeStatementsCode()<br>        <span class="hljs-comment"># parse &#x27;&#125;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeParameterListCode</span>(<span class="hljs-params">self</span>):<br>        varname = <span class="hljs-string">&quot;&quot;</span><br>        varkind = <span class="hljs-string">&quot;argument&quot;</span><br>        vartype = <span class="hljs-string">&quot;&quot;</span><br>        paramcnt = <span class="hljs-number">0</span><br><br>        <span class="hljs-comment"># parse rest param</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> (<span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span>\<br>            <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;)&quot;</span>):<br>            <span class="hljs-comment"># parse element type</span><br>            vartype = <span class="hljs-variable language_">self</span>.parser.currToken()<br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-comment"># parse element varName</span><br>            varname = <span class="hljs-variable language_">self</span>.parser.currToken()<br>            paramcnt += <span class="hljs-number">1</span><br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-comment"># add argument variable into the symbol table</span><br>            <span class="hljs-variable language_">self</span>.subTable.define(varname,vartype,varkind)<br>            <span class="hljs-comment"># parse &#x27;,&#x27;</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL:<br>                <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;,&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.parser.advance()<br>                <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;)&quot;</span>:<br>                    <span class="hljs-keyword">break</span><br><br>        <span class="hljs-keyword">return</span> paramcnt<br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeVarDecCode</span>(<span class="hljs-params">self</span>):<br>        nlocals = <span class="hljs-number">1</span><br>        varname = <span class="hljs-string">&quot;&quot;</span><br>        varkind = <span class="hljs-string">&quot;var&quot;</span><br>        vartype = <span class="hljs-string">&quot;&quot;</span><br><br>        <span class="hljs-comment"># parse key word</span><br>        varkind = <span class="hljs-variable language_">self</span>.parser.keyWord()<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse var type</span><br>        vartype = <span class="hljs-variable language_">self</span>.parser.currToken()<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse var name</span><br>        varname = <span class="hljs-variable language_">self</span>.parser.currToken()<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-variable language_">self</span>.subTable.define(varname,vartype,varkind)<br><br>        <span class="hljs-comment"># parse the rest var name</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> (<span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span> \<br>              <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;;&quot;</span>):<br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-comment"># parse var name</span><br>            nlocals += <span class="hljs-number">1</span><br>            varname = <span class="hljs-variable language_">self</span>.parser.currToken()<br>            <span class="hljs-variable language_">self</span>.subTable.define(varname,vartype,varkind)<br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>  <br>        <span class="hljs-comment"># parse the end symbol  </span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-keyword">return</span> nlocals <br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeStatementsCode</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">while</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD <span class="hljs-keyword">and</span> \<br>             (<span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;do&quot;</span> <span class="hljs-keyword">or</span> \<br>              <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;if&quot;</span> <span class="hljs-keyword">or</span> \<br>              <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;while&quot;</span> <span class="hljs-keyword">or</span> \<br>              <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;let&quot;</span> <span class="hljs-keyword">or</span> \<br>              <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;return&quot;</span>):<br>            <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;do&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.writeDoCode()<br>            <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;if&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.writeIfCode()<br>            <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;while&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.writeWhileCode()<br>            <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;let&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.writeLetCode()<br>            <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;return&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.writeReturnCode()<br>            <span class="hljs-keyword">else</span>:<br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;valid statement define!\n&quot;</span>)<br>                exit(<span class="hljs-number">1</span>)<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span> <br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeDoCode</span>(<span class="hljs-params">self</span>):<br>        funcname = []<br>        argsCnt = <span class="hljs-number">0</span><br>        varname = <span class="hljs-string">&quot;&quot;</span><br>        vartype = <span class="hljs-string">&quot;&quot;</span><br>        varkind = <span class="hljs-string">&quot;&quot;</span><br>        varidx  = <span class="hljs-string">&quot;&quot;</span><br><br>        <span class="hljs-comment"># parse do</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse &#x27;call name&#x27;</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> (<span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span> \<br>           <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;(&quot;</span>):<br>            <span class="hljs-comment"># write code</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.tokenType() != TOKEN_TYPE.TOKEN_SYMBOL:<br>                funcname.append(<span class="hljs-variable language_">self</span>.parser.currToken())<br>            <span class="hljs-variable language_">self</span>.parser.advance()<br><br>        <span class="hljs-comment"># parse &#x27;(&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <br>        <span class="hljs-comment"># sub call</span><br>        callname = <span class="hljs-string">&quot;&quot;</span><br>        varname = funcname[<span class="hljs-number">0</span>]<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(funcname) == <span class="hljs-number">1</span>:<br>            <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;pointer&quot;</span>,<span class="hljs-number">0</span>)<br>            callname = <span class="hljs-variable language_">self</span>.classname + <span class="hljs-string">&quot;.&quot;</span> + funcname[<span class="hljs-number">0</span>]<br>            argsCnt += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">elif</span> <span class="hljs-built_in">len</span>(funcname) == <span class="hljs-number">2</span>:<br>            <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.subTable.indexOf(varname) &gt;= <span class="hljs-number">0</span>:<br>                vartype = <span class="hljs-variable language_">self</span>.subTable.typeOf(varname)<br>                varkind = <span class="hljs-variable language_">self</span>.subTable.kindOf(varname)<br>                varidx =  <span class="hljs-variable language_">self</span>.subTable.indexOf(varname)<br>                callname = vartype + <span class="hljs-string">&quot;.&quot;</span> + funcname[<span class="hljs-number">1</span>]<br>                argsCnt += <span class="hljs-number">1</span><br>                <span class="hljs-keyword">if</span> varkind == <span class="hljs-string">&quot;field&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;this&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;var&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;local&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;static&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;static&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;argument&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;argument&quot;</span>,varidx)<br>            <span class="hljs-keyword">elif</span>  <span class="hljs-variable language_">self</span>.classTable.indexOf(varname) &gt;= <span class="hljs-number">0</span>:<br>                vartype = <span class="hljs-variable language_">self</span>.classTable.typeOf(varname)<br>                varkind = <span class="hljs-variable language_">self</span>.classTable.kindOf(varname)<br>                varidx =  <span class="hljs-variable language_">self</span>.classTable.indexOf(varname)<br>                callname = vartype + <span class="hljs-string">&quot;.&quot;</span> + funcname[<span class="hljs-number">1</span>]<br>                argsCnt += <span class="hljs-number">1</span><br>                <span class="hljs-keyword">if</span> varkind == <span class="hljs-string">&quot;field&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;this&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;var&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;local&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;static&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;static&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;argument&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;argument&quot;</span>,varidx)<br>            <span class="hljs-keyword">else</span>:<br>                callname = funcname[<span class="hljs-number">0</span>] + <span class="hljs-string">&quot;.&quot;</span> + funcname[<span class="hljs-number">1</span>]<br>        <span class="hljs-comment"># parse expression list       </span><br>        argsCnt += <span class="hljs-variable language_">self</span>.writeExpressionListCode()<br>        <span class="hljs-comment"># parse &#x27;)&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse  &#x27;;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># write call name</span><br>        <span class="hljs-variable language_">self</span>.out.writeCall(callname,argsCnt)<br>        <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;temp&quot;</span>,<span class="hljs-number">0</span>)<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeLetCode</span>(<span class="hljs-params">self</span>):<br>        varname = <span class="hljs-string">&quot;&quot;</span><br>        vartype = <span class="hljs-string">&quot;&quot;</span><br>        varkind = <span class="hljs-string">&quot;&quot;</span><br>        varidx  = <span class="hljs-string">&quot;&quot;</span><br>        isArray = <span class="hljs-literal">False</span><br>        <span class="hljs-comment"># parse let </span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>   <br>        <span class="hljs-comment"># parse varname</span><br>        varname = <span class="hljs-variable language_">self</span>.parser.currToken()<br>        <span class="hljs-comment"># search the key</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.subTable.indexOf(varname) &gt;= <span class="hljs-number">0</span>:<br>            vartype = <span class="hljs-variable language_">self</span>.subTable.typeOf(varname)<br>            varkind = <span class="hljs-variable language_">self</span>.subTable.kindOf(varname)<br>            varidx =  <span class="hljs-variable language_">self</span>.subTable.indexOf(varname)<br>        <span class="hljs-keyword">elif</span>  <span class="hljs-variable language_">self</span>.classTable.indexOf(varname) &gt;= <span class="hljs-number">0</span>:<br>            vartype = <span class="hljs-variable language_">self</span>.classTable.typeOf(varname)<br>            varkind = <span class="hljs-variable language_">self</span>.classTable.kindOf(varname)<br>            varidx =  <span class="hljs-variable language_">self</span>.classTable.indexOf(varname)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;invalid var statement!&quot;</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br>        <span class="hljs-comment"># skip varname</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>      <br>        <span class="hljs-comment"># parse `[expression]`</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span> \<br>           <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&#x27;[&#x27;</span>:<br>            <br>            <span class="hljs-comment"># we push the head arrdress of the array</span><br>            isArray = <span class="hljs-literal">True</span><br>            <span class="hljs-comment"># parse &#x27;[&#x27;</span><br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-comment"># parse expression</span><br>            <span class="hljs-variable language_">self</span>.writeExpressionCode()<br>            <span class="hljs-comment"># we parse the array</span><br>            <span class="hljs-keyword">if</span> varkind == <span class="hljs-string">&quot;field&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;this&quot;</span>,varidx)<br>            <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;var&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;local&quot;</span>,varidx)<br>            <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;static&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;static&quot;</span>,varidx)<br>            <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;argument&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;argument&quot;</span>,varidx)<br>            <span class="hljs-variable language_">self</span>.out.writeArithmetic(<span class="hljs-string">&quot;+&quot;</span>)<br>            <span class="hljs-comment"># parse &#x27;]&#x27;</span><br>            <span class="hljs-variable language_">self</span>.parser.advance()<br><br>        <span class="hljs-comment"># parse  &#x27;=&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse expression</span><br>        <span class="hljs-variable language_">self</span>.writeExpressionCode()<br>        <span class="hljs-comment"># pop value from the stack</span><br>        <span class="hljs-keyword">if</span> isArray:<br>            <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;temp&quot;</span>,<span class="hljs-number">0</span>)<br>            <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;pointer&quot;</span>,<span class="hljs-number">1</span>)<br>            <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;temp&quot;</span>,<span class="hljs-number">0</span>)<br>            <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;that&quot;</span>,<span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">if</span> varkind == <span class="hljs-string">&quot;field&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;this&quot;</span>,varidx)<br>            <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;var&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;local&quot;</span>,varidx)<br>            <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;static&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;static&quot;</span>,varidx)<br>            <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;argument&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;argument&quot;</span>,varidx)<br>        <span class="hljs-comment"># parse  &#x27;;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeWhileCode</span>(<span class="hljs-params">self</span>):<br>        label = <span class="hljs-variable language_">self</span>.whileLabel()<br><br>        <span class="hljs-comment"># parse return </span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse &#x27;(&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse expression</span><br>        <span class="hljs-variable language_">self</span>.out.writeLabel(label[<span class="hljs-number">0</span>])<br>        <span class="hljs-variable language_">self</span>.writeExpressionCode()<br>        <span class="hljs-variable language_">self</span>.out.writeSigArithmetic(<span class="hljs-string">&quot;~&quot;</span>)<br>        <span class="hljs-variable language_">self</span>.out.writeIf(label[<span class="hljs-number">1</span>])<br>        <span class="hljs-comment"># parse  &#x27;)&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse  &#x27;&#123;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse statements</span><br>        <span class="hljs-variable language_">self</span>.writeStatementsCode()<br>        <span class="hljs-variable language_">self</span>.out.writeGoto(label[<span class="hljs-number">0</span>])<br>        <span class="hljs-comment"># parse  &#x27;&#125;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.out.writeLabel(label[<span class="hljs-number">1</span>])<br>        <span class="hljs-variable language_">self</span>.parser.advance()<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeReturnCode</span>(<span class="hljs-params">self</span>):        <br>        <span class="hljs-comment"># parse return </span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse expression  list</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (<span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span> \<br>           <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&#x27;;&#x27;</span>):<br>            <span class="hljs-variable language_">self</span>.writeExpressionCode()<br>        <span class="hljs-comment"># parse &#x27;;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.subtype == <span class="hljs-string">&quot;void&quot;</span>:<br>            <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;constant&quot;</span>,<span class="hljs-number">0</span>)<br>        <span class="hljs-variable language_">self</span>.out.writeReturn()<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeIfCode</span>(<span class="hljs-params">self</span>):<br>        label = <span class="hljs-variable language_">self</span>.ifLabel()<br><br>        <span class="hljs-comment"># parse if </span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse &#x27;(&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse expression</span><br>        <span class="hljs-variable language_">self</span>.writeExpressionCode()<br>        <span class="hljs-variable language_">self</span>.out.writeSigArithmetic(<span class="hljs-string">&quot;~&quot;</span>)<br>        <span class="hljs-comment"># parse &#x27;)&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse &#x27;&#123;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-comment"># parse statements</span><br>        <span class="hljs-variable language_">self</span>.out.writeIf(label[<span class="hljs-number">1</span>])<br>        <span class="hljs-variable language_">self</span>.writeStatementsCode()<br>        <span class="hljs-variable language_">self</span>.out.writeGoto(label[<span class="hljs-number">0</span>])<br>        <span class="hljs-comment"># parse &#x27;&#125;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.parser.advance()<br>   <br>        <span class="hljs-comment"># parse else</span><br>        <span class="hljs-variable language_">self</span>.out.writeLabel(label[<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD <span class="hljs-keyword">and</span> \<br>           <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;else&quot;</span>:<br>            <br>            <span class="hljs-comment"># parse &#x27;else&#x27;</span><br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-comment"># parse &#x27;&#123;&#x27;</span><br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-comment"># parse statements</span><br>            <span class="hljs-variable language_">self</span>.writeStatementsCode()<br>            <span class="hljs-comment"># parse &#x27;&#125;&#x27;</span><br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-variable language_">self</span>.out.writeLabel(label[<span class="hljs-number">0</span>])<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeExpressionCode</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># parse term</span><br>        <span class="hljs-variable language_">self</span>.writeTermCode()<br><br>        <span class="hljs-comment"># parse op</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span> \<br>           (<span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;+&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;-&quot;</span> <span class="hljs-keyword">or</span> \<br>            <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;*&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;/&quot;</span> <span class="hljs-keyword">or</span> \<br>            <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;&amp;&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;|&quot;</span> <span class="hljs-keyword">or</span> \<br>            <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;&gt;&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;&lt;&quot;</span> <span class="hljs-keyword">or</span> \<br>            <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;=&quot;</span>):<br>            <span class="hljs-comment"># parse op</span><br>            op = <span class="hljs-variable language_">self</span>.parser.symbol()<br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-comment"># parse term</span><br>            <span class="hljs-variable language_">self</span>.writeTermCode()<br>            <span class="hljs-comment"># code write op</span><br>            <span class="hljs-keyword">if</span> op == <span class="hljs-string">&quot;*&quot;</span>:<br>                <span class="hljs-variable language_">self</span>.out.writeCall(<span class="hljs-string">&quot;Math.multiply&quot;</span>,<span class="hljs-number">2</span>)<br>            <span class="hljs-keyword">elif</span> op == <span class="hljs-string">&#x27;/&#x27;</span>:<br>                <span class="hljs-variable language_">self</span>.out.writeCall(<span class="hljs-string">&quot;Math.divide&quot;</span>,<span class="hljs-number">2</span>)<br>            <span class="hljs-keyword">else</span>:<br>                <span class="hljs-variable language_">self</span>.out.writeArithmetic(op)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeTermCode</span>(<span class="hljs-params">self</span>):<br>        varname = <span class="hljs-string">&quot;&quot;</span><br>        vartype = <span class="hljs-string">&quot;&quot;</span><br>        varkind = <span class="hljs-string">&quot;&quot;</span><br>        varidx  = <span class="hljs-number">0</span><br>        paramCnt = <span class="hljs-number">0</span><br><br>        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_INT_CONST:<br>            <span class="hljs-comment"># push constant x</span><br>            <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;constant&quot;</span>,<span class="hljs-variable language_">self</span>.parser.intVal())<br>            <span class="hljs-comment">#print(self.parser.intVal())</span><br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_STRING_CONST:<br>            <span class="hljs-comment"># push string x</span><br>            val = <span class="hljs-variable language_">self</span>.parser.stringVal()<br>            <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;constant&quot;</span>,<span class="hljs-built_in">len</span>(val))<br>            <span class="hljs-variable language_">self</span>.out.writeCall(<span class="hljs-string">&quot;String.new&quot;</span>,<span class="hljs-number">1</span>)<br>            <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> val:<br>                <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;constant&quot;</span>,<span class="hljs-built_in">ord</span>(c))<br>                <span class="hljs-variable language_">self</span>.out.writeCall(<span class="hljs-string">&quot;String.appendChar&quot;</span>,<span class="hljs-number">2</span>)<br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_KEYWORD:<br>            <span class="hljs-comment"># parse keword const</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;true&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;false&quot;</span> <span class="hljs-keyword">or</span> \<br>               <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;null&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;this&quot;</span>:<br>                <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;true&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;constant&quot;</span>,<span class="hljs-number">0</span>)<br>                    <span class="hljs-variable language_">self</span>.out.writeSigArithmetic(<span class="hljs-string">&quot;~&quot;</span>)<br>                <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;false&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;constant&quot;</span>,<span class="hljs-number">0</span>)<br>                <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;null&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;constant&quot;</span>,<span class="hljs-number">0</span>)<br>                <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.keyWord() == <span class="hljs-string">&quot;this&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;pointer&quot;</span>,<span class="hljs-number">0</span>)<br>                <span class="hljs-variable language_">self</span>.parser.advance()<br>        <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL:<br>            <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;(&quot;</span>:<br>                <span class="hljs-comment"># parse &#x27;(&#x27;</span><br>                <span class="hljs-variable language_">self</span>.parser.advance()<br>                <span class="hljs-comment"># parse expression</span><br>                <span class="hljs-variable language_">self</span>.writeExpressionCode()<br>                <span class="hljs-comment"># parse &#x27;)&#x27;</span><br>                <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span> \<br>                (<span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;-&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;~&quot;</span>):<br>                <span class="hljs-comment"># parse unaryOp</span><br>                op = <span class="hljs-variable language_">self</span>.parser.symbol()<br>                <span class="hljs-variable language_">self</span>.parser.advance()<br>                <span class="hljs-comment"># parse term</span><br>                <span class="hljs-variable language_">self</span>.writeTermCode()<br>                <span class="hljs-variable language_">self</span>.out.writeSigArithmetic(op)<br>        <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_IDENTIFIER:<br>            <span class="hljs-comment"># skip varname</span><br>            termname = <span class="hljs-variable language_">self</span>.parser.currToken()<br>            <span class="hljs-variable language_">self</span>.parser.advance()<br><br>            <span class="hljs-comment"># we push the head arrdress of the array</span><br>            <span class="hljs-comment"># parse expression</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;[&quot;</span>:<br>                <span class="hljs-comment"># parse subroutineName or varName            </span><br>                <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.subTable.indexOf(termname) &gt;= <span class="hljs-number">0</span>:<br>                    vartype = <span class="hljs-variable language_">self</span>.subTable.typeOf(termname)<br>                    varkind = <span class="hljs-variable language_">self</span>.subTable.kindOf(termname)<br>                    varidx =  <span class="hljs-variable language_">self</span>.subTable.indexOf(termname)<br>                <span class="hljs-keyword">elif</span>  <span class="hljs-variable language_">self</span>.classTable.indexOf(termname) &gt;= <span class="hljs-number">0</span>:<br>                    vartype = <span class="hljs-variable language_">self</span>.classTable.typeOf(termname)<br>                    varkind = <span class="hljs-variable language_">self</span>.classTable.kindOf(termname)<br>                    varidx =  <span class="hljs-variable language_">self</span>.classTable.indexOf(termname)<br>                <span class="hljs-keyword">else</span>:<br>                    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;invalid var statement!&quot;</span>)<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br>                <span class="hljs-comment"># parse &#x27;[&#x27;</span><br>                <span class="hljs-variable language_">self</span>.parser.advance()<br>                <span class="hljs-comment"># parse expression</span><br>                <span class="hljs-variable language_">self</span>.writeExpressionCode()<br>                 <span class="hljs-comment"># parse var type </span><br>                <span class="hljs-keyword">if</span> varkind == <span class="hljs-string">&quot;field&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;this&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;var&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;local&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;static&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;static&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;argument&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;argument&quot;</span>,varidx)<br>                <span class="hljs-comment"># add</span><br>                <span class="hljs-variable language_">self</span>.out.writeArithmetic(<span class="hljs-string">&quot;+&quot;</span>)<br>                <span class="hljs-variable language_">self</span>.out.writePop(<span class="hljs-string">&quot;pointer&quot;</span>,<span class="hljs-number">1</span>)<br>                <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;that&quot;</span>,<span class="hljs-number">0</span>)<br><br>                <span class="hljs-comment"># parse &#x27;]&#x27;</span><br>                <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-comment"># parse subcall</span><br>            <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;.&quot;</span>:<br>                <span class="hljs-comment"># parse &#x27;.&#x27;</span><br>                <span class="hljs-variable language_">self</span>.parser.advance()<br><br>                <span class="hljs-comment"># parse subroutineName</span><br>                termfunc = <span class="hljs-variable language_">self</span>.parser.currToken()<br>                <span class="hljs-variable language_">self</span>.parser.advance()<br><br>                <span class="hljs-comment"># parse call name</span><br>                <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.subTable.indexOf(termname) &gt;= <span class="hljs-number">0</span>:<br>                    vartype = <span class="hljs-variable language_">self</span>.subTable.typeOf(termname)<br>                    varkind = <span class="hljs-variable language_">self</span>.subTable.kindOf(termname)<br>                    varidx =  <span class="hljs-variable language_">self</span>.subTable.indexOf(termname)<br>                    paramCnt += <span class="hljs-number">1</span><br>                    <span class="hljs-keyword">if</span> varkind == <span class="hljs-string">&quot;field&quot;</span>:<br>                        <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;this&quot;</span>,varidx)<br>                    <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;var&quot;</span>:<br>                        <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;local&quot;</span>,varidx)<br>                    <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;static&quot;</span>:<br>                        <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;static&quot;</span>,varidx)<br>                    <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;argument&quot;</span>:<br>                        <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;argument&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span>  <span class="hljs-variable language_">self</span>.classTable.indexOf(termname) &gt;= <span class="hljs-number">0</span>:<br>                    vartype = <span class="hljs-variable language_">self</span>.classTable.typeOf(termname)<br>                    varkind = <span class="hljs-variable language_">self</span>.classTable.kindOf(termname)<br>                    varidx =  <span class="hljs-variable language_">self</span>.classTable.indexOf(termname)<br>                    paramCnt += <span class="hljs-number">1</span><br>                    <span class="hljs-keyword">if</span> varkind == <span class="hljs-string">&quot;field&quot;</span>:<br>                        <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;this&quot;</span>,varidx)<br>                    <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;var&quot;</span>:<br>                        <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;local&quot;</span>,varidx)<br>                    <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;static&quot;</span>:<br>                        <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;static&quot;</span>,varidx)<br>                    <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;argument&quot;</span>:<br>                        <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;argument&quot;</span>,varidx)<br>                <span class="hljs-keyword">else</span>:<br>                    vartype = termname<br><br>                <span class="hljs-comment"># parse &#x27;(&#x27;</span><br>                <span class="hljs-variable language_">self</span>.parser.advance()<br>                <span class="hljs-comment"># parse expressList</span><br>                paramCnt += <span class="hljs-variable language_">self</span>.writeExpressionListCode()<br>                <span class="hljs-comment"># parse &#x27;)&#x27;</span><br>                <span class="hljs-variable language_">self</span>.parser.advance()<br>                <span class="hljs-comment"># write var code</span><br>                <span class="hljs-variable language_">self</span>.out.writeCall(vartype + <span class="hljs-string">&quot;.&quot;</span> + termfunc,paramCnt)<br>            <span class="hljs-comment"># parse call</span><br>            <span class="hljs-keyword">elif</span> <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL <span class="hljs-keyword">and</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&quot;(&quot;</span>:<br>                <span class="hljs-comment"># parse &#x27;(&#x27;</span><br>                <span class="hljs-variable language_">self</span>.parser.advance()<br>                <span class="hljs-comment"># parse expressList</span><br>                <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;pointer&quot;</span>,<span class="hljs-number">0</span>)<br>                paramCnt = <span class="hljs-variable language_">self</span>.writeExpressionListCode() + <span class="hljs-number">1</span><br>                <span class="hljs-comment"># parse &#x27;)&#x27;</span><br>                <span class="hljs-variable language_">self</span>.parser.advance()<br>                <span class="hljs-comment"># write var code</span><br>                <span class="hljs-variable language_">self</span>.out.writeCall(<span class="hljs-variable language_">self</span>.classname + <span class="hljs-string">&quot;.&quot;</span> + termfunc,paramCnt)<br>                <span class="hljs-comment"># print(self.classname + &quot;.&quot; + termfunc + str(paramCnt))</span><br>            <span class="hljs-keyword">else</span>:<br>                <span class="hljs-comment"># parse subroutineName or varName            </span><br>                <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.subTable.indexOf(termname) &gt;= <span class="hljs-number">0</span>:<br>                    vartype = <span class="hljs-variable language_">self</span>.subTable.typeOf(termname)<br>                    varkind = <span class="hljs-variable language_">self</span>.subTable.kindOf(termname)<br>                    varidx =  <span class="hljs-variable language_">self</span>.subTable.indexOf(termname)<br>                <span class="hljs-keyword">elif</span>  <span class="hljs-variable language_">self</span>.classTable.indexOf(termname) &gt;= <span class="hljs-number">0</span>:<br>                    vartype = <span class="hljs-variable language_">self</span>.classTable.typeOf(termname)<br>                    varkind = <span class="hljs-variable language_">self</span>.classTable.kindOf(termname)<br>                    varidx =  <span class="hljs-variable language_">self</span>.classTable.indexOf(termname)<br>                <span class="hljs-keyword">else</span>:<br>                    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;invalid var statement!&quot;</span>)<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br>                <span class="hljs-keyword">if</span> varkind == <span class="hljs-string">&quot;field&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;this&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;var&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;local&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;static&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;static&quot;</span>,varidx)<br>                <span class="hljs-keyword">elif</span> varkind == <span class="hljs-string">&quot;argument&quot;</span>:<br>                    <span class="hljs-variable language_">self</span>.out.writePush(<span class="hljs-string">&quot;argument&quot;</span>,varidx)<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">writeExpressionListCode</span>(<span class="hljs-params">self</span>):<br>        argsCnt = <span class="hljs-number">0</span><br><br>        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&#x27;)&#x27;</span> <span class="hljs-keyword">and</span> \<br>           <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL:<br>            <span class="hljs-keyword">return</span> argsCnt<br><br>        <span class="hljs-comment"># parse expression</span><br>        argsCnt += <span class="hljs-number">1</span><br>        <span class="hljs-variable language_">self</span>.writeExpressionCode()<br>        <br>        <span class="hljs-comment"># parse `, expression`</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-variable language_">self</span>.parser.symbol() == <span class="hljs-string">&#x27;,&#x27;</span> <span class="hljs-keyword">and</span> \<br>              <span class="hljs-variable language_">self</span>.parser.tokenType() == TOKEN_TYPE.TOKEN_SYMBOL:<br>            <span class="hljs-comment"># parse &#x27;,&#x27;</span><br>            <span class="hljs-variable language_">self</span>.parser.advance()<br>            <span class="hljs-comment"># parse expression</span><br>            argsCnt += <span class="hljs-number">1</span><br>            <span class="hljs-variable language_">self</span>.writeExpressionCode()<br><br>        <span class="hljs-keyword">return</span> argsCnt<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"><span class="hljs-built_in">input</span></span>):<br>    <span class="hljs-keyword">if</span> os.path.exists(<span class="hljs-built_in">input</span>):<br>        <span class="hljs-keyword">if</span> os.path.isdir(<span class="hljs-built_in">input</span>):<br>            files = os.listdir(<span class="hljs-built_in">input</span>)<br>            <span class="hljs-keyword">for</span> f <span class="hljs-keyword">in</span> files:<br>                filename = <span class="hljs-built_in">input</span>+f<br>                <span class="hljs-keyword">if</span> filename.find(<span class="hljs-string">&quot;.jack&quot;</span>) &gt;= <span class="hljs-number">0</span>:<br>                    CompileCodeWriter(<span class="hljs-built_in">input</span>+f)<br>        <span class="hljs-keyword">else</span>:<br>            CompileCodeWriter(<span class="hljs-built_in">input</span>)            <br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;invalid path&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    main(sys.argv[<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title="#"></a>#</h2><p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://mikemeng.org/">http://mikemeng.org/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://i.loli.net/2020/11/16/xtyDOgT6Gm1AKdS.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/build-a-computer/" class="category-chain-item">build a computer</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/" class="print-no-link">#公开课学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【build a computer】 project 11</div>
+      <div>http://example.com/2026/09/08/公开课学习/77/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 8, 2026</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/08/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/80/" title="【build a computer】 project 10">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【build a computer】 project 10</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/08/%E5%85%AC%E5%BC%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/82/" title="【build a computer】 project 9">
+                        <span class="hidden-mobile">【build a computer】 project 9</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

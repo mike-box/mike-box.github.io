@@ -1,0 +1,1034 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mike Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="leetcode weekly contes 356$T4$ 还算质量比较高的数位 $dp$, 其余的题目没有太大难度。 6917. 满足目标工作时长的员工数目公司里共有 n 名员工，按从 0 到 n - 1 编号。每个员工 i 已经在公司工作了 hours[i] 小时。 公司要求每位员工工作 至少 target 小时。 给你一个下标从 0 开始、长度为 n 的非负整数数组 hours 和一个非负">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode weekly contes 356">
+<meta property="og:url" content="http://example.com/2026/09/08/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/137/index.html">
+<meta property="og:site_name" content="且听疯吟">
+<meta property="og:description" content="leetcode weekly contes 356$T4$ 还算质量比较高的数位 $dp$, 其余的题目没有太大难度。 6917. 满足目标工作时长的员工数目公司里共有 n 名员工，按从 0 到 n - 1 编号。每个员工 i 已经在公司工作了 hours[i] 小时。 公司要求每位员工工作 至少 target 小时。 给你一个下标从 0 开始、长度为 n 的非负整数数组 hours 和一个非负">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+<meta property="article:published_time" content="2026-09-08T08:08:49.128Z">
+<meta property="article:modified_time" content="2026-09-08T08:08:49.128Z">
+<meta property="article:author" content="Mike Meng">
+<meta property="article:tag" content="力扣周赛赛">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png">
+  
+  
+  
+  <title>leetcode weekly contes 356 - 且听疯吟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode weekly contes 356"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-08 16:08" pubdate>
+          September 8, 2026 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          77 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode weekly contes 356</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="leetcode-weekly-contes-356"><a href="#leetcode-weekly-contes-356" class="headerlink" title="leetcode weekly contes 356"></a>leetcode weekly contes 356</h2><p>$T4$ 还算质量比较高的数位 $dp$, 其余的题目没有太大难度。</p>
+<h3 id="6917-满足目标工作时长的员工数目"><a href="#6917-满足目标工作时长的员工数目" class="headerlink" title="6917. 满足目标工作时长的员工数目"></a>6917. 满足目标工作时长的员工数目</h3><p>公司里共有 <code>n</code> 名员工，按从 <code>0</code> 到 <code>n - 1</code> 编号。每个员工 <code>i</code> 已经在公司工作了 <code>hours[i]</code> 小时。</p>
+<p>公司要求每位员工工作 <strong>至少</strong> <code>target</code> 小时。</p>
+<p>给你一个下标从 <strong>0</strong> 开始、长度为 <code>n</code> 的非负整数数组 <code>hours</code> 和一个非负整数 <code>target</code> 。</p>
+<p>请你用整数表示并返回工作至少 <code>target</code> 小时的员工数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：hours = [0,1,2,3,4], target = 2<br>输出：3<br>解释：公司要求每位员工工作至少<span class="hljs-number"> 2 </span>小时。<br>- 员工<span class="hljs-number"> 0 </span>工作<span class="hljs-number"> 0 </span>小时，不满足要求。<br>- 员工<span class="hljs-number"> 1 </span>工作<span class="hljs-number"> 1 </span>小时，不满足要求。<br>- 员工<span class="hljs-number"> 2 </span>工作<span class="hljs-number"> 2 </span>小时，满足要求。<br>- 员工<span class="hljs-number"> 3 </span>工作<span class="hljs-number"> 3 </span>小时，满足要求。<br>- 员工<span class="hljs-number"> 4 </span>工作<span class="hljs-number"> 4 </span>小时，满足要求。<br>共有<span class="hljs-number"> 3 </span>位满足要求的员工。<br></code></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：hours = [5,1,4,2,2], target = 6<br>输出：0<br>解释：公司要求每位员工工作至少<span class="hljs-number"> 6 </span>小时。<br>共有<span class="hljs-number"> 0 </span>位满足要求的员工。<br></code></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == hours.length &lt;= 50</code></li>
+<li><code>0 &lt;= hours[i], target &lt;= 105</code></li>
+</ul>
+<h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-356/problems/number-of-employees-who-met-the-target/">https://leetcode.cn/contest/weekly-contest-356/problems/number-of-employees-who-met-the-target/</a></p>
+<h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><pre><code class="hljs">直接模拟
+</code></pre><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>直接遍历即可，找到数组中大于 $target$ 的元素个数即可。</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><figcaption><span>[sol1-C++]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numberOfEmployeesWhoMetTarget</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; hours, <span class="hljs-type">int</span> target)</span> </span>&#123;<br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> v : hours) &#123;<br>            <span class="hljs-keyword">if</span> (v &gt;= target) ans++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="6900-统计完全子数组的数目"><a href="#6900-统计完全子数组的数目" class="headerlink" title="6900. 统计完全子数组的数目"></a>6900. 统计完全子数组的数目</h3><p>给你一个由 <strong>正</strong> 整数组成的数组 <code>nums</code> 。</p>
+<p>如果数组中的某个子数组满足下述条件，则称之为 <strong>完全子数组</strong> ：</p>
+<ul>
+<li>子数组中 <strong>不同</strong> 元素的数目等于整个数组不同元素的数目。</li>
+</ul>
+<p>返回数组中 <strong>完全子数组</strong> 的数目。</p>
+<p><strong>子数组</strong> 是数组中的一个连续非空序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[1,3,1,2,2]</span><br>输出：4<br>解释：完全子数组有：<span class="hljs-comment">[1,3,1,2]</span>、<span class="hljs-comment">[1,3,1,2,2]</span>、<span class="hljs-comment">[3,1,2]</span> 和 <span class="hljs-comment">[3,1,2,2]</span> 。<br></code></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：nums = [5,5,5,5]<br>输出：10<br>解释：数组仅由整数<span class="hljs-number"> 5 </span>组成，所以任意子数组都满足完全子数组的条件。子数组的总数为<span class="hljs-number"> 10 </span>。<br></code></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 2000</code></li>
+</ul>
+<h3 id="地址-1"><a href="#地址-1" class="headerlink" title="地址"></a>地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-356/problems/count-complete-subarrays-in-an-array/">https://leetcode.cn/contest/weekly-contest-356/problems/count-complete-subarrays-in-an-array/</a></p>
+<h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h4><pre><code class="hljs">枚举或者滑动窗口
+</code></pre><h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>题目本身给的数量级较小，我们直接枚举所有的 $i,j$ ，统计当前的子数组中含有的不同元素的个数即可。该算法比较简单时间复杂度为 $O(n^2)$, 另一种解法就是经典的双指针解法，该题目应该在力扣平台中出现过很多次了，每次固定 $i$，然后移动 $j$，直到 $nums[j, \cdots, i]$ 构成的构成的子数组中的不同的元素的数目小于整个数组中不同元素的数目，此时以 $i$ 为结尾可以构成的符合要求的连续子数组的数目即为 $j$ 个，我们依次枚举即可。</p>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(n^2)$，其中 $n$ 为数组的长度。</li>
+<li>空间复杂度：$O(U)$，其中 $U$ 为数组的最大元素。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countCompleteSubarrays</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-function">unordered_set&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">cnt</span><span class="hljs-params">(nums.begin(), nums.end())</span></span>;<br>        <span class="hljs-type">int</span> tot = cnt.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">arr</span><span class="hljs-params">(<span class="hljs-number">2001</span>)</span></span>;<br>            <span class="hljs-type">int</span> now = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i; j &lt; nums.<span class="hljs-built_in">size</span>(); j++) &#123;<br>                <span class="hljs-keyword">if</span> (arr[nums[j]] == <span class="hljs-number">0</span>) &#123;<br>                    arr[nums[j]] = <span class="hljs-number">1</span>;<br>                    now++;<br>                &#125;<br>                <span class="hljs-keyword">if</span> (now &gt;= tot) &#123;<br>                    ans++;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countCompleteSubarrays</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-function">unordered_set&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">cnt</span><span class="hljs-params">(nums.begin(), nums.end())</span></span>;<br>        <span class="hljs-type">int</span> maxV = *<span class="hljs-built_in">max_element</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>         <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">count</span><span class="hljs-params">(maxV + <span class="hljs-number">1</span>)</span></span>;<br>        <span class="hljs-type">int</span> tot = cnt.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>, curr = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            count[nums[i]]++;<br>            <span class="hljs-keyword">if</span> (count[nums[i]] == <span class="hljs-number">1</span>) &#123;<br>                curr++;<br>            &#125;<br>            <span class="hljs-keyword">while</span> (j &lt; n &amp;&amp; curr &gt;= tot) &#123;<br>                count[nums[j]]--;<br>                <span class="hljs-keyword">if</span> (count[nums[j]] == <span class="hljs-number">0</span>) &#123;<br>                    curr--;<br>                &#125;<br>                j++;<br>            &#125;<br>            ans += j;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="6918-包含三个字符串的最短字符串"><a href="#6918-包含三个字符串的最短字符串" class="headerlink" title="6918. 包含三个字符串的最短字符串"></a>6918. 包含三个字符串的最短字符串</h3><p>给你三个字符串 <code>a</code> ，<code>b</code> 和 <code>c</code> ， 你的任务是找到长度 <strong>最短</strong> 的字符串，且这三个字符串都是它的 <strong>子字符串</strong> 。</p>
+<p>如果有多个这样的字符串，请你返回 <strong>字典序最小</strong> 的一个。</p>
+<p>请你返回满足题目要求的字符串。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>两个长度相同的字符串 <code>a</code> 和 <code>b</code> ，如果在第一个不相同的字符处，<code>a</code> 的字母在字母表中比 <code>b</code> 的字母 <strong>靠前</strong> ，那么字符串 <code>a</code> 比字符串 <code>b</code> <strong>字典序小</strong> 。</li>
+<li><strong>子字符串</strong> 是一个字符串中一段连续的字符序列。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">输入：<span class="hljs-selector-tag">a</span> = <span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-selector-tag">b</span> = <span class="hljs-string">&quot;bca&quot;</span>, c = <span class="hljs-string">&quot;aaa&quot;</span><br>输出：<span class="hljs-string">&quot;aaabca&quot;</span><br>解释：字符串 <span class="hljs-string">&quot;aaabca&quot;</span> 包含所有三个字符串：<span class="hljs-selector-tag">a</span> = ans<span class="hljs-selector-attr">[2...4]</span> ，<span class="hljs-selector-tag">b</span> = ans<span class="hljs-selector-attr">[3..5]</span> ，c = ans<span class="hljs-selector-attr">[0..2]</span> 。结果字符串的长度至少为 <span class="hljs-number">6</span> ，且<span class="hljs-string">&quot;aaabca&quot;</span> 是字典序最小的一个。<br></code></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">输入：<span class="hljs-selector-tag">a</span> = <span class="hljs-string">&quot;ab&quot;</span>, <span class="hljs-selector-tag">b</span> = <span class="hljs-string">&quot;ba&quot;</span>, c = <span class="hljs-string">&quot;aba&quot;</span><br>输出：<span class="hljs-string">&quot;aba&quot;</span><br>解释：字符串 <span class="hljs-string">&quot;aba&quot;</span> 包含所有三个字符串：<span class="hljs-selector-tag">a</span> = ans<span class="hljs-selector-attr">[0..1]</span> ，<span class="hljs-selector-tag">b</span> = ans<span class="hljs-selector-attr">[1..2]</span> ，c = ans<span class="hljs-selector-attr">[0..2]</span> 。由于 c 的长度为 <span class="hljs-number">3</span> ，结果字符串的长度至少为 <span class="hljs-number">3</span> 。<span class="hljs-string">&quot;aba&quot;</span> 是字典序最小的一个。<br></code></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= a.length, b.length, c.length &lt;= 100</code></li>
+<li><code>a</code> ，<code>b</code> ，<code>c</code> 只包含小写英文字母。</li>
+</ul>
+<h4 id="地址-2"><a href="#地址-2" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-356/problems/shortest-string-that-contains-three-strings/">https://leetcode.cn/contest/weekly-contest-356/problems/shortest-string-that-contains-three-strings/</a></p>
+<h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 暴力</p>
+</blockquote>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>最短子字符串一定在下面几种之一，设 $a,b,c$ 为三个字符串：</p>
+<ul>
+<li>$a,b$ 均为 $c$ 的子串，即其中两个字符串一定是另一个字符串的子串，此时最短的字符串一定是 $c$;</li>
+<li>$a$ 是 $b$ 的子串，则此时 $a$ 与 $b$ 合并的最短长度子串一定是 $b$, 否则则是 $a$ 的后缀或者前缀与 $b$ 的前缀或者后缀重合，从而通过合并得到最短的合并子串；</li>
+<li>$a$ 与 $b$ 合并的字符串为 $d$，$d$ 与 $c$ 合并后的字符串为 $e$；</li>
+<li>$a,b,c$ 三种字符串不同的顺序组合一共有 $6$ 种不同的顺序组合，期望通过顺序组合计算得到最佳答案即可；</li>
+</ul>
+</li>
+<li><p>复杂度分析：</p>
+</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(2^n \times m)$，其中 $n$ 表示给定字符串的数目。</li>
+<li>空间复杂度：$O(m)$，其中 $m$ 表示给定字符串的总长度。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">string <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-type">const</span> string &amp;a, <span class="hljs-type">const</span> string &amp;b)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (a.<span class="hljs-built_in">find</span>(b) != std::string::npos) &#123;<br>            <span class="hljs-keyword">return</span> a;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (b.<span class="hljs-built_in">find</span>(a) != std::string::npos) &#123;<br>            <span class="hljs-keyword">return</span> b;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-built_in">min</span>(a.<span class="hljs-built_in">size</span>(), b.<span class="hljs-built_in">size</span>()); i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>            <span class="hljs-keyword">if</span> (b.<span class="hljs-built_in">substr</span>(<span class="hljs-number">0</span>, i) == a.<span class="hljs-built_in">substr</span>(a.<span class="hljs-built_in">size</span>() - i)) &#123;<br>                <span class="hljs-keyword">return</span> a + b.<span class="hljs-built_in">substr</span>(i);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> a + b;<br>    &#125;<br>    <br>    <span class="hljs-function">string <span class="hljs-title">minimumString</span><span class="hljs-params">(string a, string b, string c)</span> </span>&#123;        <br>        vector&lt;string&gt; arr = &#123;a, b, c&#125;;<br>        string res = a + b + c;<br>        <span class="hljs-built_in">sort</span>(arr.<span class="hljs-built_in">begin</span>(), arr.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-keyword">do</span> &#123;<br>            string s = <span class="hljs-built_in">merge</span>(<span class="hljs-built_in">merge</span>(arr[<span class="hljs-number">0</span>], arr[<span class="hljs-number">1</span>]), arr[<span class="hljs-number">2</span>]);<br>            <span class="hljs-keyword">if</span> (s.<span class="hljs-built_in">size</span>() &lt; res.<span class="hljs-built_in">size</span>() || (s.<span class="hljs-built_in">size</span>() == res.<span class="hljs-built_in">size</span>() &amp;&amp; s &lt; res)) &#123;<br>                res = s;<br>            &#125;<br>        &#125; <span class="hljs-keyword">while</span>(<span class="hljs-built_in">next_permutation</span>(arr.<span class="hljs-built_in">begin</span>(), arr.<span class="hljs-built_in">end</span>()));<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="6957-统计范围内的步进数字数目"><a href="#6957-统计范围内的步进数字数目" class="headerlink" title="6957. 统计范围内的步进数字数目"></a>6957. 统计范围内的步进数字数目</h3><p>给你两个正整数 <code>low</code> 和 <code>high</code> ，都用字符串表示，请你统计闭区间 <code>[low, high]</code> 内的 <strong>步进数字</strong> 数目。</p>
+<p>如果一个整数相邻数位之间差的绝对值都 <strong>恰好</strong> 是 <code>1</code> ，那么这个数字被称为 <strong>步进数字</strong> 。</p>
+<p>请你返回一个整数，表示闭区间 <code>[low, high]</code> 之间步进数字的数目。</p>
+<p>由于答案可能很大，请你将它对 <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><strong>注意：</strong>步进数字不能有前导 0 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：low = &quot;1&quot;, high = &quot;11&quot;<br>输出：10<br>解释：区间 [1,11] 内的步进数字为<span class="hljs-number"> 1 </span>，2 ，3 ，4 ，5 ，6 ，7 ，8 ，9 和<span class="hljs-number"> 10 </span>。总共有<span class="hljs-number"> 10 </span>个步进数字。所以输出为<span class="hljs-number"> 10 </span>。<br></code></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：low = &quot;90&quot;, high = &quot;101&quot;<br>输出：2<br>解释：区间 [90,101] 内的步进数字为<span class="hljs-number"> 98 </span>和<span class="hljs-number"> 101 </span>。总共有<span class="hljs-number"> 2 </span>个步进数字。所以输出为<span class="hljs-number"> 2 </span>。<br></code></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= int(low) &lt;= int(high) &lt; 10100</code></li>
+<li><code>1 &lt;= low.length, high.length &lt;= 100</code></li>
+<li><code>low</code> 和 <code>high</code> 只包含数字。</li>
+<li><code>low</code> 和 <code>high</code> 都不含前导 0 。</li>
+</ul>
+<h4 id="地址-3"><a href="#地址-3" class="headerlink" title="地址"></a>地址</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/weekly-contest-356/problems/count-stepping-numbers-in-range/">https://leetcode.cn/contest/weekly-contest-356/problems/count-stepping-numbers-in-range/</a></p>
+<h4 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h4><blockquote>
+<p> 数位DP</p>
+</blockquote>
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>典型的数位 $dp$，求区间问题可以分为两个子问题来解决，求区间 $[l,r]$ 满足题目要求的数目可以变为求小于等于 $r$ 与 $l$ 的数目，设 $f(high)$ 表示小于等于 $high$ 构成的数目，$f(low)$  表示小于等于 $low$ 构成的数目，此时题目的结果即为 $f(high) - f(low)$，最后还需要检测 $low$ 是否为进步数字。重点来介绍如何计算 $f(x)$，即计算小于等于 $x$ 的步进数字：<ul>
+<li>需要设置状态设 $dp[prev][i]$ 表示前一位为 $prev$ ,当前为 $i$ 位的步进数字的个数，即此时还可以填充 $n-i$ 个位置的数字，该状态下的数字数目一定是固定的，我们可以利用动态规划快速计算出来，假设当前构成长度 $n$ 位且不含前导 $0$ 的步进数的数目也是确定的，这也可以通过动态规划计算出来。</li>
+<li>假设当前的数字为 $x$, 上一位填充的数字为 $prev$，则此时：<ul>
+<li>当前位置可以填充的数字为 $prev - 1, prev + 1$,；</li>
+<li>还需要检测当前位置是由已经沿着边界构造，因此需要判断 $prev - 1 \le x , prev + 1 \le x$，如果当前沿着边界构造，则所有构成的数都应该小于等于 $x$;</li>
+<li>假设当前位没有填充数字，则剩余的位可以随意填充，此时可以根据上述计算出来的数据直接填充即可。</li>
+<li>数位 $dp$ 还是挺复杂的，容易写错，比赛的时候写错了一个判断条件导致数据没过。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>复杂度分析：</li>
+</ol>
+<ul>
+<li>时间复杂度：$O(|\Sigma|m)$，其中 $m$ 表示字符串的长度，$|\Sigma|$  表示字符串集，在这里字符集的为 $10$。</li>
+<li>空间复杂度：$O(|\Sigma|m)$，其中 $m$ 表示字符串的长度，$|\Sigma|$  表示字符串集，在这里字符集的为 $10$。</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> mod = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br>    <span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> pos, <span class="hljs-type">int</span> prev, string &amp;s, <span class="hljs-type">bool</span> isNum, <span class="hljs-type">bool</span> isLimit, vector&lt;vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;&gt; &amp;memo)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (pos == s.<span class="hljs-built_in">size</span>()) &#123;<br>            <span class="hljs-keyword">return</span> isNum;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (!isLimit &amp;&amp; isNum &amp;&amp; memo[prev][pos] != <span class="hljs-number">-1</span>) &#123;<br>            <span class="hljs-keyword">return</span> memo[prev][pos];<br>        &#125;<br>        <br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> x = s[pos] - <span class="hljs-string">&#x27;0&#x27;</span>;<br>        <span class="hljs-keyword">if</span> (!isNum) &#123;<br>            res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>, s, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, memo)) % mod;<br>            <span class="hljs-keyword">if</span> (pos == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; x; i++) &#123;<br>                    res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, i, s, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, memo)) % mod;<br>                &#125;<br>                res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, x, s, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, memo)) % mod;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">9</span>; i++) &#123;<br>                    res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, i, s, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, memo)) % mod;<br>                &#125;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">if</span> (!isLimit) &#123;<br>                <span class="hljs-keyword">if</span> (prev + <span class="hljs-number">1</span> &lt; <span class="hljs-number">10</span>) &#123;<br>                    res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, prev + <span class="hljs-number">1</span>, s, <span class="hljs-literal">true</span>, isLimit, memo)) % mod;<br>                &#125;<br>                <span class="hljs-keyword">if</span> (prev - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span>) &#123;<br>                    res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, prev - <span class="hljs-number">1</span>, s, <span class="hljs-literal">true</span>, isLimit, memo)) % mod;<br>                &#125;<br>                memo[prev][pos] = res;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">if</span> (prev + <span class="hljs-number">1</span> &lt; x) &#123;<br>                    res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, prev + <span class="hljs-number">1</span>, s, <span class="hljs-literal">true</span>, !isLimit, memo)) % mod;<br>                    <span class="hljs-keyword">if</span> (prev - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span>) &#123;<br>                        res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, prev - <span class="hljs-number">1</span>, s, <span class="hljs-literal">true</span>, !isLimit, memo)) % mod;<br>                    &#125;<br>                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (prev + <span class="hljs-number">1</span> == x) &#123;<br>                    res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, prev + <span class="hljs-number">1</span>, s, <span class="hljs-literal">true</span>, isLimit, memo)) % mod;<br>                    <span class="hljs-keyword">if</span> (prev - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span>) &#123;<br>                        res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, prev - <span class="hljs-number">1</span>, s, <span class="hljs-literal">true</span>, !isLimit, memo)) % mod;<br>                    &#125;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">if</span> (prev - <span class="hljs-number">1</span> &lt; x &amp;&amp; prev - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span>) &#123;<br>                        res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, prev - <span class="hljs-number">1</span>, s, <span class="hljs-literal">true</span>, !isLimit, memo)) % mod;<br>                    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (prev - <span class="hljs-number">1</span> == x) &#123;<br>                        res = (res + <span class="hljs-built_in">dfs</span>(pos + <span class="hljs-number">1</span>, prev - <span class="hljs-number">1</span>, s, <span class="hljs-literal">true</span>, isLimit, memo)) % mod;<br>                    &#125;<br>                &#125;<br><br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(s[i] - s[i - <span class="hljs-number">1</span>]) != <span class="hljs-number">1</span>) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countSteppingNumbers</span><span class="hljs-params">(string low, string high)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = <span class="hljs-built_in">max</span>(low.<span class="hljs-built_in">size</span>(), high.<span class="hljs-built_in">size</span>()) + <span class="hljs-number">10</span>;<br>        vector&lt;vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;&gt; <span class="hljs-built_in">memo1</span>(<span class="hljs-number">10</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;(n + <span class="hljs-number">10</span>, <span class="hljs-number">-1</span>));<br>        vector&lt;vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;&gt; <span class="hljs-built_in">memo2</span>(<span class="hljs-number">10</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;(n + <span class="hljs-number">10</span>, <span class="hljs-number">-1</span>));<br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> ret1 = <span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, high, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, memo1);<br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> ret2 = <span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, low, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, memo2);<br>        <span class="hljs-keyword">return</span> ((ret1 - ret2 + mod) % mod + (<span class="hljs-built_in">check</span>(low) ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>)) % mod;<br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-type">const</span> <span class="hljs-type">int</span> MOD = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">calc</span><span class="hljs-params">(string &amp;s, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; &amp;dp)</span> </span>&#123;<br>        <span class="hljs-type">int</span> m = s.<span class="hljs-built_in">length</span>();<br>        function&lt;<span class="hljs-type">int</span>(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>, <span class="hljs-type">bool</span>, <span class="hljs-type">bool</span>)&gt; f = [&amp;](<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> pre, <span class="hljs-type">bool</span> is_limit, <span class="hljs-type">bool</span> is_num) -&gt; <span class="hljs-type">int</span> &#123;<br>            <span class="hljs-keyword">if</span> (i == m)<br>                <span class="hljs-keyword">return</span> is_num; <span class="hljs-comment">// is_num 为 true 表示得到了一个合法数字</span><br>            <span class="hljs-keyword">if</span> (!is_limit &amp;&amp; is_num)<br>                <span class="hljs-keyword">return</span> dp[m - i][pre];<br>            <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">if</span> (!is_num) <span class="hljs-comment">// 可以跳过当前数位</span><br>                res = <span class="hljs-built_in">f</span>(i + <span class="hljs-number">1</span>, pre, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>);<br>            <span class="hljs-type">int</span> up = is_limit ? s[i] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">9</span>; <span class="hljs-comment">// 如果前面填的数字都和 s 的一样，那么这一位至多填数字 s[i]（否则就超过 s 啦）</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> d = <span class="hljs-number">1</span> - is_num; d &lt;= up; ++d) <span class="hljs-comment">// 枚举要填入的数字 d</span><br>                <span class="hljs-keyword">if</span> (!is_num || <span class="hljs-built_in">abs</span>(d - pre) == <span class="hljs-number">1</span>) <span class="hljs-comment">// 第一位数字随便填，其余必须相差 1</span><br>                    res = (res + <span class="hljs-built_in">f</span>(i + <span class="hljs-number">1</span>, d, is_limit &amp;&amp; d == up, <span class="hljs-literal">true</span>)) % MOD;<br>            <span class="hljs-keyword">return</span> res;<br>        &#125;;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">f</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">valid</span><span class="hljs-params">(string &amp;s)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; s.<span class="hljs-built_in">length</span>(); i++)<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">int</span>(s[i]) - <span class="hljs-built_in">int</span>(s[i - <span class="hljs-number">1</span>])) != <span class="hljs-number">1</span>)<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countSteppingNumbers</span><span class="hljs-params">(string low, string high)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = <span class="hljs-built_in">max</span>(low.<span class="hljs-built_in">size</span>(), high.<span class="hljs-built_in">size</span>()) + <span class="hljs-number">1</span>;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(n, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">10</span>));<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>            dp[<span class="hljs-number">0</span>][i] = <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">10</span>; j++) &#123;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">10</span>; k++) &#123;<br>                    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(j - k) == <span class="hljs-number">1</span>) &#123;<br>                        dp[i][j] = (dp[i][j] + dp[i - <span class="hljs-number">1</span>][k]) % MOD;<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-built_in">calc</span>(high, dp) - <span class="hljs-built_in">calc</span>(low, dp) + MOD + <span class="hljs-built_in">valid</span>(low)) % MOD; <span class="hljs-comment">// +MOD 防止算出负数</span><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>欢迎关注和打赏，感谢支持！</p>
+<ul>
+<li>关注我的博客: <a target="_blank" rel="noopener" href="http://whistle-wind.com/">http://whistle-wind.com/</a></li>
+<li>关注我的知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/da-hua-niu">https://www.zhihu.com/people/da-hua-niu</a></li>
+<li>关注我的微信公众号: 公务程序猿<br><img src="https://raw.githubusercontent.com/mike-box/pic/main/202210080853104.png" srcset="/img/loading.gif" lazyload alt="1"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B/" class="category-chain-item">力扣周赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%A2%98%E8%A7%A3/" class="print-no-link">#题解</a>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E8%B5%9B/" class="print-no-link">#力扣周赛赛</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode weekly contes 356</div>
+      <div>http://example.com/2026/09/08/力扣周赛题解/137/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Mike Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 8, 2026</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/08/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/139/" title="leetcode biweekly contes 357">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode biweekly contes 357</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/08/%E5%8A%9B%E6%89%A3%E5%91%A8%E8%B5%9B%E9%A2%98%E8%A7%A3/140/" title="leetcode biweekly contes 357">
+                        <span class="hidden-mobile">leetcode biweekly contes 357</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
